@@ -16,7 +16,7 @@ limitations under the License.
 syntax = "proto3";
 
 package io4edgeCoreApi;
-option go_package = "core/v1alpha2";
+option go_package = "core_api/v1alpha2";
 
 enum CommandId {
   IDENTIFY_HARDWARE = 0;
