@@ -10,11 +10,16 @@ proto-c-functionblock:
 	-v $(shell pwd)/proto/functionblock/v1alpha1:/proto \
 	-v $(shell pwd)/protobuf-c/:/out ixuan/protobuf-c \
 	sh -c "mkdir -p /out/functionblock/v1alpha1/ && protoc --c_out=/out/functionblock/v1alpha1 -I/proto/ /proto/io4edge_functionblock.proto"
+	docker run --rm --user "$(shell id -u):$(shell id -g)" \
+	-v $(shell pwd)/proto/functionblock/v1alpha1:/proto \
+	-v $(shell pwd)/protobuf-c/:/out ixuan/protobuf-c \
+	sh -c "mkdir -p /out/functionblock/v1alpha1/ && protoc --c_out=/out/functionblock/v1alpha1 -I/proto/ /proto/google/protobuf/any.proto"
 
 proto-golang-functionblock:
 	mkdir -p go/
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	protoc -I=./proto/functionblock/v1alpha1 ./proto/functionblock/v1alpha1/io4edge_functionblock.proto --go_out=go/
+	protoc -I=./proto/functionblock/v1alpha1 ./proto/functionblock/v1alpha1/google/protobuf/any.proto --go_out=go/
 
 proto-c-core_api:
 	mkdir -p protobuf-c
