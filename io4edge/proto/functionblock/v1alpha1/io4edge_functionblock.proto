@@ -79,6 +79,7 @@ enum Status {
   OK = 0;
   ERROR = 1;
   NOT_IMPLEMENTED = 2;
+  WRONG_CLIENT = 3;
 }
 
 message Error { string error = 1; }

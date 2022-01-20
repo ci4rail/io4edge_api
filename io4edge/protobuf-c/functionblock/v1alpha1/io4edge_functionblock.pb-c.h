@@ -39,7 +39,8 @@ typedef struct _Functionblock__Response Functionblock__Response;
 typedef enum _Functionblock__Status {
   FUNCTIONBLOCK__STATUS__OK = 0,
   FUNCTIONBLOCK__STATUS__ERROR = 1,
-  FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED = 2
+  FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED = 2,
+  FUNCTIONBLOCK__STATUS__WRONG_CLIENT = 3
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__STATUS)
 } Functionblock__Status;
 

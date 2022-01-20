@@ -1244,20 +1244,22 @@ const ProtobufCMessageDescriptor functionblock__response__descriptor =
   (ProtobufCMessageInit) functionblock__response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue functionblock__status__enum_values_by_number[3] =
+static const ProtobufCEnumValue functionblock__status__enum_values_by_number[4] =
 {
   { "OK", "FUNCTIONBLOCK__STATUS__OK", 0 },
   { "ERROR", "FUNCTIONBLOCK__STATUS__ERROR", 1 },
   { "NOT_IMPLEMENTED", "FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED", 2 },
+  { "WRONG_CLIENT", "FUNCTIONBLOCK__STATUS__WRONG_CLIENT", 3 },
 };
 static const ProtobufCIntRange functionblock__status__value_ranges[] = {
-{0, 0},{0, 3}
+{0, 0},{0, 4}
 };
-static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[3] =
+static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[4] =
 {
   { "ERROR", 1 },
   { "NOT_IMPLEMENTED", 2 },
   { "OK", 0 },
+  { "WRONG_CLIENT", 3 },
 };
 const ProtobufCEnumDescriptor functionblock__status__descriptor =
 {
@@ -1266,9 +1268,9 @@ const ProtobufCEnumDescriptor functionblock__status__descriptor =
   "Status",
   "Functionblock__Status",
   "functionblock",
-  3,
+  4,
   functionblock__status__enum_values_by_number,
-  3,
+  4,
   functionblock__status__enum_values_by_name,
   1,
   functionblock__status__value_ranges,
