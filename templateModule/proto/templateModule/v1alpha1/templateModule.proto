@@ -1,0 +1,128 @@
+/*
+Copyright © 2021 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package templateModule;
+option go_package = "templateModule/v1alpha1";
+
+// ============= ConfigurationControl =================
+
+// ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
+message ConfigurationControlSet {
+    // Put here your function specific values
+}
+
+// ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
+message ConfigurationControlSetResponse {
+    // no parameters
+}
+
+// ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
+message ConfigurationControlGet {
+    // no parameters
+}
+
+// ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationControlGetResponse {
+   // Put here your function specific values
+}
+
+// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook 
+message ConfigurationControlDescribe {
+    // no parameters
+}
+
+message ConfigurationControlDescribeResponse {
+    // Put here your function specific values
+}
+
+// ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
+message ConfigurationControlResponse {
+    oneof type {
+        ConfigurationControlGetResponse get = 1;
+        ConfigurationControlSetResponse set = 2;
+        ConfigurationControlDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // Put here your function specific values
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    // Put here your function specific values
+    // Example: 
+    fixed32 value = 1;
+}
+
+message SetResponse {
+    // no parameters
+}
+
+message GetResponse {
+    // Put here your function specific values
+    // Example: 
+    fixed32 value = 1;
+}
+
+// FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
+message FunctionControlResponse {
+    // Put here your function specific values
+    // Example: 
+    oneof type {
+        GetResponse get = 1;
+        SetResponse set = 2;
+    }
+}
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // Put here your function specific values
+    // Example: 
+
+    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a 
+    // certain time, the client is informed that the stream is still active and the existing data is transmitted.
+    // Defaults to 10 seconds
+    fixed32 keepaliveInterval = 1;
+
+    // internal ring buffer size. 
+    // Defaults to 50
+    // Maximum is 1000
+    fixed32 bufferSize = 2;
+}
+
+message Sample {
+    // Put here your function specific values
+    // Example: 
+
+    // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    // Specifies the binary channel value when the input value has changed.
+    fixed32 value = 2;
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    repeated Sample samples = 1;
+}
