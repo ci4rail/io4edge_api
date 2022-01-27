@@ -62,7 +62,7 @@ message StreamControlStart {
   google.protobuf.Any functionSpecificStreamControlStart = 2;
 }
 
-// StreamControlStart specifies the stop of a stream. 
+// StreamControlStart specifies the stop of a stream.
 message StreamControlStop {
 }
 
@@ -77,19 +77,32 @@ message StreamControl {
 // --------- Responses ------------
 enum Status {
   OK = 0;
-  ERROR = 1;
-  NOT_IMPLEMENTED = 2;
-  WRONG_CLIENT = 3;
+  UNSPECIFIC_ERROR = 1;
+  UNKNOWN_COMMAND = 2;
+  NOT_IMPLEMENTED = 3;
+  WRONG_CLIENT = 4;
+  INVALID_PARAMETER = 5;
+  HW_FAULT = 6;
 }
 
 message Error { string error = 1; }
 
 message ConfigurationControlResponse {
-  google.protobuf.Any functionSpecificConfigurationControlResponse = 10;
+  oneof action {
+    // Setting a new configuration
+    google.protobuf.Any functionSpecificConfigurationControlSet = 10;
+    // Getting the current configuration
+    google.protobuf.Any functionSpecificConfigurationControlGet = 20;
+    // Describe hardware capabilities
+    google.protobuf.Any functionSpecificConfigurationControlDescribe = 30;
+  }
 }
 
 message FunctionControlResponse {
-  google.protobuf.Any functionSpecificFunctionControlResponse = 10;
+  oneof action {
+    google.protobuf.Any functionSpecificFunctionControlSet = 1;
+    google.protobuf.Any functionSpecificFunctionControlGet = 2;
+  }
 }
 
 message StreamControlResponse {

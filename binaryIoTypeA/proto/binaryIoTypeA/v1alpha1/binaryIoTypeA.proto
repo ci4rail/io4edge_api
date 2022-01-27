@@ -55,22 +55,13 @@ message ConfigurationControlGetResponse {
     sfixed32 outputWatchdogTimeout = 3;
 }
 
-// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook 
+// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook
 message ConfigurationControlDescribe {
     // no parameters
 }
 
 message ConfigurationControlDescribeResponse {
     fixed32 numberOfChannels = 1;
-}
-
-// ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
-message ConfigurationControlResponse {
-    oneof type {
-        ConfigurationControlGetResponse get = 1;
-        ConfigurationControlSetResponse set = 2;
-        ConfigurationControlDescribeResponse describe = 3;
-    }
 }
 
 
@@ -99,8 +90,8 @@ message GetSingle {
 
 // Gets the values of all binary channels
 message GetAll {
-        // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is Output0
-        fixed32 mask = 1;
+    // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is Output0
+    fixed32 mask = 1;
 }
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
@@ -110,6 +101,28 @@ message FunctionControlGet {
         GetAll all = 2;
     }
 }
+
+message GetAllResponse {
+    // binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+    fixed32 inputs = 1;
+}
+
+message GetSingleResponse {
+    // Number of the binary input channel
+    fixed32 channel = 1;
+    // State for the bianry input channel
+    bool state = 2;
+}
+
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    oneof type {
+        GetSingleResponse single = 1;
+        GetAllResponse all = 2;
+    }
+}
+
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
@@ -127,30 +140,14 @@ message SetSingleResponse {
     // no parameters
 }
 
-message GetAllResponse {
-    // binary coded map of input values. 0 means low, 1 means high, LSB is Input0
-    fixed32 inputs = 1;
-    // binary coded map of errors for each input. 0 means no error, 1 means error, LSB is Input0
-    fixed32 error_status = 2;
-}
-
-message GetSingleResponse {
-    // Number of the binary input channel
-    fixed32 channel = 1;
-    // State for the bianry input channel
-    bool state = 2;
-}
-
-
-// FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
-message FunctionControlResponse {
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
     oneof type {
-        GetSingleResponse getSingle = 1;
-        GetAllResponse getAll = 2;
-        SetSingleResponse setSingle = 3;
-        SetAllResponse setAll = 4;
+        SetSingleResponse single = 1;
+        SetAllResponse all = 2;
     }
 }
+
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
@@ -160,12 +157,12 @@ message StreamControlStart {
     // Defaults to all channels (0x0F)
     fixed32 channelFilterMask = 1;
 
-    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a 
+    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
     // certain time, the client is informed that the stream is still active and the existing data is transmitted.
     // Defaults to 10 seconds
     fixed32 keepaliveInterval = 2;
 
-    // internal ring buffer size. 
+    // internal ring buffer size.
     // Defaults to 50
     // Maximum is 1000
     fixed32 bufferSize = 3;
