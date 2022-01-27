@@ -18,13 +18,13 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct _Functionblock__Context Functionblock__Context;
 typedef struct _Functionblock__Command Functionblock__Command;
-typedef struct _Functionblock__ConfigurationControl Functionblock__ConfigurationControl;
+typedef struct _Functionblock__Configuration Functionblock__Configuration;
 typedef struct _Functionblock__FunctionControl Functionblock__FunctionControl;
 typedef struct _Functionblock__StreamControlStart Functionblock__StreamControlStart;
 typedef struct _Functionblock__StreamControlStop Functionblock__StreamControlStop;
 typedef struct _Functionblock__StreamControl Functionblock__StreamControl;
 typedef struct _Functionblock__Error Functionblock__Error;
-typedef struct _Functionblock__ConfigurationControlResponse Functionblock__ConfigurationControlResponse;
+typedef struct _Functionblock__ConfigurationResponse Functionblock__ConfigurationResponse;
 typedef struct _Functionblock__FunctionControlResponse Functionblock__FunctionControlResponse;
 typedef struct _Functionblock__StreamControlResponse Functionblock__StreamControlResponse;
 typedef struct _Functionblock__StreamData Functionblock__StreamData;
@@ -38,9 +38,12 @@ typedef struct _Functionblock__Response Functionblock__Response;
  */
 typedef enum _Functionblock__Status {
   FUNCTIONBLOCK__STATUS__OK = 0,
-  FUNCTIONBLOCK__STATUS__ERROR = 1,
-  FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED = 2,
-  FUNCTIONBLOCK__STATUS__WRONG_CLIENT = 3
+  FUNCTIONBLOCK__STATUS__UNSPECIFIC_ERROR = 1,
+  FUNCTIONBLOCK__STATUS__UNKNOWN_COMMAND = 2,
+  FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED = 3,
+  FUNCTIONBLOCK__STATUS__WRONG_CLIENT = 4,
+  FUNCTIONBLOCK__STATUS__INVALID_PARAMETER = 5,
+  FUNCTIONBLOCK__STATUS__HW_FAULT = 6
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__STATUS)
 } Functionblock__Status;
 
@@ -65,7 +68,7 @@ struct  _Functionblock__Context
 
 typedef enum {
   FUNCTIONBLOCK__COMMAND__TYPE__NOT_SET = 0,
-  FUNCTIONBLOCK__COMMAND__TYPE_CONFIGURATION_CONTROL = 2,
+  FUNCTIONBLOCK__COMMAND__TYPE_CONFIGURATION = 2,
   FUNCTIONBLOCK__COMMAND__TYPE_FUNCTION_CONTROL = 3,
   FUNCTIONBLOCK__COMMAND__TYPE_STREAM_CONTROL = 4
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__COMMAND__TYPE)
@@ -80,7 +83,7 @@ struct  _Functionblock__Command
   Functionblock__Context *context;
   Functionblock__Command__TypeCase type_case;
   union {
-    Functionblock__ConfigurationControl *configurationcontrol;
+    Functionblock__Configuration *configuration;
     Functionblock__FunctionControl *functioncontrol;
     Functionblock__StreamControl *streamcontrol;
   };
@@ -91,38 +94,38 @@ struct  _Functionblock__Command
 
 
 typedef enum {
-  FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION__NOT_SET = 0,
-  FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_CONTROL_SET = 10,
-  FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_CONTROL_GET = 20,
-  FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_CONTROL_DESCRIBE = 30
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION)
-} Functionblock__ConfigurationControl__ActionCase;
+  FUNCTIONBLOCK__CONFIGURATION__ACTION__NOT_SET = 0,
+  FUNCTIONBLOCK__CONFIGURATION__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_SET = 10,
+  FUNCTIONBLOCK__CONFIGURATION__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_GET = 20,
+  FUNCTIONBLOCK__CONFIGURATION__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_DESCRIBE = 30
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__CONFIGURATION__ACTION)
+} Functionblock__Configuration__ActionCase;
 
 /*
- * ConfigurationControl contains the function blocks high level configuration
+ * Configuration contains the function blocks high level configuration
  */
-struct  _Functionblock__ConfigurationControl
+struct  _Functionblock__Configuration
 {
   ProtobufCMessage base;
-  Functionblock__ConfigurationControl__ActionCase action_case;
+  Functionblock__Configuration__ActionCase action_case;
   union {
     /*
      * Setting a new configuration
      */
-    Google__Protobuf__Any *functionspecificconfigurationcontrolset;
+    Google__Protobuf__Any *functionspecificconfigurationset;
     /*
      * Getting the current configuration
      */
-    Google__Protobuf__Any *functionspecificconfigurationcontrolget;
+    Google__Protobuf__Any *functionspecificconfigurationget;
     /*
      * Describe hardware capabilities
      */
-    Google__Protobuf__Any *functionspecificconfigurationcontroldescribe;
+    Google__Protobuf__Any *functionspecificconfigurationdescribe;
   };
 };
-#define FUNCTIONBLOCK__CONFIGURATION_CONTROL__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&functionblock__configuration_control__descriptor) \
-    , FUNCTIONBLOCK__CONFIGURATION_CONTROL__ACTION__NOT_SET, {0} }
+#define FUNCTIONBLOCK__CONFIGURATION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&functionblock__configuration__descriptor) \
+    , FUNCTIONBLOCK__CONFIGURATION__ACTION__NOT_SET, {0} }
 
 
 typedef enum {
@@ -163,7 +166,7 @@ struct  _Functionblock__StreamControlStart
 
 
 /*
- * StreamControlStart specifies the stop of a stream. 
+ * StreamControlStart specifies the stop of a stream.
  */
 struct  _Functionblock__StreamControlStop
 {
@@ -208,24 +211,57 @@ struct  _Functionblock__Error
     , (char *)protobuf_c_empty_string }
 
 
-struct  _Functionblock__ConfigurationControlResponse
+typedef enum {
+  FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION__NOT_SET = 0,
+  FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_SET = 10,
+  FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_GET = 20,
+  FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION_FUNCTION_SPECIFIC_CONFIGURATION_DESCRIBE = 30
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION)
+} Functionblock__ConfigurationResponse__ActionCase;
+
+struct  _Functionblock__ConfigurationResponse
 {
   ProtobufCMessage base;
-  Google__Protobuf__Any *functionspecificconfigurationcontrolresponse;
+  Functionblock__ConfigurationResponse__ActionCase action_case;
+  union {
+    /*
+     * Setting a new configuration
+     */
+    Google__Protobuf__Any *functionspecificconfigurationset;
+    /*
+     * Getting the current configuration
+     */
+    Google__Protobuf__Any *functionspecificconfigurationget;
+    /*
+     * Describe hardware capabilities
+     */
+    Google__Protobuf__Any *functionspecificconfigurationdescribe;
+  };
 };
-#define FUNCTIONBLOCK__CONFIGURATION_CONTROL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&functionblock__configuration_control_response__descriptor) \
-    , NULL }
+#define FUNCTIONBLOCK__CONFIGURATION_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&functionblock__configuration_response__descriptor) \
+    , FUNCTIONBLOCK__CONFIGURATION_RESPONSE__ACTION__NOT_SET, {0} }
 
+
+typedef enum {
+  FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__ACTION__NOT_SET = 0,
+  FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__ACTION_FUNCTION_SPECIFIC_FUNCTION_CONTROL_SET = 1,
+  FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__ACTION_FUNCTION_SPECIFIC_FUNCTION_CONTROL_GET = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__ACTION)
+} Functionblock__FunctionControlResponse__ActionCase;
 
 struct  _Functionblock__FunctionControlResponse
 {
   ProtobufCMessage base;
-  Google__Protobuf__Any *functionspecificfunctioncontrolresponse;
+  Functionblock__FunctionControlResponse__ActionCase action_case;
+  union {
+    Google__Protobuf__Any *functionspecificfunctioncontrolset;
+    Google__Protobuf__Any *functionspecificfunctioncontrolget;
+  };
 };
 #define FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&functionblock__function_control_response__descriptor) \
-    , NULL }
+    , FUNCTIONBLOCK__FUNCTION_CONTROL_RESPONSE__ACTION__NOT_SET, {0} }
 
 
 struct  _Functionblock__StreamControlResponse
@@ -260,7 +296,7 @@ struct  _Functionblock__StreamData
 
 typedef enum {
   FUNCTIONBLOCK__RESPONSE__TYPE__NOT_SET = 0,
-  FUNCTIONBLOCK__RESPONSE__TYPE_CONFIGURATION_CONTROL = 4,
+  FUNCTIONBLOCK__RESPONSE__TYPE_CONFIGURATION = 4,
   FUNCTIONBLOCK__RESPONSE__TYPE_FUNCTION_CONTROL = 5,
   FUNCTIONBLOCK__RESPONSE__TYPE_STREAM_CONTROL = 6,
   FUNCTIONBLOCK__RESPONSE__TYPE_STREAM = 7
@@ -275,7 +311,7 @@ struct  _Functionblock__Response
   Functionblock__Error *error;
   Functionblock__Response__TypeCase type_case;
   union {
-    Functionblock__ConfigurationControlResponse *configurationcontrol;
+    Functionblock__ConfigurationResponse *configuration;
     Functionblock__FunctionControlResponse *functioncontrol;
     Functionblock__StreamControlResponse *streamcontrol;
     Functionblock__StreamData *stream;
@@ -324,24 +360,24 @@ Functionblock__Command *
 void   functionblock__command__free_unpacked
                      (Functionblock__Command *message,
                       ProtobufCAllocator *allocator);
-/* Functionblock__ConfigurationControl methods */
-void   functionblock__configuration_control__init
-                     (Functionblock__ConfigurationControl         *message);
-size_t functionblock__configuration_control__get_packed_size
-                     (const Functionblock__ConfigurationControl   *message);
-size_t functionblock__configuration_control__pack
-                     (const Functionblock__ConfigurationControl   *message,
+/* Functionblock__Configuration methods */
+void   functionblock__configuration__init
+                     (Functionblock__Configuration         *message);
+size_t functionblock__configuration__get_packed_size
+                     (const Functionblock__Configuration   *message);
+size_t functionblock__configuration__pack
+                     (const Functionblock__Configuration   *message,
                       uint8_t             *out);
-size_t functionblock__configuration_control__pack_to_buffer
-                     (const Functionblock__ConfigurationControl   *message,
+size_t functionblock__configuration__pack_to_buffer
+                     (const Functionblock__Configuration   *message,
                       ProtobufCBuffer     *buffer);
-Functionblock__ConfigurationControl *
-       functionblock__configuration_control__unpack
+Functionblock__Configuration *
+       functionblock__configuration__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   functionblock__configuration_control__free_unpacked
-                     (Functionblock__ConfigurationControl *message,
+void   functionblock__configuration__free_unpacked
+                     (Functionblock__Configuration *message,
                       ProtobufCAllocator *allocator);
 /* Functionblock__FunctionControl methods */
 void   functionblock__function_control__init
@@ -438,24 +474,24 @@ Functionblock__Error *
 void   functionblock__error__free_unpacked
                      (Functionblock__Error *message,
                       ProtobufCAllocator *allocator);
-/* Functionblock__ConfigurationControlResponse methods */
-void   functionblock__configuration_control_response__init
-                     (Functionblock__ConfigurationControlResponse         *message);
-size_t functionblock__configuration_control_response__get_packed_size
-                     (const Functionblock__ConfigurationControlResponse   *message);
-size_t functionblock__configuration_control_response__pack
-                     (const Functionblock__ConfigurationControlResponse   *message,
+/* Functionblock__ConfigurationResponse methods */
+void   functionblock__configuration_response__init
+                     (Functionblock__ConfigurationResponse         *message);
+size_t functionblock__configuration_response__get_packed_size
+                     (const Functionblock__ConfigurationResponse   *message);
+size_t functionblock__configuration_response__pack
+                     (const Functionblock__ConfigurationResponse   *message,
                       uint8_t             *out);
-size_t functionblock__configuration_control_response__pack_to_buffer
-                     (const Functionblock__ConfigurationControlResponse   *message,
+size_t functionblock__configuration_response__pack_to_buffer
+                     (const Functionblock__ConfigurationResponse   *message,
                       ProtobufCBuffer     *buffer);
-Functionblock__ConfigurationControlResponse *
-       functionblock__configuration_control_response__unpack
+Functionblock__ConfigurationResponse *
+       functionblock__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   functionblock__configuration_control_response__free_unpacked
-                     (Functionblock__ConfigurationControlResponse *message,
+void   functionblock__configuration_response__free_unpacked
+                     (Functionblock__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator);
 /* Functionblock__FunctionControlResponse methods */
 void   functionblock__function_control_response__init
@@ -541,8 +577,8 @@ typedef void (*Functionblock__Context_Closure)
 typedef void (*Functionblock__Command_Closure)
                  (const Functionblock__Command *message,
                   void *closure_data);
-typedef void (*Functionblock__ConfigurationControl_Closure)
-                 (const Functionblock__ConfigurationControl *message,
+typedef void (*Functionblock__Configuration_Closure)
+                 (const Functionblock__Configuration *message,
                   void *closure_data);
 typedef void (*Functionblock__FunctionControl_Closure)
                  (const Functionblock__FunctionControl *message,
@@ -559,8 +595,8 @@ typedef void (*Functionblock__StreamControl_Closure)
 typedef void (*Functionblock__Error_Closure)
                  (const Functionblock__Error *message,
                   void *closure_data);
-typedef void (*Functionblock__ConfigurationControlResponse_Closure)
-                 (const Functionblock__ConfigurationControlResponse *message,
+typedef void (*Functionblock__ConfigurationResponse_Closure)
+                 (const Functionblock__ConfigurationResponse *message,
                   void *closure_data);
 typedef void (*Functionblock__FunctionControlResponse_Closure)
                  (const Functionblock__FunctionControlResponse *message,
@@ -583,13 +619,13 @@ typedef void (*Functionblock__Response_Closure)
 extern const ProtobufCEnumDescriptor    functionblock__status__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__context__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__command__descriptor;
-extern const ProtobufCMessageDescriptor functionblock__configuration_control__descriptor;
+extern const ProtobufCMessageDescriptor functionblock__configuration__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__function_control__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__stream_control_stop__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__stream_control__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__error__descriptor;
-extern const ProtobufCMessageDescriptor functionblock__configuration_control_response__descriptor;
+extern const ProtobufCMessageDescriptor functionblock__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__function_control_response__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__stream_control_response__descriptor;
 extern const ProtobufCMessageDescriptor functionblock__stream_data__descriptor;

@@ -15,24 +15,24 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _BinaryIoTypeA__ConfigurationControlSet BinaryIoTypeA__ConfigurationControlSet;
-typedef struct _BinaryIoTypeA__ConfigurationControlSetResponse BinaryIoTypeA__ConfigurationControlSetResponse;
-typedef struct _BinaryIoTypeA__ConfigurationControlGet BinaryIoTypeA__ConfigurationControlGet;
-typedef struct _BinaryIoTypeA__ConfigurationControlGetResponse BinaryIoTypeA__ConfigurationControlGetResponse;
-typedef struct _BinaryIoTypeA__ConfigurationControlDescribe BinaryIoTypeA__ConfigurationControlDescribe;
-typedef struct _BinaryIoTypeA__ConfigurationControlDescribeResponse BinaryIoTypeA__ConfigurationControlDescribeResponse;
-typedef struct _BinaryIoTypeA__ConfigurationControlResponse BinaryIoTypeA__ConfigurationControlResponse;
+typedef struct _BinaryIoTypeA__ConfigurationSet BinaryIoTypeA__ConfigurationSet;
+typedef struct _BinaryIoTypeA__ConfigurationSetResponse BinaryIoTypeA__ConfigurationSetResponse;
+typedef struct _BinaryIoTypeA__ConfigurationGet BinaryIoTypeA__ConfigurationGet;
+typedef struct _BinaryIoTypeA__ConfigurationGetResponse BinaryIoTypeA__ConfigurationGetResponse;
+typedef struct _BinaryIoTypeA__ConfigurationDescribe BinaryIoTypeA__ConfigurationDescribe;
+typedef struct _BinaryIoTypeA__ConfigurationDescribeResponse BinaryIoTypeA__ConfigurationDescribeResponse;
 typedef struct _BinaryIoTypeA__SetSingle BinaryIoTypeA__SetSingle;
 typedef struct _BinaryIoTypeA__SetAll BinaryIoTypeA__SetAll;
 typedef struct _BinaryIoTypeA__GetSingle BinaryIoTypeA__GetSingle;
 typedef struct _BinaryIoTypeA__GetAll BinaryIoTypeA__GetAll;
 typedef struct _BinaryIoTypeA__FunctionControlGet BinaryIoTypeA__FunctionControlGet;
+typedef struct _BinaryIoTypeA__GetAllResponse BinaryIoTypeA__GetAllResponse;
+typedef struct _BinaryIoTypeA__GetSingleResponse BinaryIoTypeA__GetSingleResponse;
+typedef struct _BinaryIoTypeA__FunctionControlGetResponse BinaryIoTypeA__FunctionControlGetResponse;
 typedef struct _BinaryIoTypeA__FunctionControlSet BinaryIoTypeA__FunctionControlSet;
 typedef struct _BinaryIoTypeA__SetAllResponse BinaryIoTypeA__SetAllResponse;
 typedef struct _BinaryIoTypeA__SetSingleResponse BinaryIoTypeA__SetSingleResponse;
-typedef struct _BinaryIoTypeA__GetAllResponse BinaryIoTypeA__GetAllResponse;
-typedef struct _BinaryIoTypeA__GetSingleResponse BinaryIoTypeA__GetSingleResponse;
-typedef struct _BinaryIoTypeA__FunctionControlResponse BinaryIoTypeA__FunctionControlResponse;
+typedef struct _BinaryIoTypeA__FunctionControlSetResponse BinaryIoTypeA__FunctionControlSetResponse;
 typedef struct _BinaryIoTypeA__StreamControlStart BinaryIoTypeA__StreamControlStart;
 typedef struct _BinaryIoTypeA__Sample BinaryIoTypeA__Sample;
 typedef struct _BinaryIoTypeA__StreamData BinaryIoTypeA__StreamData;
@@ -44,9 +44,9 @@ typedef struct _BinaryIoTypeA__StreamData BinaryIoTypeA__StreamData;
 /* --- messages --- */
 
 /*
- * ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
+ * ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
  */
-struct  _BinaryIoTypeA__ConfigurationControlSet
+struct  _BinaryIoTypeA__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
@@ -64,108 +64,82 @@ struct  _BinaryIoTypeA__ConfigurationControlSet
    */
   int32_t outputwatchdogtimeout;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_set__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_set__descriptor) \
     , 0, 0, 0 }
 
 
 /*
- * ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
+ * ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
  */
-struct  _BinaryIoTypeA__ConfigurationControlSetResponse
+struct  _BinaryIoTypeA__ConfigurationSetResponse
 {
   ProtobufCMessage base;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_set_response__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_set_response__descriptor) \
      }
 
 
 /*
- * ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
+ * ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
  */
-struct  _BinaryIoTypeA__ConfigurationControlGet
+struct  _BinaryIoTypeA__ConfigurationGet
 {
   ProtobufCMessage base;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_get__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_get__descriptor) \
      }
 
 
 /*
- * ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+ * ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
  * Returns the current hardware configuration
  */
-struct  _BinaryIoTypeA__ConfigurationControlGetResponse
+struct  _BinaryIoTypeA__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Enabled fritting on output channels, see ConfigurationControlSet
+   * Enabled fritting on output channels, see ConfigurationSet
    * LSB is Output0, 1: fritting enabled, 0: disabled
    */
   uint32_t outputfrittingmask;
   /*
-   * Enabled output watchdog for binary output channels, see ConfigurationControlSet
+   * Enabled output watchdog for binary output channels, see ConfigurationSet
    * LSB is Output0, 1: output watchdog enabled, 0: disabled
    */
   uint32_t outputwatchdogmask;
   /*
-   * The output watchdog timeout in seconds, see ConfigurationControlSet
+   * The output watchdog timeout in seconds, see ConfigurationSet
    */
   int32_t outputwatchdogtimeout;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_get_response__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_get_response__descriptor) \
     , 0, 0, 0 }
 
 
 /*
- * ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook 
+ * ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
  */
-struct  _BinaryIoTypeA__ConfigurationControlDescribe
+struct  _BinaryIoTypeA__ConfigurationDescribe
 {
   ProtobufCMessage base;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_DESCRIBE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_describe__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_DESCRIBE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_describe__descriptor) \
      }
 
 
-struct  _BinaryIoTypeA__ConfigurationControlDescribeResponse
+struct  _BinaryIoTypeA__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
   uint32_t numberofchannels;
 };
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_DESCRIBE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_describe_response__descriptor) \
+#define BINARY_IO_TYPE_A__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_describe_response__descriptor) \
     , 0 }
-
-
-typedef enum {
-  BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE__NOT_SET = 0,
-  BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE_GET = 1,
-  BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE_SET = 2,
-  BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE_DESCRIBE = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE)
-} BinaryIoTypeA__ConfigurationControlResponse__TypeCase;
-
-/*
- * ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
- */
-struct  _BinaryIoTypeA__ConfigurationControlResponse
-{
-  ProtobufCMessage base;
-  BinaryIoTypeA__ConfigurationControlResponse__TypeCase type_case;
-  union {
-    BinaryIoTypeA__ConfigurationControlGetResponse *get;
-    BinaryIoTypeA__ConfigurationControlSetResponse *set;
-    BinaryIoTypeA__ConfigurationControlDescribeResponse *describe;
-  };
-};
-#define BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_control_response__descriptor) \
-    , BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__TYPE__NOT_SET, {0} }
 
 
 /*
@@ -265,6 +239,60 @@ struct  _BinaryIoTypeA__FunctionControlGet
     , BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET__TYPE__NOT_SET, {0} }
 
 
+struct  _BinaryIoTypeA__GetAllResponse
+{
+  ProtobufCMessage base;
+  /*
+   * binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+   */
+  uint32_t inputs;
+};
+#define BINARY_IO_TYPE_A__GET_ALL_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__get_all_response__descriptor) \
+    , 0 }
+
+
+struct  _BinaryIoTypeA__GetSingleResponse
+{
+  ProtobufCMessage base;
+  /*
+   * Number of the binary input channel
+   */
+  uint32_t channel;
+  /*
+   * State for the bianry input channel
+   */
+  protobuf_c_boolean state;
+};
+#define BINARY_IO_TYPE_A__GET_SINGLE_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__get_single_response__descriptor) \
+    , 0, 0 }
+
+
+typedef enum {
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET = 0,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE_SINGLE = 1,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE_ALL = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE)
+} BinaryIoTypeA__FunctionControlGetResponse__TypeCase;
+
+/*
+ * FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+ */
+struct  _BinaryIoTypeA__FunctionControlGetResponse
+{
+  ProtobufCMessage base;
+  BinaryIoTypeA__FunctionControlGetResponse__TypeCase type_case;
+  union {
+    BinaryIoTypeA__GetSingleResponse *single;
+    BinaryIoTypeA__GetAllResponse *all;
+  };
+};
+#define BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_get_response__descriptor) \
+    , BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET, {0} }
+
+
 typedef enum {
   BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE__NOT_SET = 0,
   BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_SINGLE = 1,
@@ -307,66 +335,28 @@ struct  _BinaryIoTypeA__SetSingleResponse
      }
 
 
-struct  _BinaryIoTypeA__GetAllResponse
-{
-  ProtobufCMessage base;
-  /*
-   * binary coded map of input values. 0 means low, 1 means high, LSB is Input0
-   */
-  uint32_t inputs;
-  /*
-   * binary coded map of errors for each input. 0 means no error, 1 means error, LSB is Input0
-   */
-  uint32_t error_status;
-};
-#define BINARY_IO_TYPE_A__GET_ALL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__get_all_response__descriptor) \
-    , 0, 0 }
-
-
-struct  _BinaryIoTypeA__GetSingleResponse
-{
-  ProtobufCMessage base;
-  /*
-   * Number of the binary input channel
-   */
-  uint32_t channel;
-  /*
-   * State for the bianry input channel
-   */
-  protobuf_c_boolean state;
-};
-#define BINARY_IO_TYPE_A__GET_SINGLE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__get_single_response__descriptor) \
-    , 0, 0 }
-
-
 typedef enum {
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE__NOT_SET = 0,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE_GET_SINGLE = 1,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE_GET_ALL = 2,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE_SET_SINGLE = 3,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE_SET_ALL = 4
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE)
-} BinaryIoTypeA__FunctionControlResponse__TypeCase;
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET = 0,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__TYPE_SINGLE = 1,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ALL = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__TYPE)
+} BinaryIoTypeA__FunctionControlSetResponse__TypeCase;
 
 /*
- * FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
+ * FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
  */
-struct  _BinaryIoTypeA__FunctionControlResponse
+struct  _BinaryIoTypeA__FunctionControlSetResponse
 {
   ProtobufCMessage base;
-  BinaryIoTypeA__FunctionControlResponse__TypeCase type_case;
+  BinaryIoTypeA__FunctionControlSetResponse__TypeCase type_case;
   union {
-    BinaryIoTypeA__GetSingleResponse *getsingle;
-    BinaryIoTypeA__GetAllResponse *getall;
-    BinaryIoTypeA__SetSingleResponse *setsingle;
-    BinaryIoTypeA__SetAllResponse *setall;
+    BinaryIoTypeA__SetSingleResponse *single;
+    BinaryIoTypeA__SetAllResponse *all;
   };
 };
-#define BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_response__descriptor) \
-    , BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__TYPE__NOT_SET, {0} }
+#define BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_set_response__descriptor) \
+    , BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET, {0} }
 
 
 /*
@@ -383,13 +373,13 @@ struct  _BinaryIoTypeA__StreamControlStart
    */
   uint32_t channelfiltermask;
   /*
-   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a 
+   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
    * certain time, the client is informed that the stream is still active and the existing data is transmitted.
    * Defaults to 10 seconds
    */
   uint32_t keepaliveinterval;
   /*
-   * internal ring buffer size. 
+   * internal ring buffer size.
    * Defaults to 50
    * Maximum is 1000
    */
@@ -436,138 +426,119 @@ struct  _BinaryIoTypeA__StreamData
     , 0,NULL }
 
 
-/* BinaryIoTypeA__ConfigurationControlSet methods */
-void   binary_io_type_a__configuration_control_set__init
-                     (BinaryIoTypeA__ConfigurationControlSet         *message);
-size_t binary_io_type_a__configuration_control_set__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlSet   *message);
-size_t binary_io_type_a__configuration_control_set__pack
-                     (const BinaryIoTypeA__ConfigurationControlSet   *message,
+/* BinaryIoTypeA__ConfigurationSet methods */
+void   binary_io_type_a__configuration_set__init
+                     (BinaryIoTypeA__ConfigurationSet         *message);
+size_t binary_io_type_a__configuration_set__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationSet   *message);
+size_t binary_io_type_a__configuration_set__pack
+                     (const BinaryIoTypeA__ConfigurationSet   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_set__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlSet   *message,
+size_t binary_io_type_a__configuration_set__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationSet   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlSet *
-       binary_io_type_a__configuration_control_set__unpack
+BinaryIoTypeA__ConfigurationSet *
+       binary_io_type_a__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_set__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlSet *message,
+void   binary_io_type_a__configuration_set__free_unpacked
+                     (BinaryIoTypeA__ConfigurationSet *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlSetResponse methods */
-void   binary_io_type_a__configuration_control_set_response__init
-                     (BinaryIoTypeA__ConfigurationControlSetResponse         *message);
-size_t binary_io_type_a__configuration_control_set_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse   *message);
-size_t binary_io_type_a__configuration_control_set_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse   *message,
+/* BinaryIoTypeA__ConfigurationSetResponse methods */
+void   binary_io_type_a__configuration_set_response__init
+                     (BinaryIoTypeA__ConfigurationSetResponse         *message);
+size_t binary_io_type_a__configuration_set_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationSetResponse   *message);
+size_t binary_io_type_a__configuration_set_response__pack
+                     (const BinaryIoTypeA__ConfigurationSetResponse   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_set_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse   *message,
+size_t binary_io_type_a__configuration_set_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlSetResponse *
-       binary_io_type_a__configuration_control_set_response__unpack
+BinaryIoTypeA__ConfigurationSetResponse *
+       binary_io_type_a__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_set_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlSetResponse *message,
+void   binary_io_type_a__configuration_set_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlGet methods */
-void   binary_io_type_a__configuration_control_get__init
-                     (BinaryIoTypeA__ConfigurationControlGet         *message);
-size_t binary_io_type_a__configuration_control_get__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlGet   *message);
-size_t binary_io_type_a__configuration_control_get__pack
-                     (const BinaryIoTypeA__ConfigurationControlGet   *message,
+/* BinaryIoTypeA__ConfigurationGet methods */
+void   binary_io_type_a__configuration_get__init
+                     (BinaryIoTypeA__ConfigurationGet         *message);
+size_t binary_io_type_a__configuration_get__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationGet   *message);
+size_t binary_io_type_a__configuration_get__pack
+                     (const BinaryIoTypeA__ConfigurationGet   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_get__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlGet   *message,
+size_t binary_io_type_a__configuration_get__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationGet   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlGet *
-       binary_io_type_a__configuration_control_get__unpack
+BinaryIoTypeA__ConfigurationGet *
+       binary_io_type_a__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_get__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlGet *message,
+void   binary_io_type_a__configuration_get__free_unpacked
+                     (BinaryIoTypeA__ConfigurationGet *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlGetResponse methods */
-void   binary_io_type_a__configuration_control_get_response__init
-                     (BinaryIoTypeA__ConfigurationControlGetResponse         *message);
-size_t binary_io_type_a__configuration_control_get_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse   *message);
-size_t binary_io_type_a__configuration_control_get_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse   *message,
+/* BinaryIoTypeA__ConfigurationGetResponse methods */
+void   binary_io_type_a__configuration_get_response__init
+                     (BinaryIoTypeA__ConfigurationGetResponse         *message);
+size_t binary_io_type_a__configuration_get_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationGetResponse   *message);
+size_t binary_io_type_a__configuration_get_response__pack
+                     (const BinaryIoTypeA__ConfigurationGetResponse   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_get_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse   *message,
+size_t binary_io_type_a__configuration_get_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlGetResponse *
-       binary_io_type_a__configuration_control_get_response__unpack
+BinaryIoTypeA__ConfigurationGetResponse *
+       binary_io_type_a__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_get_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlGetResponse *message,
+void   binary_io_type_a__configuration_get_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlDescribe methods */
-void   binary_io_type_a__configuration_control_describe__init
-                     (BinaryIoTypeA__ConfigurationControlDescribe         *message);
-size_t binary_io_type_a__configuration_control_describe__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlDescribe   *message);
-size_t binary_io_type_a__configuration_control_describe__pack
-                     (const BinaryIoTypeA__ConfigurationControlDescribe   *message,
+/* BinaryIoTypeA__ConfigurationDescribe methods */
+void   binary_io_type_a__configuration_describe__init
+                     (BinaryIoTypeA__ConfigurationDescribe         *message);
+size_t binary_io_type_a__configuration_describe__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationDescribe   *message);
+size_t binary_io_type_a__configuration_describe__pack
+                     (const BinaryIoTypeA__ConfigurationDescribe   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_describe__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlDescribe   *message,
+size_t binary_io_type_a__configuration_describe__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationDescribe   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlDescribe *
-       binary_io_type_a__configuration_control_describe__unpack
+BinaryIoTypeA__ConfigurationDescribe *
+       binary_io_type_a__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_describe__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlDescribe *message,
+void   binary_io_type_a__configuration_describe__free_unpacked
+                     (BinaryIoTypeA__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlDescribeResponse methods */
-void   binary_io_type_a__configuration_control_describe_response__init
-                     (BinaryIoTypeA__ConfigurationControlDescribeResponse         *message);
-size_t binary_io_type_a__configuration_control_describe_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse   *message);
-size_t binary_io_type_a__configuration_control_describe_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse   *message,
+/* BinaryIoTypeA__ConfigurationDescribeResponse methods */
+void   binary_io_type_a__configuration_describe_response__init
+                     (BinaryIoTypeA__ConfigurationDescribeResponse         *message);
+size_t binary_io_type_a__configuration_describe_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse   *message);
+size_t binary_io_type_a__configuration_describe_response__pack
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__configuration_control_describe_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse   *message,
+size_t binary_io_type_a__configuration_describe_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlDescribeResponse *
-       binary_io_type_a__configuration_control_describe_response__unpack
+BinaryIoTypeA__ConfigurationDescribeResponse *
+       binary_io_type_a__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__configuration_control_describe_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlDescribeResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__ConfigurationControlResponse methods */
-void   binary_io_type_a__configuration_control_response__init
-                     (BinaryIoTypeA__ConfigurationControlResponse         *message);
-size_t binary_io_type_a__configuration_control_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlResponse   *message);
-size_t binary_io_type_a__configuration_control_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlResponse   *message,
-                      uint8_t             *out);
-size_t binary_io_type_a__configuration_control_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlResponse   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeA__ConfigurationControlResponse *
-       binary_io_type_a__configuration_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_a__configuration_control_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlResponse *message,
+void   binary_io_type_a__configuration_describe_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeA__SetSingle methods */
 void   binary_io_type_a__set_single__init
@@ -664,6 +635,63 @@ BinaryIoTypeA__FunctionControlGet *
 void   binary_io_type_a__function_control_get__free_unpacked
                      (BinaryIoTypeA__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
+/* BinaryIoTypeA__GetAllResponse methods */
+void   binary_io_type_a__get_all_response__init
+                     (BinaryIoTypeA__GetAllResponse         *message);
+size_t binary_io_type_a__get_all_response__get_packed_size
+                     (const BinaryIoTypeA__GetAllResponse   *message);
+size_t binary_io_type_a__get_all_response__pack
+                     (const BinaryIoTypeA__GetAllResponse   *message,
+                      uint8_t             *out);
+size_t binary_io_type_a__get_all_response__pack_to_buffer
+                     (const BinaryIoTypeA__GetAllResponse   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeA__GetAllResponse *
+       binary_io_type_a__get_all_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_a__get_all_response__free_unpacked
+                     (BinaryIoTypeA__GetAllResponse *message,
+                      ProtobufCAllocator *allocator);
+/* BinaryIoTypeA__GetSingleResponse methods */
+void   binary_io_type_a__get_single_response__init
+                     (BinaryIoTypeA__GetSingleResponse         *message);
+size_t binary_io_type_a__get_single_response__get_packed_size
+                     (const BinaryIoTypeA__GetSingleResponse   *message);
+size_t binary_io_type_a__get_single_response__pack
+                     (const BinaryIoTypeA__GetSingleResponse   *message,
+                      uint8_t             *out);
+size_t binary_io_type_a__get_single_response__pack_to_buffer
+                     (const BinaryIoTypeA__GetSingleResponse   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeA__GetSingleResponse *
+       binary_io_type_a__get_single_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_a__get_single_response__free_unpacked
+                     (BinaryIoTypeA__GetSingleResponse *message,
+                      ProtobufCAllocator *allocator);
+/* BinaryIoTypeA__FunctionControlGetResponse methods */
+void   binary_io_type_a__function_control_get_response__init
+                     (BinaryIoTypeA__FunctionControlGetResponse         *message);
+size_t binary_io_type_a__function_control_get_response__get_packed_size
+                     (const BinaryIoTypeA__FunctionControlGetResponse   *message);
+size_t binary_io_type_a__function_control_get_response__pack
+                     (const BinaryIoTypeA__FunctionControlGetResponse   *message,
+                      uint8_t             *out);
+size_t binary_io_type_a__function_control_get_response__pack_to_buffer
+                     (const BinaryIoTypeA__FunctionControlGetResponse   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeA__FunctionControlGetResponse *
+       binary_io_type_a__function_control_get_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_a__function_control_get_response__free_unpacked
+                     (BinaryIoTypeA__FunctionControlGetResponse *message,
+                      ProtobufCAllocator *allocator);
 /* BinaryIoTypeA__FunctionControlSet methods */
 void   binary_io_type_a__function_control_set__init
                      (BinaryIoTypeA__FunctionControlSet         *message);
@@ -721,62 +749,24 @@ BinaryIoTypeA__SetSingleResponse *
 void   binary_io_type_a__set_single_response__free_unpacked
                      (BinaryIoTypeA__SetSingleResponse *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__GetAllResponse methods */
-void   binary_io_type_a__get_all_response__init
-                     (BinaryIoTypeA__GetAllResponse         *message);
-size_t binary_io_type_a__get_all_response__get_packed_size
-                     (const BinaryIoTypeA__GetAllResponse   *message);
-size_t binary_io_type_a__get_all_response__pack
-                     (const BinaryIoTypeA__GetAllResponse   *message,
+/* BinaryIoTypeA__FunctionControlSetResponse methods */
+void   binary_io_type_a__function_control_set_response__init
+                     (BinaryIoTypeA__FunctionControlSetResponse         *message);
+size_t binary_io_type_a__function_control_set_response__get_packed_size
+                     (const BinaryIoTypeA__FunctionControlSetResponse   *message);
+size_t binary_io_type_a__function_control_set_response__pack
+                     (const BinaryIoTypeA__FunctionControlSetResponse   *message,
                       uint8_t             *out);
-size_t binary_io_type_a__get_all_response__pack_to_buffer
-                     (const BinaryIoTypeA__GetAllResponse   *message,
+size_t binary_io_type_a__function_control_set_response__pack_to_buffer
+                     (const BinaryIoTypeA__FunctionControlSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-BinaryIoTypeA__GetAllResponse *
-       binary_io_type_a__get_all_response__unpack
+BinaryIoTypeA__FunctionControlSetResponse *
+       binary_io_type_a__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   binary_io_type_a__get_all_response__free_unpacked
-                     (BinaryIoTypeA__GetAllResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__GetSingleResponse methods */
-void   binary_io_type_a__get_single_response__init
-                     (BinaryIoTypeA__GetSingleResponse         *message);
-size_t binary_io_type_a__get_single_response__get_packed_size
-                     (const BinaryIoTypeA__GetSingleResponse   *message);
-size_t binary_io_type_a__get_single_response__pack
-                     (const BinaryIoTypeA__GetSingleResponse   *message,
-                      uint8_t             *out);
-size_t binary_io_type_a__get_single_response__pack_to_buffer
-                     (const BinaryIoTypeA__GetSingleResponse   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeA__GetSingleResponse *
-       binary_io_type_a__get_single_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_a__get_single_response__free_unpacked
-                     (BinaryIoTypeA__GetSingleResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__FunctionControlResponse methods */
-void   binary_io_type_a__function_control_response__init
-                     (BinaryIoTypeA__FunctionControlResponse         *message);
-size_t binary_io_type_a__function_control_response__get_packed_size
-                     (const BinaryIoTypeA__FunctionControlResponse   *message);
-size_t binary_io_type_a__function_control_response__pack
-                     (const BinaryIoTypeA__FunctionControlResponse   *message,
-                      uint8_t             *out);
-size_t binary_io_type_a__function_control_response__pack_to_buffer
-                     (const BinaryIoTypeA__FunctionControlResponse   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeA__FunctionControlResponse *
-       binary_io_type_a__function_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_a__function_control_response__free_unpacked
-                     (BinaryIoTypeA__FunctionControlResponse *message,
+void   binary_io_type_a__function_control_set_response__free_unpacked
+                     (BinaryIoTypeA__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeA__StreamControlStart methods */
 void   binary_io_type_a__stream_control_start__init
@@ -837,26 +827,23 @@ void   binary_io_type_a__stream_data__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*BinaryIoTypeA__ConfigurationControlSet_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlSet *message,
+typedef void (*BinaryIoTypeA__ConfigurationSet_Closure)
+                 (const BinaryIoTypeA__ConfigurationSet *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlSetResponse_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlSetResponse *message,
+typedef void (*BinaryIoTypeA__ConfigurationSetResponse_Closure)
+                 (const BinaryIoTypeA__ConfigurationSetResponse *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlGet_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlGet *message,
+typedef void (*BinaryIoTypeA__ConfigurationGet_Closure)
+                 (const BinaryIoTypeA__ConfigurationGet *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlGetResponse_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlGetResponse *message,
+typedef void (*BinaryIoTypeA__ConfigurationGetResponse_Closure)
+                 (const BinaryIoTypeA__ConfigurationGetResponse *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlDescribe_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlDescribe *message,
+typedef void (*BinaryIoTypeA__ConfigurationDescribe_Closure)
+                 (const BinaryIoTypeA__ConfigurationDescribe *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlDescribeResponse_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlDescribeResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeA__ConfigurationControlResponse_Closure)
-                 (const BinaryIoTypeA__ConfigurationControlResponse *message,
+typedef void (*BinaryIoTypeA__ConfigurationDescribeResponse_Closure)
+                 (const BinaryIoTypeA__ConfigurationDescribeResponse *message,
                   void *closure_data);
 typedef void (*BinaryIoTypeA__SetSingle_Closure)
                  (const BinaryIoTypeA__SetSingle *message,
@@ -873,6 +860,15 @@ typedef void (*BinaryIoTypeA__GetAll_Closure)
 typedef void (*BinaryIoTypeA__FunctionControlGet_Closure)
                  (const BinaryIoTypeA__FunctionControlGet *message,
                   void *closure_data);
+typedef void (*BinaryIoTypeA__GetAllResponse_Closure)
+                 (const BinaryIoTypeA__GetAllResponse *message,
+                  void *closure_data);
+typedef void (*BinaryIoTypeA__GetSingleResponse_Closure)
+                 (const BinaryIoTypeA__GetSingleResponse *message,
+                  void *closure_data);
+typedef void (*BinaryIoTypeA__FunctionControlGetResponse_Closure)
+                 (const BinaryIoTypeA__FunctionControlGetResponse *message,
+                  void *closure_data);
 typedef void (*BinaryIoTypeA__FunctionControlSet_Closure)
                  (const BinaryIoTypeA__FunctionControlSet *message,
                   void *closure_data);
@@ -882,14 +878,8 @@ typedef void (*BinaryIoTypeA__SetAllResponse_Closure)
 typedef void (*BinaryIoTypeA__SetSingleResponse_Closure)
                  (const BinaryIoTypeA__SetSingleResponse *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeA__GetAllResponse_Closure)
-                 (const BinaryIoTypeA__GetAllResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeA__GetSingleResponse_Closure)
-                 (const BinaryIoTypeA__GetSingleResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeA__FunctionControlResponse_Closure)
-                 (const BinaryIoTypeA__FunctionControlResponse *message,
+typedef void (*BinaryIoTypeA__FunctionControlSetResponse_Closure)
+                 (const BinaryIoTypeA__FunctionControlSetResponse *message,
                   void *closure_data);
 typedef void (*BinaryIoTypeA__StreamControlStart_Closure)
                  (const BinaryIoTypeA__StreamControlStart *message,
@@ -906,24 +896,24 @@ typedef void (*BinaryIoTypeA__StreamData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_set__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_set_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_get__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_get_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_describe__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_describe_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_set__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_set_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_get__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_get_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_single__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_all__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_single__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_all__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_get__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__get_all_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__get_single_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_all_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_single_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__get_all_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__get_single_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__sample__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__stream_data__descriptor;

@@ -18,10 +18,10 @@ syntax = "proto3";
 package binaryIoTypeA;
 option go_package = "binaryIoTypeA/v1alpha1";
 
-// ============= ConfigurationControl =================
+// ============= Configuration =================
 
-// ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
-message ConfigurationControlSet {
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
     // Map to enable fritting on binary output channels. This activates a cyclically higher current at the channel outputs to prevent corrison over time
     // LSB is Output0, 1: fritting enabled, 0: disabled
     sfixed32 outputFrittingMask = 1;
@@ -32,35 +32,35 @@ message ConfigurationControlSet {
     sfixed32 outputWatchdogTimeout = 3;
 }
 
-// ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
-message ConfigurationControlSetResponse {
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
     // no parameters
 }
 
-// ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
-message ConfigurationControlGet {
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
     // no parameters
 }
 
-// ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
-message ConfigurationControlGetResponse {
-    // Enabled fritting on output channels, see ConfigurationControlSet
+message ConfigurationGetResponse {
+    // Enabled fritting on output channels, see ConfigurationSet
     // LSB is Output0, 1: fritting enabled, 0: disabled
     fixed32 outputFrittingMask = 1;
-    // Enabled output watchdog for binary output channels, see ConfigurationControlSet
+    // Enabled output watchdog for binary output channels, see ConfigurationSet
     // LSB is Output0, 1: output watchdog enabled, 0: disabled
     fixed32 outputWatchdogMask = 2;
-    // The output watchdog timeout in seconds, see ConfigurationControlSet
+    // The output watchdog timeout in seconds, see ConfigurationSet
     sfixed32 outputWatchdogTimeout = 3;
 }
 
-// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook
-message ConfigurationControlDescribe {
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
     // no parameters
 }
 
-message ConfigurationControlDescribeResponse {
+message ConfigurationDescribeResponse {
     fixed32 numberOfChannels = 1;
 }
 

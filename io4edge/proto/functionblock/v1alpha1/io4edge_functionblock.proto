@@ -31,21 +31,21 @@ message Context {
 message Command {
   Context context = 1;
   oneof type {
-    ConfigurationControl configurationControl = 2;
+    Configuration Configuration = 2;
     FunctionControl functionControl = 3;
     StreamControl streamControl = 4;
   }
 }
 
-// ConfigurationControl contains the function blocks high level configuration
-message ConfigurationControl {
+// Configuration contains the function blocks high level configuration
+message Configuration {
   oneof action {
     // Setting a new configuration
-    google.protobuf.Any functionSpecificConfigurationControlSet = 10;
+    google.protobuf.Any functionSpecificConfigurationSet = 10;
     // Getting the current configuration
-    google.protobuf.Any functionSpecificConfigurationControlGet = 20;
+    google.protobuf.Any functionSpecificConfigurationGet = 20;
     // Describe hardware capabilities
-    google.protobuf.Any functionSpecificConfigurationControlDescribe = 30;
+    google.protobuf.Any functionSpecificConfigurationDescribe = 30;
   }
 }
 
@@ -87,14 +87,14 @@ enum Status {
 
 message Error { string error = 1; }
 
-message ConfigurationControlResponse {
+message ConfigurationResponse {
   oneof action {
     // Setting a new configuration
-    google.protobuf.Any functionSpecificConfigurationControlSet = 10;
+    google.protobuf.Any functionSpecificConfigurationSet = 10;
     // Getting the current configuration
-    google.protobuf.Any functionSpecificConfigurationControlGet = 20;
+    google.protobuf.Any functionSpecificConfigurationGet = 20;
     // Describe hardware capabilities
-    google.protobuf.Any functionSpecificConfigurationControlDescribe = 30;
+    google.protobuf.Any functionSpecificConfigurationDescribe = 30;
   }
 }
 
@@ -124,7 +124,7 @@ message Response {
   Status status = 2;
   Error error = 3;
   oneof type {
-    ConfigurationControlResponse configurationControl = 4;
+    ConfigurationResponse Configuration = 4;
     FunctionControlResponse functionControl = 5;
     StreamControlResponse streamControl = 6;
     StreamData stream = 7;

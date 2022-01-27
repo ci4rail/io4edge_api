@@ -97,49 +97,49 @@ void   functionblock__command__free_unpacked
   assert(message->base.descriptor == &functionblock__command__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   functionblock__configuration_control__init
-                     (Functionblock__ConfigurationControl         *message)
+void   functionblock__configuration__init
+                     (Functionblock__Configuration         *message)
 {
-  static const Functionblock__ConfigurationControl init_value = FUNCTIONBLOCK__CONFIGURATION_CONTROL__INIT;
+  static const Functionblock__Configuration init_value = FUNCTIONBLOCK__CONFIGURATION__INIT;
   *message = init_value;
 }
-size_t functionblock__configuration_control__get_packed_size
-                     (const Functionblock__ConfigurationControl *message)
+size_t functionblock__configuration__get_packed_size
+                     (const Functionblock__Configuration *message)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t functionblock__configuration_control__pack
-                     (const Functionblock__ConfigurationControl *message,
+size_t functionblock__configuration__pack
+                     (const Functionblock__Configuration *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t functionblock__configuration_control__pack_to_buffer
-                     (const Functionblock__ConfigurationControl *message,
+size_t functionblock__configuration__pack_to_buffer
+                     (const Functionblock__Configuration *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Functionblock__ConfigurationControl *
-       functionblock__configuration_control__unpack
+Functionblock__Configuration *
+       functionblock__configuration__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Functionblock__ConfigurationControl *)
-     protobuf_c_message_unpack (&functionblock__configuration_control__descriptor,
+  return (Functionblock__Configuration *)
+     protobuf_c_message_unpack (&functionblock__configuration__descriptor,
                                 allocator, len, data);
 }
-void   functionblock__configuration_control__free_unpacked
-                     (Functionblock__ConfigurationControl *message,
+void   functionblock__configuration__free_unpacked
+                     (Functionblock__Configuration *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &functionblock__configuration_control__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   functionblock__function_control__init
@@ -367,49 +367,49 @@ void   functionblock__error__free_unpacked
   assert(message->base.descriptor == &functionblock__error__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   functionblock__configuration_control_response__init
-                     (Functionblock__ConfigurationControlResponse         *message)
+void   functionblock__configuration_response__init
+                     (Functionblock__ConfigurationResponse         *message)
 {
-  static const Functionblock__ConfigurationControlResponse init_value = FUNCTIONBLOCK__CONFIGURATION_CONTROL_RESPONSE__INIT;
+  static const Functionblock__ConfigurationResponse init_value = FUNCTIONBLOCK__CONFIGURATION_RESPONSE__INIT;
   *message = init_value;
 }
-size_t functionblock__configuration_control_response__get_packed_size
-                     (const Functionblock__ConfigurationControlResponse *message)
+size_t functionblock__configuration_response__get_packed_size
+                     (const Functionblock__ConfigurationResponse *message)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t functionblock__configuration_control_response__pack
-                     (const Functionblock__ConfigurationControlResponse *message,
+size_t functionblock__configuration_response__pack
+                     (const Functionblock__ConfigurationResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t functionblock__configuration_control_response__pack_to_buffer
-                     (const Functionblock__ConfigurationControlResponse *message,
+size_t functionblock__configuration_response__pack_to_buffer
+                     (const Functionblock__ConfigurationResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &functionblock__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Functionblock__ConfigurationControlResponse *
-       functionblock__configuration_control_response__unpack
+Functionblock__ConfigurationResponse *
+       functionblock__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Functionblock__ConfigurationControlResponse *)
-     protobuf_c_message_unpack (&functionblock__configuration_control_response__descriptor,
+  return (Functionblock__ConfigurationResponse *)
+     protobuf_c_message_unpack (&functionblock__configuration_response__descriptor,
                                 allocator, len, data);
 }
-void   functionblock__configuration_control_response__free_unpacked
-                     (Functionblock__ConfigurationControlResponse *message,
+void   functionblock__configuration_response__free_unpacked
+                     (Functionblock__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &functionblock__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &functionblock__configuration_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   functionblock__function_control_response__init
@@ -645,13 +645,13 @@ static const ProtobufCFieldDescriptor functionblock__command__field_descriptors[
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "configurationControl",
+    "Configuration",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Functionblock__Command, type_case),
-    offsetof(Functionblock__Command, configurationcontrol),
-    &functionblock__configuration_control__descriptor,
+    offsetof(Functionblock__Command, configuration),
+    &functionblock__configuration__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -682,7 +682,7 @@ static const ProtobufCFieldDescriptor functionblock__command__field_descriptors[
   },
 };
 static const unsigned functionblock__command__field_indices_by_name[] = {
-  1,   /* field[1] = configurationControl */
+  1,   /* field[1] = Configuration */
   0,   /* field[0] = context */
   2,   /* field[2] = functionControl */
   3,   /* field[3] = streamControl */
@@ -707,70 +707,70 @@ const ProtobufCMessageDescriptor functionblock__command__descriptor =
   (ProtobufCMessageInit) functionblock__command__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor functionblock__configuration_control__field_descriptors[3] =
+static const ProtobufCFieldDescriptor functionblock__configuration__field_descriptors[3] =
 {
   {
-    "functionSpecificConfigurationControlSet",
+    "functionSpecificConfigurationSet",
     10,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(Functionblock__ConfigurationControl, action_case),
-    offsetof(Functionblock__ConfigurationControl, functionspecificconfigurationcontrolset),
+    offsetof(Functionblock__Configuration, action_case),
+    offsetof(Functionblock__Configuration, functionspecificconfigurationset),
     &google__protobuf__any__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "functionSpecificConfigurationControlGet",
+    "functionSpecificConfigurationGet",
     20,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(Functionblock__ConfigurationControl, action_case),
-    offsetof(Functionblock__ConfigurationControl, functionspecificconfigurationcontrolget),
+    offsetof(Functionblock__Configuration, action_case),
+    offsetof(Functionblock__Configuration, functionspecificconfigurationget),
     &google__protobuf__any__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "functionSpecificConfigurationControlDescribe",
+    "functionSpecificConfigurationDescribe",
     30,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(Functionblock__ConfigurationControl, action_case),
-    offsetof(Functionblock__ConfigurationControl, functionspecificconfigurationcontroldescribe),
+    offsetof(Functionblock__Configuration, action_case),
+    offsetof(Functionblock__Configuration, functionspecificconfigurationdescribe),
     &google__protobuf__any__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned functionblock__configuration_control__field_indices_by_name[] = {
-  2,   /* field[2] = functionSpecificConfigurationControlDescribe */
-  1,   /* field[1] = functionSpecificConfigurationControlGet */
-  0,   /* field[0] = functionSpecificConfigurationControlSet */
+static const unsigned functionblock__configuration__field_indices_by_name[] = {
+  2,   /* field[2] = functionSpecificConfigurationDescribe */
+  1,   /* field[1] = functionSpecificConfigurationGet */
+  0,   /* field[0] = functionSpecificConfigurationSet */
 };
-static const ProtobufCIntRange functionblock__configuration_control__number_ranges[3 + 1] =
+static const ProtobufCIntRange functionblock__configuration__number_ranges[3 + 1] =
 {
   { 10, 0 },
   { 20, 1 },
   { 30, 2 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor functionblock__configuration_control__descriptor =
+const ProtobufCMessageDescriptor functionblock__configuration__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "functionblock.ConfigurationControl",
-  "ConfigurationControl",
-  "Functionblock__ConfigurationControl",
+  "functionblock.Configuration",
+  "Configuration",
+  "Functionblock__Configuration",
   "functionblock",
-  sizeof(Functionblock__ConfigurationControl),
+  sizeof(Functionblock__Configuration),
   3,
-  functionblock__configuration_control__field_descriptors,
-  functionblock__configuration_control__field_indices_by_name,
-  3,  functionblock__configuration_control__number_ranges,
-  (ProtobufCMessageInit) functionblock__configuration_control__init,
+  functionblock__configuration__field_descriptors,
+  functionblock__configuration__field_indices_by_name,
+  3,  functionblock__configuration__number_ranges,
+  (ProtobufCMessageInit) functionblock__configuration__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor functionblock__function_control__field_descriptors[2] =
@@ -969,66 +969,107 @@ const ProtobufCMessageDescriptor functionblock__error__descriptor =
   (ProtobufCMessageInit) functionblock__error__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor functionblock__configuration_control_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor functionblock__configuration_response__field_descriptors[3] =
 {
   {
-    "functionSpecificConfigurationControlResponse",
+    "functionSpecificConfigurationSet",
     10,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Functionblock__ConfigurationControlResponse, functionspecificconfigurationcontrolresponse),
+    offsetof(Functionblock__ConfigurationResponse, action_case),
+    offsetof(Functionblock__ConfigurationResponse, functionspecificconfigurationset),
     &google__protobuf__any__descriptor,
     NULL,
-    0,             /* flags */
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "functionSpecificConfigurationGet",
+    20,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Functionblock__ConfigurationResponse, action_case),
+    offsetof(Functionblock__ConfigurationResponse, functionspecificconfigurationget),
+    &google__protobuf__any__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "functionSpecificConfigurationDescribe",
+    30,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Functionblock__ConfigurationResponse, action_case),
+    offsetof(Functionblock__ConfigurationResponse, functionspecificconfigurationdescribe),
+    &google__protobuf__any__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned functionblock__configuration_control_response__field_indices_by_name[] = {
-  0,   /* field[0] = functionSpecificConfigurationControlResponse */
+static const unsigned functionblock__configuration_response__field_indices_by_name[] = {
+  2,   /* field[2] = functionSpecificConfigurationDescribe */
+  1,   /* field[1] = functionSpecificConfigurationGet */
+  0,   /* field[0] = functionSpecificConfigurationSet */
 };
-static const ProtobufCIntRange functionblock__configuration_control_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange functionblock__configuration_response__number_ranges[3 + 1] =
 {
   { 10, 0 },
-  { 0, 1 }
+  { 20, 1 },
+  { 30, 2 },
+  { 0, 3 }
 };
-const ProtobufCMessageDescriptor functionblock__configuration_control_response__descriptor =
+const ProtobufCMessageDescriptor functionblock__configuration_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "functionblock.ConfigurationControlResponse",
-  "ConfigurationControlResponse",
-  "Functionblock__ConfigurationControlResponse",
+  "functionblock.ConfigurationResponse",
+  "ConfigurationResponse",
+  "Functionblock__ConfigurationResponse",
   "functionblock",
-  sizeof(Functionblock__ConfigurationControlResponse),
-  1,
-  functionblock__configuration_control_response__field_descriptors,
-  functionblock__configuration_control_response__field_indices_by_name,
-  1,  functionblock__configuration_control_response__number_ranges,
-  (ProtobufCMessageInit) functionblock__configuration_control_response__init,
+  sizeof(Functionblock__ConfigurationResponse),
+  3,
+  functionblock__configuration_response__field_descriptors,
+  functionblock__configuration_response__field_indices_by_name,
+  3,  functionblock__configuration_response__number_ranges,
+  (ProtobufCMessageInit) functionblock__configuration_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor functionblock__function_control_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor functionblock__function_control_response__field_descriptors[2] =
 {
   {
-    "functionSpecificFunctionControlResponse",
-    10,
+    "functionSpecificFunctionControlSet",
+    1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Functionblock__FunctionControlResponse, functionspecificfunctioncontrolresponse),
+    offsetof(Functionblock__FunctionControlResponse, action_case),
+    offsetof(Functionblock__FunctionControlResponse, functionspecificfunctioncontrolset),
     &google__protobuf__any__descriptor,
     NULL,
-    0,             /* flags */
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "functionSpecificFunctionControlGet",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Functionblock__FunctionControlResponse, action_case),
+    offsetof(Functionblock__FunctionControlResponse, functionspecificfunctioncontrolget),
+    &google__protobuf__any__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned functionblock__function_control_response__field_indices_by_name[] = {
-  0,   /* field[0] = functionSpecificFunctionControlResponse */
+  1,   /* field[1] = functionSpecificFunctionControlGet */
+  0,   /* field[0] = functionSpecificFunctionControlSet */
 };
 static const ProtobufCIntRange functionblock__function_control_response__number_ranges[1 + 1] =
 {
-  { 10, 0 },
-  { 0, 1 }
+  { 1, 0 },
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor functionblock__function_control_response__descriptor =
 {
@@ -1038,7 +1079,7 @@ const ProtobufCMessageDescriptor functionblock__function_control_response__descr
   "Functionblock__FunctionControlResponse",
   "functionblock",
   sizeof(Functionblock__FunctionControlResponse),
-  1,
+  2,
   functionblock__function_control_response__field_descriptors,
   functionblock__function_control_response__field_indices_by_name,
   1,  functionblock__function_control_response__number_ranges,
@@ -1167,13 +1208,13 @@ static const ProtobufCFieldDescriptor functionblock__response__field_descriptors
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "configurationControl",
+    "Configuration",
     4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Functionblock__Response, type_case),
-    offsetof(Functionblock__Response, configurationcontrol),
-    &functionblock__configuration_control_response__descriptor,
+    offsetof(Functionblock__Response, configuration),
+    &functionblock__configuration_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -1216,7 +1257,7 @@ static const ProtobufCFieldDescriptor functionblock__response__field_descriptors
   },
 };
 static const unsigned functionblock__response__field_indices_by_name[] = {
-  3,   /* field[3] = configurationControl */
+  3,   /* field[3] = Configuration */
   0,   /* field[0] = context */
   2,   /* field[2] = error */
   4,   /* field[4] = functionControl */
@@ -1244,22 +1285,28 @@ const ProtobufCMessageDescriptor functionblock__response__descriptor =
   (ProtobufCMessageInit) functionblock__response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue functionblock__status__enum_values_by_number[4] =
+static const ProtobufCEnumValue functionblock__status__enum_values_by_number[7] =
 {
   { "OK", "FUNCTIONBLOCK__STATUS__OK", 0 },
-  { "ERROR", "FUNCTIONBLOCK__STATUS__ERROR", 1 },
-  { "NOT_IMPLEMENTED", "FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED", 2 },
-  { "WRONG_CLIENT", "FUNCTIONBLOCK__STATUS__WRONG_CLIENT", 3 },
+  { "UNSPECIFIC_ERROR", "FUNCTIONBLOCK__STATUS__UNSPECIFIC_ERROR", 1 },
+  { "UNKNOWN_COMMAND", "FUNCTIONBLOCK__STATUS__UNKNOWN_COMMAND", 2 },
+  { "NOT_IMPLEMENTED", "FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED", 3 },
+  { "WRONG_CLIENT", "FUNCTIONBLOCK__STATUS__WRONG_CLIENT", 4 },
+  { "INVALID_PARAMETER", "FUNCTIONBLOCK__STATUS__INVALID_PARAMETER", 5 },
+  { "HW_FAULT", "FUNCTIONBLOCK__STATUS__HW_FAULT", 6 },
 };
 static const ProtobufCIntRange functionblock__status__value_ranges[] = {
-{0, 0},{0, 4}
+{0, 0},{0, 7}
 };
-static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[4] =
+static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[7] =
 {
-  { "ERROR", 1 },
-  { "NOT_IMPLEMENTED", 2 },
+  { "HW_FAULT", 6 },
+  { "INVALID_PARAMETER", 5 },
+  { "NOT_IMPLEMENTED", 3 },
   { "OK", 0 },
-  { "WRONG_CLIENT", 3 },
+  { "UNKNOWN_COMMAND", 2 },
+  { "UNSPECIFIC_ERROR", 1 },
+  { "WRONG_CLIENT", 4 },
 };
 const ProtobufCEnumDescriptor functionblock__status__descriptor =
 {
@@ -1268,9 +1315,9 @@ const ProtobufCEnumDescriptor functionblock__status__descriptor =
   "Status",
   "Functionblock__Status",
   "functionblock",
-  4,
+  7,
   functionblock__status__enum_values_by_number,
-  4,
+  7,
   functionblock__status__enum_values_by_name,
   1,
   functionblock__status__value_ranges,

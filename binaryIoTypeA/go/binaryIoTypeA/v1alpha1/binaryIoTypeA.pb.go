@@ -35,8 +35,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
-type ConfigurationControlSet struct {
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+type ConfigurationSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -51,8 +51,8 @@ type ConfigurationControlSet struct {
 	OutputWatchdogTimeout int32 `protobuf:"fixed32,3,opt,name=outputWatchdogTimeout,proto3" json:"outputWatchdogTimeout,omitempty"`
 }
 
-func (x *ConfigurationControlSet) Reset() {
-	*x = ConfigurationControlSet{}
+func (x *ConfigurationSet) Reset() {
+	*x = ConfigurationSet{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -60,13 +60,13 @@ func (x *ConfigurationControlSet) Reset() {
 	}
 }
 
-func (x *ConfigurationControlSet) String() string {
+func (x *ConfigurationSet) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlSet) ProtoMessage() {}
+func (*ConfigurationSet) ProtoMessage() {}
 
-func (x *ConfigurationControlSet) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -78,41 +78,41 @@ func (x *ConfigurationControlSet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlSet.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlSet) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationSet.ProtoReflect.Descriptor instead.
+func (*ConfigurationSet) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationControlSet) GetOutputFrittingMask() int32 {
+func (x *ConfigurationSet) GetOutputFrittingMask() int32 {
 	if x != nil {
 		return x.OutputFrittingMask
 	}
 	return 0
 }
 
-func (x *ConfigurationControlSet) GetOutputWatchdogMask() int32 {
+func (x *ConfigurationSet) GetOutputWatchdogMask() int32 {
 	if x != nil {
 		return x.OutputWatchdogMask
 	}
 	return 0
 }
 
-func (x *ConfigurationControlSet) GetOutputWatchdogTimeout() int32 {
+func (x *ConfigurationSet) GetOutputWatchdogTimeout() int32 {
 	if x != nil {
 		return x.OutputWatchdogTimeout
 	}
 	return 0
 }
 
-// ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
-type ConfigurationControlSetResponse struct {
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+type ConfigurationSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlSetResponse) Reset() {
-	*x = ConfigurationControlSetResponse{}
+func (x *ConfigurationSetResponse) Reset() {
+	*x = ConfigurationSetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -120,13 +120,13 @@ func (x *ConfigurationControlSetResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlSetResponse) String() string {
+func (x *ConfigurationSetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlSetResponse) ProtoMessage() {}
+func (*ConfigurationSetResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlSetResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -138,20 +138,20 @@ func (x *ConfigurationControlSetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlSetResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlSetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationSetResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationSetResponse) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{1}
 }
 
-// ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
-type ConfigurationControlGet struct {
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+type ConfigurationGet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlGet) Reset() {
-	*x = ConfigurationControlGet{}
+func (x *ConfigurationGet) Reset() {
+	*x = ConfigurationGet{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -159,13 +159,13 @@ func (x *ConfigurationControlGet) Reset() {
 	}
 }
 
-func (x *ConfigurationControlGet) String() string {
+func (x *ConfigurationGet) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlGet) ProtoMessage() {}
+func (*ConfigurationGet) ProtoMessage() {}
 
-func (x *ConfigurationControlGet) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -177,30 +177,30 @@ func (x *ConfigurationControlGet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlGet.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlGet) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationGet.ProtoReflect.Descriptor instead.
+func (*ConfigurationGet) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{2}
 }
 
-// ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
-type ConfigurationControlGetResponse struct {
+type ConfigurationGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Enabled fritting on output channels, see ConfigurationControlSet
+	// Enabled fritting on output channels, see ConfigurationSet
 	// LSB is Output0, 1: fritting enabled, 0: disabled
 	OutputFrittingMask uint32 `protobuf:"fixed32,1,opt,name=outputFrittingMask,proto3" json:"outputFrittingMask,omitempty"`
-	// Enabled output watchdog for binary output channels, see ConfigurationControlSet
+	// Enabled output watchdog for binary output channels, see ConfigurationSet
 	// LSB is Output0, 1: output watchdog enabled, 0: disabled
 	OutputWatchdogMask uint32 `protobuf:"fixed32,2,opt,name=outputWatchdogMask,proto3" json:"outputWatchdogMask,omitempty"`
-	// The output watchdog timeout in seconds, see ConfigurationControlSet
+	// The output watchdog timeout in seconds, see ConfigurationSet
 	OutputWatchdogTimeout int32 `protobuf:"fixed32,3,opt,name=outputWatchdogTimeout,proto3" json:"outputWatchdogTimeout,omitempty"`
 }
 
-func (x *ConfigurationControlGetResponse) Reset() {
-	*x = ConfigurationControlGetResponse{}
+func (x *ConfigurationGetResponse) Reset() {
+	*x = ConfigurationGetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,13 +208,13 @@ func (x *ConfigurationControlGetResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlGetResponse) String() string {
+func (x *ConfigurationGetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlGetResponse) ProtoMessage() {}
+func (*ConfigurationGetResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlGetResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,41 +226,41 @@ func (x *ConfigurationControlGetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlGetResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlGetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationGetResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ConfigurationControlGetResponse) GetOutputFrittingMask() uint32 {
+func (x *ConfigurationGetResponse) GetOutputFrittingMask() uint32 {
 	if x != nil {
 		return x.OutputFrittingMask
 	}
 	return 0
 }
 
-func (x *ConfigurationControlGetResponse) GetOutputWatchdogMask() uint32 {
+func (x *ConfigurationGetResponse) GetOutputWatchdogMask() uint32 {
 	if x != nil {
 		return x.OutputWatchdogMask
 	}
 	return 0
 }
 
-func (x *ConfigurationControlGetResponse) GetOutputWatchdogTimeout() int32 {
+func (x *ConfigurationGetResponse) GetOutputWatchdogTimeout() int32 {
 	if x != nil {
 		return x.OutputWatchdogTimeout
 	}
 	return 0
 }
 
-// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook
-type ConfigurationControlDescribe struct {
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+type ConfigurationDescribe struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlDescribe) Reset() {
-	*x = ConfigurationControlDescribe{}
+func (x *ConfigurationDescribe) Reset() {
+	*x = ConfigurationDescribe{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,13 +268,13 @@ func (x *ConfigurationControlDescribe) Reset() {
 	}
 }
 
-func (x *ConfigurationControlDescribe) String() string {
+func (x *ConfigurationDescribe) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlDescribe) ProtoMessage() {}
+func (*ConfigurationDescribe) ProtoMessage() {}
 
-func (x *ConfigurationControlDescribe) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -286,12 +286,12 @@ func (x *ConfigurationControlDescribe) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlDescribe.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlDescribe) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationDescribe.ProtoReflect.Descriptor instead.
+func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{4}
 }
 
-type ConfigurationControlDescribeResponse struct {
+type ConfigurationDescribeResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -299,8 +299,8 @@ type ConfigurationControlDescribeResponse struct {
 	NumberOfChannels uint32 `protobuf:"fixed32,1,opt,name=numberOfChannels,proto3" json:"numberOfChannels,omitempty"`
 }
 
-func (x *ConfigurationControlDescribeResponse) Reset() {
-	*x = ConfigurationControlDescribeResponse{}
+func (x *ConfigurationDescribeResponse) Reset() {
+	*x = ConfigurationDescribeResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -308,13 +308,13 @@ func (x *ConfigurationControlDescribeResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlDescribeResponse) String() string {
+func (x *ConfigurationDescribeResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlDescribeResponse) ProtoMessage() {}
+func (*ConfigurationDescribeResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlDescribeResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -326,112 +326,17 @@ func (x *ConfigurationControlDescribeResponse) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlDescribeResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlDescribeResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ConfigurationControlDescribeResponse) GetNumberOfChannels() uint32 {
+func (x *ConfigurationDescribeResponse) GetNumberOfChannels() uint32 {
 	if x != nil {
 		return x.NumberOfChannels
 	}
 	return 0
 }
-
-// ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
-type ConfigurationControlResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Types that are assignable to Type:
-	//	*ConfigurationControlResponse_Get
-	//	*ConfigurationControlResponse_Set
-	//	*ConfigurationControlResponse_Describe
-	Type isConfigurationControlResponse_Type `protobuf_oneof:"type"`
-}
-
-func (x *ConfigurationControlResponse) Reset() {
-	*x = ConfigurationControlResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ConfigurationControlResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ConfigurationControlResponse) ProtoMessage() {}
-
-func (x *ConfigurationControlResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ConfigurationControlResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlResponse) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{6}
-}
-
-func (m *ConfigurationControlResponse) GetType() isConfigurationControlResponse_Type {
-	if m != nil {
-		return m.Type
-	}
-	return nil
-}
-
-func (x *ConfigurationControlResponse) GetGet() *ConfigurationControlGetResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Get); ok {
-		return x.Get
-	}
-	return nil
-}
-
-func (x *ConfigurationControlResponse) GetSet() *ConfigurationControlSetResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Set); ok {
-		return x.Set
-	}
-	return nil
-}
-
-func (x *ConfigurationControlResponse) GetDescribe() *ConfigurationControlDescribeResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Describe); ok {
-		return x.Describe
-	}
-	return nil
-}
-
-type isConfigurationControlResponse_Type interface {
-	isConfigurationControlResponse_Type()
-}
-
-type ConfigurationControlResponse_Get struct {
-	Get *ConfigurationControlGetResponse `protobuf:"bytes,1,opt,name=get,proto3,oneof"`
-}
-
-type ConfigurationControlResponse_Set struct {
-	Set *ConfigurationControlSetResponse `protobuf:"bytes,2,opt,name=set,proto3,oneof"`
-}
-
-type ConfigurationControlResponse_Describe struct {
-	Describe *ConfigurationControlDescribeResponse `protobuf:"bytes,3,opt,name=describe,proto3,oneof"`
-}
-
-func (*ConfigurationControlResponse_Get) isConfigurationControlResponse_Type() {}
-
-func (*ConfigurationControlResponse_Set) isConfigurationControlResponse_Type() {}
-
-func (*ConfigurationControlResponse_Describe) isConfigurationControlResponse_Type() {}
 
 // ============= FunctionControl =================
 // Sets the value of a single binary channel
@@ -449,7 +354,7 @@ type SetSingle struct {
 func (x *SetSingle) Reset() {
 	*x = SetSingle{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[7]
+		mi := &file_binaryIoTypeA_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -462,7 +367,7 @@ func (x *SetSingle) String() string {
 func (*SetSingle) ProtoMessage() {}
 
 func (x *SetSingle) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[7]
+	mi := &file_binaryIoTypeA_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -475,7 +380,7 @@ func (x *SetSingle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSingle.ProtoReflect.Descriptor instead.
 func (*SetSingle) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{7}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SetSingle) GetChannel() uint32 {
@@ -507,7 +412,7 @@ type SetAll struct {
 func (x *SetAll) Reset() {
 	*x = SetAll{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[8]
+		mi := &file_binaryIoTypeA_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -520,7 +425,7 @@ func (x *SetAll) String() string {
 func (*SetAll) ProtoMessage() {}
 
 func (x *SetAll) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[8]
+	mi := &file_binaryIoTypeA_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -533,7 +438,7 @@ func (x *SetAll) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAll.ProtoReflect.Descriptor instead.
 func (*SetAll) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{8}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SetAll) GetValues() uint32 {
@@ -563,7 +468,7 @@ type GetSingle struct {
 func (x *GetSingle) Reset() {
 	*x = GetSingle{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[9]
+		mi := &file_binaryIoTypeA_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -576,7 +481,7 @@ func (x *GetSingle) String() string {
 func (*GetSingle) ProtoMessage() {}
 
 func (x *GetSingle) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[9]
+	mi := &file_binaryIoTypeA_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -589,7 +494,7 @@ func (x *GetSingle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSingle.ProtoReflect.Descriptor instead.
 func (*GetSingle) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{9}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetSingle) GetChannel() uint32 {
@@ -612,7 +517,7 @@ type GetAll struct {
 func (x *GetAll) Reset() {
 	*x = GetAll{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[10]
+		mi := &file_binaryIoTypeA_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -625,7 +530,7 @@ func (x *GetAll) String() string {
 func (*GetAll) ProtoMessage() {}
 
 func (x *GetAll) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[10]
+	mi := &file_binaryIoTypeA_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -638,7 +543,7 @@ func (x *GetAll) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAll.ProtoReflect.Descriptor instead.
 func (*GetAll) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{10}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetAll) GetMask() uint32 {
@@ -663,7 +568,7 @@ type FunctionControlGet struct {
 func (x *FunctionControlGet) Reset() {
 	*x = FunctionControlGet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[11]
+		mi := &file_binaryIoTypeA_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -676,7 +581,7 @@ func (x *FunctionControlGet) String() string {
 func (*FunctionControlGet) ProtoMessage() {}
 
 func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[11]
+	mi := &file_binaryIoTypeA_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -689,7 +594,7 @@ func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGet.ProtoReflect.Descriptor instead.
 func (*FunctionControlGet) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{11}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{10}
 }
 
 func (m *FunctionControlGet) GetType() isFunctionControlGet_Type {
@@ -729,6 +634,192 @@ func (*FunctionControlGet_Single) isFunctionControlGet_Type() {}
 
 func (*FunctionControlGet_All) isFunctionControlGet_Type() {}
 
+type GetAllResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+	Inputs uint32 `protobuf:"fixed32,1,opt,name=inputs,proto3" json:"inputs,omitempty"`
+}
+
+func (x *GetAllResponse) Reset() {
+	*x = GetAllResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_binaryIoTypeA_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllResponse) ProtoMessage() {}
+
+func (x *GetAllResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_binaryIoTypeA_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllResponse.ProtoReflect.Descriptor instead.
+func (*GetAllResponse) Descriptor() ([]byte, []int) {
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetAllResponse) GetInputs() uint32 {
+	if x != nil {
+		return x.Inputs
+	}
+	return 0
+}
+
+type GetSingleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Number of the binary input channel
+	Channel uint32 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	// State for the bianry input channel
+	State bool `protobuf:"varint,2,opt,name=state,proto3" json:"state,omitempty"`
+}
+
+func (x *GetSingleResponse) Reset() {
+	*x = GetSingleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_binaryIoTypeA_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSingleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSingleResponse) ProtoMessage() {}
+
+func (x *GetSingleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_binaryIoTypeA_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSingleResponse.ProtoReflect.Descriptor instead.
+func (*GetSingleResponse) Descriptor() ([]byte, []int) {
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetSingleResponse) GetChannel() uint32 {
+	if x != nil {
+		return x.Channel
+	}
+	return 0
+}
+
+func (x *GetSingleResponse) GetState() bool {
+	if x != nil {
+		return x.State
+	}
+	return false
+}
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+type FunctionControlGetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Type:
+	//	*FunctionControlGetResponse_Single
+	//	*FunctionControlGetResponse_All
+	Type isFunctionControlGetResponse_Type `protobuf_oneof:"type"`
+}
+
+func (x *FunctionControlGetResponse) Reset() {
+	*x = FunctionControlGetResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_binaryIoTypeA_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FunctionControlGetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FunctionControlGetResponse) ProtoMessage() {}
+
+func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_binaryIoTypeA_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
+func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{13}
+}
+
+func (m *FunctionControlGetResponse) GetType() isFunctionControlGetResponse_Type {
+	if m != nil {
+		return m.Type
+	}
+	return nil
+}
+
+func (x *FunctionControlGetResponse) GetSingle() *GetSingleResponse {
+	if x, ok := x.GetType().(*FunctionControlGetResponse_Single); ok {
+		return x.Single
+	}
+	return nil
+}
+
+func (x *FunctionControlGetResponse) GetAll() *GetAllResponse {
+	if x, ok := x.GetType().(*FunctionControlGetResponse_All); ok {
+		return x.All
+	}
+	return nil
+}
+
+type isFunctionControlGetResponse_Type interface {
+	isFunctionControlGetResponse_Type()
+}
+
+type FunctionControlGetResponse_Single struct {
+	Single *GetSingleResponse `protobuf:"bytes,1,opt,name=single,proto3,oneof"`
+}
+
+type FunctionControlGetResponse_All struct {
+	All *GetAllResponse `protobuf:"bytes,2,opt,name=all,proto3,oneof"`
+}
+
+func (*FunctionControlGetResponse_Single) isFunctionControlGetResponse_Type() {}
+
+func (*FunctionControlGetResponse_All) isFunctionControlGetResponse_Type() {}
+
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 type FunctionControlSet struct {
 	state         protoimpl.MessageState
@@ -744,7 +835,7 @@ type FunctionControlSet struct {
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[12]
+		mi := &file_binaryIoTypeA_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -757,7 +848,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[12]
+	mi := &file_binaryIoTypeA_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -770,7 +861,7 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{12}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{14}
 }
 
 func (m *FunctionControlSet) GetType() isFunctionControlSet_Type {
@@ -819,7 +910,7 @@ type SetAllResponse struct {
 func (x *SetAllResponse) Reset() {
 	*x = SetAllResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[13]
+		mi := &file_binaryIoTypeA_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -832,7 +923,7 @@ func (x *SetAllResponse) String() string {
 func (*SetAllResponse) ProtoMessage() {}
 
 func (x *SetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[13]
+	mi := &file_binaryIoTypeA_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -845,7 +936,7 @@ func (x *SetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetAllResponse.ProtoReflect.Descriptor instead.
 func (*SetAllResponse) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{13}
+	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{15}
 }
 
 type SetSingleResponse struct {
@@ -857,7 +948,7 @@ type SetSingleResponse struct {
 func (x *SetSingleResponse) Reset() {
 	*x = SetSingleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[14]
+		mi := &file_binaryIoTypeA_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -870,7 +961,7 @@ func (x *SetSingleResponse) String() string {
 func (*SetSingleResponse) ProtoMessage() {}
 
 func (x *SetSingleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[14]
+	mi := &file_binaryIoTypeA_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -883,139 +974,23 @@ func (x *SetSingleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSingleResponse.ProtoReflect.Descriptor instead.
 func (*SetSingleResponse) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{14}
-}
-
-type GetAllResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// binary coded map of input values. 0 means low, 1 means high, LSB is Input0
-	Inputs uint32 `protobuf:"fixed32,1,opt,name=inputs,proto3" json:"inputs,omitempty"`
-	// binary coded map of errors for each input. 0 means no error, 1 means error, LSB is Input0
-	ErrorStatus uint32 `protobuf:"fixed32,2,opt,name=error_status,json=errorStatus,proto3" json:"error_status,omitempty"`
-}
-
-func (x *GetAllResponse) Reset() {
-	*x = GetAllResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[15]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetAllResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAllResponse) ProtoMessage() {}
-
-func (x *GetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[15]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAllResponse.ProtoReflect.Descriptor instead.
-func (*GetAllResponse) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *GetAllResponse) GetInputs() uint32 {
-	if x != nil {
-		return x.Inputs
-	}
-	return 0
-}
-
-func (x *GetAllResponse) GetErrorStatus() uint32 {
-	if x != nil {
-		return x.ErrorStatus
-	}
-	return 0
-}
-
-type GetSingleResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Number of the binary input channel
-	Channel uint32 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
-	// State for the bianry input channel
-	State bool `protobuf:"varint,2,opt,name=state,proto3" json:"state,omitempty"`
-}
-
-func (x *GetSingleResponse) Reset() {
-	*x = GetSingleResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeA_proto_msgTypes[16]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetSingleResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSingleResponse) ProtoMessage() {}
-
-func (x *GetSingleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeA_proto_msgTypes[16]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSingleResponse.ProtoReflect.Descriptor instead.
-func (*GetSingleResponse) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *GetSingleResponse) GetChannel() uint32 {
-	if x != nil {
-		return x.Channel
-	}
-	return 0
-}
-
-func (x *GetSingleResponse) GetState() bool {
-	if x != nil {
-		return x.State
-	}
-	return false
-}
-
-// FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
-type FunctionControlResponse struct {
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+type FunctionControlSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Type:
-	//	*FunctionControlResponse_GetSingle
-	//	*FunctionControlResponse_GetAll
-	//	*FunctionControlResponse_SetSingle
-	//	*FunctionControlResponse_SetAll
-	Type isFunctionControlResponse_Type `protobuf_oneof:"type"`
+	//	*FunctionControlSetResponse_Single
+	//	*FunctionControlSetResponse_All
+	Type isFunctionControlSetResponse_Type `protobuf_oneof:"type"`
 }
 
-func (x *FunctionControlResponse) Reset() {
-	*x = FunctionControlResponse{}
+func (x *FunctionControlSetResponse) Reset() {
+	*x = FunctionControlSetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_binaryIoTypeA_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1023,13 +998,13 @@ func (x *FunctionControlResponse) Reset() {
 	}
 }
 
-func (x *FunctionControlResponse) String() string {
+func (x *FunctionControlSetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FunctionControlResponse) ProtoMessage() {}
+func (*FunctionControlSetResponse) ProtoMessage() {}
 
-func (x *FunctionControlResponse) ProtoReflect() protoreflect.Message {
+func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_binaryIoTypeA_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1041,73 +1016,47 @@ func (x *FunctionControlResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FunctionControlResponse.ProtoReflect.Descriptor instead.
-func (*FunctionControlResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
+func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
 	return file_binaryIoTypeA_proto_rawDescGZIP(), []int{17}
 }
 
-func (m *FunctionControlResponse) GetType() isFunctionControlResponse_Type {
+func (m *FunctionControlSetResponse) GetType() isFunctionControlSetResponse_Type {
 	if m != nil {
 		return m.Type
 	}
 	return nil
 }
 
-func (x *FunctionControlResponse) GetGetSingle() *GetSingleResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_GetSingle); ok {
-		return x.GetSingle
+func (x *FunctionControlSetResponse) GetSingle() *SetSingleResponse {
+	if x, ok := x.GetType().(*FunctionControlSetResponse_Single); ok {
+		return x.Single
 	}
 	return nil
 }
 
-func (x *FunctionControlResponse) GetGetAll() *GetAllResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_GetAll); ok {
-		return x.GetAll
+func (x *FunctionControlSetResponse) GetAll() *SetAllResponse {
+	if x, ok := x.GetType().(*FunctionControlSetResponse_All); ok {
+		return x.All
 	}
 	return nil
 }
 
-func (x *FunctionControlResponse) GetSetSingle() *SetSingleResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_SetSingle); ok {
-		return x.SetSingle
-	}
-	return nil
+type isFunctionControlSetResponse_Type interface {
+	isFunctionControlSetResponse_Type()
 }
 
-func (x *FunctionControlResponse) GetSetAll() *SetAllResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_SetAll); ok {
-		return x.SetAll
-	}
-	return nil
+type FunctionControlSetResponse_Single struct {
+	Single *SetSingleResponse `protobuf:"bytes,1,opt,name=single,proto3,oneof"`
 }
 
-type isFunctionControlResponse_Type interface {
-	isFunctionControlResponse_Type()
+type FunctionControlSetResponse_All struct {
+	All *SetAllResponse `protobuf:"bytes,2,opt,name=all,proto3,oneof"`
 }
 
-type FunctionControlResponse_GetSingle struct {
-	GetSingle *GetSingleResponse `protobuf:"bytes,1,opt,name=getSingle,proto3,oneof"`
-}
+func (*FunctionControlSetResponse_Single) isFunctionControlSetResponse_Type() {}
 
-type FunctionControlResponse_GetAll struct {
-	GetAll *GetAllResponse `protobuf:"bytes,2,opt,name=getAll,proto3,oneof"`
-}
-
-type FunctionControlResponse_SetSingle struct {
-	SetSingle *SetSingleResponse `protobuf:"bytes,3,opt,name=setSingle,proto3,oneof"`
-}
-
-type FunctionControlResponse_SetAll struct {
-	SetAll *SetAllResponse `protobuf:"bytes,4,opt,name=setAll,proto3,oneof"`
-}
-
-func (*FunctionControlResponse_GetSingle) isFunctionControlResponse_Type() {}
-
-func (*FunctionControlResponse_GetAll) isFunctionControlResponse_Type() {}
-
-func (*FunctionControlResponse_SetSingle) isFunctionControlResponse_Type() {}
-
-func (*FunctionControlResponse_SetAll) isFunctionControlResponse_Type() {}
+func (*FunctionControlSetResponse_All) isFunctionControlSetResponse_Type() {}
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
@@ -1303,134 +1252,114 @@ var File_binaryIoTypeA_proto protoreflect.FileDescriptor
 var file_binaryIoTypeA_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54,
-	0x79, 0x70, 0x65, 0x41, 0x22, 0xaf, 0x01, 0x0a, 0x17, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74,
-	0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x46, 0x72, 0x69, 0x74, 0x74, 0x69,
-	0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x12, 0x6f, 0x75,
-	0x74, 0x70, 0x75, 0x74, 0x46, 0x72, 0x69, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b,
-	0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64,
-	0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x12, 0x6f, 0x75,
-	0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b,
-	0x12, 0x34, 0x0a, 0x15, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64,
-	0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0f, 0x52,
-	0x15, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54,
-	0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x22, 0x21, 0x0a, 0x1f, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x19, 0x0a, 0x17, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
-	0x6c, 0x47, 0x65, 0x74, 0x22, 0xb7, 0x01, 0x0a, 0x1f, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74, 0x70,
-	0x75, 0x74, 0x46, 0x72, 0x69, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x07, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x46, 0x72, 0x69, 0x74,
-	0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74, 0x70,
-	0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x07, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63,
-	0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x34, 0x0a, 0x15, 0x6f, 0x75, 0x74, 0x70,
-	0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75,
-	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x15, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57,
-	0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x22, 0x1e,
-	0x0a, 0x1c, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43,
-	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22, 0x52,
-	0x0a, 0x24, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43,
-	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
-	0x4f, 0x66, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07,
-	0x52, 0x10, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4f, 0x66, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
-	0x6c, 0x73, 0x22, 0x81, 0x02, 0x0a, 0x1c, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x03, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x2e, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41,
-	0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
-	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x48, 0x00, 0x52, 0x03, 0x67, 0x65, 0x74, 0x12, 0x42, 0x0a, 0x03, 0x73, 0x65, 0x74, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54,
-	0x79, 0x70, 0x65, 0x41, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x03, 0x73, 0x65, 0x74, 0x12, 0x51, 0x0a, 0x08, 0x64,
-	0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x33, 0x2e,
-	0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72,
-	0x6f, 0x6c, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x48, 0x00, 0x52, 0x08, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x42, 0x06,
-	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x3b, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x53, 0x69, 0x6e,
-	0x67, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x14, 0x0a,
-	0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x73, 0x74,
-	0x61, 0x74, 0x65, 0x22, 0x34, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x12, 0x16, 0x0a,
-	0x06, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x06, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x07, 0x52, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x22, 0x25, 0x0a, 0x09, 0x47, 0x65, 0x74,
-	0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
-	0x22, 0x1c, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x61,
-	0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x22, 0x7b,
-	0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
-	0x6c, 0x47, 0x65, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54,
-	0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x48, 0x00,
-	0x52, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x29, 0x0a, 0x03, 0x61, 0x6c, 0x6c, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f,
-	0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x48, 0x00, 0x52, 0x03,
-	0x61, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x7b, 0x0a, 0x12, 0x46,
-	0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65,
-	0x74, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x18, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65,
-	0x41, 0x2e, 0x53, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x48, 0x00, 0x52, 0x06, 0x73,
-	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x29, 0x0a, 0x03, 0x61, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70,
-	0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x48, 0x00, 0x52, 0x03, 0x61, 0x6c, 0x6c,
-	0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x10, 0x0a, 0x0e, 0x53, 0x65, 0x74, 0x41,
-	0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x13, 0x0a, 0x11, 0x53, 0x65,
-	0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x4b, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x16, 0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x07, 0x52, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x65, 0x72, 0x72,
-	0x6f, 0x72, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52,
-	0x0b, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x43, 0x0a, 0x11,
-	0x47, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x14, 0x0a, 0x05, 0x73,
-	0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74,
-	0x65, 0x22, 0x97, 0x02, 0x0a, 0x17, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
-	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x40, 0x0a,
-	0x09, 0x67, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x20, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41,
-	0x2e, 0x47, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x48, 0x00, 0x52, 0x09, 0x67, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12,
-	0x37, 0x0a, 0x06, 0x67, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x1d, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e,
-	0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00,
-	0x52, 0x06, 0x67, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x12, 0x40, 0x0a, 0x09, 0x73, 0x65, 0x74, 0x53,
-	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x62, 0x69,
-	0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x53,
+	0x79, 0x70, 0x65, 0x41, 0x22, 0xa8, 0x01, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74,
+	0x70, 0x75, 0x74, 0x46, 0x72, 0x69, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x46, 0x72, 0x69,
+	0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x2e, 0x0a, 0x12, 0x6f, 0x75, 0x74,
+	0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74,
+	0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x34, 0x0a, 0x15, 0x6f, 0x75, 0x74,
+	0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f,
+	0x75, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x15, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74,
+	0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x22,
+	0x1a, 0x0a, 0x18, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x22,
+	0xb0, 0x01, 0x0a, 0x18, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x12,
+	0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x46, 0x72, 0x69, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61,
+	0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74,
+	0x46, 0x72, 0x69, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x2e, 0x0a, 0x12,
+	0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61,
+	0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x12, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74,
+	0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x34, 0x0a, 0x15,
+	0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69,
+	0x6d, 0x65, 0x6f, 0x75, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0f, 0x52, 0x15, 0x6f, 0x75, 0x74,
+	0x70, 0x75, 0x74, 0x57, 0x61, 0x74, 0x63, 0x68, 0x64, 0x6f, 0x67, 0x54, 0x69, 0x6d, 0x65, 0x6f,
+	0x75, 0x74, 0x22, 0x17, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22, 0x4b, 0x0a, 0x1d, 0x43,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63,
+	0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x10,
+	0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4f, 0x66, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x73,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x10, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4f, 0x66,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x73, 0x22, 0x3b, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x53,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12,
+	0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05,
+	0x73, 0x74, 0x61, 0x74, 0x65, 0x22, 0x34, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x12,
+	0x16, 0x0a, 0x06, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52,
+	0x06, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x22, 0x25, 0x0a, 0x09, 0x47,
+	0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x22, 0x1c, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x12, 0x12, 0x0a, 0x04,
+	0x6d, 0x61, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x04, 0x6d, 0x61, 0x73, 0x6b,
+	0x22, 0x7b, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74,
+	0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49,
+	0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65,
+	0x48, 0x00, 0x52, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x29, 0x0a, 0x03, 0x61, 0x6c,
+	0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x48, 0x00,
+	0x52, 0x03, 0x61, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x28, 0x0a,
+	0x0e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52,
+	0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x22, 0x43, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53, 0x69,
+	0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07,
+	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x22, 0x93, 0x01, 0x0a,
+	0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
+	0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x06, 0x73,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x62, 0x69,
+	0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x53,
 	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52,
-	0x09, 0x73, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x37, 0x0a, 0x06, 0x73, 0x65,
-	0x74, 0x41, 0x6c, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x62, 0x69, 0x6e,
-	0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x41, 0x6c,
-	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x06, 0x73, 0x65, 0x74,
-	0x41, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x90, 0x01, 0x0a, 0x12,
-	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61,
-	0x72, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x69, 0x6c,
-	0x74, 0x65, 0x72, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x11, 0x63,
-	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x73, 0x6b,
-	0x12, 0x2c, 0x0a, 0x11, 0x6b, 0x65, 0x65, 0x70, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x6e, 0x74,
-	0x65, 0x72, 0x76, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x11, 0x6b, 0x65, 0x65,
-	0x70, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x12, 0x1e,
-	0x0a, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x07, 0x52, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x56,
-	0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65,
-	0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x52, 0x09, 0x74, 0x69, 0x6d,
-	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
-	0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
-	0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x3d, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f,
-	0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61,
-	0x6d, 0x70, 0x6c, 0x65, 0x73, 0x42, 0x18, 0x5a, 0x16, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49,
-	0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x31, 0x0a, 0x03, 0x61, 0x6c, 0x6c, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54,
+	0x79, 0x70, 0x65, 0x41, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x03, 0x61, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79,
+	0x70, 0x65, 0x22, 0x7b, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x67,
+	0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72,
+	0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67,
+	0x6c, 0x65, 0x48, 0x00, 0x52, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x12, 0x29, 0x0a, 0x03,
+	0x61, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61,
+	0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x41, 0x6c, 0x6c,
+	0x48, 0x00, 0x52, 0x03, 0x61, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22,
+	0x10, 0x0a, 0x0e, 0x53, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x13, 0x0a, 0x11, 0x53, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x93, 0x01, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f,
+	0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x06, 0x73, 0x69, 0x6e, 0x67, 0x6c,
+	0x65, 0x12, 0x31, 0x0a, 0x03, 0x61, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d,
+	0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53,
+	0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52,
+	0x03, 0x61, 0x6c, 0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x90, 0x01, 0x0a,
+	0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74,
+	0x61, 0x72, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x11,
+	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x73,
+	0x6b, 0x12, 0x2c, 0x0a, 0x11, 0x6b, 0x65, 0x65, 0x70, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x6e,
+	0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x11, 0x6b, 0x65,
+	0x65, 0x70, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x12,
+	0x1e, 0x0a, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x07, 0x52, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a, 0x65, 0x22,
+	0x56, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x52, 0x09, 0x74, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x3d, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49,
+	0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73,
+	0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x42, 0x18, 0x5a, 0x16, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79,
+	0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1447,46 +1376,43 @@ func file_binaryIoTypeA_proto_rawDescGZIP() []byte {
 
 var file_binaryIoTypeA_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_binaryIoTypeA_proto_goTypes = []interface{}{
-	(*ConfigurationControlSet)(nil),              // 0: binaryIoTypeA.ConfigurationControlSet
-	(*ConfigurationControlSetResponse)(nil),      // 1: binaryIoTypeA.ConfigurationControlSetResponse
-	(*ConfigurationControlGet)(nil),              // 2: binaryIoTypeA.ConfigurationControlGet
-	(*ConfigurationControlGetResponse)(nil),      // 3: binaryIoTypeA.ConfigurationControlGetResponse
-	(*ConfigurationControlDescribe)(nil),         // 4: binaryIoTypeA.ConfigurationControlDescribe
-	(*ConfigurationControlDescribeResponse)(nil), // 5: binaryIoTypeA.ConfigurationControlDescribeResponse
-	(*ConfigurationControlResponse)(nil),         // 6: binaryIoTypeA.ConfigurationControlResponse
-	(*SetSingle)(nil),                            // 7: binaryIoTypeA.SetSingle
-	(*SetAll)(nil),                               // 8: binaryIoTypeA.SetAll
-	(*GetSingle)(nil),                            // 9: binaryIoTypeA.GetSingle
-	(*GetAll)(nil),                               // 10: binaryIoTypeA.GetAll
-	(*FunctionControlGet)(nil),                   // 11: binaryIoTypeA.FunctionControlGet
-	(*FunctionControlSet)(nil),                   // 12: binaryIoTypeA.FunctionControlSet
-	(*SetAllResponse)(nil),                       // 13: binaryIoTypeA.SetAllResponse
-	(*SetSingleResponse)(nil),                    // 14: binaryIoTypeA.SetSingleResponse
-	(*GetAllResponse)(nil),                       // 15: binaryIoTypeA.GetAllResponse
-	(*GetSingleResponse)(nil),                    // 16: binaryIoTypeA.GetSingleResponse
-	(*FunctionControlResponse)(nil),              // 17: binaryIoTypeA.FunctionControlResponse
-	(*StreamControlStart)(nil),                   // 18: binaryIoTypeA.StreamControlStart
-	(*Sample)(nil),                               // 19: binaryIoTypeA.Sample
-	(*StreamData)(nil),                           // 20: binaryIoTypeA.StreamData
+	(*ConfigurationSet)(nil),              // 0: binaryIoTypeA.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 1: binaryIoTypeA.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 2: binaryIoTypeA.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 3: binaryIoTypeA.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 4: binaryIoTypeA.ConfigurationDescribe
+	(*ConfigurationDescribeResponse)(nil), // 5: binaryIoTypeA.ConfigurationDescribeResponse
+	(*SetSingle)(nil),                     // 6: binaryIoTypeA.SetSingle
+	(*SetAll)(nil),                        // 7: binaryIoTypeA.SetAll
+	(*GetSingle)(nil),                     // 8: binaryIoTypeA.GetSingle
+	(*GetAll)(nil),                        // 9: binaryIoTypeA.GetAll
+	(*FunctionControlGet)(nil),            // 10: binaryIoTypeA.FunctionControlGet
+	(*GetAllResponse)(nil),                // 11: binaryIoTypeA.GetAllResponse
+	(*GetSingleResponse)(nil),             // 12: binaryIoTypeA.GetSingleResponse
+	(*FunctionControlGetResponse)(nil),    // 13: binaryIoTypeA.FunctionControlGetResponse
+	(*FunctionControlSet)(nil),            // 14: binaryIoTypeA.FunctionControlSet
+	(*SetAllResponse)(nil),                // 15: binaryIoTypeA.SetAllResponse
+	(*SetSingleResponse)(nil),             // 16: binaryIoTypeA.SetSingleResponse
+	(*FunctionControlSetResponse)(nil),    // 17: binaryIoTypeA.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 18: binaryIoTypeA.StreamControlStart
+	(*Sample)(nil),                        // 19: binaryIoTypeA.Sample
+	(*StreamData)(nil),                    // 20: binaryIoTypeA.StreamData
 }
 var file_binaryIoTypeA_proto_depIdxs = []int32{
-	3,  // 0: binaryIoTypeA.ConfigurationControlResponse.get:type_name -> binaryIoTypeA.ConfigurationControlGetResponse
-	1,  // 1: binaryIoTypeA.ConfigurationControlResponse.set:type_name -> binaryIoTypeA.ConfigurationControlSetResponse
-	5,  // 2: binaryIoTypeA.ConfigurationControlResponse.describe:type_name -> binaryIoTypeA.ConfigurationControlDescribeResponse
-	9,  // 3: binaryIoTypeA.FunctionControlGet.single:type_name -> binaryIoTypeA.GetSingle
-	10, // 4: binaryIoTypeA.FunctionControlGet.all:type_name -> binaryIoTypeA.GetAll
-	7,  // 5: binaryIoTypeA.FunctionControlSet.single:type_name -> binaryIoTypeA.SetSingle
-	8,  // 6: binaryIoTypeA.FunctionControlSet.all:type_name -> binaryIoTypeA.SetAll
-	16, // 7: binaryIoTypeA.FunctionControlResponse.getSingle:type_name -> binaryIoTypeA.GetSingleResponse
-	15, // 8: binaryIoTypeA.FunctionControlResponse.getAll:type_name -> binaryIoTypeA.GetAllResponse
-	14, // 9: binaryIoTypeA.FunctionControlResponse.setSingle:type_name -> binaryIoTypeA.SetSingleResponse
-	13, // 10: binaryIoTypeA.FunctionControlResponse.setAll:type_name -> binaryIoTypeA.SetAllResponse
-	19, // 11: binaryIoTypeA.StreamData.samples:type_name -> binaryIoTypeA.Sample
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	8,  // 0: binaryIoTypeA.FunctionControlGet.single:type_name -> binaryIoTypeA.GetSingle
+	9,  // 1: binaryIoTypeA.FunctionControlGet.all:type_name -> binaryIoTypeA.GetAll
+	12, // 2: binaryIoTypeA.FunctionControlGetResponse.single:type_name -> binaryIoTypeA.GetSingleResponse
+	11, // 3: binaryIoTypeA.FunctionControlGetResponse.all:type_name -> binaryIoTypeA.GetAllResponse
+	6,  // 4: binaryIoTypeA.FunctionControlSet.single:type_name -> binaryIoTypeA.SetSingle
+	7,  // 5: binaryIoTypeA.FunctionControlSet.all:type_name -> binaryIoTypeA.SetAll
+	16, // 6: binaryIoTypeA.FunctionControlSetResponse.single:type_name -> binaryIoTypeA.SetSingleResponse
+	15, // 7: binaryIoTypeA.FunctionControlSetResponse.all:type_name -> binaryIoTypeA.SetAllResponse
+	19, // 8: binaryIoTypeA.StreamData.samples:type_name -> binaryIoTypeA.Sample
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_binaryIoTypeA_proto_init() }
@@ -1496,7 +1422,7 @@ func file_binaryIoTypeA_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_binaryIoTypeA_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlSet); i {
+			switch v := v.(*ConfigurationSet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1508,7 +1434,7 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlSetResponse); i {
+			switch v := v.(*ConfigurationSetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1520,7 +1446,7 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlGet); i {
+			switch v := v.(*ConfigurationGet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1532,7 +1458,7 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlGetResponse); i {
+			switch v := v.(*ConfigurationGetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1544,7 +1470,7 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlDescribe); i {
+			switch v := v.(*ConfigurationDescribe); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1556,7 +1482,7 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlDescribeResponse); i {
+			switch v := v.(*ConfigurationDescribeResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1568,18 +1494,6 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 		file_binaryIoTypeA_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_binaryIoTypeA_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetSingle); i {
 			case 0:
 				return &v.state
@@ -1591,7 +1505,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetAll); i {
 			case 0:
 				return &v.state
@@ -1603,7 +1517,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSingle); i {
 			case 0:
 				return &v.state
@@ -1615,7 +1529,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetAll); i {
 			case 0:
 				return &v.state
@@ -1627,7 +1541,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FunctionControlGet); i {
 			case 0:
 				return &v.state
@@ -1639,43 +1553,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlSet); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_binaryIoTypeA_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetAllResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_binaryIoTypeA_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetSingleResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_binaryIoTypeA_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetAllResponse); i {
 			case 0:
 				return &v.state
@@ -1687,7 +1565,7 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_binaryIoTypeA_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_binaryIoTypeA_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSingleResponse); i {
 			case 0:
 				return &v.state
@@ -1699,8 +1577,56 @@ func file_binaryIoTypeA_proto_init() {
 				return nil
 			}
 		}
+		file_binaryIoTypeA_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FunctionControlGetResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_binaryIoTypeA_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FunctionControlSet); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_binaryIoTypeA_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetAllResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_binaryIoTypeA_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetSingleResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 		file_binaryIoTypeA_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlResponse); i {
+			switch v := v.(*FunctionControlSetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1748,24 +1674,21 @@ func file_binaryIoTypeA_proto_init() {
 			}
 		}
 	}
-	file_binaryIoTypeA_proto_msgTypes[6].OneofWrappers = []interface{}{
-		(*ConfigurationControlResponse_Get)(nil),
-		(*ConfigurationControlResponse_Set)(nil),
-		(*ConfigurationControlResponse_Describe)(nil),
-	}
-	file_binaryIoTypeA_proto_msgTypes[11].OneofWrappers = []interface{}{
+	file_binaryIoTypeA_proto_msgTypes[10].OneofWrappers = []interface{}{
 		(*FunctionControlGet_Single)(nil),
 		(*FunctionControlGet_All)(nil),
 	}
-	file_binaryIoTypeA_proto_msgTypes[12].OneofWrappers = []interface{}{
+	file_binaryIoTypeA_proto_msgTypes[13].OneofWrappers = []interface{}{
+		(*FunctionControlGetResponse_Single)(nil),
+		(*FunctionControlGetResponse_All)(nil),
+	}
+	file_binaryIoTypeA_proto_msgTypes[14].OneofWrappers = []interface{}{
 		(*FunctionControlSet_Single)(nil),
 		(*FunctionControlSet_All)(nil),
 	}
 	file_binaryIoTypeA_proto_msgTypes[17].OneofWrappers = []interface{}{
-		(*FunctionControlResponse_GetSingle)(nil),
-		(*FunctionControlResponse_GetAll)(nil),
-		(*FunctionControlResponse_SetSingle)(nil),
-		(*FunctionControlResponse_SetAll)(nil),
+		(*FunctionControlSetResponse_Single)(nil),
+		(*FunctionControlSetResponse_All)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
