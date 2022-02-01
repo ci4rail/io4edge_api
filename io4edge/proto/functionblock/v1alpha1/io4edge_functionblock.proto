@@ -63,7 +63,7 @@ message StreamControlStart {
     // Defaults to 20
     fixed32 bucketSamples = 1;
 
-    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
+    // maximum interval in ms between two stream messages. If there are no or very few stream messages for a
     // certain time, the client is informed that the stream is still active and the existing data is transmitted.
     // Defaults to 10 seconds
     fixed32 keepaliveInterval = 2;
@@ -97,6 +97,9 @@ enum Status {
   WRONG_CLIENT = 4;
   INVALID_PARAMETER = 5;
   HW_FAULT = 6;
+  STREAM_ALREADY_STARTED = 7;
+  STREAM_ALREADY_STOPPED = 8;
+  STREAM_START_FAILED = 9;
 }
 
 message Error { string error = 1; }
