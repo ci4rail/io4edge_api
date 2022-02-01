@@ -1324,7 +1324,7 @@ const ProtobufCMessageDescriptor functionblock__response__descriptor =
   (ProtobufCMessageInit) functionblock__response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue functionblock__status__enum_values_by_number[7] =
+static const ProtobufCEnumValue functionblock__status__enum_values_by_number[10] =
 {
   { "OK", "FUNCTIONBLOCK__STATUS__OK", 0 },
   { "UNSPECIFIC_ERROR", "FUNCTIONBLOCK__STATUS__UNSPECIFIC_ERROR", 1 },
@@ -1333,16 +1333,22 @@ static const ProtobufCEnumValue functionblock__status__enum_values_by_number[7] 
   { "WRONG_CLIENT", "FUNCTIONBLOCK__STATUS__WRONG_CLIENT", 4 },
   { "INVALID_PARAMETER", "FUNCTIONBLOCK__STATUS__INVALID_PARAMETER", 5 },
   { "HW_FAULT", "FUNCTIONBLOCK__STATUS__HW_FAULT", 6 },
+  { "STREAM_ALREADY_STARTED", "FUNCTIONBLOCK__STATUS__STREAM_ALREADY_STARTED", 7 },
+  { "STREAM_ALREADY_STOPPED", "FUNCTIONBLOCK__STATUS__STREAM_ALREADY_STOPPED", 8 },
+  { "STREAM_START_FAILED", "FUNCTIONBLOCK__STATUS__STREAM_START_FAILED", 9 },
 };
 static const ProtobufCIntRange functionblock__status__value_ranges[] = {
-{0, 0},{0, 7}
+{0, 0},{0, 10}
 };
-static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[7] =
+static const ProtobufCEnumValueIndex functionblock__status__enum_values_by_name[10] =
 {
   { "HW_FAULT", 6 },
   { "INVALID_PARAMETER", 5 },
   { "NOT_IMPLEMENTED", 3 },
   { "OK", 0 },
+  { "STREAM_ALREADY_STARTED", 7 },
+  { "STREAM_ALREADY_STOPPED", 8 },
+  { "STREAM_START_FAILED", 9 },
   { "UNKNOWN_COMMAND", 2 },
   { "UNSPECIFIC_ERROR", 1 },
   { "WRONG_CLIENT", 4 },
@@ -1354,9 +1360,9 @@ const ProtobufCEnumDescriptor functionblock__status__descriptor =
   "Status",
   "Functionblock__Status",
   "functionblock",
-  7,
+  10,
   functionblock__status__enum_values_by_number,
-  7,
+  10,
   functionblock__status__enum_values_by_name,
   1,
   functionblock__status__value_ranges,

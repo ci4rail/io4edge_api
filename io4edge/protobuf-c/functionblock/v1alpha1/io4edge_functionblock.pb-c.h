@@ -43,7 +43,10 @@ typedef enum _Functionblock__Status {
   FUNCTIONBLOCK__STATUS__NOT_IMPLEMENTED = 3,
   FUNCTIONBLOCK__STATUS__WRONG_CLIENT = 4,
   FUNCTIONBLOCK__STATUS__INVALID_PARAMETER = 5,
-  FUNCTIONBLOCK__STATUS__HW_FAULT = 6
+  FUNCTIONBLOCK__STATUS__HW_FAULT = 6,
+  FUNCTIONBLOCK__STATUS__STREAM_ALREADY_STARTED = 7,
+  FUNCTIONBLOCK__STATUS__STREAM_ALREADY_STOPPED = 8,
+  FUNCTIONBLOCK__STATUS__STREAM_START_FAILED = 9
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(FUNCTIONBLOCK__STATUS)
 } Functionblock__Status;
 
@@ -164,7 +167,7 @@ struct  _Functionblock__StreamControlStart
    */
   uint32_t bucketsamples;
   /*
-   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
+   * maximum interval in ms between two stream messages. If there are no or very few stream messages for a
    * certain time, the client is informed that the stream is still active and the existing data is transmitted.
    * Defaults to 10 seconds
    */
