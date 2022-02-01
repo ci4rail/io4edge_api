@@ -167,10 +167,14 @@ struct  _TemplateModule__FunctionControlSet
 struct  _TemplateModule__FunctionControlGetResponse
 {
   ProtobufCMessage base;
+  /*
+   * Put here your function specific values
+   */
+  uint32_t value;
 };
 #define TEMPLATE_MODULE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__function_control_get_response__descriptor) \
-     }
+    , 0 }
 
 
 /*

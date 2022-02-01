@@ -78,6 +78,7 @@ message FunctionControlSet {
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
     // Put here your function specific values
+    fixed32 value = 1;
 }
 
 

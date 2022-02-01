@@ -865,9 +865,29 @@ const ProtobufCMessageDescriptor template_module__function_control_set__descript
   (ProtobufCMessageInit) template_module__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__function_control_get_response__field_descriptors NULL
-#define template_module__function_control_get_response__field_indices_by_name NULL
-#define template_module__function_control_get_response__number_ranges NULL
+static const ProtobufCFieldDescriptor template_module__function_control_get_response__field_descriptors[1] =
+{
+  {
+    "value",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(TemplateModule__FunctionControlGetResponse, value),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned template_module__function_control_get_response__field_indices_by_name[] = {
+  0,   /* field[0] = value */
+};
+static const ProtobufCIntRange template_module__function_control_get_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor template_module__function_control_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -876,10 +896,10 @@ const ProtobufCMessageDescriptor template_module__function_control_get_response_
   "TemplateModule__FunctionControlGetResponse",
   "templateModule",
   sizeof(TemplateModule__FunctionControlGetResponse),
-  0,
+  1,
   template_module__function_control_get_response__field_descriptors,
   template_module__function_control_get_response__field_indices_by_name,
-  0,  template_module__function_control_get_response__number_ranges,
+  1,  template_module__function_control_get_response__number_ranges,
   (ProtobufCMessageInit) template_module__function_control_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
