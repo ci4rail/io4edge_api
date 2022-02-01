@@ -1,5 +1,5 @@
 /*
-Copyright © 2021 Ci4Rail GmbH <engineering@ci4rail.com>
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,44 +18,44 @@ syntax = "proto3";
 package templateModule;
 option go_package = "templateModule/v1alpha1";
 
-// ============= ConfigurationControl =================
+// ============= Configuration =================
 
-// ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
-message ConfigurationControlSet {
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
     // Put here your function specific values
 }
 
-// ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
-message ConfigurationControlSetResponse {
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
     // no parameters
 }
 
-// ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
-message ConfigurationControlGet {
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
     // no parameters
 }
 
-// ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
-message ConfigurationControlGetResponse {
+message ConfigurationGetResponse {
    // Put here your function specific values
 }
 
-// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook 
-message ConfigurationControlDescribe {
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
     // no parameters
 }
 
-message ConfigurationControlDescribeResponse {
+message ConfigurationDescribeResponse {
     // Put here your function specific values
 }
 
-// ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
-message ConfigurationControlResponse {
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
     oneof type {
-        ConfigurationControlGetResponse get = 1;
-        ConfigurationControlSetResponse set = 2;
-        ConfigurationControlDescribeResponse describe = 3;
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
     }
 }
 
@@ -70,50 +70,32 @@ message FunctionControlGet {
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
     // Put here your function specific values
-    // Example: 
+    // Example:
     fixed32 value = 1;
 }
 
-message SetResponse {
-    // no parameters
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    // Put here your function specific values
 }
 
-message GetResponse {
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
     // Put here your function specific values
-    // Example: 
-    fixed32 value = 1;
 }
 
-// FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
-message FunctionControlResponse {
-    // Put here your function specific values
-    // Example: 
-    oneof type {
-        GetResponse get = 1;
-        SetResponse set = 2;
-    }
-}
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
     // Put here your function specific values
-    // Example: 
-
-    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a 
-    // certain time, the client is informed that the stream is still active and the existing data is transmitted.
-    // Defaults to 10 seconds
-    fixed32 keepaliveInterval = 1;
-
-    // internal ring buffer size. 
-    // Defaults to 50
-    // Maximum is 1000
-    fixed32 bufferSize = 2;
 }
 
 message Sample {
     // Put here your function specific values
-    // Example: 
+    // Example:
 
     // Timestamp for that specific channels sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.

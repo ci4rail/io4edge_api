@@ -7,319 +7,319 @@
 #endif
 
 #include "templateModule.pb-c.h"
-void   template_module__configuration_control_set__init
-                     (TemplateModule__ConfigurationControlSet         *message)
+void   template_module__configuration_set__init
+                     (TemplateModule__ConfigurationSet         *message)
 {
-  static const TemplateModule__ConfigurationControlSet init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_SET__INIT;
+  static const TemplateModule__ConfigurationSet init_value = TEMPLATE_MODULE__CONFIGURATION_SET__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_set__get_packed_size
-                     (const TemplateModule__ConfigurationControlSet *message)
+size_t template_module__configuration_set__get_packed_size
+                     (const TemplateModule__ConfigurationSet *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_set__pack
-                     (const TemplateModule__ConfigurationControlSet *message,
+size_t template_module__configuration_set__pack
+                     (const TemplateModule__ConfigurationSet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_set__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlSet *message,
+size_t template_module__configuration_set__pack_to_buffer
+                     (const TemplateModule__ConfigurationSet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlSet *
-       template_module__configuration_control_set__unpack
+TemplateModule__ConfigurationSet *
+       template_module__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlSet *)
-     protobuf_c_message_unpack (&template_module__configuration_control_set__descriptor,
+  return (TemplateModule__ConfigurationSet *)
+     protobuf_c_message_unpack (&template_module__configuration_set__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_set__free_unpacked
-                     (TemplateModule__ConfigurationControlSet *message,
+void   template_module__configuration_set__free_unpacked
+                     (TemplateModule__ConfigurationSet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_set_response__init
-                     (TemplateModule__ConfigurationControlSetResponse         *message)
+void   template_module__configuration_set_response__init
+                     (TemplateModule__ConfigurationSetResponse         *message)
 {
-  static const TemplateModule__ConfigurationControlSetResponse init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_SET_RESPONSE__INIT;
+  static const TemplateModule__ConfigurationSetResponse init_value = TEMPLATE_MODULE__CONFIGURATION_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_set_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlSetResponse *message)
+size_t template_module__configuration_set_response__get_packed_size
+                     (const TemplateModule__ConfigurationSetResponse *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_set_response__pack
-                     (const TemplateModule__ConfigurationControlSetResponse *message,
+size_t template_module__configuration_set_response__pack
+                     (const TemplateModule__ConfigurationSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_set_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlSetResponse *message,
+size_t template_module__configuration_set_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlSetResponse *
-       template_module__configuration_control_set_response__unpack
+TemplateModule__ConfigurationSetResponse *
+       template_module__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlSetResponse *)
-     protobuf_c_message_unpack (&template_module__configuration_control_set_response__descriptor,
+  return (TemplateModule__ConfigurationSetResponse *)
+     protobuf_c_message_unpack (&template_module__configuration_set_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_set_response__free_unpacked
-                     (TemplateModule__ConfigurationControlSetResponse *message,
+void   template_module__configuration_set_response__free_unpacked
+                     (TemplateModule__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_get__init
-                     (TemplateModule__ConfigurationControlGet         *message)
+void   template_module__configuration_get__init
+                     (TemplateModule__ConfigurationGet         *message)
 {
-  static const TemplateModule__ConfigurationControlGet init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_GET__INIT;
+  static const TemplateModule__ConfigurationGet init_value = TEMPLATE_MODULE__CONFIGURATION_GET__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_get__get_packed_size
-                     (const TemplateModule__ConfigurationControlGet *message)
+size_t template_module__configuration_get__get_packed_size
+                     (const TemplateModule__ConfigurationGet *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_get__pack
-                     (const TemplateModule__ConfigurationControlGet *message,
+size_t template_module__configuration_get__pack
+                     (const TemplateModule__ConfigurationGet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_get__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlGet *message,
+size_t template_module__configuration_get__pack_to_buffer
+                     (const TemplateModule__ConfigurationGet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlGet *
-       template_module__configuration_control_get__unpack
+TemplateModule__ConfigurationGet *
+       template_module__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlGet *)
-     protobuf_c_message_unpack (&template_module__configuration_control_get__descriptor,
+  return (TemplateModule__ConfigurationGet *)
+     protobuf_c_message_unpack (&template_module__configuration_get__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_get__free_unpacked
-                     (TemplateModule__ConfigurationControlGet *message,
+void   template_module__configuration_get__free_unpacked
+                     (TemplateModule__ConfigurationGet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_get_response__init
-                     (TemplateModule__ConfigurationControlGetResponse         *message)
+void   template_module__configuration_get_response__init
+                     (TemplateModule__ConfigurationGetResponse         *message)
 {
-  static const TemplateModule__ConfigurationControlGetResponse init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_GET_RESPONSE__INIT;
+  static const TemplateModule__ConfigurationGetResponse init_value = TEMPLATE_MODULE__CONFIGURATION_GET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_get_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlGetResponse *message)
+size_t template_module__configuration_get_response__get_packed_size
+                     (const TemplateModule__ConfigurationGetResponse *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_get_response__pack
-                     (const TemplateModule__ConfigurationControlGetResponse *message,
+size_t template_module__configuration_get_response__pack
+                     (const TemplateModule__ConfigurationGetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_get_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlGetResponse *message,
+size_t template_module__configuration_get_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationGetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlGetResponse *
-       template_module__configuration_control_get_response__unpack
+TemplateModule__ConfigurationGetResponse *
+       template_module__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlGetResponse *)
-     protobuf_c_message_unpack (&template_module__configuration_control_get_response__descriptor,
+  return (TemplateModule__ConfigurationGetResponse *)
+     protobuf_c_message_unpack (&template_module__configuration_get_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_get_response__free_unpacked
-                     (TemplateModule__ConfigurationControlGetResponse *message,
+void   template_module__configuration_get_response__free_unpacked
+                     (TemplateModule__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_get_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_describe__init
-                     (TemplateModule__ConfigurationControlDescribe         *message)
+void   template_module__configuration_describe__init
+                     (TemplateModule__ConfigurationDescribe         *message)
 {
-  static const TemplateModule__ConfigurationControlDescribe init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_DESCRIBE__INIT;
+  static const TemplateModule__ConfigurationDescribe init_value = TEMPLATE_MODULE__CONFIGURATION_DESCRIBE__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_describe__get_packed_size
-                     (const TemplateModule__ConfigurationControlDescribe *message)
+size_t template_module__configuration_describe__get_packed_size
+                     (const TemplateModule__ConfigurationDescribe *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_describe__pack
-                     (const TemplateModule__ConfigurationControlDescribe *message,
+size_t template_module__configuration_describe__pack
+                     (const TemplateModule__ConfigurationDescribe *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_describe__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlDescribe *message,
+size_t template_module__configuration_describe__pack_to_buffer
+                     (const TemplateModule__ConfigurationDescribe *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlDescribe *
-       template_module__configuration_control_describe__unpack
+TemplateModule__ConfigurationDescribe *
+       template_module__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlDescribe *)
-     protobuf_c_message_unpack (&template_module__configuration_control_describe__descriptor,
+  return (TemplateModule__ConfigurationDescribe *)
+     protobuf_c_message_unpack (&template_module__configuration_describe__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_describe__free_unpacked
-                     (TemplateModule__ConfigurationControlDescribe *message,
+void   template_module__configuration_describe__free_unpacked
+                     (TemplateModule__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_describe_response__init
-                     (TemplateModule__ConfigurationControlDescribeResponse         *message)
+void   template_module__configuration_describe_response__init
+                     (TemplateModule__ConfigurationDescribeResponse         *message)
 {
-  static const TemplateModule__ConfigurationControlDescribeResponse init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_DESCRIBE_RESPONSE__INIT;
+  static const TemplateModule__ConfigurationDescribeResponse init_value = TEMPLATE_MODULE__CONFIGURATION_DESCRIBE_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_describe_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlDescribeResponse *message)
+size_t template_module__configuration_describe_response__get_packed_size
+                     (const TemplateModule__ConfigurationDescribeResponse *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_describe_response__pack
-                     (const TemplateModule__ConfigurationControlDescribeResponse *message,
+size_t template_module__configuration_describe_response__pack
+                     (const TemplateModule__ConfigurationDescribeResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_describe_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlDescribeResponse *message,
+size_t template_module__configuration_describe_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationDescribeResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlDescribeResponse *
-       template_module__configuration_control_describe_response__unpack
+TemplateModule__ConfigurationDescribeResponse *
+       template_module__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlDescribeResponse *)
-     protobuf_c_message_unpack (&template_module__configuration_control_describe_response__descriptor,
+  return (TemplateModule__ConfigurationDescribeResponse *)
+     protobuf_c_message_unpack (&template_module__configuration_describe_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_describe_response__free_unpacked
-                     (TemplateModule__ConfigurationControlDescribeResponse *message,
+void   template_module__configuration_describe_response__free_unpacked
+                     (TemplateModule__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_describe_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__configuration_control_response__init
-                     (TemplateModule__ConfigurationControlResponse         *message)
+void   template_module__configuration_response__init
+                     (TemplateModule__ConfigurationResponse         *message)
 {
-  static const TemplateModule__ConfigurationControlResponse init_value = TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__INIT;
+  static const TemplateModule__ConfigurationResponse init_value = TEMPLATE_MODULE__CONFIGURATION_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__configuration_control_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlResponse *message)
+size_t template_module__configuration_response__get_packed_size
+                     (const TemplateModule__ConfigurationResponse *message)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__configuration_control_response__pack
-                     (const TemplateModule__ConfigurationControlResponse *message,
+size_t template_module__configuration_response__pack
+                     (const TemplateModule__ConfigurationResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__configuration_control_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlResponse *message,
+size_t template_module__configuration_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__ConfigurationControlResponse *
-       template_module__configuration_control_response__unpack
+TemplateModule__ConfigurationResponse *
+       template_module__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__ConfigurationControlResponse *)
-     protobuf_c_message_unpack (&template_module__configuration_control_response__descriptor,
+  return (TemplateModule__ConfigurationResponse *)
+     protobuf_c_message_unpack (&template_module__configuration_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__configuration_control_response__free_unpacked
-                     (TemplateModule__ConfigurationControlResponse *message,
+void   template_module__configuration_response__free_unpacked
+                     (TemplateModule__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &template_module__configuration_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   template_module__function_control_get__init
@@ -412,139 +412,94 @@ void   template_module__function_control_set__free_unpacked
   assert(message->base.descriptor == &template_module__function_control_set__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__set_response__init
-                     (TemplateModule__SetResponse         *message)
+void   template_module__function_control_get_response__init
+                     (TemplateModule__FunctionControlGetResponse         *message)
 {
-  static const TemplateModule__SetResponse init_value = TEMPLATE_MODULE__SET_RESPONSE__INIT;
+  static const TemplateModule__FunctionControlGetResponse init_value = TEMPLATE_MODULE__FUNCTION_CONTROL_GET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__set_response__get_packed_size
-                     (const TemplateModule__SetResponse *message)
+size_t template_module__function_control_get_response__get_packed_size
+                     (const TemplateModule__FunctionControlGetResponse *message)
 {
-  assert(message->base.descriptor == &template_module__set_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_get_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__set_response__pack
-                     (const TemplateModule__SetResponse *message,
+size_t template_module__function_control_get_response__pack
+                     (const TemplateModule__FunctionControlGetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__set_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_get_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__set_response__pack_to_buffer
-                     (const TemplateModule__SetResponse *message,
+size_t template_module__function_control_get_response__pack_to_buffer
+                     (const TemplateModule__FunctionControlGetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__set_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_get_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__SetResponse *
-       template_module__set_response__unpack
+TemplateModule__FunctionControlGetResponse *
+       template_module__function_control_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__SetResponse *)
-     protobuf_c_message_unpack (&template_module__set_response__descriptor,
+  return (TemplateModule__FunctionControlGetResponse *)
+     protobuf_c_message_unpack (&template_module__function_control_get_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__set_response__free_unpacked
-                     (TemplateModule__SetResponse *message,
+void   template_module__function_control_get_response__free_unpacked
+                     (TemplateModule__FunctionControlGetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__set_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_get_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_module__get_response__init
-                     (TemplateModule__GetResponse         *message)
+void   template_module__function_control_set_response__init
+                     (TemplateModule__FunctionControlSetResponse         *message)
 {
-  static const TemplateModule__GetResponse init_value = TEMPLATE_MODULE__GET_RESPONSE__INIT;
+  static const TemplateModule__FunctionControlSetResponse init_value = TEMPLATE_MODULE__FUNCTION_CONTROL_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_module__get_response__get_packed_size
-                     (const TemplateModule__GetResponse *message)
+size_t template_module__function_control_set_response__get_packed_size
+                     (const TemplateModule__FunctionControlSetResponse *message)
 {
-  assert(message->base.descriptor == &template_module__get_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_module__get_response__pack
-                     (const TemplateModule__GetResponse *message,
+size_t template_module__function_control_set_response__pack
+                     (const TemplateModule__FunctionControlSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_module__get_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_module__get_response__pack_to_buffer
-                     (const TemplateModule__GetResponse *message,
+size_t template_module__function_control_set_response__pack_to_buffer
+                     (const TemplateModule__FunctionControlSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_module__get_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateModule__GetResponse *
-       template_module__get_response__unpack
+TemplateModule__FunctionControlSetResponse *
+       template_module__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateModule__GetResponse *)
-     protobuf_c_message_unpack (&template_module__get_response__descriptor,
+  return (TemplateModule__FunctionControlSetResponse *)
+     protobuf_c_message_unpack (&template_module__function_control_set_response__descriptor,
                                 allocator, len, data);
 }
-void   template_module__get_response__free_unpacked
-                     (TemplateModule__GetResponse *message,
+void   template_module__function_control_set_response__free_unpacked
+                     (TemplateModule__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_module__get_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   template_module__function_control_response__init
-                     (TemplateModule__FunctionControlResponse         *message)
-{
-  static const TemplateModule__FunctionControlResponse init_value = TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t template_module__function_control_response__get_packed_size
-                     (const TemplateModule__FunctionControlResponse *message)
-{
-  assert(message->base.descriptor == &template_module__function_control_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t template_module__function_control_response__pack
-                     (const TemplateModule__FunctionControlResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &template_module__function_control_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t template_module__function_control_response__pack_to_buffer
-                     (const TemplateModule__FunctionControlResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &template_module__function_control_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-TemplateModule__FunctionControlResponse *
-       template_module__function_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (TemplateModule__FunctionControlResponse *)
-     protobuf_c_message_unpack (&template_module__function_control_response__descriptor,
-                                allocator, len, data);
-}
-void   template_module__function_control_response__free_unpacked
-                     (TemplateModule__FunctionControlResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &template_module__function_control_response__descriptor);
+  assert(message->base.descriptor == &template_module__function_control_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   template_module__stream_control_start__init
@@ -682,124 +637,124 @@ void   template_module__stream_data__free_unpacked
   assert(message->base.descriptor == &template_module__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-#define template_module__configuration_control_set__field_descriptors NULL
-#define template_module__configuration_control_set__field_indices_by_name NULL
-#define template_module__configuration_control_set__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_set__descriptor =
+#define template_module__configuration_set__field_descriptors NULL
+#define template_module__configuration_set__field_indices_by_name NULL
+#define template_module__configuration_set__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlSet",
-  "ConfigurationControlSet",
-  "TemplateModule__ConfigurationControlSet",
+  "templateModule.ConfigurationSet",
+  "ConfigurationSet",
+  "TemplateModule__ConfigurationSet",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlSet),
+  sizeof(TemplateModule__ConfigurationSet),
   0,
-  template_module__configuration_control_set__field_descriptors,
-  template_module__configuration_control_set__field_indices_by_name,
-  0,  template_module__configuration_control_set__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_set__init,
+  template_module__configuration_set__field_descriptors,
+  template_module__configuration_set__field_indices_by_name,
+  0,  template_module__configuration_set__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_control_set_response__field_descriptors NULL
-#define template_module__configuration_control_set_response__field_indices_by_name NULL
-#define template_module__configuration_control_set_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_set_response__descriptor =
+#define template_module__configuration_set_response__field_descriptors NULL
+#define template_module__configuration_set_response__field_indices_by_name NULL
+#define template_module__configuration_set_response__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlSetResponse",
-  "ConfigurationControlSetResponse",
-  "TemplateModule__ConfigurationControlSetResponse",
+  "templateModule.ConfigurationSetResponse",
+  "ConfigurationSetResponse",
+  "TemplateModule__ConfigurationSetResponse",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlSetResponse),
+  sizeof(TemplateModule__ConfigurationSetResponse),
   0,
-  template_module__configuration_control_set_response__field_descriptors,
-  template_module__configuration_control_set_response__field_indices_by_name,
-  0,  template_module__configuration_control_set_response__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_set_response__init,
+  template_module__configuration_set_response__field_descriptors,
+  template_module__configuration_set_response__field_indices_by_name,
+  0,  template_module__configuration_set_response__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_control_get__field_descriptors NULL
-#define template_module__configuration_control_get__field_indices_by_name NULL
-#define template_module__configuration_control_get__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_get__descriptor =
+#define template_module__configuration_get__field_descriptors NULL
+#define template_module__configuration_get__field_indices_by_name NULL
+#define template_module__configuration_get__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_get__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlGet",
-  "ConfigurationControlGet",
-  "TemplateModule__ConfigurationControlGet",
+  "templateModule.ConfigurationGet",
+  "ConfigurationGet",
+  "TemplateModule__ConfigurationGet",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlGet),
+  sizeof(TemplateModule__ConfigurationGet),
   0,
-  template_module__configuration_control_get__field_descriptors,
-  template_module__configuration_control_get__field_indices_by_name,
-  0,  template_module__configuration_control_get__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_get__init,
+  template_module__configuration_get__field_descriptors,
+  template_module__configuration_get__field_indices_by_name,
+  0,  template_module__configuration_get__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_control_get_response__field_descriptors NULL
-#define template_module__configuration_control_get_response__field_indices_by_name NULL
-#define template_module__configuration_control_get_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_get_response__descriptor =
+#define template_module__configuration_get_response__field_descriptors NULL
+#define template_module__configuration_get_response__field_indices_by_name NULL
+#define template_module__configuration_get_response__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlGetResponse",
-  "ConfigurationControlGetResponse",
-  "TemplateModule__ConfigurationControlGetResponse",
+  "templateModule.ConfigurationGetResponse",
+  "ConfigurationGetResponse",
+  "TemplateModule__ConfigurationGetResponse",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlGetResponse),
+  sizeof(TemplateModule__ConfigurationGetResponse),
   0,
-  template_module__configuration_control_get_response__field_descriptors,
-  template_module__configuration_control_get_response__field_indices_by_name,
-  0,  template_module__configuration_control_get_response__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_get_response__init,
+  template_module__configuration_get_response__field_descriptors,
+  template_module__configuration_get_response__field_indices_by_name,
+  0,  template_module__configuration_get_response__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_control_describe__field_descriptors NULL
-#define template_module__configuration_control_describe__field_indices_by_name NULL
-#define template_module__configuration_control_describe__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_describe__descriptor =
+#define template_module__configuration_describe__field_descriptors NULL
+#define template_module__configuration_describe__field_indices_by_name NULL
+#define template_module__configuration_describe__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_describe__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlDescribe",
-  "ConfigurationControlDescribe",
-  "TemplateModule__ConfigurationControlDescribe",
+  "templateModule.ConfigurationDescribe",
+  "ConfigurationDescribe",
+  "TemplateModule__ConfigurationDescribe",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlDescribe),
+  sizeof(TemplateModule__ConfigurationDescribe),
   0,
-  template_module__configuration_control_describe__field_descriptors,
-  template_module__configuration_control_describe__field_indices_by_name,
-  0,  template_module__configuration_control_describe__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_describe__init,
+  template_module__configuration_describe__field_descriptors,
+  template_module__configuration_describe__field_indices_by_name,
+  0,  template_module__configuration_describe__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_control_describe_response__field_descriptors NULL
-#define template_module__configuration_control_describe_response__field_indices_by_name NULL
-#define template_module__configuration_control_describe_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__configuration_control_describe_response__descriptor =
+#define template_module__configuration_describe_response__field_descriptors NULL
+#define template_module__configuration_describe_response__field_indices_by_name NULL
+#define template_module__configuration_describe_response__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlDescribeResponse",
-  "ConfigurationControlDescribeResponse",
-  "TemplateModule__ConfigurationControlDescribeResponse",
+  "templateModule.ConfigurationDescribeResponse",
+  "ConfigurationDescribeResponse",
+  "TemplateModule__ConfigurationDescribeResponse",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlDescribeResponse),
+  sizeof(TemplateModule__ConfigurationDescribeResponse),
   0,
-  template_module__configuration_control_describe_response__field_descriptors,
-  template_module__configuration_control_describe_response__field_indices_by_name,
-  0,  template_module__configuration_control_describe_response__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_describe_response__init,
+  template_module__configuration_describe_response__field_descriptors,
+  template_module__configuration_describe_response__field_indices_by_name,
+  0,  template_module__configuration_describe_response__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_module__configuration_control_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor template_module__configuration_response__field_descriptors[3] =
 {
   {
     "get",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateModule__ConfigurationControlResponse, type_case),
-    offsetof(TemplateModule__ConfigurationControlResponse, get),
-    &template_module__configuration_control_get_response__descriptor,
+    offsetof(TemplateModule__ConfigurationResponse, type_case),
+    offsetof(TemplateModule__ConfigurationResponse, get),
+    &template_module__configuration_get_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -809,9 +764,9 @@ static const ProtobufCFieldDescriptor template_module__configuration_control_res
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateModule__ConfigurationControlResponse, type_case),
-    offsetof(TemplateModule__ConfigurationControlResponse, set),
-    &template_module__configuration_control_set_response__descriptor,
+    offsetof(TemplateModule__ConfigurationResponse, type_case),
+    offsetof(TemplateModule__ConfigurationResponse, set),
+    &template_module__configuration_set_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -821,37 +776,37 @@ static const ProtobufCFieldDescriptor template_module__configuration_control_res
     3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateModule__ConfigurationControlResponse, type_case),
-    offsetof(TemplateModule__ConfigurationControlResponse, describe),
-    &template_module__configuration_control_describe_response__descriptor,
+    offsetof(TemplateModule__ConfigurationResponse, type_case),
+    offsetof(TemplateModule__ConfigurationResponse, describe),
+    &template_module__configuration_describe_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_module__configuration_control_response__field_indices_by_name[] = {
+static const unsigned template_module__configuration_response__field_indices_by_name[] = {
   2,   /* field[2] = describe */
   0,   /* field[0] = get */
   1,   /* field[1] = set */
 };
-static const ProtobufCIntRange template_module__configuration_control_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange template_module__configuration_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor template_module__configuration_control_response__descriptor =
+const ProtobufCMessageDescriptor template_module__configuration_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.ConfigurationControlResponse",
-  "ConfigurationControlResponse",
-  "TemplateModule__ConfigurationControlResponse",
+  "templateModule.ConfigurationResponse",
+  "ConfigurationResponse",
+  "TemplateModule__ConfigurationResponse",
   "templateModule",
-  sizeof(TemplateModule__ConfigurationControlResponse),
+  sizeof(TemplateModule__ConfigurationResponse),
   3,
-  template_module__configuration_control_response__field_descriptors,
-  template_module__configuration_control_response__field_indices_by_name,
-  1,  template_module__configuration_control_response__number_ranges,
-  (ProtobufCMessageInit) template_module__configuration_control_response__init,
+  template_module__configuration_response__field_descriptors,
+  template_module__configuration_response__field_indices_by_name,
+  1,  template_module__configuration_response__number_ranges,
+  (ProtobufCMessageInit) template_module__configuration_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 #define template_module__function_control_get__field_descriptors NULL
@@ -910,149 +865,45 @@ const ProtobufCMessageDescriptor template_module__function_control_set__descript
   (ProtobufCMessageInit) template_module__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__set_response__field_descriptors NULL
-#define template_module__set_response__field_indices_by_name NULL
-#define template_module__set_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_module__set_response__descriptor =
+#define template_module__function_control_get_response__field_descriptors NULL
+#define template_module__function_control_get_response__field_indices_by_name NULL
+#define template_module__function_control_get_response__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__function_control_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.SetResponse",
-  "SetResponse",
-  "TemplateModule__SetResponse",
+  "templateModule.FunctionControlGetResponse",
+  "FunctionControlGetResponse",
+  "TemplateModule__FunctionControlGetResponse",
   "templateModule",
-  sizeof(TemplateModule__SetResponse),
+  sizeof(TemplateModule__FunctionControlGetResponse),
   0,
-  template_module__set_response__field_descriptors,
-  template_module__set_response__field_indices_by_name,
-  0,  template_module__set_response__number_ranges,
-  (ProtobufCMessageInit) template_module__set_response__init,
+  template_module__function_control_get_response__field_descriptors,
+  template_module__function_control_get_response__field_indices_by_name,
+  0,  template_module__function_control_get_response__number_ranges,
+  (ProtobufCMessageInit) template_module__function_control_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_module__get_response__field_descriptors[1] =
-{
-  {
-    "value",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(TemplateModule__GetResponse, value),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned template_module__get_response__field_indices_by_name[] = {
-  0,   /* field[0] = value */
-};
-static const ProtobufCIntRange template_module__get_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor template_module__get_response__descriptor =
+#define template_module__function_control_set_response__field_descriptors NULL
+#define template_module__function_control_set_response__field_indices_by_name NULL
+#define template_module__function_control_set_response__number_ranges NULL
+const ProtobufCMessageDescriptor template_module__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.GetResponse",
-  "GetResponse",
-  "TemplateModule__GetResponse",
+  "templateModule.FunctionControlSetResponse",
+  "FunctionControlSetResponse",
+  "TemplateModule__FunctionControlSetResponse",
   "templateModule",
-  sizeof(TemplateModule__GetResponse),
-  1,
-  template_module__get_response__field_descriptors,
-  template_module__get_response__field_indices_by_name,
-  1,  template_module__get_response__number_ranges,
-  (ProtobufCMessageInit) template_module__get_response__init,
+  sizeof(TemplateModule__FunctionControlSetResponse),
+  0,
+  template_module__function_control_set_response__field_descriptors,
+  template_module__function_control_set_response__field_indices_by_name,
+  0,  template_module__function_control_set_response__number_ranges,
+  (ProtobufCMessageInit) template_module__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_module__function_control_response__field_descriptors[2] =
-{
-  {
-    "get",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateModule__FunctionControlResponse, type_case),
-    offsetof(TemplateModule__FunctionControlResponse, get),
-    &template_module__get_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "set",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateModule__FunctionControlResponse, type_case),
-    offsetof(TemplateModule__FunctionControlResponse, set),
-    &template_module__set_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned template_module__function_control_response__field_indices_by_name[] = {
-  0,   /* field[0] = get */
-  1,   /* field[1] = set */
-};
-static const ProtobufCIntRange template_module__function_control_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor template_module__function_control_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateModule.FunctionControlResponse",
-  "FunctionControlResponse",
-  "TemplateModule__FunctionControlResponse",
-  "templateModule",
-  sizeof(TemplateModule__FunctionControlResponse),
-  2,
-  template_module__function_control_response__field_descriptors,
-  template_module__function_control_response__field_indices_by_name,
-  1,  template_module__function_control_response__number_ranges,
-  (ProtobufCMessageInit) template_module__function_control_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor template_module__stream_control_start__field_descriptors[2] =
-{
-  {
-    "keepaliveInterval",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(TemplateModule__StreamControlStart, keepaliveinterval),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bufferSize",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(TemplateModule__StreamControlStart, buffersize),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned template_module__stream_control_start__field_indices_by_name[] = {
-  1,   /* field[1] = bufferSize */
-  0,   /* field[0] = keepaliveInterval */
-};
-static const ProtobufCIntRange template_module__stream_control_start__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
+#define template_module__stream_control_start__field_descriptors NULL
+#define template_module__stream_control_start__field_indices_by_name NULL
+#define template_module__stream_control_start__number_ranges NULL
 const ProtobufCMessageDescriptor template_module__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1061,10 +912,10 @@ const ProtobufCMessageDescriptor template_module__stream_control_start__descript
   "TemplateModule__StreamControlStart",
   "templateModule",
   sizeof(TemplateModule__StreamControlStart),
-  2,
+  0,
   template_module__stream_control_start__field_descriptors,
   template_module__stream_control_start__field_indices_by_name,
-  1,  template_module__stream_control_start__number_ranges,
+  0,  template_module__stream_control_start__number_ranges,
   (ProtobufCMessageInit) template_module__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
