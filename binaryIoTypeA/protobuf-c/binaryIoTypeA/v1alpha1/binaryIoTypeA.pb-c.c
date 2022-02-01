@@ -7,319 +7,274 @@
 #endif
 
 #include "binaryIoTypeA.pb-c.h"
-void   binary_io_type_a__configuration_control_set__init
-                     (BinaryIoTypeA__ConfigurationControlSet         *message)
+void   binary_io_type_a__configuration_set__init
+                     (BinaryIoTypeA__ConfigurationSet         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlSet init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_SET__INIT;
+  static const BinaryIoTypeA__ConfigurationSet init_value = BINARY_IO_TYPE_A__CONFIGURATION_SET__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_set__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlSet *message)
+size_t binary_io_type_a__configuration_set__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationSet *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_set__pack
-                     (const BinaryIoTypeA__ConfigurationControlSet *message,
+size_t binary_io_type_a__configuration_set__pack
+                     (const BinaryIoTypeA__ConfigurationSet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_set__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlSet *message,
+size_t binary_io_type_a__configuration_set__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationSet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlSet *
-       binary_io_type_a__configuration_control_set__unpack
+BinaryIoTypeA__ConfigurationSet *
+       binary_io_type_a__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlSet *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_set__descriptor,
+  return (BinaryIoTypeA__ConfigurationSet *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_set__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_set__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlSet *message,
+void   binary_io_type_a__configuration_set__free_unpacked
+                     (BinaryIoTypeA__ConfigurationSet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__configuration_control_set_response__init
-                     (BinaryIoTypeA__ConfigurationControlSetResponse         *message)
+void   binary_io_type_a__configuration_set_response__init
+                     (BinaryIoTypeA__ConfigurationSetResponse         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlSetResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_SET_RESPONSE__INIT;
+  static const BinaryIoTypeA__ConfigurationSetResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_set_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse *message)
+size_t binary_io_type_a__configuration_set_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationSetResponse *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_set_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse *message,
+size_t binary_io_type_a__configuration_set_response__pack
+                     (const BinaryIoTypeA__ConfigurationSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_set_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlSetResponse *message,
+size_t binary_io_type_a__configuration_set_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlSetResponse *
-       binary_io_type_a__configuration_control_set_response__unpack
+BinaryIoTypeA__ConfigurationSetResponse *
+       binary_io_type_a__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlSetResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_set_response__descriptor,
+  return (BinaryIoTypeA__ConfigurationSetResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_set_response__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_set_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlSetResponse *message,
+void   binary_io_type_a__configuration_set_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_set_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__configuration_control_get__init
-                     (BinaryIoTypeA__ConfigurationControlGet         *message)
+void   binary_io_type_a__configuration_get__init
+                     (BinaryIoTypeA__ConfigurationGet         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlGet init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_GET__INIT;
+  static const BinaryIoTypeA__ConfigurationGet init_value = BINARY_IO_TYPE_A__CONFIGURATION_GET__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_get__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlGet *message)
+size_t binary_io_type_a__configuration_get__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationGet *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_get__pack
-                     (const BinaryIoTypeA__ConfigurationControlGet *message,
+size_t binary_io_type_a__configuration_get__pack
+                     (const BinaryIoTypeA__ConfigurationGet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_get__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlGet *message,
+size_t binary_io_type_a__configuration_get__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationGet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlGet *
-       binary_io_type_a__configuration_control_get__unpack
+BinaryIoTypeA__ConfigurationGet *
+       binary_io_type_a__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlGet *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_get__descriptor,
+  return (BinaryIoTypeA__ConfigurationGet *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_get__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_get__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlGet *message,
+void   binary_io_type_a__configuration_get__free_unpacked
+                     (BinaryIoTypeA__ConfigurationGet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__configuration_control_get_response__init
-                     (BinaryIoTypeA__ConfigurationControlGetResponse         *message)
+void   binary_io_type_a__configuration_get_response__init
+                     (BinaryIoTypeA__ConfigurationGetResponse         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlGetResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_GET_RESPONSE__INIT;
+  static const BinaryIoTypeA__ConfigurationGetResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_GET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_get_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse *message)
+size_t binary_io_type_a__configuration_get_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationGetResponse *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_get_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse *message,
+size_t binary_io_type_a__configuration_get_response__pack
+                     (const BinaryIoTypeA__ConfigurationGetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_get_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlGetResponse *message,
+size_t binary_io_type_a__configuration_get_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationGetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlGetResponse *
-       binary_io_type_a__configuration_control_get_response__unpack
+BinaryIoTypeA__ConfigurationGetResponse *
+       binary_io_type_a__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlGetResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_get_response__descriptor,
+  return (BinaryIoTypeA__ConfigurationGetResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_get_response__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_get_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlGetResponse *message,
+void   binary_io_type_a__configuration_get_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_get_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_get_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__configuration_control_describe__init
-                     (BinaryIoTypeA__ConfigurationControlDescribe         *message)
+void   binary_io_type_a__configuration_describe__init
+                     (BinaryIoTypeA__ConfigurationDescribe         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlDescribe init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_DESCRIBE__INIT;
+  static const BinaryIoTypeA__ConfigurationDescribe init_value = BINARY_IO_TYPE_A__CONFIGURATION_DESCRIBE__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_describe__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlDescribe *message)
+size_t binary_io_type_a__configuration_describe__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationDescribe *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_describe__pack
-                     (const BinaryIoTypeA__ConfigurationControlDescribe *message,
+size_t binary_io_type_a__configuration_describe__pack
+                     (const BinaryIoTypeA__ConfigurationDescribe *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_describe__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlDescribe *message,
+size_t binary_io_type_a__configuration_describe__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationDescribe *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlDescribe *
-       binary_io_type_a__configuration_control_describe__unpack
+BinaryIoTypeA__ConfigurationDescribe *
+       binary_io_type_a__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlDescribe *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_describe__descriptor,
+  return (BinaryIoTypeA__ConfigurationDescribe *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_describe__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_describe__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlDescribe *message,
+void   binary_io_type_a__configuration_describe__free_unpacked
+                     (BinaryIoTypeA__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__configuration_control_describe_response__init
-                     (BinaryIoTypeA__ConfigurationControlDescribeResponse         *message)
+void   binary_io_type_a__configuration_describe_response__init
+                     (BinaryIoTypeA__ConfigurationDescribeResponse         *message)
 {
-  static const BinaryIoTypeA__ConfigurationControlDescribeResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_DESCRIBE_RESPONSE__INIT;
+  static const BinaryIoTypeA__ConfigurationDescribeResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_DESCRIBE_RESPONSE__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__configuration_control_describe_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse *message)
+size_t binary_io_type_a__configuration_describe_response__get_packed_size
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__configuration_control_describe_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse *message,
+size_t binary_io_type_a__configuration_describe_response__pack
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__configuration_control_describe_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlDescribeResponse *message,
+size_t binary_io_type_a__configuration_describe_response__pack_to_buffer
+                     (const BinaryIoTypeA__ConfigurationDescribeResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__ConfigurationControlDescribeResponse *
-       binary_io_type_a__configuration_control_describe_response__unpack
+BinaryIoTypeA__ConfigurationDescribeResponse *
+       binary_io_type_a__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__ConfigurationControlDescribeResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_describe_response__descriptor,
+  return (BinaryIoTypeA__ConfigurationDescribeResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__configuration_describe_response__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__configuration_control_describe_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlDescribeResponse *message,
+void   binary_io_type_a__configuration_describe_response__free_unpacked
+                     (BinaryIoTypeA__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_describe_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   binary_io_type_a__configuration_control_response__init
-                     (BinaryIoTypeA__ConfigurationControlResponse         *message)
-{
-  static const BinaryIoTypeA__ConfigurationControlResponse init_value = BINARY_IO_TYPE_A__CONFIGURATION_CONTROL_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_a__configuration_control_response__get_packed_size
-                     (const BinaryIoTypeA__ConfigurationControlResponse *message)
-{
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_a__configuration_control_response__pack
-                     (const BinaryIoTypeA__ConfigurationControlResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_a__configuration_control_response__pack_to_buffer
-                     (const BinaryIoTypeA__ConfigurationControlResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeA__ConfigurationControlResponse *
-       binary_io_type_a__configuration_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeA__ConfigurationControlResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__configuration_control_response__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_a__configuration_control_response__free_unpacked
-                     (BinaryIoTypeA__ConfigurationControlResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_a__configuration_control_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__configuration_describe_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   binary_io_type_a__set_single__init
@@ -547,6 +502,141 @@ void   binary_io_type_a__function_control_get__free_unpacked
   assert(message->base.descriptor == &binary_io_type_a__function_control_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   binary_io_type_a__get_all_response__init
+                     (BinaryIoTypeA__GetAllResponse         *message)
+{
+  static const BinaryIoTypeA__GetAllResponse init_value = BINARY_IO_TYPE_A__GET_ALL_RESPONSE__INIT;
+  *message = init_value;
+}
+size_t binary_io_type_a__get_all_response__get_packed_size
+                     (const BinaryIoTypeA__GetAllResponse *message)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t binary_io_type_a__get_all_response__pack
+                     (const BinaryIoTypeA__GetAllResponse *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t binary_io_type_a__get_all_response__pack_to_buffer
+                     (const BinaryIoTypeA__GetAllResponse *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+BinaryIoTypeA__GetAllResponse *
+       binary_io_type_a__get_all_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (BinaryIoTypeA__GetAllResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__get_all_response__descriptor,
+                                allocator, len, data);
+}
+void   binary_io_type_a__get_all_response__free_unpacked
+                     (BinaryIoTypeA__GetAllResponse *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   binary_io_type_a__get_single_response__init
+                     (BinaryIoTypeA__GetSingleResponse         *message)
+{
+  static const BinaryIoTypeA__GetSingleResponse init_value = BINARY_IO_TYPE_A__GET_SINGLE_RESPONSE__INIT;
+  *message = init_value;
+}
+size_t binary_io_type_a__get_single_response__get_packed_size
+                     (const BinaryIoTypeA__GetSingleResponse *message)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t binary_io_type_a__get_single_response__pack
+                     (const BinaryIoTypeA__GetSingleResponse *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t binary_io_type_a__get_single_response__pack_to_buffer
+                     (const BinaryIoTypeA__GetSingleResponse *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+BinaryIoTypeA__GetSingleResponse *
+       binary_io_type_a__get_single_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (BinaryIoTypeA__GetSingleResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__get_single_response__descriptor,
+                                allocator, len, data);
+}
+void   binary_io_type_a__get_single_response__free_unpacked
+                     (BinaryIoTypeA__GetSingleResponse *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   binary_io_type_a__function_control_get_response__init
+                     (BinaryIoTypeA__FunctionControlGetResponse         *message)
+{
+  static const BinaryIoTypeA__FunctionControlGetResponse init_value = BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__INIT;
+  *message = init_value;
+}
+size_t binary_io_type_a__function_control_get_response__get_packed_size
+                     (const BinaryIoTypeA__FunctionControlGetResponse *message)
+{
+  assert(message->base.descriptor == &binary_io_type_a__function_control_get_response__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t binary_io_type_a__function_control_get_response__pack
+                     (const BinaryIoTypeA__FunctionControlGetResponse *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &binary_io_type_a__function_control_get_response__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t binary_io_type_a__function_control_get_response__pack_to_buffer
+                     (const BinaryIoTypeA__FunctionControlGetResponse *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &binary_io_type_a__function_control_get_response__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+BinaryIoTypeA__FunctionControlGetResponse *
+       binary_io_type_a__function_control_get_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (BinaryIoTypeA__FunctionControlGetResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__function_control_get_response__descriptor,
+                                allocator, len, data);
+}
+void   binary_io_type_a__function_control_get_response__free_unpacked
+                     (BinaryIoTypeA__FunctionControlGetResponse *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &binary_io_type_a__function_control_get_response__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   binary_io_type_a__function_control_set__init
                      (BinaryIoTypeA__FunctionControlSet         *message)
 {
@@ -682,139 +772,49 @@ void   binary_io_type_a__set_single_response__free_unpacked
   assert(message->base.descriptor == &binary_io_type_a__set_single_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_a__get_all_response__init
-                     (BinaryIoTypeA__GetAllResponse         *message)
+void   binary_io_type_a__function_control_set_response__init
+                     (BinaryIoTypeA__FunctionControlSetResponse         *message)
 {
-  static const BinaryIoTypeA__GetAllResponse init_value = BINARY_IO_TYPE_A__GET_ALL_RESPONSE__INIT;
+  static const BinaryIoTypeA__FunctionControlSetResponse init_value = BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t binary_io_type_a__get_all_response__get_packed_size
-                     (const BinaryIoTypeA__GetAllResponse *message)
+size_t binary_io_type_a__function_control_set_response__get_packed_size
+                     (const BinaryIoTypeA__FunctionControlSetResponse *message)
 {
-  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__function_control_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t binary_io_type_a__get_all_response__pack
-                     (const BinaryIoTypeA__GetAllResponse *message,
+size_t binary_io_type_a__function_control_set_response__pack
+                     (const BinaryIoTypeA__FunctionControlSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__function_control_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t binary_io_type_a__get_all_response__pack_to_buffer
-                     (const BinaryIoTypeA__GetAllResponse *message,
+size_t binary_io_type_a__function_control_set_response__pack_to_buffer
+                     (const BinaryIoTypeA__FunctionControlSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__function_control_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-BinaryIoTypeA__GetAllResponse *
-       binary_io_type_a__get_all_response__unpack
+BinaryIoTypeA__FunctionControlSetResponse *
+       binary_io_type_a__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (BinaryIoTypeA__GetAllResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__get_all_response__descriptor,
+  return (BinaryIoTypeA__FunctionControlSetResponse *)
+     protobuf_c_message_unpack (&binary_io_type_a__function_control_set_response__descriptor,
                                 allocator, len, data);
 }
-void   binary_io_type_a__get_all_response__free_unpacked
-                     (BinaryIoTypeA__GetAllResponse *message,
+void   binary_io_type_a__function_control_set_response__free_unpacked
+                     (BinaryIoTypeA__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &binary_io_type_a__get_all_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   binary_io_type_a__get_single_response__init
-                     (BinaryIoTypeA__GetSingleResponse         *message)
-{
-  static const BinaryIoTypeA__GetSingleResponse init_value = BINARY_IO_TYPE_A__GET_SINGLE_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_a__get_single_response__get_packed_size
-                     (const BinaryIoTypeA__GetSingleResponse *message)
-{
-  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_a__get_single_response__pack
-                     (const BinaryIoTypeA__GetSingleResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_a__get_single_response__pack_to_buffer
-                     (const BinaryIoTypeA__GetSingleResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeA__GetSingleResponse *
-       binary_io_type_a__get_single_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeA__GetSingleResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__get_single_response__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_a__get_single_response__free_unpacked
-                     (BinaryIoTypeA__GetSingleResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_a__get_single_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   binary_io_type_a__function_control_response__init
-                     (BinaryIoTypeA__FunctionControlResponse         *message)
-{
-  static const BinaryIoTypeA__FunctionControlResponse init_value = BINARY_IO_TYPE_A__FUNCTION_CONTROL_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_a__function_control_response__get_packed_size
-                     (const BinaryIoTypeA__FunctionControlResponse *message)
-{
-  assert(message->base.descriptor == &binary_io_type_a__function_control_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_a__function_control_response__pack
-                     (const BinaryIoTypeA__FunctionControlResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_a__function_control_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_a__function_control_response__pack_to_buffer
-                     (const BinaryIoTypeA__FunctionControlResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_a__function_control_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeA__FunctionControlResponse *
-       binary_io_type_a__function_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeA__FunctionControlResponse *)
-     protobuf_c_message_unpack (&binary_io_type_a__function_control_response__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_a__function_control_response__free_unpacked
-                     (BinaryIoTypeA__FunctionControlResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_a__function_control_response__descriptor);
+  assert(message->base.descriptor == &binary_io_type_a__function_control_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   binary_io_type_a__stream_control_start__init
@@ -952,7 +952,7 @@ void   binary_io_type_a__stream_data__free_unpacked
   assert(message->base.descriptor == &binary_io_type_a__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_a__configuration_set__field_descriptors[3] =
 {
   {
     "outputFrittingMask",
@@ -960,7 +960,7 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_se
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_SFIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlSet, outputfrittingmask),
+    offsetof(BinaryIoTypeA__ConfigurationSet, outputfrittingmask),
     NULL,
     NULL,
     0,             /* flags */
@@ -972,7 +972,7 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_se
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_SFIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlSet, outputwatchdogmask),
+    offsetof(BinaryIoTypeA__ConfigurationSet, outputwatchdogmask),
     NULL,
     NULL,
     0,             /* flags */
@@ -984,75 +984,75 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_se
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_SFIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlSet, outputwatchdogtimeout),
+    offsetof(BinaryIoTypeA__ConfigurationSet, outputwatchdogtimeout),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned binary_io_type_a__configuration_control_set__field_indices_by_name[] = {
+static const unsigned binary_io_type_a__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = outputFrittingMask */
   1,   /* field[1] = outputWatchdogMask */
   2,   /* field[2] = outputWatchdogTimeout */
 };
-static const ProtobufCIntRange binary_io_type_a__configuration_control_set__number_ranges[1 + 1] =
+static const ProtobufCIntRange binary_io_type_a__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_set__descriptor =
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlSet",
-  "ConfigurationControlSet",
-  "BinaryIoTypeA__ConfigurationControlSet",
+  "binaryIoTypeA.ConfigurationSet",
+  "ConfigurationSet",
+  "BinaryIoTypeA__ConfigurationSet",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlSet),
+  sizeof(BinaryIoTypeA__ConfigurationSet),
   3,
-  binary_io_type_a__configuration_control_set__field_descriptors,
-  binary_io_type_a__configuration_control_set__field_indices_by_name,
-  1,  binary_io_type_a__configuration_control_set__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_set__init,
+  binary_io_type_a__configuration_set__field_descriptors,
+  binary_io_type_a__configuration_set__field_indices_by_name,
+  1,  binary_io_type_a__configuration_set__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define binary_io_type_a__configuration_control_set_response__field_descriptors NULL
-#define binary_io_type_a__configuration_control_set_response__field_indices_by_name NULL
-#define binary_io_type_a__configuration_control_set_response__number_ranges NULL
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_set_response__descriptor =
+#define binary_io_type_a__configuration_set_response__field_descriptors NULL
+#define binary_io_type_a__configuration_set_response__field_indices_by_name NULL
+#define binary_io_type_a__configuration_set_response__number_ranges NULL
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlSetResponse",
-  "ConfigurationControlSetResponse",
-  "BinaryIoTypeA__ConfigurationControlSetResponse",
+  "binaryIoTypeA.ConfigurationSetResponse",
+  "ConfigurationSetResponse",
+  "BinaryIoTypeA__ConfigurationSetResponse",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlSetResponse),
+  sizeof(BinaryIoTypeA__ConfigurationSetResponse),
   0,
-  binary_io_type_a__configuration_control_set_response__field_descriptors,
-  binary_io_type_a__configuration_control_set_response__field_indices_by_name,
-  0,  binary_io_type_a__configuration_control_set_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_set_response__init,
+  binary_io_type_a__configuration_set_response__field_descriptors,
+  binary_io_type_a__configuration_set_response__field_indices_by_name,
+  0,  binary_io_type_a__configuration_set_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define binary_io_type_a__configuration_control_get__field_descriptors NULL
-#define binary_io_type_a__configuration_control_get__field_indices_by_name NULL
-#define binary_io_type_a__configuration_control_get__number_ranges NULL
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_get__descriptor =
+#define binary_io_type_a__configuration_get__field_descriptors NULL
+#define binary_io_type_a__configuration_get__field_indices_by_name NULL
+#define binary_io_type_a__configuration_get__number_ranges NULL
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_get__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlGet",
-  "ConfigurationControlGet",
-  "BinaryIoTypeA__ConfigurationControlGet",
+  "binaryIoTypeA.ConfigurationGet",
+  "ConfigurationGet",
+  "BinaryIoTypeA__ConfigurationGet",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlGet),
+  sizeof(BinaryIoTypeA__ConfigurationGet),
   0,
-  binary_io_type_a__configuration_control_get__field_descriptors,
-  binary_io_type_a__configuration_control_get__field_indices_by_name,
-  0,  binary_io_type_a__configuration_control_get__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_get__init,
+  binary_io_type_a__configuration_get__field_descriptors,
+  binary_io_type_a__configuration_get__field_indices_by_name,
+  0,  binary_io_type_a__configuration_get__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_get_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_a__configuration_get_response__field_descriptors[3] =
 {
   {
     "outputFrittingMask",
@@ -1060,7 +1060,7 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_ge
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlGetResponse, outputfrittingmask),
+    offsetof(BinaryIoTypeA__ConfigurationGetResponse, outputfrittingmask),
     NULL,
     NULL,
     0,             /* flags */
@@ -1072,7 +1072,7 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_ge
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlGetResponse, outputwatchdogmask),
+    offsetof(BinaryIoTypeA__ConfigurationGetResponse, outputwatchdogmask),
     NULL,
     NULL,
     0,             /* flags */
@@ -1084,57 +1084,57 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_ge
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_SFIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlGetResponse, outputwatchdogtimeout),
+    offsetof(BinaryIoTypeA__ConfigurationGetResponse, outputwatchdogtimeout),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned binary_io_type_a__configuration_control_get_response__field_indices_by_name[] = {
+static const unsigned binary_io_type_a__configuration_get_response__field_indices_by_name[] = {
   0,   /* field[0] = outputFrittingMask */
   1,   /* field[1] = outputWatchdogMask */
   2,   /* field[2] = outputWatchdogTimeout */
 };
-static const ProtobufCIntRange binary_io_type_a__configuration_control_get_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange binary_io_type_a__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_get_response__descriptor =
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlGetResponse",
-  "ConfigurationControlGetResponse",
-  "BinaryIoTypeA__ConfigurationControlGetResponse",
+  "binaryIoTypeA.ConfigurationGetResponse",
+  "ConfigurationGetResponse",
+  "BinaryIoTypeA__ConfigurationGetResponse",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlGetResponse),
+  sizeof(BinaryIoTypeA__ConfigurationGetResponse),
   3,
-  binary_io_type_a__configuration_control_get_response__field_descriptors,
-  binary_io_type_a__configuration_control_get_response__field_indices_by_name,
-  1,  binary_io_type_a__configuration_control_get_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_get_response__init,
+  binary_io_type_a__configuration_get_response__field_descriptors,
+  binary_io_type_a__configuration_get_response__field_indices_by_name,
+  1,  binary_io_type_a__configuration_get_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define binary_io_type_a__configuration_control_describe__field_descriptors NULL
-#define binary_io_type_a__configuration_control_describe__field_indices_by_name NULL
-#define binary_io_type_a__configuration_control_describe__number_ranges NULL
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_describe__descriptor =
+#define binary_io_type_a__configuration_describe__field_descriptors NULL
+#define binary_io_type_a__configuration_describe__field_indices_by_name NULL
+#define binary_io_type_a__configuration_describe__number_ranges NULL
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlDescribe",
-  "ConfigurationControlDescribe",
-  "BinaryIoTypeA__ConfigurationControlDescribe",
+  "binaryIoTypeA.ConfigurationDescribe",
+  "ConfigurationDescribe",
+  "BinaryIoTypeA__ConfigurationDescribe",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlDescribe),
+  sizeof(BinaryIoTypeA__ConfigurationDescribe),
   0,
-  binary_io_type_a__configuration_control_describe__field_descriptors,
-  binary_io_type_a__configuration_control_describe__field_indices_by_name,
-  0,  binary_io_type_a__configuration_control_describe__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_describe__init,
+  binary_io_type_a__configuration_describe__field_descriptors,
+  binary_io_type_a__configuration_describe__field_indices_by_name,
+  0,  binary_io_type_a__configuration_describe__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_describe_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor binary_io_type_a__configuration_describe_response__field_descriptors[1] =
 {
   {
     "numberOfChannels",
@@ -1142,98 +1142,34 @@ static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_de
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__ConfigurationControlDescribeResponse, numberofchannels),
+    offsetof(BinaryIoTypeA__ConfigurationDescribeResponse, numberofchannels),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned binary_io_type_a__configuration_control_describe_response__field_indices_by_name[] = {
+static const unsigned binary_io_type_a__configuration_describe_response__field_indices_by_name[] = {
   0,   /* field[0] = numberOfChannels */
 };
-static const ProtobufCIntRange binary_io_type_a__configuration_control_describe_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange binary_io_type_a__configuration_describe_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_describe_response__descriptor =
+const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlDescribeResponse",
-  "ConfigurationControlDescribeResponse",
-  "BinaryIoTypeA__ConfigurationControlDescribeResponse",
+  "binaryIoTypeA.ConfigurationDescribeResponse",
+  "ConfigurationDescribeResponse",
+  "BinaryIoTypeA__ConfigurationDescribeResponse",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlDescribeResponse),
+  sizeof(BinaryIoTypeA__ConfigurationDescribeResponse),
   1,
-  binary_io_type_a__configuration_control_describe_response__field_descriptors,
-  binary_io_type_a__configuration_control_describe_response__field_indices_by_name,
-  1,  binary_io_type_a__configuration_control_describe_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_describe_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_a__configuration_control_response__field_descriptors[3] =
-{
-  {
-    "get",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, type_case),
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, get),
-    &binary_io_type_a__configuration_control_get_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "set",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, type_case),
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, set),
-    &binary_io_type_a__configuration_control_set_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "describe",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, type_case),
-    offsetof(BinaryIoTypeA__ConfigurationControlResponse, describe),
-    &binary_io_type_a__configuration_control_describe_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_a__configuration_control_response__field_indices_by_name[] = {
-  2,   /* field[2] = describe */
-  0,   /* field[0] = get */
-  1,   /* field[1] = set */
-};
-static const ProtobufCIntRange binary_io_type_a__configuration_control_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
-const ProtobufCMessageDescriptor binary_io_type_a__configuration_control_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.ConfigurationControlResponse",
-  "ConfigurationControlResponse",
-  "BinaryIoTypeA__ConfigurationControlResponse",
-  "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__ConfigurationControlResponse),
-  3,
-  binary_io_type_a__configuration_control_response__field_descriptors,
-  binary_io_type_a__configuration_control_response__field_indices_by_name,
-  1,  binary_io_type_a__configuration_control_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__configuration_control_response__init,
+  binary_io_type_a__configuration_describe_response__field_descriptors,
+  binary_io_type_a__configuration_describe_response__field_indices_by_name,
+  1,  binary_io_type_a__configuration_describe_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor binary_io_type_a__set_single__field_descriptors[2] =
@@ -1465,6 +1401,146 @@ const ProtobufCMessageDescriptor binary_io_type_a__function_control_get__descrip
   (ProtobufCMessageInit) binary_io_type_a__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
+static const ProtobufCFieldDescriptor binary_io_type_a__get_all_response__field_descriptors[1] =
+{
+  {
+    "inputs",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeA__GetAllResponse, inputs),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_a__get_all_response__field_indices_by_name[] = {
+  0,   /* field[0] = inputs */
+};
+static const ProtobufCIntRange binary_io_type_a__get_all_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor binary_io_type_a__get_all_response__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "binaryIoTypeA.GetAllResponse",
+  "GetAllResponse",
+  "BinaryIoTypeA__GetAllResponse",
+  "binaryIoTypeA",
+  sizeof(BinaryIoTypeA__GetAllResponse),
+  1,
+  binary_io_type_a__get_all_response__field_descriptors,
+  binary_io_type_a__get_all_response__field_indices_by_name,
+  1,  binary_io_type_a__get_all_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__get_all_response__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor binary_io_type_a__get_single_response__field_descriptors[2] =
+{
+  {
+    "channel",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeA__GetSingleResponse, channel),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "state",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeA__GetSingleResponse, state),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_a__get_single_response__field_indices_by_name[] = {
+  0,   /* field[0] = channel */
+  1,   /* field[1] = state */
+};
+static const ProtobufCIntRange binary_io_type_a__get_single_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor binary_io_type_a__get_single_response__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "binaryIoTypeA.GetSingleResponse",
+  "GetSingleResponse",
+  "BinaryIoTypeA__GetSingleResponse",
+  "binaryIoTypeA",
+  sizeof(BinaryIoTypeA__GetSingleResponse),
+  2,
+  binary_io_type_a__get_single_response__field_descriptors,
+  binary_io_type_a__get_single_response__field_indices_by_name,
+  1,  binary_io_type_a__get_single_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__get_single_response__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor binary_io_type_a__function_control_get_response__field_descriptors[2] =
+{
+  {
+    "single",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(BinaryIoTypeA__FunctionControlGetResponse, type_case),
+    offsetof(BinaryIoTypeA__FunctionControlGetResponse, single),
+    &binary_io_type_a__get_single_response__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "all",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(BinaryIoTypeA__FunctionControlGetResponse, type_case),
+    offsetof(BinaryIoTypeA__FunctionControlGetResponse, all),
+    &binary_io_type_a__get_all_response__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_a__function_control_get_response__field_indices_by_name[] = {
+  1,   /* field[1] = all */
+  0,   /* field[0] = single */
+};
+static const ProtobufCIntRange binary_io_type_a__function_control_get_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor binary_io_type_a__function_control_get_response__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "binaryIoTypeA.FunctionControlGetResponse",
+  "FunctionControlGetResponse",
+  "BinaryIoTypeA__FunctionControlGetResponse",
+  "binaryIoTypeA",
+  sizeof(BinaryIoTypeA__FunctionControlGetResponse),
+  2,
+  binary_io_type_a__function_control_get_response__field_descriptors,
+  binary_io_type_a__function_control_get_response__field_indices_by_name,
+  1,  binary_io_type_a__function_control_get_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__function_control_get_response__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor binary_io_type_a__function_control_set__field_descriptors[2] =
 {
   {
@@ -1552,186 +1628,58 @@ const ProtobufCMessageDescriptor binary_io_type_a__set_single_response__descript
   (ProtobufCMessageInit) binary_io_type_a__set_single_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_a__get_all_response__field_descriptors[2] =
+static const ProtobufCFieldDescriptor binary_io_type_a__function_control_set_response__field_descriptors[2] =
 {
   {
-    "inputs",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__GetAllResponse, inputs),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "error_status",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__GetAllResponse, error_status),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_a__get_all_response__field_indices_by_name[] = {
-  1,   /* field[1] = error_status */
-  0,   /* field[0] = inputs */
-};
-static const ProtobufCIntRange binary_io_type_a__get_all_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor binary_io_type_a__get_all_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.GetAllResponse",
-  "GetAllResponse",
-  "BinaryIoTypeA__GetAllResponse",
-  "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__GetAllResponse),
-  2,
-  binary_io_type_a__get_all_response__field_descriptors,
-  binary_io_type_a__get_all_response__field_indices_by_name,
-  1,  binary_io_type_a__get_all_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__get_all_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_a__get_single_response__field_descriptors[2] =
-{
-  {
-    "channel",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__GetSingleResponse, channel),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "state",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__GetSingleResponse, state),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_a__get_single_response__field_indices_by_name[] = {
-  0,   /* field[0] = channel */
-  1,   /* field[1] = state */
-};
-static const ProtobufCIntRange binary_io_type_a__get_single_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor binary_io_type_a__get_single_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.GetSingleResponse",
-  "GetSingleResponse",
-  "BinaryIoTypeA__GetSingleResponse",
-  "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__GetSingleResponse),
-  2,
-  binary_io_type_a__get_single_response__field_descriptors,
-  binary_io_type_a__get_single_response__field_indices_by_name,
-  1,  binary_io_type_a__get_single_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__get_single_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_a__function_control_response__field_descriptors[4] =
-{
-  {
-    "getSingle",
+    "single",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__FunctionControlResponse, type_case),
-    offsetof(BinaryIoTypeA__FunctionControlResponse, getsingle),
-    &binary_io_type_a__get_single_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "getAll",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__FunctionControlResponse, type_case),
-    offsetof(BinaryIoTypeA__FunctionControlResponse, getall),
-    &binary_io_type_a__get_all_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "setSingle",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__FunctionControlResponse, type_case),
-    offsetof(BinaryIoTypeA__FunctionControlResponse, setsingle),
+    offsetof(BinaryIoTypeA__FunctionControlSetResponse, type_case),
+    offsetof(BinaryIoTypeA__FunctionControlSetResponse, single),
     &binary_io_type_a__set_single_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "setAll",
-    4,
+    "all",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeA__FunctionControlResponse, type_case),
-    offsetof(BinaryIoTypeA__FunctionControlResponse, setall),
+    offsetof(BinaryIoTypeA__FunctionControlSetResponse, type_case),
+    offsetof(BinaryIoTypeA__FunctionControlSetResponse, all),
     &binary_io_type_a__set_all_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned binary_io_type_a__function_control_response__field_indices_by_name[] = {
-  1,   /* field[1] = getAll */
-  0,   /* field[0] = getSingle */
-  3,   /* field[3] = setAll */
-  2,   /* field[2] = setSingle */
+static const unsigned binary_io_type_a__function_control_set_response__field_indices_by_name[] = {
+  1,   /* field[1] = all */
+  0,   /* field[0] = single */
 };
-static const ProtobufCIntRange binary_io_type_a__function_control_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange binary_io_type_a__function_control_set_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 2 }
 };
-const ProtobufCMessageDescriptor binary_io_type_a__function_control_response__descriptor =
+const ProtobufCMessageDescriptor binary_io_type_a__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeA.FunctionControlResponse",
-  "FunctionControlResponse",
-  "BinaryIoTypeA__FunctionControlResponse",
+  "binaryIoTypeA.FunctionControlSetResponse",
+  "FunctionControlSetResponse",
+  "BinaryIoTypeA__FunctionControlSetResponse",
   "binaryIoTypeA",
-  sizeof(BinaryIoTypeA__FunctionControlResponse),
-  4,
-  binary_io_type_a__function_control_response__field_descriptors,
-  binary_io_type_a__function_control_response__field_indices_by_name,
-  1,  binary_io_type_a__function_control_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_a__function_control_response__init,
+  sizeof(BinaryIoTypeA__FunctionControlSetResponse),
+  2,
+  binary_io_type_a__function_control_set_response__field_descriptors,
+  binary_io_type_a__function_control_set_response__field_indices_by_name,
+  1,  binary_io_type_a__function_control_set_response__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_a__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__field_descriptors[1] =
 {
   {
     "channelFilterMask",
@@ -1745,40 +1693,14 @@ static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__fi
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "keepaliveInterval",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__StreamControlStart, keepaliveinterval),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bufferSize",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__StreamControlStart, buffersize),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_a__stream_control_start__field_indices_by_name[] = {
-  2,   /* field[2] = bufferSize */
   0,   /* field[0] = channelFilterMask */
-  1,   /* field[1] = keepaliveInterval */
 };
 static const ProtobufCIntRange binary_io_type_a__stream_control_start__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 1 }
 };
 const ProtobufCMessageDescriptor binary_io_type_a__stream_control_start__descriptor =
 {
@@ -1788,7 +1710,7 @@ const ProtobufCMessageDescriptor binary_io_type_a__stream_control_start__descrip
   "BinaryIoTypeA__StreamControlStart",
   "binaryIoTypeA",
   sizeof(BinaryIoTypeA__StreamControlStart),
-  3,
+  1,
   binary_io_type_a__stream_control_start__field_descriptors,
   binary_io_type_a__stream_control_start__field_indices_by_name,
   1,  binary_io_type_a__stream_control_start__number_ranges,
