@@ -28,7 +28,7 @@ message ConfigurationSet {
     // Map to enable the output watchdog for binary output channels. The output watchdog is activated if the output is not updated for a certain time.
     // LSB is Output0, 1: output watchdog enabled, 0: disabled
     sfixed32 outputWatchdogMask = 2;
-    // The output watchdog timeout in seconds.
+    // The output watchdog timeout in ms.
     sfixed32 outputWatchdogTimeout = 3;
 }
 
@@ -51,7 +51,7 @@ message ConfigurationGetResponse {
     // Enabled output watchdog for binary output channels, see ConfigurationSet
     // LSB is Output0, 1: output watchdog enabled, 0: disabled
     fixed32 outputWatchdogMask = 2;
-    // The output watchdog timeout in seconds, see ConfigurationSet
+    // The output watchdog timeout in ms, see ConfigurationSet
     sfixed32 outputWatchdogTimeout = 3;
 }
 
@@ -156,16 +156,6 @@ message StreamControlStart {
     // LSB is Input0
     // Defaults to all channels (0x0F)
     fixed32 channelFilterMask = 1;
-
-    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
-    // certain time, the client is informed that the stream is still active and the existing data is transmitted.
-    // Defaults to 10 seconds
-    fixed32 keepaliveInterval = 2;
-
-    // internal ring buffer size.
-    // Defaults to 50
-    // Maximum is 1000
-    fixed32 bufferSize = 3;
 }
 
 message Sample {

@@ -59,7 +59,21 @@ message FunctionControl {
 
 // StreamControlStart specifies the start of a stream.
 message StreamControlStart {
-  google.protobuf.Any functionSpecificStreamControlStart = 2;
+    // number of maximum samples transported in a single Stream Data Message
+    // Defaults to 20
+    fixed32 bucketSamples = 1;
+
+    // maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
+    // certain time, the client is informed that the stream is still active and the existing data is transmitted.
+    // Defaults to 10 seconds
+    fixed32 keepaliveInterval = 2;
+
+    // number of buffered samples for this stream
+    // Defaults to 50
+    fixed32 bufferedSamples = 3;
+
+    // function specific
+    google.protobuf.Any functionSpecificStreamControlStart = 4;
 }
 
 // StreamControlStart specifies the stop of a stream.

@@ -824,11 +824,47 @@ const ProtobufCMessageDescriptor functionblock__function_control__descriptor =
   (ProtobufCMessageInit) functionblock__function_control__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor functionblock__stream_control_start__field_descriptors[1] =
+static const ProtobufCFieldDescriptor functionblock__stream_control_start__field_descriptors[4] =
 {
   {
-    "functionSpecificStreamControlStart",
+    "bucketSamples",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(Functionblock__StreamControlStart, bucketsamples),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "keepaliveInterval",
     2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(Functionblock__StreamControlStart, keepaliveinterval),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bufferedSamples",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(Functionblock__StreamControlStart, bufferedsamples),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "functionSpecificStreamControlStart",
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
@@ -840,12 +876,15 @@ static const ProtobufCFieldDescriptor functionblock__stream_control_start__field
   },
 };
 static const unsigned functionblock__stream_control_start__field_indices_by_name[] = {
-  0,   /* field[0] = functionSpecificStreamControlStart */
+  0,   /* field[0] = bucketSamples */
+  2,   /* field[2] = bufferedSamples */
+  3,   /* field[3] = functionSpecificStreamControlStart */
+  1,   /* field[1] = keepaliveInterval */
 };
 static const ProtobufCIntRange functionblock__stream_control_start__number_ranges[1 + 1] =
 {
-  { 2, 0 },
-  { 0, 1 }
+  { 1, 0 },
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor functionblock__stream_control_start__descriptor =
 {
@@ -855,7 +894,7 @@ const ProtobufCMessageDescriptor functionblock__stream_control_start__descriptor
   "Functionblock__StreamControlStart",
   "functionblock",
   sizeof(Functionblock__StreamControlStart),
-  1,
+  4,
   functionblock__stream_control_start__field_descriptors,
   functionblock__stream_control_start__field_indices_by_name,
   1,  functionblock__stream_control_start__number_ranges,

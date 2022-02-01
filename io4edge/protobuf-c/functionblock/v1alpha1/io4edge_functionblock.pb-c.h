@@ -158,11 +158,30 @@ struct  _Functionblock__FunctionControl
 struct  _Functionblock__StreamControlStart
 {
   ProtobufCMessage base;
+  /*
+   * number of maximum samples transported in a single Stream Data Message
+   * Defaults to 20
+   */
+  uint32_t bucketsamples;
+  /*
+   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
+   * certain time, the client is informed that the stream is still active and the existing data is transmitted.
+   * Defaults to 10 seconds
+   */
+  uint32_t keepaliveinterval;
+  /*
+   * number of buffered samples for this stream
+   * Defaults to 50
+   */
+  uint32_t bufferedsamples;
+  /*
+   * function specific
+   */
   Google__Protobuf__Any *functionspecificstreamcontrolstart;
 };
 #define FUNCTIONBLOCK__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&functionblock__stream_control_start__descriptor) \
-    , NULL }
+    , 0, 0, 0, NULL }
 
 
 /*

@@ -60,7 +60,7 @@ struct  _BinaryIoTypeA__ConfigurationSet
    */
   int32_t outputwatchdogmask;
   /*
-   * The output watchdog timeout in seconds.
+   * The output watchdog timeout in ms.
    */
   int32_t outputwatchdogtimeout;
 };
@@ -111,7 +111,7 @@ struct  _BinaryIoTypeA__ConfigurationGetResponse
    */
   uint32_t outputwatchdogmask;
   /*
-   * The output watchdog timeout in seconds, see ConfigurationSet
+   * The output watchdog timeout in ms, see ConfigurationSet
    */
   int32_t outputwatchdogtimeout;
 };
@@ -372,22 +372,10 @@ struct  _BinaryIoTypeA__StreamControlStart
    * Defaults to all channels (0x0F)
    */
   uint32_t channelfiltermask;
-  /*
-   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
-   * certain time, the client is informed that the stream is still active and the existing data is transmitted.
-   * Defaults to 10 seconds
-   */
-  uint32_t keepaliveinterval;
-  /*
-   * internal ring buffer size.
-   * Defaults to 50
-   * Maximum is 1000
-   */
-  uint32_t buffersize;
 };
 #define BINARY_IO_TYPE_A__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__stream_control_start__descriptor) \
-    , 0, 0, 0 }
+    , 0 }
 
 
 struct  _BinaryIoTypeA__Sample

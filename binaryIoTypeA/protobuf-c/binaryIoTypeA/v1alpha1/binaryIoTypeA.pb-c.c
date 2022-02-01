@@ -1679,7 +1679,7 @@ const ProtobufCMessageDescriptor binary_io_type_a__function_control_set_response
   (ProtobufCMessageInit) binary_io_type_a__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__field_descriptors[1] =
 {
   {
     "channelFilterMask",
@@ -1693,40 +1693,14 @@ static const ProtobufCFieldDescriptor binary_io_type_a__stream_control_start__fi
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "keepaliveInterval",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__StreamControlStart, keepaliveinterval),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bufferSize",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeA__StreamControlStart, buffersize),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_a__stream_control_start__field_indices_by_name[] = {
-  2,   /* field[2] = bufferSize */
   0,   /* field[0] = channelFilterMask */
-  1,   /* field[1] = keepaliveInterval */
 };
 static const ProtobufCIntRange binary_io_type_a__stream_control_start__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 1 }
 };
 const ProtobufCMessageDescriptor binary_io_type_a__stream_control_start__descriptor =
 {
@@ -1736,7 +1710,7 @@ const ProtobufCMessageDescriptor binary_io_type_a__stream_control_start__descrip
   "BinaryIoTypeA__StreamControlStart",
   "binaryIoTypeA",
   sizeof(BinaryIoTypeA__StreamControlStart),
-  3,
+  1,
   binary_io_type_a__stream_control_start__field_descriptors,
   binary_io_type_a__stream_control_start__field_indices_by_name,
   1,  binary_io_type_a__stream_control_start__number_ranges,
