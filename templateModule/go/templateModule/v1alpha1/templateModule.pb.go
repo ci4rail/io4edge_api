@@ -1,5 +1,5 @@
 //
-//Copyright © 2021 Ci4Rail GmbH <engineering@ci4rail.com>
+//Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -35,15 +35,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
-type ConfigurationControlSet struct {
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+type ConfigurationSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlSet) Reset() {
-	*x = ConfigurationControlSet{}
+func (x *ConfigurationSet) Reset() {
+	*x = ConfigurationSet{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -51,13 +51,13 @@ func (x *ConfigurationControlSet) Reset() {
 	}
 }
 
-func (x *ConfigurationControlSet) String() string {
+func (x *ConfigurationSet) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlSet) ProtoMessage() {}
+func (*ConfigurationSet) ProtoMessage() {}
 
-func (x *ConfigurationControlSet) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -69,20 +69,20 @@ func (x *ConfigurationControlSet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlSet.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlSet) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationSet.ProtoReflect.Descriptor instead.
+func (*ConfigurationSet) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{0}
 }
 
-// ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
-type ConfigurationControlSetResponse struct {
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+type ConfigurationSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlSetResponse) Reset() {
-	*x = ConfigurationControlSetResponse{}
+func (x *ConfigurationSetResponse) Reset() {
+	*x = ConfigurationSetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -90,13 +90,13 @@ func (x *ConfigurationControlSetResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlSetResponse) String() string {
+func (x *ConfigurationSetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlSetResponse) ProtoMessage() {}
+func (*ConfigurationSetResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlSetResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,20 +108,20 @@ func (x *ConfigurationControlSetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlSetResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlSetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationSetResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationSetResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{1}
 }
 
-// ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
-type ConfigurationControlGet struct {
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+type ConfigurationGet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlGet) Reset() {
-	*x = ConfigurationControlGet{}
+func (x *ConfigurationGet) Reset() {
+	*x = ConfigurationGet{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -129,13 +129,13 @@ func (x *ConfigurationControlGet) Reset() {
 	}
 }
 
-func (x *ConfigurationControlGet) String() string {
+func (x *ConfigurationGet) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlGet) ProtoMessage() {}
+func (*ConfigurationGet) ProtoMessage() {}
 
-func (x *ConfigurationControlGet) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -147,21 +147,21 @@ func (x *ConfigurationControlGet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlGet.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlGet) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationGet.ProtoReflect.Descriptor instead.
+func (*ConfigurationGet) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{2}
 }
 
-// ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
-type ConfigurationControlGetResponse struct {
+type ConfigurationGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlGetResponse) Reset() {
-	*x = ConfigurationControlGetResponse{}
+func (x *ConfigurationGetResponse) Reset() {
+	*x = ConfigurationGetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -169,13 +169,13 @@ func (x *ConfigurationControlGetResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlGetResponse) String() string {
+func (x *ConfigurationGetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlGetResponse) ProtoMessage() {}
+func (*ConfigurationGetResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlGetResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -187,20 +187,20 @@ func (x *ConfigurationControlGetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlGetResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlGetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationGetResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{3}
 }
 
-// ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook
-type ConfigurationControlDescribe struct {
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+type ConfigurationDescribe struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlDescribe) Reset() {
-	*x = ConfigurationControlDescribe{}
+func (x *ConfigurationDescribe) Reset() {
+	*x = ConfigurationDescribe{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,13 +208,13 @@ func (x *ConfigurationControlDescribe) Reset() {
 	}
 }
 
-func (x *ConfigurationControlDescribe) String() string {
+func (x *ConfigurationDescribe) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlDescribe) ProtoMessage() {}
+func (*ConfigurationDescribe) ProtoMessage() {}
 
-func (x *ConfigurationControlDescribe) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,19 +226,19 @@ func (x *ConfigurationControlDescribe) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlDescribe.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlDescribe) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationDescribe.ProtoReflect.Descriptor instead.
+func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{4}
 }
 
-type ConfigurationControlDescribeResponse struct {
+type ConfigurationDescribeResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *ConfigurationControlDescribeResponse) Reset() {
-	*x = ConfigurationControlDescribeResponse{}
+func (x *ConfigurationDescribeResponse) Reset() {
+	*x = ConfigurationDescribeResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -246,13 +246,13 @@ func (x *ConfigurationControlDescribeResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlDescribeResponse) String() string {
+func (x *ConfigurationDescribeResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlDescribeResponse) ProtoMessage() {}
+func (*ConfigurationDescribeResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlDescribeResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -264,26 +264,26 @@ func (x *ConfigurationControlDescribeResponse) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlDescribeResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlDescribeResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{5}
 }
 
-// ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
-type ConfigurationControlResponse struct {
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+type ConfigurationResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Type:
-	//	*ConfigurationControlResponse_Get
-	//	*ConfigurationControlResponse_Set
-	//	*ConfigurationControlResponse_Describe
-	Type isConfigurationControlResponse_Type `protobuf_oneof:"type"`
+	//	*ConfigurationResponse_Get
+	//	*ConfigurationResponse_Set
+	//	*ConfigurationResponse_Describe
+	Type isConfigurationResponse_Type `protobuf_oneof:"type"`
 }
 
-func (x *ConfigurationControlResponse) Reset() {
-	*x = ConfigurationControlResponse{}
+func (x *ConfigurationResponse) Reset() {
+	*x = ConfigurationResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -291,13 +291,13 @@ func (x *ConfigurationControlResponse) Reset() {
 	}
 }
 
-func (x *ConfigurationControlResponse) String() string {
+func (x *ConfigurationResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ConfigurationControlResponse) ProtoMessage() {}
+func (*ConfigurationResponse) ProtoMessage() {}
 
-func (x *ConfigurationControlResponse) ProtoReflect() protoreflect.Message {
+func (x *ConfigurationResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -309,60 +309,60 @@ func (x *ConfigurationControlResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ConfigurationControlResponse.ProtoReflect.Descriptor instead.
-func (*ConfigurationControlResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ConfigurationResponse.ProtoReflect.Descriptor instead.
+func (*ConfigurationResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{6}
 }
 
-func (m *ConfigurationControlResponse) GetType() isConfigurationControlResponse_Type {
+func (m *ConfigurationResponse) GetType() isConfigurationResponse_Type {
 	if m != nil {
 		return m.Type
 	}
 	return nil
 }
 
-func (x *ConfigurationControlResponse) GetGet() *ConfigurationControlGetResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Get); ok {
+func (x *ConfigurationResponse) GetGet() *ConfigurationGetResponse {
+	if x, ok := x.GetType().(*ConfigurationResponse_Get); ok {
 		return x.Get
 	}
 	return nil
 }
 
-func (x *ConfigurationControlResponse) GetSet() *ConfigurationControlSetResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Set); ok {
+func (x *ConfigurationResponse) GetSet() *ConfigurationSetResponse {
+	if x, ok := x.GetType().(*ConfigurationResponse_Set); ok {
 		return x.Set
 	}
 	return nil
 }
 
-func (x *ConfigurationControlResponse) GetDescribe() *ConfigurationControlDescribeResponse {
-	if x, ok := x.GetType().(*ConfigurationControlResponse_Describe); ok {
+func (x *ConfigurationResponse) GetDescribe() *ConfigurationDescribeResponse {
+	if x, ok := x.GetType().(*ConfigurationResponse_Describe); ok {
 		return x.Describe
 	}
 	return nil
 }
 
-type isConfigurationControlResponse_Type interface {
-	isConfigurationControlResponse_Type()
+type isConfigurationResponse_Type interface {
+	isConfigurationResponse_Type()
 }
 
-type ConfigurationControlResponse_Get struct {
-	Get *ConfigurationControlGetResponse `protobuf:"bytes,1,opt,name=get,proto3,oneof"`
+type ConfigurationResponse_Get struct {
+	Get *ConfigurationGetResponse `protobuf:"bytes,1,opt,name=get,proto3,oneof"`
 }
 
-type ConfigurationControlResponse_Set struct {
-	Set *ConfigurationControlSetResponse `protobuf:"bytes,2,opt,name=set,proto3,oneof"`
+type ConfigurationResponse_Set struct {
+	Set *ConfigurationSetResponse `protobuf:"bytes,2,opt,name=set,proto3,oneof"`
 }
 
-type ConfigurationControlResponse_Describe struct {
-	Describe *ConfigurationControlDescribeResponse `protobuf:"bytes,3,opt,name=describe,proto3,oneof"`
+type ConfigurationResponse_Describe struct {
+	Describe *ConfigurationDescribeResponse `protobuf:"bytes,3,opt,name=describe,proto3,oneof"`
 }
 
-func (*ConfigurationControlResponse_Get) isConfigurationControlResponse_Type() {}
+func (*ConfigurationResponse_Get) isConfigurationResponse_Type() {}
 
-func (*ConfigurationControlResponse_Set) isConfigurationControlResponse_Type() {}
+func (*ConfigurationResponse_Set) isConfigurationResponse_Type() {}
 
-func (*ConfigurationControlResponse_Describe) isConfigurationControlResponse_Type() {}
+func (*ConfigurationResponse_Describe) isConfigurationResponse_Type() {}
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 type FunctionControlGet struct {
@@ -453,14 +453,18 @@ func (x *FunctionControlSet) GetValue() uint32 {
 	return 0
 }
 
-type SetResponse struct {
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+type FunctionControlGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	// Put here your function specific values
+	Value uint32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *SetResponse) Reset() {
-	*x = SetResponse{}
+func (x *FunctionControlGetResponse) Reset() {
+	*x = FunctionControlGetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -468,13 +472,13 @@ func (x *SetResponse) Reset() {
 	}
 }
 
-func (x *SetResponse) String() string {
+func (x *FunctionControlGetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SetResponse) ProtoMessage() {}
+func (*FunctionControlGetResponse) ProtoMessage() {}
 
-func (x *SetResponse) ProtoReflect() protoreflect.Message {
+func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -486,23 +490,27 @@ func (x *SetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SetResponse.ProtoReflect.Descriptor instead.
-func (*SetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
+func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{9}
 }
 
-type GetResponse struct {
+func (x *FunctionControlGetResponse) GetValue() uint32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+type FunctionControlSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// Put here your function specific values
-	// Example:
-	Value uint32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *GetResponse) Reset() {
-	*x = GetResponse{}
+func (x *FunctionControlSetResponse) Reset() {
+	*x = FunctionControlSetResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_templateModule_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -510,13 +518,13 @@ func (x *GetResponse) Reset() {
 	}
 }
 
-func (x *GetResponse) String() string {
+func (x *FunctionControlSetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetResponse) ProtoMessage() {}
+func (*FunctionControlSetResponse) ProtoMessage() {}
 
-func (x *GetResponse) ProtoReflect() protoreflect.Message {
+func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_templateModule_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -528,101 +536,10 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
-func (*GetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
+func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
 	return file_templateModule_proto_rawDescGZIP(), []int{10}
 }
-
-func (x *GetResponse) GetValue() uint32 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
-// FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
-type FunctionControlResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Put here your function specific values
-	// Example:
-	//
-	// Types that are assignable to Type:
-	//	*FunctionControlResponse_Get
-	//	*FunctionControlResponse_Set
-	Type isFunctionControlResponse_Type `protobuf_oneof:"type"`
-}
-
-func (x *FunctionControlResponse) Reset() {
-	*x = FunctionControlResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_templateModule_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FunctionControlResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FunctionControlResponse) ProtoMessage() {}
-
-func (x *FunctionControlResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_templateModule_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FunctionControlResponse.ProtoReflect.Descriptor instead.
-func (*FunctionControlResponse) Descriptor() ([]byte, []int) {
-	return file_templateModule_proto_rawDescGZIP(), []int{11}
-}
-
-func (m *FunctionControlResponse) GetType() isFunctionControlResponse_Type {
-	if m != nil {
-		return m.Type
-	}
-	return nil
-}
-
-func (x *FunctionControlResponse) GetGet() *GetResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_Get); ok {
-		return x.Get
-	}
-	return nil
-}
-
-func (x *FunctionControlResponse) GetSet() *SetResponse {
-	if x, ok := x.GetType().(*FunctionControlResponse_Set); ok {
-		return x.Set
-	}
-	return nil
-}
-
-type isFunctionControlResponse_Type interface {
-	isFunctionControlResponse_Type()
-}
-
-type FunctionControlResponse_Get struct {
-	Get *GetResponse `protobuf:"bytes,1,opt,name=get,proto3,oneof"`
-}
-
-type FunctionControlResponse_Set struct {
-	Set *SetResponse `protobuf:"bytes,2,opt,name=set,proto3,oneof"`
-}
-
-func (*FunctionControlResponse_Get) isFunctionControlResponse_Type() {}
-
-func (*FunctionControlResponse_Set) isFunctionControlResponse_Type() {}
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
@@ -630,21 +547,12 @@ type StreamControlStart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// maximum interval in seconds between two stream messages. If there are no or very few stream messages for a
-	// certain time, the client is informed that the stream is still active and the existing data is transmitted.
-	// Defaults to 10 seconds
-	KeepaliveInterval uint32 `protobuf:"fixed32,1,opt,name=keepaliveInterval,proto3" json:"keepaliveInterval,omitempty"`
-	// internal ring buffer size.
-	// Defaults to 50
-	// Maximum is 1000
-	BufferSize uint32 `protobuf:"fixed32,2,opt,name=bufferSize,proto3" json:"bufferSize,omitempty"`
 }
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_templateModule_proto_msgTypes[12]
+		mi := &file_templateModule_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -657,7 +565,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_templateModule_proto_msgTypes[12]
+	mi := &file_templateModule_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -670,21 +578,7 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_templateModule_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *StreamControlStart) GetKeepaliveInterval() uint32 {
-	if x != nil {
-		return x.KeepaliveInterval
-	}
-	return 0
-}
-
-func (x *StreamControlStart) GetBufferSize() uint32 {
-	if x != nil {
-		return x.BufferSize
-	}
-	return 0
+	return file_templateModule_proto_rawDescGZIP(), []int{11}
 }
 
 type Sample struct {
@@ -702,7 +596,7 @@ type Sample struct {
 func (x *Sample) Reset() {
 	*x = Sample{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_templateModule_proto_msgTypes[13]
+		mi := &file_templateModule_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -715,7 +609,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_templateModule_proto_msgTypes[13]
+	mi := &file_templateModule_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -728,7 +622,7 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_templateModule_proto_rawDescGZIP(), []int{13}
+	return file_templateModule_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Sample) GetTimestamp() uint64 {
@@ -757,7 +651,7 @@ type StreamData struct {
 func (x *StreamData) Reset() {
 	*x = StreamData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_templateModule_proto_msgTypes[14]
+		mi := &file_templateModule_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -770,7 +664,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_templateModule_proto_msgTypes[14]
+	mi := &file_templateModule_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -783,7 +677,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_templateModule_proto_rawDescGZIP(), []int{14}
+	return file_templateModule_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *StreamData) GetSamples() []*Sample {
@@ -798,68 +692,52 @@ var File_templateModule_proto protoreflect.FileDescriptor
 var file_templateModule_proto_rawDesc = []byte{
 	0x0a, 0x14, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65,
-	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0x19, 0x0a, 0x17, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65,
-	0x74, 0x22, 0x21, 0x0a, 0x1f, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x19, 0x0a, 0x17, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22,
-	0x21, 0x0a, 0x1f, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x1e, 0x0a, 0x1c, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69,
-	0x62, 0x65, 0x22, 0x26, 0x0a, 0x24, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69,
-	0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x84, 0x02, 0x0a, 0x1c, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74,
-	0x72, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x03, 0x67,
-	0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2f, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c,
-	0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x03, 0x67, 0x65, 0x74,
-	0x12, 0x43, 0x0a, 0x03, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2f, 0x2e,
-	0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74,
-	0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00,
-	0x52, 0x03, 0x73, 0x65, 0x74, 0x12, 0x52, 0x0a, 0x08, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62,
-	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x34, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61,
+	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f,
+	0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f,
+	0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x17, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22,
+	0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0xe8, 0x01, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x03, 0x67, 0x65,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61,
 	0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x44, 0x65, 0x73,
-	0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52,
-	0x08, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70,
-	0x65, 0x22, 0x14, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e,
-	0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22, 0x2a, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74,
-	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x12, 0x14, 0x0a,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x23, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07,
-	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x83, 0x01, 0x0a, 0x17, 0x46, 0x75, 0x6e, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x03, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x1b, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c,
-	0x65, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52,
-	0x03, 0x67, 0x65, 0x74, 0x12, 0x2f, 0x0a, 0x03, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x1b, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75,
-	0x6c, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00,
-	0x52, 0x03, 0x73, 0x65, 0x74, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x62, 0x0a,
-	0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74,
-	0x61, 0x72, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x6b, 0x65, 0x65, 0x70, 0x61, 0x6c, 0x69, 0x76, 0x65,
-	0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x11,
-	0x6b, 0x65, 0x65, 0x70, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61,
-	0x6c, 0x12, 0x1e, 0x0a, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0a, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x53, 0x69, 0x7a,
-	0x65, 0x22, 0x3c, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x52, 0x09,
-	0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22,
-	0x3e, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x12, 0x30, 0x0a,
-	0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16,
-	0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e,
-	0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x42,
-	0x19, 0x5a, 0x17, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c,
-	0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x48, 0x00, 0x52, 0x03, 0x67, 0x65, 0x74, 0x12, 0x3c, 0x0a, 0x03, 0x73, 0x65, 0x74, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65,
+	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48,
+	0x00, 0x52, 0x03, 0x73, 0x65, 0x74, 0x12, 0x4b, 0x0a, 0x08, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x62, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c,
+	0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x08, 0x64, 0x65, 0x73, 0x63, 0x72,
+	0x69, 0x62, 0x65, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x46,
+	0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65,
+	0x74, 0x22, 0x2a, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x32, 0x0a,
+	0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
+	0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x22, 0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x14, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
+	0x53, 0x74, 0x61, 0x72, 0x74, 0x22, 0x3c, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12,
+	0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x06, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x14, 0x0a,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x22, 0x3e, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x44, 0x61, 0x74,
+	0x61, 0x12, 0x30, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64,
+	0x75, 0x6c, 0x65, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70,
+	0x6c, 0x65, 0x73, 0x42, 0x19, 0x5a, 0x17, 0x74, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x4d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -874,36 +752,33 @@ func file_templateModule_proto_rawDescGZIP() []byte {
 	return file_templateModule_proto_rawDescData
 }
 
-var file_templateModule_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_templateModule_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_templateModule_proto_goTypes = []interface{}{
-	(*ConfigurationControlSet)(nil),              // 0: templateModule.ConfigurationControlSet
-	(*ConfigurationControlSetResponse)(nil),      // 1: templateModule.ConfigurationControlSetResponse
-	(*ConfigurationControlGet)(nil),              // 2: templateModule.ConfigurationControlGet
-	(*ConfigurationControlGetResponse)(nil),      // 3: templateModule.ConfigurationControlGetResponse
-	(*ConfigurationControlDescribe)(nil),         // 4: templateModule.ConfigurationControlDescribe
-	(*ConfigurationControlDescribeResponse)(nil), // 5: templateModule.ConfigurationControlDescribeResponse
-	(*ConfigurationControlResponse)(nil),         // 6: templateModule.ConfigurationControlResponse
-	(*FunctionControlGet)(nil),                   // 7: templateModule.FunctionControlGet
-	(*FunctionControlSet)(nil),                   // 8: templateModule.FunctionControlSet
-	(*SetResponse)(nil),                          // 9: templateModule.SetResponse
-	(*GetResponse)(nil),                          // 10: templateModule.GetResponse
-	(*FunctionControlResponse)(nil),              // 11: templateModule.FunctionControlResponse
-	(*StreamControlStart)(nil),                   // 12: templateModule.StreamControlStart
-	(*Sample)(nil),                               // 13: templateModule.Sample
-	(*StreamData)(nil),                           // 14: templateModule.StreamData
+	(*ConfigurationSet)(nil),              // 0: templateModule.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 1: templateModule.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 2: templateModule.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 3: templateModule.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 4: templateModule.ConfigurationDescribe
+	(*ConfigurationDescribeResponse)(nil), // 5: templateModule.ConfigurationDescribeResponse
+	(*ConfigurationResponse)(nil),         // 6: templateModule.ConfigurationResponse
+	(*FunctionControlGet)(nil),            // 7: templateModule.FunctionControlGet
+	(*FunctionControlSet)(nil),            // 8: templateModule.FunctionControlSet
+	(*FunctionControlGetResponse)(nil),    // 9: templateModule.FunctionControlGetResponse
+	(*FunctionControlSetResponse)(nil),    // 10: templateModule.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 11: templateModule.StreamControlStart
+	(*Sample)(nil),                        // 12: templateModule.Sample
+	(*StreamData)(nil),                    // 13: templateModule.StreamData
 }
 var file_templateModule_proto_depIdxs = []int32{
-	3,  // 0: templateModule.ConfigurationControlResponse.get:type_name -> templateModule.ConfigurationControlGetResponse
-	1,  // 1: templateModule.ConfigurationControlResponse.set:type_name -> templateModule.ConfigurationControlSetResponse
-	5,  // 2: templateModule.ConfigurationControlResponse.describe:type_name -> templateModule.ConfigurationControlDescribeResponse
-	10, // 3: templateModule.FunctionControlResponse.get:type_name -> templateModule.GetResponse
-	9,  // 4: templateModule.FunctionControlResponse.set:type_name -> templateModule.SetResponse
-	13, // 5: templateModule.StreamData.samples:type_name -> templateModule.Sample
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	3,  // 0: templateModule.ConfigurationResponse.get:type_name -> templateModule.ConfigurationGetResponse
+	1,  // 1: templateModule.ConfigurationResponse.set:type_name -> templateModule.ConfigurationSetResponse
+	5,  // 2: templateModule.ConfigurationResponse.describe:type_name -> templateModule.ConfigurationDescribeResponse
+	12, // 3: templateModule.StreamData.samples:type_name -> templateModule.Sample
+	4,  // [4:4] is the sub-list for method output_type
+	4,  // [4:4] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_templateModule_proto_init() }
@@ -913,7 +788,7 @@ func file_templateModule_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_templateModule_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlSet); i {
+			switch v := v.(*ConfigurationSet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -925,7 +800,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlSetResponse); i {
+			switch v := v.(*ConfigurationSetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -937,7 +812,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlGet); i {
+			switch v := v.(*ConfigurationGet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -949,7 +824,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlGetResponse); i {
+			switch v := v.(*ConfigurationGetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -961,7 +836,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlDescribe); i {
+			switch v := v.(*ConfigurationDescribe); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -973,7 +848,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlDescribeResponse); i {
+			switch v := v.(*ConfigurationDescribeResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -985,7 +860,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ConfigurationControlResponse); i {
+			switch v := v.(*ConfigurationResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1021,7 +896,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetResponse); i {
+			switch v := v.(*FunctionControlGetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1033,7 +908,7 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResponse); i {
+			switch v := v.(*FunctionControlSetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1045,18 +920,6 @@ func file_templateModule_proto_init() {
 			}
 		}
 		file_templateModule_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_templateModule_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamControlStart); i {
 			case 0:
 				return &v.state
@@ -1068,7 +931,7 @@ func file_templateModule_proto_init() {
 				return nil
 			}
 		}
-		file_templateModule_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_templateModule_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Sample); i {
 			case 0:
 				return &v.state
@@ -1080,7 +943,7 @@ func file_templateModule_proto_init() {
 				return nil
 			}
 		}
-		file_templateModule_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_templateModule_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamData); i {
 			case 0:
 				return &v.state
@@ -1094,13 +957,9 @@ func file_templateModule_proto_init() {
 		}
 	}
 	file_templateModule_proto_msgTypes[6].OneofWrappers = []interface{}{
-		(*ConfigurationControlResponse_Get)(nil),
-		(*ConfigurationControlResponse_Set)(nil),
-		(*ConfigurationControlResponse_Describe)(nil),
-	}
-	file_templateModule_proto_msgTypes[11].OneofWrappers = []interface{}{
-		(*FunctionControlResponse_Get)(nil),
-		(*FunctionControlResponse_Set)(nil),
+		(*ConfigurationResponse_Get)(nil),
+		(*ConfigurationResponse_Set)(nil),
+		(*ConfigurationResponse_Describe)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1108,7 +967,7 @@ func file_templateModule_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_templateModule_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

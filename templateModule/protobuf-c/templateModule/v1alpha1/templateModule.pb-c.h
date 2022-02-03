@@ -15,18 +15,17 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _TemplateModule__ConfigurationControlSet TemplateModule__ConfigurationControlSet;
-typedef struct _TemplateModule__ConfigurationControlSetResponse TemplateModule__ConfigurationControlSetResponse;
-typedef struct _TemplateModule__ConfigurationControlGet TemplateModule__ConfigurationControlGet;
-typedef struct _TemplateModule__ConfigurationControlGetResponse TemplateModule__ConfigurationControlGetResponse;
-typedef struct _TemplateModule__ConfigurationControlDescribe TemplateModule__ConfigurationControlDescribe;
-typedef struct _TemplateModule__ConfigurationControlDescribeResponse TemplateModule__ConfigurationControlDescribeResponse;
-typedef struct _TemplateModule__ConfigurationControlResponse TemplateModule__ConfigurationControlResponse;
+typedef struct _TemplateModule__ConfigurationSet TemplateModule__ConfigurationSet;
+typedef struct _TemplateModule__ConfigurationSetResponse TemplateModule__ConfigurationSetResponse;
+typedef struct _TemplateModule__ConfigurationGet TemplateModule__ConfigurationGet;
+typedef struct _TemplateModule__ConfigurationGetResponse TemplateModule__ConfigurationGetResponse;
+typedef struct _TemplateModule__ConfigurationDescribe TemplateModule__ConfigurationDescribe;
+typedef struct _TemplateModule__ConfigurationDescribeResponse TemplateModule__ConfigurationDescribeResponse;
+typedef struct _TemplateModule__ConfigurationResponse TemplateModule__ConfigurationResponse;
 typedef struct _TemplateModule__FunctionControlGet TemplateModule__FunctionControlGet;
 typedef struct _TemplateModule__FunctionControlSet TemplateModule__FunctionControlSet;
-typedef struct _TemplateModule__SetResponse TemplateModule__SetResponse;
-typedef struct _TemplateModule__GetResponse TemplateModule__GetResponse;
-typedef struct _TemplateModule__FunctionControlResponse TemplateModule__FunctionControlResponse;
+typedef struct _TemplateModule__FunctionControlGetResponse TemplateModule__FunctionControlGetResponse;
+typedef struct _TemplateModule__FunctionControlSetResponse TemplateModule__FunctionControlSetResponse;
 typedef struct _TemplateModule__StreamControlStart TemplateModule__StreamControlStart;
 typedef struct _TemplateModule__Sample TemplateModule__Sample;
 typedef struct _TemplateModule__StreamData TemplateModule__StreamData;
@@ -38,99 +37,99 @@ typedef struct _TemplateModule__StreamData TemplateModule__StreamData;
 /* --- messages --- */
 
 /*
- * ConfigurationControlSet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSet hook
+ * ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
  */
-struct  _TemplateModule__ConfigurationControlSet
+struct  _TemplateModule__ConfigurationSet
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_set__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_set__descriptor) \
      }
 
 
 /*
- * ConfigurationControlSetResponse to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlSetResponse hook
+ * ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
  */
-struct  _TemplateModule__ConfigurationControlSetResponse
+struct  _TemplateModule__ConfigurationSetResponse
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_set_response__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_set_response__descriptor) \
      }
 
 
 /*
- * ConfigurationControlGet to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlGet hook
+ * ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
  */
-struct  _TemplateModule__ConfigurationControlGet
+struct  _TemplateModule__ConfigurationGet
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_get__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_get__descriptor) \
      }
 
 
 /*
- * ConfigurationControlGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationControlGetResponse hook
+ * ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
  * Returns the current hardware configuration
  */
-struct  _TemplateModule__ConfigurationControlGetResponse
+struct  _TemplateModule__ConfigurationGetResponse
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_get_response__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_get_response__descriptor) \
      }
 
 
 /*
- * ConfigurationControlDescribe to pass to Functionblock.ConfigurationControl.functionSpecificConfigurationControlDescribe hook 
+ * ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
  */
-struct  _TemplateModule__ConfigurationControlDescribe
+struct  _TemplateModule__ConfigurationDescribe
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_DESCRIBE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_describe__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_DESCRIBE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_describe__descriptor) \
      }
 
 
-struct  _TemplateModule__ConfigurationControlDescribeResponse
+struct  _TemplateModule__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_DESCRIBE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_describe_response__descriptor) \
+#define TEMPLATE_MODULE__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_describe_response__descriptor) \
      }
 
 
 typedef enum {
-  TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE__NOT_SET = 0,
-  TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE_GET = 1,
-  TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE_SET = 2,
-  TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE_DESCRIBE = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE)
-} TemplateModule__ConfigurationControlResponse__TypeCase;
+  TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE__NOT_SET = 0,
+  TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE_GET = 1,
+  TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE_SET = 2,
+  TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE_DESCRIBE = 3
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE)
+} TemplateModule__ConfigurationResponse__TypeCase;
 
 /*
- * ConfigurationControlResponse to pass to Functionblock.ConfigurationControlResponse.functionSpecificConfigurationControlResponse hook
+ * ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
  */
-struct  _TemplateModule__ConfigurationControlResponse
+struct  _TemplateModule__ConfigurationResponse
 {
   ProtobufCMessage base;
-  TemplateModule__ConfigurationControlResponse__TypeCase type_case;
+  TemplateModule__ConfigurationResponse__TypeCase type_case;
   union {
-    TemplateModule__ConfigurationControlGetResponse *get;
-    TemplateModule__ConfigurationControlSetResponse *set;
-    TemplateModule__ConfigurationControlDescribeResponse *describe;
+    TemplateModule__ConfigurationGetResponse *get;
+    TemplateModule__ConfigurationSetResponse *set;
+    TemplateModule__ConfigurationDescribeResponse *describe;
   };
 };
-#define TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_control_response__descriptor) \
-    , TEMPLATE_MODULE__CONFIGURATION_CONTROL_RESPONSE__TYPE__NOT_SET, {0} }
+#define TEMPLATE_MODULE__CONFIGURATION_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_response__descriptor) \
+    , TEMPLATE_MODULE__CONFIGURATION_RESPONSE__TYPE__NOT_SET, {0} }
 
 
 /*
@@ -153,7 +152,7 @@ struct  _TemplateModule__FunctionControlSet
   ProtobufCMessage base;
   /*
    * Put here your function specific values
-   * Example: 
+   * Example:
    */
   uint32_t value;
 };
@@ -162,51 +161,32 @@ struct  _TemplateModule__FunctionControlSet
     , 0 }
 
 
-struct  _TemplateModule__SetResponse
-{
-  ProtobufCMessage base;
-};
-#define TEMPLATE_MODULE__SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__set_response__descriptor) \
-     }
-
-
-struct  _TemplateModule__GetResponse
+/*
+ * FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+ */
+struct  _TemplateModule__FunctionControlGetResponse
 {
   ProtobufCMessage base;
   /*
    * Put here your function specific values
-   * Example: 
    */
   uint32_t value;
 };
-#define TEMPLATE_MODULE__GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__get_response__descriptor) \
+#define TEMPLATE_MODULE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__function_control_get_response__descriptor) \
     , 0 }
 
 
-typedef enum {
-  TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__TYPE__NOT_SET = 0,
-  TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__TYPE_GET = 1,
-  TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__TYPE_SET = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__TYPE)
-} TemplateModule__FunctionControlResponse__TypeCase;
-
 /*
- * FunctionControlResponse to pass to Functionblock.FunctionControlResponse.functionSpecificFunctionControlResponse hook
+ * FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
  */
-struct  _TemplateModule__FunctionControlResponse
+struct  _TemplateModule__FunctionControlSetResponse
 {
   ProtobufCMessage base;
-  TemplateModule__FunctionControlResponse__TypeCase type_case;
-  union {
-    TemplateModule__GetResponse *get;
-    TemplateModule__SetResponse *set;
-  };
 };
-#define TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_module__function_control_response__descriptor) \
-    , TEMPLATE_MODULE__FUNCTION_CONTROL_RESPONSE__TYPE__NOT_SET, {0} }
+#define TEMPLATE_MODULE__FUNCTION_CONTROL_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&template_module__function_control_set_response__descriptor) \
+     }
 
 
 /*
@@ -216,22 +196,10 @@ struct  _TemplateModule__FunctionControlResponse
 struct  _TemplateModule__StreamControlStart
 {
   ProtobufCMessage base;
-  /*
-   * maximum interval in seconds between two stream messages. If there are no or very few stream messages for a 
-   * certain time, the client is informed that the stream is still active and the existing data is transmitted.
-   * Defaults to 10 seconds
-   */
-  uint32_t keepaliveinterval;
-  /*
-   * internal ring buffer size. 
-   * Defaults to 50
-   * Maximum is 1000
-   */
-  uint32_t buffersize;
 };
 #define TEMPLATE_MODULE__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__stream_control_start__descriptor) \
-    , 0, 0 }
+     }
 
 
 struct  _TemplateModule__Sample
@@ -266,138 +234,138 @@ struct  _TemplateModule__StreamData
     , 0,NULL }
 
 
-/* TemplateModule__ConfigurationControlSet methods */
-void   template_module__configuration_control_set__init
-                     (TemplateModule__ConfigurationControlSet         *message);
-size_t template_module__configuration_control_set__get_packed_size
-                     (const TemplateModule__ConfigurationControlSet   *message);
-size_t template_module__configuration_control_set__pack
-                     (const TemplateModule__ConfigurationControlSet   *message,
+/* TemplateModule__ConfigurationSet methods */
+void   template_module__configuration_set__init
+                     (TemplateModule__ConfigurationSet         *message);
+size_t template_module__configuration_set__get_packed_size
+                     (const TemplateModule__ConfigurationSet   *message);
+size_t template_module__configuration_set__pack
+                     (const TemplateModule__ConfigurationSet   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_set__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlSet   *message,
+size_t template_module__configuration_set__pack_to_buffer
+                     (const TemplateModule__ConfigurationSet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlSet *
-       template_module__configuration_control_set__unpack
+TemplateModule__ConfigurationSet *
+       template_module__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_set__free_unpacked
-                     (TemplateModule__ConfigurationControlSet *message,
+void   template_module__configuration_set__free_unpacked
+                     (TemplateModule__ConfigurationSet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlSetResponse methods */
-void   template_module__configuration_control_set_response__init
-                     (TemplateModule__ConfigurationControlSetResponse         *message);
-size_t template_module__configuration_control_set_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlSetResponse   *message);
-size_t template_module__configuration_control_set_response__pack
-                     (const TemplateModule__ConfigurationControlSetResponse   *message,
+/* TemplateModule__ConfigurationSetResponse methods */
+void   template_module__configuration_set_response__init
+                     (TemplateModule__ConfigurationSetResponse         *message);
+size_t template_module__configuration_set_response__get_packed_size
+                     (const TemplateModule__ConfigurationSetResponse   *message);
+size_t template_module__configuration_set_response__pack
+                     (const TemplateModule__ConfigurationSetResponse   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_set_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlSetResponse   *message,
+size_t template_module__configuration_set_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlSetResponse *
-       template_module__configuration_control_set_response__unpack
+TemplateModule__ConfigurationSetResponse *
+       template_module__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_set_response__free_unpacked
-                     (TemplateModule__ConfigurationControlSetResponse *message,
+void   template_module__configuration_set_response__free_unpacked
+                     (TemplateModule__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlGet methods */
-void   template_module__configuration_control_get__init
-                     (TemplateModule__ConfigurationControlGet         *message);
-size_t template_module__configuration_control_get__get_packed_size
-                     (const TemplateModule__ConfigurationControlGet   *message);
-size_t template_module__configuration_control_get__pack
-                     (const TemplateModule__ConfigurationControlGet   *message,
+/* TemplateModule__ConfigurationGet methods */
+void   template_module__configuration_get__init
+                     (TemplateModule__ConfigurationGet         *message);
+size_t template_module__configuration_get__get_packed_size
+                     (const TemplateModule__ConfigurationGet   *message);
+size_t template_module__configuration_get__pack
+                     (const TemplateModule__ConfigurationGet   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_get__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlGet   *message,
+size_t template_module__configuration_get__pack_to_buffer
+                     (const TemplateModule__ConfigurationGet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlGet *
-       template_module__configuration_control_get__unpack
+TemplateModule__ConfigurationGet *
+       template_module__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_get__free_unpacked
-                     (TemplateModule__ConfigurationControlGet *message,
+void   template_module__configuration_get__free_unpacked
+                     (TemplateModule__ConfigurationGet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlGetResponse methods */
-void   template_module__configuration_control_get_response__init
-                     (TemplateModule__ConfigurationControlGetResponse         *message);
-size_t template_module__configuration_control_get_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlGetResponse   *message);
-size_t template_module__configuration_control_get_response__pack
-                     (const TemplateModule__ConfigurationControlGetResponse   *message,
+/* TemplateModule__ConfigurationGetResponse methods */
+void   template_module__configuration_get_response__init
+                     (TemplateModule__ConfigurationGetResponse         *message);
+size_t template_module__configuration_get_response__get_packed_size
+                     (const TemplateModule__ConfigurationGetResponse   *message);
+size_t template_module__configuration_get_response__pack
+                     (const TemplateModule__ConfigurationGetResponse   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_get_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlGetResponse   *message,
+size_t template_module__configuration_get_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlGetResponse *
-       template_module__configuration_control_get_response__unpack
+TemplateModule__ConfigurationGetResponse *
+       template_module__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_get_response__free_unpacked
-                     (TemplateModule__ConfigurationControlGetResponse *message,
+void   template_module__configuration_get_response__free_unpacked
+                     (TemplateModule__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlDescribe methods */
-void   template_module__configuration_control_describe__init
-                     (TemplateModule__ConfigurationControlDescribe         *message);
-size_t template_module__configuration_control_describe__get_packed_size
-                     (const TemplateModule__ConfigurationControlDescribe   *message);
-size_t template_module__configuration_control_describe__pack
-                     (const TemplateModule__ConfigurationControlDescribe   *message,
+/* TemplateModule__ConfigurationDescribe methods */
+void   template_module__configuration_describe__init
+                     (TemplateModule__ConfigurationDescribe         *message);
+size_t template_module__configuration_describe__get_packed_size
+                     (const TemplateModule__ConfigurationDescribe   *message);
+size_t template_module__configuration_describe__pack
+                     (const TemplateModule__ConfigurationDescribe   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_describe__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlDescribe   *message,
+size_t template_module__configuration_describe__pack_to_buffer
+                     (const TemplateModule__ConfigurationDescribe   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlDescribe *
-       template_module__configuration_control_describe__unpack
+TemplateModule__ConfigurationDescribe *
+       template_module__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_describe__free_unpacked
-                     (TemplateModule__ConfigurationControlDescribe *message,
+void   template_module__configuration_describe__free_unpacked
+                     (TemplateModule__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlDescribeResponse methods */
-void   template_module__configuration_control_describe_response__init
-                     (TemplateModule__ConfigurationControlDescribeResponse         *message);
-size_t template_module__configuration_control_describe_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlDescribeResponse   *message);
-size_t template_module__configuration_control_describe_response__pack
-                     (const TemplateModule__ConfigurationControlDescribeResponse   *message,
+/* TemplateModule__ConfigurationDescribeResponse methods */
+void   template_module__configuration_describe_response__init
+                     (TemplateModule__ConfigurationDescribeResponse         *message);
+size_t template_module__configuration_describe_response__get_packed_size
+                     (const TemplateModule__ConfigurationDescribeResponse   *message);
+size_t template_module__configuration_describe_response__pack
+                     (const TemplateModule__ConfigurationDescribeResponse   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_describe_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlDescribeResponse   *message,
+size_t template_module__configuration_describe_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationDescribeResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlDescribeResponse *
-       template_module__configuration_control_describe_response__unpack
+TemplateModule__ConfigurationDescribeResponse *
+       template_module__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_describe_response__free_unpacked
-                     (TemplateModule__ConfigurationControlDescribeResponse *message,
+void   template_module__configuration_describe_response__free_unpacked
+                     (TemplateModule__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__ConfigurationControlResponse methods */
-void   template_module__configuration_control_response__init
-                     (TemplateModule__ConfigurationControlResponse         *message);
-size_t template_module__configuration_control_response__get_packed_size
-                     (const TemplateModule__ConfigurationControlResponse   *message);
-size_t template_module__configuration_control_response__pack
-                     (const TemplateModule__ConfigurationControlResponse   *message,
+/* TemplateModule__ConfigurationResponse methods */
+void   template_module__configuration_response__init
+                     (TemplateModule__ConfigurationResponse         *message);
+size_t template_module__configuration_response__get_packed_size
+                     (const TemplateModule__ConfigurationResponse   *message);
+size_t template_module__configuration_response__pack
+                     (const TemplateModule__ConfigurationResponse   *message,
                       uint8_t             *out);
-size_t template_module__configuration_control_response__pack_to_buffer
-                     (const TemplateModule__ConfigurationControlResponse   *message,
+size_t template_module__configuration_response__pack_to_buffer
+                     (const TemplateModule__ConfigurationResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__ConfigurationControlResponse *
-       template_module__configuration_control_response__unpack
+TemplateModule__ConfigurationResponse *
+       template_module__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__configuration_control_response__free_unpacked
-                     (TemplateModule__ConfigurationControlResponse *message,
+void   template_module__configuration_response__free_unpacked
+                     (TemplateModule__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator);
 /* TemplateModule__FunctionControlGet methods */
 void   template_module__function_control_get__init
@@ -437,62 +405,43 @@ TemplateModule__FunctionControlSet *
 void   template_module__function_control_set__free_unpacked
                      (TemplateModule__FunctionControlSet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__SetResponse methods */
-void   template_module__set_response__init
-                     (TemplateModule__SetResponse         *message);
-size_t template_module__set_response__get_packed_size
-                     (const TemplateModule__SetResponse   *message);
-size_t template_module__set_response__pack
-                     (const TemplateModule__SetResponse   *message,
+/* TemplateModule__FunctionControlGetResponse methods */
+void   template_module__function_control_get_response__init
+                     (TemplateModule__FunctionControlGetResponse         *message);
+size_t template_module__function_control_get_response__get_packed_size
+                     (const TemplateModule__FunctionControlGetResponse   *message);
+size_t template_module__function_control_get_response__pack
+                     (const TemplateModule__FunctionControlGetResponse   *message,
                       uint8_t             *out);
-size_t template_module__set_response__pack_to_buffer
-                     (const TemplateModule__SetResponse   *message,
+size_t template_module__function_control_get_response__pack_to_buffer
+                     (const TemplateModule__FunctionControlGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__SetResponse *
-       template_module__set_response__unpack
+TemplateModule__FunctionControlGetResponse *
+       template_module__function_control_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__set_response__free_unpacked
-                     (TemplateModule__SetResponse *message,
+void   template_module__function_control_get_response__free_unpacked
+                     (TemplateModule__FunctionControlGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateModule__GetResponse methods */
-void   template_module__get_response__init
-                     (TemplateModule__GetResponse         *message);
-size_t template_module__get_response__get_packed_size
-                     (const TemplateModule__GetResponse   *message);
-size_t template_module__get_response__pack
-                     (const TemplateModule__GetResponse   *message,
+/* TemplateModule__FunctionControlSetResponse methods */
+void   template_module__function_control_set_response__init
+                     (TemplateModule__FunctionControlSetResponse         *message);
+size_t template_module__function_control_set_response__get_packed_size
+                     (const TemplateModule__FunctionControlSetResponse   *message);
+size_t template_module__function_control_set_response__pack
+                     (const TemplateModule__FunctionControlSetResponse   *message,
                       uint8_t             *out);
-size_t template_module__get_response__pack_to_buffer
-                     (const TemplateModule__GetResponse   *message,
+size_t template_module__function_control_set_response__pack_to_buffer
+                     (const TemplateModule__FunctionControlSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateModule__GetResponse *
-       template_module__get_response__unpack
+TemplateModule__FunctionControlSetResponse *
+       template_module__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_module__get_response__free_unpacked
-                     (TemplateModule__GetResponse *message,
-                      ProtobufCAllocator *allocator);
-/* TemplateModule__FunctionControlResponse methods */
-void   template_module__function_control_response__init
-                     (TemplateModule__FunctionControlResponse         *message);
-size_t template_module__function_control_response__get_packed_size
-                     (const TemplateModule__FunctionControlResponse   *message);
-size_t template_module__function_control_response__pack
-                     (const TemplateModule__FunctionControlResponse   *message,
-                      uint8_t             *out);
-size_t template_module__function_control_response__pack_to_buffer
-                     (const TemplateModule__FunctionControlResponse   *message,
-                      ProtobufCBuffer     *buffer);
-TemplateModule__FunctionControlResponse *
-       template_module__function_control_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   template_module__function_control_response__free_unpacked
-                     (TemplateModule__FunctionControlResponse *message,
+void   template_module__function_control_set_response__free_unpacked
+                     (TemplateModule__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
 /* TemplateModule__StreamControlStart methods */
 void   template_module__stream_control_start__init
@@ -553,26 +502,26 @@ void   template_module__stream_data__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*TemplateModule__ConfigurationControlSet_Closure)
-                 (const TemplateModule__ConfigurationControlSet *message,
+typedef void (*TemplateModule__ConfigurationSet_Closure)
+                 (const TemplateModule__ConfigurationSet *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlSetResponse_Closure)
-                 (const TemplateModule__ConfigurationControlSetResponse *message,
+typedef void (*TemplateModule__ConfigurationSetResponse_Closure)
+                 (const TemplateModule__ConfigurationSetResponse *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlGet_Closure)
-                 (const TemplateModule__ConfigurationControlGet *message,
+typedef void (*TemplateModule__ConfigurationGet_Closure)
+                 (const TemplateModule__ConfigurationGet *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlGetResponse_Closure)
-                 (const TemplateModule__ConfigurationControlGetResponse *message,
+typedef void (*TemplateModule__ConfigurationGetResponse_Closure)
+                 (const TemplateModule__ConfigurationGetResponse *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlDescribe_Closure)
-                 (const TemplateModule__ConfigurationControlDescribe *message,
+typedef void (*TemplateModule__ConfigurationDescribe_Closure)
+                 (const TemplateModule__ConfigurationDescribe *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlDescribeResponse_Closure)
-                 (const TemplateModule__ConfigurationControlDescribeResponse *message,
+typedef void (*TemplateModule__ConfigurationDescribeResponse_Closure)
+                 (const TemplateModule__ConfigurationDescribeResponse *message,
                   void *closure_data);
-typedef void (*TemplateModule__ConfigurationControlResponse_Closure)
-                 (const TemplateModule__ConfigurationControlResponse *message,
+typedef void (*TemplateModule__ConfigurationResponse_Closure)
+                 (const TemplateModule__ConfigurationResponse *message,
                   void *closure_data);
 typedef void (*TemplateModule__FunctionControlGet_Closure)
                  (const TemplateModule__FunctionControlGet *message,
@@ -580,14 +529,11 @@ typedef void (*TemplateModule__FunctionControlGet_Closure)
 typedef void (*TemplateModule__FunctionControlSet_Closure)
                  (const TemplateModule__FunctionControlSet *message,
                   void *closure_data);
-typedef void (*TemplateModule__SetResponse_Closure)
-                 (const TemplateModule__SetResponse *message,
+typedef void (*TemplateModule__FunctionControlGetResponse_Closure)
+                 (const TemplateModule__FunctionControlGetResponse *message,
                   void *closure_data);
-typedef void (*TemplateModule__GetResponse_Closure)
-                 (const TemplateModule__GetResponse *message,
-                  void *closure_data);
-typedef void (*TemplateModule__FunctionControlResponse_Closure)
-                 (const TemplateModule__FunctionControlResponse *message,
+typedef void (*TemplateModule__FunctionControlSetResponse_Closure)
+                 (const TemplateModule__FunctionControlSetResponse *message,
                   void *closure_data);
 typedef void (*TemplateModule__StreamControlStart_Closure)
                  (const TemplateModule__StreamControlStart *message,
@@ -604,18 +550,17 @@ typedef void (*TemplateModule__StreamData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor template_module__configuration_control_set__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_set_response__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_get__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_get_response__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_describe__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_describe_response__descriptor;
-extern const ProtobufCMessageDescriptor template_module__configuration_control_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_set__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_set_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_get__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_get_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_describe_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor template_module__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor template_module__function_control_set__descriptor;
-extern const ProtobufCMessageDescriptor template_module__set_response__descriptor;
-extern const ProtobufCMessageDescriptor template_module__get_response__descriptor;
-extern const ProtobufCMessageDescriptor template_module__function_control_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__function_control_get_response__descriptor;
+extern const ProtobufCMessageDescriptor template_module__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor template_module__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor template_module__sample__descriptor;
 extern const ProtobufCMessageDescriptor template_module__stream_data__descriptor;
