@@ -637,9 +637,29 @@ void   template_module__stream_data__free_unpacked
   assert(message->base.descriptor == &template_module__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-#define template_module__configuration_set__field_descriptors NULL
-#define template_module__configuration_set__field_indices_by_name NULL
-#define template_module__configuration_set__number_ranges NULL
+static const ProtobufCFieldDescriptor template_module__configuration_set__field_descriptors[1] =
+{
+  {
+    "sample_rate",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(TemplateModule__ConfigurationSet, sample_rate),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned template_module__configuration_set__field_indices_by_name[] = {
+  0,   /* field[0] = sample_rate */
+};
+static const ProtobufCIntRange template_module__configuration_set__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor template_module__configuration_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -648,10 +668,10 @@ const ProtobufCMessageDescriptor template_module__configuration_set__descriptor 
   "TemplateModule__ConfigurationSet",
   "templateModule",
   sizeof(TemplateModule__ConfigurationSet),
-  0,
+  1,
   template_module__configuration_set__field_descriptors,
   template_module__configuration_set__field_indices_by_name,
-  0,  template_module__configuration_set__number_ranges,
+  1,  template_module__configuration_set__number_ranges,
   (ProtobufCMessageInit) template_module__configuration_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -691,9 +711,29 @@ const ProtobufCMessageDescriptor template_module__configuration_get__descriptor 
   (ProtobufCMessageInit) template_module__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_get_response__field_descriptors NULL
-#define template_module__configuration_get_response__field_indices_by_name NULL
-#define template_module__configuration_get_response__number_ranges NULL
+static const ProtobufCFieldDescriptor template_module__configuration_get_response__field_descriptors[1] =
+{
+  {
+    "sample_rate",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(TemplateModule__ConfigurationGetResponse, sample_rate),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned template_module__configuration_get_response__field_indices_by_name[] = {
+  0,   /* field[0] = sample_rate */
+};
+static const ProtobufCIntRange template_module__configuration_get_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor template_module__configuration_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -702,10 +742,10 @@ const ProtobufCMessageDescriptor template_module__configuration_get_response__de
   "TemplateModule__ConfigurationGetResponse",
   "templateModule",
   sizeof(TemplateModule__ConfigurationGetResponse),
-  0,
+  1,
   template_module__configuration_get_response__field_descriptors,
   template_module__configuration_get_response__field_indices_by_name,
-  0,  template_module__configuration_get_response__number_ranges,
+  1,  template_module__configuration_get_response__number_ranges,
   (ProtobufCMessageInit) template_module__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -727,9 +767,29 @@ const ProtobufCMessageDescriptor template_module__configuration_describe__descri
   (ProtobufCMessageInit) template_module__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__configuration_describe_response__field_descriptors NULL
-#define template_module__configuration_describe_response__field_indices_by_name NULL
-#define template_module__configuration_describe_response__number_ranges NULL
+static const ProtobufCFieldDescriptor template_module__configuration_describe_response__field_descriptors[1] =
+{
+  {
+    "ident",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(TemplateModule__ConfigurationDescribeResponse, ident),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned template_module__configuration_describe_response__field_indices_by_name[] = {
+  0,   /* field[0] = ident */
+};
+static const ProtobufCIntRange template_module__configuration_describe_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor template_module__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -738,10 +798,10 @@ const ProtobufCMessageDescriptor template_module__configuration_describe_respons
   "TemplateModule__ConfigurationDescribeResponse",
   "templateModule",
   sizeof(TemplateModule__ConfigurationDescribeResponse),
-  0,
+  1,
   template_module__configuration_describe_response__field_descriptors,
   template_module__configuration_describe_response__field_indices_by_name,
-  0,  template_module__configuration_describe_response__number_ranges,
+  1,  template_module__configuration_describe_response__number_ranges,
   (ProtobufCMessageInit) template_module__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -921,9 +981,29 @@ const ProtobufCMessageDescriptor template_module__function_control_set_response_
   (ProtobufCMessageInit) template_module__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_module__stream_control_start__field_descriptors NULL
-#define template_module__stream_control_start__field_indices_by_name NULL
-#define template_module__stream_control_start__number_ranges NULL
+static const ProtobufCFieldDescriptor template_module__stream_control_start__field_descriptors[1] =
+{
+  {
+    "sample_increment",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(TemplateModule__StreamControlStart, sample_increment),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned template_module__stream_control_start__field_indices_by_name[] = {
+  0,   /* field[0] = sample_increment */
+};
+static const ProtobufCIntRange template_module__stream_control_start__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor template_module__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -932,10 +1012,10 @@ const ProtobufCMessageDescriptor template_module__stream_control_start__descript
   "TemplateModule__StreamControlStart",
   "templateModule",
   sizeof(TemplateModule__StreamControlStart),
-  0,
+  1,
   template_module__stream_control_start__field_descriptors,
   template_module__stream_control_start__field_indices_by_name,
-  0,  template_module__stream_control_start__number_ranges,
+  1,  template_module__stream_control_start__number_ranges,
   (ProtobufCMessageInit) template_module__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

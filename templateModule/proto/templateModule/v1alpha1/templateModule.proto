@@ -22,7 +22,8 @@ option go_package = "templateModule/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Put here your function specific values
+    // Put here your function specific values, example
+    fixed32 sample_rate = 1;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -38,7 +39,8 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-   // Put here your function specific values
+    // Put here your function specific values, example
+    fixed32 sample_rate = 1;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -47,7 +49,8 @@ message ConfigurationDescribe {
 }
 
 message ConfigurationDescribeResponse {
-    // Put here your function specific values
+    // Put here your function specific values, example
+    string ident = 1;
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -84,14 +87,15 @@ message FunctionControlGetResponse {
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
-    // Put here your function specific values
+    // Put here your function specific values here
 }
 
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    // Put here your function specific values
+    // Put here your function specific values, example
+    fixed32 sample_increment = 1;
 }
 
 message Sample {

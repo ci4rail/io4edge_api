@@ -42,10 +42,14 @@ typedef struct _TemplateModule__StreamData TemplateModule__StreamData;
 struct  _TemplateModule__ConfigurationSet
 {
   ProtobufCMessage base;
+  /*
+   * Put here your function specific values, example
+   */
+  uint32_t sample_rate;
 };
 #define TEMPLATE_MODULE__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_set__descriptor) \
-     }
+    , 0 }
 
 
 /*
@@ -79,10 +83,14 @@ struct  _TemplateModule__ConfigurationGet
 struct  _TemplateModule__ConfigurationGetResponse
 {
   ProtobufCMessage base;
+  /*
+   * Put here your function specific values, example
+   */
+  uint32_t sample_rate;
 };
 #define TEMPLATE_MODULE__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_get_response__descriptor) \
-     }
+    , 0 }
 
 
 /*
@@ -100,10 +108,14 @@ struct  _TemplateModule__ConfigurationDescribe
 struct  _TemplateModule__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
+  /*
+   * Put here your function specific values, example
+   */
+  char *ident;
 };
 #define TEMPLATE_MODULE__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__configuration_describe_response__descriptor) \
-     }
+    , (char *)protobuf_c_empty_string }
 
 
 typedef enum {
@@ -196,10 +208,14 @@ struct  _TemplateModule__FunctionControlSetResponse
 struct  _TemplateModule__StreamControlStart
 {
   ProtobufCMessage base;
+  /*
+   * Put here your function specific values, example
+   */
+  uint32_t sample_increment;
 };
 #define TEMPLATE_MODULE__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__stream_control_start__descriptor) \
-     }
+    , 0 }
 
 
 struct  _TemplateModule__Sample
