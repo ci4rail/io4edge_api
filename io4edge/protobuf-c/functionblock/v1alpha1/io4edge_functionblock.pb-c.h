@@ -163,18 +163,18 @@ struct  _Functionblock__StreamControlStart
   ProtobufCMessage base;
   /*
    * number of maximum samples transported in a single Stream Data Message
-   * Defaults to 20
+   * must be >= 1
    */
   uint32_t bucketsamples;
   /*
    * maximum interval in ms between two stream messages. If there are no or very few stream messages for a
    * certain time, the client is informed that the stream is still active and the existing data is transmitted.
-   * Defaults to 10 seconds
+   * must be >= 100 (ms)
    */
   uint32_t keepaliveinterval;
   /*
    * number of buffered samples for this stream
-   * Defaults to 50
+   * must be >= 1 and >= bucketSamples
    */
   uint32_t bufferedsamples;
   /*

@@ -446,14 +446,14 @@ type StreamControlStart struct {
 	unknownFields protoimpl.UnknownFields
 
 	// number of maximum samples transported in a single Stream Data Message
-	// Defaults to 20
+	// must be >= 1
 	BucketSamples uint32 `protobuf:"fixed32,1,opt,name=bucketSamples,proto3" json:"bucketSamples,omitempty"`
 	// maximum interval in ms between two stream messages. If there are no or very few stream messages for a
 	// certain time, the client is informed that the stream is still active and the existing data is transmitted.
-	// Defaults to 10 seconds
+	// must be >= 100 (ms)
 	KeepaliveInterval uint32 `protobuf:"fixed32,2,opt,name=keepaliveInterval,proto3" json:"keepaliveInterval,omitempty"`
 	// number of buffered samples for this stream
-	// Defaults to 50
+	// must be >= 1 and >= bucketSamples
 	BufferedSamples uint32 `protobuf:"fixed32,3,opt,name=bufferedSamples,proto3" json:"bufferedSamples,omitempty"`
 	// function specific
 	FunctionSpecificStreamControlStart *anypb.Any `protobuf:"bytes,4,opt,name=functionSpecificStreamControlStart,proto3" json:"functionSpecificStreamControlStart,omitempty"`
