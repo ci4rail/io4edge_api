@@ -24,12 +24,12 @@ option go_package = "binaryIoTypeA/v1alpha1";
 message ConfigurationSet {
     // Map to enable fritting on binary output channels. This activates a cyclically higher current at the channel outputs to prevent corrison over time
     // LSB is Output0, 1: fritting enabled, 0: disabled
-    sfixed32 outputFrittingMask = 1;
+    fixed32 outputFrittingMask = 1;
     // Map to enable the output watchdog for binary output channels. The output watchdog is activated if the output is not updated for a certain time.
     // LSB is Output0, 1: output watchdog enabled, 0: disabled
-    sfixed32 outputWatchdogMask = 2;
+    fixed32 outputWatchdogMask = 2;
     // The output watchdog timeout in ms.
-    sfixed32 outputWatchdogTimeout = 3;
+    fixed32 outputWatchdogTimeout = 3;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -52,7 +52,7 @@ message ConfigurationGetResponse {
     // LSB is Output0, 1: output watchdog enabled, 0: disabled
     fixed32 outputWatchdogMask = 2;
     // The output watchdog timeout in ms, see ConfigurationSet
-    sfixed32 outputWatchdogTimeout = 3;
+    fixed32 outputWatchdogTimeout = 3;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -81,6 +81,21 @@ message SetAll {
     // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is Output0
     fixed32 mask = 2;
 }
+
+// Try to recover from error state
+message SetExitError {
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    oneof type {
+        SetSingle single = 1;
+        SetAll all = 2;
+        SetExitError exit_error = 3;
+    }
+}
+
+
 
 // Gets the current value of a single binary channel
 message GetSingle {
@@ -123,14 +138,6 @@ message FunctionControlGetResponse {
     }
 }
 
-
-// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
-message FunctionControlSet {
-    oneof type {
-        SetSingle single = 1;
-        SetAll all = 2;
-    }
-}
 
 message SetAllResponse {
     // no parameters

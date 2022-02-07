@@ -23,13 +23,14 @@ typedef struct _BinaryIoTypeA__ConfigurationDescribe BinaryIoTypeA__Configuratio
 typedef struct _BinaryIoTypeA__ConfigurationDescribeResponse BinaryIoTypeA__ConfigurationDescribeResponse;
 typedef struct _BinaryIoTypeA__SetSingle BinaryIoTypeA__SetSingle;
 typedef struct _BinaryIoTypeA__SetAll BinaryIoTypeA__SetAll;
+typedef struct _BinaryIoTypeA__SetExitError BinaryIoTypeA__SetExitError;
+typedef struct _BinaryIoTypeA__FunctionControlSet BinaryIoTypeA__FunctionControlSet;
 typedef struct _BinaryIoTypeA__GetSingle BinaryIoTypeA__GetSingle;
 typedef struct _BinaryIoTypeA__GetAll BinaryIoTypeA__GetAll;
 typedef struct _BinaryIoTypeA__FunctionControlGet BinaryIoTypeA__FunctionControlGet;
 typedef struct _BinaryIoTypeA__GetAllResponse BinaryIoTypeA__GetAllResponse;
 typedef struct _BinaryIoTypeA__GetSingleResponse BinaryIoTypeA__GetSingleResponse;
 typedef struct _BinaryIoTypeA__FunctionControlGetResponse BinaryIoTypeA__FunctionControlGetResponse;
-typedef struct _BinaryIoTypeA__FunctionControlSet BinaryIoTypeA__FunctionControlSet;
 typedef struct _BinaryIoTypeA__SetAllResponse BinaryIoTypeA__SetAllResponse;
 typedef struct _BinaryIoTypeA__SetSingleResponse BinaryIoTypeA__SetSingleResponse;
 typedef struct _BinaryIoTypeA__FunctionControlSetResponse BinaryIoTypeA__FunctionControlSetResponse;
@@ -53,16 +54,16 @@ struct  _BinaryIoTypeA__ConfigurationSet
    * Map to enable fritting on binary output channels. This activates a cyclically higher current at the channel outputs to prevent corrison over time
    * LSB is Output0, 1: fritting enabled, 0: disabled
    */
-  int32_t outputfrittingmask;
+  uint32_t outputfrittingmask;
   /*
    * Map to enable the output watchdog for binary output channels. The output watchdog is activated if the output is not updated for a certain time.
    * LSB is Output0, 1: output watchdog enabled, 0: disabled
    */
-  int32_t outputwatchdogmask;
+  uint32_t outputwatchdogmask;
   /*
    * The output watchdog timeout in ms.
    */
-  int32_t outputwatchdogtimeout;
+  uint32_t outputwatchdogtimeout;
 };
 #define BINARY_IO_TYPE_A__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_set__descriptor) \
@@ -113,7 +114,7 @@ struct  _BinaryIoTypeA__ConfigurationGetResponse
   /*
    * The output watchdog timeout in ms, see ConfigurationSet
    */
-  int32_t outputwatchdogtimeout;
+  uint32_t outputwatchdogtimeout;
 };
 #define BINARY_IO_TYPE_A__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__configuration_get_response__descriptor) \
@@ -181,6 +182,44 @@ struct  _BinaryIoTypeA__SetAll
 #define BINARY_IO_TYPE_A__SET_ALL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__set_all__descriptor) \
     , 0, 0 }
+
+
+/*
+ * Try to recover from error state
+ */
+struct  _BinaryIoTypeA__SetExitError
+{
+  ProtobufCMessage base;
+};
+#define BINARY_IO_TYPE_A__SET_EXIT_ERROR__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__set_exit_error__descriptor) \
+     }
+
+
+typedef enum {
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE__NOT_SET = 0,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_SINGLE = 1,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_ALL = 2,
+  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_EXIT_ERROR = 3
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE)
+} BinaryIoTypeA__FunctionControlSet__TypeCase;
+
+/*
+ * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+ */
+struct  _BinaryIoTypeA__FunctionControlSet
+{
+  ProtobufCMessage base;
+  BinaryIoTypeA__FunctionControlSet__TypeCase type_case;
+  union {
+    BinaryIoTypeA__SetSingle *single;
+    BinaryIoTypeA__SetAll *all;
+    BinaryIoTypeA__SetExitError *exit_error;
+  };
+};
+#define BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_set__descriptor) \
+    , BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE__NOT_SET, {0} }
 
 
 /*
@@ -291,30 +330,6 @@ struct  _BinaryIoTypeA__FunctionControlGetResponse
 #define BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_get_response__descriptor) \
     , BINARY_IO_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET, {0} }
-
-
-typedef enum {
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE__NOT_SET = 0,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_SINGLE = 1,
-  BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE_ALL = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE)
-} BinaryIoTypeA__FunctionControlSet__TypeCase;
-
-/*
- * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
- */
-struct  _BinaryIoTypeA__FunctionControlSet
-{
-  ProtobufCMessage base;
-  BinaryIoTypeA__FunctionControlSet__TypeCase type_case;
-  union {
-    BinaryIoTypeA__SetSingle *single;
-    BinaryIoTypeA__SetAll *all;
-  };
-};
-#define BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_a__function_control_set__descriptor) \
-    , BINARY_IO_TYPE_A__FUNCTION_CONTROL_SET__TYPE__NOT_SET, {0} }
 
 
 struct  _BinaryIoTypeA__SetAllResponse
@@ -566,6 +581,44 @@ BinaryIoTypeA__SetAll *
 void   binary_io_type_a__set_all__free_unpacked
                      (BinaryIoTypeA__SetAll *message,
                       ProtobufCAllocator *allocator);
+/* BinaryIoTypeA__SetExitError methods */
+void   binary_io_type_a__set_exit_error__init
+                     (BinaryIoTypeA__SetExitError         *message);
+size_t binary_io_type_a__set_exit_error__get_packed_size
+                     (const BinaryIoTypeA__SetExitError   *message);
+size_t binary_io_type_a__set_exit_error__pack
+                     (const BinaryIoTypeA__SetExitError   *message,
+                      uint8_t             *out);
+size_t binary_io_type_a__set_exit_error__pack_to_buffer
+                     (const BinaryIoTypeA__SetExitError   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeA__SetExitError *
+       binary_io_type_a__set_exit_error__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_a__set_exit_error__free_unpacked
+                     (BinaryIoTypeA__SetExitError *message,
+                      ProtobufCAllocator *allocator);
+/* BinaryIoTypeA__FunctionControlSet methods */
+void   binary_io_type_a__function_control_set__init
+                     (BinaryIoTypeA__FunctionControlSet         *message);
+size_t binary_io_type_a__function_control_set__get_packed_size
+                     (const BinaryIoTypeA__FunctionControlSet   *message);
+size_t binary_io_type_a__function_control_set__pack
+                     (const BinaryIoTypeA__FunctionControlSet   *message,
+                      uint8_t             *out);
+size_t binary_io_type_a__function_control_set__pack_to_buffer
+                     (const BinaryIoTypeA__FunctionControlSet   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeA__FunctionControlSet *
+       binary_io_type_a__function_control_set__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_a__function_control_set__free_unpacked
+                     (BinaryIoTypeA__FunctionControlSet *message,
+                      ProtobufCAllocator *allocator);
 /* BinaryIoTypeA__GetSingle methods */
 void   binary_io_type_a__get_single__init
                      (BinaryIoTypeA__GetSingle         *message);
@@ -679,25 +732,6 @@ BinaryIoTypeA__FunctionControlGetResponse *
                       const uint8_t       *data);
 void   binary_io_type_a__function_control_get_response__free_unpacked
                      (BinaryIoTypeA__FunctionControlGetResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeA__FunctionControlSet methods */
-void   binary_io_type_a__function_control_set__init
-                     (BinaryIoTypeA__FunctionControlSet         *message);
-size_t binary_io_type_a__function_control_set__get_packed_size
-                     (const BinaryIoTypeA__FunctionControlSet   *message);
-size_t binary_io_type_a__function_control_set__pack
-                     (const BinaryIoTypeA__FunctionControlSet   *message,
-                      uint8_t             *out);
-size_t binary_io_type_a__function_control_set__pack_to_buffer
-                     (const BinaryIoTypeA__FunctionControlSet   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeA__FunctionControlSet *
-       binary_io_type_a__function_control_set__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_a__function_control_set__free_unpacked
-                     (BinaryIoTypeA__FunctionControlSet *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeA__SetAllResponse methods */
 void   binary_io_type_a__set_all_response__init
@@ -839,6 +873,12 @@ typedef void (*BinaryIoTypeA__SetSingle_Closure)
 typedef void (*BinaryIoTypeA__SetAll_Closure)
                  (const BinaryIoTypeA__SetAll *message,
                   void *closure_data);
+typedef void (*BinaryIoTypeA__SetExitError_Closure)
+                 (const BinaryIoTypeA__SetExitError *message,
+                  void *closure_data);
+typedef void (*BinaryIoTypeA__FunctionControlSet_Closure)
+                 (const BinaryIoTypeA__FunctionControlSet *message,
+                  void *closure_data);
 typedef void (*BinaryIoTypeA__GetSingle_Closure)
                  (const BinaryIoTypeA__GetSingle *message,
                   void *closure_data);
@@ -856,9 +896,6 @@ typedef void (*BinaryIoTypeA__GetSingleResponse_Closure)
                   void *closure_data);
 typedef void (*BinaryIoTypeA__FunctionControlGetResponse_Closure)
                  (const BinaryIoTypeA__FunctionControlGetResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeA__FunctionControlSet_Closure)
-                 (const BinaryIoTypeA__FunctionControlSet *message,
                   void *closure_data);
 typedef void (*BinaryIoTypeA__SetAllResponse_Closure)
                  (const BinaryIoTypeA__SetAllResponse *message,
@@ -892,13 +929,14 @@ extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe
 extern const ProtobufCMessageDescriptor binary_io_type_a__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_single__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_all__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__set_exit_error__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_single__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_all__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_all_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__get_single_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_get_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_all_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__set_single_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_a__function_control_set_response__descriptor;
