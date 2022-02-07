@@ -211,7 +211,10 @@ struct  _TemplateModule__StreamControlStart
   /*
    * Put here your function specific values, example
    */
-  uint32_t sample_increment;
+  /*
+   * generate a sample when counter (value % modulo) == 0
+   */
+  uint32_t modulo;
 };
 #define TEMPLATE_MODULE__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&template_module__stream_control_start__descriptor) \

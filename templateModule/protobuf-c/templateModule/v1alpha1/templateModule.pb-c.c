@@ -984,12 +984,12 @@ const ProtobufCMessageDescriptor template_module__function_control_set_response_
 static const ProtobufCFieldDescriptor template_module__stream_control_start__field_descriptors[1] =
 {
   {
-    "sample_increment",
+    "modulo",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateModule__StreamControlStart, sample_increment),
+    offsetof(TemplateModule__StreamControlStart, modulo),
     NULL,
     NULL,
     0,             /* flags */
@@ -997,7 +997,7 @@ static const ProtobufCFieldDescriptor template_module__stream_control_start__fie
   },
 };
 static const unsigned template_module__stream_control_start__field_indices_by_name[] = {
-  0,   /* field[0] = sample_increment */
+  0,   /* field[0] = modulo */
 };
 static const ProtobufCIntRange template_module__stream_control_start__number_ranges[1 + 1] =
 {

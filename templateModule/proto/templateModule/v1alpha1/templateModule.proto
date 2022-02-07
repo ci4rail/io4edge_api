@@ -95,7 +95,7 @@ message FunctionControlSetResponse {
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
     // Put here your function specific values, example
-    fixed32 sample_increment = 1;
+    fixed32 modulo = 1;     // generate a sample when counter (value % modulo) == 0
 }
 
 message Sample {
