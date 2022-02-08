@@ -22,7 +22,7 @@ option go_package = "analogInTypeA/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Put here your function specific values, example
+    // Specifies the time interval at which the analog input channel is sampled.
     fixed32 sample_rate = 1;
 }
 
@@ -39,7 +39,7 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // Put here your function specific values, example
+    // Specifies the time interval at which the analog input channel is sampled.
     fixed32 sample_rate = 1;
 }
 
@@ -53,16 +53,6 @@ message ConfigurationDescribeResponse {
     string ident = 1;
 }
 
-// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
-message ConfigurationResponse {
-    oneof type {
-        ConfigurationGetResponse get = 1;
-        ConfigurationSetResponse set = 2;
-        ConfigurationDescribeResponse describe = 3;
-    }
-}
-
-
 // ============= FunctionControl =================
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
@@ -72,22 +62,19 @@ message FunctionControlGet {
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-    // Put here your function specific values
-    // Example:
-    fixed32 value = 1;
+    // Not implemented
 }
 
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    // Put here your function specific values
-    fixed32 value = 1;
+    float value = 1;
 }
 
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
-    // Put here your function specific values here
+    // Not implemented
 }
 
 
@@ -95,7 +82,7 @@ message FunctionControlSetResponse {
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
     // Put here your function specific values, example
-    fixed32 modulo = 1;     // generate a sample when counter (value % modulo) == 0
+    //fixed32 modulo = 1;     // generate a sample when counter (value % modulo) == 0
 }
 
 message Sample {
@@ -105,8 +92,8 @@ message Sample {
     // Timestamp for that specific channels sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
     fixed64 timestamp = 1;
-    // Specifies the binary channel value when the input value has changed.
-    fixed32 value = 2;
+    // Specifies the analog input channel voltage
+    float value = 2;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook

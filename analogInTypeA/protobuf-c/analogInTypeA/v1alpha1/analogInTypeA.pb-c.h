@@ -21,7 +21,6 @@ typedef struct _AnalogInTypeA__ConfigurationGet AnalogInTypeA__ConfigurationGet;
 typedef struct _AnalogInTypeA__ConfigurationGetResponse AnalogInTypeA__ConfigurationGetResponse;
 typedef struct _AnalogInTypeA__ConfigurationDescribe AnalogInTypeA__ConfigurationDescribe;
 typedef struct _AnalogInTypeA__ConfigurationDescribeResponse AnalogInTypeA__ConfigurationDescribeResponse;
-typedef struct _AnalogInTypeA__ConfigurationResponse AnalogInTypeA__ConfigurationResponse;
 typedef struct _AnalogInTypeA__FunctionControlGet AnalogInTypeA__FunctionControlGet;
 typedef struct _AnalogInTypeA__FunctionControlSet AnalogInTypeA__FunctionControlSet;
 typedef struct _AnalogInTypeA__FunctionControlGetResponse AnalogInTypeA__FunctionControlGetResponse;
@@ -43,7 +42,7 @@ struct  _AnalogInTypeA__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * Put here your function specific values, example
+   * Specifies the time interval at which the analog input channel is sampled.
    */
   uint32_t sample_rate;
 };
@@ -84,7 +83,7 @@ struct  _AnalogInTypeA__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Put here your function specific values, example
+   * Specifies the time interval at which the analog input channel is sampled.
    */
   uint32_t sample_rate;
 };
@@ -118,32 +117,6 @@ struct  _AnalogInTypeA__ConfigurationDescribeResponse
     , (char *)protobuf_c_empty_string }
 
 
-typedef enum {
-  ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE__NOT_SET = 0,
-  ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE_GET = 1,
-  ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE_SET = 2,
-  ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE_DESCRIBE = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE)
-} AnalogInTypeA__ConfigurationResponse__TypeCase;
-
-/*
- * ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
- */
-struct  _AnalogInTypeA__ConfigurationResponse
-{
-  ProtobufCMessage base;
-  AnalogInTypeA__ConfigurationResponse__TypeCase type_case;
-  union {
-    AnalogInTypeA__ConfigurationGetResponse *get;
-    AnalogInTypeA__ConfigurationSetResponse *set;
-    AnalogInTypeA__ConfigurationDescribeResponse *describe;
-  };
-};
-#define ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__configuration_response__descriptor) \
-    , ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__TYPE__NOT_SET, {0} }
-
-
 /*
  * FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
  */
@@ -162,15 +135,10 @@ struct  _AnalogInTypeA__FunctionControlGet
 struct  _AnalogInTypeA__FunctionControlSet
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values
-   * Example:
-   */
-  uint32_t value;
 };
 #define ANALOG_IN_TYPE_A__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__function_control_set__descriptor) \
-    , 0 }
+     }
 
 
 /*
@@ -179,10 +147,7 @@ struct  _AnalogInTypeA__FunctionControlSet
 struct  _AnalogInTypeA__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values
-   */
-  uint32_t value;
+  float value;
 };
 #define ANALOG_IN_TYPE_A__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__function_control_get_response__descriptor) \
@@ -208,17 +173,10 @@ struct  _AnalogInTypeA__FunctionControlSetResponse
 struct  _AnalogInTypeA__StreamControlStart
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values, example
-   */
-  /*
-   * generate a sample when counter (value % modulo) == 0
-   */
-  uint32_t modulo;
 };
 #define ANALOG_IN_TYPE_A__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__stream_control_start__descriptor) \
-    , 0 }
+     }
 
 
 struct  _AnalogInTypeA__Sample
@@ -230,9 +188,9 @@ struct  _AnalogInTypeA__Sample
    */
   uint64_t timestamp;
   /*
-   * Specifies the binary channel value when the input value has changed.
+   * Specifies the analog input channel voltage
    */
-  uint32_t value;
+  float value;
 };
 #define ANALOG_IN_TYPE_A__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__sample__descriptor) \
@@ -366,25 +324,6 @@ AnalogInTypeA__ConfigurationDescribeResponse *
                       const uint8_t       *data);
 void   analog_in_type_a__configuration_describe_response__free_unpacked
                      (AnalogInTypeA__ConfigurationDescribeResponse *message,
-                      ProtobufCAllocator *allocator);
-/* AnalogInTypeA__ConfigurationResponse methods */
-void   analog_in_type_a__configuration_response__init
-                     (AnalogInTypeA__ConfigurationResponse         *message);
-size_t analog_in_type_a__configuration_response__get_packed_size
-                     (const AnalogInTypeA__ConfigurationResponse   *message);
-size_t analog_in_type_a__configuration_response__pack
-                     (const AnalogInTypeA__ConfigurationResponse   *message,
-                      uint8_t             *out);
-size_t analog_in_type_a__configuration_response__pack_to_buffer
-                     (const AnalogInTypeA__ConfigurationResponse   *message,
-                      ProtobufCBuffer     *buffer);
-AnalogInTypeA__ConfigurationResponse *
-       analog_in_type_a__configuration_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   analog_in_type_a__configuration_response__free_unpacked
-                     (AnalogInTypeA__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator);
 /* AnalogInTypeA__FunctionControlGet methods */
 void   analog_in_type_a__function_control_get__init
@@ -539,9 +478,6 @@ typedef void (*AnalogInTypeA__ConfigurationDescribe_Closure)
 typedef void (*AnalogInTypeA__ConfigurationDescribeResponse_Closure)
                  (const AnalogInTypeA__ConfigurationDescribeResponse *message,
                   void *closure_data);
-typedef void (*AnalogInTypeA__ConfigurationResponse_Closure)
-                 (const AnalogInTypeA__ConfigurationResponse *message,
-                  void *closure_data);
 typedef void (*AnalogInTypeA__FunctionControlGet_Closure)
                  (const AnalogInTypeA__FunctionControlGet *message,
                   void *closure_data);
@@ -575,7 +511,6 @@ extern const ProtobufCMessageDescriptor analog_in_type_a__configuration_get__des
 extern const ProtobufCMessageDescriptor analog_in_type_a__configuration_get_response__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe_response__descriptor;
-extern const ProtobufCMessageDescriptor analog_in_type_a__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_a__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_a__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_a__function_control_get_response__descriptor;

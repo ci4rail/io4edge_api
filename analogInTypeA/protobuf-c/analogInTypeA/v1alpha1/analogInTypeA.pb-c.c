@@ -277,51 +277,6 @@ void   analog_in_type_a__configuration_describe_response__free_unpacked
   assert(message->base.descriptor == &analog_in_type_a__configuration_describe_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   analog_in_type_a__configuration_response__init
-                     (AnalogInTypeA__ConfigurationResponse         *message)
-{
-  static const AnalogInTypeA__ConfigurationResponse init_value = ANALOG_IN_TYPE_A__CONFIGURATION_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t analog_in_type_a__configuration_response__get_packed_size
-                     (const AnalogInTypeA__ConfigurationResponse *message)
-{
-  assert(message->base.descriptor == &analog_in_type_a__configuration_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t analog_in_type_a__configuration_response__pack
-                     (const AnalogInTypeA__ConfigurationResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &analog_in_type_a__configuration_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t analog_in_type_a__configuration_response__pack_to_buffer
-                     (const AnalogInTypeA__ConfigurationResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &analog_in_type_a__configuration_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-AnalogInTypeA__ConfigurationResponse *
-       analog_in_type_a__configuration_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (AnalogInTypeA__ConfigurationResponse *)
-     protobuf_c_message_unpack (&analog_in_type_a__configuration_response__descriptor,
-                                allocator, len, data);
-}
-void   analog_in_type_a__configuration_response__free_unpacked
-                     (AnalogInTypeA__ConfigurationResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &analog_in_type_a__configuration_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   analog_in_type_a__function_control_get__init
                      (AnalogInTypeA__FunctionControlGet         *message)
 {
@@ -805,70 +760,6 @@ const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe_respon
   (ProtobufCMessageInit) analog_in_type_a__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor analog_in_type_a__configuration_response__field_descriptors[3] =
-{
-  {
-    "get",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(AnalogInTypeA__ConfigurationResponse, type_case),
-    offsetof(AnalogInTypeA__ConfigurationResponse, get),
-    &analog_in_type_a__configuration_get_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "set",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(AnalogInTypeA__ConfigurationResponse, type_case),
-    offsetof(AnalogInTypeA__ConfigurationResponse, set),
-    &analog_in_type_a__configuration_set_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "describe",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(AnalogInTypeA__ConfigurationResponse, type_case),
-    offsetof(AnalogInTypeA__ConfigurationResponse, describe),
-    &analog_in_type_a__configuration_describe_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned analog_in_type_a__configuration_response__field_indices_by_name[] = {
-  2,   /* field[2] = describe */
-  0,   /* field[0] = get */
-  1,   /* field[1] = set */
-};
-static const ProtobufCIntRange analog_in_type_a__configuration_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
-const ProtobufCMessageDescriptor analog_in_type_a__configuration_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "analogInTypeA.ConfigurationResponse",
-  "ConfigurationResponse",
-  "AnalogInTypeA__ConfigurationResponse",
-  "analogInTypeA",
-  sizeof(AnalogInTypeA__ConfigurationResponse),
-  3,
-  analog_in_type_a__configuration_response__field_descriptors,
-  analog_in_type_a__configuration_response__field_indices_by_name,
-  1,  analog_in_type_a__configuration_response__number_ranges,
-  (ProtobufCMessageInit) analog_in_type_a__configuration_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
 #define analog_in_type_a__function_control_get__field_descriptors NULL
 #define analog_in_type_a__function_control_get__field_indices_by_name NULL
 #define analog_in_type_a__function_control_get__number_ranges NULL
@@ -887,29 +778,9 @@ const ProtobufCMessageDescriptor analog_in_type_a__function_control_get__descrip
   (ProtobufCMessageInit) analog_in_type_a__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor analog_in_type_a__function_control_set__field_descriptors[1] =
-{
-  {
-    "value",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(AnalogInTypeA__FunctionControlSet, value),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned analog_in_type_a__function_control_set__field_indices_by_name[] = {
-  0,   /* field[0] = value */
-};
-static const ProtobufCIntRange analog_in_type_a__function_control_set__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define analog_in_type_a__function_control_set__field_descriptors NULL
+#define analog_in_type_a__function_control_set__field_indices_by_name NULL
+#define analog_in_type_a__function_control_set__number_ranges NULL
 const ProtobufCMessageDescriptor analog_in_type_a__function_control_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -918,10 +789,10 @@ const ProtobufCMessageDescriptor analog_in_type_a__function_control_set__descrip
   "AnalogInTypeA__FunctionControlSet",
   "analogInTypeA",
   sizeof(AnalogInTypeA__FunctionControlSet),
-  1,
+  0,
   analog_in_type_a__function_control_set__field_descriptors,
   analog_in_type_a__function_control_set__field_indices_by_name,
-  1,  analog_in_type_a__function_control_set__number_ranges,
+  0,  analog_in_type_a__function_control_set__number_ranges,
   (ProtobufCMessageInit) analog_in_type_a__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -931,7 +802,7 @@ static const ProtobufCFieldDescriptor analog_in_type_a__function_control_get_res
     "value",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
     offsetof(AnalogInTypeA__FunctionControlGetResponse, value),
     NULL,
@@ -981,29 +852,9 @@ const ProtobufCMessageDescriptor analog_in_type_a__function_control_set_response
   (ProtobufCMessageInit) analog_in_type_a__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor analog_in_type_a__stream_control_start__field_descriptors[1] =
-{
-  {
-    "modulo",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(AnalogInTypeA__StreamControlStart, modulo),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned analog_in_type_a__stream_control_start__field_indices_by_name[] = {
-  0,   /* field[0] = modulo */
-};
-static const ProtobufCIntRange analog_in_type_a__stream_control_start__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define analog_in_type_a__stream_control_start__field_descriptors NULL
+#define analog_in_type_a__stream_control_start__field_indices_by_name NULL
+#define analog_in_type_a__stream_control_start__number_ranges NULL
 const ProtobufCMessageDescriptor analog_in_type_a__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1012,10 +863,10 @@ const ProtobufCMessageDescriptor analog_in_type_a__stream_control_start__descrip
   "AnalogInTypeA__StreamControlStart",
   "analogInTypeA",
   sizeof(AnalogInTypeA__StreamControlStart),
-  1,
+  0,
   analog_in_type_a__stream_control_start__field_descriptors,
   analog_in_type_a__stream_control_start__field_indices_by_name,
-  1,  analog_in_type_a__stream_control_start__number_ranges,
+  0,  analog_in_type_a__stream_control_start__number_ranges,
   (ProtobufCMessageInit) analog_in_type_a__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1037,7 +888,7 @@ static const ProtobufCFieldDescriptor analog_in_type_a__sample__field_descriptor
     "value",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
     offsetof(AnalogInTypeA__Sample, value),
     NULL,
