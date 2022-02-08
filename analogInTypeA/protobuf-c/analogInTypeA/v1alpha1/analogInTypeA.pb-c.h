@@ -42,7 +42,7 @@ struct  _AnalogInTypeA__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * Specifies the time interval at which the analog input channel is sampled.
+   * Specifies the frequency at which the analog input channel is sampled.
    */
   uint32_t sample_rate;
 };
@@ -83,7 +83,7 @@ struct  _AnalogInTypeA__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Specifies the time interval at which the analog input channel is sampled.
+   * Specifies the frequency at which the analog input channel is sampled.
    */
   uint32_t sample_rate;
 };
@@ -107,14 +107,10 @@ struct  _AnalogInTypeA__ConfigurationDescribe
 struct  _AnalogInTypeA__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values, example
-   */
-  char *ident;
 };
 #define ANALOG_IN_TYPE_A__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_a__configuration_describe_response__descriptor) \
-    , (char *)protobuf_c_empty_string }
+     }
 
 
 /*

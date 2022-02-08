@@ -722,29 +722,9 @@ const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe__descr
   (ProtobufCMessageInit) analog_in_type_a__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor analog_in_type_a__configuration_describe_response__field_descriptors[1] =
-{
-  {
-    "ident",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(AnalogInTypeA__ConfigurationDescribeResponse, ident),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned analog_in_type_a__configuration_describe_response__field_indices_by_name[] = {
-  0,   /* field[0] = ident */
-};
-static const ProtobufCIntRange analog_in_type_a__configuration_describe_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define analog_in_type_a__configuration_describe_response__field_descriptors NULL
+#define analog_in_type_a__configuration_describe_response__field_indices_by_name NULL
+#define analog_in_type_a__configuration_describe_response__number_ranges NULL
 const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -753,10 +733,10 @@ const ProtobufCMessageDescriptor analog_in_type_a__configuration_describe_respon
   "AnalogInTypeA__ConfigurationDescribeResponse",
   "analogInTypeA",
   sizeof(AnalogInTypeA__ConfigurationDescribeResponse),
-  1,
+  0,
   analog_in_type_a__configuration_describe_response__field_descriptors,
   analog_in_type_a__configuration_describe_response__field_indices_by_name,
-  1,  analog_in_type_a__configuration_describe_response__number_ranges,
+  0,  analog_in_type_a__configuration_describe_response__number_ranges,
   (ProtobufCMessageInit) analog_in_type_a__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

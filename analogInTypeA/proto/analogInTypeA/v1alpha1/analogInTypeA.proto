@@ -22,7 +22,7 @@ option go_package = "analogInTypeA/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Specifies the time interval at which the analog input channel is sampled.
+    // Specifies the frequency at which the analog input channel is sampled.
     fixed32 sample_rate = 1;
 }
 
@@ -39,7 +39,7 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // Specifies the time interval at which the analog input channel is sampled.
+    // Specifies the frequency at which the analog input channel is sampled.
     fixed32 sample_rate = 1;
 }
 
@@ -49,15 +49,14 @@ message ConfigurationDescribe {
 }
 
 message ConfigurationDescribeResponse {
-    // Put here your function specific values, example
-    string ident = 1;
+    // Not implemented
 }
 
 // ============= FunctionControl =================
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    // Put here your function specific values
+    // no parameters
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
@@ -86,9 +85,6 @@ message StreamControlStart {
 }
 
 message Sample {
-    // Put here your function specific values
-    // Example:
-
     // Timestamp for that specific channels sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
     fixed64 timestamp = 1;
