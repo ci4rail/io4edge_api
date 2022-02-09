@@ -88,7 +88,7 @@ message Sample {
     // Timestamp for that specific channels sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
     fixed64 timestamp = 1;
-    // Specifies the analog input channel voltage
+    // Specifies the analog input channel value
     float value = 2;
 }
 
