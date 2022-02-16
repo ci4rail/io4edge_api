@@ -17,9 +17,9 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.6.1
-// source: analogInTypeA.proto
+// source: mvbSniffer.proto
 
-package v1alpha1
+package v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -35,20 +35,113 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+type FrameType int32
+
+const (
+	FrameType_UNKNOWN FrameType = 0
+	FrameType_MASTER  FrameType = 1
+	FrameType_SLAVE   FrameType = 2
+)
+
+// Enum value maps for FrameType.
+var (
+	FrameType_name = map[int32]string{
+		0: "UNKNOWN",
+		1: "MASTER",
+		2: "SLAVE",
+	}
+	FrameType_value = map[string]int32{
+		"UNKNOWN": 0,
+		"MASTER":  1,
+		"SLAVE":   2,
+	}
+)
+
+func (x FrameType) Enum() *FrameType {
+	p := new(FrameType)
+	*p = x
+	return p
+}
+
+func (x FrameType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FrameType) Descriptor() protoreflect.EnumDescriptor {
+	return file_mvbSniffer_proto_enumTypes[0].Descriptor()
+}
+
+func (FrameType) Type() protoreflect.EnumType {
+	return &file_mvbSniffer_proto_enumTypes[0]
+}
+
+func (x FrameType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FrameType.Descriptor instead.
+func (FrameType) EnumDescriptor() ([]byte, []int) {
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{0}
+}
+
+type Line int32
+
+const (
+	Line_A Line = 0 // received on A
+	Line_B Line = 1 // received on B
+)
+
+// Enum value maps for Line.
+var (
+	Line_name = map[int32]string{
+		0: "A",
+		1: "B",
+	}
+	Line_value = map[string]int32{
+		"A": 0,
+		"B": 1,
+	}
+)
+
+func (x Line) Enum() *Line {
+	p := new(Line)
+	*p = x
+	return p
+}
+
+func (x Line) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Line) Descriptor() protoreflect.EnumDescriptor {
+	return file_mvbSniffer_proto_enumTypes[1].Descriptor()
+}
+
+func (Line) Type() protoreflect.EnumType {
+	return &file_mvbSniffer_proto_enumTypes[1]
+}
+
+func (x Line) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Line.Descriptor instead.
+func (Line) EnumDescriptor() ([]byte, []int) {
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{1}
+}
+
+// ConfigurationSet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// Specifies the frequency at which the analog input channel is sampled.
-	SampleRate uint32 `protobuf:"fixed32,1,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
 }
 
 func (x *ConfigurationSet) Reset() {
 	*x = ConfigurationSet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[0]
+		mi := &file_mvbSniffer_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -61,7 +154,7 @@ func (x *ConfigurationSet) String() string {
 func (*ConfigurationSet) ProtoMessage() {}
 
 func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[0]
+	mi := &file_mvbSniffer_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -74,17 +167,11 @@ func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationSet.ProtoReflect.Descriptor instead.
 func (*ConfigurationSet) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{0}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationSet) GetSampleRate() uint32 {
-	if x != nil {
-		return x.SampleRate
-	}
-	return 0
-}
-
-// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+// ConfigurationSetResponse to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
 type ConfigurationSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -94,7 +181,7 @@ type ConfigurationSetResponse struct {
 func (x *ConfigurationSetResponse) Reset() {
 	*x = ConfigurationSetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[1]
+		mi := &file_mvbSniffer_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -107,7 +194,7 @@ func (x *ConfigurationSetResponse) String() string {
 func (*ConfigurationSetResponse) ProtoMessage() {}
 
 func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[1]
+	mi := &file_mvbSniffer_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -120,10 +207,11 @@ func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationSetResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationSetResponse) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{1}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{1}
 }
 
-// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+// ConfigurationGet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationGet hook
 type ConfigurationGet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -133,7 +221,7 @@ type ConfigurationGet struct {
 func (x *ConfigurationGet) Reset() {
 	*x = ConfigurationGet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[2]
+		mi := &file_mvbSniffer_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -146,7 +234,7 @@ func (x *ConfigurationGet) String() string {
 func (*ConfigurationGet) ProtoMessage() {}
 
 func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[2]
+	mi := &file_mvbSniffer_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,24 +247,22 @@ func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationGet.ProtoReflect.Descriptor instead.
 func (*ConfigurationGet) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{2}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{2}
 }
 
-// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
-// Returns the current hardware configuration
+// ConfigurationGetResponse to pass to
+// Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse
+// hook Returns the current hardware configuration
 type ConfigurationGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// Specifies the frequency at which the analog input channel is sampled.
-	SampleRate uint32 `protobuf:"fixed32,1,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
 }
 
 func (x *ConfigurationGetResponse) Reset() {
 	*x = ConfigurationGetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[3]
+		mi := &file_mvbSniffer_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -189,7 +275,7 @@ func (x *ConfigurationGetResponse) String() string {
 func (*ConfigurationGetResponse) ProtoMessage() {}
 
 func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[3]
+	mi := &file_mvbSniffer_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,17 +288,11 @@ func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationGetResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{3}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ConfigurationGetResponse) GetSampleRate() uint32 {
-	if x != nil {
-		return x.SampleRate
-	}
-	return 0
-}
-
-// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+// ConfigurationDescribe to pass to
+// Functionblock.Configuration.functionSpecificConfigurationDescribe hook
 type ConfigurationDescribe struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -222,7 +302,7 @@ type ConfigurationDescribe struct {
 func (x *ConfigurationDescribe) Reset() {
 	*x = ConfigurationDescribe{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[4]
+		mi := &file_mvbSniffer_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -235,7 +315,7 @@ func (x *ConfigurationDescribe) String() string {
 func (*ConfigurationDescribe) ProtoMessage() {}
 
 func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[4]
+	mi := &file_mvbSniffer_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -248,7 +328,7 @@ func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationDescribe.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{4}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{4}
 }
 
 type ConfigurationDescribeResponse struct {
@@ -260,7 +340,7 @@ type ConfigurationDescribeResponse struct {
 func (x *ConfigurationDescribeResponse) Reset() {
 	*x = ConfigurationDescribeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[5]
+		mi := &file_mvbSniffer_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -273,7 +353,7 @@ func (x *ConfigurationDescribeResponse) String() string {
 func (*ConfigurationDescribeResponse) ProtoMessage() {}
 
 func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[5]
+	mi := &file_mvbSniffer_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -286,10 +366,11 @@ func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{5}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{5}
 }
 
-// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+// FunctionControlGet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 type FunctionControlGet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -299,7 +380,7 @@ type FunctionControlGet struct {
 func (x *FunctionControlGet) Reset() {
 	*x = FunctionControlGet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[6]
+		mi := &file_mvbSniffer_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -312,7 +393,7 @@ func (x *FunctionControlGet) String() string {
 func (*FunctionControlGet) ProtoMessage() {}
 
 func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[6]
+	mi := &file_mvbSniffer_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -325,10 +406,11 @@ func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGet.ProtoReflect.Descriptor instead.
 func (*FunctionControlGet) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{6}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{6}
 }
 
-// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+// FunctionControlSet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 type FunctionControlSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -338,7 +420,7 @@ type FunctionControlSet struct {
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[7]
+		mi := &file_mvbSniffer_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -351,7 +433,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[7]
+	mi := &file_mvbSniffer_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -364,22 +446,21 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{7}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{7}
 }
 
-// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+// FunctionControlGetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 type FunctionControlGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Value float32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
 func (x *FunctionControlGetResponse) Reset() {
 	*x = FunctionControlGetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[8]
+		mi := &file_mvbSniffer_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -392,7 +473,7 @@ func (x *FunctionControlGetResponse) String() string {
 func (*FunctionControlGetResponse) ProtoMessage() {}
 
 func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[8]
+	mi := &file_mvbSniffer_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,17 +486,11 @@ func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{8}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *FunctionControlGetResponse) GetValue() float32 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
-// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+// FunctionControlSetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 type FunctionControlSetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -425,7 +500,7 @@ type FunctionControlSetResponse struct {
 func (x *FunctionControlSetResponse) Reset() {
 	*x = FunctionControlSetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[9]
+		mi := &file_mvbSniffer_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -438,7 +513,7 @@ func (x *FunctionControlSetResponse) String() string {
 func (*FunctionControlSetResponse) ProtoMessage() {}
 
 func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[9]
+	mi := &file_mvbSniffer_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -451,11 +526,12 @@ func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{9}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{9}
 }
 
 // ============= StreamControl ==================
-// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+// StreamControlStart to pass to
+// Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 type StreamControlStart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -465,7 +541,7 @@ type StreamControlStart struct {
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[10]
+		mi := &file_mvbSniffer_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -478,7 +554,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[10]
+	mi := &file_mvbSniffer_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -491,25 +567,38 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{10}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{10}
 }
 
+// A sample represents an MVB frame
 type Sample struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Timestamp for that specific channels sample. This is the time the sample was taken.
-	// This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+	// Timestamp when this frame has started.
+	// In microseconds since the start of the device.
+	// Not synchronized with the clients time.
 	Timestamp uint64 `protobuf:"fixed64,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	// Specifies the analog input channel value
-	Value float32 `protobuf:"fixed32,2,opt,name=value,proto3" json:"value,omitempty"`
+	// time difference from the end of the last message to the begin of
+	// this message (in us).
+	// A value of <5 is invalid. A value of 255 means 255 us or more.
+	DeltaTime int32 `protobuf:"varint,2,opt,name=delta_time,json=deltaTime,proto3" json:"delta_time,omitempty"`
+	// master or slave frame
+	FrameType FrameType `protobuf:"varint,3,opt,name=frameType,proto3,enum=mvbSniffer.FrameType" json:"frameType,omitempty"`
+	// line on which this MVB frame has been received (redundant frames are
+	// dropped)
+	Line Line `protobuf:"varint,4,opt,name=line,proto3,enum=mvbSniffer.Line" json:"line,omitempty"`
+	// this frame has been received on both lines
+	Redundant bool `protobuf:"varint,5,opt,name=redundant,proto3" json:"redundant,omitempty"`
+	// MVB frame, checksums are removed
+	Payload []byte `protobuf:"bytes,10,opt,name=payload,proto3" json:"payload,omitempty"`
 }
 
 func (x *Sample) Reset() {
 	*x = Sample{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[11]
+		mi := &file_mvbSniffer_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -522,7 +611,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[11]
+	mi := &file_mvbSniffer_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +624,7 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{11}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Sample) GetTimestamp() uint64 {
@@ -545,14 +634,43 @@ func (x *Sample) GetTimestamp() uint64 {
 	return 0
 }
 
-func (x *Sample) GetValue() float32 {
+func (x *Sample) GetDeltaTime() int32 {
 	if x != nil {
-		return x.Value
+		return x.DeltaTime
 	}
 	return 0
 }
 
-// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+func (x *Sample) GetFrameType() FrameType {
+	if x != nil {
+		return x.FrameType
+	}
+	return FrameType_UNKNOWN
+}
+
+func (x *Sample) GetLine() Line {
+	if x != nil {
+		return x.Line
+	}
+	return Line_A
+}
+
+func (x *Sample) GetRedundant() bool {
+	if x != nil {
+		return x.Redundant
+	}
+	return false
+}
+
+func (x *Sample) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData
+// hook
 type StreamData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -564,7 +682,7 @@ type StreamData struct {
 func (x *StreamData) Reset() {
 	*x = StreamData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_analogInTypeA_proto_msgTypes[12]
+		mi := &file_mvbSniffer_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -577,7 +695,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_analogInTypeA_proto_msgTypes[12]
+	mi := &file_mvbSniffer_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -590,7 +708,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_analogInTypeA_proto_rawDescGZIP(), []int{12}
+	return file_mvbSniffer_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *StreamData) GetSamples() []*Sample {
@@ -600,91 +718,103 @@ func (x *StreamData) GetSamples() []*Sample {
 	return nil
 }
 
-var File_analogInTypeA_proto protoreflect.FileDescriptor
+var File_mvbSniffer_proto protoreflect.FileDescriptor
 
-var file_analogInTypeA_proto_rawDesc = []byte{
-	0x0a, 0x13, 0x61, 0x6e, 0x61, 0x6c, 0x6f, 0x67, 0x49, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x41, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x61, 0x6e, 0x61, 0x6c, 0x6f, 0x67, 0x49, 0x6e, 0x54,
-	0x79, 0x70, 0x65, 0x41, 0x22, 0x33, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x61, 0x6d, 0x70,
-	0x6c, 0x65, 0x5f, 0x72, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0a, 0x73,
-	0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x61, 0x74, 0x65, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x22, 0x3b, 0x0a, 0x18, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x5f,
-	0x72, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0a, 0x73, 0x61, 0x6d, 0x70,
-	0x6c, 0x65, 0x52, 0x61, 0x74, 0x65, 0x22, 0x17, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22,
-	0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x14, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74,
-	0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22, 0x14, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x22, 0x32, 0x0a, 0x1a,
-	0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47,
-	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x22, 0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74,
-	0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14,
-	0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53,
-	0x74, 0x61, 0x72, 0x74, 0x22, 0x3c, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x1c,
-	0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x06, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x14, 0x0a, 0x05,
-	0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x22, 0x3d, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x44, 0x61, 0x74, 0x61,
-	0x12, 0x2f, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x15, 0x2e, 0x61, 0x6e, 0x61, 0x6c, 0x6f, 0x67, 0x49, 0x6e, 0x54, 0x79, 0x70, 0x65,
-	0x41, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65,
-	0x73, 0x42, 0x18, 0x5a, 0x16, 0x61, 0x6e, 0x61, 0x6c, 0x6f, 0x67, 0x49, 0x6e, 0x54, 0x79, 0x70,
-	0x65, 0x41, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+var file_mvbSniffer_proto_rawDesc = []byte{
+	0x0a, 0x10, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x12, 0x0a, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x22, 0x12,
+	0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53,
+	0x65, 0x74, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12,
+	0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47,
+	0x65, 0x74, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x17,
+	0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44,
+	0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22, 0x14,
+	0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
+	0x6c, 0x53, 0x65, 0x74, 0x22, 0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x14, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f,
+	0x6c, 0x53, 0x74, 0x61, 0x72, 0x74, 0x22, 0xd8, 0x01, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c,
+	0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x06, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12,
+	0x1d, 0x0a, 0x0a, 0x64, 0x65, 0x6c, 0x74, 0x61, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x09, 0x64, 0x65, 0x6c, 0x74, 0x61, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x33,
+	0x0a, 0x09, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x15, 0x2e, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x46,
+	0x72, 0x61, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x24, 0x0a, 0x04, 0x6c, 0x69, 0x6e, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x10, 0x2e, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x4c,
+	0x69, 0x6e, 0x65, 0x52, 0x04, 0x6c, 0x69, 0x6e, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x72, 0x65, 0x64,
+	0x75, 0x6e, 0x64, 0x61, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x72, 0x65,
+	0x64, 0x75, 0x6e, 0x64, 0x61, 0x6e, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f,
+	0x61, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61,
+	0x64, 0x22, 0x3a, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x12,
+	0x2c, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x12, 0x2e, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x53, 0x61,
+	0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x2a, 0x2f, 0x0a,
+	0x09, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e,
+	0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x41, 0x53, 0x54, 0x45,
+	0x52, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x53, 0x4c, 0x41, 0x56, 0x45, 0x10, 0x02, 0x2a, 0x14,
+	0x0a, 0x04, 0x4c, 0x69, 0x6e, 0x65, 0x12, 0x05, 0x0a, 0x01, 0x41, 0x10, 0x00, 0x12, 0x05, 0x0a,
+	0x01, 0x42, 0x10, 0x01, 0x42, 0x0f, 0x5a, 0x0d, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66,
+	0x65, 0x72, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_analogInTypeA_proto_rawDescOnce sync.Once
-	file_analogInTypeA_proto_rawDescData = file_analogInTypeA_proto_rawDesc
+	file_mvbSniffer_proto_rawDescOnce sync.Once
+	file_mvbSniffer_proto_rawDescData = file_mvbSniffer_proto_rawDesc
 )
 
-func file_analogInTypeA_proto_rawDescGZIP() []byte {
-	file_analogInTypeA_proto_rawDescOnce.Do(func() {
-		file_analogInTypeA_proto_rawDescData = protoimpl.X.CompressGZIP(file_analogInTypeA_proto_rawDescData)
+func file_mvbSniffer_proto_rawDescGZIP() []byte {
+	file_mvbSniffer_proto_rawDescOnce.Do(func() {
+		file_mvbSniffer_proto_rawDescData = protoimpl.X.CompressGZIP(file_mvbSniffer_proto_rawDescData)
 	})
-	return file_analogInTypeA_proto_rawDescData
+	return file_mvbSniffer_proto_rawDescData
 }
 
-var file_analogInTypeA_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_analogInTypeA_proto_goTypes = []interface{}{
-	(*ConfigurationSet)(nil),              // 0: analogInTypeA.ConfigurationSet
-	(*ConfigurationSetResponse)(nil),      // 1: analogInTypeA.ConfigurationSetResponse
-	(*ConfigurationGet)(nil),              // 2: analogInTypeA.ConfigurationGet
-	(*ConfigurationGetResponse)(nil),      // 3: analogInTypeA.ConfigurationGetResponse
-	(*ConfigurationDescribe)(nil),         // 4: analogInTypeA.ConfigurationDescribe
-	(*ConfigurationDescribeResponse)(nil), // 5: analogInTypeA.ConfigurationDescribeResponse
-	(*FunctionControlGet)(nil),            // 6: analogInTypeA.FunctionControlGet
-	(*FunctionControlSet)(nil),            // 7: analogInTypeA.FunctionControlSet
-	(*FunctionControlGetResponse)(nil),    // 8: analogInTypeA.FunctionControlGetResponse
-	(*FunctionControlSetResponse)(nil),    // 9: analogInTypeA.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 10: analogInTypeA.StreamControlStart
-	(*Sample)(nil),                        // 11: analogInTypeA.Sample
-	(*StreamData)(nil),                    // 12: analogInTypeA.StreamData
+var file_mvbSniffer_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_mvbSniffer_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_mvbSniffer_proto_goTypes = []interface{}{
+	(FrameType)(0),                        // 0: mvbSniffer.FrameType
+	(Line)(0),                             // 1: mvbSniffer.Line
+	(*ConfigurationSet)(nil),              // 2: mvbSniffer.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 3: mvbSniffer.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 4: mvbSniffer.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 5: mvbSniffer.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 6: mvbSniffer.ConfigurationDescribe
+	(*ConfigurationDescribeResponse)(nil), // 7: mvbSniffer.ConfigurationDescribeResponse
+	(*FunctionControlGet)(nil),            // 8: mvbSniffer.FunctionControlGet
+	(*FunctionControlSet)(nil),            // 9: mvbSniffer.FunctionControlSet
+	(*FunctionControlGetResponse)(nil),    // 10: mvbSniffer.FunctionControlGetResponse
+	(*FunctionControlSetResponse)(nil),    // 11: mvbSniffer.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 12: mvbSniffer.StreamControlStart
+	(*Sample)(nil),                        // 13: mvbSniffer.Sample
+	(*StreamData)(nil),                    // 14: mvbSniffer.StreamData
 }
-var file_analogInTypeA_proto_depIdxs = []int32{
-	11, // 0: analogInTypeA.StreamData.samples:type_name -> analogInTypeA.Sample
-	1,  // [1:1] is the sub-list for method output_type
-	1,  // [1:1] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+var file_mvbSniffer_proto_depIdxs = []int32{
+	0,  // 0: mvbSniffer.Sample.frameType:type_name -> mvbSniffer.FrameType
+	1,  // 1: mvbSniffer.Sample.line:type_name -> mvbSniffer.Line
+	13, // 2: mvbSniffer.StreamData.samples:type_name -> mvbSniffer.Sample
+	3,  // [3:3] is the sub-list for method output_type
+	3,  // [3:3] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_analogInTypeA_proto_init() }
-func file_analogInTypeA_proto_init() {
-	if File_analogInTypeA_proto != nil {
+func init() { file_mvbSniffer_proto_init() }
+func file_mvbSniffer_proto_init() {
+	if File_mvbSniffer_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_analogInTypeA_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationSet); i {
 			case 0:
 				return &v.state
@@ -696,7 +826,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationSetResponse); i {
 			case 0:
 				return &v.state
@@ -708,7 +838,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationGet); i {
 			case 0:
 				return &v.state
@@ -720,7 +850,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationGetResponse); i {
 			case 0:
 				return &v.state
@@ -732,7 +862,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationDescribe); i {
 			case 0:
 				return &v.state
@@ -744,7 +874,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConfigurationDescribeResponse); i {
 			case 0:
 				return &v.state
@@ -756,7 +886,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FunctionControlGet); i {
 			case 0:
 				return &v.state
@@ -768,7 +898,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FunctionControlSet); i {
 			case 0:
 				return &v.state
@@ -780,7 +910,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FunctionControlGetResponse); i {
 			case 0:
 				return &v.state
@@ -792,7 +922,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FunctionControlSetResponse); i {
 			case 0:
 				return &v.state
@@ -804,7 +934,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamControlStart); i {
 			case 0:
 				return &v.state
@@ -816,7 +946,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Sample); i {
 			case 0:
 				return &v.state
@@ -828,7 +958,7 @@ func file_analogInTypeA_proto_init() {
 				return nil
 			}
 		}
-		file_analogInTypeA_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_mvbSniffer_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamData); i {
 			case 0:
 				return &v.state
@@ -845,18 +975,19 @@ func file_analogInTypeA_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_analogInTypeA_proto_rawDesc,
-			NumEnums:      0,
+			RawDescriptor: file_mvbSniffer_proto_rawDesc,
+			NumEnums:      2,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_analogInTypeA_proto_goTypes,
-		DependencyIndexes: file_analogInTypeA_proto_depIdxs,
-		MessageInfos:      file_analogInTypeA_proto_msgTypes,
+		GoTypes:           file_mvbSniffer_proto_goTypes,
+		DependencyIndexes: file_mvbSniffer_proto_depIdxs,
+		EnumInfos:         file_mvbSniffer_proto_enumTypes,
+		MessageInfos:      file_mvbSniffer_proto_msgTypes,
 	}.Build()
-	File_analogInTypeA_proto = out.File
-	file_analogInTypeA_proto_rawDesc = nil
-	file_analogInTypeA_proto_goTypes = nil
-	file_analogInTypeA_proto_depIdxs = nil
+	File_mvbSniffer_proto = out.File
+	file_mvbSniffer_proto_rawDesc = nil
+	file_mvbSniffer_proto_goTypes = nil
+	file_mvbSniffer_proto_depIdxs = nil
 }

@@ -117,7 +117,7 @@ message Sample {
   // this frame has been received on both lines
   bool redundant = 5;
   // MVB frame, checksums are removed
-  bytes payload = 5;
+  bytes payload = 10;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData
