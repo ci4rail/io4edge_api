@@ -66,7 +66,7 @@ message FunctionControlGet {
 // FunctionControlSet to pass to
 // Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-  // Not implemented
+  string generator_pattern = 1; // pattern to send to the stimulus generator within the MVB sniffer for self-test
 }
 
 // FunctionControlGetResponse to pass to
@@ -110,7 +110,7 @@ message Sample {
   // A value of <5 is invalid. A value of 255 means 255 us or more.
   int32 delta_time = 2;
   // master or slave frame
-  FrameType frameType = 3;
+  FrameType frame_type = 3;
   // line on which this MVB frame has been received (redundant frames are
   // dropped)
   Line line = 4;
