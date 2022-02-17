@@ -147,10 +147,14 @@ struct  _MvbSniffer__FunctionControlGet
 struct  _MvbSniffer__FunctionControlSet
 {
   ProtobufCMessage base;
+  /*
+   * pattern to send to the stimulus generator within the MVB sniffer for self-test
+   */
+  char *generator_pattern;
 };
 #define MVB_SNIFFER__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__function_control_set__descriptor) \
-     }
+    , (char *)protobuf_c_empty_string }
 
 
 /*
@@ -214,7 +218,7 @@ struct  _MvbSniffer__Sample
   /*
    * master or slave frame
    */
-  MvbSniffer__FrameType frametype;
+  MvbSniffer__FrameType frame_type;
   /*
    * line on which this MVB frame has been received (redundant frames are
    * dropped)

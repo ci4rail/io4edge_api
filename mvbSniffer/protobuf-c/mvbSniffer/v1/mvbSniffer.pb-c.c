@@ -718,9 +718,29 @@ const ProtobufCMessageDescriptor mvb_sniffer__function_control_get__descriptor =
   (ProtobufCMessageInit) mvb_sniffer__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define mvb_sniffer__function_control_set__field_descriptors NULL
-#define mvb_sniffer__function_control_set__field_indices_by_name NULL
-#define mvb_sniffer__function_control_set__number_ranges NULL
+static const ProtobufCFieldDescriptor mvb_sniffer__function_control_set__field_descriptors[1] =
+{
+  {
+    "generator_pattern",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__FunctionControlSet, generator_pattern),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned mvb_sniffer__function_control_set__field_indices_by_name[] = {
+  0,   /* field[0] = generator_pattern */
+};
+static const ProtobufCIntRange mvb_sniffer__function_control_set__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor mvb_sniffer__function_control_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -729,10 +749,10 @@ const ProtobufCMessageDescriptor mvb_sniffer__function_control_set__descriptor =
   "MvbSniffer__FunctionControlSet",
   "mvbSniffer",
   sizeof(MvbSniffer__FunctionControlSet),
-  0,
+  1,
   mvb_sniffer__function_control_set__field_descriptors,
   mvb_sniffer__function_control_set__field_indices_by_name,
-  0,  mvb_sniffer__function_control_set__number_ranges,
+  1,  mvb_sniffer__function_control_set__number_ranges,
   (ProtobufCMessageInit) mvb_sniffer__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -817,12 +837,12 @@ static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[6] 
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "frameType",
+    "frame_type",
     3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, frametype),
+    offsetof(MvbSniffer__Sample, frame_type),
     &mvb_sniffer__frame_type__descriptor,
     NULL,
     0,             /* flags */
@@ -867,7 +887,7 @@ static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[6] 
 };
 static const unsigned mvb_sniffer__sample__field_indices_by_name[] = {
   1,   /* field[1] = delta_time */
-  2,   /* field[2] = frameType */
+  2,   /* field[2] = frame_type */
   3,   /* field[3] = line */
   5,   /* field[5] = payload */
   4,   /* field[4] = redundant */
