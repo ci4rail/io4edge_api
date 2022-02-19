@@ -49,6 +49,12 @@ typedef enum _MvbSniffer__Line {
   MVB_SNIFFER__LINE__B = 1
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__LINE)
 } MvbSniffer__Line;
+typedef enum _MvbSniffer__SampleError {
+  MVB_SNIFFER__SAMPLE_ERROR__NONE = 0,
+  MVB_SNIFFER__SAMPLE_ERROR__STREAMBUF_OVERRUN = 1,
+  MVB_SNIFFER__SAMPLE_ERROR__DMA_ERROR = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__SAMPLE_ERROR)
+} MvbSniffer__SampleError;
 
 /* --- messages --- */
 
@@ -229,13 +235,17 @@ struct  _MvbSniffer__Sample
    */
   protobuf_c_boolean redundant;
   /*
+   * Bitmask with errors
+   */
+  MvbSniffer__SampleError error;
+  /*
    * MVB frame, checksums are removed
    */
   ProtobufCBinaryData payload;
 };
 #define MVB_SNIFFER__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__sample__descriptor) \
-    , 0, 0, MVB_SNIFFER__FRAME_TYPE__UNKNOWN, MVB_SNIFFER__LINE__A, 0, {0,NULL} }
+    , 0, 0, MVB_SNIFFER__FRAME_TYPE__UNKNOWN, MVB_SNIFFER__LINE__A, 0, MVB_SNIFFER__SAMPLE_ERROR__NONE, {0,NULL} }
 
 
 /*
@@ -549,6 +559,7 @@ typedef void (*MvbSniffer__StreamData_Closure)
 
 extern const ProtobufCEnumDescriptor    mvb_sniffer__frame_type__descriptor;
 extern const ProtobufCEnumDescriptor    mvb_sniffer__line__descriptor;
+extern const ProtobufCEnumDescriptor    mvb_sniffer__sample_error__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_get__descriptor;

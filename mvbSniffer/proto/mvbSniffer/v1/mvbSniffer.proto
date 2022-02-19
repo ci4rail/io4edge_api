@@ -99,6 +99,13 @@ enum Line {
   B = 1; // received on B
 }
 
+enum SampleError {
+  NONE = 0;
+  STREAMBUF_OVERRUN = 1;
+  DMA_ERROR = 2;
+}
+
+
 // A sample represents an MVB frame
 message Sample {
   // Timestamp when this frame has started.
@@ -116,6 +123,8 @@ message Sample {
   Line line = 4;
   // this frame has been received on both lines
   bool redundant = 5;
+  // Bitmask with errors
+  SampleError error = 6;
   // MVB frame, checksums are removed
   bytes payload = 10;
 }
