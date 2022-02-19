@@ -102,31 +102,24 @@ enum Line {
 enum SampleError {
   NONE = 0;
   STREAMBUF_OVERRUN = 1;
-  DMA_ERROR = 2;
 }
 
 
-// A sample represents an MVB frame
+// A sample represents a MVB process data,
 message Sample {
   // Timestamp when this frame has started.
   // In microseconds since the start of the device.
   // Not synchronized with the clients time.
   fixed64 timestamp = 1;
-  // time difference from the end of the last message to the begin of
-  // this message (in us).
-  // A value of <5 is invalid. A value of 255 means 255 us or more.
-  int32 delta_time = 2;
-  // master or slave frame
-  FrameType frame_type = 3;
-  // line on which this MVB frame has been received (redundant frames are
-  // dropped)
-  Line line = 4;
-  // this frame has been received on both lines
-  bool redundant = 5;
-  // Bitmask with errors
-  SampleError error = 6;
-  // MVB frame, checksums are removed
+
+  // values from master
+  int32 f_code = 2;
+  int32 address = 3;
+
+  // MVB slave data, checksums are removed
   bytes payload = 10;
+
+  SampleError error = 11;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData

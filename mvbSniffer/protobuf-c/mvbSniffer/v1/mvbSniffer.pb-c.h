@@ -51,8 +51,7 @@ typedef enum _MvbSniffer__Line {
 } MvbSniffer__Line;
 typedef enum _MvbSniffer__SampleError {
   MVB_SNIFFER__SAMPLE_ERROR__NONE = 0,
-  MVB_SNIFFER__SAMPLE_ERROR__STREAMBUF_OVERRUN = 1,
-  MVB_SNIFFER__SAMPLE_ERROR__DMA_ERROR = 2
+  MVB_SNIFFER__SAMPLE_ERROR__STREAMBUF_OVERRUN = 1
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__SAMPLE_ERROR)
 } MvbSniffer__SampleError;
 
@@ -204,7 +203,7 @@ struct  _MvbSniffer__StreamControlStart
 
 
 /*
- * A sample represents an MVB frame
+ * A sample represents a MVB process data,
  */
 struct  _MvbSniffer__Sample
 {
@@ -216,36 +215,19 @@ struct  _MvbSniffer__Sample
    */
   uint64_t timestamp;
   /*
-   * time difference from the end of the last message to the begin of
-   * this message (in us).
-   * A value of <5 is invalid. A value of 255 means 255 us or more.
+   * values from master
    */
-  int32_t delta_time;
+  int32_t f_code;
+  int32_t address;
   /*
-   * master or slave frame
-   */
-  MvbSniffer__FrameType frame_type;
-  /*
-   * line on which this MVB frame has been received (redundant frames are
-   * dropped)
-   */
-  MvbSniffer__Line line;
-  /*
-   * this frame has been received on both lines
-   */
-  protobuf_c_boolean redundant;
-  /*
-   * Bitmask with errors
-   */
-  MvbSniffer__SampleError error;
-  /*
-   * MVB frame, checksums are removed
+   * MVB slave data, checksums are removed
    */
   ProtobufCBinaryData payload;
+  MvbSniffer__SampleError error;
 };
 #define MVB_SNIFFER__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__sample__descriptor) \
-    , 0, 0, MVB_SNIFFER__FRAME_TYPE__UNKNOWN, MVB_SNIFFER__LINE__A, 0, MVB_SNIFFER__SAMPLE_ERROR__NONE, {0,NULL} }
+    , 0, 0, 0, {0,NULL}, MVB_SNIFFER__SAMPLE_ERROR__NONE }
 
 
 /*

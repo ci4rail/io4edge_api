@@ -810,7 +810,7 @@ const ProtobufCMessageDescriptor mvb_sniffer__stream_control_start__descriptor =
   (ProtobufCMessageInit) mvb_sniffer__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[7] =
+static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[5] =
 {
   {
     "timestamp",
@@ -825,61 +825,25 @@ static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[7] 
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "delta_time",
+    "f_code",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, delta_time),
+    offsetof(MvbSniffer__Sample, f_code),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "frame_type",
+    "address",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, frame_type),
-    &mvb_sniffer__frame_type__descriptor,
+    offsetof(MvbSniffer__Sample, address),
     NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "line",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, line),
-    &mvb_sniffer__line__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "redundant",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, redundant),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "error",
-    6,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Sample, error),
-    &mvb_sniffer__sample_error__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -896,21 +860,31 @@ static const ProtobufCFieldDescriptor mvb_sniffer__sample__field_descriptors[7] 
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "error",
+    11,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__Sample, error),
+    &mvb_sniffer__sample_error__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned mvb_sniffer__sample__field_indices_by_name[] = {
-  1,   /* field[1] = delta_time */
-  5,   /* field[5] = error */
-  2,   /* field[2] = frame_type */
-  3,   /* field[3] = line */
-  6,   /* field[6] = payload */
-  4,   /* field[4] = redundant */
+  2,   /* field[2] = address */
+  4,   /* field[4] = error */
+  1,   /* field[1] = f_code */
+  3,   /* field[3] = payload */
   0,   /* field[0] = timestamp */
 };
 static const ProtobufCIntRange mvb_sniffer__sample__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 10, 6 },
-  { 0, 7 }
+  { 10, 3 },
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor mvb_sniffer__sample__descriptor =
 {
@@ -920,7 +894,7 @@ const ProtobufCMessageDescriptor mvb_sniffer__sample__descriptor =
   "MvbSniffer__Sample",
   "mvbSniffer",
   sizeof(MvbSniffer__Sample),
-  7,
+  5,
   mvb_sniffer__sample__field_descriptors,
   mvb_sniffer__sample__field_indices_by_name,
   2,  mvb_sniffer__sample__number_ranges,
@@ -1023,18 +997,16 @@ const ProtobufCEnumDescriptor mvb_sniffer__line__descriptor =
   mvb_sniffer__line__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCEnumValue mvb_sniffer__sample_error__enum_values_by_number[3] =
+static const ProtobufCEnumValue mvb_sniffer__sample_error__enum_values_by_number[2] =
 {
   { "NONE", "MVB_SNIFFER__SAMPLE_ERROR__NONE", 0 },
   { "STREAMBUF_OVERRUN", "MVB_SNIFFER__SAMPLE_ERROR__STREAMBUF_OVERRUN", 1 },
-  { "DMA_ERROR", "MVB_SNIFFER__SAMPLE_ERROR__DMA_ERROR", 2 },
 };
 static const ProtobufCIntRange mvb_sniffer__sample_error__value_ranges[] = {
-{0, 0},{0, 3}
+{0, 0},{0, 2}
 };
-static const ProtobufCEnumValueIndex mvb_sniffer__sample_error__enum_values_by_name[3] =
+static const ProtobufCEnumValueIndex mvb_sniffer__sample_error__enum_values_by_name[2] =
 {
-  { "DMA_ERROR", 2 },
   { "NONE", 0 },
   { "STREAMBUF_OVERRUN", 1 },
 };
@@ -1045,9 +1017,9 @@ const ProtobufCEnumDescriptor mvb_sniffer__sample_error__descriptor =
   "SampleError",
   "MvbSniffer__SampleError",
   "mvbSniffer",
-  3,
+  2,
   mvb_sniffer__sample_error__enum_values_by_number,
-  3,
+  2,
   mvb_sniffer__sample_error__enum_values_by_name,
   1,
   mvb_sniffer__sample_error__value_ranges,
