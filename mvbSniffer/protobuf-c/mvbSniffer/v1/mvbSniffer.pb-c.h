@@ -26,34 +26,10 @@ typedef struct _MvbSniffer__FunctionControlSet MvbSniffer__FunctionControlSet;
 typedef struct _MvbSniffer__FunctionControlGetResponse MvbSniffer__FunctionControlGetResponse;
 typedef struct _MvbSniffer__FunctionControlSetResponse MvbSniffer__FunctionControlSetResponse;
 typedef struct _MvbSniffer__StreamControlStart MvbSniffer__StreamControlStart;
-typedef struct _MvbSniffer__Sample MvbSniffer__Sample;
-typedef struct _MvbSniffer__StreamData MvbSniffer__StreamData;
 
 
 /* --- enums --- */
 
-typedef enum _MvbSniffer__FrameType {
-  MVB_SNIFFER__FRAME_TYPE__UNKNOWN = 0,
-  MVB_SNIFFER__FRAME_TYPE__MASTER = 1,
-  MVB_SNIFFER__FRAME_TYPE__SLAVE = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__FRAME_TYPE)
-} MvbSniffer__FrameType;
-typedef enum _MvbSniffer__Line {
-  /*
-   * received on A
-   */
-  MVB_SNIFFER__LINE__A = 0,
-  /*
-   * received on B
-   */
-  MVB_SNIFFER__LINE__B = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__LINE)
-} MvbSniffer__Line;
-typedef enum _MvbSniffer__SampleError {
-  MVB_SNIFFER__SAMPLE_ERROR__NONE = 0,
-  MVB_SNIFFER__SAMPLE_ERROR__STREAMBUF_OVERRUN = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__SAMPLE_ERROR)
-} MvbSniffer__SampleError;
 
 /* --- messages --- */
 
@@ -200,49 +176,6 @@ struct  _MvbSniffer__StreamControlStart
 #define MVB_SNIFFER__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__stream_control_start__descriptor) \
      }
-
-
-/*
- * A sample represents a MVB process data,
- */
-struct  _MvbSniffer__Sample
-{
-  ProtobufCMessage base;
-  /*
-   * Timestamp when this frame has started.
-   * In microseconds since the start of the device.
-   * Not synchronized with the clients time.
-   */
-  uint64_t timestamp;
-  /*
-   * values from master
-   */
-  int32_t f_code;
-  int32_t address;
-  /*
-   * MVB slave data, checksums are removed
-   */
-  ProtobufCBinaryData payload;
-  MvbSniffer__SampleError error;
-};
-#define MVB_SNIFFER__SAMPLE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__sample__descriptor) \
-    , 0, 0, 0, {0,NULL}, MVB_SNIFFER__SAMPLE_ERROR__NONE }
-
-
-/*
- * StreamData to pass to Functionblock.StreamData.functionSpecificStreamData
- * hook
- */
-struct  _MvbSniffer__StreamData
-{
-  ProtobufCMessage base;
-  size_t n_samples;
-  MvbSniffer__Sample **samples;
-};
-#define MVB_SNIFFER__STREAM_DATA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__stream_data__descriptor) \
-    , 0,NULL }
 
 
 /* MvbSniffer__ConfigurationSet methods */
@@ -454,44 +387,6 @@ MvbSniffer__StreamControlStart *
 void   mvb_sniffer__stream_control_start__free_unpacked
                      (MvbSniffer__StreamControlStart *message,
                       ProtobufCAllocator *allocator);
-/* MvbSniffer__Sample methods */
-void   mvb_sniffer__sample__init
-                     (MvbSniffer__Sample         *message);
-size_t mvb_sniffer__sample__get_packed_size
-                     (const MvbSniffer__Sample   *message);
-size_t mvb_sniffer__sample__pack
-                     (const MvbSniffer__Sample   *message,
-                      uint8_t             *out);
-size_t mvb_sniffer__sample__pack_to_buffer
-                     (const MvbSniffer__Sample   *message,
-                      ProtobufCBuffer     *buffer);
-MvbSniffer__Sample *
-       mvb_sniffer__sample__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   mvb_sniffer__sample__free_unpacked
-                     (MvbSniffer__Sample *message,
-                      ProtobufCAllocator *allocator);
-/* MvbSniffer__StreamData methods */
-void   mvb_sniffer__stream_data__init
-                     (MvbSniffer__StreamData         *message);
-size_t mvb_sniffer__stream_data__get_packed_size
-                     (const MvbSniffer__StreamData   *message);
-size_t mvb_sniffer__stream_data__pack
-                     (const MvbSniffer__StreamData   *message,
-                      uint8_t             *out);
-size_t mvb_sniffer__stream_data__pack_to_buffer
-                     (const MvbSniffer__StreamData   *message,
-                      ProtobufCBuffer     *buffer);
-MvbSniffer__StreamData *
-       mvb_sniffer__stream_data__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   mvb_sniffer__stream_data__free_unpacked
-                     (MvbSniffer__StreamData *message,
-                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*MvbSniffer__ConfigurationSet_Closure)
@@ -527,21 +422,12 @@ typedef void (*MvbSniffer__FunctionControlSetResponse_Closure)
 typedef void (*MvbSniffer__StreamControlStart_Closure)
                  (const MvbSniffer__StreamControlStart *message,
                   void *closure_data);
-typedef void (*MvbSniffer__Sample_Closure)
-                 (const MvbSniffer__Sample *message,
-                  void *closure_data);
-typedef void (*MvbSniffer__StreamData_Closure)
-                 (const MvbSniffer__StreamData *message,
-                  void *closure_data);
 
 /* --- services --- */
 
 
 /* --- descriptors --- */
 
-extern const ProtobufCEnumDescriptor    mvb_sniffer__frame_type__descriptor;
-extern const ProtobufCEnumDescriptor    mvb_sniffer__line__descriptor;
-extern const ProtobufCEnumDescriptor    mvb_sniffer__sample_error__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__configuration_get__descriptor;
@@ -553,8 +439,6 @@ extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_set__descr
 extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__stream_control_start__descriptor;
-extern const ProtobufCMessageDescriptor mvb_sniffer__sample__descriptor;
-extern const ProtobufCMessageDescriptor mvb_sniffer__stream_data__descriptor;
 
 PROTOBUF_C__END_DECLS
 

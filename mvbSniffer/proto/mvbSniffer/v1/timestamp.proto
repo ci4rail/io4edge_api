@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package mvbSniffer;
+option go_package = "mvbSniffer/v1";
+
+message Timestamp {
+    uint64 seconds = 1;
+    uint64 microseconds = 2;
+}

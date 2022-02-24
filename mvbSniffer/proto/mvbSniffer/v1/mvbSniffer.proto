@@ -88,40 +88,4 @@ message StreamControlStart {
   // TODO: Filter
 }
 
-enum FrameType {
-  UNKNOWN = 0;
-  MASTER = 1;
-  SLAVE = 2;
-}
-
-enum Line {
-  A = 0; // received on A
-  B = 1; // received on B
-}
-
-enum SampleError {
-  NONE = 0;
-  STREAMBUF_OVERRUN = 1;
-}
-
-
-// A sample represents a MVB process data,
-message Sample {
-  // Timestamp when this frame has started.
-  // In microseconds since the start of the device.
-  // Not synchronized with the clients time.
-  fixed64 timestamp = 1;
-
-  // values from master
-  int32 f_code = 2;
-  int32 address = 3;
-
-  // MVB slave data, checksums are removed
-  bytes payload = 10;
-
-  SampleError error = 11;
-}
-
-// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData
-// hook
-message StreamData { repeated Sample samples = 1; }
+// For stream data, see telegram.proto
