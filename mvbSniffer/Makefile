@@ -9,7 +9,7 @@ proto-c-mvbSniffer:
 	docker run --rm --user "$(shell id -u):$(shell id -g)" \
 	-v $(shell pwd)/proto/mvbSniffer/v1:/proto \
 	-v $(shell pwd)/protobuf-c/:/out ixuan/protobuf-c \
-	sh -c "mkdir -p /out/mvbSniffer/v1/ && protoc --c_out=/out/mvbSniffer/v1 -I/proto/ /proto/mvbSniffer.proto /proto/telegram.proto /proto/timestamp.proto"
+	sh -c "mkdir -p /out/mvbSniffer/v1/ && protoc --c_out=/out/mvbSniffer/v1 -I/proto/ /proto/mvbSniffer.proto /proto/telegram.proto"
 
 proto-golang-mvbSniffer:
 	mkdir -p go/

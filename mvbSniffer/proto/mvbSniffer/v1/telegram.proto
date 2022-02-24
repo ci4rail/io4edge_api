@@ -1,18 +1,22 @@
+// Telegrams for t
 syntax = "proto3";
-
-import "timestamp.proto";
 
 package mvbSniffer;
 option go_package = "mvbSniffer/v1";
 
+// Telegram represents a single information from an MVB device
 message Telegram {
     enum State {
         kSuccessful = 0;
         kTimedOut = 1;
+        // ??? which fields are valid in this case
         kUnknown = 2;
+        // slave response without a corresponding master request. type/address is invalid
         kResponseForUnknownRequest = 3;
+        // ??? which fields are valid in this case
         kErroneous = 4;
     }
+
     enum Type {
         kProcessData16Bit = 0;
         kProcessData32Bit = 1;
@@ -32,19 +36,28 @@ message Telegram {
         kDeviceStatus = 15;
     }
 
-    Timestamp timestamp = 1;
-    State state = 2;
-    Type type = 3;
-    int32 address = 4;
-    bytes data = 5;
-    uint64 frame_nr = 6;
-}
-
-message TelegramCollection {
     enum Line {
         kA = 0;
         kB = 1;
     }
+
+    // timestamp respresenting the start of the slave response
+    // in microseconds since the start of the device
+    fixed64 timestamp = 1;
+    // State of that telegram
+    State state = 2;
+    // Type corresponds to the MVB f_code
+    Type type = 3;
+    // address as sent by the master
+    int32 address = 4;
+    // mvb data from the bus; CRCs removed
+    bytes data = 5;
+    // telegram number, increased with each telegram generated (global, not per stream)
+    uint64 frame_nr = 6;
+    // line used to receive the data of this telegram
+    Line line = 7;
+}
+
+message TelegramCollection {
     repeated Telegram entry = 1;
-    Line line = 2;
 }

@@ -187,16 +187,44 @@ const ProtobufCEnumDescriptor mvb_sniffer__telegram__type__descriptor =
   mvb_sniffer__telegram__type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[6] =
+static const ProtobufCEnumValue mvb_sniffer__telegram__line__enum_values_by_number[2] =
+{
+  { "kA", "MVB_SNIFFER__TELEGRAM__LINE__kA", 0 },
+  { "kB", "MVB_SNIFFER__TELEGRAM__LINE__kB", 1 },
+};
+static const ProtobufCIntRange mvb_sniffer__telegram__line__value_ranges[] = {
+{0, 0},{0, 2}
+};
+static const ProtobufCEnumValueIndex mvb_sniffer__telegram__line__enum_values_by_name[2] =
+{
+  { "kA", 0 },
+  { "kB", 1 },
+};
+const ProtobufCEnumDescriptor mvb_sniffer__telegram__line__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "mvbSniffer.Telegram.Line",
+  "Line",
+  "MvbSniffer__Telegram__Line",
+  "mvbSniffer",
+  2,
+  mvb_sniffer__telegram__line__enum_values_by_number,
+  2,
+  mvb_sniffer__telegram__line__enum_values_by_name,
+  1,
+  mvb_sniffer__telegram__line__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[7] =
 {
   {
     "timestamp",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_TYPE_FIXED64,
     0,   /* quantifier_offset */
     offsetof(MvbSniffer__Telegram, timestamp),
-    &mvb_sniffer__timestamp__descriptor,
+    NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -261,11 +289,24 @@ static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[6
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "line",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__Telegram, line),
+    &mvb_sniffer__telegram__line__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned mvb_sniffer__telegram__field_indices_by_name[] = {
   3,   /* field[3] = address */
   4,   /* field[4] = data */
   5,   /* field[5] = frame_nr */
+  6,   /* field[6] = line */
   1,   /* field[1] = state */
   0,   /* field[0] = timestamp */
   2,   /* field[2] = type */
@@ -273,7 +314,7 @@ static const unsigned mvb_sniffer__telegram__field_indices_by_name[] = {
 static const ProtobufCIntRange mvb_sniffer__telegram__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 6 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor mvb_sniffer__telegram__descriptor =
 {
@@ -283,42 +324,14 @@ const ProtobufCMessageDescriptor mvb_sniffer__telegram__descriptor =
   "MvbSniffer__Telegram",
   "mvbSniffer",
   sizeof(MvbSniffer__Telegram),
-  6,
+  7,
   mvb_sniffer__telegram__field_descriptors,
   mvb_sniffer__telegram__field_indices_by_name,
   1,  mvb_sniffer__telegram__number_ranges,
   (ProtobufCMessageInit) mvb_sniffer__telegram__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue mvb_sniffer__telegram_collection__line__enum_values_by_number[2] =
-{
-  { "kA", "MVB_SNIFFER__TELEGRAM_COLLECTION__LINE__kA", 0 },
-  { "kB", "MVB_SNIFFER__TELEGRAM_COLLECTION__LINE__kB", 1 },
-};
-static const ProtobufCIntRange mvb_sniffer__telegram_collection__line__value_ranges[] = {
-{0, 0},{0, 2}
-};
-static const ProtobufCEnumValueIndex mvb_sniffer__telegram_collection__line__enum_values_by_name[2] =
-{
-  { "kA", 0 },
-  { "kB", 1 },
-};
-const ProtobufCEnumDescriptor mvb_sniffer__telegram_collection__line__descriptor =
-{
-  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "mvbSniffer.TelegramCollection.Line",
-  "Line",
-  "MvbSniffer__TelegramCollection__Line",
-  "mvbSniffer",
-  2,
-  mvb_sniffer__telegram_collection__line__enum_values_by_number,
-  2,
-  mvb_sniffer__telegram_collection__line__enum_values_by_name,
-  1,
-  mvb_sniffer__telegram_collection__line__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
-};
-static const ProtobufCFieldDescriptor mvb_sniffer__telegram_collection__field_descriptors[2] =
+static const ProtobufCFieldDescriptor mvb_sniffer__telegram_collection__field_descriptors[1] =
 {
   {
     "entry",
@@ -332,27 +345,14 @@ static const ProtobufCFieldDescriptor mvb_sniffer__telegram_collection__field_de
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "line",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(MvbSniffer__TelegramCollection, line),
-    &mvb_sniffer__telegram_collection__line__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned mvb_sniffer__telegram_collection__field_indices_by_name[] = {
   0,   /* field[0] = entry */
-  1,   /* field[1] = line */
 };
 static const ProtobufCIntRange mvb_sniffer__telegram_collection__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 1 }
 };
 const ProtobufCMessageDescriptor mvb_sniffer__telegram_collection__descriptor =
 {
@@ -362,7 +362,7 @@ const ProtobufCMessageDescriptor mvb_sniffer__telegram_collection__descriptor =
   "MvbSniffer__TelegramCollection",
   "mvbSniffer",
   sizeof(MvbSniffer__TelegramCollection),
-  2,
+  1,
   mvb_sniffer__telegram_collection__field_descriptors,
   mvb_sniffer__telegram_collection__field_indices_by_name,
   1,  mvb_sniffer__telegram_collection__number_ranges,
