@@ -82,10 +82,21 @@ message FunctionControlSetResponse {
 }
 
 // ============= StreamControl ==================
+
+message FilterMask {
+  // MVB f_code to compare
+  uint32 f_code = 1;
+  // Address to compare
+  uint32 address = 2;
+  // mask for comparison. Only bits set to one are compared against address
+  uint32 mask = 3;
+}
+
+
 // StreamControlStart to pass to
 // Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-  // TODO: Filter
+  repeated FilterMask filter = 1;
 }
 
 // For stream data, see telegram.proto
