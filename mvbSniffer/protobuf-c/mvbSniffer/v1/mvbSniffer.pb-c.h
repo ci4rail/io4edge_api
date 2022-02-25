@@ -25,6 +25,7 @@ typedef struct _MvbSniffer__FunctionControlGet MvbSniffer__FunctionControlGet;
 typedef struct _MvbSniffer__FunctionControlSet MvbSniffer__FunctionControlSet;
 typedef struct _MvbSniffer__FunctionControlGetResponse MvbSniffer__FunctionControlGetResponse;
 typedef struct _MvbSniffer__FunctionControlSetResponse MvbSniffer__FunctionControlSetResponse;
+typedef struct _MvbSniffer__FilterMask MvbSniffer__FilterMask;
 typedef struct _MvbSniffer__StreamControlStart MvbSniffer__StreamControlStart;
 
 
@@ -164,18 +165,40 @@ struct  _MvbSniffer__FunctionControlSetResponse
      }
 
 
+struct  _MvbSniffer__FilterMask
+{
+  ProtobufCMessage base;
+  /*
+   * MVB f_codes filter mask. Each bit corresponds to a specific f_code, bit 0=fcode-0, bit 1=fcode-1 etc
+   */
+  uint32_t f_code_mask;
+  /*
+   * Address to compare
+   */
+  uint32_t address;
+  /*
+   * mask for comparison. Only bits set to one are compared against address
+   */
+  uint32_t mask;
+};
+#define MVB_SNIFFER__FILTER_MASK__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__filter_mask__descriptor) \
+    , 0, 0, 0 }
+
+
 /*
- * ============= StreamControl ==================
  * StreamControlStart to pass to
  * Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
  */
 struct  _MvbSniffer__StreamControlStart
 {
   ProtobufCMessage base;
+  size_t n_filter;
+  MvbSniffer__FilterMask **filter;
 };
 #define MVB_SNIFFER__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__stream_control_start__descriptor) \
-     }
+    , 0,NULL }
 
 
 /* MvbSniffer__ConfigurationSet methods */
@@ -368,6 +391,25 @@ MvbSniffer__FunctionControlSetResponse *
 void   mvb_sniffer__function_control_set_response__free_unpacked
                      (MvbSniffer__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
+/* MvbSniffer__FilterMask methods */
+void   mvb_sniffer__filter_mask__init
+                     (MvbSniffer__FilterMask         *message);
+size_t mvb_sniffer__filter_mask__get_packed_size
+                     (const MvbSniffer__FilterMask   *message);
+size_t mvb_sniffer__filter_mask__pack
+                     (const MvbSniffer__FilterMask   *message,
+                      uint8_t             *out);
+size_t mvb_sniffer__filter_mask__pack_to_buffer
+                     (const MvbSniffer__FilterMask   *message,
+                      ProtobufCBuffer     *buffer);
+MvbSniffer__FilterMask *
+       mvb_sniffer__filter_mask__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   mvb_sniffer__filter_mask__free_unpacked
+                     (MvbSniffer__FilterMask *message,
+                      ProtobufCAllocator *allocator);
 /* MvbSniffer__StreamControlStart methods */
 void   mvb_sniffer__stream_control_start__init
                      (MvbSniffer__StreamControlStart         *message);
@@ -419,6 +461,9 @@ typedef void (*MvbSniffer__FunctionControlGetResponse_Closure)
 typedef void (*MvbSniffer__FunctionControlSetResponse_Closure)
                  (const MvbSniffer__FunctionControlSetResponse *message,
                   void *closure_data);
+typedef void (*MvbSniffer__FilterMask_Closure)
+                 (const MvbSniffer__FilterMask *message,
+                  void *closure_data);
 typedef void (*MvbSniffer__StreamControlStart_Closure)
                  (const MvbSniffer__StreamControlStart *message,
                   void *closure_data);
@@ -438,6 +483,7 @@ extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_get__descr
 extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__function_control_set_response__descriptor;
+extern const ProtobufCMessageDescriptor mvb_sniffer__filter_mask__descriptor;
 extern const ProtobufCMessageDescriptor mvb_sniffer__stream_control_start__descriptor;
 
 PROTOBUF_C__END_DECLS

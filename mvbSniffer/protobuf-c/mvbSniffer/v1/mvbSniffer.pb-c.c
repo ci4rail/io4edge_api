@@ -457,6 +457,51 @@ void   mvb_sniffer__function_control_set_response__free_unpacked
   assert(message->base.descriptor == &mvb_sniffer__function_control_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   mvb_sniffer__filter_mask__init
+                     (MvbSniffer__FilterMask         *message)
+{
+  static const MvbSniffer__FilterMask init_value = MVB_SNIFFER__FILTER_MASK__INIT;
+  *message = init_value;
+}
+size_t mvb_sniffer__filter_mask__get_packed_size
+                     (const MvbSniffer__FilterMask *message)
+{
+  assert(message->base.descriptor == &mvb_sniffer__filter_mask__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t mvb_sniffer__filter_mask__pack
+                     (const MvbSniffer__FilterMask *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &mvb_sniffer__filter_mask__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t mvb_sniffer__filter_mask__pack_to_buffer
+                     (const MvbSniffer__FilterMask *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &mvb_sniffer__filter_mask__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+MvbSniffer__FilterMask *
+       mvb_sniffer__filter_mask__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (MvbSniffer__FilterMask *)
+     protobuf_c_message_unpack (&mvb_sniffer__filter_mask__descriptor,
+                                allocator, len, data);
+}
+void   mvb_sniffer__filter_mask__free_unpacked
+                     (MvbSniffer__FilterMask *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &mvb_sniffer__filter_mask__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   mvb_sniffer__stream_control_start__init
                      (MvbSniffer__StreamControlStart         *message)
 {
@@ -702,9 +747,93 @@ const ProtobufCMessageDescriptor mvb_sniffer__function_control_set_response__des
   (ProtobufCMessageInit) mvb_sniffer__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define mvb_sniffer__stream_control_start__field_descriptors NULL
-#define mvb_sniffer__stream_control_start__field_indices_by_name NULL
-#define mvb_sniffer__stream_control_start__number_ranges NULL
+static const ProtobufCFieldDescriptor mvb_sniffer__filter_mask__field_descriptors[3] =
+{
+  {
+    "f_code_mask",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__FilterMask, f_code_mask),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "address",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__FilterMask, address),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "mask",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__FilterMask, mask),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned mvb_sniffer__filter_mask__field_indices_by_name[] = {
+  1,   /* field[1] = address */
+  0,   /* field[0] = f_code_mask */
+  2,   /* field[2] = mask */
+};
+static const ProtobufCIntRange mvb_sniffer__filter_mask__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 3 }
+};
+const ProtobufCMessageDescriptor mvb_sniffer__filter_mask__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "mvbSniffer.FilterMask",
+  "FilterMask",
+  "MvbSniffer__FilterMask",
+  "mvbSniffer",
+  sizeof(MvbSniffer__FilterMask),
+  3,
+  mvb_sniffer__filter_mask__field_descriptors,
+  mvb_sniffer__filter_mask__field_indices_by_name,
+  1,  mvb_sniffer__filter_mask__number_ranges,
+  (ProtobufCMessageInit) mvb_sniffer__filter_mask__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor mvb_sniffer__stream_control_start__field_descriptors[1] =
+{
+  {
+    "filter",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(MvbSniffer__StreamControlStart, n_filter),
+    offsetof(MvbSniffer__StreamControlStart, filter),
+    &mvb_sniffer__filter_mask__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned mvb_sniffer__stream_control_start__field_indices_by_name[] = {
+  0,   /* field[0] = filter */
+};
+static const ProtobufCIntRange mvb_sniffer__stream_control_start__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor mvb_sniffer__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -713,10 +842,10 @@ const ProtobufCMessageDescriptor mvb_sniffer__stream_control_start__descriptor =
   "MvbSniffer__StreamControlStart",
   "mvbSniffer",
   sizeof(MvbSniffer__StreamControlStart),
-  0,
+  1,
   mvb_sniffer__stream_control_start__field_descriptors,
   mvb_sniffer__stream_control_start__field_indices_by_name,
-  0,  mvb_sniffer__stream_control_start__number_ranges,
+  1,  mvb_sniffer__stream_control_start__number_ranges,
   (ProtobufCMessageInit) mvb_sniffer__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

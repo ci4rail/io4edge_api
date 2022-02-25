@@ -443,19 +443,86 @@ func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
 	return file_mvbSniffer_v1_mvbSniffer_proto_rawDescGZIP(), []int{9}
 }
 
-// ============= StreamControl ==================
+type FilterMask struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// MVB f_codes filter mask. Each bit corresponds to a specific f_code, bit 0=fcode-0, bit 1=fcode-1 etc
+	FCodeMask uint32 `protobuf:"varint,1,opt,name=f_code_mask,json=fCodeMask,proto3" json:"f_code_mask,omitempty"`
+	// Address to compare
+	Address uint32 `protobuf:"varint,2,opt,name=address,proto3" json:"address,omitempty"`
+	// mask for comparison. Only bits set to one are compared against address
+	Mask uint32 `protobuf:"varint,3,opt,name=mask,proto3" json:"mask,omitempty"`
+}
+
+func (x *FilterMask) Reset() {
+	*x = FilterMask{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FilterMask) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterMask) ProtoMessage() {}
+
+func (x *FilterMask) ProtoReflect() protoreflect.Message {
+	mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilterMask.ProtoReflect.Descriptor instead.
+func (*FilterMask) Descriptor() ([]byte, []int) {
+	return file_mvbSniffer_v1_mvbSniffer_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FilterMask) GetFCodeMask() uint32 {
+	if x != nil {
+		return x.FCodeMask
+	}
+	return 0
+}
+
+func (x *FilterMask) GetAddress() uint32 {
+	if x != nil {
+		return x.Address
+	}
+	return 0
+}
+
+func (x *FilterMask) GetMask() uint32 {
+	if x != nil {
+		return x.Mask
+	}
+	return 0
+}
+
 // StreamControlStart to pass to
 // Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 type StreamControlStart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Filter []*FilterMask `protobuf:"bytes,1,rep,name=filter,proto3" json:"filter,omitempty"`
 }
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[10]
+		mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -468,7 +535,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[10]
+	mi := &file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +548,14 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_mvbSniffer_v1_mvbSniffer_proto_rawDescGZIP(), []int{10}
+	return file_mvbSniffer_v1_mvbSniffer_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *StreamControlStart) GetFilter() []*FilterMask {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
 }
 
 var File_mvbSniffer_v1_mvbSniffer_proto protoreflect.FileDescriptor
@@ -508,10 +582,19 @@ var file_mvbSniffer_v1_mvbSniffer_proto_rawDesc = []byte{
 	0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72,
 	0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1c, 0x0a,
 	0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
-	0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72,
-	0x74, 0x42, 0x0f, 0x5a, 0x0d, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2f,
-	0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x5a, 0x0a, 0x0a, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x1e, 0x0a, 0x0b, 0x66, 0x5f, 0x63,
+	0x6f, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x09,
+	0x66, 0x43, 0x6f, 0x64, 0x65, 0x4d, 0x61, 0x73, 0x6b, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64,
+	0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x04, 0x6d, 0x61, 0x73, 0x6b, 0x22, 0x44, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72, 0x74, 0x12, 0x2e, 0x0a,
+	0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e,
+	0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x4d, 0x61, 0x73, 0x6b, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x42, 0x0f, 0x5a,
+	0x0d, 0x6d, 0x76, 0x62, 0x53, 0x6e, 0x69, 0x66, 0x66, 0x65, 0x72, 0x2f, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -526,7 +609,7 @@ func file_mvbSniffer_v1_mvbSniffer_proto_rawDescGZIP() []byte {
 	return file_mvbSniffer_v1_mvbSniffer_proto_rawDescData
 }
 
-var file_mvbSniffer_v1_mvbSniffer_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_mvbSniffer_v1_mvbSniffer_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_mvbSniffer_v1_mvbSniffer_proto_goTypes = []interface{}{
 	(*ConfigurationSet)(nil),              // 0: mvbSniffer.ConfigurationSet
 	(*ConfigurationSetResponse)(nil),      // 1: mvbSniffer.ConfigurationSetResponse
@@ -538,14 +621,16 @@ var file_mvbSniffer_v1_mvbSniffer_proto_goTypes = []interface{}{
 	(*FunctionControlSet)(nil),            // 7: mvbSniffer.FunctionControlSet
 	(*FunctionControlGetResponse)(nil),    // 8: mvbSniffer.FunctionControlGetResponse
 	(*FunctionControlSetResponse)(nil),    // 9: mvbSniffer.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 10: mvbSniffer.StreamControlStart
+	(*FilterMask)(nil),                    // 10: mvbSniffer.FilterMask
+	(*StreamControlStart)(nil),            // 11: mvbSniffer.StreamControlStart
 }
 var file_mvbSniffer_v1_mvbSniffer_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	10, // 0: mvbSniffer.StreamControlStart.filter:type_name -> mvbSniffer.FilterMask
+	1,  // [1:1] is the sub-list for method output_type
+	1,  // [1:1] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_mvbSniffer_v1_mvbSniffer_proto_init() }
@@ -675,6 +760,18 @@ func file_mvbSniffer_v1_mvbSniffer_proto_init() {
 			}
 		}
 		file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FilterMask); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_mvbSniffer_v1_mvbSniffer_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamControlStart); i {
 			case 0:
 				return &v.state
@@ -693,7 +790,7 @@ func file_mvbSniffer_v1_mvbSniffer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_mvbSniffer_v1_mvbSniffer_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -84,8 +84,8 @@ message FunctionControlSetResponse {
 // ============= StreamControl ==================
 
 message FilterMask {
-  // MVB f_code to compare
-  uint32 f_code = 1;
+  // MVB f_codes filter mask. Each bit corresponds to a specific f_code, bit 0=fcode-0, bit 1=fcode-1 etc
+  uint32 f_code_mask = 1;
   // Address to compare
   uint32 address = 2;
   // mask for comparison. Only bits set to one are compared against address
