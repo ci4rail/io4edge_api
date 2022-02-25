@@ -6,15 +6,26 @@ option go_package = "mvbSniffer/v1";
 
 // Telegram represents a single information from an MVB device
 message Telegram {
+    // Multiple State bits may be set at the same time in state.
     enum State {
+        // No errors
         kSuccessful = 0;
+        // No slave frame has been received to a master frame
+        // Only the master information is valid (timestamp, type, address), data is empty
         kTimedOut = 1;
-        // ??? which fields are valid in this case
-        kUnknown = 2;
-        // slave response without a corresponding master request. type/address is invalid
-        kResponseForUnknownRequest = 3;
-        // ??? which fields are valid in this case
-        kErroneous = 4;
+
+        // one or more MVB frames are lost in the device since the last telegram.
+        // however, this telegram is valid.
+        kMissedMVBFrames = 2;
+
+        // some or more telegrams could not be delivered to the stream.
+        // however, this telegram is valid.
+        kStreamBufferOverrun = 4;
+
+        // The following are no more implemented:
+        // kUnknown - not used
+        // kResponseForUnknownRequest - makes no sense, because we don't know in this case from which address the information comes from
+        // kErroneous - replaced by more detailed state bits
     }
 
     enum Type {
@@ -53,7 +64,7 @@ message Telegram {
     // mvb data from the bus; CRCs removed
     bytes data = 5;
     // telegram number, increased with each telegram generated (global, not per stream)
-    uint64 frame_nr = 6;
+    uint64 telegram_nr = 6;
     // line used to receive the data of this telegram
     Line line = 7;
 }
