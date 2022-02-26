@@ -18,6 +18,10 @@ message Telegram {
         // one or more MVB frames are lost in the device since the last telegram.
         // however, this telegram is valid.
         kMissedMVBFrames = 2;
+
+        // one or more telegrams are lost
+        // however, this telegram is valid.
+        kMissedTelegrams = 4;
     }
 
     enum Type {
@@ -61,8 +65,6 @@ message Telegram {
     bytes data = 5;
 
     // telegram number, increased with each telegram generated (global, not per stream)
-    // can be used to detect if telegrams are lost. This can happen when the client
-    // is too slow in case of an internal overload of the device
     uint64 telegram_nr = 6;
 
     // line used to receive the data of this telegram
