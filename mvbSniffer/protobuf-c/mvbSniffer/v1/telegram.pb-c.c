@@ -97,24 +97,20 @@ void   mvb_sniffer__telegram_collection__free_unpacked
   assert(message->base.descriptor == &mvb_sniffer__telegram_collection__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCEnumValue mvb_sniffer__telegram__state__enum_values_by_number[5] =
+static const ProtobufCEnumValue mvb_sniffer__telegram__state__enum_values_by_number[3] =
 {
   { "kSuccessful", "MVB_SNIFFER__TELEGRAM__STATE__kSuccessful", 0 },
   { "kTimedOut", "MVB_SNIFFER__TELEGRAM__STATE__kTimedOut", 1 },
-  { "kUnknown", "MVB_SNIFFER__TELEGRAM__STATE__kUnknown", 2 },
-  { "kResponseForUnknownRequest", "MVB_SNIFFER__TELEGRAM__STATE__kResponseForUnknownRequest", 3 },
-  { "kErroneous", "MVB_SNIFFER__TELEGRAM__STATE__kErroneous", 4 },
+  { "kMissedMVBFrames", "MVB_SNIFFER__TELEGRAM__STATE__kMissedMVBFrames", 2 },
 };
 static const ProtobufCIntRange mvb_sniffer__telegram__state__value_ranges[] = {
-{0, 0},{0, 5}
+{0, 0},{0, 3}
 };
-static const ProtobufCEnumValueIndex mvb_sniffer__telegram__state__enum_values_by_name[5] =
+static const ProtobufCEnumValueIndex mvb_sniffer__telegram__state__enum_values_by_name[3] =
 {
-  { "kErroneous", 4 },
-  { "kResponseForUnknownRequest", 3 },
+  { "kMissedMVBFrames", 2 },
   { "kSuccessful", 0 },
   { "kTimedOut", 1 },
-  { "kUnknown", 2 },
 };
 const ProtobufCEnumDescriptor mvb_sniffer__telegram__state__descriptor =
 {
@@ -123,9 +119,9 @@ const ProtobufCEnumDescriptor mvb_sniffer__telegram__state__descriptor =
   "State",
   "MvbSniffer__Telegram__State",
   "mvbSniffer",
-  5,
+  3,
   mvb_sniffer__telegram__state__enum_values_by_number,
-  5,
+  3,
   mvb_sniffer__telegram__state__enum_values_by_name,
   1,
   mvb_sniffer__telegram__state__value_ranges,
@@ -233,10 +229,10 @@ static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[7
     "state",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(MvbSniffer__Telegram, state),
-    &mvb_sniffer__telegram__state__descriptor,
+    NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -278,12 +274,12 @@ static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[7
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "frame_nr",
+    "telegram_nr",
     6,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_UINT64,
     0,   /* quantifier_offset */
-    offsetof(MvbSniffer__Telegram, frame_nr),
+    offsetof(MvbSniffer__Telegram, telegram_nr),
     NULL,
     NULL,
     0,             /* flags */
@@ -305,9 +301,9 @@ static const ProtobufCFieldDescriptor mvb_sniffer__telegram__field_descriptors[7
 static const unsigned mvb_sniffer__telegram__field_indices_by_name[] = {
   3,   /* field[3] = address */
   4,   /* field[4] = data */
-  5,   /* field[5] = frame_nr */
   6,   /* field[6] = line */
   1,   /* field[1] = state */
+  5,   /* field[5] = telegram_nr */
   0,   /* field[0] = timestamp */
   2,   /* field[2] = type */
 };

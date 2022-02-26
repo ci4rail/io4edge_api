@@ -21,21 +21,24 @@ typedef struct _MvbSniffer__TelegramCollection MvbSniffer__TelegramCollection;
 
 /* --- enums --- */
 
+/*
+ * Values for "state" field. Multiple bits may be set at the same time.
+ */
 typedef enum _MvbSniffer__Telegram__State {
+  /*
+   * No errors
+   */
   MVB_SNIFFER__TELEGRAM__STATE__kSuccessful = 0,
+  /*
+   * No slave frame has been received to a master frame
+   * Only the master information is valid (timestamp, type, address), data is empty
+   */
   MVB_SNIFFER__TELEGRAM__STATE__kTimedOut = 1,
   /*
-   * ??? which fields are valid in this case
+   * one or more MVB frames are lost in the device since the last telegram.
+   * however, this telegram is valid.
    */
-  MVB_SNIFFER__TELEGRAM__STATE__kUnknown = 2,
-  /*
-   * slave response without a corresponding master request. type/address is invalid
-   */
-  MVB_SNIFFER__TELEGRAM__STATE__kResponseForUnknownRequest = 3,
-  /*
-   * ??? which fields are valid in this case
-   */
-  MVB_SNIFFER__TELEGRAM__STATE__kErroneous = 4
+  MVB_SNIFFER__TELEGRAM__STATE__kMissedMVBFrames = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__TELEGRAM__STATE)
 } MvbSniffer__Telegram__State;
 typedef enum _MvbSniffer__Telegram__Type {
@@ -77,9 +80,9 @@ struct  _MvbSniffer__Telegram
    */
   uint64_t timestamp;
   /*
-   * State of that telegram
+   * State of that telegram. Contains ORed values from State enum
    */
-  MvbSniffer__Telegram__State state;
+  uint32_t state;
   /*
    * Type corresponds to the MVB f_code
    */
@@ -94,8 +97,10 @@ struct  _MvbSniffer__Telegram
   ProtobufCBinaryData data;
   /*
    * telegram number, increased with each telegram generated (global, not per stream)
+   * can be used to detect if telegrams are lost. This can happen when the client
+   * is too slow in case of an internal overload of the device
    */
-  uint64_t frame_nr;
+  uint64_t telegram_nr;
   /*
    * line used to receive the data of this telegram
    */
@@ -103,7 +108,7 @@ struct  _MvbSniffer__Telegram
 };
 #define MVB_SNIFFER__TELEGRAM__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__telegram__descriptor) \
-    , 0, MVB_SNIFFER__TELEGRAM__STATE__kSuccessful, MVB_SNIFFER__TELEGRAM__TYPE__kProcessData16Bit, 0, {0,NULL}, 0, MVB_SNIFFER__TELEGRAM__LINE__kA }
+    , 0, 0, MVB_SNIFFER__TELEGRAM__TYPE__kProcessData16Bit, 0, {0,NULL}, 0, MVB_SNIFFER__TELEGRAM__LINE__kA }
 
 
 struct  _MvbSniffer__TelegramCollection
