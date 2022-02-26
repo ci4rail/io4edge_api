@@ -38,7 +38,12 @@ typedef enum _MvbSniffer__Telegram__State {
    * one or more MVB frames are lost in the device since the last telegram.
    * however, this telegram is valid.
    */
-  MVB_SNIFFER__TELEGRAM__STATE__kMissedMVBFrames = 2
+  MVB_SNIFFER__TELEGRAM__STATE__kMissedMVBFrames = 2,
+  /*
+   * one or more telegrams are lost
+   * however, this telegram is valid.
+   */
+  MVB_SNIFFER__TELEGRAM__STATE__kMissedTelegrams = 4
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_SNIFFER__TELEGRAM__STATE)
 } MvbSniffer__Telegram__State;
 typedef enum _MvbSniffer__Telegram__Type {
@@ -97,8 +102,6 @@ struct  _MvbSniffer__Telegram
   ProtobufCBinaryData data;
   /*
    * telegram number, increased with each telegram generated (global, not per stream)
-   * can be used to detect if telegrams are lost. This can happen when the client
-   * is too slow in case of an internal overload of the device
    */
   uint64_t telegram_nr;
   /*
