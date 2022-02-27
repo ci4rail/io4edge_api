@@ -31,7 +31,7 @@ typedef enum _MvbSniffer__Telegram__State {
   MVB_SNIFFER__TELEGRAM__STATE__kSuccessful = 0,
   /*
    * No slave frame has been received to a master frame
-   * Only the master information is valid (timestamp, type, address), data is empty
+   * Only the master information is valid (timestamp, type, address, line), data is empty
    */
   MVB_SNIFFER__TELEGRAM__STATE__kTimedOut = 1,
   /*

@@ -29,7 +29,7 @@ const (
 	// No errors
 	Telegram_kSuccessful Telegram_State = 0
 	// No slave frame has been received to a master frame
-	// Only the master information is valid (timestamp, type, address), data is empty
+	// Only the master information is valid (timestamp, type, address, line), data is empty
 	Telegram_kTimedOut Telegram_State = 1
 	// one or more MVB frames are lost in the device since the last telegram.
 	// however, this telegram is valid.
