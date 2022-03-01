@@ -180,10 +180,14 @@ struct  _MvbSniffer__FilterMask
    * mask for comparison. Only bits set to one are compared against address
    */
   uint32_t mask;
+  /*
+   * whether to include frames without slave response
+   */
+  protobuf_c_boolean include_timedout_frames;
 };
 #define MVB_SNIFFER__FILTER_MASK__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_sniffer__filter_mask__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*

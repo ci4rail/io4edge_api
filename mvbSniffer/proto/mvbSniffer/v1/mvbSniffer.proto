@@ -90,6 +90,8 @@ message FilterMask {
   uint32 address = 2;
   // mask for comparison. Only bits set to one are compared against address
   uint32 mask = 3;
+  // whether to include frames without slave response
+  bool include_timedout_frames = 4;
 }
 
 

@@ -747,7 +747,7 @@ const ProtobufCMessageDescriptor mvb_sniffer__function_control_set_response__des
   (ProtobufCMessageInit) mvb_sniffer__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor mvb_sniffer__filter_mask__field_descriptors[3] =
+static const ProtobufCFieldDescriptor mvb_sniffer__filter_mask__field_descriptors[4] =
 {
   {
     "f_code_mask",
@@ -785,16 +785,29 @@ static const ProtobufCFieldDescriptor mvb_sniffer__filter_mask__field_descriptor
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "include_timedout_frames",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(MvbSniffer__FilterMask, include_timedout_frames),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned mvb_sniffer__filter_mask__field_indices_by_name[] = {
   1,   /* field[1] = address */
   0,   /* field[0] = f_code_mask */
+  3,   /* field[3] = include_timedout_frames */
   2,   /* field[2] = mask */
 };
 static const ProtobufCIntRange mvb_sniffer__filter_mask__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor mvb_sniffer__filter_mask__descriptor =
 {
@@ -804,7 +817,7 @@ const ProtobufCMessageDescriptor mvb_sniffer__filter_mask__descriptor =
   "MvbSniffer__FilterMask",
   "mvbSniffer",
   sizeof(MvbSniffer__FilterMask),
-  3,
+  4,
   mvb_sniffer__filter_mask__field_descriptors,
   mvb_sniffer__filter_mask__field_indices_by_name,
   1,  mvb_sniffer__filter_mask__number_ranges,
