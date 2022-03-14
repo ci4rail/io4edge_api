@@ -1,0 +1,104 @@
+/*
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package mvbSniffer;
+option go_package = "mvbSniffer/v1";
+
+// ============= Configuration =================
+
+// ConfigurationSet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+  // not implemented
+}
+
+// ConfigurationSetResponse to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+  // no parameters
+}
+
+// ConfigurationGet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+  // no parameters
+}
+
+// ConfigurationGetResponse to pass to
+// Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse
+// hook Returns the current hardware configuration
+message ConfigurationGetResponse {
+  // not implemented
+}
+
+// ConfigurationDescribe to pass to
+// Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+  // no parameters
+}
+
+message ConfigurationDescribeResponse {
+  // Not implemented
+}
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+  // no parameters
+}
+
+// FunctionControlSet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+  string generator_pattern = 1; // pattern to send to the stimulus generator within the MVB sniffer for self-test
+}
+
+// FunctionControlGetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+  // Not implemented
+}
+
+// FunctionControlSetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+  // Not implemented
+}
+
+// ============= StreamControl ==================
+
+message FilterMask {
+  // MVB f_codes filter mask. Each bit corresponds to a specific f_code, bit 0=fcode-0, bit 1=fcode-1 etc
+  uint32 f_code_mask = 1;
+  // Address to compare
+  uint32 address = 2;
+  // mask for comparison. Only bits set to one are compared against address
+  uint32 mask = 3;
+  // whether to include frames without slave response
+  bool include_timedout_frames = 4;
+}
+
+
+// StreamControlStart to pass to
+// Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+  repeated FilterMask filter = 1;
+}
+
+// For stream data, see telegram.proto

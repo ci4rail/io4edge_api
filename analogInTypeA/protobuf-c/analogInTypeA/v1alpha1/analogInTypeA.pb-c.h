@@ -184,7 +184,7 @@ struct  _AnalogInTypeA__Sample
    */
   uint64_t timestamp;
   /*
-   * Specifies the analog input channel voltage
+   * Specifies the analog input channel value
    */
   float value;
 };

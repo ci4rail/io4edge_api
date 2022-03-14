@@ -1,0 +1,76 @@
+// Telegrams for t
+syntax = "proto3";
+
+package mvbSniffer;
+option go_package = "mvbSniffer/v1";
+
+// Telegram represents a single information from an MVB device
+message Telegram {
+    // Values for "state" field. Multiple bits may be set at the same time.
+    enum State {
+        // No errors
+        kSuccessful = 0;
+
+        // No slave frame has been received to a master frame
+        // Only the master information is valid (timestamp, type, address, line), data is empty
+        kTimedOut = 1;
+
+        // one or more MVB frames are lost in the device since the last telegram.
+        // however, this telegram is valid.
+        kMissedMVBFrames = 2;
+
+        // one or more telegrams are lost
+        // however, this telegram is valid.
+        kMissedTelegrams = 4;
+    }
+
+    enum Type {
+        kProcessData16Bit = 0;
+        kProcessData32Bit = 1;
+        kProcessData64Bit = 2;
+        kProcessData128Bit= 3;
+        kProcessData256Bit = 4;
+        kReserved_1 = 5;
+        kReserved_2 = 6;
+        kReserved_3 = 7;
+        kMastershipTransfer = 8;
+        kGeneralEvent = 9;
+        kReserved_4 = 10;
+        kReserved_5 = 11;
+        kMessageData = 12;
+        kGroupEvent = 13;
+        kSingleEvent = 14;
+        kDeviceStatus = 15;
+    }
+
+    enum Line {
+        kA = 0;
+        kB = 1;
+    }
+
+    // timestamp respresenting the start of the slave response
+    // in microseconds since the start of the device
+    fixed64 timestamp = 1;
+
+    // State of that telegram. Contains ORed values from State enum
+    uint32 state = 2;
+
+    // Type corresponds to the MVB f_code
+    Type type = 3;
+
+    // address as sent by the master
+    int32 address = 4;
+
+    // mvb data from the bus; CRCs removed
+    bytes data = 5;
+
+    // telegram number, increased with each telegram generated (global, not per stream)
+    uint64 telegram_nr = 6;
+
+    // line used to receive the data of this telegram
+    Line line = 7;
+}
+
+message TelegramCollection {
+    repeated Telegram entry = 1;
+}
