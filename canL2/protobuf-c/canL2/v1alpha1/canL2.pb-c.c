@@ -7,637 +7,637 @@
 #endif
 
 #include "canL2.pb-c.h"
-void   template_interface__configuration_set__init
-                     (TemplateInterface__ConfigurationSet         *message)
+void   can_l2__configuration_set__init
+                     (CanL2__ConfigurationSet         *message)
 {
-  static const TemplateInterface__ConfigurationSet init_value = TEMPLATE_INTERFACE__CONFIGURATION_SET__INIT;
+  static const CanL2__ConfigurationSet init_value = CAN_L2__CONFIGURATION_SET__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_set__get_packed_size
-                     (const TemplateInterface__ConfigurationSet *message)
+size_t can_l2__configuration_set__get_packed_size
+                     (const CanL2__ConfigurationSet *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_set__pack
-                     (const TemplateInterface__ConfigurationSet *message,
+size_t can_l2__configuration_set__pack
+                     (const CanL2__ConfigurationSet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_set__pack_to_buffer
-                     (const TemplateInterface__ConfigurationSet *message,
+size_t can_l2__configuration_set__pack_to_buffer
+                     (const CanL2__ConfigurationSet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationSet *
-       template_interface__configuration_set__unpack
+CanL2__ConfigurationSet *
+       can_l2__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationSet *)
-     protobuf_c_message_unpack (&template_interface__configuration_set__descriptor,
+  return (CanL2__ConfigurationSet *)
+     protobuf_c_message_unpack (&can_l2__configuration_set__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_set__free_unpacked
-                     (TemplateInterface__ConfigurationSet *message,
+void   can_l2__configuration_set__free_unpacked
+                     (CanL2__ConfigurationSet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_set__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_set_response__init
-                     (TemplateInterface__ConfigurationSetResponse         *message)
+void   can_l2__configuration_set_response__init
+                     (CanL2__ConfigurationSetResponse         *message)
 {
-  static const TemplateInterface__ConfigurationSetResponse init_value = TEMPLATE_INTERFACE__CONFIGURATION_SET_RESPONSE__INIT;
+  static const CanL2__ConfigurationSetResponse init_value = CAN_L2__CONFIGURATION_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_set_response__get_packed_size
-                     (const TemplateInterface__ConfigurationSetResponse *message)
+size_t can_l2__configuration_set_response__get_packed_size
+                     (const CanL2__ConfigurationSetResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_set_response__pack
-                     (const TemplateInterface__ConfigurationSetResponse *message,
+size_t can_l2__configuration_set_response__pack
+                     (const CanL2__ConfigurationSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_set_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationSetResponse *message,
+size_t can_l2__configuration_set_response__pack_to_buffer
+                     (const CanL2__ConfigurationSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationSetResponse *
-       template_interface__configuration_set_response__unpack
+CanL2__ConfigurationSetResponse *
+       can_l2__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationSetResponse *)
-     protobuf_c_message_unpack (&template_interface__configuration_set_response__descriptor,
+  return (CanL2__ConfigurationSetResponse *)
+     protobuf_c_message_unpack (&can_l2__configuration_set_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_set_response__free_unpacked
-                     (TemplateInterface__ConfigurationSetResponse *message,
+void   can_l2__configuration_set_response__free_unpacked
+                     (CanL2__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_get__init
-                     (TemplateInterface__ConfigurationGet         *message)
+void   can_l2__configuration_get__init
+                     (CanL2__ConfigurationGet         *message)
 {
-  static const TemplateInterface__ConfigurationGet init_value = TEMPLATE_INTERFACE__CONFIGURATION_GET__INIT;
+  static const CanL2__ConfigurationGet init_value = CAN_L2__CONFIGURATION_GET__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_get__get_packed_size
-                     (const TemplateInterface__ConfigurationGet *message)
+size_t can_l2__configuration_get__get_packed_size
+                     (const CanL2__ConfigurationGet *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_get__pack
-                     (const TemplateInterface__ConfigurationGet *message,
+size_t can_l2__configuration_get__pack
+                     (const CanL2__ConfigurationGet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_get__pack_to_buffer
-                     (const TemplateInterface__ConfigurationGet *message,
+size_t can_l2__configuration_get__pack_to_buffer
+                     (const CanL2__ConfigurationGet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationGet *
-       template_interface__configuration_get__unpack
+CanL2__ConfigurationGet *
+       can_l2__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationGet *)
-     protobuf_c_message_unpack (&template_interface__configuration_get__descriptor,
+  return (CanL2__ConfigurationGet *)
+     protobuf_c_message_unpack (&can_l2__configuration_get__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_get__free_unpacked
-                     (TemplateInterface__ConfigurationGet *message,
+void   can_l2__configuration_get__free_unpacked
+                     (CanL2__ConfigurationGet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_get__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_get_response__init
-                     (TemplateInterface__ConfigurationGetResponse         *message)
+void   can_l2__configuration_get_response__init
+                     (CanL2__ConfigurationGetResponse         *message)
 {
-  static const TemplateInterface__ConfigurationGetResponse init_value = TEMPLATE_INTERFACE__CONFIGURATION_GET_RESPONSE__INIT;
+  static const CanL2__ConfigurationGetResponse init_value = CAN_L2__CONFIGURATION_GET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_get_response__get_packed_size
-                     (const TemplateInterface__ConfigurationGetResponse *message)
+size_t can_l2__configuration_get_response__get_packed_size
+                     (const CanL2__ConfigurationGetResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_get_response__pack
-                     (const TemplateInterface__ConfigurationGetResponse *message,
+size_t can_l2__configuration_get_response__pack
+                     (const CanL2__ConfigurationGetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_get_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationGetResponse *message,
+size_t can_l2__configuration_get_response__pack_to_buffer
+                     (const CanL2__ConfigurationGetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationGetResponse *
-       template_interface__configuration_get_response__unpack
+CanL2__ConfigurationGetResponse *
+       can_l2__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationGetResponse *)
-     protobuf_c_message_unpack (&template_interface__configuration_get_response__descriptor,
+  return (CanL2__ConfigurationGetResponse *)
+     protobuf_c_message_unpack (&can_l2__configuration_get_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_get_response__free_unpacked
-                     (TemplateInterface__ConfigurationGetResponse *message,
+void   can_l2__configuration_get_response__free_unpacked
+                     (CanL2__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_get_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_describe__init
-                     (TemplateInterface__ConfigurationDescribe         *message)
+void   can_l2__configuration_describe__init
+                     (CanL2__ConfigurationDescribe         *message)
 {
-  static const TemplateInterface__ConfigurationDescribe init_value = TEMPLATE_INTERFACE__CONFIGURATION_DESCRIBE__INIT;
+  static const CanL2__ConfigurationDescribe init_value = CAN_L2__CONFIGURATION_DESCRIBE__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_describe__get_packed_size
-                     (const TemplateInterface__ConfigurationDescribe *message)
+size_t can_l2__configuration_describe__get_packed_size
+                     (const CanL2__ConfigurationDescribe *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_describe__pack
-                     (const TemplateInterface__ConfigurationDescribe *message,
+size_t can_l2__configuration_describe__pack
+                     (const CanL2__ConfigurationDescribe *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_describe__pack_to_buffer
-                     (const TemplateInterface__ConfigurationDescribe *message,
+size_t can_l2__configuration_describe__pack_to_buffer
+                     (const CanL2__ConfigurationDescribe *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationDescribe *
-       template_interface__configuration_describe__unpack
+CanL2__ConfigurationDescribe *
+       can_l2__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationDescribe *)
-     protobuf_c_message_unpack (&template_interface__configuration_describe__descriptor,
+  return (CanL2__ConfigurationDescribe *)
+     protobuf_c_message_unpack (&can_l2__configuration_describe__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_describe__free_unpacked
-                     (TemplateInterface__ConfigurationDescribe *message,
+void   can_l2__configuration_describe__free_unpacked
+                     (CanL2__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_describe__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_describe_response__init
-                     (TemplateInterface__ConfigurationDescribeResponse         *message)
+void   can_l2__configuration_describe_response__init
+                     (CanL2__ConfigurationDescribeResponse         *message)
 {
-  static const TemplateInterface__ConfigurationDescribeResponse init_value = TEMPLATE_INTERFACE__CONFIGURATION_DESCRIBE_RESPONSE__INIT;
+  static const CanL2__ConfigurationDescribeResponse init_value = CAN_L2__CONFIGURATION_DESCRIBE_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_describe_response__get_packed_size
-                     (const TemplateInterface__ConfigurationDescribeResponse *message)
+size_t can_l2__configuration_describe_response__get_packed_size
+                     (const CanL2__ConfigurationDescribeResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_describe_response__pack
-                     (const TemplateInterface__ConfigurationDescribeResponse *message,
+size_t can_l2__configuration_describe_response__pack
+                     (const CanL2__ConfigurationDescribeResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_describe_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationDescribeResponse *message,
+size_t can_l2__configuration_describe_response__pack_to_buffer
+                     (const CanL2__ConfigurationDescribeResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_describe_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationDescribeResponse *
-       template_interface__configuration_describe_response__unpack
+CanL2__ConfigurationDescribeResponse *
+       can_l2__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationDescribeResponse *)
-     protobuf_c_message_unpack (&template_interface__configuration_describe_response__descriptor,
+  return (CanL2__ConfigurationDescribeResponse *)
+     protobuf_c_message_unpack (&can_l2__configuration_describe_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_describe_response__free_unpacked
-                     (TemplateInterface__ConfigurationDescribeResponse *message,
+void   can_l2__configuration_describe_response__free_unpacked
+                     (CanL2__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_describe_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_describe_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__configuration_response__init
-                     (TemplateInterface__ConfigurationResponse         *message)
+void   can_l2__configuration_response__init
+                     (CanL2__ConfigurationResponse         *message)
 {
-  static const TemplateInterface__ConfigurationResponse init_value = TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__INIT;
+  static const CanL2__ConfigurationResponse init_value = CAN_L2__CONFIGURATION_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__configuration_response__get_packed_size
-                     (const TemplateInterface__ConfigurationResponse *message)
+size_t can_l2__configuration_response__get_packed_size
+                     (const CanL2__ConfigurationResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__configuration_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__configuration_response__pack
-                     (const TemplateInterface__ConfigurationResponse *message,
+size_t can_l2__configuration_response__pack
+                     (const CanL2__ConfigurationResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__configuration_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__configuration_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationResponse *message,
+size_t can_l2__configuration_response__pack_to_buffer
+                     (const CanL2__ConfigurationResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__configuration_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__ConfigurationResponse *
-       template_interface__configuration_response__unpack
+CanL2__ConfigurationResponse *
+       can_l2__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__ConfigurationResponse *)
-     protobuf_c_message_unpack (&template_interface__configuration_response__descriptor,
+  return (CanL2__ConfigurationResponse *)
+     protobuf_c_message_unpack (&can_l2__configuration_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__configuration_response__free_unpacked
-                     (TemplateInterface__ConfigurationResponse *message,
+void   can_l2__configuration_response__free_unpacked
+                     (CanL2__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__configuration_response__descriptor);
+  assert(message->base.descriptor == &can_l2__configuration_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__function_control_get__init
-                     (TemplateInterface__FunctionControlGet         *message)
+void   can_l2__function_control_get__init
+                     (CanL2__FunctionControlGet         *message)
 {
-  static const TemplateInterface__FunctionControlGet init_value = TEMPLATE_INTERFACE__FUNCTION_CONTROL_GET__INIT;
+  static const CanL2__FunctionControlGet init_value = CAN_L2__FUNCTION_CONTROL_GET__INIT;
   *message = init_value;
 }
-size_t template_interface__function_control_get__get_packed_size
-                     (const TemplateInterface__FunctionControlGet *message)
+size_t can_l2__function_control_get__get_packed_size
+                     (const CanL2__FunctionControlGet *message)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__function_control_get__pack
-                     (const TemplateInterface__FunctionControlGet *message,
+size_t can_l2__function_control_get__pack
+                     (const CanL2__FunctionControlGet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__function_control_get__pack_to_buffer
-                     (const TemplateInterface__FunctionControlGet *message,
+size_t can_l2__function_control_get__pack_to_buffer
+                     (const CanL2__FunctionControlGet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__FunctionControlGet *
-       template_interface__function_control_get__unpack
+CanL2__FunctionControlGet *
+       can_l2__function_control_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__FunctionControlGet *)
-     protobuf_c_message_unpack (&template_interface__function_control_get__descriptor,
+  return (CanL2__FunctionControlGet *)
+     protobuf_c_message_unpack (&can_l2__function_control_get__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__function_control_get__free_unpacked
-                     (TemplateInterface__FunctionControlGet *message,
+void   can_l2__function_control_get__free_unpacked
+                     (CanL2__FunctionControlGet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__function_control_get__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__function_control_set__init
-                     (TemplateInterface__FunctionControlSet         *message)
+void   can_l2__function_control_set__init
+                     (CanL2__FunctionControlSet         *message)
 {
-  static const TemplateInterface__FunctionControlSet init_value = TEMPLATE_INTERFACE__FUNCTION_CONTROL_SET__INIT;
+  static const CanL2__FunctionControlSet init_value = CAN_L2__FUNCTION_CONTROL_SET__INIT;
   *message = init_value;
 }
-size_t template_interface__function_control_set__get_packed_size
-                     (const TemplateInterface__FunctionControlSet *message)
+size_t can_l2__function_control_set__get_packed_size
+                     (const CanL2__FunctionControlSet *message)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__function_control_set__pack
-                     (const TemplateInterface__FunctionControlSet *message,
+size_t can_l2__function_control_set__pack
+                     (const CanL2__FunctionControlSet *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__function_control_set__pack_to_buffer
-                     (const TemplateInterface__FunctionControlSet *message,
+size_t can_l2__function_control_set__pack_to_buffer
+                     (const CanL2__FunctionControlSet *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__FunctionControlSet *
-       template_interface__function_control_set__unpack
+CanL2__FunctionControlSet *
+       can_l2__function_control_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__FunctionControlSet *)
-     protobuf_c_message_unpack (&template_interface__function_control_set__descriptor,
+  return (CanL2__FunctionControlSet *)
+     protobuf_c_message_unpack (&can_l2__function_control_set__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__function_control_set__free_unpacked
-                     (TemplateInterface__FunctionControlSet *message,
+void   can_l2__function_control_set__free_unpacked
+                     (CanL2__FunctionControlSet *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__function_control_set__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__function_control_get_response__init
-                     (TemplateInterface__FunctionControlGetResponse         *message)
+void   can_l2__function_control_get_response__init
+                     (CanL2__FunctionControlGetResponse         *message)
 {
-  static const TemplateInterface__FunctionControlGetResponse init_value = TEMPLATE_INTERFACE__FUNCTION_CONTROL_GET_RESPONSE__INIT;
+  static const CanL2__FunctionControlGetResponse init_value = CAN_L2__FUNCTION_CONTROL_GET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__function_control_get_response__get_packed_size
-                     (const TemplateInterface__FunctionControlGetResponse *message)
+size_t can_l2__function_control_get_response__get_packed_size
+                     (const CanL2__FunctionControlGetResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__function_control_get_response__pack
-                     (const TemplateInterface__FunctionControlGetResponse *message,
+size_t can_l2__function_control_get_response__pack
+                     (const CanL2__FunctionControlGetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__function_control_get_response__pack_to_buffer
-                     (const TemplateInterface__FunctionControlGetResponse *message,
+size_t can_l2__function_control_get_response__pack_to_buffer
+                     (const CanL2__FunctionControlGetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__function_control_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__FunctionControlGetResponse *
-       template_interface__function_control_get_response__unpack
+CanL2__FunctionControlGetResponse *
+       can_l2__function_control_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__FunctionControlGetResponse *)
-     protobuf_c_message_unpack (&template_interface__function_control_get_response__descriptor,
+  return (CanL2__FunctionControlGetResponse *)
+     protobuf_c_message_unpack (&can_l2__function_control_get_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__function_control_get_response__free_unpacked
-                     (TemplateInterface__FunctionControlGetResponse *message,
+void   can_l2__function_control_get_response__free_unpacked
+                     (CanL2__FunctionControlGetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__function_control_get_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_get_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__function_control_set_response__init
-                     (TemplateInterface__FunctionControlSetResponse         *message)
+void   can_l2__function_control_set_response__init
+                     (CanL2__FunctionControlSetResponse         *message)
 {
-  static const TemplateInterface__FunctionControlSetResponse init_value = TEMPLATE_INTERFACE__FUNCTION_CONTROL_SET_RESPONSE__INIT;
+  static const CanL2__FunctionControlSetResponse init_value = CAN_L2__FUNCTION_CONTROL_SET_RESPONSE__INIT;
   *message = init_value;
 }
-size_t template_interface__function_control_set_response__get_packed_size
-                     (const TemplateInterface__FunctionControlSetResponse *message)
+size_t can_l2__function_control_set_response__get_packed_size
+                     (const CanL2__FunctionControlSetResponse *message)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__function_control_set_response__pack
-                     (const TemplateInterface__FunctionControlSetResponse *message,
+size_t can_l2__function_control_set_response__pack
+                     (const CanL2__FunctionControlSetResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__function_control_set_response__pack_to_buffer
-                     (const TemplateInterface__FunctionControlSetResponse *message,
+size_t can_l2__function_control_set_response__pack_to_buffer
+                     (const CanL2__FunctionControlSetResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__function_control_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__FunctionControlSetResponse *
-       template_interface__function_control_set_response__unpack
+CanL2__FunctionControlSetResponse *
+       can_l2__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__FunctionControlSetResponse *)
-     protobuf_c_message_unpack (&template_interface__function_control_set_response__descriptor,
+  return (CanL2__FunctionControlSetResponse *)
+     protobuf_c_message_unpack (&can_l2__function_control_set_response__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__function_control_set_response__free_unpacked
-                     (TemplateInterface__FunctionControlSetResponse *message,
+void   can_l2__function_control_set_response__free_unpacked
+                     (CanL2__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__function_control_set_response__descriptor);
+  assert(message->base.descriptor == &can_l2__function_control_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__stream_control_start__init
-                     (TemplateInterface__StreamControlStart         *message)
+void   can_l2__stream_control_start__init
+                     (CanL2__StreamControlStart         *message)
 {
-  static const TemplateInterface__StreamControlStart init_value = TEMPLATE_INTERFACE__STREAM_CONTROL_START__INIT;
+  static const CanL2__StreamControlStart init_value = CAN_L2__STREAM_CONTROL_START__INIT;
   *message = init_value;
 }
-size_t template_interface__stream_control_start__get_packed_size
-                     (const TemplateInterface__StreamControlStart *message)
+size_t can_l2__stream_control_start__get_packed_size
+                     (const CanL2__StreamControlStart *message)
 {
-  assert(message->base.descriptor == &template_interface__stream_control_start__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_control_start__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__stream_control_start__pack
-                     (const TemplateInterface__StreamControlStart *message,
+size_t can_l2__stream_control_start__pack
+                     (const CanL2__StreamControlStart *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__stream_control_start__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_control_start__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__stream_control_start__pack_to_buffer
-                     (const TemplateInterface__StreamControlStart *message,
+size_t can_l2__stream_control_start__pack_to_buffer
+                     (const CanL2__StreamControlStart *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__stream_control_start__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_control_start__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__StreamControlStart *
-       template_interface__stream_control_start__unpack
+CanL2__StreamControlStart *
+       can_l2__stream_control_start__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__StreamControlStart *)
-     protobuf_c_message_unpack (&template_interface__stream_control_start__descriptor,
+  return (CanL2__StreamControlStart *)
+     protobuf_c_message_unpack (&can_l2__stream_control_start__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__stream_control_start__free_unpacked
-                     (TemplateInterface__StreamControlStart *message,
+void   can_l2__stream_control_start__free_unpacked
+                     (CanL2__StreamControlStart *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__stream_control_start__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_control_start__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__sample__init
-                     (TemplateInterface__Sample         *message)
+void   can_l2__sample__init
+                     (CanL2__Sample         *message)
 {
-  static const TemplateInterface__Sample init_value = TEMPLATE_INTERFACE__SAMPLE__INIT;
+  static const CanL2__Sample init_value = CAN_L2__SAMPLE__INIT;
   *message = init_value;
 }
-size_t template_interface__sample__get_packed_size
-                     (const TemplateInterface__Sample *message)
+size_t can_l2__sample__get_packed_size
+                     (const CanL2__Sample *message)
 {
-  assert(message->base.descriptor == &template_interface__sample__descriptor);
+  assert(message->base.descriptor == &can_l2__sample__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__sample__pack
-                     (const TemplateInterface__Sample *message,
+size_t can_l2__sample__pack
+                     (const CanL2__Sample *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__sample__descriptor);
+  assert(message->base.descriptor == &can_l2__sample__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__sample__pack_to_buffer
-                     (const TemplateInterface__Sample *message,
+size_t can_l2__sample__pack_to_buffer
+                     (const CanL2__Sample *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__sample__descriptor);
+  assert(message->base.descriptor == &can_l2__sample__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__Sample *
-       template_interface__sample__unpack
+CanL2__Sample *
+       can_l2__sample__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__Sample *)
-     protobuf_c_message_unpack (&template_interface__sample__descriptor,
+  return (CanL2__Sample *)
+     protobuf_c_message_unpack (&can_l2__sample__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__sample__free_unpacked
-                     (TemplateInterface__Sample *message,
+void   can_l2__sample__free_unpacked
+                     (CanL2__Sample *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__sample__descriptor);
+  assert(message->base.descriptor == &can_l2__sample__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   template_interface__stream_data__init
-                     (TemplateInterface__StreamData         *message)
+void   can_l2__stream_data__init
+                     (CanL2__StreamData         *message)
 {
-  static const TemplateInterface__StreamData init_value = TEMPLATE_INTERFACE__STREAM_DATA__INIT;
+  static const CanL2__StreamData init_value = CAN_L2__STREAM_DATA__INIT;
   *message = init_value;
 }
-size_t template_interface__stream_data__get_packed_size
-                     (const TemplateInterface__StreamData *message)
+size_t can_l2__stream_data__get_packed_size
+                     (const CanL2__StreamData *message)
 {
-  assert(message->base.descriptor == &template_interface__stream_data__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t template_interface__stream_data__pack
-                     (const TemplateInterface__StreamData *message,
+size_t can_l2__stream_data__pack
+                     (const CanL2__StreamData *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &template_interface__stream_data__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t template_interface__stream_data__pack_to_buffer
-                     (const TemplateInterface__StreamData *message,
+size_t can_l2__stream_data__pack_to_buffer
+                     (const CanL2__StreamData *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &template_interface__stream_data__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-TemplateInterface__StreamData *
-       template_interface__stream_data__unpack
+CanL2__StreamData *
+       can_l2__stream_data__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (TemplateInterface__StreamData *)
-     protobuf_c_message_unpack (&template_interface__stream_data__descriptor,
+  return (CanL2__StreamData *)
+     protobuf_c_message_unpack (&can_l2__stream_data__descriptor,
                                 allocator, len, data);
 }
-void   template_interface__stream_data__free_unpacked
-                     (TemplateInterface__StreamData *message,
+void   can_l2__stream_data__free_unpacked
+                     (CanL2__StreamData *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &template_interface__stream_data__descriptor);
+  assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor template_interface__configuration_set__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[1] =
 {
   {
     "sample_rate",
@@ -645,73 +645,73 @@ static const ProtobufCFieldDescriptor template_interface__configuration_set__fie
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__ConfigurationSet, sample_rate),
+    offsetof(CanL2__ConfigurationSet, sample_rate),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__configuration_set__field_indices_by_name[] = {
+static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = sample_rate */
 };
-static const ProtobufCIntRange template_interface__configuration_set__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__configuration_set__descriptor =
+const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationSet",
+  "canL2.ConfigurationSet",
   "ConfigurationSet",
-  "TemplateInterface__ConfigurationSet",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationSet),
+  "CanL2__ConfigurationSet",
+  "canL2",
+  sizeof(CanL2__ConfigurationSet),
   1,
-  template_interface__configuration_set__field_descriptors,
-  template_interface__configuration_set__field_indices_by_name,
-  1,  template_interface__configuration_set__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_set__init,
+  can_l2__configuration_set__field_descriptors,
+  can_l2__configuration_set__field_indices_by_name,
+  1,  can_l2__configuration_set__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_interface__configuration_set_response__field_descriptors NULL
-#define template_interface__configuration_set_response__field_indices_by_name NULL
-#define template_interface__configuration_set_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_interface__configuration_set_response__descriptor =
+#define can_l2__configuration_set_response__field_descriptors NULL
+#define can_l2__configuration_set_response__field_indices_by_name NULL
+#define can_l2__configuration_set_response__number_ranges NULL
+const ProtobufCMessageDescriptor can_l2__configuration_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationSetResponse",
+  "canL2.ConfigurationSetResponse",
   "ConfigurationSetResponse",
-  "TemplateInterface__ConfigurationSetResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationSetResponse),
+  "CanL2__ConfigurationSetResponse",
+  "canL2",
+  sizeof(CanL2__ConfigurationSetResponse),
   0,
-  template_interface__configuration_set_response__field_descriptors,
-  template_interface__configuration_set_response__field_indices_by_name,
-  0,  template_interface__configuration_set_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_set_response__init,
+  can_l2__configuration_set_response__field_descriptors,
+  can_l2__configuration_set_response__field_indices_by_name,
+  0,  can_l2__configuration_set_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_interface__configuration_get__field_descriptors NULL
-#define template_interface__configuration_get__field_indices_by_name NULL
-#define template_interface__configuration_get__number_ranges NULL
-const ProtobufCMessageDescriptor template_interface__configuration_get__descriptor =
+#define can_l2__configuration_get__field_descriptors NULL
+#define can_l2__configuration_get__field_indices_by_name NULL
+#define can_l2__configuration_get__number_ranges NULL
+const ProtobufCMessageDescriptor can_l2__configuration_get__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationGet",
+  "canL2.ConfigurationGet",
   "ConfigurationGet",
-  "TemplateInterface__ConfigurationGet",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationGet),
+  "CanL2__ConfigurationGet",
+  "canL2",
+  sizeof(CanL2__ConfigurationGet),
   0,
-  template_interface__configuration_get__field_descriptors,
-  template_interface__configuration_get__field_indices_by_name,
-  0,  template_interface__configuration_get__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_get__init,
+  can_l2__configuration_get__field_descriptors,
+  can_l2__configuration_get__field_indices_by_name,
+  0,  can_l2__configuration_get__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__configuration_get_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_descriptors[1] =
 {
   {
     "sample_rate",
@@ -719,55 +719,55 @@ static const ProtobufCFieldDescriptor template_interface__configuration_get_resp
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__ConfigurationGetResponse, sample_rate),
+    offsetof(CanL2__ConfigurationGetResponse, sample_rate),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__configuration_get_response__field_indices_by_name[] = {
+static const unsigned can_l2__configuration_get_response__field_indices_by_name[] = {
   0,   /* field[0] = sample_rate */
 };
-static const ProtobufCIntRange template_interface__configuration_get_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__configuration_get_response__descriptor =
+const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationGetResponse",
+  "canL2.ConfigurationGetResponse",
   "ConfigurationGetResponse",
-  "TemplateInterface__ConfigurationGetResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationGetResponse),
+  "CanL2__ConfigurationGetResponse",
+  "canL2",
+  sizeof(CanL2__ConfigurationGetResponse),
   1,
-  template_interface__configuration_get_response__field_descriptors,
-  template_interface__configuration_get_response__field_indices_by_name,
-  1,  template_interface__configuration_get_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_get_response__init,
+  can_l2__configuration_get_response__field_descriptors,
+  can_l2__configuration_get_response__field_indices_by_name,
+  1,  can_l2__configuration_get_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_interface__configuration_describe__field_descriptors NULL
-#define template_interface__configuration_describe__field_indices_by_name NULL
-#define template_interface__configuration_describe__number_ranges NULL
-const ProtobufCMessageDescriptor template_interface__configuration_describe__descriptor =
+#define can_l2__configuration_describe__field_descriptors NULL
+#define can_l2__configuration_describe__field_indices_by_name NULL
+#define can_l2__configuration_describe__number_ranges NULL
+const ProtobufCMessageDescriptor can_l2__configuration_describe__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationDescribe",
+  "canL2.ConfigurationDescribe",
   "ConfigurationDescribe",
-  "TemplateInterface__ConfigurationDescribe",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationDescribe),
+  "CanL2__ConfigurationDescribe",
+  "canL2",
+  sizeof(CanL2__ConfigurationDescribe),
   0,
-  template_interface__configuration_describe__field_descriptors,
-  template_interface__configuration_describe__field_indices_by_name,
-  0,  template_interface__configuration_describe__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_describe__init,
+  can_l2__configuration_describe__field_descriptors,
+  can_l2__configuration_describe__field_indices_by_name,
+  0,  can_l2__configuration_describe__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__configuration_describe_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__configuration_describe_response__field_descriptors[1] =
 {
   {
     "ident",
@@ -775,46 +775,46 @@ static const ProtobufCFieldDescriptor template_interface__configuration_describe
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__ConfigurationDescribeResponse, ident),
+    offsetof(CanL2__ConfigurationDescribeResponse, ident),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__configuration_describe_response__field_indices_by_name[] = {
+static const unsigned can_l2__configuration_describe_response__field_indices_by_name[] = {
   0,   /* field[0] = ident */
 };
-static const ProtobufCIntRange template_interface__configuration_describe_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__configuration_describe_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__configuration_describe_response__descriptor =
+const ProtobufCMessageDescriptor can_l2__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationDescribeResponse",
+  "canL2.ConfigurationDescribeResponse",
   "ConfigurationDescribeResponse",
-  "TemplateInterface__ConfigurationDescribeResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationDescribeResponse),
+  "CanL2__ConfigurationDescribeResponse",
+  "canL2",
+  sizeof(CanL2__ConfigurationDescribeResponse),
   1,
-  template_interface__configuration_describe_response__field_descriptors,
-  template_interface__configuration_describe_response__field_indices_by_name,
-  1,  template_interface__configuration_describe_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_describe_response__init,
+  can_l2__configuration_describe_response__field_descriptors,
+  can_l2__configuration_describe_response__field_indices_by_name,
+  1,  can_l2__configuration_describe_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__configuration_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor can_l2__configuration_response__field_descriptors[3] =
 {
   {
     "get",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateInterface__ConfigurationResponse, type_case),
-    offsetof(TemplateInterface__ConfigurationResponse, get),
-    &template_interface__configuration_get_response__descriptor,
+    offsetof(CanL2__ConfigurationResponse, type_case),
+    offsetof(CanL2__ConfigurationResponse, get),
+    &can_l2__configuration_get_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -824,9 +824,9 @@ static const ProtobufCFieldDescriptor template_interface__configuration_response
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateInterface__ConfigurationResponse, type_case),
-    offsetof(TemplateInterface__ConfigurationResponse, set),
-    &template_interface__configuration_set_response__descriptor,
+    offsetof(CanL2__ConfigurationResponse, type_case),
+    offsetof(CanL2__ConfigurationResponse, set),
+    &can_l2__configuration_set_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -836,58 +836,58 @@ static const ProtobufCFieldDescriptor template_interface__configuration_response
     3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateInterface__ConfigurationResponse, type_case),
-    offsetof(TemplateInterface__ConfigurationResponse, describe),
-    &template_interface__configuration_describe_response__descriptor,
+    offsetof(CanL2__ConfigurationResponse, type_case),
+    offsetof(CanL2__ConfigurationResponse, describe),
+    &can_l2__configuration_describe_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__configuration_response__field_indices_by_name[] = {
+static const unsigned can_l2__configuration_response__field_indices_by_name[] = {
   2,   /* field[2] = describe */
   0,   /* field[0] = get */
   1,   /* field[1] = set */
 };
-static const ProtobufCIntRange template_interface__configuration_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__configuration_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor template_interface__configuration_response__descriptor =
+const ProtobufCMessageDescriptor can_l2__configuration_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.ConfigurationResponse",
+  "canL2.ConfigurationResponse",
   "ConfigurationResponse",
-  "TemplateInterface__ConfigurationResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__ConfigurationResponse),
+  "CanL2__ConfigurationResponse",
+  "canL2",
+  sizeof(CanL2__ConfigurationResponse),
   3,
-  template_interface__configuration_response__field_descriptors,
-  template_interface__configuration_response__field_indices_by_name,
-  1,  template_interface__configuration_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__configuration_response__init,
+  can_l2__configuration_response__field_descriptors,
+  can_l2__configuration_response__field_indices_by_name,
+  1,  can_l2__configuration_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__configuration_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_interface__function_control_get__field_descriptors NULL
-#define template_interface__function_control_get__field_indices_by_name NULL
-#define template_interface__function_control_get__number_ranges NULL
-const ProtobufCMessageDescriptor template_interface__function_control_get__descriptor =
+#define can_l2__function_control_get__field_descriptors NULL
+#define can_l2__function_control_get__field_indices_by_name NULL
+#define can_l2__function_control_get__number_ranges NULL
+const ProtobufCMessageDescriptor can_l2__function_control_get__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.FunctionControlGet",
+  "canL2.FunctionControlGet",
   "FunctionControlGet",
-  "TemplateInterface__FunctionControlGet",
-  "templateInterface",
-  sizeof(TemplateInterface__FunctionControlGet),
+  "CanL2__FunctionControlGet",
+  "canL2",
+  sizeof(CanL2__FunctionControlGet),
   0,
-  template_interface__function_control_get__field_descriptors,
-  template_interface__function_control_get__field_indices_by_name,
-  0,  template_interface__function_control_get__number_ranges,
-  (ProtobufCMessageInit) template_interface__function_control_get__init,
+  can_l2__function_control_get__field_descriptors,
+  can_l2__function_control_get__field_indices_by_name,
+  0,  can_l2__function_control_get__number_ranges,
+  (ProtobufCMessageInit) can_l2__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__function_control_set__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__function_control_set__field_descriptors[1] =
 {
   {
     "value",
@@ -895,37 +895,37 @@ static const ProtobufCFieldDescriptor template_interface__function_control_set__
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__FunctionControlSet, value),
+    offsetof(CanL2__FunctionControlSet, value),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__function_control_set__field_indices_by_name[] = {
+static const unsigned can_l2__function_control_set__field_indices_by_name[] = {
   0,   /* field[0] = value */
 };
-static const ProtobufCIntRange template_interface__function_control_set__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__function_control_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__function_control_set__descriptor =
+const ProtobufCMessageDescriptor can_l2__function_control_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.FunctionControlSet",
+  "canL2.FunctionControlSet",
   "FunctionControlSet",
-  "TemplateInterface__FunctionControlSet",
-  "templateInterface",
-  sizeof(TemplateInterface__FunctionControlSet),
+  "CanL2__FunctionControlSet",
+  "canL2",
+  sizeof(CanL2__FunctionControlSet),
   1,
-  template_interface__function_control_set__field_descriptors,
-  template_interface__function_control_set__field_indices_by_name,
-  1,  template_interface__function_control_set__number_ranges,
-  (ProtobufCMessageInit) template_interface__function_control_set__init,
+  can_l2__function_control_set__field_descriptors,
+  can_l2__function_control_set__field_indices_by_name,
+  1,  can_l2__function_control_set__number_ranges,
+  (ProtobufCMessageInit) can_l2__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__function_control_get_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__function_control_get_response__field_descriptors[1] =
 {
   {
     "value",
@@ -933,55 +933,55 @@ static const ProtobufCFieldDescriptor template_interface__function_control_get_r
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__FunctionControlGetResponse, value),
+    offsetof(CanL2__FunctionControlGetResponse, value),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__function_control_get_response__field_indices_by_name[] = {
+static const unsigned can_l2__function_control_get_response__field_indices_by_name[] = {
   0,   /* field[0] = value */
 };
-static const ProtobufCIntRange template_interface__function_control_get_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__function_control_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__function_control_get_response__descriptor =
+const ProtobufCMessageDescriptor can_l2__function_control_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.FunctionControlGetResponse",
+  "canL2.FunctionControlGetResponse",
   "FunctionControlGetResponse",
-  "TemplateInterface__FunctionControlGetResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__FunctionControlGetResponse),
+  "CanL2__FunctionControlGetResponse",
+  "canL2",
+  sizeof(CanL2__FunctionControlGetResponse),
   1,
-  template_interface__function_control_get_response__field_descriptors,
-  template_interface__function_control_get_response__field_indices_by_name,
-  1,  template_interface__function_control_get_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__function_control_get_response__init,
+  can_l2__function_control_get_response__field_descriptors,
+  can_l2__function_control_get_response__field_indices_by_name,
+  1,  can_l2__function_control_get_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__function_control_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define template_interface__function_control_set_response__field_descriptors NULL
-#define template_interface__function_control_set_response__field_indices_by_name NULL
-#define template_interface__function_control_set_response__number_ranges NULL
-const ProtobufCMessageDescriptor template_interface__function_control_set_response__descriptor =
+#define can_l2__function_control_set_response__field_descriptors NULL
+#define can_l2__function_control_set_response__field_indices_by_name NULL
+#define can_l2__function_control_set_response__number_ranges NULL
+const ProtobufCMessageDescriptor can_l2__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.FunctionControlSetResponse",
+  "canL2.FunctionControlSetResponse",
   "FunctionControlSetResponse",
-  "TemplateInterface__FunctionControlSetResponse",
-  "templateInterface",
-  sizeof(TemplateInterface__FunctionControlSetResponse),
+  "CanL2__FunctionControlSetResponse",
+  "canL2",
+  sizeof(CanL2__FunctionControlSetResponse),
   0,
-  template_interface__function_control_set_response__field_descriptors,
-  template_interface__function_control_set_response__field_indices_by_name,
-  0,  template_interface__function_control_set_response__number_ranges,
-  (ProtobufCMessageInit) template_interface__function_control_set_response__init,
+  can_l2__function_control_set_response__field_descriptors,
+  can_l2__function_control_set_response__field_indices_by_name,
+  0,  can_l2__function_control_set_response__number_ranges,
+  (ProtobufCMessageInit) can_l2__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__stream_control_start__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__stream_control_start__field_descriptors[1] =
 {
   {
     "modulo",
@@ -989,37 +989,37 @@ static const ProtobufCFieldDescriptor template_interface__stream_control_start__
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__StreamControlStart, modulo),
+    offsetof(CanL2__StreamControlStart, modulo),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__stream_control_start__field_indices_by_name[] = {
+static const unsigned can_l2__stream_control_start__field_indices_by_name[] = {
   0,   /* field[0] = modulo */
 };
-static const ProtobufCIntRange template_interface__stream_control_start__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__stream_control_start__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__stream_control_start__descriptor =
+const ProtobufCMessageDescriptor can_l2__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.StreamControlStart",
+  "canL2.StreamControlStart",
   "StreamControlStart",
-  "TemplateInterface__StreamControlStart",
-  "templateInterface",
-  sizeof(TemplateInterface__StreamControlStart),
+  "CanL2__StreamControlStart",
+  "canL2",
+  sizeof(CanL2__StreamControlStart),
   1,
-  template_interface__stream_control_start__field_descriptors,
-  template_interface__stream_control_start__field_indices_by_name,
-  1,  template_interface__stream_control_start__number_ranges,
-  (ProtobufCMessageInit) template_interface__stream_control_start__init,
+  can_l2__stream_control_start__field_descriptors,
+  can_l2__stream_control_start__field_indices_by_name,
+  1,  can_l2__stream_control_start__number_ranges,
+  (ProtobufCMessageInit) can_l2__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__sample__field_descriptors[2] =
+static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[2] =
 {
   {
     "timestamp",
@@ -1027,7 +1027,7 @@ static const ProtobufCFieldDescriptor template_interface__sample__field_descript
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED64,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__Sample, timestamp),
+    offsetof(CanL2__Sample, timestamp),
     NULL,
     NULL,
     0,             /* flags */
@@ -1039,72 +1039,72 @@ static const ProtobufCFieldDescriptor template_interface__sample__field_descript
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(TemplateInterface__Sample, value),
+    offsetof(CanL2__Sample, value),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__sample__field_indices_by_name[] = {
+static const unsigned can_l2__sample__field_indices_by_name[] = {
   0,   /* field[0] = timestamp */
   1,   /* field[1] = value */
 };
-static const ProtobufCIntRange template_interface__sample__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__sample__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor template_interface__sample__descriptor =
+const ProtobufCMessageDescriptor can_l2__sample__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.Sample",
+  "canL2.Sample",
   "Sample",
-  "TemplateInterface__Sample",
-  "templateInterface",
-  sizeof(TemplateInterface__Sample),
+  "CanL2__Sample",
+  "canL2",
+  sizeof(CanL2__Sample),
   2,
-  template_interface__sample__field_descriptors,
-  template_interface__sample__field_indices_by_name,
-  1,  template_interface__sample__number_ranges,
-  (ProtobufCMessageInit) template_interface__sample__init,
+  can_l2__sample__field_descriptors,
+  can_l2__sample__field_indices_by_name,
+  1,  can_l2__sample__number_ranges,
+  (ProtobufCMessageInit) can_l2__sample__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor template_interface__stream_data__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__stream_data__field_descriptors[1] =
 {
   {
     "samples",
     1,
     PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(TemplateInterface__StreamData, n_samples),
-    offsetof(TemplateInterface__StreamData, samples),
-    &template_interface__sample__descriptor,
+    offsetof(CanL2__StreamData, n_samples),
+    offsetof(CanL2__StreamData, samples),
+    &can_l2__sample__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned template_interface__stream_data__field_indices_by_name[] = {
+static const unsigned can_l2__stream_data__field_indices_by_name[] = {
   0,   /* field[0] = samples */
 };
-static const ProtobufCIntRange template_interface__stream_data__number_ranges[1 + 1] =
+static const ProtobufCIntRange can_l2__stream_data__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor template_interface__stream_data__descriptor =
+const ProtobufCMessageDescriptor can_l2__stream_data__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "templateInterface.StreamData",
+  "canL2.StreamData",
   "StreamData",
-  "TemplateInterface__StreamData",
-  "templateInterface",
-  sizeof(TemplateInterface__StreamData),
+  "CanL2__StreamData",
+  "canL2",
+  sizeof(CanL2__StreamData),
   1,
-  template_interface__stream_data__field_descriptors,
-  template_interface__stream_data__field_indices_by_name,
-  1,  template_interface__stream_data__number_ranges,
-  (ProtobufCMessageInit) template_interface__stream_data__init,
+  can_l2__stream_data__field_descriptors,
+  can_l2__stream_data__field_indices_by_name,
+  1,  can_l2__stream_data__number_ranges,
+  (ProtobufCMessageInit) can_l2__stream_data__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

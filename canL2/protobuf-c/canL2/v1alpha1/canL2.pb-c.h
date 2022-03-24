@@ -15,20 +15,20 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _TemplateInterface__ConfigurationSet TemplateInterface__ConfigurationSet;
-typedef struct _TemplateInterface__ConfigurationSetResponse TemplateInterface__ConfigurationSetResponse;
-typedef struct _TemplateInterface__ConfigurationGet TemplateInterface__ConfigurationGet;
-typedef struct _TemplateInterface__ConfigurationGetResponse TemplateInterface__ConfigurationGetResponse;
-typedef struct _TemplateInterface__ConfigurationDescribe TemplateInterface__ConfigurationDescribe;
-typedef struct _TemplateInterface__ConfigurationDescribeResponse TemplateInterface__ConfigurationDescribeResponse;
-typedef struct _TemplateInterface__ConfigurationResponse TemplateInterface__ConfigurationResponse;
-typedef struct _TemplateInterface__FunctionControlGet TemplateInterface__FunctionControlGet;
-typedef struct _TemplateInterface__FunctionControlSet TemplateInterface__FunctionControlSet;
-typedef struct _TemplateInterface__FunctionControlGetResponse TemplateInterface__FunctionControlGetResponse;
-typedef struct _TemplateInterface__FunctionControlSetResponse TemplateInterface__FunctionControlSetResponse;
-typedef struct _TemplateInterface__StreamControlStart TemplateInterface__StreamControlStart;
-typedef struct _TemplateInterface__Sample TemplateInterface__Sample;
-typedef struct _TemplateInterface__StreamData TemplateInterface__StreamData;
+typedef struct _CanL2__ConfigurationSet CanL2__ConfigurationSet;
+typedef struct _CanL2__ConfigurationSetResponse CanL2__ConfigurationSetResponse;
+typedef struct _CanL2__ConfigurationGet CanL2__ConfigurationGet;
+typedef struct _CanL2__ConfigurationGetResponse CanL2__ConfigurationGetResponse;
+typedef struct _CanL2__ConfigurationDescribe CanL2__ConfigurationDescribe;
+typedef struct _CanL2__ConfigurationDescribeResponse CanL2__ConfigurationDescribeResponse;
+typedef struct _CanL2__ConfigurationResponse CanL2__ConfigurationResponse;
+typedef struct _CanL2__FunctionControlGet CanL2__FunctionControlGet;
+typedef struct _CanL2__FunctionControlSet CanL2__FunctionControlSet;
+typedef struct _CanL2__FunctionControlGetResponse CanL2__FunctionControlGetResponse;
+typedef struct _CanL2__FunctionControlSetResponse CanL2__FunctionControlSetResponse;
+typedef struct _CanL2__StreamControlStart CanL2__StreamControlStart;
+typedef struct _CanL2__Sample CanL2__Sample;
+typedef struct _CanL2__StreamData CanL2__StreamData;
 
 
 /* --- enums --- */
@@ -39,7 +39,7 @@ typedef struct _TemplateInterface__StreamData TemplateInterface__StreamData;
 /*
  * ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
  */
-struct  _TemplateInterface__ConfigurationSet
+struct  _CanL2__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
@@ -47,32 +47,32 @@ struct  _TemplateInterface__ConfigurationSet
    */
   uint32_t sample_rate;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_set__descriptor) \
+#define CAN_L2__CONFIGURATION_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_set__descriptor) \
     , 0 }
 
 
 /*
  * ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
  */
-struct  _TemplateInterface__ConfigurationSetResponse
+struct  _CanL2__ConfigurationSetResponse
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_set_response__descriptor) \
+#define CAN_L2__CONFIGURATION_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_set_response__descriptor) \
      }
 
 
 /*
  * ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
  */
-struct  _TemplateInterface__ConfigurationGet
+struct  _CanL2__ConfigurationGet
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_get__descriptor) \
+#define CAN_L2__CONFIGURATION_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_get__descriptor) \
      }
 
 
@@ -80,7 +80,7 @@ struct  _TemplateInterface__ConfigurationGet
  * ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
  * Returns the current hardware configuration
  */
-struct  _TemplateInterface__ConfigurationGetResponse
+struct  _CanL2__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
@@ -88,24 +88,24 @@ struct  _TemplateInterface__ConfigurationGetResponse
    */
   uint32_t sample_rate;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_get_response__descriptor) \
+#define CAN_L2__CONFIGURATION_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_get_response__descriptor) \
     , 0 }
 
 
 /*
  * ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
  */
-struct  _TemplateInterface__ConfigurationDescribe
+struct  _CanL2__ConfigurationDescribe
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_DESCRIBE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_describe__descriptor) \
+#define CAN_L2__CONFIGURATION_DESCRIBE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_describe__descriptor) \
      }
 
 
-struct  _TemplateInterface__ConfigurationDescribeResponse
+struct  _CanL2__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
   /*
@@ -113,53 +113,53 @@ struct  _TemplateInterface__ConfigurationDescribeResponse
    */
   char *ident;
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_describe_response__descriptor) \
+#define CAN_L2__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_describe_response__descriptor) \
     , (char *)protobuf_c_empty_string }
 
 
 typedef enum {
-  TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE__NOT_SET = 0,
-  TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE_GET = 1,
-  TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE_SET = 2,
-  TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE_DESCRIBE = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE)
-} TemplateInterface__ConfigurationResponse__TypeCase;
+  CAN_L2__CONFIGURATION_RESPONSE__TYPE__NOT_SET = 0,
+  CAN_L2__CONFIGURATION_RESPONSE__TYPE_GET = 1,
+  CAN_L2__CONFIGURATION_RESPONSE__TYPE_SET = 2,
+  CAN_L2__CONFIGURATION_RESPONSE__TYPE_DESCRIBE = 3
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(CAN_L2__CONFIGURATION_RESPONSE__TYPE)
+} CanL2__ConfigurationResponse__TypeCase;
 
 /*
  * ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
  */
-struct  _TemplateInterface__ConfigurationResponse
+struct  _CanL2__ConfigurationResponse
 {
   ProtobufCMessage base;
-  TemplateInterface__ConfigurationResponse__TypeCase type_case;
+  CanL2__ConfigurationResponse__TypeCase type_case;
   union {
-    TemplateInterface__ConfigurationGetResponse *get;
-    TemplateInterface__ConfigurationSetResponse *set;
-    TemplateInterface__ConfigurationDescribeResponse *describe;
+    CanL2__ConfigurationGetResponse *get;
+    CanL2__ConfigurationSetResponse *set;
+    CanL2__ConfigurationDescribeResponse *describe;
   };
 };
-#define TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__configuration_response__descriptor) \
-    , TEMPLATE_INTERFACE__CONFIGURATION_RESPONSE__TYPE__NOT_SET, {0} }
+#define CAN_L2__CONFIGURATION_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_response__descriptor) \
+    , CAN_L2__CONFIGURATION_RESPONSE__TYPE__NOT_SET, {0} }
 
 
 /*
  * FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
  */
-struct  _TemplateInterface__FunctionControlGet
+struct  _CanL2__FunctionControlGet
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_INTERFACE__FUNCTION_CONTROL_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__function_control_get__descriptor) \
+#define CAN_L2__FUNCTION_CONTROL_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_get__descriptor) \
      }
 
 
 /*
  * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
  */
-struct  _TemplateInterface__FunctionControlSet
+struct  _CanL2__FunctionControlSet
 {
   ProtobufCMessage base;
   /*
@@ -168,15 +168,15 @@ struct  _TemplateInterface__FunctionControlSet
    */
   uint32_t value;
 };
-#define TEMPLATE_INTERFACE__FUNCTION_CONTROL_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__function_control_set__descriptor) \
+#define CAN_L2__FUNCTION_CONTROL_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_set__descriptor) \
     , 0 }
 
 
 /*
  * FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
  */
-struct  _TemplateInterface__FunctionControlGetResponse
+struct  _CanL2__FunctionControlGetResponse
 {
   ProtobufCMessage base;
   /*
@@ -184,20 +184,20 @@ struct  _TemplateInterface__FunctionControlGetResponse
    */
   uint32_t value;
 };
-#define TEMPLATE_INTERFACE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__function_control_get_response__descriptor) \
+#define CAN_L2__FUNCTION_CONTROL_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_get_response__descriptor) \
     , 0 }
 
 
 /*
  * FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
  */
-struct  _TemplateInterface__FunctionControlSetResponse
+struct  _CanL2__FunctionControlSetResponse
 {
   ProtobufCMessage base;
 };
-#define TEMPLATE_INTERFACE__FUNCTION_CONTROL_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__function_control_set_response__descriptor) \
+#define CAN_L2__FUNCTION_CONTROL_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_set_response__descriptor) \
      }
 
 
@@ -205,7 +205,7 @@ struct  _TemplateInterface__FunctionControlSetResponse
  * ============= StreamControl ==================
  * StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
  */
-struct  _TemplateInterface__StreamControlStart
+struct  _CanL2__StreamControlStart
 {
   ProtobufCMessage base;
   /*
@@ -216,12 +216,12 @@ struct  _TemplateInterface__StreamControlStart
    */
   uint32_t modulo;
 };
-#define TEMPLATE_INTERFACE__STREAM_CONTROL_START__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__stream_control_start__descriptor) \
+#define CAN_L2__STREAM_CONTROL_START__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__stream_control_start__descriptor) \
     , 0 }
 
 
-struct  _TemplateInterface__Sample
+struct  _CanL2__Sample
 {
   ProtobufCMessage base;
   /*
@@ -234,334 +234,334 @@ struct  _TemplateInterface__Sample
    */
   uint32_t value;
 };
-#define TEMPLATE_INTERFACE__SAMPLE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__sample__descriptor) \
+#define CAN_L2__SAMPLE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__sample__descriptor) \
     , 0, 0 }
 
 
 /*
  * StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
  */
-struct  _TemplateInterface__StreamData
+struct  _CanL2__StreamData
 {
   ProtobufCMessage base;
   size_t n_samples;
-  TemplateInterface__Sample **samples;
+  CanL2__Sample **samples;
 };
-#define TEMPLATE_INTERFACE__STREAM_DATA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&template_interface__stream_data__descriptor) \
+#define CAN_L2__STREAM_DATA__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__stream_data__descriptor) \
     , 0,NULL }
 
 
-/* TemplateInterface__ConfigurationSet methods */
-void   template_interface__configuration_set__init
-                     (TemplateInterface__ConfigurationSet         *message);
-size_t template_interface__configuration_set__get_packed_size
-                     (const TemplateInterface__ConfigurationSet   *message);
-size_t template_interface__configuration_set__pack
-                     (const TemplateInterface__ConfigurationSet   *message,
+/* CanL2__ConfigurationSet methods */
+void   can_l2__configuration_set__init
+                     (CanL2__ConfigurationSet         *message);
+size_t can_l2__configuration_set__get_packed_size
+                     (const CanL2__ConfigurationSet   *message);
+size_t can_l2__configuration_set__pack
+                     (const CanL2__ConfigurationSet   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_set__pack_to_buffer
-                     (const TemplateInterface__ConfigurationSet   *message,
+size_t can_l2__configuration_set__pack_to_buffer
+                     (const CanL2__ConfigurationSet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationSet *
-       template_interface__configuration_set__unpack
+CanL2__ConfigurationSet *
+       can_l2__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_set__free_unpacked
-                     (TemplateInterface__ConfigurationSet *message,
+void   can_l2__configuration_set__free_unpacked
+                     (CanL2__ConfigurationSet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationSetResponse methods */
-void   template_interface__configuration_set_response__init
-                     (TemplateInterface__ConfigurationSetResponse         *message);
-size_t template_interface__configuration_set_response__get_packed_size
-                     (const TemplateInterface__ConfigurationSetResponse   *message);
-size_t template_interface__configuration_set_response__pack
-                     (const TemplateInterface__ConfigurationSetResponse   *message,
+/* CanL2__ConfigurationSetResponse methods */
+void   can_l2__configuration_set_response__init
+                     (CanL2__ConfigurationSetResponse         *message);
+size_t can_l2__configuration_set_response__get_packed_size
+                     (const CanL2__ConfigurationSetResponse   *message);
+size_t can_l2__configuration_set_response__pack
+                     (const CanL2__ConfigurationSetResponse   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_set_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationSetResponse   *message,
+size_t can_l2__configuration_set_response__pack_to_buffer
+                     (const CanL2__ConfigurationSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationSetResponse *
-       template_interface__configuration_set_response__unpack
+CanL2__ConfigurationSetResponse *
+       can_l2__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_set_response__free_unpacked
-                     (TemplateInterface__ConfigurationSetResponse *message,
+void   can_l2__configuration_set_response__free_unpacked
+                     (CanL2__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationGet methods */
-void   template_interface__configuration_get__init
-                     (TemplateInterface__ConfigurationGet         *message);
-size_t template_interface__configuration_get__get_packed_size
-                     (const TemplateInterface__ConfigurationGet   *message);
-size_t template_interface__configuration_get__pack
-                     (const TemplateInterface__ConfigurationGet   *message,
+/* CanL2__ConfigurationGet methods */
+void   can_l2__configuration_get__init
+                     (CanL2__ConfigurationGet         *message);
+size_t can_l2__configuration_get__get_packed_size
+                     (const CanL2__ConfigurationGet   *message);
+size_t can_l2__configuration_get__pack
+                     (const CanL2__ConfigurationGet   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_get__pack_to_buffer
-                     (const TemplateInterface__ConfigurationGet   *message,
+size_t can_l2__configuration_get__pack_to_buffer
+                     (const CanL2__ConfigurationGet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationGet *
-       template_interface__configuration_get__unpack
+CanL2__ConfigurationGet *
+       can_l2__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_get__free_unpacked
-                     (TemplateInterface__ConfigurationGet *message,
+void   can_l2__configuration_get__free_unpacked
+                     (CanL2__ConfigurationGet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationGetResponse methods */
-void   template_interface__configuration_get_response__init
-                     (TemplateInterface__ConfigurationGetResponse         *message);
-size_t template_interface__configuration_get_response__get_packed_size
-                     (const TemplateInterface__ConfigurationGetResponse   *message);
-size_t template_interface__configuration_get_response__pack
-                     (const TemplateInterface__ConfigurationGetResponse   *message,
+/* CanL2__ConfigurationGetResponse methods */
+void   can_l2__configuration_get_response__init
+                     (CanL2__ConfigurationGetResponse         *message);
+size_t can_l2__configuration_get_response__get_packed_size
+                     (const CanL2__ConfigurationGetResponse   *message);
+size_t can_l2__configuration_get_response__pack
+                     (const CanL2__ConfigurationGetResponse   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_get_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationGetResponse   *message,
+size_t can_l2__configuration_get_response__pack_to_buffer
+                     (const CanL2__ConfigurationGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationGetResponse *
-       template_interface__configuration_get_response__unpack
+CanL2__ConfigurationGetResponse *
+       can_l2__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_get_response__free_unpacked
-                     (TemplateInterface__ConfigurationGetResponse *message,
+void   can_l2__configuration_get_response__free_unpacked
+                     (CanL2__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationDescribe methods */
-void   template_interface__configuration_describe__init
-                     (TemplateInterface__ConfigurationDescribe         *message);
-size_t template_interface__configuration_describe__get_packed_size
-                     (const TemplateInterface__ConfigurationDescribe   *message);
-size_t template_interface__configuration_describe__pack
-                     (const TemplateInterface__ConfigurationDescribe   *message,
+/* CanL2__ConfigurationDescribe methods */
+void   can_l2__configuration_describe__init
+                     (CanL2__ConfigurationDescribe         *message);
+size_t can_l2__configuration_describe__get_packed_size
+                     (const CanL2__ConfigurationDescribe   *message);
+size_t can_l2__configuration_describe__pack
+                     (const CanL2__ConfigurationDescribe   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_describe__pack_to_buffer
-                     (const TemplateInterface__ConfigurationDescribe   *message,
+size_t can_l2__configuration_describe__pack_to_buffer
+                     (const CanL2__ConfigurationDescribe   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationDescribe *
-       template_interface__configuration_describe__unpack
+CanL2__ConfigurationDescribe *
+       can_l2__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_describe__free_unpacked
-                     (TemplateInterface__ConfigurationDescribe *message,
+void   can_l2__configuration_describe__free_unpacked
+                     (CanL2__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationDescribeResponse methods */
-void   template_interface__configuration_describe_response__init
-                     (TemplateInterface__ConfigurationDescribeResponse         *message);
-size_t template_interface__configuration_describe_response__get_packed_size
-                     (const TemplateInterface__ConfigurationDescribeResponse   *message);
-size_t template_interface__configuration_describe_response__pack
-                     (const TemplateInterface__ConfigurationDescribeResponse   *message,
+/* CanL2__ConfigurationDescribeResponse methods */
+void   can_l2__configuration_describe_response__init
+                     (CanL2__ConfigurationDescribeResponse         *message);
+size_t can_l2__configuration_describe_response__get_packed_size
+                     (const CanL2__ConfigurationDescribeResponse   *message);
+size_t can_l2__configuration_describe_response__pack
+                     (const CanL2__ConfigurationDescribeResponse   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_describe_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationDescribeResponse   *message,
+size_t can_l2__configuration_describe_response__pack_to_buffer
+                     (const CanL2__ConfigurationDescribeResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationDescribeResponse *
-       template_interface__configuration_describe_response__unpack
+CanL2__ConfigurationDescribeResponse *
+       can_l2__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_describe_response__free_unpacked
-                     (TemplateInterface__ConfigurationDescribeResponse *message,
+void   can_l2__configuration_describe_response__free_unpacked
+                     (CanL2__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__ConfigurationResponse methods */
-void   template_interface__configuration_response__init
-                     (TemplateInterface__ConfigurationResponse         *message);
-size_t template_interface__configuration_response__get_packed_size
-                     (const TemplateInterface__ConfigurationResponse   *message);
-size_t template_interface__configuration_response__pack
-                     (const TemplateInterface__ConfigurationResponse   *message,
+/* CanL2__ConfigurationResponse methods */
+void   can_l2__configuration_response__init
+                     (CanL2__ConfigurationResponse         *message);
+size_t can_l2__configuration_response__get_packed_size
+                     (const CanL2__ConfigurationResponse   *message);
+size_t can_l2__configuration_response__pack
+                     (const CanL2__ConfigurationResponse   *message,
                       uint8_t             *out);
-size_t template_interface__configuration_response__pack_to_buffer
-                     (const TemplateInterface__ConfigurationResponse   *message,
+size_t can_l2__configuration_response__pack_to_buffer
+                     (const CanL2__ConfigurationResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__ConfigurationResponse *
-       template_interface__configuration_response__unpack
+CanL2__ConfigurationResponse *
+       can_l2__configuration_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__configuration_response__free_unpacked
-                     (TemplateInterface__ConfigurationResponse *message,
+void   can_l2__configuration_response__free_unpacked
+                     (CanL2__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__FunctionControlGet methods */
-void   template_interface__function_control_get__init
-                     (TemplateInterface__FunctionControlGet         *message);
-size_t template_interface__function_control_get__get_packed_size
-                     (const TemplateInterface__FunctionControlGet   *message);
-size_t template_interface__function_control_get__pack
-                     (const TemplateInterface__FunctionControlGet   *message,
+/* CanL2__FunctionControlGet methods */
+void   can_l2__function_control_get__init
+                     (CanL2__FunctionControlGet         *message);
+size_t can_l2__function_control_get__get_packed_size
+                     (const CanL2__FunctionControlGet   *message);
+size_t can_l2__function_control_get__pack
+                     (const CanL2__FunctionControlGet   *message,
                       uint8_t             *out);
-size_t template_interface__function_control_get__pack_to_buffer
-                     (const TemplateInterface__FunctionControlGet   *message,
+size_t can_l2__function_control_get__pack_to_buffer
+                     (const CanL2__FunctionControlGet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__FunctionControlGet *
-       template_interface__function_control_get__unpack
+CanL2__FunctionControlGet *
+       can_l2__function_control_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__function_control_get__free_unpacked
-                     (TemplateInterface__FunctionControlGet *message,
+void   can_l2__function_control_get__free_unpacked
+                     (CanL2__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__FunctionControlSet methods */
-void   template_interface__function_control_set__init
-                     (TemplateInterface__FunctionControlSet         *message);
-size_t template_interface__function_control_set__get_packed_size
-                     (const TemplateInterface__FunctionControlSet   *message);
-size_t template_interface__function_control_set__pack
-                     (const TemplateInterface__FunctionControlSet   *message,
+/* CanL2__FunctionControlSet methods */
+void   can_l2__function_control_set__init
+                     (CanL2__FunctionControlSet         *message);
+size_t can_l2__function_control_set__get_packed_size
+                     (const CanL2__FunctionControlSet   *message);
+size_t can_l2__function_control_set__pack
+                     (const CanL2__FunctionControlSet   *message,
                       uint8_t             *out);
-size_t template_interface__function_control_set__pack_to_buffer
-                     (const TemplateInterface__FunctionControlSet   *message,
+size_t can_l2__function_control_set__pack_to_buffer
+                     (const CanL2__FunctionControlSet   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__FunctionControlSet *
-       template_interface__function_control_set__unpack
+CanL2__FunctionControlSet *
+       can_l2__function_control_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__function_control_set__free_unpacked
-                     (TemplateInterface__FunctionControlSet *message,
+void   can_l2__function_control_set__free_unpacked
+                     (CanL2__FunctionControlSet *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__FunctionControlGetResponse methods */
-void   template_interface__function_control_get_response__init
-                     (TemplateInterface__FunctionControlGetResponse         *message);
-size_t template_interface__function_control_get_response__get_packed_size
-                     (const TemplateInterface__FunctionControlGetResponse   *message);
-size_t template_interface__function_control_get_response__pack
-                     (const TemplateInterface__FunctionControlGetResponse   *message,
+/* CanL2__FunctionControlGetResponse methods */
+void   can_l2__function_control_get_response__init
+                     (CanL2__FunctionControlGetResponse         *message);
+size_t can_l2__function_control_get_response__get_packed_size
+                     (const CanL2__FunctionControlGetResponse   *message);
+size_t can_l2__function_control_get_response__pack
+                     (const CanL2__FunctionControlGetResponse   *message,
                       uint8_t             *out);
-size_t template_interface__function_control_get_response__pack_to_buffer
-                     (const TemplateInterface__FunctionControlGetResponse   *message,
+size_t can_l2__function_control_get_response__pack_to_buffer
+                     (const CanL2__FunctionControlGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__FunctionControlGetResponse *
-       template_interface__function_control_get_response__unpack
+CanL2__FunctionControlGetResponse *
+       can_l2__function_control_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__function_control_get_response__free_unpacked
-                     (TemplateInterface__FunctionControlGetResponse *message,
+void   can_l2__function_control_get_response__free_unpacked
+                     (CanL2__FunctionControlGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__FunctionControlSetResponse methods */
-void   template_interface__function_control_set_response__init
-                     (TemplateInterface__FunctionControlSetResponse         *message);
-size_t template_interface__function_control_set_response__get_packed_size
-                     (const TemplateInterface__FunctionControlSetResponse   *message);
-size_t template_interface__function_control_set_response__pack
-                     (const TemplateInterface__FunctionControlSetResponse   *message,
+/* CanL2__FunctionControlSetResponse methods */
+void   can_l2__function_control_set_response__init
+                     (CanL2__FunctionControlSetResponse         *message);
+size_t can_l2__function_control_set_response__get_packed_size
+                     (const CanL2__FunctionControlSetResponse   *message);
+size_t can_l2__function_control_set_response__pack
+                     (const CanL2__FunctionControlSetResponse   *message,
                       uint8_t             *out);
-size_t template_interface__function_control_set_response__pack_to_buffer
-                     (const TemplateInterface__FunctionControlSetResponse   *message,
+size_t can_l2__function_control_set_response__pack_to_buffer
+                     (const CanL2__FunctionControlSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__FunctionControlSetResponse *
-       template_interface__function_control_set_response__unpack
+CanL2__FunctionControlSetResponse *
+       can_l2__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__function_control_set_response__free_unpacked
-                     (TemplateInterface__FunctionControlSetResponse *message,
+void   can_l2__function_control_set_response__free_unpacked
+                     (CanL2__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__StreamControlStart methods */
-void   template_interface__stream_control_start__init
-                     (TemplateInterface__StreamControlStart         *message);
-size_t template_interface__stream_control_start__get_packed_size
-                     (const TemplateInterface__StreamControlStart   *message);
-size_t template_interface__stream_control_start__pack
-                     (const TemplateInterface__StreamControlStart   *message,
+/* CanL2__StreamControlStart methods */
+void   can_l2__stream_control_start__init
+                     (CanL2__StreamControlStart         *message);
+size_t can_l2__stream_control_start__get_packed_size
+                     (const CanL2__StreamControlStart   *message);
+size_t can_l2__stream_control_start__pack
+                     (const CanL2__StreamControlStart   *message,
                       uint8_t             *out);
-size_t template_interface__stream_control_start__pack_to_buffer
-                     (const TemplateInterface__StreamControlStart   *message,
+size_t can_l2__stream_control_start__pack_to_buffer
+                     (const CanL2__StreamControlStart   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__StreamControlStart *
-       template_interface__stream_control_start__unpack
+CanL2__StreamControlStart *
+       can_l2__stream_control_start__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__stream_control_start__free_unpacked
-                     (TemplateInterface__StreamControlStart *message,
+void   can_l2__stream_control_start__free_unpacked
+                     (CanL2__StreamControlStart *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__Sample methods */
-void   template_interface__sample__init
-                     (TemplateInterface__Sample         *message);
-size_t template_interface__sample__get_packed_size
-                     (const TemplateInterface__Sample   *message);
-size_t template_interface__sample__pack
-                     (const TemplateInterface__Sample   *message,
+/* CanL2__Sample methods */
+void   can_l2__sample__init
+                     (CanL2__Sample         *message);
+size_t can_l2__sample__get_packed_size
+                     (const CanL2__Sample   *message);
+size_t can_l2__sample__pack
+                     (const CanL2__Sample   *message,
                       uint8_t             *out);
-size_t template_interface__sample__pack_to_buffer
-                     (const TemplateInterface__Sample   *message,
+size_t can_l2__sample__pack_to_buffer
+                     (const CanL2__Sample   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__Sample *
-       template_interface__sample__unpack
+CanL2__Sample *
+       can_l2__sample__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__sample__free_unpacked
-                     (TemplateInterface__Sample *message,
+void   can_l2__sample__free_unpacked
+                     (CanL2__Sample *message,
                       ProtobufCAllocator *allocator);
-/* TemplateInterface__StreamData methods */
-void   template_interface__stream_data__init
-                     (TemplateInterface__StreamData         *message);
-size_t template_interface__stream_data__get_packed_size
-                     (const TemplateInterface__StreamData   *message);
-size_t template_interface__stream_data__pack
-                     (const TemplateInterface__StreamData   *message,
+/* CanL2__StreamData methods */
+void   can_l2__stream_data__init
+                     (CanL2__StreamData         *message);
+size_t can_l2__stream_data__get_packed_size
+                     (const CanL2__StreamData   *message);
+size_t can_l2__stream_data__pack
+                     (const CanL2__StreamData   *message,
                       uint8_t             *out);
-size_t template_interface__stream_data__pack_to_buffer
-                     (const TemplateInterface__StreamData   *message,
+size_t can_l2__stream_data__pack_to_buffer
+                     (const CanL2__StreamData   *message,
                       ProtobufCBuffer     *buffer);
-TemplateInterface__StreamData *
-       template_interface__stream_data__unpack
+CanL2__StreamData *
+       can_l2__stream_data__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   template_interface__stream_data__free_unpacked
-                     (TemplateInterface__StreamData *message,
+void   can_l2__stream_data__free_unpacked
+                     (CanL2__StreamData *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*TemplateInterface__ConfigurationSet_Closure)
-                 (const TemplateInterface__ConfigurationSet *message,
+typedef void (*CanL2__ConfigurationSet_Closure)
+                 (const CanL2__ConfigurationSet *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationSetResponse_Closure)
-                 (const TemplateInterface__ConfigurationSetResponse *message,
+typedef void (*CanL2__ConfigurationSetResponse_Closure)
+                 (const CanL2__ConfigurationSetResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationGet_Closure)
-                 (const TemplateInterface__ConfigurationGet *message,
+typedef void (*CanL2__ConfigurationGet_Closure)
+                 (const CanL2__ConfigurationGet *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationGetResponse_Closure)
-                 (const TemplateInterface__ConfigurationGetResponse *message,
+typedef void (*CanL2__ConfigurationGetResponse_Closure)
+                 (const CanL2__ConfigurationGetResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationDescribe_Closure)
-                 (const TemplateInterface__ConfigurationDescribe *message,
+typedef void (*CanL2__ConfigurationDescribe_Closure)
+                 (const CanL2__ConfigurationDescribe *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationDescribeResponse_Closure)
-                 (const TemplateInterface__ConfigurationDescribeResponse *message,
+typedef void (*CanL2__ConfigurationDescribeResponse_Closure)
+                 (const CanL2__ConfigurationDescribeResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__ConfigurationResponse_Closure)
-                 (const TemplateInterface__ConfigurationResponse *message,
+typedef void (*CanL2__ConfigurationResponse_Closure)
+                 (const CanL2__ConfigurationResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__FunctionControlGet_Closure)
-                 (const TemplateInterface__FunctionControlGet *message,
+typedef void (*CanL2__FunctionControlGet_Closure)
+                 (const CanL2__FunctionControlGet *message,
                   void *closure_data);
-typedef void (*TemplateInterface__FunctionControlSet_Closure)
-                 (const TemplateInterface__FunctionControlSet *message,
+typedef void (*CanL2__FunctionControlSet_Closure)
+                 (const CanL2__FunctionControlSet *message,
                   void *closure_data);
-typedef void (*TemplateInterface__FunctionControlGetResponse_Closure)
-                 (const TemplateInterface__FunctionControlGetResponse *message,
+typedef void (*CanL2__FunctionControlGetResponse_Closure)
+                 (const CanL2__FunctionControlGetResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__FunctionControlSetResponse_Closure)
-                 (const TemplateInterface__FunctionControlSetResponse *message,
+typedef void (*CanL2__FunctionControlSetResponse_Closure)
+                 (const CanL2__FunctionControlSetResponse *message,
                   void *closure_data);
-typedef void (*TemplateInterface__StreamControlStart_Closure)
-                 (const TemplateInterface__StreamControlStart *message,
+typedef void (*CanL2__StreamControlStart_Closure)
+                 (const CanL2__StreamControlStart *message,
                   void *closure_data);
-typedef void (*TemplateInterface__Sample_Closure)
-                 (const TemplateInterface__Sample *message,
+typedef void (*CanL2__Sample_Closure)
+                 (const CanL2__Sample *message,
                   void *closure_data);
-typedef void (*TemplateInterface__StreamData_Closure)
-                 (const TemplateInterface__StreamData *message,
+typedef void (*CanL2__StreamData_Closure)
+                 (const CanL2__StreamData *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -569,20 +569,20 @@ typedef void (*TemplateInterface__StreamData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor template_interface__configuration_set__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_set_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_get__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_get_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_describe__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_describe_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__configuration_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__function_control_get__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__function_control_set__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__function_control_get_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__function_control_set_response__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__stream_control_start__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__sample__descriptor;
-extern const ProtobufCMessageDescriptor template_interface__stream_data__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_set_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_get__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_describe_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__configuration_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__function_control_get__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__function_control_set__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__function_control_get_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__function_control_set_response__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__stream_control_start__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__sample__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__stream_data__descriptor;
 
 PROTOBUF_C__END_DECLS
 
