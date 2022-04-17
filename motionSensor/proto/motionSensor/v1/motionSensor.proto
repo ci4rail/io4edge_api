@@ -22,13 +22,15 @@ option go_package = "motionSensor/v1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Desired data rate in Hz
-    // The device will select the sample rate that is closest to the desired value
-    fixed32 sample_rate = 1;
+    // Desired data rate in 1/1000 Hz
+    fixed32 sample_rate_milliHz = 1;
     // Full scale acceleration in g
-    int32 full_scale = 2;
-    // Whether to enable high pass filter
+    int32 full_scale_g = 2;
+    // Whether to enable high-pass filter
     bool high_pass_filter_enable = 3;
+    // band width of low/hig-hpass as ratio of sample_rate
+    // .e.g. select 2 when the filterbandwith shall be sample_rate/2
+    int32 band_width_ratio = 4;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -44,12 +46,14 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // Actual sample rate in Hz
-    fixed32 sample_rate = 1;
+    // Actual sample rate in 1/100 Hz
+    fixed32 sample_rate_millihz = 1;
     // Actual full scale acceleration in g
-    int32 full_scale = 2;
-    // Whether high pass filter is enabled
+    int32 full_scale_g = 2;
+    // Whether high-pass filter is enabled
     bool high_pass_filter_enable = 3;
+    // Actual band width of low/high-pass as ratio of sample_rate
+    int32 band_width_ratio = 4;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook

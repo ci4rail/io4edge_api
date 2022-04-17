@@ -42,22 +42,26 @@ struct  _MotionSensor__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * Desired data rate in Hz
-   * The device will select the sample rate that is closest to the desired value
+   * Desired data rate in 1/1000 Hz
    */
-  uint32_t sample_rate;
+  uint32_t sample_rate_millihz;
   /*
    * Full scale acceleration in g
    */
-  int32_t full_scale;
+  int32_t full_scale_g;
   /*
-   * Whether to enable high pass filter
+   * Whether to enable high-pass filter
    */
   protobuf_c_boolean high_pass_filter_enable;
+  /*
+   * band width of low/hig-hpass as ratio of sample_rate
+   * .e.g. select 2 when the filterbandwith shall be sample_rate/2
+   */
+  int32_t band_width_ratio;
 };
 #define MOTION_SENSOR__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&motion_sensor__configuration_set__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*
@@ -92,21 +96,25 @@ struct  _MotionSensor__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Actual sample rate in Hz
+   * Actual sample rate in 1/100 Hz
    */
-  uint32_t sample_rate;
+  uint32_t sample_rate_millihz;
   /*
    * Actual full scale acceleration in g
    */
-  int32_t full_scale;
+  int32_t full_scale_g;
   /*
-   * Whether high pass filter is enabled
+   * Whether high-pass filter is enabled
    */
   protobuf_c_boolean high_pass_filter_enable;
+  /*
+   * Actual band width of low/high-pass as ratio of sample_rate
+   */
+  int32_t band_width_ratio;
 };
 #define MOTION_SENSOR__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&motion_sensor__configuration_get_response__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*

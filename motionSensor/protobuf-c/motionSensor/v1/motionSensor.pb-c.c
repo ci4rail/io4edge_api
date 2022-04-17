@@ -592,27 +592,27 @@ void   motion_sensor__stream_data__free_unpacked
   assert(message->base.descriptor == &motion_sensor__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor motion_sensor__configuration_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor motion_sensor__configuration_set__field_descriptors[4] =
 {
   {
-    "sample_rate",
+    "sample_rate_milliHz",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(MotionSensor__ConfigurationSet, sample_rate),
+    offsetof(MotionSensor__ConfigurationSet, sample_rate_millihz),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "full_scale",
+    "full_scale_g",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(MotionSensor__ConfigurationSet, full_scale),
+    offsetof(MotionSensor__ConfigurationSet, full_scale_g),
     NULL,
     NULL,
     0,             /* flags */
@@ -630,16 +630,29 @@ static const ProtobufCFieldDescriptor motion_sensor__configuration_set__field_de
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "band_width_ratio",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(MotionSensor__ConfigurationSet, band_width_ratio),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned motion_sensor__configuration_set__field_indices_by_name[] = {
-  1,   /* field[1] = full_scale */
+  3,   /* field[3] = band_width_ratio */
+  1,   /* field[1] = full_scale_g */
   2,   /* field[2] = high_pass_filter_enable */
-  0,   /* field[0] = sample_rate */
+  0,   /* field[0] = sample_rate_milliHz */
 };
 static const ProtobufCIntRange motion_sensor__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor motion_sensor__configuration_set__descriptor =
 {
@@ -649,7 +662,7 @@ const ProtobufCMessageDescriptor motion_sensor__configuration_set__descriptor =
   "MotionSensor__ConfigurationSet",
   "motionSensor",
   sizeof(MotionSensor__ConfigurationSet),
-  3,
+  4,
   motion_sensor__configuration_set__field_descriptors,
   motion_sensor__configuration_set__field_indices_by_name,
   1,  motion_sensor__configuration_set__number_ranges,
@@ -692,27 +705,27 @@ const ProtobufCMessageDescriptor motion_sensor__configuration_get__descriptor =
   (ProtobufCMessageInit) motion_sensor__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor motion_sensor__configuration_get_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor motion_sensor__configuration_get_response__field_descriptors[4] =
 {
   {
-    "sample_rate",
+    "sample_rate_millihz",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(MotionSensor__ConfigurationGetResponse, sample_rate),
+    offsetof(MotionSensor__ConfigurationGetResponse, sample_rate_millihz),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "full_scale",
+    "full_scale_g",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(MotionSensor__ConfigurationGetResponse, full_scale),
+    offsetof(MotionSensor__ConfigurationGetResponse, full_scale_g),
     NULL,
     NULL,
     0,             /* flags */
@@ -730,16 +743,29 @@ static const ProtobufCFieldDescriptor motion_sensor__configuration_get_response_
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "band_width_ratio",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(MotionSensor__ConfigurationGetResponse, band_width_ratio),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned motion_sensor__configuration_get_response__field_indices_by_name[] = {
-  1,   /* field[1] = full_scale */
+  3,   /* field[3] = band_width_ratio */
+  1,   /* field[1] = full_scale_g */
   2,   /* field[2] = high_pass_filter_enable */
-  0,   /* field[0] = sample_rate */
+  0,   /* field[0] = sample_rate_millihz */
 };
 static const ProtobufCIntRange motion_sensor__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor motion_sensor__configuration_get_response__descriptor =
 {
@@ -749,7 +775,7 @@ const ProtobufCMessageDescriptor motion_sensor__configuration_get_response__desc
   "MotionSensor__ConfigurationGetResponse",
   "motionSensor",
   sizeof(MotionSensor__ConfigurationGetResponse),
-  3,
+  4,
   motion_sensor__configuration_get_response__field_descriptors,
   motion_sensor__configuration_get_response__field_indices_by_name,
   1,  motion_sensor__configuration_get_response__number_ranges,
