@@ -57,9 +57,10 @@ message FunctionControlGet {
     // no parameters
 }
 
-// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+// FunctionControlSet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlSet hookmessage FunctionControlSet {
 message FunctionControlSet {
-    // Not implemented
+    string generator_pattern = 1; // pattern to send to the stimulus generator within the MVB sniffer for self-test
 }
 
 
@@ -78,12 +79,6 @@ message FunctionControlSetResponse {
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    enum Line {
-        a = 0;
-        b = 1;
-    }
-    Line line = 1;
-    bool enabledDigitalFilter = 2;
 }
 
 message Sample {
