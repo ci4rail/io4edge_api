@@ -16,7 +16,7 @@ limitations under the License.
 syntax = "proto3";
 
 package mvbDebug;
-option go_package = "mvbDebug/v1alpha1";
+option go_package = "mvbDebug/v1";
 
 // ============= Configuration =================
 

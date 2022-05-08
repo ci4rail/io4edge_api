@@ -32,11 +32,6 @@ typedef struct _MvbDebug__StreamData MvbDebug__StreamData;
 
 /* --- enums --- */
 
-typedef enum _MvbDebug__StreamControlStart__Line {
-  MVB_DEBUG__STREAM_CONTROL_START__LINE__a = 0,
-  MVB_DEBUG__STREAM_CONTROL_START__LINE__b = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(MVB_DEBUG__STREAM_CONTROL_START__LINE)
-} MvbDebug__StreamControlStart__Line;
 
 /* --- messages --- */
 
@@ -123,15 +118,20 @@ struct  _MvbDebug__FunctionControlGet
 
 
 /*
- * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+ * FunctionControlSet to pass to
+ * Functionblock.FunctionControl.functionSpecificFunctionControlSet hookmessage FunctionControlSet {
  */
 struct  _MvbDebug__FunctionControlSet
 {
   ProtobufCMessage base;
+  /*
+   * pattern to send to the stimulus generator within the MVB sniffer for self-test
+   */
+  char *generator_pattern;
 };
 #define MVB_DEBUG__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_debug__function_control_set__descriptor) \
-     }
+    , (char *)protobuf_c_empty_string }
 
 
 /*
@@ -166,12 +166,10 @@ struct  _MvbDebug__FunctionControlSetResponse
 struct  _MvbDebug__StreamControlStart
 {
   ProtobufCMessage base;
-  MvbDebug__StreamControlStart__Line line;
-  protobuf_c_boolean enableddigitalfilter;
 };
 #define MVB_DEBUG__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&mvb_debug__stream_control_start__descriptor) \
-    , MVB_DEBUG__STREAM_CONTROL_START__LINE__a, 0 }
+     }
 
 
 struct  _MvbDebug__Sample
@@ -506,7 +504,6 @@ extern const ProtobufCMessageDescriptor mvb_debug__function_control_set__descrip
 extern const ProtobufCMessageDescriptor mvb_debug__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_debug__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor mvb_debug__stream_control_start__descriptor;
-extern const ProtobufCEnumDescriptor    mvb_debug__stream_control_start__line__descriptor;
 extern const ProtobufCMessageDescriptor mvb_debug__sample__descriptor;
 extern const ProtobufCMessageDescriptor mvb_debug__stream_data__descriptor;
 

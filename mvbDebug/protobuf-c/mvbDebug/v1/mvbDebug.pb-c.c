@@ -718,9 +718,29 @@ const ProtobufCMessageDescriptor mvb_debug__function_control_get__descriptor =
   (ProtobufCMessageInit) mvb_debug__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define mvb_debug__function_control_set__field_descriptors NULL
-#define mvb_debug__function_control_set__field_indices_by_name NULL
-#define mvb_debug__function_control_set__number_ranges NULL
+static const ProtobufCFieldDescriptor mvb_debug__function_control_set__field_descriptors[1] =
+{
+  {
+    "generator_pattern",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(MvbDebug__FunctionControlSet, generator_pattern),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned mvb_debug__function_control_set__field_indices_by_name[] = {
+  0,   /* field[0] = generator_pattern */
+};
+static const ProtobufCIntRange mvb_debug__function_control_set__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor mvb_debug__function_control_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -729,10 +749,10 @@ const ProtobufCMessageDescriptor mvb_debug__function_control_set__descriptor =
   "MvbDebug__FunctionControlSet",
   "mvbDebug",
   sizeof(MvbDebug__FunctionControlSet),
-  0,
+  1,
   mvb_debug__function_control_set__field_descriptors,
   mvb_debug__function_control_set__field_indices_by_name,
-  0,  mvb_debug__function_control_set__number_ranges,
+  1,  mvb_debug__function_control_set__number_ranges,
   (ProtobufCMessageInit) mvb_debug__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -792,70 +812,9 @@ const ProtobufCMessageDescriptor mvb_debug__function_control_set_response__descr
   (ProtobufCMessageInit) mvb_debug__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue mvb_debug__stream_control_start__line__enum_values_by_number[2] =
-{
-  { "a", "MVB_DEBUG__STREAM_CONTROL_START__LINE__a", 0 },
-  { "b", "MVB_DEBUG__STREAM_CONTROL_START__LINE__b", 1 },
-};
-static const ProtobufCIntRange mvb_debug__stream_control_start__line__value_ranges[] = {
-{0, 0},{0, 2}
-};
-static const ProtobufCEnumValueIndex mvb_debug__stream_control_start__line__enum_values_by_name[2] =
-{
-  { "a", 0 },
-  { "b", 1 },
-};
-const ProtobufCEnumDescriptor mvb_debug__stream_control_start__line__descriptor =
-{
-  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "mvbDebug.StreamControlStart.Line",
-  "Line",
-  "MvbDebug__StreamControlStart__Line",
-  "mvbDebug",
-  2,
-  mvb_debug__stream_control_start__line__enum_values_by_number,
-  2,
-  mvb_debug__stream_control_start__line__enum_values_by_name,
-  1,
-  mvb_debug__stream_control_start__line__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
-};
-static const ProtobufCFieldDescriptor mvb_debug__stream_control_start__field_descriptors[2] =
-{
-  {
-    "line",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(MvbDebug__StreamControlStart, line),
-    &mvb_debug__stream_control_start__line__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "enabledDigitalFilter",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(MvbDebug__StreamControlStart, enableddigitalfilter),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned mvb_debug__stream_control_start__field_indices_by_name[] = {
-  1,   /* field[1] = enabledDigitalFilter */
-  0,   /* field[0] = line */
-};
-static const ProtobufCIntRange mvb_debug__stream_control_start__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
+#define mvb_debug__stream_control_start__field_descriptors NULL
+#define mvb_debug__stream_control_start__field_indices_by_name NULL
+#define mvb_debug__stream_control_start__number_ranges NULL
 const ProtobufCMessageDescriptor mvb_debug__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -864,10 +823,10 @@ const ProtobufCMessageDescriptor mvb_debug__stream_control_start__descriptor =
   "MvbDebug__StreamControlStart",
   "mvbDebug",
   sizeof(MvbDebug__StreamControlStart),
-  2,
+  0,
   mvb_debug__stream_control_start__field_descriptors,
   mvb_debug__stream_control_start__field_indices_by_name,
-  1,  mvb_debug__stream_control_start__number_ranges,
+  0,  mvb_debug__stream_control_start__number_ranges,
   (ProtobufCMessageInit) mvb_debug__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
