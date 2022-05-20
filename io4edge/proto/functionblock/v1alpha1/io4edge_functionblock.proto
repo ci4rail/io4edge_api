@@ -100,6 +100,7 @@ enum Status {
   STREAM_ALREADY_STARTED = 7;
   STREAM_ALREADY_STOPPED = 8;
   STREAM_START_FAILED = 9;
+  TEMPORARILY_UNAVAILABLE=10;
 }
 
 message Error { string error = 1; }

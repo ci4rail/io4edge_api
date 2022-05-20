@@ -39,7 +39,6 @@ enum Status {
   PROGRAMMING_ERROR = 7;
   NO_HW_INVENTORY = 8;
   THIS_VERSION_FAILED_ALREADY = 9;
-  TEMPORARILY_UNAVAILABLE = 10;
 }
 
 // Individual Commands and Responses
