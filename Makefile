@@ -4,7 +4,7 @@ all:
 	cd mvbSniffer && make
 	cd mvbDebug && make
 	cd io4edge && make
-	cd templateModule && make
+	cd templateInterface && make
 
 clean:
 	cd binaryIoTypeA && make clean
@@ -12,4 +12,4 @@ clean:
 	cd mvbSniffer && make clean
 	cd mvbDebug && make clean
 	cd io4edge && make clean
-	cd templateModule && make clean
+	cd templateInterface && make clean
