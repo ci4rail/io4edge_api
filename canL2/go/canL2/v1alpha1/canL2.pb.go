@@ -35,14 +35,130 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ControllerState int32
+
+const (
+	// bus is healthy
+	ControllerState_CAN_OK ControllerState = 0
+	// can controller has become error passive
+	ControllerState_CAN_ERROR_PASSIVE ControllerState = 1
+	// bus-off condition occurred.
+	ControllerState_CAN_BUS_OFF ControllerState = 2
+)
+
+// Enum value maps for ControllerState.
+var (
+	ControllerState_name = map[int32]string{
+		0: "CAN_OK",
+		1: "CAN_ERROR_PASSIVE",
+		2: "CAN_BUS_OFF",
+	}
+	ControllerState_value = map[string]int32{
+		"CAN_OK":            0,
+		"CAN_ERROR_PASSIVE": 1,
+		"CAN_BUS_OFF":       2,
+	}
+)
+
+func (x ControllerState) Enum() *ControllerState {
+	p := new(ControllerState)
+	*p = x
+	return p
+}
+
+func (x ControllerState) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ControllerState) Descriptor() protoreflect.EnumDescriptor {
+	return file_canL2_proto_enumTypes[0].Descriptor()
+}
+
+func (ControllerState) Type() protoreflect.EnumType {
+	return &file_canL2_proto_enumTypes[0]
+}
+
+func (x ControllerState) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ControllerState.Descriptor instead.
+func (ControllerState) EnumDescriptor() ([]byte, []int) {
+	return file_canL2_proto_rawDescGZIP(), []int{0}
+}
+
+type ErrorEvent int32
+
+const (
+	// no error
+	ErrorEvent_CAN_NO_ERROR ErrorEvent = 0
+	// failed to send frame
+	ErrorEvent_CAN_TX_FAILED ErrorEvent = 1
+	// rx buffer is full -> can controller not able to receive frames
+	ErrorEvent_CAN_RX_QUEUE_FULL ErrorEvent = 2
+	// the previous transmission lost arbitration
+	ErrorEvent_CAN_ARB_LOST ErrorEvent = 3
+	// bus error occured (bit error, stuff error, crc error, form error, ack error)
+	ErrorEvent_CAN_BUS_ERROR ErrorEvent = 4
+)
+
+// Enum value maps for ErrorEvent.
+var (
+	ErrorEvent_name = map[int32]string{
+		0: "CAN_NO_ERROR",
+		1: "CAN_TX_FAILED",
+		2: "CAN_RX_QUEUE_FULL",
+		3: "CAN_ARB_LOST",
+		4: "CAN_BUS_ERROR",
+	}
+	ErrorEvent_value = map[string]int32{
+		"CAN_NO_ERROR":      0,
+		"CAN_TX_FAILED":     1,
+		"CAN_RX_QUEUE_FULL": 2,
+		"CAN_ARB_LOST":      3,
+		"CAN_BUS_ERROR":     4,
+	}
+)
+
+func (x ErrorEvent) Enum() *ErrorEvent {
+	p := new(ErrorEvent)
+	*p = x
+	return p
+}
+
+func (x ErrorEvent) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ErrorEvent) Descriptor() protoreflect.EnumDescriptor {
+	return file_canL2_proto_enumTypes[1].Descriptor()
+}
+
+func (ErrorEvent) Type() protoreflect.EnumType {
+	return &file_canL2_proto_enumTypes[1]
+}
+
+func (x ErrorEvent) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ErrorEvent.Descriptor instead.
+func (ErrorEvent) EnumDescriptor() ([]byte, []int) {
+	return file_canL2_proto_rawDescGZIP(), []int{1}
+}
+
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Put here your function specific values, example
-	SampleRate uint32 `protobuf:"fixed32,1,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
+	// Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+	Baud uint32 `protobuf:"fixed32,1,opt,name=baud,proto3" json:"baud,omitempty"`
+	// Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+	SamplPoint float32 `protobuf:"fixed32,2,opt,name=samplPoint,proto3" json:"samplPoint,omitempty"`
+	// listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+	ListenOnly bool `protobuf:"varint,3,opt,name=listenOnly,proto3" json:"listenOnly,omitempty"`
 }
 
 func (x *ConfigurationSet) Reset() {
@@ -77,11 +193,25 @@ func (*ConfigurationSet) Descriptor() ([]byte, []int) {
 	return file_canL2_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationSet) GetSampleRate() uint32 {
+func (x *ConfigurationSet) GetBaud() uint32 {
 	if x != nil {
-		return x.SampleRate
+		return x.Baud
 	}
 	return 0
+}
+
+func (x *ConfigurationSet) GetSamplPoint() float32 {
+	if x != nil {
+		return x.SamplPoint
+	}
+	return 0
+}
+
+func (x *ConfigurationSet) GetListenOnly() bool {
+	if x != nil {
+		return x.ListenOnly
+	}
+	return false
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -169,8 +299,12 @@ type ConfigurationGetResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Put here your function specific values, example
-	SampleRate uint32 `protobuf:"fixed32,1,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
+	// Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+	Baud uint32 `protobuf:"fixed32,1,opt,name=baud,proto3" json:"baud,omitempty"`
+	// Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+	SamplPoint float32 `protobuf:"fixed32,2,opt,name=samplPoint,proto3" json:"samplPoint,omitempty"`
+	// listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+	ListenOnly bool `protobuf:"varint,3,opt,name=listenOnly,proto3" json:"listenOnly,omitempty"`
 }
 
 func (x *ConfigurationGetResponse) Reset() {
@@ -205,11 +339,25 @@ func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
 	return file_canL2_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ConfigurationGetResponse) GetSampleRate() uint32 {
+func (x *ConfigurationGetResponse) GetBaud() uint32 {
 	if x != nil {
-		return x.SampleRate
+		return x.Baud
 	}
 	return 0
+}
+
+func (x *ConfigurationGetResponse) GetSamplPoint() float32 {
+	if x != nil {
+		return x.SamplPoint
+	}
+	return 0
+}
+
+func (x *ConfigurationGetResponse) GetListenOnly() bool {
+	if x != nil {
+		return x.ListenOnly
+	}
+	return false
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -255,9 +403,6 @@ type ConfigurationDescribeResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// Put here your function specific values, example
-	Ident string `protobuf:"bytes,1,opt,name=ident,proto3" json:"ident,omitempty"`
 }
 
 func (x *ConfigurationDescribeResponse) Reset() {
@@ -290,13 +435,6 @@ func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
 	return file_canL2_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ConfigurationDescribeResponse) GetIdent() string {
-	if x != nil {
-		return x.Ident
-	}
-	return ""
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -433,21 +571,94 @@ func (*FunctionControlGet) Descriptor() ([]byte, []int) {
 	return file_canL2_proto_rawDescGZIP(), []int{7}
 }
 
+type Frame struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// send extended frame
+	ExtendedFrameFormat bool `protobuf:"varint,1,opt,name=extendedFrameFormat,proto3" json:"extendedFrameFormat,omitempty"`
+	// request remote frame
+	RemoteFrame bool `protobuf:"varint,2,opt,name=remoteFrame,proto3" json:"remoteFrame,omitempty"`
+	// can id
+	MessageId uint32 `protobuf:"fixed32,3,opt,name=messageId,proto3" json:"messageId,omitempty"`
+	// data[0]... data[7]
+	Data []byte `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *Frame) Reset() {
+	*x = Frame{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_canL2_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Frame) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Frame) ProtoMessage() {}
+
+func (x *Frame) ProtoReflect() protoreflect.Message {
+	mi := &file_canL2_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Frame.ProtoReflect.Descriptor instead.
+func (*Frame) Descriptor() ([]byte, []int) {
+	return file_canL2_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Frame) GetExtendedFrameFormat() bool {
+	if x != nil {
+		return x.ExtendedFrameFormat
+	}
+	return false
+}
+
+func (x *Frame) GetRemoteFrame() bool {
+	if x != nil {
+		return x.RemoteFrame
+	}
+	return false
+}
+
+func (x *Frame) GetMessageId() uint32 {
+	if x != nil {
+		return x.MessageId
+	}
+	return 0
+}
+
+func (x *Frame) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 type FunctionControlSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Put here your function specific values
-	// Example:
-	Value uint32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
+	Frame []*Frame `protobuf:"bytes,1,rep,name=frame,proto3" json:"frame,omitempty"`
 }
 
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[8]
+		mi := &file_canL2_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -460,7 +671,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[8]
+	mi := &file_canL2_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -473,14 +684,14 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{8}
+	return file_canL2_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *FunctionControlSet) GetValue() uint32 {
+func (x *FunctionControlSet) GetFrame() []*Frame {
 	if x != nil {
-		return x.Value
+		return x.Frame
 	}
-	return 0
+	return nil
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
@@ -489,14 +700,13 @@ type FunctionControlGetResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Put here your function specific values
-	Value uint32 `protobuf:"fixed32,1,opt,name=value,proto3" json:"value,omitempty"`
+	ControllerState ControllerState `protobuf:"varint,1,opt,name=controllerState,proto3,enum=canL2.ControllerState" json:"controllerState,omitempty"`
 }
 
 func (x *FunctionControlGetResponse) Reset() {
 	*x = FunctionControlGetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[9]
+		mi := &file_canL2_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -509,7 +719,7 @@ func (x *FunctionControlGetResponse) String() string {
 func (*FunctionControlGetResponse) ProtoMessage() {}
 
 func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[9]
+	mi := &file_canL2_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -522,14 +732,14 @@ func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{9}
+	return file_canL2_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *FunctionControlGetResponse) GetValue() uint32 {
+func (x *FunctionControlGetResponse) GetControllerState() ControllerState {
 	if x != nil {
-		return x.Value
+		return x.ControllerState
 	}
-	return 0
+	return ControllerState_CAN_OK
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
@@ -542,7 +752,7 @@ type FunctionControlSetResponse struct {
 func (x *FunctionControlSetResponse) Reset() {
 	*x = FunctionControlSetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[10]
+		mi := &file_canL2_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -555,7 +765,7 @@ func (x *FunctionControlSetResponse) String() string {
 func (*FunctionControlSetResponse) ProtoMessage() {}
 
 func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[10]
+	mi := &file_canL2_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,7 +778,7 @@ func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{10}
+	return file_canL2_proto_rawDescGZIP(), []int{11}
 }
 
 // ============= StreamControl ==================
@@ -578,14 +788,14 @@ type StreamControlStart struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Put here your function specific values, example
-	Modulo uint32 `protobuf:"fixed32,1,opt,name=modulo,proto3" json:"modulo,omitempty"` // generate a sample when counter (value % modulo) == 0
+	AcceptanceCode uint32 `protobuf:"fixed32,1,opt,name=acceptanceCode,proto3" json:"acceptanceCode,omitempty"`
+	AcceptanceMask uint32 `protobuf:"fixed32,2,opt,name=acceptanceMask,proto3" json:"acceptanceMask,omitempty"`
 }
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[11]
+		mi := &file_canL2_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -598,7 +808,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[11]
+	mi := &file_canL2_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -611,12 +821,19 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{11}
+	return file_canL2_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *StreamControlStart) GetModulo() uint32 {
+func (x *StreamControlStart) GetAcceptanceCode() uint32 {
 	if x != nil {
-		return x.Modulo
+		return x.AcceptanceCode
+	}
+	return 0
+}
+
+func (x *StreamControlStart) GetAcceptanceMask() uint32 {
+	if x != nil {
+		return x.AcceptanceMask
 	}
 	return 0
 }
@@ -626,17 +843,17 @@ type Sample struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Timestamp for that specific channels sample. This is the time the sample was taken.
-	// This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-	Timestamp uint64 `protobuf:"fixed64,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	// Specifies the binary channel value when the input value has changed.
-	Value uint32 `protobuf:"fixed32,2,opt,name=value,proto3" json:"value,omitempty"`
+	Frame           *Frame          `protobuf:"bytes,1,opt,name=frame,proto3" json:"frame,omitempty"`
+	ControllerState ControllerState `protobuf:"varint,2,opt,name=controllerState,proto3,enum=canL2.ControllerState" json:"controllerState,omitempty"`
+	Error           ErrorEvent      `protobuf:"varint,3,opt,name=error,proto3,enum=canL2.ErrorEvent" json:"error,omitempty"`
+	// the sample contains a data frame
+	IsDataFrame bool `protobuf:"varint,4,opt,name=isDataFrame,proto3" json:"isDataFrame,omitempty"`
 }
 
 func (x *Sample) Reset() {
 	*x = Sample{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[12]
+		mi := &file_canL2_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -649,7 +866,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[12]
+	mi := &file_canL2_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -662,21 +879,35 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{12}
+	return file_canL2_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *Sample) GetTimestamp() uint64 {
+func (x *Sample) GetFrame() *Frame {
 	if x != nil {
-		return x.Timestamp
+		return x.Frame
 	}
-	return 0
+	return nil
 }
 
-func (x *Sample) GetValue() uint32 {
+func (x *Sample) GetControllerState() ControllerState {
 	if x != nil {
-		return x.Value
+		return x.ControllerState
 	}
-	return 0
+	return ControllerState_CAN_OK
+}
+
+func (x *Sample) GetError() ErrorEvent {
+	if x != nil {
+		return x.Error
+	}
+	return ErrorEvent_CAN_NO_ERROR
+}
+
+func (x *Sample) GetIsDataFrame() bool {
+	if x != nil {
+		return x.IsDataFrame
+	}
+	return false
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
@@ -691,7 +922,7 @@ type StreamData struct {
 func (x *StreamData) Reset() {
 	*x = StreamData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_canL2_proto_msgTypes[13]
+		mi := &file_canL2_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -704,7 +935,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_canL2_proto_msgTypes[13]
+	mi := &file_canL2_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -717,7 +948,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_canL2_proto_rawDescGZIP(), []int{13}
+	return file_canL2_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *StreamData) GetSamples() []*Sample {
@@ -731,22 +962,27 @@ var File_canL2_proto protoreflect.FileDescriptor
 
 var file_canL2_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x63,
-	0x61, 0x6e, 0x4c, 0x32, 0x22, 0x33, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x61, 0x6d, 0x70,
-	0x6c, 0x65, 0x5f, 0x72, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0a, 0x73,
-	0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x61, 0x74, 0x65, 0x22, 0x1a, 0x0a, 0x18, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x22, 0x3b, 0x0a, 0x18, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x5f,
-	0x72, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0a, 0x73, 0x61, 0x6d, 0x70,
-	0x6c, 0x65, 0x52, 0x61, 0x74, 0x65, 0x22, 0x17, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x22,
-	0x35, 0x0a, 0x1d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x14, 0x0a, 0x05, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x22, 0xcd, 0x01, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x61, 0x6e, 0x4c, 0x32, 0x22, 0x66, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x61, 0x75, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x04, 0x62, 0x61, 0x75, 0x64, 0x12, 0x1e, 0x0a, 0x0a,
+	0x73, 0x61, 0x6d, 0x70, 0x6c, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02,
+	0x52, 0x0a, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1e, 0x0a, 0x0a,
+	0x6c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x4f, 0x6e, 0x6c, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x0a, 0x6c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x4f, 0x6e, 0x6c, 0x79, 0x22, 0x1a, 0x0a, 0x18,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74, 0x22, 0x6e, 0x0a, 0x18,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x65, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x61, 0x75, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x04, 0x62, 0x61, 0x75, 0x64, 0x12, 0x1e, 0x0a, 0x0a,
+	0x73, 0x61, 0x6d, 0x70, 0x6c, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02,
+	0x52, 0x0a, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1e, 0x0a, 0x0a,
+	0x6c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x4f, 0x6e, 0x6c, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x0a, 0x6c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x4f, 0x6e, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x15,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x62, 0x65, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xcd, 0x01, 0x0a, 0x15, 0x43, 0x6f, 0x6e, 0x66, 0x69,
 	0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x33, 0x0a, 0x03, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e,
 	0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
@@ -760,27 +996,62 @@ var file_canL2_proto_rawDesc = []byte{
 	0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x48, 0x00, 0x52, 0x08, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x42, 0x06,
 	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22, 0x2a, 0x0a, 0x12,
+	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x22, 0x8d, 0x01, 0x0a,
+	0x05, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x13, 0x65, 0x78, 0x74, 0x65, 0x6e, 0x64,
+	0x65, 0x64, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x13, 0x65, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x65, 0x64, 0x46, 0x72, 0x61,
+	0x6d, 0x65, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x72, 0x65, 0x6d, 0x6f,
+	0x74, 0x65, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x72,
+	0x65, 0x6d, 0x6f, 0x74, 0x65, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x07, 0x52, 0x09, 0x6d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x38, 0x0a, 0x12,
 	0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53,
-	0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x07, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x32, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x1c, 0x0a, 0x1a,
-	0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53,
-	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2c, 0x0a, 0x12, 0x53, 0x74,
-	0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72, 0x74,
-	0x12, 0x16, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07,
-	0x52, 0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x6f, 0x22, 0x3c, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70,
-	0x6c, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x06, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
-	0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x35, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x65, 0x74, 0x12, 0x22, 0x0a, 0x05, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x0c, 0x2e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x52,
+	0x05, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x22, 0x5e, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x40, 0x0a, 0x0f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c,
+	0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e,
+	0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72,
+	0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x0f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65,
+	0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x22, 0x1c, 0x0a, 0x1a, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x64, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72, 0x74, 0x12, 0x26, 0x0a, 0x0e, 0x61, 0x63,
+	0x63, 0x65, 0x70, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x07, 0x52, 0x0e, 0x61, 0x63, 0x63, 0x65, 0x70, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f,
+	0x64, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x61, 0x63, 0x63, 0x65, 0x70, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x4d, 0x61, 0x73, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x0e, 0x61, 0x63, 0x63, 0x65,
+	0x70, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4d, 0x61, 0x73, 0x6b, 0x22, 0xb9, 0x01, 0x0a, 0x06, 0x53,
+	0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x22, 0x0a, 0x05, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x46, 0x72, 0x61,
+	0x6d, 0x65, 0x52, 0x05, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x0f, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x16, 0x2e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72,
+	0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x0f, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x27, 0x0a, 0x05, 0x65,
+	0x72, 0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x63, 0x61, 0x6e,
+	0x4c, 0x32, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x65,
+	0x72, 0x72, 0x6f, 0x72, 0x12, 0x20, 0x0a, 0x0b, 0x69, 0x73, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72,
+	0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x44, 0x61, 0x74,
+	0x61, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x22, 0x35, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
 	0x44, 0x61, 0x74, 0x61, 0x12, 0x27, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18,
 	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2e, 0x53, 0x61,
-	0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x42, 0x10, 0x5a,
-	0x0e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x2a, 0x45, 0x0a,
+	0x0f, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65,
+	0x12, 0x0a, 0x0a, 0x06, 0x43, 0x41, 0x4e, 0x5f, 0x4f, 0x4b, 0x10, 0x00, 0x12, 0x15, 0x0a, 0x11,
+	0x43, 0x41, 0x4e, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x5f, 0x50, 0x41, 0x53, 0x53, 0x49, 0x56,
+	0x45, 0x10, 0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x43, 0x41, 0x4e, 0x5f, 0x42, 0x55, 0x53, 0x5f, 0x4f,
+	0x46, 0x46, 0x10, 0x02, 0x2a, 0x6d, 0x0a, 0x0a, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x45, 0x76, 0x65,
+	0x6e, 0x74, 0x12, 0x10, 0x0a, 0x0c, 0x43, 0x41, 0x4e, 0x5f, 0x4e, 0x4f, 0x5f, 0x45, 0x52, 0x52,
+	0x4f, 0x52, 0x10, 0x00, 0x12, 0x11, 0x0a, 0x0d, 0x43, 0x41, 0x4e, 0x5f, 0x54, 0x58, 0x5f, 0x46,
+	0x41, 0x49, 0x4c, 0x45, 0x44, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x43, 0x41, 0x4e, 0x5f, 0x52,
+	0x58, 0x5f, 0x51, 0x55, 0x45, 0x55, 0x45, 0x5f, 0x46, 0x55, 0x4c, 0x4c, 0x10, 0x02, 0x12, 0x10,
+	0x0a, 0x0c, 0x43, 0x41, 0x4e, 0x5f, 0x41, 0x52, 0x42, 0x5f, 0x4c, 0x4f, 0x53, 0x54, 0x10, 0x03,
+	0x12, 0x11, 0x0a, 0x0d, 0x43, 0x41, 0x4e, 0x5f, 0x42, 0x55, 0x53, 0x5f, 0x45, 0x52, 0x52, 0x4f,
+	0x52, 0x10, 0x04, 0x42, 0x10, 0x5a, 0x0e, 0x63, 0x61, 0x6e, 0x4c, 0x32, 0x2f, 0x76, 0x31, 0x61,
+	0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -795,33 +1066,42 @@ func file_canL2_proto_rawDescGZIP() []byte {
 	return file_canL2_proto_rawDescData
 }
 
-var file_canL2_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_canL2_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_canL2_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_canL2_proto_goTypes = []interface{}{
-	(*ConfigurationSet)(nil),              // 0: canL2.ConfigurationSet
-	(*ConfigurationSetResponse)(nil),      // 1: canL2.ConfigurationSetResponse
-	(*ConfigurationGet)(nil),              // 2: canL2.ConfigurationGet
-	(*ConfigurationGetResponse)(nil),      // 3: canL2.ConfigurationGetResponse
-	(*ConfigurationDescribe)(nil),         // 4: canL2.ConfigurationDescribe
-	(*ConfigurationDescribeResponse)(nil), // 5: canL2.ConfigurationDescribeResponse
-	(*ConfigurationResponse)(nil),         // 6: canL2.ConfigurationResponse
-	(*FunctionControlGet)(nil),            // 7: canL2.FunctionControlGet
-	(*FunctionControlSet)(nil),            // 8: canL2.FunctionControlSet
-	(*FunctionControlGetResponse)(nil),    // 9: canL2.FunctionControlGetResponse
-	(*FunctionControlSetResponse)(nil),    // 10: canL2.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 11: canL2.StreamControlStart
-	(*Sample)(nil),                        // 12: canL2.Sample
-	(*StreamData)(nil),                    // 13: canL2.StreamData
+	(ControllerState)(0),                  // 0: canL2.ControllerState
+	(ErrorEvent)(0),                       // 1: canL2.ErrorEvent
+	(*ConfigurationSet)(nil),              // 2: canL2.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 3: canL2.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 4: canL2.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 5: canL2.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 6: canL2.ConfigurationDescribe
+	(*ConfigurationDescribeResponse)(nil), // 7: canL2.ConfigurationDescribeResponse
+	(*ConfigurationResponse)(nil),         // 8: canL2.ConfigurationResponse
+	(*FunctionControlGet)(nil),            // 9: canL2.FunctionControlGet
+	(*Frame)(nil),                         // 10: canL2.Frame
+	(*FunctionControlSet)(nil),            // 11: canL2.FunctionControlSet
+	(*FunctionControlGetResponse)(nil),    // 12: canL2.FunctionControlGetResponse
+	(*FunctionControlSetResponse)(nil),    // 13: canL2.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 14: canL2.StreamControlStart
+	(*Sample)(nil),                        // 15: canL2.Sample
+	(*StreamData)(nil),                    // 16: canL2.StreamData
 }
 var file_canL2_proto_depIdxs = []int32{
-	3,  // 0: canL2.ConfigurationResponse.get:type_name -> canL2.ConfigurationGetResponse
-	1,  // 1: canL2.ConfigurationResponse.set:type_name -> canL2.ConfigurationSetResponse
-	5,  // 2: canL2.ConfigurationResponse.describe:type_name -> canL2.ConfigurationDescribeResponse
-	12, // 3: canL2.StreamData.samples:type_name -> canL2.Sample
-	4,  // [4:4] is the sub-list for method output_type
-	4,  // [4:4] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	5,  // 0: canL2.ConfigurationResponse.get:type_name -> canL2.ConfigurationGetResponse
+	3,  // 1: canL2.ConfigurationResponse.set:type_name -> canL2.ConfigurationSetResponse
+	7,  // 2: canL2.ConfigurationResponse.describe:type_name -> canL2.ConfigurationDescribeResponse
+	10, // 3: canL2.FunctionControlSet.frame:type_name -> canL2.Frame
+	0,  // 4: canL2.FunctionControlGetResponse.controllerState:type_name -> canL2.ControllerState
+	10, // 5: canL2.Sample.frame:type_name -> canL2.Frame
+	0,  // 6: canL2.Sample.controllerState:type_name -> canL2.ControllerState
+	1,  // 7: canL2.Sample.error:type_name -> canL2.ErrorEvent
+	15, // 8: canL2.StreamData.samples:type_name -> canL2.Sample
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_canL2_proto_init() }
@@ -927,7 +1207,7 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlSet); i {
+			switch v := v.(*Frame); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -939,7 +1219,7 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlGetResponse); i {
+			switch v := v.(*FunctionControlSet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -951,7 +1231,7 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FunctionControlSetResponse); i {
+			switch v := v.(*FunctionControlGetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -963,7 +1243,7 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StreamControlStart); i {
+			switch v := v.(*FunctionControlSetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -975,7 +1255,7 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Sample); i {
+			switch v := v.(*StreamControlStart); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -987,6 +1267,18 @@ func file_canL2_proto_init() {
 			}
 		}
 		file_canL2_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Sample); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_canL2_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamData); i {
 			case 0:
 				return &v.state
@@ -1009,13 +1301,14 @@ func file_canL2_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_canL2_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   14,
+			NumEnums:      2,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_canL2_proto_goTypes,
 		DependencyIndexes: file_canL2_proto_depIdxs,
+		EnumInfos:         file_canL2_proto_enumTypes,
 		MessageInfos:      file_canL2_proto_msgTypes,
 	}.Build()
 	File_canL2_proto = out.File

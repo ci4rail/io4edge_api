@@ -22,8 +22,12 @@ option go_package = "canL2/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Put here your function specific values, example
-    fixed32 sample_rate = 1;
+    // Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+    fixed32 baud = 1;
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+    float samplPoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+    bool listenOnly = 3;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -39,8 +43,12 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // Put here your function specific values, example
-    fixed32 sample_rate = 1;
+    // Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+    fixed32 baud = 1;
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+    float samplPoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+    bool listenOnly = 3;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -49,8 +57,7 @@ message ConfigurationDescribe {
 }
 
 message ConfigurationDescribeResponse {
-    // Put here your function specific values, example
-    string ident = 1;
+    // Not implemented
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -67,46 +74,74 @@ message ConfigurationResponse {
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    // Put here your function specific values
+    // no parameters
+}
+
+// todo repeated frame
+
+message Frame {
+    // send extended frame
+    bool extendedFrameFormat = 1;
+    // request remote frame
+    bool remoteFrame = 2;
+    // can id
+    fixed32 messageId = 3;
+    // data[0]... data[7]
+    bytes data = 4;
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-    // Put here your function specific values
-    // Example:
-    fixed32 value = 1;
+    repeated Frame frame = 1;
 }
 
+enum ControllerState {
+    // bus is healthy
+    CAN_OK = 0;
+    // can controller has become error passive
+    CAN_ERROR_PASSIVE = 1;
+    // bus-off condition occurred.
+    CAN_BUS_OFF = 2;
+}
+
+enum ErrorEvent {
+    // no error
+    CAN_NO_ERROR = 0;
+    // failed to send frame
+    CAN_TX_FAILED = 1;
+    // rx buffer is full -> can controller not able to receive frames
+    CAN_RX_QUEUE_FULL = 2;
+    // the previous transmission lost arbitration
+    CAN_ARB_LOST = 3;
+    // bus error occured (bit error, stuff error, crc error, form error, ack error)
+    CAN_BUS_ERROR = 4;
+}
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    // Put here your function specific values
-    fixed32 value = 1;
+    ControllerState controllerState = 1;
 }
 
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
-    // Put here your function specific values here
+    // no parameter
 }
 
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    // Put here your function specific values, example
-    fixed32 modulo = 1;     // generate a sample when counter (value % modulo) == 0
+    fixed32 acceptanceCode = 1;
+    fixed32 acceptanceMask = 2;
 }
 
 message Sample {
-    // Put here your function specific values
-    // Example:
-
-    // Timestamp for that specific channels sample. This is the time the sample was taken.
-    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-    fixed64 timestamp = 1;
-    // Specifies the binary channel value when the input value has changed.
-    fixed32 value = 2;
+    Frame frame = 1;
+    ControllerState controllerState = 2;
+    ErrorEvent error = 3;
+    // the sample contains a data frame
+    bool isDataFrame = 4;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook

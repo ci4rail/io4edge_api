@@ -23,6 +23,7 @@ typedef struct _CanL2__ConfigurationDescribe CanL2__ConfigurationDescribe;
 typedef struct _CanL2__ConfigurationDescribeResponse CanL2__ConfigurationDescribeResponse;
 typedef struct _CanL2__ConfigurationResponse CanL2__ConfigurationResponse;
 typedef struct _CanL2__FunctionControlGet CanL2__FunctionControlGet;
+typedef struct _CanL2__Frame CanL2__Frame;
 typedef struct _CanL2__FunctionControlSet CanL2__FunctionControlSet;
 typedef struct _CanL2__FunctionControlGetResponse CanL2__FunctionControlGetResponse;
 typedef struct _CanL2__FunctionControlSetResponse CanL2__FunctionControlSetResponse;
@@ -33,6 +34,44 @@ typedef struct _CanL2__StreamData CanL2__StreamData;
 
 /* --- enums --- */
 
+typedef enum _CanL2__ControllerState {
+  /*
+   * bus is healthy
+   */
+  CAN_L2__CONTROLLER_STATE__CAN_OK = 0,
+  /*
+   * can controller has become error passive
+   */
+  CAN_L2__CONTROLLER_STATE__CAN_ERROR_PASSIVE = 1,
+  /*
+   * bus-off condition occurred.
+   */
+  CAN_L2__CONTROLLER_STATE__CAN_BUS_OFF = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(CAN_L2__CONTROLLER_STATE)
+} CanL2__ControllerState;
+typedef enum _CanL2__ErrorEvent {
+  /*
+   * no error
+   */
+  CAN_L2__ERROR_EVENT__CAN_NO_ERROR = 0,
+  /*
+   * failed to send frame
+   */
+  CAN_L2__ERROR_EVENT__CAN_TX_FAILED = 1,
+  /*
+   * rx buffer is full -> can controller not able to receive frames
+   */
+  CAN_L2__ERROR_EVENT__CAN_RX_QUEUE_FULL = 2,
+  /*
+   * the previous transmission lost arbitration
+   */
+  CAN_L2__ERROR_EVENT__CAN_ARB_LOST = 3,
+  /*
+   * bus error occured (bit error, stuff error, crc error, form error, ack error)
+   */
+  CAN_L2__ERROR_EVENT__CAN_BUS_ERROR = 4
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(CAN_L2__ERROR_EVENT)
+} CanL2__ErrorEvent;
 
 /* --- messages --- */
 
@@ -43,13 +82,21 @@ struct  _CanL2__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * Put here your function specific values, example
+   * Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
    */
-  uint32_t sample_rate;
+  uint32_t baud;
+  /*
+   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+   */
+  float samplpoint;
+  /*
+   * listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+   */
+  protobuf_c_boolean listenonly;
 };
 #define CAN_L2__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_set__descriptor) \
-    , 0 }
+    , 0, 0, 0 }
 
 
 /*
@@ -84,13 +131,21 @@ struct  _CanL2__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Put here your function specific values, example
+   * Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
    */
-  uint32_t sample_rate;
+  uint32_t baud;
+  /*
+   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+   */
+  float samplpoint;
+  /*
+   * listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+   */
+  protobuf_c_boolean listenonly;
 };
 #define CAN_L2__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_get_response__descriptor) \
-    , 0 }
+    , 0, 0, 0 }
 
 
 /*
@@ -108,14 +163,10 @@ struct  _CanL2__ConfigurationDescribe
 struct  _CanL2__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values, example
-   */
-  char *ident;
 };
 #define CAN_L2__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_describe_response__descriptor) \
-    , (char *)protobuf_c_empty_string }
+     }
 
 
 typedef enum {
@@ -156,21 +207,43 @@ struct  _CanL2__FunctionControlGet
      }
 
 
+struct  _CanL2__Frame
+{
+  ProtobufCMessage base;
+  /*
+   * send extended frame
+   */
+  protobuf_c_boolean extendedframeformat;
+  /*
+   * request remote frame
+   */
+  protobuf_c_boolean remoteframe;
+  /*
+   * can id
+   */
+  uint32_t messageid;
+  /*
+   * data[0]... data[7]
+   */
+  ProtobufCBinaryData data;
+};
+#define CAN_L2__FRAME__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&can_l2__frame__descriptor) \
+    , 0, 0, 0, {0,NULL} }
+
+
 /*
  * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
  */
 struct  _CanL2__FunctionControlSet
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values
-   * Example:
-   */
-  uint32_t value;
+  size_t n_frame;
+  CanL2__Frame **frame;
 };
 #define CAN_L2__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_set__descriptor) \
-    , 0 }
+    , 0,NULL }
 
 
 /*
@@ -179,14 +252,11 @@ struct  _CanL2__FunctionControlSet
 struct  _CanL2__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values
-   */
-  uint32_t value;
+  CanL2__ControllerState controllerstate;
 };
 #define CAN_L2__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__function_control_get_response__descriptor) \
-    , 0 }
+    , CAN_L2__CONTROLLER_STATE__CAN_OK }
 
 
 /*
@@ -208,35 +278,28 @@ struct  _CanL2__FunctionControlSetResponse
 struct  _CanL2__StreamControlStart
 {
   ProtobufCMessage base;
-  /*
-   * Put here your function specific values, example
-   */
-  /*
-   * generate a sample when counter (value % modulo) == 0
-   */
-  uint32_t modulo;
+  uint32_t acceptancecode;
+  uint32_t acceptancemask;
 };
 #define CAN_L2__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__stream_control_start__descriptor) \
-    , 0 }
+    , 0, 0 }
 
 
 struct  _CanL2__Sample
 {
   ProtobufCMessage base;
+  CanL2__Frame *frame;
+  CanL2__ControllerState controllerstate;
+  CanL2__ErrorEvent error;
   /*
-   * Timestamp for that specific channels sample. This is the time the sample was taken.
-   * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+   * the sample contains a data frame
    */
-  uint64_t timestamp;
-  /*
-   * Specifies the binary channel value when the input value has changed.
-   */
-  uint32_t value;
+  protobuf_c_boolean isdataframe;
 };
 #define CAN_L2__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__sample__descriptor) \
-    , 0, 0 }
+    , NULL, CAN_L2__CONTROLLER_STATE__CAN_OK, CAN_L2__ERROR_EVENT__CAN_NO_ERROR, 0 }
 
 
 /*
@@ -405,6 +468,25 @@ CanL2__FunctionControlGet *
 void   can_l2__function_control_get__free_unpacked
                      (CanL2__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
+/* CanL2__Frame methods */
+void   can_l2__frame__init
+                     (CanL2__Frame         *message);
+size_t can_l2__frame__get_packed_size
+                     (const CanL2__Frame   *message);
+size_t can_l2__frame__pack
+                     (const CanL2__Frame   *message,
+                      uint8_t             *out);
+size_t can_l2__frame__pack_to_buffer
+                     (const CanL2__Frame   *message,
+                      ProtobufCBuffer     *buffer);
+CanL2__Frame *
+       can_l2__frame__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   can_l2__frame__free_unpacked
+                     (CanL2__Frame *message,
+                      ProtobufCAllocator *allocator);
 /* CanL2__FunctionControlSet methods */
 void   can_l2__function_control_set__init
                      (CanL2__FunctionControlSet         *message);
@@ -545,6 +627,9 @@ typedef void (*CanL2__ConfigurationResponse_Closure)
 typedef void (*CanL2__FunctionControlGet_Closure)
                  (const CanL2__FunctionControlGet *message,
                   void *closure_data);
+typedef void (*CanL2__Frame_Closure)
+                 (const CanL2__Frame *message,
+                  void *closure_data);
 typedef void (*CanL2__FunctionControlSet_Closure)
                  (const CanL2__FunctionControlSet *message,
                   void *closure_data);
@@ -569,6 +654,8 @@ typedef void (*CanL2__StreamData_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCEnumDescriptor    can_l2__controller_state__descriptor;
+extern const ProtobufCEnumDescriptor    can_l2__error_event__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__configuration_get__descriptor;
@@ -577,6 +664,7 @@ extern const ProtobufCMessageDescriptor can_l2__configuration_describe__descript
 extern const ProtobufCMessageDescriptor can_l2__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__function_control_get__descriptor;
+extern const ProtobufCMessageDescriptor can_l2__frame__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor can_l2__function_control_set_response__descriptor;

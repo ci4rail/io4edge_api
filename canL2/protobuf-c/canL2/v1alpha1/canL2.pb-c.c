@@ -367,6 +367,51 @@ void   can_l2__function_control_get__free_unpacked
   assert(message->base.descriptor == &can_l2__function_control_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   can_l2__frame__init
+                     (CanL2__Frame         *message)
+{
+  static const CanL2__Frame init_value = CAN_L2__FRAME__INIT;
+  *message = init_value;
+}
+size_t can_l2__frame__get_packed_size
+                     (const CanL2__Frame *message)
+{
+  assert(message->base.descriptor == &can_l2__frame__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t can_l2__frame__pack
+                     (const CanL2__Frame *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &can_l2__frame__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t can_l2__frame__pack_to_buffer
+                     (const CanL2__Frame *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &can_l2__frame__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+CanL2__Frame *
+       can_l2__frame__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (CanL2__Frame *)
+     protobuf_c_message_unpack (&can_l2__frame__descriptor,
+                                allocator, len, data);
+}
+void   can_l2__frame__free_unpacked
+                     (CanL2__Frame *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &can_l2__frame__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   can_l2__function_control_set__init
                      (CanL2__FunctionControlSet         *message)
 {
@@ -637,15 +682,39 @@ void   can_l2__stream_data__free_unpacked
   assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[3] =
 {
   {
-    "sample_rate",
+    "baud",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationSet, sample_rate),
+    offsetof(CanL2__ConfigurationSet, baud),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "samplPoint",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationSet, samplpoint),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "listenOnly",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationSet, listenonly),
     NULL,
     NULL,
     0,             /* flags */
@@ -653,12 +722,14 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
   },
 };
 static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
-  0,   /* field[0] = sample_rate */
+  0,   /* field[0] = baud */
+  2,   /* field[2] = listenOnly */
+  1,   /* field[1] = samplPoint */
 };
 static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
 {
@@ -668,7 +739,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
   "CanL2__ConfigurationSet",
   "canL2",
   sizeof(CanL2__ConfigurationSet),
-  1,
+  3,
   can_l2__configuration_set__field_descriptors,
   can_l2__configuration_set__field_indices_by_name,
   1,  can_l2__configuration_set__number_ranges,
@@ -711,15 +782,39 @@ const ProtobufCMessageDescriptor can_l2__configuration_get__descriptor =
   (ProtobufCMessageInit) can_l2__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_descriptors[3] =
 {
   {
-    "sample_rate",
+    "baud",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationGetResponse, sample_rate),
+    offsetof(CanL2__ConfigurationGetResponse, baud),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "samplPoint",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationGetResponse, samplpoint),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "listenOnly",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationGetResponse, listenonly),
     NULL,
     NULL,
     0,             /* flags */
@@ -727,12 +822,14 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
   },
 };
 static const unsigned can_l2__configuration_get_response__field_indices_by_name[] = {
-  0,   /* field[0] = sample_rate */
+  0,   /* field[0] = baud */
+  2,   /* field[2] = listenOnly */
+  1,   /* field[1] = samplPoint */
 };
 static const ProtobufCIntRange can_l2__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor =
 {
@@ -742,7 +839,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor 
   "CanL2__ConfigurationGetResponse",
   "canL2",
   sizeof(CanL2__ConfigurationGetResponse),
-  1,
+  3,
   can_l2__configuration_get_response__field_descriptors,
   can_l2__configuration_get_response__field_indices_by_name,
   1,  can_l2__configuration_get_response__number_ranges,
@@ -767,29 +864,9 @@ const ProtobufCMessageDescriptor can_l2__configuration_describe__descriptor =
   (ProtobufCMessageInit) can_l2__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__configuration_describe_response__field_descriptors[1] =
-{
-  {
-    "ident",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationDescribeResponse, ident),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned can_l2__configuration_describe_response__field_indices_by_name[] = {
-  0,   /* field[0] = ident */
-};
-static const ProtobufCIntRange can_l2__configuration_describe_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define can_l2__configuration_describe_response__field_descriptors NULL
+#define can_l2__configuration_describe_response__field_indices_by_name NULL
+#define can_l2__configuration_describe_response__number_ranges NULL
 const ProtobufCMessageDescriptor can_l2__configuration_describe_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -798,10 +875,10 @@ const ProtobufCMessageDescriptor can_l2__configuration_describe_response__descri
   "CanL2__ConfigurationDescribeResponse",
   "canL2",
   sizeof(CanL2__ConfigurationDescribeResponse),
-  1,
+  0,
   can_l2__configuration_describe_response__field_descriptors,
   can_l2__configuration_describe_response__field_indices_by_name,
-  1,  can_l2__configuration_describe_response__number_ranges,
+  0,  can_l2__configuration_describe_response__number_ranges,
   (ProtobufCMessageInit) can_l2__configuration_describe_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -887,23 +964,100 @@ const ProtobufCMessageDescriptor can_l2__function_control_get__descriptor =
   (ProtobufCMessageInit) can_l2__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__function_control_set__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__frame__field_descriptors[4] =
 {
   {
-    "value",
+    "extendedFrameFormat",
     1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Frame, extendedframeformat),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "remoteFrame",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Frame, remoteframe),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "messageId",
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(CanL2__FunctionControlSet, value),
+    offsetof(CanL2__Frame, messageid),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "data",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BYTES,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Frame, data),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
+static const unsigned can_l2__frame__field_indices_by_name[] = {
+  3,   /* field[3] = data */
+  0,   /* field[0] = extendedFrameFormat */
+  2,   /* field[2] = messageId */
+  1,   /* field[1] = remoteFrame */
+};
+static const ProtobufCIntRange can_l2__frame__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 4 }
+};
+const ProtobufCMessageDescriptor can_l2__frame__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "canL2.Frame",
+  "Frame",
+  "CanL2__Frame",
+  "canL2",
+  sizeof(CanL2__Frame),
+  4,
+  can_l2__frame__field_descriptors,
+  can_l2__frame__field_indices_by_name,
+  1,  can_l2__frame__number_ranges,
+  (ProtobufCMessageInit) can_l2__frame__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor can_l2__function_control_set__field_descriptors[1] =
+{
+  {
+    "frame",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(CanL2__FunctionControlSet, n_frame),
+    offsetof(CanL2__FunctionControlSet, frame),
+    &can_l2__frame__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
 static const unsigned can_l2__function_control_set__field_indices_by_name[] = {
-  0,   /* field[0] = value */
+  0,   /* field[0] = frame */
 };
 static const ProtobufCIntRange can_l2__function_control_set__number_ranges[1 + 1] =
 {
@@ -928,20 +1082,20 @@ const ProtobufCMessageDescriptor can_l2__function_control_set__descriptor =
 static const ProtobufCFieldDescriptor can_l2__function_control_get_response__field_descriptors[1] =
 {
   {
-    "value",
+    "controllerState",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(CanL2__FunctionControlGetResponse, value),
-    NULL,
+    offsetof(CanL2__FunctionControlGetResponse, controllerstate),
+    &can_l2__controller_state__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned can_l2__function_control_get_response__field_indices_by_name[] = {
-  0,   /* field[0] = value */
+  0,   /* field[0] = controllerState */
 };
 static const ProtobufCIntRange can_l2__function_control_get_response__number_ranges[1 + 1] =
 {
@@ -981,15 +1135,27 @@ const ProtobufCMessageDescriptor can_l2__function_control_set_response__descript
   (ProtobufCMessageInit) can_l2__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__stream_control_start__field_descriptors[1] =
+static const ProtobufCFieldDescriptor can_l2__stream_control_start__field_descriptors[2] =
 {
   {
-    "modulo",
+    "acceptanceCode",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(CanL2__StreamControlStart, modulo),
+    offsetof(CanL2__StreamControlStart, acceptancecode),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "acceptanceMask",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__StreamControlStart, acceptancemask),
     NULL,
     NULL,
     0,             /* flags */
@@ -997,12 +1163,13 @@ static const ProtobufCFieldDescriptor can_l2__stream_control_start__field_descri
   },
 };
 static const unsigned can_l2__stream_control_start__field_indices_by_name[] = {
-  0,   /* field[0] = modulo */
+  0,   /* field[0] = acceptanceCode */
+  1,   /* field[1] = acceptanceMask */
 };
 static const ProtobufCIntRange can_l2__stream_control_start__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor can_l2__stream_control_start__descriptor =
 {
@@ -1012,34 +1179,58 @@ const ProtobufCMessageDescriptor can_l2__stream_control_start__descriptor =
   "CanL2__StreamControlStart",
   "canL2",
   sizeof(CanL2__StreamControlStart),
-  1,
+  2,
   can_l2__stream_control_start__field_descriptors,
   can_l2__stream_control_start__field_indices_by_name,
   1,  can_l2__stream_control_start__number_ranges,
   (ProtobufCMessageInit) can_l2__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[2] =
+static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
 {
   {
-    "timestamp",
+    "frame",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED64,
+    PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(CanL2__Sample, timestamp),
-    NULL,
+    offsetof(CanL2__Sample, frame),
+    &can_l2__frame__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "value",
+    "controllerState",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(CanL2__Sample, value),
+    offsetof(CanL2__Sample, controllerstate),
+    &can_l2__controller_state__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "error",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Sample, error),
+    &can_l2__error_event__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isDataFrame",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Sample, isdataframe),
     NULL,
     NULL,
     0,             /* flags */
@@ -1047,13 +1238,15 @@ static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[2] =
   },
 };
 static const unsigned can_l2__sample__field_indices_by_name[] = {
-  0,   /* field[0] = timestamp */
-  1,   /* field[1] = value */
+  1,   /* field[1] = controllerState */
+  2,   /* field[2] = error */
+  0,   /* field[0] = frame */
+  3,   /* field[3] = isDataFrame */
 };
 static const ProtobufCIntRange can_l2__sample__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor can_l2__sample__descriptor =
 {
@@ -1063,7 +1256,7 @@ const ProtobufCMessageDescriptor can_l2__sample__descriptor =
   "CanL2__Sample",
   "canL2",
   sizeof(CanL2__Sample),
-  2,
+  4,
   can_l2__sample__field_descriptors,
   can_l2__sample__field_indices_by_name,
   1,  can_l2__sample__number_ranges,
@@ -1107,4 +1300,68 @@ const ProtobufCMessageDescriptor can_l2__stream_data__descriptor =
   1,  can_l2__stream_data__number_ranges,
   (ProtobufCMessageInit) can_l2__stream_data__init,
   NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCEnumValue can_l2__controller_state__enum_values_by_number[3] =
+{
+  { "CAN_OK", "CAN_L2__CONTROLLER_STATE__CAN_OK", 0 },
+  { "CAN_ERROR_PASSIVE", "CAN_L2__CONTROLLER_STATE__CAN_ERROR_PASSIVE", 1 },
+  { "CAN_BUS_OFF", "CAN_L2__CONTROLLER_STATE__CAN_BUS_OFF", 2 },
+};
+static const ProtobufCIntRange can_l2__controller_state__value_ranges[] = {
+{0, 0},{0, 3}
+};
+static const ProtobufCEnumValueIndex can_l2__controller_state__enum_values_by_name[3] =
+{
+  { "CAN_BUS_OFF", 2 },
+  { "CAN_ERROR_PASSIVE", 1 },
+  { "CAN_OK", 0 },
+};
+const ProtobufCEnumDescriptor can_l2__controller_state__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "canL2.ControllerState",
+  "ControllerState",
+  "CanL2__ControllerState",
+  "canL2",
+  3,
+  can_l2__controller_state__enum_values_by_number,
+  3,
+  can_l2__controller_state__enum_values_by_name,
+  1,
+  can_l2__controller_state__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCEnumValue can_l2__error_event__enum_values_by_number[5] =
+{
+  { "CAN_NO_ERROR", "CAN_L2__ERROR_EVENT__CAN_NO_ERROR", 0 },
+  { "CAN_TX_FAILED", "CAN_L2__ERROR_EVENT__CAN_TX_FAILED", 1 },
+  { "CAN_RX_QUEUE_FULL", "CAN_L2__ERROR_EVENT__CAN_RX_QUEUE_FULL", 2 },
+  { "CAN_ARB_LOST", "CAN_L2__ERROR_EVENT__CAN_ARB_LOST", 3 },
+  { "CAN_BUS_ERROR", "CAN_L2__ERROR_EVENT__CAN_BUS_ERROR", 4 },
+};
+static const ProtobufCIntRange can_l2__error_event__value_ranges[] = {
+{0, 0},{0, 5}
+};
+static const ProtobufCEnumValueIndex can_l2__error_event__enum_values_by_name[5] =
+{
+  { "CAN_ARB_LOST", 3 },
+  { "CAN_BUS_ERROR", 4 },
+  { "CAN_NO_ERROR", 0 },
+  { "CAN_RX_QUEUE_FULL", 2 },
+  { "CAN_TX_FAILED", 1 },
+};
+const ProtobufCEnumDescriptor can_l2__error_event__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "canL2.ErrorEvent",
+  "ErrorEvent",
+  "CanL2__ErrorEvent",
+  "canL2",
+  5,
+  can_l2__error_event__enum_values_by_number,
+  5,
+  can_l2__error_event__enum_values_by_name,
+  1,
+  can_l2__error_event__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
