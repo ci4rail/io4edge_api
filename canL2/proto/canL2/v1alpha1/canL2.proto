@@ -137,11 +137,13 @@ message StreamControlStart {
 }
 
 message Sample {
-    Frame frame = 1;
-    ControllerState controllerState = 2;
-    ErrorEvent error = 3;
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    Frame frame = 2;
+    ControllerState controllerState = 3;
+    ErrorEvent error = 4;
     // the sample contains a data frame
-    bool isDataFrame = 4;
+    bool isDataFrame = 5;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
