@@ -1,0 +1,150 @@
+/*
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package canL2;
+option go_package = "canL2/v1alpha1";
+
+// ============= Configuration =================
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    // Bit Timing: baud rate in bit/s - basis to calculate brp
+    fixed32 baud = 1;
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+    float samplePoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
+    bool listenOnly = 3;
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // no parameters
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // no parameters
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // Bit Timing: baud rate in bit/s - basis to calculate brp
+    fixed32 baud = 1;
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+    float samplePoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
+    bool listenOnly = 3;
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    // Not implemented
+}
+
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
+    oneof type {
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // no parameters
+}
+
+message Frame {
+    // extended frame
+    bool extendedFrameFormat = 1;
+    // a frame with the RTR bit set
+    bool remoteFrame = 2;
+    // can id
+    fixed32 messageId = 3;
+    // data[0]... data[7]
+    bytes data = 4;
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    repeated Frame frame = 1;
+}
+
+enum ControllerState {
+    // bus is healthy
+    CAN_OK = 0;
+    // can controller is in error passive state
+    CAN_ERROR_PASSIVE = 1;
+    // CAN controller is in bus off state
+    CAN_BUS_OFF = 2;
+}
+
+enum ErrorEvent {
+    // no error
+    CAN_NO_ERROR = 0;
+    // failed to send frame
+    CAN_TX_FAILED = 1;
+    // rx buffer is full -> can controller not able to receive frames and has already dropped frames
+    CAN_RX_QUEUE_FULL = 2;
+    // the previous transmission lost arbitration
+    CAN_ARB_LOST = 3;
+    // bus error occured (bit error, stuff error, crc error, form error, ack error)
+    CAN_BUS_ERROR = 4;
+}
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    ControllerState controllerState = 1;
+}
+
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    // no parameter
+}
+
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    fixed32 acceptanceCode = 1;
+    fixed32 acceptanceMask = 2;
+}
+
+message Sample {
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    Frame frame = 2;
+    ControllerState controllerState = 3;
+    ErrorEvent error = 4;
+    // the sample contains a data frame
+    bool isDataFrame = 5;
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    repeated Sample samples = 1;
+}
