@@ -40,11 +40,11 @@ typedef enum _CanL2__ControllerState {
    */
   CAN_L2__CONTROLLER_STATE__CAN_OK = 0,
   /*
-   * can controller has become error passive
+   * can controller is in error passive state
    */
   CAN_L2__CONTROLLER_STATE__CAN_ERROR_PASSIVE = 1,
   /*
-   * bus-off condition occurred.
+   * CAN controller is in bus off state
    */
   CAN_L2__CONTROLLER_STATE__CAN_BUS_OFF = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(CAN_L2__CONTROLLER_STATE)
@@ -59,7 +59,7 @@ typedef enum _CanL2__ErrorEvent {
    */
   CAN_L2__ERROR_EVENT__CAN_TX_FAILED = 1,
   /*
-   * rx buffer is full -> can controller not able to receive frames
+   * rx buffer is full -> can controller not able to receive frames and has already dropped frames
    */
   CAN_L2__ERROR_EVENT__CAN_RX_QUEUE_FULL = 2,
   /*
@@ -82,15 +82,15 @@ struct  _CanL2__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+   * Bit Timing: baud rate in bit/s - basis to calculate brp
    */
   uint32_t baud;
   /*
-   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
    */
-  float samplpoint;
+  float samplepoint;
   /*
-   * listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+   * listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
    */
   protobuf_c_boolean listenonly;
 };
@@ -131,15 +131,15 @@ struct  _CanL2__ConfigurationGetResponse
 {
   ProtobufCMessage base;
   /*
-   * Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+   * Bit Timing: baud rate in bit/s - basis to calculate brp
    */
   uint32_t baud;
   /*
-   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
+   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
    */
-  float samplpoint;
+  float samplepoint;
   /*
-   * listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+   * listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
    */
   protobuf_c_boolean listenonly;
 };
@@ -211,11 +211,11 @@ struct  _CanL2__Frame
 {
   ProtobufCMessage base;
   /*
-   * send extended frame
+   * extended frame
    */
   protobuf_c_boolean extendedframeformat;
   /*
-   * request remote frame
+   * a frame with the RTR bit set
    */
   protobuf_c_boolean remoteframe;
   /*
@@ -289,6 +289,10 @@ struct  _CanL2__StreamControlStart
 struct  _CanL2__Sample
 {
   ProtobufCMessage base;
+  /*
+   * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+   */
+  uint64_t timestamp;
   CanL2__Frame *frame;
   CanL2__ControllerState controllerstate;
   CanL2__ErrorEvent error;
@@ -299,7 +303,7 @@ struct  _CanL2__Sample
 };
 #define CAN_L2__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__sample__descriptor) \
-    , NULL, CAN_L2__CONTROLLER_STATE__CAN_OK, CAN_L2__ERROR_EVENT__CAN_NO_ERROR, 0 }
+    , 0, NULL, CAN_L2__CONTROLLER_STATE__CAN_OK, CAN_L2__ERROR_EVENT__CAN_NO_ERROR, 0 }
 
 
 /*

@@ -697,12 +697,12 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "samplPoint",
+    "samplePoint",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationSet, samplpoint),
+    offsetof(CanL2__ConfigurationSet, samplepoint),
     NULL,
     NULL,
     0,             /* flags */
@@ -724,7 +724,7 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
 static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = baud */
   2,   /* field[2] = listenOnly */
-  1,   /* field[1] = samplPoint */
+  1,   /* field[1] = samplePoint */
 };
 static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {
@@ -797,12 +797,12 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "samplPoint",
+    "samplePoint",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationGetResponse, samplpoint),
+    offsetof(CanL2__ConfigurationGetResponse, samplepoint),
     NULL,
     NULL,
     0,             /* flags */
@@ -824,7 +824,7 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
 static const unsigned can_l2__configuration_get_response__field_indices_by_name[] = {
   0,   /* field[0] = baud */
   2,   /* field[2] = listenOnly */
-  1,   /* field[1] = samplPoint */
+  1,   /* field[1] = samplePoint */
 };
 static const ProtobufCIntRange can_l2__configuration_get_response__number_ranges[1 + 1] =
 {
@@ -1186,11 +1186,23 @@ const ProtobufCMessageDescriptor can_l2__stream_control_start__descriptor =
   (ProtobufCMessageInit) can_l2__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
+static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[5] =
 {
   {
-    "frame",
+    "timestamp",
     1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED64,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__Sample, timestamp),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "frame",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
@@ -1202,7 +1214,7 @@ static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
   },
   {
     "controllerState",
-    2,
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
@@ -1214,7 +1226,7 @@ static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
   },
   {
     "error",
-    3,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
@@ -1226,7 +1238,7 @@ static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
   },
   {
     "isDataFrame",
-    4,
+    5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -1238,15 +1250,16 @@ static const ProtobufCFieldDescriptor can_l2__sample__field_descriptors[4] =
   },
 };
 static const unsigned can_l2__sample__field_indices_by_name[] = {
-  1,   /* field[1] = controllerState */
-  2,   /* field[2] = error */
-  0,   /* field[0] = frame */
-  3,   /* field[3] = isDataFrame */
+  2,   /* field[2] = controllerState */
+  3,   /* field[3] = error */
+  1,   /* field[1] = frame */
+  4,   /* field[4] = isDataFrame */
+  0,   /* field[0] = timestamp */
 };
 static const ProtobufCIntRange can_l2__sample__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor can_l2__sample__descriptor =
 {
@@ -1256,7 +1269,7 @@ const ProtobufCMessageDescriptor can_l2__sample__descriptor =
   "CanL2__Sample",
   "canL2",
   sizeof(CanL2__Sample),
-  4,
+  5,
   can_l2__sample__field_descriptors,
   can_l2__sample__field_indices_by_name,
   1,  can_l2__sample__number_ranges,

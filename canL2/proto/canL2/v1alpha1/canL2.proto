@@ -22,11 +22,11 @@ option go_package = "canL2/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+    // Bit Timing: baud rate in bit/s - basis to calculate brp
     fixed32 baud = 1;
-    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
-    float samplPoint = 2;
-    // listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+    float samplePoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
     bool listenOnly = 3;
 }
 
@@ -43,11 +43,11 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // Bit Timing: baud rate in bit/s - basis to calculate brp (= 80MHz/(baud*20))
+    // Bit Timing: baud rate in bit/s - basis to calculate brp
     fixed32 baud = 1;
-    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 (= samplePoint*20 - 1(= syncseg)) and tseg2 (= 20 - (tseg1 + 1) (= syncseg))
-    float samplPoint = 2;
-    // listen only mode - if activated it is not possible to send frames to the bus -> FunctionControlSet command will fail
+    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+    float samplePoint = 2;
+    // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
     bool listenOnly = 3;
 }
 
@@ -77,12 +77,10 @@ message FunctionControlGet {
     // no parameters
 }
 
-// todo repeated frame
-
 message Frame {
-    // send extended frame
+    // extended frame
     bool extendedFrameFormat = 1;
-    // request remote frame
+    // a frame with the RTR bit set
     bool remoteFrame = 2;
     // can id
     fixed32 messageId = 3;
@@ -98,9 +96,9 @@ message FunctionControlSet {
 enum ControllerState {
     // bus is healthy
     CAN_OK = 0;
-    // can controller has become error passive
+    // can controller is in error passive state
     CAN_ERROR_PASSIVE = 1;
-    // bus-off condition occurred.
+    // CAN controller is in bus off state
     CAN_BUS_OFF = 2;
 }
 
@@ -109,7 +107,7 @@ enum ErrorEvent {
     CAN_NO_ERROR = 0;
     // failed to send frame
     CAN_TX_FAILED = 1;
-    // rx buffer is full -> can controller not able to receive frames
+    // rx buffer is full -> can controller not able to receive frames and has already dropped frames
     CAN_RX_QUEUE_FULL = 2;
     // the previous transmission lost arbitration
     CAN_ARB_LOST = 3;
