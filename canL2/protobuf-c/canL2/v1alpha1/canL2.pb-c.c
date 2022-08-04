@@ -682,7 +682,7 @@ void   can_l2__stream_data__free_unpacked
   assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[4] =
 {
   {
     "baud",
@@ -700,7 +700,7 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     "samplePoint",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
     offsetof(CanL2__ConfigurationSet, samplepoint),
     NULL,
@@ -709,8 +709,20 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "listenOnly",
+    "sjw",
     3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationSet, sjw),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "listenOnly",
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -723,13 +735,14 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
 };
 static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = baud */
-  2,   /* field[2] = listenOnly */
+  3,   /* field[3] = listenOnly */
   1,   /* field[1] = samplePoint */
+  2,   /* field[2] = sjw */
 };
 static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
 {
@@ -739,7 +752,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
   "CanL2__ConfigurationSet",
   "canL2",
   sizeof(CanL2__ConfigurationSet),
-  3,
+  4,
   can_l2__configuration_set__field_descriptors,
   can_l2__configuration_set__field_indices_by_name,
   1,  can_l2__configuration_set__number_ranges,
@@ -782,7 +795,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_get__descriptor =
   (ProtobufCMessageInit) can_l2__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_descriptors[4] =
 {
   {
     "baud",
@@ -800,7 +813,7 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
     "samplePoint",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
     offsetof(CanL2__ConfigurationGetResponse, samplepoint),
     NULL,
@@ -809,8 +822,20 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "listenOnly",
+    "sjw",
     3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationGetResponse, sjw),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "listenOnly",
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -823,13 +848,14 @@ static const ProtobufCFieldDescriptor can_l2__configuration_get_response__field_
 };
 static const unsigned can_l2__configuration_get_response__field_indices_by_name[] = {
   0,   /* field[0] = baud */
-  2,   /* field[2] = listenOnly */
+  3,   /* field[3] = listenOnly */
   1,   /* field[1] = samplePoint */
+  2,   /* field[2] = sjw */
 };
 static const ProtobufCIntRange can_l2__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor =
 {
@@ -839,7 +865,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_get_response__descriptor 
   "CanL2__ConfigurationGetResponse",
   "canL2",
   sizeof(CanL2__ConfigurationGetResponse),
-  3,
+  4,
   can_l2__configuration_get_response__field_descriptors,
   can_l2__configuration_get_response__field_indices_by_name,
   1,  can_l2__configuration_get_response__number_ranges,

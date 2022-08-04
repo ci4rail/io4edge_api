@@ -86,9 +86,13 @@ struct  _CanL2__ConfigurationSet
    */
   uint32_t baud;
   /*
-   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+   * Bit Timing: sample point in 1/1000: i.e. for 87.5% sample point, use 875
    */
-  float samplepoint;
+  int32_t samplepoint;
+  /*
+   * Bit Timing: synchronization jump width (1..4)
+   */
+  int32_t sjw;
   /*
    * listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
    */
@@ -96,7 +100,7 @@ struct  _CanL2__ConfigurationSet
 };
 #define CAN_L2__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_set__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*
@@ -135,9 +139,13 @@ struct  _CanL2__ConfigurationGetResponse
    */
   uint32_t baud;
   /*
-   * Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
+   * Bit Timing: sample point in 1/1000: i.e. for 87.5% sample point, use 875
    */
-  float samplepoint;
+  int32_t samplepoint;
+  /*
+   * Bit Timing: synchronization jump width (1..4)
+   */
+  int32_t sjw;
   /*
    * listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
    */
@@ -145,7 +153,7 @@ struct  _CanL2__ConfigurationGetResponse
 };
 #define CAN_L2__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_get_response__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*
