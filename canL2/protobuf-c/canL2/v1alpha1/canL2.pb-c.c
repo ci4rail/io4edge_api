@@ -682,7 +682,7 @@ void   can_l2__stream_data__free_unpacked
   assert(message->base.descriptor == &can_l2__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descriptors[4] =
 {
   {
     "baud",
@@ -720,16 +720,29 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "listenOnly",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(CanL2__ConfigurationSet, listenonly),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = baud */
+  3,   /* field[3] = listenOnly */
   1,   /* field[1] = samplePoint */
   2,   /* field[2] = sjw */
 };
 static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
 {
@@ -739,7 +752,7 @@ const ProtobufCMessageDescriptor can_l2__configuration_set__descriptor =
   "CanL2__ConfigurationSet",
   "canL2",
   sizeof(CanL2__ConfigurationSet),
-  3,
+  4,
   can_l2__configuration_set__field_descriptors,
   can_l2__configuration_set__field_indices_by_name,
   1,  can_l2__configuration_set__number_ranges,

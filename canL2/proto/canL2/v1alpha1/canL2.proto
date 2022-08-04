@@ -29,6 +29,7 @@ message ConfigurationSet {
     // Bit Timing: synchronization jump width (1..4)
     int32 sjw = 3;
     // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
+    bool listenOnly = 4;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook

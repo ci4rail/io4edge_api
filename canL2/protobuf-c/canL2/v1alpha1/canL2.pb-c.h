@@ -92,14 +92,15 @@ struct  _CanL2__ConfigurationSet
   /*
    * Bit Timing: synchronization jump width (1..4)
    */
+  int32_t sjw;
   /*
    * listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
    */
-  int32_t sjw;
+  protobuf_c_boolean listenonly;
 };
 #define CAN_L2__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&can_l2__configuration_set__descriptor) \
-    , 0, 0, 0 }
+    , 0, 0, 0, 0 }
 
 
 /*
