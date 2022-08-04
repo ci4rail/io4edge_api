@@ -700,7 +700,7 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     "samplePoint",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
     offsetof(CanL2__ConfigurationSet, samplepoint),
     NULL,
@@ -709,12 +709,12 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "listenOnly",
+    "sjw",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(CanL2__ConfigurationSet, listenonly),
+    offsetof(CanL2__ConfigurationSet, sjw),
     NULL,
     NULL,
     0,             /* flags */
@@ -723,8 +723,8 @@ static const ProtobufCFieldDescriptor can_l2__configuration_set__field_descripto
 };
 static const unsigned can_l2__configuration_set__field_indices_by_name[] = {
   0,   /* field[0] = baud */
-  2,   /* field[2] = listenOnly */
   1,   /* field[1] = samplePoint */
+  2,   /* field[2] = sjw */
 };
 static const ProtobufCIntRange can_l2__configuration_set__number_ranges[1 + 1] =
 {

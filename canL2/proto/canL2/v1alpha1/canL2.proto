@@ -24,10 +24,11 @@ option go_package = "canL2/v1alpha1";
 message ConfigurationSet {
     // Bit Timing: baud rate in bit/s - basis to calculate brp
     fixed32 baud = 1;
-    // Bit Timing: sample point in percentage/100 - basis to calculate tseg1 and tseg2
-    float samplePoint = 2;
+    // Bit Timing: sample point in 1/1000: i.e. for 87.5% sample point, use 875
+    int32 samplePoint = 2;
+    // Bit Timing: synchronization jump width (1..4)
+    int32 sjw = 3;
     // listen only mode - if activated it is not possible to send frames to the bus (and no ACK is sent by the CAN controller) -> FunctionControlSet command will fail
-    bool listenOnly = 3;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
