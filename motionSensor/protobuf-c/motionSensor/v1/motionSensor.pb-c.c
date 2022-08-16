@@ -854,68 +854,9 @@ const ProtobufCMessageDescriptor motion_sensor__function_control_set__descriptor
   (ProtobufCMessageInit) motion_sensor__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor motion_sensor__function_control_get_response__field_descriptors[4] =
-{
-  {
-    "x",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(MotionSensor__FunctionControlGetResponse, x),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "y",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(MotionSensor__FunctionControlGetResponse, y),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "z",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(MotionSensor__FunctionControlGetResponse, z),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "temperature",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(MotionSensor__FunctionControlGetResponse, temperature),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned motion_sensor__function_control_get_response__field_indices_by_name[] = {
-  3,   /* field[3] = temperature */
-  0,   /* field[0] = x */
-  1,   /* field[1] = y */
-  2,   /* field[2] = z */
-};
-static const ProtobufCIntRange motion_sensor__function_control_get_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 4 }
-};
+#define motion_sensor__function_control_get_response__field_descriptors NULL
+#define motion_sensor__function_control_get_response__field_indices_by_name NULL
+#define motion_sensor__function_control_get_response__number_ranges NULL
 const ProtobufCMessageDescriptor motion_sensor__function_control_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -924,10 +865,10 @@ const ProtobufCMessageDescriptor motion_sensor__function_control_get_response__d
   "MotionSensor__FunctionControlGetResponse",
   "motionSensor",
   sizeof(MotionSensor__FunctionControlGetResponse),
-  4,
+  0,
   motion_sensor__function_control_get_response__field_descriptors,
   motion_sensor__function_control_get_response__field_indices_by_name,
-  1,  motion_sensor__function_control_get_response__number_ranges,
+  0,  motion_sensor__function_control_get_response__number_ranges,
   (ProtobufCMessageInit) motion_sensor__function_control_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

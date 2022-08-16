@@ -26,10 +26,11 @@ message ConfigurationSet {
     fixed32 sample_rate_milliHz = 1;
     // Full scale acceleration in g
     int32 full_scale_g = 2;
-    // Whether to enable high-pass filter
+    // Whether to enable high-pass filter (i.e. don't use low pass)
     bool high_pass_filter_enable = 3;
     // band width of low/hig-hpass as ratio of sample_rate
     // .e.g. select 2 when the filterbandwith shall be sample_rate/2
+    // For LIS2D, i
     int32 band_width_ratio = 4;
 }
 
@@ -80,14 +81,7 @@ message FunctionControlSet {
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    // Current x Acceleration in g
-    float x = 1;
-    // Current y Acceleration in g
-    float y = 2;
-    // Current z Acceleration in g
-    float z = 3;
-    // Current Temperature in degrees C
-    float temperature = 4;
+    // Not implemented
 }
 
 
@@ -104,7 +98,7 @@ message StreamControlStart {
 }
 
 message Sample {
-    // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // Timestamp for that specific sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
     fixed64 timestamp = 1;
     // x Acceleration in g

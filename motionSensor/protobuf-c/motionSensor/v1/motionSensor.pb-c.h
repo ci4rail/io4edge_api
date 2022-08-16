@@ -50,12 +50,13 @@ struct  _MotionSensor__ConfigurationSet
    */
   int32_t full_scale_g;
   /*
-   * Whether to enable high-pass filter
+   * Whether to enable high-pass filter (i.e. don't use low pass)
    */
   protobuf_c_boolean high_pass_filter_enable;
   /*
    * band width of low/hig-hpass as ratio of sample_rate
    * .e.g. select 2 when the filterbandwith shall be sample_rate/2
+   * For LIS2D, i
    */
   int32_t band_width_ratio;
 };
@@ -168,26 +169,10 @@ struct  _MotionSensor__FunctionControlSet
 struct  _MotionSensor__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-  /*
-   * Current x Acceleration in g
-   */
-  float x;
-  /*
-   * Current y Acceleration in g
-   */
-  float y;
-  /*
-   * Current z Acceleration in g
-   */
-  float z;
-  /*
-   * Current Temperature in degrees C
-   */
-  float temperature;
 };
 #define MOTION_SENSOR__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&motion_sensor__function_control_get_response__descriptor) \
-    , 0, 0, 0, 0 }
+     }
 
 
 /*
@@ -219,7 +204,7 @@ struct  _MotionSensor__Sample
 {
   ProtobufCMessage base;
   /*
-   * Timestamp for that specific channels sample. This is the time the sample was taken.
+   * Timestamp for that specific sample. This is the time the sample was taken.
    * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
    */
   uint64_t timestamp;
