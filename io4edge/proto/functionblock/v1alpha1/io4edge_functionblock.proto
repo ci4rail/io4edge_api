@@ -74,6 +74,9 @@ message StreamControlStart {
 
     // function specific
     google.protobuf.Any functionSpecificStreamControlStart = 4;
+
+    // low latency mode for stream: Sends samples as soon as possible, if currently no more buffered samples are ready.
+    bool low_latency_mode = 5;
 }
 
 // StreamControlStart specifies the stop of a stream.
