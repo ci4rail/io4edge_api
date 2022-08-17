@@ -182,10 +182,14 @@ struct  _Functionblock__StreamControlStart
    * function specific
    */
   Google__Protobuf__Any *functionspecificstreamcontrolstart;
+  /*
+   * low latency mode for stream: Sends samples as soon as possible, if currently no more buffered samples are ready.
+   */
+  protobuf_c_boolean low_latency_mode;
 };
 #define FUNCTIONBLOCK__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&functionblock__stream_control_start__descriptor) \
-    , 0, 0, 0, NULL }
+    , 0, 0, 0, NULL, 0 }
 
 
 /*

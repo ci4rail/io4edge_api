@@ -824,7 +824,7 @@ const ProtobufCMessageDescriptor functionblock__function_control__descriptor =
   (ProtobufCMessageInit) functionblock__function_control__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor functionblock__stream_control_start__field_descriptors[4] =
+static const ProtobufCFieldDescriptor functionblock__stream_control_start__field_descriptors[5] =
 {
   {
     "bucketSamples",
@@ -874,17 +874,30 @@ static const ProtobufCFieldDescriptor functionblock__stream_control_start__field
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "low_latency_mode",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Functionblock__StreamControlStart, low_latency_mode),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned functionblock__stream_control_start__field_indices_by_name[] = {
   0,   /* field[0] = bucketSamples */
   2,   /* field[2] = bufferedSamples */
   3,   /* field[3] = functionSpecificStreamControlStart */
   1,   /* field[1] = keepaliveInterval */
+  4,   /* field[4] = low_latency_mode */
 };
 static const ProtobufCIntRange functionblock__stream_control_start__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor functionblock__stream_control_start__descriptor =
 {
@@ -894,7 +907,7 @@ const ProtobufCMessageDescriptor functionblock__stream_control_start__descriptor
   "Functionblock__StreamControlStart",
   "functionblock",
   sizeof(Functionblock__StreamControlStart),
-  4,
+  5,
   functionblock__stream_control_start__field_descriptors,
   functionblock__stream_control_start__field_indices_by_name,
   1,  functionblock__stream_control_start__number_ranges,
