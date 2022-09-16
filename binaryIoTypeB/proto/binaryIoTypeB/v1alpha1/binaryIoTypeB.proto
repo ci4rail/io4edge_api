@@ -43,12 +43,11 @@ message ConfigurationGetResponse {
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
 message ConfigurationDescribe {
-    fixed32 numberOfChannels = 1;
+    // no parameters
 }
 
 message ConfigurationDescribeResponse {
-    // Put here your function specific values, example
-    string ident = 1;
+    fixed32 numberOfChannels = 1;
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -62,52 +61,81 @@ message ConfigurationResponse {
 
 
 // ============= FunctionControl =================
+// Gets the current value of a single binary channel
+message GetSingle {
+    // Specifies the binary input channel
+    fixed32 channel = 1;
+}
+
+// Gets the values of all binary channels
+message GetAll {
+    // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is Output0
+    fixed32 mask = 1;
+}
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    // Put here your function specific values
+    oneof type {
+        GetSingle single = 1;
+        GetAll all = 2;
+    }
+}
+
+// Sets the value of a single binary channel
+message SetSingle {
+    // Number of the binary output channel
+    fixed32 channel = 1;
+    // State of the binary output channel
+    bool state = 2;
+}
+
+// Sets all binary channels
+message SetAll {
+    // binary coded map of input values. 0 means low, 1 means high, LSB is Output0
+    fixed32 values = 1;
+    // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is Output0
+    fixed32 mask = 2;
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-    // Put here your function specific values
-    // Example:
-    fixed32 value = 1;
+    oneof type {
+        SetSingle single = 1;
+        SetAll all = 2;
+    }
 }
 
+enum GetError {
+    // No error
+    BINARYIOTYPEB_GET_NO_ERROR = 0;
+    // Pin was configured to be output only
+    BINARYIOTYPEB_OUTPUT_ONLY = 1;
+}
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    // Put here your function specific values
-    fixed32 value = 1;
+    GetError error = 1;
 }
 
+enum SetError {
+    // No error
+    BINARYIOTYPEB_SET_NO_ERROR = 0;
+    // Pin was configured to be input only
+    BINARYIOTYPEB_INPUT_ONLY = 1;
+}
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
-    // Put here your function specific values here
+    SetError error = 1;
 }
-
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    // Put here your function specific values, example
-    fixed32 modulo = 1;     // generate a sample when counter (value % modulo) == 0
-}
-
-message Sample {
-    // Put here your function specific values
-    // Example:
-
-    // Timestamp for that specific channels sample. This is the time the sample was taken.
-    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-    fixed64 timestamp = 1;
-    // Specifies the binary channel value when the input value has changed.
-    fixed32 value = 2;
+    // not implemented
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
 message StreamData {
-    repeated Sample samples = 1;
+    // not implemented
 }
