@@ -63,7 +63,7 @@ message ConfigurationResponse {
 // ============= FunctionControl =================
 // Gets the current value of a single binary channel
 message GetSingle {
-    // Specifies the binary input channel
+    // Specifies the binary input channel (0 - (number of channels - 1))
     fixed32 channel = 1;
 }
 
@@ -83,9 +83,9 @@ message FunctionControlGet {
 
 // Sets the value of a single binary channel
 message SetSingle {
-    // Number of the binary output channel
+    // Number of the binary output channel (0 - (number of channels - 1))
     fixed32 channel = 1;
-    // State of the binary output channel
+    // State of the binary output channel. false means low, true means high.
     bool state = 2;
 }
 
@@ -105,33 +105,66 @@ message FunctionControlSet {
     }
 }
 
-enum GetError {
-    // No error
-    BINARYIOTYPEB_GET_NO_ERROR = 0;
-    // Pin was configured to be output only
-    BINARYIOTYPEB_OUTPUT_ONLY = 1;
+enum Error {
+    // At least one channel to process is configured for the wrong direction and no input was read resp. no output was written
+    BINARYIOTYPEB_WRONG_DIRECTION = 0;
+    // Channel to read/write does not exist
+    BINARYIOTYPEB_INVALID_CHANNEL = 1;
+}
+
+message GetSingleResponse {
+    // Number of the binary input channel
+    fixed32 channel = 1;
+    // State for the bianry input channel
+    bool state = 2;
+}
+
+message GetAllResponse {
+    // binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+    fixed32 inputs = 1;
+}
+
+message GetError {
+    Error error = 1;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    GetError error = 1;
+    oneof type {
+        GetSingleResponse single = 1;
+        GetAllResponse all = 2;
+        GetError error = 3;
+    }
 }
 
-enum SetError {
-    // No error
-    BINARYIOTYPEB_SET_NO_ERROR = 0;
-    // Pin was configured to be input only
-    BINARYIOTYPEB_INPUT_ONLY = 1;
+message SetSingleResponse {
+    // no parameters
+}
+
+message SetAllResponse {
+    // no parameters
+}
+
+message SetError {
+    Error error = 1;
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
-    SetError error = 1;
+    oneof type {
+        SetSingleResponse single = 1;
+        SetAllResponse all = 2;
+        SetError error = 3;
+    }
 }
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
+    // not implemented
+}
+
+message Sample {
     // not implemented
 }
 
