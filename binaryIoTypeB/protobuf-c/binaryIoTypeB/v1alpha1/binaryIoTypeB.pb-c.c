@@ -232,6 +232,51 @@ void   binary_io_type_b__configuration_describe__free_unpacked
   assert(message->base.descriptor == &binary_io_type_b__configuration_describe__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   binary_io_type_b__channel_config__init
+                     (BinaryIoTypeB__ChannelConfig         *message)
+{
+  static const BinaryIoTypeB__ChannelConfig init_value = BINARY_IO_TYPE_B__CHANNEL_CONFIG__INIT;
+  *message = init_value;
+}
+size_t binary_io_type_b__channel_config__get_packed_size
+                     (const BinaryIoTypeB__ChannelConfig *message)
+{
+  assert(message->base.descriptor == &binary_io_type_b__channel_config__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t binary_io_type_b__channel_config__pack
+                     (const BinaryIoTypeB__ChannelConfig *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &binary_io_type_b__channel_config__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t binary_io_type_b__channel_config__pack_to_buffer
+                     (const BinaryIoTypeB__ChannelConfig *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &binary_io_type_b__channel_config__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+BinaryIoTypeB__ChannelConfig *
+       binary_io_type_b__channel_config__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (BinaryIoTypeB__ChannelConfig *)
+     protobuf_c_message_unpack (&binary_io_type_b__channel_config__descriptor,
+                                allocator, len, data);
+}
+void   binary_io_type_b__channel_config__free_unpacked
+                     (BinaryIoTypeB__ChannelConfig *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &binary_io_type_b__channel_config__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   binary_io_type_b__configuration_describe_response__init
                      (BinaryIoTypeB__ConfigurationDescribeResponse         *message)
 {
@@ -682,51 +727,6 @@ void   binary_io_type_b__get_all_response__free_unpacked
   assert(message->base.descriptor == &binary_io_type_b__get_all_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_b__get_error__init
-                     (BinaryIoTypeB__GetError         *message)
-{
-  static const BinaryIoTypeB__GetError init_value = BINARY_IO_TYPE_B__GET_ERROR__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_b__get_error__get_packed_size
-                     (const BinaryIoTypeB__GetError *message)
-{
-  assert(message->base.descriptor == &binary_io_type_b__get_error__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_b__get_error__pack
-                     (const BinaryIoTypeB__GetError *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_b__get_error__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_b__get_error__pack_to_buffer
-                     (const BinaryIoTypeB__GetError *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_b__get_error__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeB__GetError *
-       binary_io_type_b__get_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeB__GetError *)
-     protobuf_c_message_unpack (&binary_io_type_b__get_error__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_b__get_error__free_unpacked
-                     (BinaryIoTypeB__GetError *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_b__get_error__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   binary_io_type_b__function_control_get_response__init
                      (BinaryIoTypeB__FunctionControlGetResponse         *message)
 {
@@ -860,51 +860,6 @@ void   binary_io_type_b__set_all_response__free_unpacked
   if(!message)
     return;
   assert(message->base.descriptor == &binary_io_type_b__set_all_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   binary_io_type_b__set_error__init
-                     (BinaryIoTypeB__SetError         *message)
-{
-  static const BinaryIoTypeB__SetError init_value = BINARY_IO_TYPE_B__SET_ERROR__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_b__set_error__get_packed_size
-                     (const BinaryIoTypeB__SetError *message)
-{
-  assert(message->base.descriptor == &binary_io_type_b__set_error__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_b__set_error__pack
-                     (const BinaryIoTypeB__SetError *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_b__set_error__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_b__set_error__pack_to_buffer
-                     (const BinaryIoTypeB__SetError *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_b__set_error__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeB__SetError *
-       binary_io_type_b__set_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeB__SetError *)
-     protobuf_c_message_unpack (&binary_io_type_b__set_error__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_b__set_error__free_unpacked
-                     (BinaryIoTypeB__SetError *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_b__set_error__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   binary_io_type_b__function_control_set_response__init
@@ -1177,23 +1132,74 @@ const ProtobufCMessageDescriptor binary_io_type_b__configuration_describe__descr
   (ProtobufCMessageInit) binary_io_type_b__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_b__configuration_describe_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor binary_io_type_b__channel_config__field_descriptors[2] =
 {
   {
-    "numberOfChannels",
+    "channel",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeB__ConfigurationDescribeResponse, numberofchannels),
+    offsetof(BinaryIoTypeB__ChannelConfig, channel),
     NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "direction",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeB__ChannelConfig, direction),
+    &binary_io_type_b__channel_direction__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_b__channel_config__field_indices_by_name[] = {
+  0,   /* field[0] = channel */
+  1,   /* field[1] = direction */
+};
+static const ProtobufCIntRange binary_io_type_b__channel_config__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor binary_io_type_b__channel_config__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "binaryIoTypeB.ChannelConfig",
+  "ChannelConfig",
+  "BinaryIoTypeB__ChannelConfig",
+  "binaryIoTypeB",
+  sizeof(BinaryIoTypeB__ChannelConfig),
+  2,
+  binary_io_type_b__channel_config__field_descriptors,
+  binary_io_type_b__channel_config__field_indices_by_name,
+  1,  binary_io_type_b__channel_config__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_b__channel_config__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor binary_io_type_b__configuration_describe_response__field_descriptors[1] =
+{
+  {
+    "channelConfig",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(BinaryIoTypeB__ConfigurationDescribeResponse, n_channelconfig),
+    offsetof(BinaryIoTypeB__ConfigurationDescribeResponse, channelconfig),
+    &binary_io_type_b__channel_config__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned binary_io_type_b__configuration_describe_response__field_indices_by_name[] = {
-  0,   /* field[0] = numberOfChannels */
+  0,   /* field[0] = channelConfig */
 };
 static const ProtobufCIntRange binary_io_type_b__configuration_describe_response__number_ranges[1 + 1] =
 {
@@ -1648,45 +1654,7 @@ const ProtobufCMessageDescriptor binary_io_type_b__get_all_response__descriptor 
   (ProtobufCMessageInit) binary_io_type_b__get_all_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_b__get_error__field_descriptors[1] =
-{
-  {
-    "error",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeB__GetError, error),
-    &binary_io_type_b__error__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_b__get_error__field_indices_by_name[] = {
-  0,   /* field[0] = error */
-};
-static const ProtobufCIntRange binary_io_type_b__get_error__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor binary_io_type_b__get_error__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeB.GetError",
-  "GetError",
-  "BinaryIoTypeB__GetError",
-  "binaryIoTypeB",
-  sizeof(BinaryIoTypeB__GetError),
-  1,
-  binary_io_type_b__get_error__field_descriptors,
-  binary_io_type_b__get_error__field_indices_by_name,
-  1,  binary_io_type_b__get_error__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_b__get_error__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_b__function_control_get_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_b__function_control_get_response__field_descriptors[2] =
 {
   {
     "single",
@@ -1712,28 +1680,15 @@ static const ProtobufCFieldDescriptor binary_io_type_b__function_control_get_res
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "error",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeB__FunctionControlGetResponse, type_case),
-    offsetof(BinaryIoTypeB__FunctionControlGetResponse, error),
-    &binary_io_type_b__get_error__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_b__function_control_get_response__field_indices_by_name[] = {
   1,   /* field[1] = all */
-  2,   /* field[2] = error */
   0,   /* field[0] = single */
 };
 static const ProtobufCIntRange binary_io_type_b__function_control_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor binary_io_type_b__function_control_get_response__descriptor =
 {
@@ -1743,7 +1698,7 @@ const ProtobufCMessageDescriptor binary_io_type_b__function_control_get_response
   "BinaryIoTypeB__FunctionControlGetResponse",
   "binaryIoTypeB",
   sizeof(BinaryIoTypeB__FunctionControlGetResponse),
-  3,
+  2,
   binary_io_type_b__function_control_get_response__field_descriptors,
   binary_io_type_b__function_control_get_response__field_indices_by_name,
   1,  binary_io_type_b__function_control_get_response__number_ranges,
@@ -1786,45 +1741,7 @@ const ProtobufCMessageDescriptor binary_io_type_b__set_all_response__descriptor 
   (ProtobufCMessageInit) binary_io_type_b__set_all_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_b__set_error__field_descriptors[1] =
-{
-  {
-    "error",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeB__SetError, error),
-    &binary_io_type_b__error__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_b__set_error__field_indices_by_name[] = {
-  0,   /* field[0] = error */
-};
-static const ProtobufCIntRange binary_io_type_b__set_error__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor binary_io_type_b__set_error__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeB.SetError",
-  "SetError",
-  "BinaryIoTypeB__SetError",
-  "binaryIoTypeB",
-  sizeof(BinaryIoTypeB__SetError),
-  1,
-  binary_io_type_b__set_error__field_descriptors,
-  binary_io_type_b__set_error__field_indices_by_name,
-  1,  binary_io_type_b__set_error__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_b__set_error__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_b__function_control_set_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_b__function_control_set_response__field_descriptors[2] =
 {
   {
     "single",
@@ -1850,28 +1767,15 @@ static const ProtobufCFieldDescriptor binary_io_type_b__function_control_set_res
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "error",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeB__FunctionControlSetResponse, type_case),
-    offsetof(BinaryIoTypeB__FunctionControlSetResponse, error),
-    &binary_io_type_b__set_error__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_b__function_control_set_response__field_indices_by_name[] = {
   1,   /* field[1] = all */
-  2,   /* field[2] = error */
   0,   /* field[0] = single */
 };
 static const ProtobufCIntRange binary_io_type_b__function_control_set_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor binary_io_type_b__function_control_set_response__descriptor =
 {
@@ -1881,7 +1785,7 @@ const ProtobufCMessageDescriptor binary_io_type_b__function_control_set_response
   "BinaryIoTypeB__FunctionControlSetResponse",
   "binaryIoTypeB",
   sizeof(BinaryIoTypeB__FunctionControlSetResponse),
-  3,
+  2,
   binary_io_type_b__function_control_set_response__field_descriptors,
   binary_io_type_b__function_control_set_response__field_indices_by_name,
   1,  binary_io_type_b__function_control_set_response__number_ranges,
@@ -1942,31 +1846,33 @@ const ProtobufCMessageDescriptor binary_io_type_b__stream_data__descriptor =
   (ProtobufCMessageInit) binary_io_type_b__stream_data__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue binary_io_type_b__error__enum_values_by_number[2] =
+static const ProtobufCEnumValue binary_io_type_b__channel_direction__enum_values_by_number[3] =
 {
-  { "BINARYIOTYPEB_WRONG_DIRECTION", "BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_WRONG_DIRECTION", 0 },
-  { "BINARYIOTYPEB_INVALID_CHANNEL", "BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_INVALID_CHANNEL", 1 },
+  { "BINARYIOTYPEB_INPUT", "BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT", 0 },
+  { "BINARYIOTYPEB_OUTPUT", "BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_OUTPUT", 1 },
+  { "BINARYIOTYPEB_INPUT_OUTPUT", "BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT_OUTPUT", 2 },
 };
-static const ProtobufCIntRange binary_io_type_b__error__value_ranges[] = {
-{0, 0},{0, 2}
+static const ProtobufCIntRange binary_io_type_b__channel_direction__value_ranges[] = {
+{0, 0},{0, 3}
 };
-static const ProtobufCEnumValueIndex binary_io_type_b__error__enum_values_by_name[2] =
+static const ProtobufCEnumValueIndex binary_io_type_b__channel_direction__enum_values_by_name[3] =
 {
-  { "BINARYIOTYPEB_INVALID_CHANNEL", 1 },
-  { "BINARYIOTYPEB_WRONG_DIRECTION", 0 },
+  { "BINARYIOTYPEB_INPUT", 0 },
+  { "BINARYIOTYPEB_INPUT_OUTPUT", 2 },
+  { "BINARYIOTYPEB_OUTPUT", 1 },
 };
-const ProtobufCEnumDescriptor binary_io_type_b__error__descriptor =
+const ProtobufCEnumDescriptor binary_io_type_b__channel_direction__descriptor =
 {
   PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "binaryIoTypeB.Error",
-  "Error",
-  "BinaryIoTypeB__Error",
+  "binaryIoTypeB.ChannelDirection",
+  "ChannelDirection",
+  "BinaryIoTypeB__ChannelDirection",
   "binaryIoTypeB",
-  2,
-  binary_io_type_b__error__enum_values_by_number,
-  2,
-  binary_io_type_b__error__enum_values_by_name,
+  3,
+  binary_io_type_b__channel_direction__enum_values_by_number,
+  3,
+  binary_io_type_b__channel_direction__enum_values_by_name,
   1,
-  binary_io_type_b__error__value_ranges,
+  binary_io_type_b__channel_direction__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

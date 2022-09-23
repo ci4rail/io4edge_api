@@ -20,6 +20,7 @@ typedef struct _BinaryIoTypeB__ConfigurationSetResponse BinaryIoTypeB__Configura
 typedef struct _BinaryIoTypeB__ConfigurationGet BinaryIoTypeB__ConfigurationGet;
 typedef struct _BinaryIoTypeB__ConfigurationGetResponse BinaryIoTypeB__ConfigurationGetResponse;
 typedef struct _BinaryIoTypeB__ConfigurationDescribe BinaryIoTypeB__ConfigurationDescribe;
+typedef struct _BinaryIoTypeB__ChannelConfig BinaryIoTypeB__ChannelConfig;
 typedef struct _BinaryIoTypeB__ConfigurationDescribeResponse BinaryIoTypeB__ConfigurationDescribeResponse;
 typedef struct _BinaryIoTypeB__ConfigurationResponse BinaryIoTypeB__ConfigurationResponse;
 typedef struct _BinaryIoTypeB__GetSingle BinaryIoTypeB__GetSingle;
@@ -30,11 +31,9 @@ typedef struct _BinaryIoTypeB__SetAll BinaryIoTypeB__SetAll;
 typedef struct _BinaryIoTypeB__FunctionControlSet BinaryIoTypeB__FunctionControlSet;
 typedef struct _BinaryIoTypeB__GetSingleResponse BinaryIoTypeB__GetSingleResponse;
 typedef struct _BinaryIoTypeB__GetAllResponse BinaryIoTypeB__GetAllResponse;
-typedef struct _BinaryIoTypeB__GetError BinaryIoTypeB__GetError;
 typedef struct _BinaryIoTypeB__FunctionControlGetResponse BinaryIoTypeB__FunctionControlGetResponse;
 typedef struct _BinaryIoTypeB__SetSingleResponse BinaryIoTypeB__SetSingleResponse;
 typedef struct _BinaryIoTypeB__SetAllResponse BinaryIoTypeB__SetAllResponse;
-typedef struct _BinaryIoTypeB__SetError BinaryIoTypeB__SetError;
 typedef struct _BinaryIoTypeB__FunctionControlSetResponse BinaryIoTypeB__FunctionControlSetResponse;
 typedef struct _BinaryIoTypeB__StreamControlStart BinaryIoTypeB__StreamControlStart;
 typedef struct _BinaryIoTypeB__Sample BinaryIoTypeB__Sample;
@@ -43,17 +42,21 @@ typedef struct _BinaryIoTypeB__StreamData BinaryIoTypeB__StreamData;
 
 /* --- enums --- */
 
-typedef enum _BinaryIoTypeB__Error {
+typedef enum _BinaryIoTypeB__ChannelDirection {
   /*
-   * At least one channel to process is configured for the wrong direction and no input was read resp. no output was written
+   * input channel
    */
-  BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_WRONG_DIRECTION = 0,
+  BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT = 0,
   /*
-   * Channel to read/write does not exist
+   * output channel
    */
-  BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_INVALID_CHANNEL = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__ERROR)
-} BinaryIoTypeB__Error;
+  BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_OUTPUT = 1,
+  /*
+   * input/output channel
+   */
+  BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT_OUTPUT = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__CHANNEL_DIRECTION)
+} BinaryIoTypeB__ChannelDirection;
 
 /* --- messages --- */
 
@@ -118,14 +121,32 @@ struct  _BinaryIoTypeB__ConfigurationDescribe
      }
 
 
+struct  _BinaryIoTypeB__ChannelConfig
+{
+  ProtobufCMessage base;
+  /*
+   * channel number
+   */
+  uint32_t channel;
+  /*
+   * channel direction
+   */
+  BinaryIoTypeB__ChannelDirection direction;
+};
+#define BINARY_IO_TYPE_B__CHANNEL_CONFIG__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__channel_config__descriptor) \
+    , 0, BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT }
+
+
 struct  _BinaryIoTypeB__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
-  uint32_t numberofchannels;
+  size_t n_channelconfig;
+  BinaryIoTypeB__ChannelConfig **channelconfig;
 };
 #define BINARY_IO_TYPE_B__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__configuration_describe_response__descriptor) \
-    , 0 }
+    , 0,NULL }
 
 
 typedef enum {
@@ -222,7 +243,7 @@ struct  _BinaryIoTypeB__SetSingle
    */
   uint32_t channel;
   /*
-   * State of the binary output channel. false means low, true means high.
+   * State of the binary output channel. false means inactive, true means active.
    */
   protobuf_c_boolean state;
 };
@@ -238,7 +259,7 @@ struct  _BinaryIoTypeB__SetAll
 {
   ProtobufCMessage base;
   /*
-   * binary coded map of input values. 0 means low, 1 means high, LSB is Output0
+   * binary coded map of input values. 0 means inactive, 1 means active, LSB is Output0
    */
   uint32_t values;
   /*
@@ -296,7 +317,7 @@ struct  _BinaryIoTypeB__GetAllResponse
 {
   ProtobufCMessage base;
   /*
-   * binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+   * binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
    */
   uint32_t inputs;
 };
@@ -305,21 +326,10 @@ struct  _BinaryIoTypeB__GetAllResponse
     , 0 }
 
 
-struct  _BinaryIoTypeB__GetError
-{
-  ProtobufCMessage base;
-  BinaryIoTypeB__Error error;
-};
-#define BINARY_IO_TYPE_B__GET_ERROR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__get_error__descriptor) \
-    , BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_WRONG_DIRECTION }
-
-
 typedef enum {
   BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET = 0,
   BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE_SINGLE = 1,
-  BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE_ALL = 2,
-  BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE_ERROR = 3
+  BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE_ALL = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__TYPE)
 } BinaryIoTypeB__FunctionControlGetResponse__TypeCase;
 
@@ -333,7 +343,6 @@ struct  _BinaryIoTypeB__FunctionControlGetResponse
   union {
     BinaryIoTypeB__GetSingleResponse *single;
     BinaryIoTypeB__GetAllResponse *all;
-    BinaryIoTypeB__GetError *error;
   };
 };
 #define BINARY_IO_TYPE_B__FUNCTION_CONTROL_GET_RESPONSE__INIT \
@@ -359,21 +368,10 @@ struct  _BinaryIoTypeB__SetAllResponse
      }
 
 
-struct  _BinaryIoTypeB__SetError
-{
-  ProtobufCMessage base;
-  BinaryIoTypeB__Error error;
-};
-#define BINARY_IO_TYPE_B__SET_ERROR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__set_error__descriptor) \
-    , BINARY_IO_TYPE_B__ERROR__BINARYIOTYPEB_WRONG_DIRECTION }
-
-
 typedef enum {
   BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET = 0,
   BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE_SINGLE = 1,
-  BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ALL = 2,
-  BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ERROR = 3
+  BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ALL = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE)
 } BinaryIoTypeB__FunctionControlSetResponse__TypeCase;
 
@@ -387,7 +385,6 @@ struct  _BinaryIoTypeB__FunctionControlSetResponse
   union {
     BinaryIoTypeB__SetSingleResponse *single;
     BinaryIoTypeB__SetAllResponse *all;
-    BinaryIoTypeB__SetError *error;
   };
 };
 #define BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__INIT \
@@ -523,6 +520,25 @@ BinaryIoTypeB__ConfigurationDescribe *
                       const uint8_t       *data);
 void   binary_io_type_b__configuration_describe__free_unpacked
                      (BinaryIoTypeB__ConfigurationDescribe *message,
+                      ProtobufCAllocator *allocator);
+/* BinaryIoTypeB__ChannelConfig methods */
+void   binary_io_type_b__channel_config__init
+                     (BinaryIoTypeB__ChannelConfig         *message);
+size_t binary_io_type_b__channel_config__get_packed_size
+                     (const BinaryIoTypeB__ChannelConfig   *message);
+size_t binary_io_type_b__channel_config__pack
+                     (const BinaryIoTypeB__ChannelConfig   *message,
+                      uint8_t             *out);
+size_t binary_io_type_b__channel_config__pack_to_buffer
+                     (const BinaryIoTypeB__ChannelConfig   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeB__ChannelConfig *
+       binary_io_type_b__channel_config__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_b__channel_config__free_unpacked
+                     (BinaryIoTypeB__ChannelConfig *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeB__ConfigurationDescribeResponse methods */
 void   binary_io_type_b__configuration_describe_response__init
@@ -714,25 +730,6 @@ BinaryIoTypeB__GetAllResponse *
 void   binary_io_type_b__get_all_response__free_unpacked
                      (BinaryIoTypeB__GetAllResponse *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeB__GetError methods */
-void   binary_io_type_b__get_error__init
-                     (BinaryIoTypeB__GetError         *message);
-size_t binary_io_type_b__get_error__get_packed_size
-                     (const BinaryIoTypeB__GetError   *message);
-size_t binary_io_type_b__get_error__pack
-                     (const BinaryIoTypeB__GetError   *message,
-                      uint8_t             *out);
-size_t binary_io_type_b__get_error__pack_to_buffer
-                     (const BinaryIoTypeB__GetError   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeB__GetError *
-       binary_io_type_b__get_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_b__get_error__free_unpacked
-                     (BinaryIoTypeB__GetError *message,
-                      ProtobufCAllocator *allocator);
 /* BinaryIoTypeB__FunctionControlGetResponse methods */
 void   binary_io_type_b__function_control_get_response__init
                      (BinaryIoTypeB__FunctionControlGetResponse         *message);
@@ -789,25 +786,6 @@ BinaryIoTypeB__SetAllResponse *
                       const uint8_t       *data);
 void   binary_io_type_b__set_all_response__free_unpacked
                      (BinaryIoTypeB__SetAllResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeB__SetError methods */
-void   binary_io_type_b__set_error__init
-                     (BinaryIoTypeB__SetError         *message);
-size_t binary_io_type_b__set_error__get_packed_size
-                     (const BinaryIoTypeB__SetError   *message);
-size_t binary_io_type_b__set_error__pack
-                     (const BinaryIoTypeB__SetError   *message,
-                      uint8_t             *out);
-size_t binary_io_type_b__set_error__pack_to_buffer
-                     (const BinaryIoTypeB__SetError   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeB__SetError *
-       binary_io_type_b__set_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_b__set_error__free_unpacked
-                     (BinaryIoTypeB__SetError *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeB__FunctionControlSetResponse methods */
 void   binary_io_type_b__function_control_set_response__init
@@ -902,6 +880,9 @@ typedef void (*BinaryIoTypeB__ConfigurationGetResponse_Closure)
 typedef void (*BinaryIoTypeB__ConfigurationDescribe_Closure)
                  (const BinaryIoTypeB__ConfigurationDescribe *message,
                   void *closure_data);
+typedef void (*BinaryIoTypeB__ChannelConfig_Closure)
+                 (const BinaryIoTypeB__ChannelConfig *message,
+                  void *closure_data);
 typedef void (*BinaryIoTypeB__ConfigurationDescribeResponse_Closure)
                  (const BinaryIoTypeB__ConfigurationDescribeResponse *message,
                   void *closure_data);
@@ -932,9 +913,6 @@ typedef void (*BinaryIoTypeB__GetSingleResponse_Closure)
 typedef void (*BinaryIoTypeB__GetAllResponse_Closure)
                  (const BinaryIoTypeB__GetAllResponse *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeB__GetError_Closure)
-                 (const BinaryIoTypeB__GetError *message,
-                  void *closure_data);
 typedef void (*BinaryIoTypeB__FunctionControlGetResponse_Closure)
                  (const BinaryIoTypeB__FunctionControlGetResponse *message,
                   void *closure_data);
@@ -943,9 +921,6 @@ typedef void (*BinaryIoTypeB__SetSingleResponse_Closure)
                   void *closure_data);
 typedef void (*BinaryIoTypeB__SetAllResponse_Closure)
                  (const BinaryIoTypeB__SetAllResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeB__SetError_Closure)
-                 (const BinaryIoTypeB__SetError *message,
                   void *closure_data);
 typedef void (*BinaryIoTypeB__FunctionControlSetResponse_Closure)
                  (const BinaryIoTypeB__FunctionControlSetResponse *message,
@@ -965,12 +940,13 @@ typedef void (*BinaryIoTypeB__StreamData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCEnumDescriptor    binary_io_type_b__error__descriptor;
+extern const ProtobufCEnumDescriptor    binary_io_type_b__channel_direction__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_get__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_get_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_b__channel_config__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__get_single__descriptor;
@@ -981,11 +957,9 @@ extern const ProtobufCMessageDescriptor binary_io_type_b__set_all__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__get_single_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__get_all_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_b__get_error__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__set_single_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__set_all_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_b__set_error__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__sample__descriptor;

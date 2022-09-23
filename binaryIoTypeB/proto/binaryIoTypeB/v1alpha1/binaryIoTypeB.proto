@@ -46,8 +46,24 @@ message ConfigurationDescribe {
     // no parameters
 }
 
+enum ChannelDirection {
+    // input channel
+    BINARYIOTYPEB_INPUT = 0;
+    // output channel
+    BINARYIOTYPEB_OUTPUT = 1;
+    // input/output channel
+    BINARYIOTYPEB_INPUT_OUTPUT = 2;
+}
+
+message ChannelConfig {
+    // channel number
+    fixed32 channel = 1;
+    // channel direction
+    ChannelDirection direction = 2;
+}
+
 message ConfigurationDescribeResponse {
-    fixed32 numberOfChannels = 1;
+    repeated ChannelConfig channelConfig = 1;
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -85,13 +101,13 @@ message FunctionControlGet {
 message SetSingle {
     // Number of the binary output channel (0 - (number of channels - 1))
     fixed32 channel = 1;
-    // State of the binary output channel. false means low, true means high.
+    // State of the binary output channel. false means inactive, true means active.
     bool state = 2;
 }
 
 // Sets all binary channels
 message SetAll {
-    // binary coded map of input values. 0 means low, 1 means high, LSB is Output0
+    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Output0
     fixed32 values = 1;
     // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is Output0
     fixed32 mask = 2;
@@ -105,13 +121,6 @@ message FunctionControlSet {
     }
 }
 
-enum Error {
-    // At least one channel to process is configured for the wrong direction and no input was read resp. no output was written
-    BINARYIOTYPEB_WRONG_DIRECTION = 0;
-    // Channel to read/write does not exist
-    BINARYIOTYPEB_INVALID_CHANNEL = 1;
-}
-
 message GetSingleResponse {
     // Number of the binary input channel
     fixed32 channel = 1;
@@ -120,12 +129,8 @@ message GetSingleResponse {
 }
 
 message GetAllResponse {
-    // binary coded map of input values. 0 means low, 1 means high, LSB is Input0
+    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
     fixed32 inputs = 1;
-}
-
-message GetError {
-    Error error = 1;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
@@ -133,7 +138,6 @@ message FunctionControlGetResponse {
     oneof type {
         GetSingleResponse single = 1;
         GetAllResponse all = 2;
-        GetError error = 3;
     }
 }
 
@@ -145,16 +149,11 @@ message SetAllResponse {
     // no parameters
 }
 
-message SetError {
-    Error error = 1;
-}
-
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
     oneof type {
         SetSingleResponse single = 1;
         SetAllResponse all = 2;
-        SetError error = 3;
     }
 }
 
