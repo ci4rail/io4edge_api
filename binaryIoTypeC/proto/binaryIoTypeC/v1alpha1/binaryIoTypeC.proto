@@ -1,0 +1,219 @@
+/*
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+// IEC IEC61131-2 compliant binary IO
+
+syntax = "proto3";
+
+package binaryIoTypeC;
+option go_package = "binaryIoTypeC/v1alpha1";
+
+// ============= Configuration =================
+enum ChannelMode {
+    // input channel
+    BINARYIOTYPEC_INPUT_TYPE_1_3 = 0;
+    // output channel, simple push pull
+    BINARYIOTYPEC_OUTPUT_PUSH_PULL = 1;
+    // further modes may be added later
+}
+
+message ChannelConfig {
+    ChannelMode mode = 1;
+    // If channel is configured for output, initialValue defines the value after initialization
+    // and after the watchdog has fired
+    bool initialValue = 2;
+}
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    // per channel configuration (one per channel/pin)
+    repeated ChannelConfig channelConfig = 1;
+    // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
+    // LSB is Output0, 1: output watchdog enabled, 0: disabled
+    fixed32 outputWatchdogMask = 2;
+    // The output watchdog timeout in ms.
+    fixed32 outputWatchdogTimeout = 3;
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // not implemented
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // not implemented
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // per channel configuration (one per channel/pin)
+    repeated ChannelConfig channelConfig = 1;
+
+    // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
+    // LSB is Output0, 1: output watchdog enabled, 0: disabled
+    fixed32 outputWatchdogMask = 2;
+    // The output watchdog timeout in ms.
+    fixed32 outputWatchdogTimeout = 3;
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+
+message ConfigurationDescribeResponse {
+    fixed32 numberOfChannels = 1;
+}
+
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
+    oneof type {
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+// Gets the current value of a single binary channel
+message GetSingle {
+    // Specifies the binary input channel (0 - (number of channels - 1))
+    fixed32 channel = 1;
+}
+
+// Gets the values of all binary channels
+message GetAll {
+    // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is channel 0
+    fixed32 mask = 1;
+}
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    oneof type {
+        GetSingle single = 1;
+        GetAll all = 2;
+    }
+}
+
+// Sets the value of a single binary channel
+message SetSingle {
+    // Number of the binary output channel (0 - (number of channels - 1))
+    fixed32 channel = 1;
+    // State of the binary output channel. false means low, true means high.
+    bool state = 2;
+}
+
+// Sets all binary channels
+message SetAll {
+    // binary coded map of input values. 0 means low, 1 means high, LSB is Output0
+    fixed32 values = 1;
+    // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is channel 0
+    fixed32 mask = 2;
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    oneof type {
+        SetSingle single = 1;
+        SetAll all = 2;
+    }
+}
+
+// Channel diagnostic bits. Multiple bits may be set at the same time.
+enum ChannelDiag {
+    // group supply voltage missing (input values can't be determined, output values can't be set)
+    NoSupplyVoltage = 1;
+    // channel current limiter is limiting current
+    CurrentLimit = 2;
+    // channel or group overload (output is disabled, output can't be set)
+    Overload = 4;
+    // group supply undervoltage
+    SupplyUndervoltage = 8;
+    // group supply overvoltage
+    SupplyOvervoltage = 16;
+}
+
+message GetSingleResponse {
+    // Number of the binary input channel
+    fixed32 channel = 1;
+    // State for the bianry input channel
+    bool state = 2;
+    // channel diagnostic bits
+    fixed32 diag = 3;
+}
+
+message GetAllResponse {
+    // binary coded map of input values. 0 means low, 1 means high, LSB is channel 0.
+    // In case the input value is unknown, its value is reported as 0. The input value is invalid if
+    // the diag NoSupplyVoltage bit is set.
+    fixed32 inputs = 1;
+
+    // diagnostic information for each channel, containing the ChannelDiag bits.
+    // first diag corresponds to channel 0, second to channel 1, etc.
+    repeated uint32 diag = 2
+}
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    oneof type {
+        GetSingleResponse single = 1;
+        GetAllResponse all = 2;
+    }
+}
+
+message SetSingleResponse {
+    // no parameters
+}
+
+message SetAllResponse {
+    // no parameters
+}
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    oneof type {
+        SetSingleResponse single = 1;
+        SetAllResponse all = 2;
+    }
+}
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // mask to define which channels are considered in the stream. 0 means don't send channels value, 1 means sent it
+    // LSB is channel 0
+    fixed32 channelFilterMask = 1;
+}
+
+// Sample is taken whenever the values change with respect to the last reported sample on that stream.
+// An initial sample is sent immediately after stream start.
+message Sample {
+    // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    // binary coded map of input values. 0 means low, 1 means high, LSB is channel 0.
+    // In case the input value is unknown, its value is reported as 0.
+    fixed32 values = 2;
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    repeated Sample samples = 1;
+}
