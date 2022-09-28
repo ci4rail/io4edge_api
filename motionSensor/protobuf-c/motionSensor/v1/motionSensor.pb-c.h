@@ -56,7 +56,6 @@ struct  _MotionSensor__ConfigurationSet
   /*
    * band width of low/hig-hpass as ratio of sample_rate
    * .e.g. select 2 when the filterbandwith shall be sample_rate/2
-   * For LIS2D, i
    */
   int32_t band_width_ratio;
 };

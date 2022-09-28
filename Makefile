@@ -1,19 +1,9 @@
-all:
-	cd binaryIoTypeA && make
-	cd analogInTypeA && make
-	cd mvbSniffer && make
-	cd mvbDebug && make
-	cd canL2 && make
-	cd motionSensor && make
-	cd io4edge && make
-	cd templateInterface && make
+SUBDIRS := $(dir $(wildcard */Makefile))
 
-clean:
-	cd binaryIoTypeA && make clean
-	cd analogIn && make clean
-	cd mvbSniffer && make clean
-	cd mvbDebug && make clean
-	cd canL2 && make clean
-	cd motionSensor && make clean
-	cd io4edge && make clean
-	cd templateInterface && make clean
+TOPTARGETS := build clean
+
+$(TOPTARGETS): $(SUBDIRS)
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: $(TOPTARGETS) $(SUBDIRS)
