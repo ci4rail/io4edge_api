@@ -138,6 +138,7 @@ message FunctionControlSet {
 
 // Channel diagnostic bits. Multiple bits may be set at the same time.
 enum ChannelDiag {
+    NoDiag = 0;
     // group supply voltage missing (input values can't be determined, output values can't be set)
     NoSupplyVoltage = 1;
     // channel current limiter is limiting current
@@ -167,7 +168,7 @@ message GetAllResponse {
 
     // diagnostic information for each channel, containing the ChannelDiag bits.
     // first diag corresponds to channel 0, second to channel 1, etc.
-    repeated uint32 diag = 2
+    repeated uint32 diag = 2;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
