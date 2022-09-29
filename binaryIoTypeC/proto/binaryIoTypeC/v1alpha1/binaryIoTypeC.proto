@@ -40,9 +40,11 @@ message ChannelConfig {
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
     // per channel configuration (one per channel/pin)
+    // the number of channelConfigs must correspond to the actual channels of the device
+    // The first channel is for channel0, the second for channel1, etc.
     repeated ChannelConfig channelConfig = 1;
     // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
-    // LSB is Output0, 1: output watchdog enabled, 0: disabled
+    // LSB is Channel0, 1: output watchdog enabled, 0: disabled
     fixed32 outputWatchdogMask = 2;
     // The output watchdog timeout in ms.
     fixed32 outputWatchdogTimeout = 3;
@@ -65,7 +67,7 @@ message ConfigurationGetResponse {
     repeated ChannelConfig channelConfig = 1;
 
     // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
-    // LSB is Output0, 1: output watchdog enabled, 0: disabled
+    // LSB is Channel0, 1: output watchdog enabled, 0: disabled
     fixed32 outputWatchdogMask = 2;
     // The output watchdog timeout in ms.
     fixed32 outputWatchdogTimeout = 3;
@@ -212,6 +214,8 @@ message Sample {
     // binary coded map of input values. 0 means low, 1 means high, LSB is channel 0.
     // In case the input value is unknown, its value is reported as 0.
     fixed32 values = 2;
+    // binary coded map of flags reflecting whether the corresponding bit in "values" is valid
+    fixed32 value_valid = 3;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
