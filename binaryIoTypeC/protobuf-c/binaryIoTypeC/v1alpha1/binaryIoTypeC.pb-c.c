@@ -1948,7 +1948,7 @@ const ProtobufCMessageDescriptor binary_io_type_c__stream_control_start__descrip
   (ProtobufCMessageInit) binary_io_type_c__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_c__sample__field_descriptors[2] =
+static const ProtobufCFieldDescriptor binary_io_type_c__sample__field_descriptors[3] =
 {
   {
     "timestamp",
@@ -1974,15 +1974,28 @@ static const ProtobufCFieldDescriptor binary_io_type_c__sample__field_descriptor
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "value_valid",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeC__Sample, value_valid),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned binary_io_type_c__sample__field_indices_by_name[] = {
   0,   /* field[0] = timestamp */
+  2,   /* field[2] = value_valid */
   1,   /* field[1] = values */
 };
 static const ProtobufCIntRange binary_io_type_c__sample__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor binary_io_type_c__sample__descriptor =
 {
@@ -1992,7 +2005,7 @@ const ProtobufCMessageDescriptor binary_io_type_c__sample__descriptor =
   "BinaryIoTypeC__Sample",
   "binaryIoTypeC",
   sizeof(BinaryIoTypeC__Sample),
-  2,
+  3,
   binary_io_type_c__sample__field_descriptors,
   binary_io_type_c__sample__field_indices_by_name,
   1,  binary_io_type_c__sample__number_ranges,

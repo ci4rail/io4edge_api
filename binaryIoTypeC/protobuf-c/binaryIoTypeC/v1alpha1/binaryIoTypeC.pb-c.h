@@ -112,12 +112,14 @@ struct  _BinaryIoTypeC__ConfigurationSet
   ProtobufCMessage base;
   /*
    * per channel configuration (one per channel/pin)
+   * the number of channelConfigs must correspond to the actual channels of the device
+   * The first channel is for channel0, the second for channel1, etc.
    */
   size_t n_channelconfig;
   BinaryIoTypeC__ChannelConfig **channelconfig;
   /*
    * Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
-   * LSB is Output0, 1: output watchdog enabled, 0: disabled
+   * LSB is Channel0, 1: output watchdog enabled, 0: disabled
    */
   uint32_t outputwatchdogmask;
   /*
@@ -168,7 +170,7 @@ struct  _BinaryIoTypeC__ConfigurationGetResponse
   BinaryIoTypeC__ChannelConfig **channelconfig;
   /*
    * Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
-   * LSB is Output0, 1: output watchdog enabled, 0: disabled
+   * LSB is Channel0, 1: output watchdog enabled, 0: disabled
    */
   uint32_t outputwatchdogmask;
   /*
@@ -493,10 +495,14 @@ struct  _BinaryIoTypeC__Sample
    * In case the input value is unknown, its value is reported as 0.
    */
   uint32_t values;
+  /*
+   * binary coded map of flags reflecting whether the corresponding bit in "values" is valid
+   */
+  uint32_t value_valid;
 };
 #define BINARY_IO_TYPE_C__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_c__sample__descriptor) \
-    , 0, 0 }
+    , 0, 0, 0 }
 
 
 /*
