@@ -31,23 +31,28 @@ enum ChannelMode {
 }
 
 message ChannelConfig {
-    ChannelMode mode = 1;
+    // channel number (0..n)
+    int32 channel = 1;
+    // direction and type
+    ChannelMode mode = 2;
     // If channel is configured for output, initialValue defines the value after initialization
     // and after the watchdog has fired
-    bool initialValue = 2;
+    bool initialValue = 3;
 }
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // per channel configuration (one per channel/pin)
-    // the number of channelConfigs must correspond to the actual channels of the device
-    // The first channel is for channel0, the second for channel1, etc.
+    // per channel configuration (one per channel/pin). The channel number is part of each ChannelConfig entry.
+    // missing channels remain unchanged
     repeated ChannelConfig channelConfig = 1;
+    // whether to change Output watchdog (if false, then outputWatchdogMask and outputWatchdogTimeout are ignored)
+    bool changeOutputWatchdog = 2;
+
     // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
     // LSB is Channel0, 1: output watchdog enabled, 0: disabled
-    fixed32 outputWatchdogMask = 2;
+    fixed32 outputWatchdogMask = 3;
     // The output watchdog timeout in ms.
-    fixed32 outputWatchdogTimeout = 3;
+    fixed32 outputWatchdogTimeout = 4;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -68,9 +73,9 @@ message ConfigurationGetResponse {
 
     // Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
     // LSB is Channel0, 1: output watchdog enabled, 0: disabled
-    fixed32 outputWatchdogMask = 2;
+    fixed32 outputWatchdogMask = 3;
     // The output watchdog timeout in ms.
-    fixed32 outputWatchdogTimeout = 3;
+    fixed32 outputWatchdogTimeout = 4;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -100,10 +105,9 @@ message GetSingle {
     fixed32 channel = 1;
 }
 
-// Gets the values of all binary channels
+// Gets the values and diagnostic info of all binary channels
 message GetAll {
-    // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is channel 0
-    fixed32 mask = 1;
+    // no parameters
 }
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook

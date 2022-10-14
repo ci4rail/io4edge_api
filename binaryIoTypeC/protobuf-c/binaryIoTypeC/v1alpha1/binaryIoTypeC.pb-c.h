@@ -92,6 +92,13 @@ typedef enum _BinaryIoTypeC__ChannelDiag {
 struct  _BinaryIoTypeC__ChannelConfig
 {
   ProtobufCMessage base;
+  /*
+   * channel number (0..n)
+   */
+  int32_t channel;
+  /*
+   * direction and type
+   */
   BinaryIoTypeC__ChannelMode mode;
   /*
    * If channel is configured for output, initialValue defines the value after initialization
@@ -101,7 +108,7 @@ struct  _BinaryIoTypeC__ChannelConfig
 };
 #define BINARY_IO_TYPE_C__CHANNEL_CONFIG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_c__channel_config__descriptor) \
-    , BINARY_IO_TYPE_C__CHANNEL_MODE__BINARYIOTYPEC_INPUT_TYPE_1_3, 0 }
+    , 0, BINARY_IO_TYPE_C__CHANNEL_MODE__BINARYIOTYPEC_INPUT_TYPE_1_3, 0 }
 
 
 /*
@@ -111,12 +118,15 @@ struct  _BinaryIoTypeC__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * per channel configuration (one per channel/pin)
-   * the number of channelConfigs must correspond to the actual channels of the device
-   * The first channel is for channel0, the second for channel1, etc.
+   * per channel configuration (one per channel/pin). The channel number is part of each ChannelConfig entry.
+   * missing channels remain unchanged
    */
   size_t n_channelconfig;
   BinaryIoTypeC__ChannelConfig **channelconfig;
+  /*
+   * whether to change Output watchdog (if false, then outputWatchdogMask and outputWatchdogTimeout are ignored)
+   */
+  protobuf_c_boolean changeoutputwatchdog;
   /*
    * Map to enable the output watchdog for binary output channels. The output watchdog fires if the output is not updated for a certain time.
    * LSB is Channel0, 1: output watchdog enabled, 0: disabled
@@ -129,7 +139,7 @@ struct  _BinaryIoTypeC__ConfigurationSet
 };
 #define BINARY_IO_TYPE_C__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_c__configuration_set__descriptor) \
-    , 0,NULL, 0, 0 }
+    , 0,NULL, 0, 0, 0 }
 
 
 /*
@@ -249,19 +259,15 @@ struct  _BinaryIoTypeC__GetSingle
 
 
 /*
- * Gets the values of all binary channels
+ * Gets the values and diagnostic info of all binary channels
  */
 struct  _BinaryIoTypeC__GetAll
 {
   ProtobufCMessage base;
-  /*
-   * mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is channel 0
-   */
-  uint32_t mask;
 };
 #define BINARY_IO_TYPE_C__GET_ALL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_c__get_all__descriptor) \
-    , 0 }
+     }
 
 
 typedef enum {

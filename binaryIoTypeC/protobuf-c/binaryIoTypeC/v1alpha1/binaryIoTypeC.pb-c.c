@@ -1042,11 +1042,23 @@ void   binary_io_type_c__stream_data__free_unpacked
   assert(message->base.descriptor == &binary_io_type_c__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor binary_io_type_c__channel_config__field_descriptors[2] =
+static const ProtobufCFieldDescriptor binary_io_type_c__channel_config__field_descriptors[3] =
 {
   {
-    "mode",
+    "channel",
     1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeC__ChannelConfig, channel),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "mode",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
@@ -1058,7 +1070,7 @@ static const ProtobufCFieldDescriptor binary_io_type_c__channel_config__field_de
   },
   {
     "initialValue",
-    2,
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -1070,13 +1082,14 @@ static const ProtobufCFieldDescriptor binary_io_type_c__channel_config__field_de
   },
 };
 static const unsigned binary_io_type_c__channel_config__field_indices_by_name[] = {
-  1,   /* field[1] = initialValue */
-  0,   /* field[0] = mode */
+  0,   /* field[0] = channel */
+  2,   /* field[2] = initialValue */
+  1,   /* field[1] = mode */
 };
 static const ProtobufCIntRange binary_io_type_c__channel_config__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor binary_io_type_c__channel_config__descriptor =
 {
@@ -1086,14 +1099,14 @@ const ProtobufCMessageDescriptor binary_io_type_c__channel_config__descriptor =
   "BinaryIoTypeC__ChannelConfig",
   "binaryIoTypeC",
   sizeof(BinaryIoTypeC__ChannelConfig),
-  2,
+  3,
   binary_io_type_c__channel_config__field_descriptors,
   binary_io_type_c__channel_config__field_indices_by_name,
   1,  binary_io_type_c__channel_config__number_ranges,
   (ProtobufCMessageInit) binary_io_type_c__channel_config__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_c__configuration_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_c__configuration_set__field_descriptors[4] =
 {
   {
     "channelConfig",
@@ -1108,8 +1121,20 @@ static const ProtobufCFieldDescriptor binary_io_type_c__configuration_set__field
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "outputWatchdogMask",
+    "changeOutputWatchdog",
     2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeC__ConfigurationSet, changeoutputwatchdog),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "outputWatchdogMask",
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
@@ -1121,7 +1146,7 @@ static const ProtobufCFieldDescriptor binary_io_type_c__configuration_set__field
   },
   {
     "outputWatchdogTimeout",
-    3,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
@@ -1133,14 +1158,15 @@ static const ProtobufCFieldDescriptor binary_io_type_c__configuration_set__field
   },
 };
 static const unsigned binary_io_type_c__configuration_set__field_indices_by_name[] = {
+  1,   /* field[1] = changeOutputWatchdog */
   0,   /* field[0] = channelConfig */
-  1,   /* field[1] = outputWatchdogMask */
-  2,   /* field[2] = outputWatchdogTimeout */
+  2,   /* field[2] = outputWatchdogMask */
+  3,   /* field[3] = outputWatchdogTimeout */
 };
 static const ProtobufCIntRange binary_io_type_c__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor binary_io_type_c__configuration_set__descriptor =
 {
@@ -1150,7 +1176,7 @@ const ProtobufCMessageDescriptor binary_io_type_c__configuration_set__descriptor
   "BinaryIoTypeC__ConfigurationSet",
   "binaryIoTypeC",
   sizeof(BinaryIoTypeC__ConfigurationSet),
-  3,
+  4,
   binary_io_type_c__configuration_set__field_descriptors,
   binary_io_type_c__configuration_set__field_indices_by_name,
   1,  binary_io_type_c__configuration_set__number_ranges,
@@ -1209,7 +1235,7 @@ static const ProtobufCFieldDescriptor binary_io_type_c__configuration_get_respon
   },
   {
     "outputWatchdogMask",
-    2,
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
@@ -1221,7 +1247,7 @@ static const ProtobufCFieldDescriptor binary_io_type_c__configuration_get_respon
   },
   {
     "outputWatchdogTimeout",
-    3,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
@@ -1237,9 +1263,10 @@ static const unsigned binary_io_type_c__configuration_get_response__field_indice
   1,   /* field[1] = outputWatchdogMask */
   2,   /* field[2] = outputWatchdogTimeout */
 };
-static const ProtobufCIntRange binary_io_type_c__configuration_get_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange binary_io_type_c__configuration_get_response__number_ranges[2 + 1] =
 {
   { 1, 0 },
+  { 3, 1 },
   { 0, 3 }
 };
 const ProtobufCMessageDescriptor binary_io_type_c__configuration_get_response__descriptor =
@@ -1253,7 +1280,7 @@ const ProtobufCMessageDescriptor binary_io_type_c__configuration_get_response__d
   3,
   binary_io_type_c__configuration_get_response__field_descriptors,
   binary_io_type_c__configuration_get_response__field_indices_by_name,
-  1,  binary_io_type_c__configuration_get_response__number_ranges,
+  2,  binary_io_type_c__configuration_get_response__number_ranges,
   (ProtobufCMessageInit) binary_io_type_c__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1415,29 +1442,9 @@ const ProtobufCMessageDescriptor binary_io_type_c__get_single__descriptor =
   (ProtobufCMessageInit) binary_io_type_c__get_single__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_c__get_all__field_descriptors[1] =
-{
-  {
-    "mask",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeC__GetAll, mask),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_c__get_all__field_indices_by_name[] = {
-  0,   /* field[0] = mask */
-};
-static const ProtobufCIntRange binary_io_type_c__get_all__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define binary_io_type_c__get_all__field_descriptors NULL
+#define binary_io_type_c__get_all__field_indices_by_name NULL
+#define binary_io_type_c__get_all__number_ranges NULL
 const ProtobufCMessageDescriptor binary_io_type_c__get_all__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1446,10 +1453,10 @@ const ProtobufCMessageDescriptor binary_io_type_c__get_all__descriptor =
   "BinaryIoTypeC__GetAll",
   "binaryIoTypeC",
   sizeof(BinaryIoTypeC__GetAll),
-  1,
+  0,
   binary_io_type_c__get_all__field_descriptors,
   binary_io_type_c__get_all__field_indices_by_name,
-  1,  binary_io_type_c__get_all__number_ranges,
+  0,  binary_io_type_c__get_all__number_ranges,
   (ProtobufCMessageInit) binary_io_type_c__get_all__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
