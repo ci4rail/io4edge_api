@@ -149,7 +149,7 @@ enum ChannelDiag {
     NoSupplyVoltage = 1;
     // channel current limiter is limiting current
     CurrentLimit = 2;
-    // channel or group overload (output is disabled, output can't be set)
+    // channel or group overload (output is disabled)
     Overload = 4;
     // group supply undervoltage
     SupplyUndervoltage = 8;
