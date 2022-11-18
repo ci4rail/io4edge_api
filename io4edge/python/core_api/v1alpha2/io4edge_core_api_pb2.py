@@ -165,7 +165,7 @@ _LOADFIRMWARECHUNKCOMMAND = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='data', full_name='io4edgeCoreApi.LoadFirmwareChunkCommand.data', index=2,
       number=3, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b(''),
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -196,14 +196,14 @@ _PROGRAMHARDWAREIDENTIFICATIONCOMMAND = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='signature', full_name='io4edgeCoreApi.ProgramHardwareIdentificationCommand.signature', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='root_article', full_name='io4edgeCoreApi.ProgramHardwareIdentificationCommand.root_article', index=1,
       number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -217,7 +217,7 @@ _PROGRAMHARDWAREIDENTIFICATIONCOMMAND = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='serial_number', full_name='io4edgeCoreApi.ProgramHardwareIdentificationCommand.serial_number', index=3,
       number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -248,14 +248,14 @@ _SETPERSISTENTPARAMETERCOMMAND = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='name', full_name='io4edgeCoreApi.SetPersistentParameterCommand.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='io4edgeCoreApi.SetPersistentParameterCommand.value', index=1,
       number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -286,7 +286,7 @@ _GETPERSISTENTPARAMETERCOMMAND = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='name', full_name='io4edgeCoreApi.GetPersistentParameterCommand.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -317,7 +317,7 @@ _IDENTIFYHARDWARERESPONSE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='root_article', full_name='io4edgeCoreApi.IdentifyHardwareResponse.root_article', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -331,7 +331,7 @@ _IDENTIFYHARDWARERESPONSE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='serial_number', full_name='io4edgeCoreApi.IdentifyHardwareResponse.serial_number', index=2,
       number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -362,14 +362,14 @@ _IDENTIFYFIRMWARERESPONSE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='name', full_name='io4edgeCoreApi.IdentifyFirmwareResponse.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='version', full_name='io4edgeCoreApi.IdentifyFirmwareResponse.version', index=1,
       number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -400,7 +400,7 @@ _GETPERSISTENTPARAMETERRESPONSE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='value', full_name='io4edgeCoreApi.GetPersistentParameterResponse.value', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),

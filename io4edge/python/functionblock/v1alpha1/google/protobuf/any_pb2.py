@@ -35,14 +35,14 @@ _ANY = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='type_url', full_name='google.protobuf.Any.type_url', index=0,
       number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b('').decode('utf-8'),
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='google.protobuf.Any.value', index=1,
       number=2, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b(''),
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
