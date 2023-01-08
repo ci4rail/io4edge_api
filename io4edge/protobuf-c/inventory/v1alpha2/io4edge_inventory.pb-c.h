@@ -29,10 +29,11 @@ struct  _Io4edgeInventory__Unit
   char *root_article;
   uint32_t major_version;
   char *serial;
+  uint32_t configuration_number;
 };
 #define IO4EDGE_INVENTORY__UNIT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&io4edge_inventory__unit__descriptor) \
-    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 /* Io4edgeInventory__Unit methods */

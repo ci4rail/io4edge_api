@@ -16,7 +16,7 @@ limitations under the License.
 syntax = "proto3";
 
 package io4edgeCoreApi;
-option go_package = "core_api/v1alpha2";
+option go_package = "core_api/v1alpha3";
 
 enum CommandId {
   IDENTIFY_HARDWARE = 0;
@@ -60,6 +60,7 @@ message ProgramHardwareIdentificationCommand {
   string root_article = 2;
   uint32 major_version = 3;
   string serial_number = 4;
+  uint32 configuration_number = 5;
 }
 
 message SetPersistentParameterCommand {
@@ -73,6 +74,7 @@ message IdentifyHardwareResponse {
   string root_article = 1;
   uint32 major_version = 2;
   string serial_number = 3;
+  uint32 configuration_number = 4;
 }
 
 message IdentifyFirmwareResponse {

@@ -52,7 +52,7 @@ void   io4edge_inventory__unit__free_unpacked
   assert(message->base.descriptor == &io4edge_inventory__unit__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor io4edge_inventory__unit__field_descriptors[3] =
+static const ProtobufCFieldDescriptor io4edge_inventory__unit__field_descriptors[4] =
 {
   {
     "root_article",
@@ -90,8 +90,21 @@ static const ProtobufCFieldDescriptor io4edge_inventory__unit__field_descriptors
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "configuration_number",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(Io4edgeInventory__Unit, configuration_number),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned io4edge_inventory__unit__field_indices_by_name[] = {
+  3,   /* field[3] = configuration_number */
   1,   /* field[1] = major_version */
   0,   /* field[0] = root_article */
   2,   /* field[2] = serial */
@@ -99,7 +112,7 @@ static const unsigned io4edge_inventory__unit__field_indices_by_name[] = {
 static const ProtobufCIntRange io4edge_inventory__unit__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor io4edge_inventory__unit__descriptor =
 {
@@ -109,7 +122,7 @@ const ProtobufCMessageDescriptor io4edge_inventory__unit__descriptor =
   "Io4edgeInventory__Unit",
   "io4edgeInventory",
   sizeof(Io4edgeInventory__Unit),
-  3,
+  4,
   io4edge_inventory__unit__field_descriptors,
   io4edge_inventory__unit__field_indices_by_name,
   1,  io4edge_inventory__unit__number_ranges,
