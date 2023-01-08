@@ -81,10 +81,11 @@ struct  _Io4edgeCoreApi__ProgramHardwareIdentificationCommand
   char *root_article;
   uint32_t major_version;
   char *serial_number;
+  uint32_t configuration_number;
 };
 #define IO4EDGE_CORE_API__PROGRAM_HARDWARE_IDENTIFICATION_COMMAND__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&io4edge_core_api__program_hardware_identification_command__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 struct  _Io4edgeCoreApi__SetPersistentParameterCommand
@@ -114,10 +115,11 @@ struct  _Io4edgeCoreApi__IdentifyHardwareResponse
   char *root_article;
   uint32_t major_version;
   char *serial_number;
+  uint32_t configuration_number;
 };
 #define IO4EDGE_CORE_API__IDENTIFY_HARDWARE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&io4edge_core_api__identify_hardware_response__descriptor) \
-    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 struct  _Io4edgeCoreApi__IdentifyFirmwareResponse

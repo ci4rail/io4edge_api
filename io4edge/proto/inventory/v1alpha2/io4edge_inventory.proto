@@ -16,7 +16,7 @@ limitations under the License.
 syntax = "proto3";
 
 package io4edgeInventory;
-option go_package = "inventory/v1alpha1";
+option go_package = "inventory/v1alpha2";
 
 message Unit {
   string root_article = 1;
