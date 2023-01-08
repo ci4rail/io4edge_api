@@ -14,7 +14,7 @@ repos:
         # 4 - IDF monitor test data
         exclude: &whitespace_excludes |
           (?x)^(
-            .+\.(md|rst|map|bin)|
+            .+\.(md|rst|map|bin|py)|
             .+test.*\/.*expected.*|
             .+\/testdata\/.+|
             .+test_idf_monitor\/tests\/.+
@@ -25,6 +25,7 @@ repos:
       - id: mixed-line-ending
         args: ["-f=lf"]
       - id: double-quote-string-fixer
+        exclude: *whitespace_excludes
   - repo: https://github.com/pocc/pre-commit-hooks
     rev: 093614db90b54cca053c04de00128d70c638b4c2
     hooks:

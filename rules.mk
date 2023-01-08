@@ -3,7 +3,7 @@
 #
 # Expected variables:
 # MODULE: subpath within the proto directory containing the proto files, e.g. "mvbSniffer/v1"
-# PROTO: List of all proto files
+# PROTOS: List of all proto files
 
 # search path for files
 VPATH = ./proto/$(MODULE):./go/$(MODULE):./protobuf-c/$(MODULE)
@@ -26,9 +26,17 @@ GO_TARGETS := $(PROTOS:.proto=.pb.go)
 
 C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 
-build: $(GO_TARGETS) $(C_TARGETS)
+# PYTHON
+%_pb2.py ::  %.proto
+	@mkdir -p python/
+	protoc -I./proto -I./proto/$(MODULE) $< --python_out=python/
 
-clean: 
+PY_TARGETS := $(PROTOS:.proto=_pb2.py)
+
+
+build: $(GO_TARGETS) $(C_TARGETS) $(PY_TARGETS)
+
+clean:
 	rm -rf go/ protobuf-c/
 
 .PHONY: build clean
