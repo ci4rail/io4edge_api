@@ -115,6 +115,10 @@ message TraceletToServer {
 
     // Vehicle Mileage in [km]
     int32 mileage = 5;
+
+    // Current Tracelet Temperature in [°C]
+    double temperature = 6;
+
   } // Location
 
   // Sub-message sent in response to a status request
