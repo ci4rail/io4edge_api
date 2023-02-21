@@ -581,7 +581,6 @@ type CoreCommand struct {
 
 	Id CommandId `protobuf:"varint,1,opt,name=id,proto3,enum=io4edgeCoreApi.CommandId" json:"id,omitempty"`
 	// Types that are assignable to Data:
-	//
 	//	*CoreCommand_LoadFirmwareChunk
 	//	*CoreCommand_ProgramHardwareIdentification
 	//	*CoreCommand_SetPersistentParameter
@@ -700,7 +699,6 @@ type CoreResponse struct {
 	Status        Status    `protobuf:"varint,2,opt,name=status,proto3,enum=io4edgeCoreApi.Status" json:"status,omitempty"`
 	RestartingNow bool      `protobuf:"varint,3,opt,name=restarting_now,json=restartingNow,proto3" json:"restarting_now,omitempty"`
 	// Types that are assignable to Data:
-	//
 	//	*CoreResponse_IdentifyHardware
 	//	*CoreResponse_IdentifyFirmware
 	//	*CoreResponse_PersistentParameter

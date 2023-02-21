@@ -19,6 +19,7 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
 package tracelet;
+option go_package = "./tracelet";
 
 // message sent from server to tracelet
 
