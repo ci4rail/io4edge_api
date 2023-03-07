@@ -123,10 +123,16 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    * vertical accuracy in [m]
    */
   double epv;
+  /*
+   * type of fix 
+   * 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 
+   * 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
+   */
+  int32_t fix_type;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \
-    , 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Uwb
@@ -154,16 +160,13 @@ struct  _Tracelet__TraceletToServer__Location__Uwb
    */
   uint64_t location_signature;
   /*
-   * Covariance as an indication for the current accuracy. See Easylocate
-   * Specification for details
+   * horizontal accuracy in [m]
    */
-  double cov_xx;
-  double cov_xy;
-  double cov_yy;
+  double eph;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__UWB__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__uwb__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0 }
 
 
 /*
@@ -241,8 +244,8 @@ struct  _Tracelet__TraceletToServer__StatusResponse
 
 typedef enum {
   TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET = 0,
-  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 4,
-  TRACELET__TRACELET_TO_SERVER__TYPE_STATUS = 5
+  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5,
+  TRACELET__TRACELET_TO_SERVER__TYPE_STATUS = 6
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__TRACELET_TO_SERVER__TYPE)
 } Tracelet__TraceletToServer__TypeCase;
 
@@ -259,11 +262,15 @@ struct  _Tracelet__TraceletToServer
    * If the Tracelet has no valid time, receive_ts is set to 1970-Jan-1 00:00
    * UTC
    */
-  Google__Protobuf__Timestamp *receive_ts;
+  Google__Protobuf__Timestamp *delivery_ts;
   /*
    * tracelet ID as provisioned in tracelet. Could be a vehicle ID
    */
   char *tracelet_id;
+  /*
+   * status of the tracelet ignition signal
+   */
+  protobuf_c_boolean ignition;
   Tracelet__TraceletToServer__TypeCase type_case;
   union {
     /*
@@ -281,7 +288,7 @@ struct  _Tracelet__TraceletToServer
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__descriptor) \
-    , 0, NULL, (char *)protobuf_c_empty_string, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+    , 0, NULL, (char *)protobuf_c_empty_string, 0, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
 
 
 /* Tracelet__ServerToTracelet__LocationRequest methods */

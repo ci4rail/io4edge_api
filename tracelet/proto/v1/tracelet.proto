@@ -64,6 +64,11 @@ message TraceletToServer {
 
       // vertical accuracy in [m]
       double epv = 6;
+
+      // type of fix 
+      // 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 
+      // 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
+      int32 fix_type = 7;
     }
 
     message Uwb {
@@ -84,11 +89,8 @@ message TraceletToServer {
       // can be used to validate the received location
       fixed64 location_signature = 6;
 
-      // Covariance as an indication for the current accuracy. See Easylocate
-      // Specification for details
-      double cov_xx = 7;
-      double cov_xy = 8;
-      double cov_yy = 9;
+      // horizontal accuracy in [m]
+      double eph = 7;
     }
 
     enum Direction {
@@ -145,14 +147,17 @@ message TraceletToServer {
   // timestamp when the message was sent by the tracelet
   // If the Tracelet has no valid time, receive_ts is set to 1970-Jan-1 00:00
   // UTC
-  google.protobuf.Timestamp receive_ts = 2;
+  google.protobuf.Timestamp delivery_ts = 2;
 
   // tracelet ID as provisioned in tracelet. Could be a vehicle ID
   string tracelet_id = 3;
 
+  // status of the tracelet ignition signal
+  bool ignition = 4;
+
   oneof type {
-    Location location = 4;     // periodically sent by the tracelet or in
+    Location location = 5;     // periodically sent by the tracelet or in
                                // response to a location request
-    StatusResponse status = 5; // sent in response to the status request
+    StatusResponse status = 6; // sent in response to the status request
   }
 }

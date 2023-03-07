@@ -233,7 +233,7 @@ const ProtobufCMessageDescriptor tracelet__server_to_tracelet__descriptor =
   (ProtobufCMessageInit) tracelet__server_to_tracelet__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[6] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[7] =
 {
   {
     "valid",
@@ -307,11 +307,24 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gn
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "fix_type",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, fix_type),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__gnss__field_indices_by_name[] = {
   3,   /* field[3] = altitude */
   4,   /* field[4] = eph */
   5,   /* field[5] = epv */
+  6,   /* field[6] = fix_type */
   1,   /* field[1] = latitude */
   2,   /* field[2] = longitude */
   0,   /* field[0] = valid */
@@ -319,7 +332,7 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__gnss__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 6 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor =
 {
@@ -329,14 +342,14 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__d
   "Tracelet__TraceletToServer__Location__Gnss",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Gnss),
-  6,
+  7,
   tracelet__tracelet_to_server__location__gnss__field_descriptors,
   tracelet__tracelet_to_server__location__gnss__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__gnss__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__gnss__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uwb__field_descriptors[9] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uwb__field_descriptors[7] =
 {
   {
     "valid",
@@ -411,36 +424,12 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uw
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "cov_xx",
+    "eph",
     7,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Uwb, cov_xx),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "cov_xy",
-    8,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Uwb, cov_xy),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "cov_yy",
-    9,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Uwb, cov_yy),
+    offsetof(Tracelet__TraceletToServer__Location__Uwb, eph),
     NULL,
     NULL,
     0,             /* flags */
@@ -448,9 +437,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uw
   },
 };
 static const unsigned tracelet__tracelet_to_server__location__uwb__field_indices_by_name[] = {
-  6,   /* field[6] = cov_xx */
-  7,   /* field[7] = cov_xy */
-  8,   /* field[8] = cov_yy */
+  6,   /* field[6] = eph */
   5,   /* field[5] = location_signature */
   4,   /* field[4] = site_id */
   0,   /* field[0] = valid */
@@ -461,7 +448,7 @@ static const unsigned tracelet__tracelet_to_server__location__uwb__field_indices
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__uwb__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 9 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor =
 {
@@ -471,7 +458,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__de
   "Tracelet__TraceletToServer__Location__Uwb",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Uwb),
-  9,
+  7,
   tracelet__tracelet_to_server__location__uwb__field_descriptors,
   tracelet__tracelet_to_server__location__uwb__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__uwb__number_ranges,
@@ -714,7 +701,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__status_response__
   (ProtobufCMessageInit) tracelet__tracelet_to_server__status_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[5] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[6] =
 {
   {
     "id",
@@ -729,12 +716,12 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "receive_ts",
+    "delivery_ts",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer, receive_ts),
+    offsetof(Tracelet__TraceletToServer, delivery_ts),
     &google__protobuf__timestamp__descriptor,
     NULL,
     0,             /* flags */
@@ -753,8 +740,20 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "location",
+    "ignition",
     4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer, ignition),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "location",
+    5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Tracelet__TraceletToServer, type_case),
@@ -766,7 +765,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
   },
   {
     "status",
-    5,
+    6,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Tracelet__TraceletToServer, type_case),
@@ -778,16 +777,17 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
   },
 };
 static const unsigned tracelet__tracelet_to_server__field_indices_by_name[] = {
+  1,   /* field[1] = delivery_ts */
   0,   /* field[0] = id */
-  3,   /* field[3] = location */
-  1,   /* field[1] = receive_ts */
-  4,   /* field[4] = status */
+  3,   /* field[3] = ignition */
+  4,   /* field[4] = location */
+  5,   /* field[5] = status */
   2,   /* field[2] = tracelet_id */
 };
 static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
 {
@@ -797,7 +797,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   "Tracelet__TraceletToServer",
   "tracelet",
   sizeof(Tracelet__TraceletToServer),
-  5,
+  6,
   tracelet__tracelet_to_server__field_descriptors,
   tracelet__tracelet_to_server__field_indices_by_name,
   1,  tracelet__tracelet_to_server__number_ranges,
