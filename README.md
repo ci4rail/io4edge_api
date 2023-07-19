@@ -4,10 +4,11 @@ This repository contain all proto files for communicate with io4edge modules.
 
 ## How to build
 
-**Dependencies: golang and docker**
+Run this repo from a vscode devcontainer. (CTRL+SHIFT+P -> Remote-Containers: Open Folder in Container, or clone the repo in the devcontainer)
 
 Run `make` to generate all the files.
 
 Currently implemented:
 - golang
-- protobuf-c (v1.3.0)
+- protobuf-c 
+- python
