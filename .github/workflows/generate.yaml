@@ -23,4 +23,12 @@ jobs:
             protobuf-compiler \
             protobuf-c-compiler
       - name: generate code
-        run: make clean && make build
+        run: |
+          make clean && make build
+      - name: push generated code
+          git status
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "ci: Generate code from protobuf files"
+          git push
