@@ -7,20 +7,18 @@ on:
 
 jobs:
   generate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
           go-version: '1.20'
-      # - uses: actions/setup-python@v4
-      #   with:
-      #     python-version: '3.11' 
       - name: install tools
         run: |
           go install google.golang.org/protobuf/cmd/protoc-gen-go@latest 
+          PROTOC_VERSION=24.0-rc2
+          curl -Lo protoc.zip "https://github.com/protocolbuffers/protobuf/releases/latest/download/protoc-${PROTOC_VERSION}-linux-x86_64.zip" && sudo unzip -q protoc.zip bin/protoc -d /usr/local && sudo chmod a+x /usr/local/bin/protoc
           sudo apt-get update && export DEBIAN_FRONTEND=noninteractive && sudo apt-get -y install --no-install-recommends \
-            protobuf-compiler \
             protobuf-c-compiler
       - name: generate code
         run: |
