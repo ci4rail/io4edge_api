@@ -12,3 +12,7 @@ Currently implemented:
 - golang
 - protobuf-c 
 - python
+
+# CI 
+
+When you push to main, the CI will build the go/python/protobuf-c files and check if the files are up to date. If not, the CI will push the changes to the main branch.
