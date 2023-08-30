@@ -27,6 +27,7 @@ enum CommandId {
   SET_PERSISTENT_PARAMETER = 5;
   GET_PERSISTENT_PARAMETER = 6;
   READ_PARTITION_CHUNK = 7;
+  GET_RESET_REASON = 8;
 }
 
 enum Status {
@@ -98,6 +99,10 @@ message ReadPartitionChunkResponse {
   bytes data = 3;
 }
 
+message ResetReasonResponse {
+  string reason = 1;
+}
+
 // The common messages
 message CoreCommand {
   CommandId id = 1;
@@ -119,5 +124,6 @@ message CoreResponse {
     IdentifyFirmwareResponse identify_firmware = 5;
     GetPersistentParameterResponse persistent_parameter = 6;
     ReadPartitionChunkResponse read_partition_chunk = 7;
+    ResetReasonResponse reset_reason = 8;
   }
 }
