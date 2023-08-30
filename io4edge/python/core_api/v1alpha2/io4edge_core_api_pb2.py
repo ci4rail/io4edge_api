@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\021core_api/v1alpha2',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n(core_api/v1alpha2/io4edge_core_api.proto\x12\x0eio4edgeCoreApi\"U\n\x18LoadFirmwareChunkCommand\x12\x14\n\x0c\x63hunk_number\x18\x01 \x01(\r\x12\x15\n\ris_last_chunk\x18\x02 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"}\n$ProgramHardwareIdentificationCommand\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x14\n\x0croot_article\x18\x02 \x01(\t\x12\x15\n\rmajor_version\x18\x03 \x01(\r\x12\x15\n\rserial_number\x18\x04 \x01(\t\"<\n\x1dSetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"-\n\x1dGetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\">\n\x19ReadPartitionChunkCommand\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\"^\n\x18IdentifyHardwareResponse\x12\x14\n\x0croot_article\x18\x01 \x01(\t\x12\x15\n\rmajor_version\x18\x02 \x01(\r\x12\x15\n\rserial_number\x18\x03 \x01(\t\"9\n\x18IdentifyFirmwareResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\"/\n\x1eGetPersistentParameterResponse\x12\r\n\x05value\x18\x01 \x01(\t\"M\n\x1aReadPartitionChunkResponse\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"%\n\x13ResetReasonResponse\x12\x0e\n\x06reason\x18\x01 \x01(\t\"\xd7\x03\n\x0b\x43oreCommand\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12G\n\x13load_firmware_chunk\x18\x02 \x01(\x0b\x32(.io4edgeCoreApi.LoadFirmwareChunkCommandH\x00\x12_\n\x1fprogram_hardware_identification\x18\x03 \x01(\x0b\x32\x34.io4edgeCoreApi.ProgramHardwareIdentificationCommandH\x00\x12Q\n\x18set_persistent_parameter\x18\x04 \x01(\x0b\x32-.io4edgeCoreApi.SetPersistentParameterCommandH\x00\x12Q\n\x18get_persistent_parameter\x18\x05 \x01(\x0b\x32-.io4edgeCoreApi.GetPersistentParameterCommandH\x00\x12I\n\x14read_partition_chunk\x18\x06 \x01(\x0b\x32).io4edgeCoreApi.ReadPartitionChunkCommandH\x00\x42\x06\n\x04\x64\x61ta\"\xe4\x03\n\x0c\x43oreResponse\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.io4edgeCoreApi.Status\x12\x16\n\x0erestarting_now\x18\x03 \x01(\x08\x12\x45\n\x11identify_hardware\x18\x04 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyHardwareResponseH\x00\x12\x45\n\x11identify_firmware\x18\x05 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyFirmwareResponseH\x00\x12N\n\x14persistent_parameter\x18\x06 \x01(\x0b\x32..io4edgeCoreApi.GetPersistentParameterResponseH\x00\x12J\n\x14read_partition_chunk\x18\x07 \x01(\x0b\x32*.io4edgeCoreApi.ReadPartitionChunkResponseH\x00\x12;\n\x0creset_reason\x18\x08 \x01(\x0b\x32#.io4edgeCoreApi.ResetReasonResponseH\x00\x42\x06\n\x04\x64\x61ta*\xf0\x01\n\tCommandId\x12\x15\n\x11IDENTIFY_HARDWARE\x10\x00\x12\x15\n\x11IDENTIFY_FIRMWARE\x10\x01\x12\x17\n\x13LOAD_FIRMWARE_CHUNK\x10\x02\x12#\n\x1fPROGRAM_HARDWARE_IDENTIFICATION\x10\x03\x12\x0b\n\x07RESTART\x10\x04\x12\x1c\n\x18SET_PERSISTENT_PARAMETER\x10\x05\x12\x1c\n\x18GET_PERSISTENT_PARAMETER\x10\x06\x12\x18\n\x14READ_PARTITION_CHUNK\x10\x07\x12\x14\n\x10GET_RESET_REASON\x10\x08*\xd8\x01\n\x06Status\x12\x06\n\x02OK\x10\x00\x12\x13\n\x0fUNKNOWN_COMMAND\x10\x01\x12\x15\n\x11ILLEGAL_PARAMETER\x10\x02\x12\x11\n\rBAD_CHUNK_SEQ\x10\x03\x12\x12\n\x0e\x42\x41\x44_CHUNK_SIZE\x10\x04\x12\x12\n\x0eNOT_COMPATIBLE\x10\x05\x12\x12\n\x0eINTERNAL_ERROR\x10\x06\x12\x15\n\x11PROGRAMMING_ERROR\x10\x07\x12\x13\n\x0fNO_HW_INVENTORY\x10\x08\x12\x1f\n\x1bTHIS_VERSION_FAILED_ALREADY\x10\tB\x13Z\x11\x63ore_api/v1alpha2b\x06proto3'
+  serialized_pb=b'\n(core_api/v1alpha2/io4edge_core_api.proto\x12\x0eio4edgeCoreApi\"U\n\x18LoadFirmwareChunkCommand\x12\x14\n\x0c\x63hunk_number\x18\x01 \x01(\r\x12\x15\n\ris_last_chunk\x18\x02 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"}\n$ProgramHardwareIdentificationCommand\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x14\n\x0croot_article\x18\x02 \x01(\t\x12\x15\n\rmajor_version\x18\x03 \x01(\r\x12\x15\n\rserial_number\x18\x04 \x01(\t\"<\n\x1dSetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"-\n\x1dGetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\">\n\x19ReadPartitionChunkCommand\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\"^\n\x18IdentifyHardwareResponse\x12\x14\n\x0croot_article\x18\x01 \x01(\t\x12\x15\n\rmajor_version\x18\x02 \x01(\r\x12\x15\n\rserial_number\x18\x03 \x01(\t\"9\n\x18IdentifyFirmwareResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\"/\n\x1eGetPersistentParameterResponse\x12\r\n\x05value\x18\x01 \x01(\t\"M\n\x1aReadPartitionChunkResponse\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"(\n\x16GetResetReasonResponse\x12\x0e\n\x06reason\x18\x01 \x01(\t\"\xd7\x03\n\x0b\x43oreCommand\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12G\n\x13load_firmware_chunk\x18\x02 \x01(\x0b\x32(.io4edgeCoreApi.LoadFirmwareChunkCommandH\x00\x12_\n\x1fprogram_hardware_identification\x18\x03 \x01(\x0b\x32\x34.io4edgeCoreApi.ProgramHardwareIdentificationCommandH\x00\x12Q\n\x18set_persistent_parameter\x18\x04 \x01(\x0b\x32-.io4edgeCoreApi.SetPersistentParameterCommandH\x00\x12Q\n\x18get_persistent_parameter\x18\x05 \x01(\x0b\x32-.io4edgeCoreApi.GetPersistentParameterCommandH\x00\x12I\n\x14read_partition_chunk\x18\x06 \x01(\x0b\x32).io4edgeCoreApi.ReadPartitionChunkCommandH\x00\x42\x06\n\x04\x64\x61ta\"\xe7\x03\n\x0c\x43oreResponse\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.io4edgeCoreApi.Status\x12\x16\n\x0erestarting_now\x18\x03 \x01(\x08\x12\x45\n\x11identify_hardware\x18\x04 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyHardwareResponseH\x00\x12\x45\n\x11identify_firmware\x18\x05 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyFirmwareResponseH\x00\x12N\n\x14persistent_parameter\x18\x06 \x01(\x0b\x32..io4edgeCoreApi.GetPersistentParameterResponseH\x00\x12J\n\x14read_partition_chunk\x18\x07 \x01(\x0b\x32*.io4edgeCoreApi.ReadPartitionChunkResponseH\x00\x12>\n\x0creset_reason\x18\x08 \x01(\x0b\x32&.io4edgeCoreApi.GetResetReasonResponseH\x00\x42\x06\n\x04\x64\x61ta*\xf0\x01\n\tCommandId\x12\x15\n\x11IDENTIFY_HARDWARE\x10\x00\x12\x15\n\x11IDENTIFY_FIRMWARE\x10\x01\x12\x17\n\x13LOAD_FIRMWARE_CHUNK\x10\x02\x12#\n\x1fPROGRAM_HARDWARE_IDENTIFICATION\x10\x03\x12\x0b\n\x07RESTART\x10\x04\x12\x1c\n\x18SET_PERSISTENT_PARAMETER\x10\x05\x12\x1c\n\x18GET_PERSISTENT_PARAMETER\x10\x06\x12\x18\n\x14READ_PARTITION_CHUNK\x10\x07\x12\x14\n\x10GET_RESET_REASON\x10\x08*\xd8\x01\n\x06Status\x12\x06\n\x02OK\x10\x00\x12\x13\n\x0fUNKNOWN_COMMAND\x10\x01\x12\x15\n\x11ILLEGAL_PARAMETER\x10\x02\x12\x11\n\rBAD_CHUNK_SEQ\x10\x03\x12\x12\n\x0e\x42\x41\x44_CHUNK_SIZE\x10\x04\x12\x12\n\x0eNOT_COMPATIBLE\x10\x05\x12\x12\n\x0eINTERNAL_ERROR\x10\x06\x12\x15\n\x11PROGRAMMING_ERROR\x10\x07\x12\x13\n\x0fNO_HW_INVENTORY\x10\x08\x12\x1f\n\x1bTHIS_VERSION_FAILED_ALREADY\x10\tB\x13Z\x11\x63ore_api/v1alpha2b\x06proto3'
 )
 
 _COMMANDID = _descriptor.EnumDescriptor(
@@ -78,8 +78,8 @@ _COMMANDID = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1731,
-  serialized_end=1971,
+  serialized_start=1737,
+  serialized_end=1977,
 )
 _sym_db.RegisterEnumDescriptor(_COMMANDID)
 
@@ -144,8 +144,8 @@ _STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1974,
-  serialized_end=2190,
+  serialized_start=1980,
+  serialized_end=2196,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -544,16 +544,16 @@ _READPARTITIONCHUNKRESPONSE = _descriptor.Descriptor(
 )
 
 
-_RESETREASONRESPONSE = _descriptor.Descriptor(
-  name='ResetReasonResponse',
-  full_name='io4edgeCoreApi.ResetReasonResponse',
+_GETRESETREASONRESPONSE = _descriptor.Descriptor(
+  name='GetResetReasonResponse',
+  full_name='io4edgeCoreApi.GetResetReasonResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='reason', full_name='io4edgeCoreApi.ResetReasonResponse.reason', index=0,
+      name='reason', full_name='io4edgeCoreApi.GetResetReasonResponse.reason', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -572,7 +572,7 @@ _RESETREASONRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=730,
-  serialized_end=767,
+  serialized_end=770,
 )
 
 
@@ -643,8 +643,8 @@ _CORECOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=770,
-  serialized_end=1241,
+  serialized_start=773,
+  serialized_end=1244,
 )
 
 
@@ -729,8 +729,8 @@ _CORERESPONSE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1244,
-  serialized_end=1728,
+  serialized_start=1247,
+  serialized_end=1734,
 )
 
 _CORECOMMAND.fields_by_name['id'].enum_type = _COMMANDID
@@ -760,7 +760,7 @@ _CORERESPONSE.fields_by_name['identify_hardware'].message_type = _IDENTIFYHARDWA
 _CORERESPONSE.fields_by_name['identify_firmware'].message_type = _IDENTIFYFIRMWARERESPONSE
 _CORERESPONSE.fields_by_name['persistent_parameter'].message_type = _GETPERSISTENTPARAMETERRESPONSE
 _CORERESPONSE.fields_by_name['read_partition_chunk'].message_type = _READPARTITIONCHUNKRESPONSE
-_CORERESPONSE.fields_by_name['reset_reason'].message_type = _RESETREASONRESPONSE
+_CORERESPONSE.fields_by_name['reset_reason'].message_type = _GETRESETREASONRESPONSE
 _CORERESPONSE.oneofs_by_name['data'].fields.append(
   _CORERESPONSE.fields_by_name['identify_hardware'])
 _CORERESPONSE.fields_by_name['identify_hardware'].containing_oneof = _CORERESPONSE.oneofs_by_name['data']
@@ -785,7 +785,7 @@ DESCRIPTOR.message_types_by_name['IdentifyHardwareResponse'] = _IDENTIFYHARDWARE
 DESCRIPTOR.message_types_by_name['IdentifyFirmwareResponse'] = _IDENTIFYFIRMWARERESPONSE
 DESCRIPTOR.message_types_by_name['GetPersistentParameterResponse'] = _GETPERSISTENTPARAMETERRESPONSE
 DESCRIPTOR.message_types_by_name['ReadPartitionChunkResponse'] = _READPARTITIONCHUNKRESPONSE
-DESCRIPTOR.message_types_by_name['ResetReasonResponse'] = _RESETREASONRESPONSE
+DESCRIPTOR.message_types_by_name['GetResetReasonResponse'] = _GETRESETREASONRESPONSE
 DESCRIPTOR.message_types_by_name['CoreCommand'] = _CORECOMMAND
 DESCRIPTOR.message_types_by_name['CoreResponse'] = _CORERESPONSE
 DESCRIPTOR.enum_types_by_name['CommandId'] = _COMMANDID
@@ -855,12 +855,12 @@ ReadPartitionChunkResponse = _reflection.GeneratedProtocolMessageType('ReadParti
   })
 _sym_db.RegisterMessage(ReadPartitionChunkResponse)
 
-ResetReasonResponse = _reflection.GeneratedProtocolMessageType('ResetReasonResponse', (_message.Message,), {
-  'DESCRIPTOR' : _RESETREASONRESPONSE,
+GetResetReasonResponse = _reflection.GeneratedProtocolMessageType('GetResetReasonResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETRESETREASONRESPONSE,
   '__module__' : 'core_api.v1alpha2.io4edge_core_api_pb2'
-  # @@protoc_insertion_point(class_scope:io4edgeCoreApi.ResetReasonResponse)
+  # @@protoc_insertion_point(class_scope:io4edgeCoreApi.GetResetReasonResponse)
   })
-_sym_db.RegisterMessage(ResetReasonResponse)
+_sym_db.RegisterMessage(GetResetReasonResponse)
 
 CoreCommand = _reflection.GeneratedProtocolMessageType('CoreCommand', (_message.Message,), {
   'DESCRIPTOR' : _CORECOMMAND,

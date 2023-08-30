@@ -24,7 +24,7 @@ typedef struct _Io4edgeCoreApi__IdentifyHardwareResponse Io4edgeCoreApi__Identif
 typedef struct _Io4edgeCoreApi__IdentifyFirmwareResponse Io4edgeCoreApi__IdentifyFirmwareResponse;
 typedef struct _Io4edgeCoreApi__GetPersistentParameterResponse Io4edgeCoreApi__GetPersistentParameterResponse;
 typedef struct _Io4edgeCoreApi__ReadPartitionChunkResponse Io4edgeCoreApi__ReadPartitionChunkResponse;
-typedef struct _Io4edgeCoreApi__ResetReasonResponse Io4edgeCoreApi__ResetReasonResponse;
+typedef struct _Io4edgeCoreApi__GetResetReasonResponse Io4edgeCoreApi__GetResetReasonResponse;
 typedef struct _Io4edgeCoreApi__CoreCommand Io4edgeCoreApi__CoreCommand;
 typedef struct _Io4edgeCoreApi__CoreResponse Io4edgeCoreApi__CoreResponse;
 
@@ -175,13 +175,13 @@ struct  _Io4edgeCoreApi__ReadPartitionChunkResponse
     , (char *)protobuf_c_empty_string, 0, {0,NULL} }
 
 
-struct  _Io4edgeCoreApi__ResetReasonResponse
+struct  _Io4edgeCoreApi__GetResetReasonResponse
 {
   ProtobufCMessage base;
   char *reason;
 };
-#define IO4EDGE_CORE_API__RESET_REASON_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&io4edge_core_api__reset_reason_response__descriptor) \
+#define IO4EDGE_CORE_API__GET_RESET_REASON_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&io4edge_core_api__get_reset_reason_response__descriptor) \
     , (char *)protobuf_c_empty_string }
 
 
@@ -238,7 +238,7 @@ struct  _Io4edgeCoreApi__CoreResponse
     Io4edgeCoreApi__IdentifyFirmwareResponse *identify_firmware;
     Io4edgeCoreApi__GetPersistentParameterResponse *persistent_parameter;
     Io4edgeCoreApi__ReadPartitionChunkResponse *read_partition_chunk;
-    Io4edgeCoreApi__ResetReasonResponse *reset_reason;
+    Io4edgeCoreApi__GetResetReasonResponse *reset_reason;
   };
 };
 #define IO4EDGE_CORE_API__CORE_RESPONSE__INIT \
@@ -417,24 +417,24 @@ Io4edgeCoreApi__ReadPartitionChunkResponse *
 void   io4edge_core_api__read_partition_chunk_response__free_unpacked
                      (Io4edgeCoreApi__ReadPartitionChunkResponse *message,
                       ProtobufCAllocator *allocator);
-/* Io4edgeCoreApi__ResetReasonResponse methods */
-void   io4edge_core_api__reset_reason_response__init
-                     (Io4edgeCoreApi__ResetReasonResponse         *message);
-size_t io4edge_core_api__reset_reason_response__get_packed_size
-                     (const Io4edgeCoreApi__ResetReasonResponse   *message);
-size_t io4edge_core_api__reset_reason_response__pack
-                     (const Io4edgeCoreApi__ResetReasonResponse   *message,
+/* Io4edgeCoreApi__GetResetReasonResponse methods */
+void   io4edge_core_api__get_reset_reason_response__init
+                     (Io4edgeCoreApi__GetResetReasonResponse         *message);
+size_t io4edge_core_api__get_reset_reason_response__get_packed_size
+                     (const Io4edgeCoreApi__GetResetReasonResponse   *message);
+size_t io4edge_core_api__get_reset_reason_response__pack
+                     (const Io4edgeCoreApi__GetResetReasonResponse   *message,
                       uint8_t             *out);
-size_t io4edge_core_api__reset_reason_response__pack_to_buffer
-                     (const Io4edgeCoreApi__ResetReasonResponse   *message,
+size_t io4edge_core_api__get_reset_reason_response__pack_to_buffer
+                     (const Io4edgeCoreApi__GetResetReasonResponse   *message,
                       ProtobufCBuffer     *buffer);
-Io4edgeCoreApi__ResetReasonResponse *
-       io4edge_core_api__reset_reason_response__unpack
+Io4edgeCoreApi__GetResetReasonResponse *
+       io4edge_core_api__get_reset_reason_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   io4edge_core_api__reset_reason_response__free_unpacked
-                     (Io4edgeCoreApi__ResetReasonResponse *message,
+void   io4edge_core_api__get_reset_reason_response__free_unpacked
+                     (Io4edgeCoreApi__GetResetReasonResponse *message,
                       ProtobufCAllocator *allocator);
 /* Io4edgeCoreApi__CoreCommand methods */
 void   io4edge_core_api__core_command__init
@@ -503,8 +503,8 @@ typedef void (*Io4edgeCoreApi__GetPersistentParameterResponse_Closure)
 typedef void (*Io4edgeCoreApi__ReadPartitionChunkResponse_Closure)
                  (const Io4edgeCoreApi__ReadPartitionChunkResponse *message,
                   void *closure_data);
-typedef void (*Io4edgeCoreApi__ResetReasonResponse_Closure)
-                 (const Io4edgeCoreApi__ResetReasonResponse *message,
+typedef void (*Io4edgeCoreApi__GetResetReasonResponse_Closure)
+                 (const Io4edgeCoreApi__GetResetReasonResponse *message,
                   void *closure_data);
 typedef void (*Io4edgeCoreApi__CoreCommand_Closure)
                  (const Io4edgeCoreApi__CoreCommand *message,
@@ -529,7 +529,7 @@ extern const ProtobufCMessageDescriptor io4edge_core_api__identify_hardware_resp
 extern const ProtobufCMessageDescriptor io4edge_core_api__identify_firmware_response__descriptor;
 extern const ProtobufCMessageDescriptor io4edge_core_api__get_persistent_parameter_response__descriptor;
 extern const ProtobufCMessageDescriptor io4edge_core_api__read_partition_chunk_response__descriptor;
-extern const ProtobufCMessageDescriptor io4edge_core_api__reset_reason_response__descriptor;
+extern const ProtobufCMessageDescriptor io4edge_core_api__get_reset_reason_response__descriptor;
 extern const ProtobufCMessageDescriptor io4edge_core_api__core_command__descriptor;
 extern const ProtobufCMessageDescriptor io4edge_core_api__core_response__descriptor;
 

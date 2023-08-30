@@ -99,7 +99,7 @@ message ReadPartitionChunkResponse {
   bytes data = 3;
 }
 
-message ResetReasonResponse {
+message GetResetReasonResponse {
   string reason = 1;
 }
 
@@ -124,6 +124,6 @@ message CoreResponse {
     IdentifyFirmwareResponse identify_firmware = 5;
     GetPersistentParameterResponse persistent_parameter = 6;
     ReadPartitionChunkResponse read_partition_chunk = 7;
-    ResetReasonResponse reset_reason = 8;
+    GetResetReasonResponse reset_reason = 8;
   }
 }

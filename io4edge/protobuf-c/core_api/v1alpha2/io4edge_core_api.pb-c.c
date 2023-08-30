@@ -412,49 +412,49 @@ void   io4edge_core_api__read_partition_chunk_response__free_unpacked
   assert(message->base.descriptor == &io4edge_core_api__read_partition_chunk_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   io4edge_core_api__reset_reason_response__init
-                     (Io4edgeCoreApi__ResetReasonResponse         *message)
+void   io4edge_core_api__get_reset_reason_response__init
+                     (Io4edgeCoreApi__GetResetReasonResponse         *message)
 {
-  static const Io4edgeCoreApi__ResetReasonResponse init_value = IO4EDGE_CORE_API__RESET_REASON_RESPONSE__INIT;
+  static const Io4edgeCoreApi__GetResetReasonResponse init_value = IO4EDGE_CORE_API__GET_RESET_REASON_RESPONSE__INIT;
   *message = init_value;
 }
-size_t io4edge_core_api__reset_reason_response__get_packed_size
-                     (const Io4edgeCoreApi__ResetReasonResponse *message)
+size_t io4edge_core_api__get_reset_reason_response__get_packed_size
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message)
 {
-  assert(message->base.descriptor == &io4edge_core_api__reset_reason_response__descriptor);
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t io4edge_core_api__reset_reason_response__pack
-                     (const Io4edgeCoreApi__ResetReasonResponse *message,
+size_t io4edge_core_api__get_reset_reason_response__pack
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &io4edge_core_api__reset_reason_response__descriptor);
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t io4edge_core_api__reset_reason_response__pack_to_buffer
-                     (const Io4edgeCoreApi__ResetReasonResponse *message,
+size_t io4edge_core_api__get_reset_reason_response__pack_to_buffer
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &io4edge_core_api__reset_reason_response__descriptor);
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Io4edgeCoreApi__ResetReasonResponse *
-       io4edge_core_api__reset_reason_response__unpack
+Io4edgeCoreApi__GetResetReasonResponse *
+       io4edge_core_api__get_reset_reason_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Io4edgeCoreApi__ResetReasonResponse *)
-     protobuf_c_message_unpack (&io4edge_core_api__reset_reason_response__descriptor,
+  return (Io4edgeCoreApi__GetResetReasonResponse *)
+     protobuf_c_message_unpack (&io4edge_core_api__get_reset_reason_response__descriptor,
                                 allocator, len, data);
 }
-void   io4edge_core_api__reset_reason_response__free_unpacked
-                     (Io4edgeCoreApi__ResetReasonResponse *message,
+void   io4edge_core_api__get_reset_reason_response__free_unpacked
+                     (Io4edgeCoreApi__GetResetReasonResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &io4edge_core_api__reset_reason_response__descriptor);
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   io4edge_core_api__core_command__init
@@ -1045,7 +1045,7 @@ const ProtobufCMessageDescriptor io4edge_core_api__read_partition_chunk_response
   (ProtobufCMessageInit) io4edge_core_api__read_partition_chunk_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor io4edge_core_api__reset_reason_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor io4edge_core_api__get_reset_reason_response__field_descriptors[1] =
 {
   {
     "reason",
@@ -1053,34 +1053,34 @@ static const ProtobufCFieldDescriptor io4edge_core_api__reset_reason_response__f
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Io4edgeCoreApi__ResetReasonResponse, reason),
+    offsetof(Io4edgeCoreApi__GetResetReasonResponse, reason),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned io4edge_core_api__reset_reason_response__field_indices_by_name[] = {
+static const unsigned io4edge_core_api__get_reset_reason_response__field_indices_by_name[] = {
   0,   /* field[0] = reason */
 };
-static const ProtobufCIntRange io4edge_core_api__reset_reason_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange io4edge_core_api__get_reset_reason_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 1 }
 };
-const ProtobufCMessageDescriptor io4edge_core_api__reset_reason_response__descriptor =
+const ProtobufCMessageDescriptor io4edge_core_api__get_reset_reason_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "io4edgeCoreApi.ResetReasonResponse",
-  "ResetReasonResponse",
-  "Io4edgeCoreApi__ResetReasonResponse",
+  "io4edgeCoreApi.GetResetReasonResponse",
+  "GetResetReasonResponse",
+  "Io4edgeCoreApi__GetResetReasonResponse",
   "io4edgeCoreApi",
-  sizeof(Io4edgeCoreApi__ResetReasonResponse),
+  sizeof(Io4edgeCoreApi__GetResetReasonResponse),
   1,
-  io4edge_core_api__reset_reason_response__field_descriptors,
-  io4edge_core_api__reset_reason_response__field_indices_by_name,
-  1,  io4edge_core_api__reset_reason_response__number_ranges,
-  (ProtobufCMessageInit) io4edge_core_api__reset_reason_response__init,
+  io4edge_core_api__get_reset_reason_response__field_descriptors,
+  io4edge_core_api__get_reset_reason_response__field_indices_by_name,
+  1,  io4edge_core_api__get_reset_reason_response__number_ranges,
+  (ProtobufCMessageInit) io4edge_core_api__get_reset_reason_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor io4edge_core_api__core_command__field_descriptors[6] =
@@ -1279,7 +1279,7 @@ static const ProtobufCFieldDescriptor io4edge_core_api__core_response__field_des
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Io4edgeCoreApi__CoreResponse, data_case),
     offsetof(Io4edgeCoreApi__CoreResponse, reset_reason),
-    &io4edge_core_api__reset_reason_response__descriptor,
+    &io4edge_core_api__get_reset_reason_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
