@@ -63,13 +63,17 @@ _COMMANDID = _descriptor.EnumDescriptor(
     _descriptor.EnumValueDescriptor(
       name='GET_PERSISTENT_PARAMETER', index=6, number=6,
       serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='READ_PARTITION_CHUNK', index=7, number=7,
+      serialized_options=None,
+      type=None),
+
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1337,
-  serialized_end=1529,
+  serialized_start=1631,
+  serialized_end=1849,
 )
 _sym_db.RegisterEnumDescriptor(_COMMANDID)
 
@@ -134,8 +138,8 @@ _STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1532,
-  serialized_end=1748,
+  serialized_start=1852,
+  serialized_end=2068,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -147,6 +151,7 @@ PROGRAM_HARDWARE_IDENTIFICATION = 3
 RESTART = 4
 SET_PERSISTENT_PARAMETER = 5
 GET_PERSISTENT_PARAMETER = 6
+READ_PARTITION_CHUNK = 7
 OK = 0
 UNKNOWN_COMMAND = 1
 ILLEGAL_PARAMETER = 2
@@ -330,6 +335,44 @@ _GETPERSISTENTPARAMETERCOMMAND = _descriptor.Descriptor(
 )
 
 
+_READPARTITIONCHUNKCOMMAND = _descriptor.Descriptor(
+  name='ReadPartitionChunkCommand',
+  full_name='io4edgeCoreApi.ReadPartitionChunkCommand',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='part_name', full_name='io4edgeCoreApi.ReadPartitionChunkCommand.part_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='offset', full_name='io4edgeCoreApi.ReadPartitionChunkCommand.offset', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=383,
+  serialized_end=445,
+)
+
+
 _IDENTIFYHARDWARERESPONSE = _descriptor.Descriptor(
   name='IdentifyHardwareResponse',
   full_name='io4edgeCoreApi.IdentifyHardwareResponse',
@@ -371,8 +414,8 @@ _IDENTIFYHARDWARERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=383,
-  serialized_end=477,
+  serialized_start=447,
+  serialized_end=541,
 )
 
 
@@ -410,8 +453,8 @@ _IDENTIFYFIRMWARERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=479,
-  serialized_end=536,
+  serialized_start=543,
+  serialized_end=600,
 )
 
 
@@ -442,8 +485,53 @@ _GETPERSISTENTPARAMETERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=538,
-  serialized_end=585,
+  serialized_start=602,
+  serialized_end=649,
+)
+
+
+_READPARTITIONCHUNKRESPONSE = _descriptor.Descriptor(
+  name='ReadPartitionChunkResponse',
+  full_name='io4edgeCoreApi.ReadPartitionChunkResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='part_name', full_name='io4edgeCoreApi.ReadPartitionChunkResponse.part_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='offset', full_name='io4edgeCoreApi.ReadPartitionChunkResponse.offset', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='io4edgeCoreApi.ReadPartitionChunkResponse.data', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=651,
+  serialized_end=728,
 )
 
 
@@ -489,7 +577,15 @@ _CORECOMMAND = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='read_partition_chunk', full_name='io4edgeCoreApi.CoreCommand.read_partition_chunk', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+
   ],
   extensions=[
   ],
@@ -507,8 +603,8 @@ _CORECOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=588,
-  serialized_end=984,
+  serialized_start=731,
+  serialized_end=1202,
 )
 
 
@@ -561,7 +657,15 @@ _CORERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='read_partition_chunk', full_name='io4edgeCoreApi.CoreResponse.read_partition_chunk', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+
   ],
   extensions=[
   ],
@@ -579,8 +683,8 @@ _CORERESPONSE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=987,
-  serialized_end=1334,
+  serialized_start=1205,
+  serialized_end=1628,
 )
 
 _CORECOMMAND.fields_by_name['id'].enum_type = _COMMANDID
@@ -588,6 +692,7 @@ _CORECOMMAND.fields_by_name['load_firmware_chunk'].message_type = _LOADFIRMWAREC
 _CORECOMMAND.fields_by_name['program_hardware_identification'].message_type = _PROGRAMHARDWAREIDENTIFICATIONCOMMAND
 _CORECOMMAND.fields_by_name['set_persistent_parameter'].message_type = _SETPERSISTENTPARAMETERCOMMAND
 _CORECOMMAND.fields_by_name['get_persistent_parameter'].message_type = _GETPERSISTENTPARAMETERCOMMAND
+_CORECOMMAND.fields_by_name['read_partition_chunk'].message_type = _READPARTITIONCHUNKCOMMAND
 _CORECOMMAND.oneofs_by_name['data'].fields.append(
   _CORECOMMAND.fields_by_name['load_firmware_chunk'])
 _CORECOMMAND.fields_by_name['load_firmware_chunk'].containing_oneof = _CORECOMMAND.oneofs_by_name['data']
@@ -600,11 +705,15 @@ _CORECOMMAND.fields_by_name['set_persistent_parameter'].containing_oneof = _CORE
 _CORECOMMAND.oneofs_by_name['data'].fields.append(
   _CORECOMMAND.fields_by_name['get_persistent_parameter'])
 _CORECOMMAND.fields_by_name['get_persistent_parameter'].containing_oneof = _CORECOMMAND.oneofs_by_name['data']
+_CORECOMMAND.oneofs_by_name['data'].fields.append(
+  _CORECOMMAND.fields_by_name['read_partition_chunk'])
+_CORECOMMAND.fields_by_name['read_partition_chunk'].containing_oneof = _CORECOMMAND.oneofs_by_name['data']
 _CORERESPONSE.fields_by_name['id'].enum_type = _COMMANDID
 _CORERESPONSE.fields_by_name['status'].enum_type = _STATUS
 _CORERESPONSE.fields_by_name['identify_hardware'].message_type = _IDENTIFYHARDWARERESPONSE
 _CORERESPONSE.fields_by_name['identify_firmware'].message_type = _IDENTIFYFIRMWARERESPONSE
 _CORERESPONSE.fields_by_name['persistent_parameter'].message_type = _GETPERSISTENTPARAMETERRESPONSE
+_CORERESPONSE.fields_by_name['read_partition_chunk'].message_type = _READPARTITIONCHUNKRESPONSE
 _CORERESPONSE.oneofs_by_name['data'].fields.append(
   _CORERESPONSE.fields_by_name['identify_hardware'])
 _CORERESPONSE.fields_by_name['identify_hardware'].containing_oneof = _CORERESPONSE.oneofs_by_name['data']
@@ -614,13 +723,18 @@ _CORERESPONSE.fields_by_name['identify_firmware'].containing_oneof = _CORERESPON
 _CORERESPONSE.oneofs_by_name['data'].fields.append(
   _CORERESPONSE.fields_by_name['persistent_parameter'])
 _CORERESPONSE.fields_by_name['persistent_parameter'].containing_oneof = _CORERESPONSE.oneofs_by_name['data']
+_CORERESPONSE.oneofs_by_name['data'].fields.append(
+  _CORERESPONSE.fields_by_name['read_partition_chunk'])
+_CORERESPONSE.fields_by_name['read_partition_chunk'].containing_oneof = _CORERESPONSE.oneofs_by_name['data']
 DESCRIPTOR.message_types_by_name['LoadFirmwareChunkCommand'] = _LOADFIRMWARECHUNKCOMMAND
 DESCRIPTOR.message_types_by_name['ProgramHardwareIdentificationCommand'] = _PROGRAMHARDWAREIDENTIFICATIONCOMMAND
 DESCRIPTOR.message_types_by_name['SetPersistentParameterCommand'] = _SETPERSISTENTPARAMETERCOMMAND
 DESCRIPTOR.message_types_by_name['GetPersistentParameterCommand'] = _GETPERSISTENTPARAMETERCOMMAND
+DESCRIPTOR.message_types_by_name['ReadPartitionChunkCommand'] = _READPARTITIONCHUNKCOMMAND
 DESCRIPTOR.message_types_by_name['IdentifyHardwareResponse'] = _IDENTIFYHARDWARERESPONSE
 DESCRIPTOR.message_types_by_name['IdentifyFirmwareResponse'] = _IDENTIFYFIRMWARERESPONSE
 DESCRIPTOR.message_types_by_name['GetPersistentParameterResponse'] = _GETPERSISTENTPARAMETERRESPONSE
+DESCRIPTOR.message_types_by_name['ReadPartitionChunkResponse'] = _READPARTITIONCHUNKRESPONSE
 DESCRIPTOR.message_types_by_name['CoreCommand'] = _CORECOMMAND
 DESCRIPTOR.message_types_by_name['CoreResponse'] = _CORERESPONSE
 DESCRIPTOR.enum_types_by_name['CommandId'] = _COMMANDID
@@ -655,9 +769,17 @@ GetPersistentParameterCommand = _reflection.GeneratedProtocolMessageType('GetPer
   })
 _sym_db.RegisterMessage(GetPersistentParameterCommand)
 
-IdentifyHardwareResponse = _reflection.GeneratedProtocolMessageType('IdentifyHardwareResponse', (_message.Message,), {
-  'DESCRIPTOR' : _IDENTIFYHARDWARERESPONSE,
-  '__module__' : 'core_api.v1alpha2.io4edge_core_api_pb2'
+ReadPartitionChunkCommand = _reflection.GeneratedProtocolMessageType('ReadPartitionChunkCommand', (_message.Message,), dict(
+  DESCRIPTOR = _READPARTITIONCHUNKCOMMAND,
+  __module__ = 'core_api.v1alpha2.io4edge_core_api_pb2'
+  # @@protoc_insertion_point(class_scope:io4edgeCoreApi.ReadPartitionChunkCommand)
+  ))
+_sym_db.RegisterMessage(ReadPartitionChunkCommand)
+
+IdentifyHardwareResponse = _reflection.GeneratedProtocolMessageType('IdentifyHardwareResponse', (_message.Message,), dict(
+  DESCRIPTOR = _IDENTIFYHARDWARERESPONSE,
+  __module__ = 'core_api.v1alpha2.io4edge_core_api_pb2'
+
   # @@protoc_insertion_point(class_scope:io4edgeCoreApi.IdentifyHardwareResponse)
   })
 _sym_db.RegisterMessage(IdentifyHardwareResponse)
@@ -676,9 +798,17 @@ GetPersistentParameterResponse = _reflection.GeneratedProtocolMessageType('GetPe
   })
 _sym_db.RegisterMessage(GetPersistentParameterResponse)
 
-CoreCommand = _reflection.GeneratedProtocolMessageType('CoreCommand', (_message.Message,), {
-  'DESCRIPTOR' : _CORECOMMAND,
-  '__module__' : 'core_api.v1alpha2.io4edge_core_api_pb2'
+ReadPartitionChunkResponse = _reflection.GeneratedProtocolMessageType('ReadPartitionChunkResponse', (_message.Message,), dict(
+  DESCRIPTOR = _READPARTITIONCHUNKRESPONSE,
+  __module__ = 'core_api.v1alpha2.io4edge_core_api_pb2'
+  # @@protoc_insertion_point(class_scope:io4edgeCoreApi.ReadPartitionChunkResponse)
+  ))
+_sym_db.RegisterMessage(ReadPartitionChunkResponse)
+
+CoreCommand = _reflection.GeneratedProtocolMessageType('CoreCommand', (_message.Message,), dict(
+  DESCRIPTOR = _CORECOMMAND,
+  __module__ = 'core_api.v1alpha2.io4edge_core_api_pb2'
+
   # @@protoc_insertion_point(class_scope:io4edgeCoreApi.CoreCommand)
   })
 _sym_db.RegisterMessage(CoreCommand)
