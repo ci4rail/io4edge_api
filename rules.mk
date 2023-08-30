@@ -7,12 +7,13 @@
 
 # search path for files
 VPATH = ./proto/$(MODULE):./go/$(MODULE):./protobuf-c/$(MODULE)
+WELLKNOWNTYPES_PROTO = ../google_wellknowntypes/proto
 
 # GOLANG
 %.pb.go ::  %.proto
 	@mkdir -p go/
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	protoc -I./proto/$(MODULE) $< --go_out=go/
+	protoc -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $< --go_out=go/
 
 GO_TARGETS := $(PROTOS:.proto=.pb.go)
 
@@ -21,15 +22,17 @@ GO_TARGETS := $(PROTOS:.proto=.pb.go)
 	@mkdir -p protobuf-c
 	docker run --rm --user "$(shell id -u):$(shell id -g)" \
 	-v $(CURDIR)/proto/$(MODULE):/proto \
-	-v $(CURDIR)/protobuf-c/:/out ixuan/protobuf-c \
-	sh -c "mkdir -p /out/$(MODULE) && protoc --c_out=/out/$(MODULE) -I/proto/ /proto/$(subst ./proto/$(MODULE),,$<)"
+	-v $(CURDIR)/protobuf-c/:/out \
+	-v $(realpath $(WELLKNOWNTYPES_PROTO)):/wellknowntypes \
+	ixuan/protobuf-c \
+	sh -c "mkdir -p /out/$(MODULE) && protoc --c_out=/out/$(MODULE)  -I/proto/ -I/wellknowntypes /proto/$(subst ./proto/$(MODULE),,$<)"
 
 C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 
 # PYTHON
 %_pb2.py ::  %.proto
 	@mkdir -p python/
-	protoc -I./proto -I./proto/$(MODULE) $< --python_out=python/
+	protoc -I./proto -I$(WELLKNOWNTYPES_PROTO)  -I./proto/$(MODULE) $< --python_out=python/
 
 PY_TARGETS := $(PROTOS:.proto=_pb2.py)
 
@@ -37,6 +40,6 @@ PY_TARGETS := $(PROTOS:.proto=_pb2.py)
 build: $(GO_TARGETS) $(C_TARGETS) $(PY_TARGETS)
 
 clean:
-	rm -rf go/ protobuf-c/
+	rm -rf go/ protobuf-c/ python/
 
 .PHONY: build clean

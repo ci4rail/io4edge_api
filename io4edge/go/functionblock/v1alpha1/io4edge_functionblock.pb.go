@@ -168,7 +168,6 @@ type Command struct {
 
 	Context *Context `protobuf:"bytes,1,opt,name=context,proto3" json:"context,omitempty"`
 	// Types that are assignable to Type:
-	//
 	//	*Command_Configuration
 	//	*Command_FunctionControl
 	//	*Command_StreamControl
@@ -271,7 +270,6 @@ type Configuration struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Action:
-	//
 	//	*Configuration_FunctionSpecificConfigurationSet
 	//	*Configuration_FunctionSpecificConfigurationGet
 	//	*Configuration_FunctionSpecificConfigurationDescribe
@@ -370,7 +368,6 @@ type FunctionControl struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Action:
-	//
 	//	*FunctionControl_FunctionSpecificFunctionControlSet
 	//	*FunctionControl_FunctionSpecificFunctionControlGet
 	Action isFunctionControl_Action `protobuf_oneof:"action"`
@@ -580,7 +577,6 @@ type StreamControl struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Action:
-	//
 	//	*StreamControl_Start
 	//	*StreamControl_Stop
 	Action isStreamControl_Action `protobuf_oneof:"action"`
@@ -708,7 +704,6 @@ type ConfigurationResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Action:
-	//
 	//	*ConfigurationResponse_FunctionSpecificConfigurationSet
 	//	*ConfigurationResponse_FunctionSpecificConfigurationGet
 	//	*ConfigurationResponse_FunctionSpecificConfigurationDescribe
@@ -807,7 +802,6 @@ type FunctionControlResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Action:
-	//
 	//	*FunctionControlResponse_FunctionSpecificFunctionControlSet
 	//	*FunctionControlResponse_FunctionSpecificFunctionControlGet
 	Action isFunctionControlResponse_Action `protobuf_oneof:"action"`
@@ -997,7 +991,6 @@ type Response struct {
 	Status  Status   `protobuf:"varint,2,opt,name=status,proto3,enum=functionblock.Status" json:"status,omitempty"`
 	Error   *Error   `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
 	// Types that are assignable to Type:
-	//
 	//	*Response_Configuration
 	//	*Response_FunctionControl
 	//	*Response_StreamControl
