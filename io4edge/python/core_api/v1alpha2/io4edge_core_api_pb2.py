@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(core_api/v1alpha2/io4edge_core_api.proto\x12\x0eio4edgeCoreApi\"U\n\x18LoadFirmwareChunkCommand\x12\x14\n\x0c\x63hunk_number\x18\x01 \x01(\r\x12\x15\n\ris_last_chunk\x18\x02 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"}\n$ProgramHardwareIdentificationCommand\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x14\n\x0croot_article\x18\x02 \x01(\t\x12\x15\n\rmajor_version\x18\x03 \x01(\r\x12\x15\n\rserial_number\x18\x04 \x01(\t\"<\n\x1dSetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"-\n\x1dGetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\"^\n\x18IdentifyHardwareResponse\x12\x14\n\x0croot_article\x18\x01 \x01(\t\x12\x15\n\rmajor_version\x18\x02 \x01(\r\x12\x15\n\rserial_number\x18\x03 \x01(\t\"9\n\x18IdentifyFirmwareResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\"/\n\x1eGetPersistentParameterResponse\x12\r\n\x05value\x18\x01 \x01(\t\"\x8c\x03\n\x0b\x43oreCommand\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12G\n\x13load_firmware_chunk\x18\x02 \x01(\x0b\x32(.io4edgeCoreApi.LoadFirmwareChunkCommandH\x00\x12_\n\x1fprogram_hardware_identification\x18\x03 \x01(\x0b\x32\x34.io4edgeCoreApi.ProgramHardwareIdentificationCommandH\x00\x12Q\n\x18set_persistent_parameter\x18\x04 \x01(\x0b\x32-.io4edgeCoreApi.SetPersistentParameterCommandH\x00\x12Q\n\x18get_persistent_parameter\x18\x05 \x01(\x0b\x32-.io4edgeCoreApi.GetPersistentParameterCommandH\x00\x42\x06\n\x04\x64\x61ta\"\xdb\x02\n\x0c\x43oreResponse\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.io4edgeCoreApi.Status\x12\x16\n\x0erestarting_now\x18\x03 \x01(\x08\x12\x45\n\x11identify_hardware\x18\x04 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyHardwareResponseH\x00\x12\x45\n\x11identify_firmware\x18\x05 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyFirmwareResponseH\x00\x12N\n\x14persistent_parameter\x18\x06 \x01(\x0b\x32..io4edgeCoreApi.GetPersistentParameterResponseH\x00\x42\x06\n\x04\x64\x61ta*\xc0\x01\n\tCommandId\x12\x15\n\x11IDENTIFY_HARDWARE\x10\x00\x12\x15\n\x11IDENTIFY_FIRMWARE\x10\x01\x12\x17\n\x13LOAD_FIRMWARE_CHUNK\x10\x02\x12#\n\x1fPROGRAM_HARDWARE_IDENTIFICATION\x10\x03\x12\x0b\n\x07RESTART\x10\x04\x12\x1c\n\x18SET_PERSISTENT_PARAMETER\x10\x05\x12\x1c\n\x18GET_PERSISTENT_PARAMETER\x10\x06*\xd8\x01\n\x06Status\x12\x06\n\x02OK\x10\x00\x12\x13\n\x0fUNKNOWN_COMMAND\x10\x01\x12\x15\n\x11ILLEGAL_PARAMETER\x10\x02\x12\x11\n\rBAD_CHUNK_SEQ\x10\x03\x12\x12\n\x0e\x42\x41\x44_CHUNK_SIZE\x10\x04\x12\x12\n\x0eNOT_COMPATIBLE\x10\x05\x12\x12\n\x0eINTERNAL_ERROR\x10\x06\x12\x15\n\x11PROGRAMMING_ERROR\x10\x07\x12\x13\n\x0fNO_HW_INVENTORY\x10\x08\x12\x1f\n\x1bTHIS_VERSION_FAILED_ALREADY\x10\tB\x13Z\x11\x63ore_api/v1alpha2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(core_api/v1alpha2/io4edge_core_api.proto\x12\x0eio4edgeCoreApi\"U\n\x18LoadFirmwareChunkCommand\x12\x14\n\x0c\x63hunk_number\x18\x01 \x01(\r\x12\x15\n\ris_last_chunk\x18\x02 \x01(\x08\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"}\n$ProgramHardwareIdentificationCommand\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x14\n\x0croot_article\x18\x02 \x01(\t\x12\x15\n\rmajor_version\x18\x03 \x01(\r\x12\x15\n\rserial_number\x18\x04 \x01(\t\"<\n\x1dSetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"-\n\x1dGetPersistentParameterCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\">\n\x19ReadPartitionChunkCommand\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\"^\n\x18IdentifyHardwareResponse\x12\x14\n\x0croot_article\x18\x01 \x01(\t\x12\x15\n\rmajor_version\x18\x02 \x01(\r\x12\x15\n\rserial_number\x18\x03 \x01(\t\"9\n\x18IdentifyFirmwareResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\"/\n\x1eGetPersistentParameterResponse\x12\r\n\x05value\x18\x01 \x01(\t\"M\n\x1aReadPartitionChunkResponse\x12\x11\n\tpart_name\x18\x01 \x01(\t\x12\x0e\n\x06offset\x18\x02 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\"\xd7\x03\n\x0b\x43oreCommand\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12G\n\x13load_firmware_chunk\x18\x02 \x01(\x0b\x32(.io4edgeCoreApi.LoadFirmwareChunkCommandH\x00\x12_\n\x1fprogram_hardware_identification\x18\x03 \x01(\x0b\x32\x34.io4edgeCoreApi.ProgramHardwareIdentificationCommandH\x00\x12Q\n\x18set_persistent_parameter\x18\x04 \x01(\x0b\x32-.io4edgeCoreApi.SetPersistentParameterCommandH\x00\x12Q\n\x18get_persistent_parameter\x18\x05 \x01(\x0b\x32-.io4edgeCoreApi.GetPersistentParameterCommandH\x00\x12I\n\x14read_partition_chunk\x18\x06 \x01(\x0b\x32).io4edgeCoreApi.ReadPartitionChunkCommandH\x00\x42\x06\n\x04\x64\x61ta\"\xa7\x03\n\x0c\x43oreResponse\x12%\n\x02id\x18\x01 \x01(\x0e\x32\x19.io4edgeCoreApi.CommandId\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.io4edgeCoreApi.Status\x12\x16\n\x0erestarting_now\x18\x03 \x01(\x08\x12\x45\n\x11identify_hardware\x18\x04 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyHardwareResponseH\x00\x12\x45\n\x11identify_firmware\x18\x05 \x01(\x0b\x32(.io4edgeCoreApi.IdentifyFirmwareResponseH\x00\x12N\n\x14persistent_parameter\x18\x06 \x01(\x0b\x32..io4edgeCoreApi.GetPersistentParameterResponseH\x00\x12J\n\x14read_partition_chunk\x18\x07 \x01(\x0b\x32*.io4edgeCoreApi.ReadPartitionChunkResponseH\x00\x42\x06\n\x04\x64\x61ta*\xda\x01\n\tCommandId\x12\x15\n\x11IDENTIFY_HARDWARE\x10\x00\x12\x15\n\x11IDENTIFY_FIRMWARE\x10\x01\x12\x17\n\x13LOAD_FIRMWARE_CHUNK\x10\x02\x12#\n\x1fPROGRAM_HARDWARE_IDENTIFICATION\x10\x03\x12\x0b\n\x07RESTART\x10\x04\x12\x1c\n\x18SET_PERSISTENT_PARAMETER\x10\x05\x12\x1c\n\x18GET_PERSISTENT_PARAMETER\x10\x06\x12\x18\n\x14READ_PARTITION_CHUNK\x10\x07*\xd8\x01\n\x06Status\x12\x06\n\x02OK\x10\x00\x12\x13\n\x0fUNKNOWN_COMMAND\x10\x01\x12\x15\n\x11ILLEGAL_PARAMETER\x10\x02\x12\x11\n\rBAD_CHUNK_SEQ\x10\x03\x12\x12\n\x0e\x42\x41\x44_CHUNK_SIZE\x10\x04\x12\x12\n\x0eNOT_COMPATIBLE\x10\x05\x12\x12\n\x0eINTERNAL_ERROR\x10\x06\x12\x15\n\x11PROGRAMMING_ERROR\x10\x07\x12\x13\n\x0fNO_HW_INVENTORY\x10\x08\x12\x1f\n\x1bTHIS_VERSION_FAILED_ALREADY\x10\tB\x13Z\x11\x63ore_api/v1alpha2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -21,10 +21,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'core_api.v1alpha2.io4edge_c
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\021core_api/v1alpha2'
-  _globals['_COMMANDID']._serialized_start=1337
-  _globals['_COMMANDID']._serialized_end=1529
-  _globals['_STATUS']._serialized_start=1532
-  _globals['_STATUS']._serialized_end=1748
+  _globals['_COMMANDID']._serialized_start=1631
+  _globals['_COMMANDID']._serialized_end=1849
+  _globals['_STATUS']._serialized_start=1852
+  _globals['_STATUS']._serialized_end=2068
   _globals['_LOADFIRMWARECHUNKCOMMAND']._serialized_start=60
   _globals['_LOADFIRMWARECHUNKCOMMAND']._serialized_end=145
   _globals['_PROGRAMHARDWAREIDENTIFICATIONCOMMAND']._serialized_start=147
@@ -33,14 +33,18 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_SETPERSISTENTPARAMETERCOMMAND']._serialized_end=334
   _globals['_GETPERSISTENTPARAMETERCOMMAND']._serialized_start=336
   _globals['_GETPERSISTENTPARAMETERCOMMAND']._serialized_end=381
-  _globals['_IDENTIFYHARDWARERESPONSE']._serialized_start=383
-  _globals['_IDENTIFYHARDWARERESPONSE']._serialized_end=477
-  _globals['_IDENTIFYFIRMWARERESPONSE']._serialized_start=479
-  _globals['_IDENTIFYFIRMWARERESPONSE']._serialized_end=536
-  _globals['_GETPERSISTENTPARAMETERRESPONSE']._serialized_start=538
-  _globals['_GETPERSISTENTPARAMETERRESPONSE']._serialized_end=585
-  _globals['_CORECOMMAND']._serialized_start=588
-  _globals['_CORECOMMAND']._serialized_end=984
-  _globals['_CORERESPONSE']._serialized_start=987
-  _globals['_CORERESPONSE']._serialized_end=1334
+  _globals['_READPARTITIONCHUNKCOMMAND']._serialized_start=383
+  _globals['_READPARTITIONCHUNKCOMMAND']._serialized_end=445
+  _globals['_IDENTIFYHARDWARERESPONSE']._serialized_start=447
+  _globals['_IDENTIFYHARDWARERESPONSE']._serialized_end=541
+  _globals['_IDENTIFYFIRMWARERESPONSE']._serialized_start=543
+  _globals['_IDENTIFYFIRMWARERESPONSE']._serialized_end=600
+  _globals['_GETPERSISTENTPARAMETERRESPONSE']._serialized_start=602
+  _globals['_GETPERSISTENTPARAMETERRESPONSE']._serialized_end=649
+  _globals['_READPARTITIONCHUNKRESPONSE']._serialized_start=651
+  _globals['_READPARTITIONCHUNKRESPONSE']._serialized_end=728
+  _globals['_CORECOMMAND']._serialized_start=731
+  _globals['_CORECOMMAND']._serialized_end=1202
+  _globals['_CORERESPONSE']._serialized_start=1205
+  _globals['_CORERESPONSE']._serialized_end=1628
 # @@protoc_insertion_point(module_scope)
