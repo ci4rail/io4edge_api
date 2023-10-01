@@ -24,8 +24,12 @@ jobs:
           make clean && make build
       - name: push generated code
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m 'ci: Generate code from protobuf files'
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git config --local user.email "actions@github.com"
+            git config --local user.name "GitHub Actions"
+            git add -all
+            git commit -m 'ci: Generate code from protobuf files'
+            git push
+          else
+            echo "No changes to commit"
+          fi
