@@ -412,6 +412,51 @@ void   io4edge_core_api__read_partition_chunk_response__free_unpacked
   assert(message->base.descriptor == &io4edge_core_api__read_partition_chunk_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   io4edge_core_api__get_reset_reason_response__init
+                     (Io4edgeCoreApi__GetResetReasonResponse         *message)
+{
+  static const Io4edgeCoreApi__GetResetReasonResponse init_value = IO4EDGE_CORE_API__GET_RESET_REASON_RESPONSE__INIT;
+  *message = init_value;
+}
+size_t io4edge_core_api__get_reset_reason_response__get_packed_size
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message)
+{
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t io4edge_core_api__get_reset_reason_response__pack
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t io4edge_core_api__get_reset_reason_response__pack_to_buffer
+                     (const Io4edgeCoreApi__GetResetReasonResponse *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Io4edgeCoreApi__GetResetReasonResponse *
+       io4edge_core_api__get_reset_reason_response__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Io4edgeCoreApi__GetResetReasonResponse *)
+     protobuf_c_message_unpack (&io4edge_core_api__get_reset_reason_response__descriptor,
+                                allocator, len, data);
+}
+void   io4edge_core_api__get_reset_reason_response__free_unpacked
+                     (Io4edgeCoreApi__GetResetReasonResponse *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &io4edge_core_api__get_reset_reason_response__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   io4edge_core_api__core_command__init
                      (Io4edgeCoreApi__CoreCommand         *message)
 {
@@ -1000,6 +1045,44 @@ const ProtobufCMessageDescriptor io4edge_core_api__read_partition_chunk_response
   (ProtobufCMessageInit) io4edge_core_api__read_partition_chunk_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
+static const ProtobufCFieldDescriptor io4edge_core_api__get_reset_reason_response__field_descriptors[1] =
+{
+  {
+    "reason",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Io4edgeCoreApi__GetResetReasonResponse, reason),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned io4edge_core_api__get_reset_reason_response__field_indices_by_name[] = {
+  0,   /* field[0] = reason */
+};
+static const ProtobufCIntRange io4edge_core_api__get_reset_reason_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor io4edge_core_api__get_reset_reason_response__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "io4edgeCoreApi.GetResetReasonResponse",
+  "GetResetReasonResponse",
+  "Io4edgeCoreApi__GetResetReasonResponse",
+  "io4edgeCoreApi",
+  sizeof(Io4edgeCoreApi__GetResetReasonResponse),
+  1,
+  io4edge_core_api__get_reset_reason_response__field_descriptors,
+  io4edge_core_api__get_reset_reason_response__field_indices_by_name,
+  1,  io4edge_core_api__get_reset_reason_response__number_ranges,
+  (ProtobufCMessageInit) io4edge_core_api__get_reset_reason_response__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor io4edge_core_api__core_command__field_descriptors[6] =
 {
   {
@@ -1103,7 +1186,7 @@ const ProtobufCMessageDescriptor io4edge_core_api__core_command__descriptor =
   (ProtobufCMessageInit) io4edge_core_api__core_command__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor io4edge_core_api__core_response__field_descriptors[7] =
+static const ProtobufCFieldDescriptor io4edge_core_api__core_response__field_descriptors[8] =
 {
   {
     "id",
@@ -1189,6 +1272,18 @@ static const ProtobufCFieldDescriptor io4edge_core_api__core_response__field_des
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "reset_reason",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Io4edgeCoreApi__CoreResponse, data_case),
+    offsetof(Io4edgeCoreApi__CoreResponse, reset_reason),
+    &io4edge_core_api__get_reset_reason_response__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned io4edge_core_api__core_response__field_indices_by_name[] = {
   0,   /* field[0] = id */
@@ -1196,13 +1291,14 @@ static const unsigned io4edge_core_api__core_response__field_indices_by_name[] =
   3,   /* field[3] = identify_hardware */
   5,   /* field[5] = persistent_parameter */
   6,   /* field[6] = read_partition_chunk */
+  7,   /* field[7] = reset_reason */
   2,   /* field[2] = restarting_now */
   1,   /* field[1] = status */
 };
 static const ProtobufCIntRange io4edge_core_api__core_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 7 }
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor io4edge_core_api__core_response__descriptor =
 {
@@ -1212,14 +1308,14 @@ const ProtobufCMessageDescriptor io4edge_core_api__core_response__descriptor =
   "Io4edgeCoreApi__CoreResponse",
   "io4edgeCoreApi",
   sizeof(Io4edgeCoreApi__CoreResponse),
-  7,
+  8,
   io4edge_core_api__core_response__field_descriptors,
   io4edge_core_api__core_response__field_indices_by_name,
   1,  io4edge_core_api__core_response__number_ranges,
   (ProtobufCMessageInit) io4edge_core_api__core_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue io4edge_core_api__command_id__enum_values_by_number[8] =
+static const ProtobufCEnumValue io4edge_core_api__command_id__enum_values_by_number[9] =
 {
   { "IDENTIFY_HARDWARE", "IO4EDGE_CORE_API__COMMAND_ID__IDENTIFY_HARDWARE", 0 },
   { "IDENTIFY_FIRMWARE", "IO4EDGE_CORE_API__COMMAND_ID__IDENTIFY_FIRMWARE", 1 },
@@ -1229,13 +1325,15 @@ static const ProtobufCEnumValue io4edge_core_api__command_id__enum_values_by_num
   { "SET_PERSISTENT_PARAMETER", "IO4EDGE_CORE_API__COMMAND_ID__SET_PERSISTENT_PARAMETER", 5 },
   { "GET_PERSISTENT_PARAMETER", "IO4EDGE_CORE_API__COMMAND_ID__GET_PERSISTENT_PARAMETER", 6 },
   { "READ_PARTITION_CHUNK", "IO4EDGE_CORE_API__COMMAND_ID__READ_PARTITION_CHUNK", 7 },
+  { "GET_RESET_REASON", "IO4EDGE_CORE_API__COMMAND_ID__GET_RESET_REASON", 8 },
 };
 static const ProtobufCIntRange io4edge_core_api__command_id__value_ranges[] = {
-{0, 0},{0, 8}
+{0, 0},{0, 9}
 };
-static const ProtobufCEnumValueIndex io4edge_core_api__command_id__enum_values_by_name[8] =
+static const ProtobufCEnumValueIndex io4edge_core_api__command_id__enum_values_by_name[9] =
 {
   { "GET_PERSISTENT_PARAMETER", 6 },
+  { "GET_RESET_REASON", 8 },
   { "IDENTIFY_FIRMWARE", 1 },
   { "IDENTIFY_HARDWARE", 0 },
   { "LOAD_FIRMWARE_CHUNK", 2 },
@@ -1251,9 +1349,9 @@ const ProtobufCEnumDescriptor io4edge_core_api__command_id__descriptor =
   "CommandId",
   "Io4edgeCoreApi__CommandId",
   "io4edgeCoreApi",
-  8,
+  9,
   io4edge_core_api__command_id__enum_values_by_number,
-  8,
+  9,
   io4edge_core_api__command_id__enum_values_by_name,
   1,
   io4edge_core_api__command_id__value_ranges,
