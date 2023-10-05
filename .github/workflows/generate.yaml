@@ -1,0 +1,35 @@
+name: generate code
+on:
+  push:
+    branches:
+      - main
+      - ci
+
+jobs:
+  generate:
+    env:
+      GO_VERSION: '1.20'
+      
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: install tools
+        run: |
+          ./install_tools_ubuntu.sh
+      - name: generate code
+        run: |
+          make clean && make build
+      - name: push generated code
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config --local user.email "actions@github.com"
+            git config --local user.name "GitHub Actions"
+            git add --all
+            git commit -m 'ci: Generate code from protobuf files'
+            git push
+          else
+            echo "No changes to commit"
+          fi

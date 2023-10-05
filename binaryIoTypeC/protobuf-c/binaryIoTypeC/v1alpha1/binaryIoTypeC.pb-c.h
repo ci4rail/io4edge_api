@@ -73,7 +73,7 @@ typedef enum _BinaryIoTypeC__ChannelDiag {
    */
   BINARY_IO_TYPE_C__CHANNEL_DIAG__CurrentLimit = 2,
   /*
-   * channel or group overload (output is disabled, output can't be set)
+   * channel or group overload (output is disabled)
    */
   BINARY_IO_TYPE_C__CHANNEL_DIAG__Overload = 4,
   /*
