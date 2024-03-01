@@ -23,6 +23,7 @@ typedef struct _Tracelet__TraceletToServer Tracelet__TraceletToServer;
 typedef struct _Tracelet__TraceletToServer__Location Tracelet__TraceletToServer__Location;
 typedef struct _Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
 typedef struct _Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
+typedef struct _Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
 typedef struct _Tracelet__TraceletToServer__StatusResponse Tracelet__TraceletToServer__StatusResponse;
 
 
@@ -169,6 +170,32 @@ struct  _Tracelet__TraceletToServer__Location__Uwb
     , 0, 0, 0, 0, 0, 0, 0 }
 
 
+struct  _Tracelet__TraceletToServer__Location__Fused
+{
+  ProtobufCMessage base;
+  /*
+   * Fused location valid. If false, the other fields are not valid
+   */
+  protobuf_c_boolean valid;
+  /*
+   * WGS84 coordinates
+   * latitude in [deg]
+   */
+  double latitude;
+  /*
+   * longitude in [deg]
+   */
+  double longitude;
+  /*
+   * horizontal accuracy in [m]
+   */
+  double eph;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__FUSED__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__fused__descriptor) \
+    , 0, 0, 0, 0 }
+
+
 /*
  * Sub-message sent in response to a location request OR
  * periodically sent by the tracelet
@@ -184,6 +211,10 @@ struct  _Tracelet__TraceletToServer__Location
    * Data from UWB subsystem
    */
   Tracelet__TraceletToServer__Location__Uwb *uwb;
+  /*
+   * Fused location
+   */
+  Tracelet__TraceletToServer__Location__Fused *fused;
   /*
    * Driving direction of the vehicle
    */
@@ -203,7 +234,7 @@ struct  _Tracelet__TraceletToServer__Location
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__descriptor) \
-    , NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
+    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
 
 
 /*
@@ -322,6 +353,9 @@ void   tracelet__tracelet_to_server__location__gnss__init
 /* Tracelet__TraceletToServer__Location__Uwb methods */
 void   tracelet__tracelet_to_server__location__uwb__init
                      (Tracelet__TraceletToServer__Location__Uwb         *message);
+/* Tracelet__TraceletToServer__Location__Fused methods */
+void   tracelet__tracelet_to_server__location__fused__init
+                     (Tracelet__TraceletToServer__Location__Fused         *message);
 /* Tracelet__TraceletToServer__Location methods */
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message);
@@ -364,6 +398,9 @@ typedef void (*Tracelet__TraceletToServer__Location__Gnss_Closure)
 typedef void (*Tracelet__TraceletToServer__Location__Uwb_Closure)
                  (const Tracelet__TraceletToServer__Location__Uwb *message,
                   void *closure_data);
+typedef void (*Tracelet__TraceletToServer__Location__Fused_Closure)
+                 (const Tracelet__TraceletToServer__Location__Fused *message,
+                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer__Location_Closure)
                  (const Tracelet__TraceletToServer__Location *message,
                   void *closure_data);
@@ -386,6 +423,7 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__status_response__descriptor;
 

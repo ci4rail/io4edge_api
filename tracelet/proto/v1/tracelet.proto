@@ -93,6 +93,22 @@ message TraceletToServer {
       double eph = 7;
     }
 
+    message Fused {
+      // Fused location valid. If false, the other fields are not valid
+      bool valid = 1;
+
+      // WGS84 coordinates
+      // latitude in [deg]
+      double latitude = 2;
+
+      // longitude in [deg]
+      double longitude = 3;
+
+      // horizontal accuracy in [m]
+      double eph = 5;
+    }
+
+
     enum Direction {
       // Invalid direction
       NO_DIRECTION = 0;
@@ -109,6 +125,9 @@ message TraceletToServer {
 
     // Data from UWB subsystem
     Uwb uwb = 2;
+
+    // Fused location
+    Fused fused = 7;
 
     // Driving direction of the vehicle
     Direction direction = 3;
