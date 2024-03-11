@@ -139,9 +139,9 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    */
   double head_vehicle;
   /*
-   * heading of vehicle valid
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
    */
-  protobuf_c_boolean head_vehicle_valid;
+  uint32_t head_valid;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \

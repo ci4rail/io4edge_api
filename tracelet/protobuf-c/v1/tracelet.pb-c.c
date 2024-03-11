@@ -350,12 +350,12 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gn
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "head_vehicle_valid",
+    "head_valid",
     10,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_vehicle_valid),
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_valid),
     NULL,
     NULL,
     0,             /* flags */
@@ -368,8 +368,8 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
   5,   /* field[5] = epv */
   6,   /* field[6] = fix_type */
   7,   /* field[7] = head_motion */
+  9,   /* field[9] = head_valid */
   8,   /* field[8] = head_vehicle */
-  9,   /* field[9] = head_vehicle_valid */
   1,   /* field[1] = latitude */
   2,   /* field[2] = longitude */
   0,   /* field[0] = valid */
