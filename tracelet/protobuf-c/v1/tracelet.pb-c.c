@@ -239,7 +239,7 @@ const ProtobufCMessageDescriptor tracelet__server_to_tracelet__descriptor =
   (ProtobufCMessageInit) tracelet__server_to_tracelet__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[10] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[11] =
 {
   {
     "valid",
@@ -361,12 +361,25 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gn
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ground_speed",
+    11,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, ground_speed),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__gnss__field_indices_by_name[] = {
   3,   /* field[3] = altitude */
   4,   /* field[4] = eph */
   5,   /* field[5] = epv */
   6,   /* field[6] = fix_type */
+  10,   /* field[10] = ground_speed */
   7,   /* field[7] = head_motion */
   9,   /* field[9] = head_valid */
   8,   /* field[8] = head_vehicle */
@@ -377,7 +390,7 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__gnss__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 10 }
+  { 0, 11 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor =
 {
@@ -387,7 +400,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__d
   "Tracelet__TraceletToServer__Location__Gnss",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Gnss),
-  10,
+  11,
   tracelet__tracelet_to_server__location__gnss__field_descriptors,
   tracelet__tracelet_to_server__location__gnss__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__gnss__number_ranges,

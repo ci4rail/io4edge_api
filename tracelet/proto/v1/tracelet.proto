@@ -78,6 +78,8 @@ message TraceletToServer {
 
       // heading valid (bit 0=motion valid, 1=vehicle valid))
       uint32 head_valid = 10;
+
+      double ground_speed = 11;
     }
 
     message Uwb {

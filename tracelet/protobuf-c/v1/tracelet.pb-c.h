@@ -142,10 +142,11 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    * heading valid (bit 0=motion valid, 1=vehicle valid))
    */
   uint32_t head_valid;
+  double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Uwb
