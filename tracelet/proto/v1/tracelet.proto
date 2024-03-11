@@ -69,6 +69,15 @@ message TraceletToServer {
       // 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 
       // 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
       int32 fix_type = 7;
+
+      // heading of motion in [deg]
+      double head_motion = 8;
+
+      // heading of vehicle in [deg]
+      double head_vehicle = 9;
+
+      // heading of vehicle valid
+      bool head_vehicle_valid = 10;
     }
 
     message Uwb {

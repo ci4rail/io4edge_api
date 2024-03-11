@@ -239,7 +239,7 @@ const ProtobufCMessageDescriptor tracelet__server_to_tracelet__descriptor =
   (ProtobufCMessageInit) tracelet__server_to_tracelet__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[7] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[10] =
 {
   {
     "valid",
@@ -325,12 +325,51 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gn
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "head_motion",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_motion),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "head_vehicle",
+    9,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_vehicle),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "head_vehicle_valid",
+    10,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_vehicle_valid),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__gnss__field_indices_by_name[] = {
   3,   /* field[3] = altitude */
   4,   /* field[4] = eph */
   5,   /* field[5] = epv */
   6,   /* field[6] = fix_type */
+  7,   /* field[7] = head_motion */
+  8,   /* field[8] = head_vehicle */
+  9,   /* field[9] = head_vehicle_valid */
   1,   /* field[1] = latitude */
   2,   /* field[2] = longitude */
   0,   /* field[0] = valid */
@@ -338,7 +377,7 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__gnss__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 7 }
+  { 0, 10 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor =
 {
@@ -348,7 +387,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__d
   "Tracelet__TraceletToServer__Location__Gnss",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Gnss),
-  7,
+  10,
   tracelet__tracelet_to_server__location__gnss__field_descriptors,
   tracelet__tracelet_to_server__location__gnss__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__gnss__number_ranges,

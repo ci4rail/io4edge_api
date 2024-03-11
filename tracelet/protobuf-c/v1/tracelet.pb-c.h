@@ -130,10 +130,22 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    * 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
    */
   int32_t fix_type;
+  /*
+   * heading of motion in [deg]
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg]
+   */
+  double head_vehicle;
+  /*
+   * heading of vehicle valid
+   */
+  protobuf_c_boolean head_vehicle_valid;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Uwb
