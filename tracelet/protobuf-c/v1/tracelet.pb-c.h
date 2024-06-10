@@ -210,11 +210,14 @@ struct  _Tracelet__TraceletToServer__Location__Fused
     , 0, 0, 0, 0 }
 
 
+/*
+ * Acceleration data - all values in (m/s^2)
+ */
 struct  _Tracelet__TraceletToServer__Location__Acceleration
 {
   ProtobufCMessage base;
   /*
-   * Maximum acceleration in x direction in last period
+   * Maximum acceleration in x direction in last period 
    */
   double x_max;
   double y_max;

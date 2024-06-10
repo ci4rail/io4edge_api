@@ -904,6 +904,7 @@ func (x *TraceletToServer_Location_Fused) GetEph() float64 {
 	return 0
 }
 
+// Acceleration data - all values in (m/s^2)
 type TraceletToServer_Location_Acceleration struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
