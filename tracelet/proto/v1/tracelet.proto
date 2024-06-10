@@ -119,8 +119,9 @@ message TraceletToServer {
       double eph = 5;
     }
 
+    // Acceleration data - all values in (m/s^2)
     message Acceleration {
-        double x_max = 1; // Maximum acceleration in x direction in last period
+        double x_max = 1; // Maximum acceleration in x direction in last period 
         double y_max = 2;
         double z_max = 3;
         double x_min = 4; // Minimum acceleration in x direction in last period
