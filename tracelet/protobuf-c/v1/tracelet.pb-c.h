@@ -24,6 +24,7 @@ typedef struct _Tracelet__TraceletToServer__Location Tracelet__TraceletToServer_
 typedef struct _Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
 typedef struct _Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
 typedef struct _Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
+typedef struct _Tracelet__TraceletToServer__Location__Acceleration Tracelet__TraceletToServer__Location__Acceleration;
 typedef struct _Tracelet__TraceletToServer__StatusResponse Tracelet__TraceletToServer__StatusResponse;
 
 
@@ -209,6 +210,33 @@ struct  _Tracelet__TraceletToServer__Location__Fused
     , 0, 0, 0, 0 }
 
 
+struct  _Tracelet__TraceletToServer__Location__Acceleration
+{
+  ProtobufCMessage base;
+  /*
+   * Maximum acceleration in x direction in last period
+   */
+  double x_max;
+  double y_max;
+  double z_max;
+  /*
+   * Minimum acceleration in x direction in last period
+   */
+  double x_min;
+  double y_min;
+  double z_min;
+  /*
+   * Average acceleration in x direction in last period
+   */
+  double x_avg;
+  double y_avg;
+  double z_avg;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__ACCELERATION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__acceleration__descriptor) \
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+
 /*
  * Sub-message sent in response to a location request OR
  * periodically sent by the tracelet
@@ -244,10 +272,14 @@ struct  _Tracelet__TraceletToServer__Location
    * Current Tracelet Temperature in [°C]
    */
   double temperature;
+  /*
+   * Acceleration data
+   */
+  Tracelet__TraceletToServer__Location__Acceleration *acceleration;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__descriptor) \
-    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
+    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0, NULL }
 
 
 /*
@@ -369,6 +401,9 @@ void   tracelet__tracelet_to_server__location__uwb__init
 /* Tracelet__TraceletToServer__Location__Fused methods */
 void   tracelet__tracelet_to_server__location__fused__init
                      (Tracelet__TraceletToServer__Location__Fused         *message);
+/* Tracelet__TraceletToServer__Location__Acceleration methods */
+void   tracelet__tracelet_to_server__location__acceleration__init
+                     (Tracelet__TraceletToServer__Location__Acceleration         *message);
 /* Tracelet__TraceletToServer__Location methods */
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message);
@@ -414,6 +449,9 @@ typedef void (*Tracelet__TraceletToServer__Location__Uwb_Closure)
 typedef void (*Tracelet__TraceletToServer__Location__Fused_Closure)
                  (const Tracelet__TraceletToServer__Location__Fused *message,
                   void *closure_data);
+typedef void (*Tracelet__TraceletToServer__Location__Acceleration_Closure)
+                 (const Tracelet__TraceletToServer__Location__Acceleration *message,
+                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer__Location_Closure)
                  (const Tracelet__TraceletToServer__Location *message,
                   void *closure_data);
@@ -437,6 +475,7 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__acceleration__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__status_response__descriptor;
 
