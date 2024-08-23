@@ -90,6 +90,9 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    * heading valid (bit 0=motion valid, 1=vehicle valid))
    */
   uint32_t head_valid;
+  /*
+   * speed in [m/s]
+   */
   double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
@@ -125,10 +128,31 @@ struct  _Tracelet__TraceletToServer__Location__Uwb
    * horizontal accuracy in [m]
    */
   double eph;
+  /*
+   * type of fix 
+   * 0 = invalid, 1 = UWB/IMU, 2 - IMU only
+   */
+  int32_t fix_type;
+  /*
+   * heading of motion in [deg]
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg] - future extension
+   */
+  double head_vehicle;
+  /*
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
+   */
+  uint32_t head_valid;
+  /*
+   * speed in [m/s]
+   */
+  double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__UWB__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__uwb__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Fused
@@ -148,13 +172,33 @@ struct  _Tracelet__TraceletToServer__Location__Fused
    */
   double longitude;
   /*
+   * altitude in [m] - future extension
+   */
+  double altitude;
+  /*
    * horizontal accuracy in [m]
    */
   double eph;
+  /*
+   * heading of motion in [deg] - future extension
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg] - future extension
+   */
+  double head_vehicle;
+  /*
+   * heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+   */
+  uint32_t head_valid;
+  /*
+   * speed in [m/s] - future extension
+   */
+  double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__FUSED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__fused__descriptor) \
-    , 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /*
