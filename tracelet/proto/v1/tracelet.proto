@@ -55,6 +55,7 @@ message TraceletToServer {
       // heading valid (bit 0=motion valid, 1=vehicle valid))
       uint32 head_valid = 10;
 
+      // speed in [m/s]
       double ground_speed = 11;
     }
 
@@ -78,6 +79,22 @@ message TraceletToServer {
 
       // horizontal accuracy in [m]
       double eph = 7;
+
+      // type of fix 
+      // 0 = invalid, 1 = UWB/IMU, 2 - IMU only
+      int32 fix_type = 8;
+
+      // heading of motion in [deg]
+      double head_motion = 9;
+
+      // heading of vehicle in [deg] - future extension
+      double head_vehicle = 10;
+
+      // heading valid (bit 0=motion valid, 1=vehicle valid))
+      uint32 head_valid = 11;
+
+      // speed in [m/s]
+      double ground_speed = 12;
     }
 
     message Fused {
@@ -91,8 +108,23 @@ message TraceletToServer {
       // longitude in [deg]
       double longitude = 3;
 
+      // altitude in [m] - future extension
+      double altitude = 4; 
+
       // horizontal accuracy in [m]
       double eph = 5;
+
+      // heading of motion in [deg] - future extension
+      double head_motion = 6;  
+
+      // heading of vehicle in [deg] - future extension
+      double head_vehicle = 7;
+
+      // heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+      uint32 head_valid = 8;
+
+      // speed in [m/s] - future extension
+      double ground_speed = 9;
     }
 
     // Acceleration data - all values in (m/s^2)
