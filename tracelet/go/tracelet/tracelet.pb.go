@@ -321,9 +321,9 @@ type TraceletToServer_Location_Gnss struct {
 	// 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic,
 	// 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
 	FixType int32 `protobuf:"varint,7,opt,name=fix_type,json=fixType,proto3" json:"fix_type,omitempty"`
-	// heading of motion in [deg]
+	// heading of motion in [deg], relative to true north
 	HeadMotion float64 `protobuf:"fixed64,8,opt,name=head_motion,json=headMotion,proto3" json:"head_motion,omitempty"`
-	// heading of vehicle in [deg]
+	// heading of vehicle in [deg], relative to true north
 	HeadVehicle float64 `protobuf:"fixed64,9,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`
 	// heading valid (bit 0=motion valid, 1=vehicle valid))
 	HeadValid uint32 `protobuf:"varint,10,opt,name=head_valid,json=headValid,proto3" json:"head_valid,omitempty"`
@@ -464,6 +464,7 @@ type TraceletToServer_Location_Uwb struct {
 	// 0 = invalid, 1 = UWB/IMU, 2 - IMU only
 	FixType int32 `protobuf:"varint,8,opt,name=fix_type,json=fixType,proto3" json:"fix_type,omitempty"`
 	// heading of motion in [deg]
+	// relative to site coordinate system, counterclockwise, 0 in direction of pos. x axis
 	HeadMotion float64 `protobuf:"fixed64,9,opt,name=head_motion,json=headMotion,proto3" json:"head_motion,omitempty"`
 	// heading of vehicle in [deg] - future extension
 	HeadVehicle float64 `protobuf:"fixed64,10,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`

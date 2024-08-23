@@ -79,11 +79,11 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    */
   int32_t fix_type;
   /*
-   * heading of motion in [deg]
+   * heading of motion in [deg], relative to true north
    */
   double head_motion;
   /*
-   * heading of vehicle in [deg]
+   * heading of vehicle in [deg], relative to true north
    */
   double head_vehicle;
   /*
@@ -135,6 +135,7 @@ struct  _Tracelet__TraceletToServer__Location__Uwb
   int32_t fix_type;
   /*
    * heading of motion in [deg]
+   * relative to site coordinate system, counterclockwise, 0 in direction of pos. x axis
    */
   double head_motion;
   /*

@@ -46,10 +46,10 @@ message TraceletToServer {
       // 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
       int32 fix_type = 7;
 
-      // heading of motion in [deg]
+      // heading of motion in [deg], relative to true north
       double head_motion = 8;
 
-      // heading of vehicle in [deg]
+      // heading of vehicle in [deg], relative to true north
       double head_vehicle = 9;
 
       // heading valid (bit 0=motion valid, 1=vehicle valid))
@@ -85,6 +85,7 @@ message TraceletToServer {
       int32 fix_type = 8;
 
       // heading of motion in [deg]
+      // relative to site coordinate system, counterclockwise, 0 in direction of pos. x axis
       double head_motion = 9;
 
       // heading of vehicle in [deg] - future extension
