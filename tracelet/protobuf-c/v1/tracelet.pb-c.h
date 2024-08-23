@@ -16,16 +16,12 @@ PROTOBUF_C__BEGIN_DECLS
 
 #include "google/protobuf/timestamp.pb-c.h"
 
-typedef struct _Tracelet__ServerToTracelet Tracelet__ServerToTracelet;
-typedef struct _Tracelet__ServerToTracelet__LocationRequest Tracelet__ServerToTracelet__LocationRequest;
-typedef struct _Tracelet__ServerToTracelet__StatusRequest Tracelet__ServerToTracelet__StatusRequest;
 typedef struct _Tracelet__TraceletToServer Tracelet__TraceletToServer;
 typedef struct _Tracelet__TraceletToServer__Location Tracelet__TraceletToServer__Location;
 typedef struct _Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
 typedef struct _Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
 typedef struct _Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
 typedef struct _Tracelet__TraceletToServer__Location__Acceleration Tracelet__TraceletToServer__Location__Acceleration;
-typedef struct _Tracelet__TraceletToServer__StatusResponse Tracelet__TraceletToServer__StatusResponse;
 
 
 /* --- enums --- */
@@ -47,55 +43,6 @@ typedef enum _Tracelet__TraceletToServer__Location__Direction {
 } Tracelet__TraceletToServer__Location__Direction;
 
 /* --- messages --- */
-
-struct  _Tracelet__ServerToTracelet__LocationRequest
-{
-  ProtobufCMessage base;
-};
-#define TRACELET__SERVER_TO_TRACELET__LOCATION_REQUEST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&tracelet__server_to_tracelet__location_request__descriptor) \
-     }
-
-
-struct  _Tracelet__ServerToTracelet__StatusRequest
-{
-  ProtobufCMessage base;
-};
-#define TRACELET__SERVER_TO_TRACELET__STATUS_REQUEST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&tracelet__server_to_tracelet__status_request__descriptor) \
-     }
-
-
-typedef enum {
-  TRACELET__SERVER_TO_TRACELET__TYPE__NOT_SET = 0,
-  TRACELET__SERVER_TO_TRACELET__TYPE_LOCATION = 2,
-  TRACELET__SERVER_TO_TRACELET__TYPE_STATUS = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__SERVER_TO_TRACELET__TYPE)
-} Tracelet__ServerToTracelet__TypeCase;
-
-struct  _Tracelet__ServerToTracelet
-{
-  ProtobufCMessage base;
-  /*
-   * id of the request, will be echoed in StatusResponse
-   */
-  int32_t id;
-  Tracelet__ServerToTracelet__TypeCase type_case;
-  union {
-    /*
-     * request the location of the tracelet
-     */
-    Tracelet__ServerToTracelet__LocationRequest *location;
-    /*
-     * request the status of the tracelet
-     */
-    Tracelet__ServerToTracelet__StatusRequest *status;
-  };
-};
-#define TRACELET__SERVER_TO_TRACELET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&tracelet__server_to_tracelet__descriptor) \
-    , 0, TRACELET__SERVER_TO_TRACELET__TYPE__NOT_SET, {0} }
-
 
 struct  _Tracelet__TraceletToServer__Location__Gnss
 {
@@ -241,8 +188,7 @@ struct  _Tracelet__TraceletToServer__Location__Acceleration
 
 
 /*
- * Sub-message sent in response to a location request OR
- * periodically sent by the tracelet
+ * Sub-message sent periodically sent by the tracelet
  */
 struct  _Tracelet__TraceletToServer__Location
 {
@@ -285,46 +231,9 @@ struct  _Tracelet__TraceletToServer__Location
     , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0, NULL }
 
 
-/*
- * Sub-message sent in response to a status request
- */
-struct  _Tracelet__TraceletToServer__StatusResponse
-{
-  ProtobufCMessage base;
-  /*
-   * number of tracelet power Ups
-   */
-  int32_t power_up_count;
-  /*
-   * Tracelet has a valid time
-   */
-  protobuf_c_boolean has_time;
-  /*
-   * Status of the UWB module (0=OK, error code otherwise)
-   */
-  int32_t uwb_module_status;
-  /*
-   * Status of the GNSS module (0=OK, error code otherwise)
-   */
-  int32_t gnss_module_status;
-  /*
-   * Status of Main processor IMU (0=OK, error code otherwise)
-   */
-  int32_t imu1_status;
-  /*
-   * Status of tachometer signal (0=OK, error code otherwise)
-   */
-  int32_t tacho_status;
-};
-#define TRACELET__TRACELET_TO_SERVER__STATUS_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__status_response__descriptor) \
-    , 0, 0, 0, 0, 0, 0 }
-
-
 typedef enum {
   TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET = 0,
-  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5,
-  TRACELET__TRACELET_TO_SERVER__TYPE_STATUS = 6
+  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__TRACELET_TO_SERVER__TYPE)
 } Tracelet__TraceletToServer__TypeCase;
 
@@ -332,8 +241,7 @@ struct  _Tracelet__TraceletToServer
 {
   ProtobufCMessage base;
   /*
-   * Tracelet will echo the ID of the request here.
-   * For messages sent without a request, the ID is 0
+   * Currently not used, always 0
    */
   int32_t id;
   /*
@@ -356,13 +264,6 @@ struct  _Tracelet__TraceletToServer
      * periodically sent by the tracelet or in
      */
     Tracelet__TraceletToServer__Location *location;
-    /*
-     * response to a location request
-     */
-    /*
-     * sent in response to the status request
-     */
-    Tracelet__TraceletToServer__StatusResponse *status;
   };
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
@@ -370,31 +271,6 @@ struct  _Tracelet__TraceletToServer
     , 0, NULL, (char *)protobuf_c_empty_string, 0, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
 
 
-/* Tracelet__ServerToTracelet__LocationRequest methods */
-void   tracelet__server_to_tracelet__location_request__init
-                     (Tracelet__ServerToTracelet__LocationRequest         *message);
-/* Tracelet__ServerToTracelet__StatusRequest methods */
-void   tracelet__server_to_tracelet__status_request__init
-                     (Tracelet__ServerToTracelet__StatusRequest         *message);
-/* Tracelet__ServerToTracelet methods */
-void   tracelet__server_to_tracelet__init
-                     (Tracelet__ServerToTracelet         *message);
-size_t tracelet__server_to_tracelet__get_packed_size
-                     (const Tracelet__ServerToTracelet   *message);
-size_t tracelet__server_to_tracelet__pack
-                     (const Tracelet__ServerToTracelet   *message,
-                      uint8_t             *out);
-size_t tracelet__server_to_tracelet__pack_to_buffer
-                     (const Tracelet__ServerToTracelet   *message,
-                      ProtobufCBuffer     *buffer);
-Tracelet__ServerToTracelet *
-       tracelet__server_to_tracelet__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   tracelet__server_to_tracelet__free_unpacked
-                     (Tracelet__ServerToTracelet *message,
-                      ProtobufCAllocator *allocator);
 /* Tracelet__TraceletToServer__Location__Gnss methods */
 void   tracelet__tracelet_to_server__location__gnss__init
                      (Tracelet__TraceletToServer__Location__Gnss         *message);
@@ -410,9 +286,6 @@ void   tracelet__tracelet_to_server__location__acceleration__init
 /* Tracelet__TraceletToServer__Location methods */
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message);
-/* Tracelet__TraceletToServer__StatusResponse methods */
-void   tracelet__tracelet_to_server__status_response__init
-                     (Tracelet__TraceletToServer__StatusResponse         *message);
 /* Tracelet__TraceletToServer methods */
 void   tracelet__tracelet_to_server__init
                      (Tracelet__TraceletToServer         *message);
@@ -434,15 +307,6 @@ void   tracelet__tracelet_to_server__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Tracelet__ServerToTracelet__LocationRequest_Closure)
-                 (const Tracelet__ServerToTracelet__LocationRequest *message,
-                  void *closure_data);
-typedef void (*Tracelet__ServerToTracelet__StatusRequest_Closure)
-                 (const Tracelet__ServerToTracelet__StatusRequest *message,
-                  void *closure_data);
-typedef void (*Tracelet__ServerToTracelet_Closure)
-                 (const Tracelet__ServerToTracelet *message,
-                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer__Location__Gnss_Closure)
                  (const Tracelet__TraceletToServer__Location__Gnss *message,
                   void *closure_data);
@@ -458,9 +322,6 @@ typedef void (*Tracelet__TraceletToServer__Location__Acceleration_Closure)
 typedef void (*Tracelet__TraceletToServer__Location_Closure)
                  (const Tracelet__TraceletToServer__Location *message,
                   void *closure_data);
-typedef void (*Tracelet__TraceletToServer__StatusResponse_Closure)
-                 (const Tracelet__TraceletToServer__StatusResponse *message,
-                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer_Closure)
                  (const Tracelet__TraceletToServer *message,
                   void *closure_data);
@@ -470,9 +331,6 @@ typedef void (*Tracelet__TraceletToServer_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor tracelet__server_to_tracelet__descriptor;
-extern const ProtobufCMessageDescriptor tracelet__server_to_tracelet__location_request__descriptor;
-extern const ProtobufCMessageDescriptor tracelet__server_to_tracelet__status_request__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor;
@@ -480,7 +338,6 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__acceleration__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
-extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__status_response__descriptor;
 
 PROTOBUF_C__END_DECLS
 

@@ -1,18 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: (c) 2023 Ci4Rail GmbH
 
-// Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02.
+// Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02 or SIO03.
 // It defines the messages exchanged between the Tracelet and the localization
-// system. The messages are transported over TCP, with a little framing
-// protocol:
-//
-// Format of a TCP message:
-// - Byte 0: 0xFE
-// - Byte 1: 0xED
-// - Byte 2..5: Length of marshalled protobuf data (Byte 2=LSB)
-// - Byte 6..n: Marshalled Protobuf Data
-//
-// The Tracelet is the TCP client, the localization system is the TCP server.
+// system. The messages are transported over UDP, with handshaking
+// 
+// The tracelet is the UDP client and the localization system is the UDP server.
 
 syntax = "proto3";
 
@@ -21,28 +14,11 @@ import "google/protobuf/timestamp.proto";
 package tracelet;
 option go_package = "./tracelet";
 
-// message sent from server to tracelet
-
-message ServerToTracelet {
-  message LocationRequest {} // request the location of the tracelet
-  message StatusRequest {}   // request the status of the tracelet
-
-  // id of the request, will be echoed in StatusResponse
-  int32 id = 1;
-  oneof type {
-    // request the location of the tracelet
-    LocationRequest location = 2;
-    // request the status of the tracelet
-    StatusRequest status = 3;
-  }
-}
-
 // message sent from tracelet to server
 
 message TraceletToServer {
 
-  // Sub-message sent in response to a location request OR
-  // periodically sent by the tracelet
+  // Sub-message sent periodically sent by the tracelet
   message Location {
 
     message Gnss {
@@ -170,24 +146,7 @@ message TraceletToServer {
 
   } // Location
 
-  // Sub-message sent in response to a status request
-  message StatusResponse {
-    // number of tracelet power Ups
-    int32 power_up_count = 1;
-    // Tracelet has a valid time
-    bool has_time = 2;
-    // Status of the UWB module (0=OK, error code otherwise)
-    int32 uwb_module_status = 3;
-    // Status of the GNSS module (0=OK, error code otherwise)
-    int32 gnss_module_status = 4;
-    // Status of Main processor IMU (0=OK, error code otherwise)
-    int32 imu1_status = 5;
-    // Status of tachometer signal (0=OK, error code otherwise)
-    int32 tacho_status = 6;
-  }
-
-  // Tracelet will echo the ID of the request here.
-  // For messages sent without a request, the ID is 0
+  // Currently not used, always 0
   int32 id = 1;
 
   // timestamp when the message was sent by the tracelet
@@ -204,6 +163,6 @@ message TraceletToServer {
   oneof type {
     Location location = 5;     // periodically sent by the tracelet or in
                                // response to a location request
-    StatusResponse status = 6; // sent in response to the status request
+    // possible future messages
   }
 }
