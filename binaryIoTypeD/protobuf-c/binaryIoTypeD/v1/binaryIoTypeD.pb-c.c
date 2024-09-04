@@ -1569,29 +1569,9 @@ const ProtobufCMessageDescriptor binary_io_type_d__function_control_set_response
   (ProtobufCMessageInit) binary_io_type_d__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_d__stream_control_start__field_descriptors[1] =
-{
-  {
-    "channelFilterMask",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeD__StreamControlStart, channelfiltermask),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_d__stream_control_start__field_indices_by_name[] = {
-  0,   /* field[0] = channelFilterMask */
-};
-static const ProtobufCIntRange binary_io_type_d__stream_control_start__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define binary_io_type_d__stream_control_start__field_descriptors NULL
+#define binary_io_type_d__stream_control_start__field_indices_by_name NULL
+#define binary_io_type_d__stream_control_start__number_ranges NULL
 const ProtobufCMessageDescriptor binary_io_type_d__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1600,62 +1580,16 @@ const ProtobufCMessageDescriptor binary_io_type_d__stream_control_start__descrip
   "BinaryIoTypeD__StreamControlStart",
   "binaryIoTypeD",
   sizeof(BinaryIoTypeD__StreamControlStart),
-  1,
+  0,
   binary_io_type_d__stream_control_start__field_descriptors,
   binary_io_type_d__stream_control_start__field_indices_by_name,
-  1,  binary_io_type_d__stream_control_start__number_ranges,
+  0,  binary_io_type_d__stream_control_start__number_ranges,
   (ProtobufCMessageInit) binary_io_type_d__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_d__sample__field_descriptors[3] =
-{
-  {
-    "timestamp",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED64,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeD__Sample, timestamp),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "channel",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeD__Sample, channel),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "value",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeD__Sample, value),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_d__sample__field_indices_by_name[] = {
-  1,   /* field[1] = channel */
-  0,   /* field[0] = timestamp */
-  2,   /* field[2] = value */
-};
-static const ProtobufCIntRange binary_io_type_d__sample__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
+#define binary_io_type_d__sample__field_descriptors NULL
+#define binary_io_type_d__sample__field_indices_by_name NULL
+#define binary_io_type_d__sample__number_ranges NULL
 const ProtobufCMessageDescriptor binary_io_type_d__sample__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1664,36 +1598,16 @@ const ProtobufCMessageDescriptor binary_io_type_d__sample__descriptor =
   "BinaryIoTypeD__Sample",
   "binaryIoTypeD",
   sizeof(BinaryIoTypeD__Sample),
-  3,
+  0,
   binary_io_type_d__sample__field_descriptors,
   binary_io_type_d__sample__field_indices_by_name,
-  1,  binary_io_type_d__sample__number_ranges,
+  0,  binary_io_type_d__sample__number_ranges,
   (ProtobufCMessageInit) binary_io_type_d__sample__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_d__stream_data__field_descriptors[1] =
-{
-  {
-    "samples",
-    1,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeD__StreamData, n_samples),
-    offsetof(BinaryIoTypeD__StreamData, samples),
-    &binary_io_type_d__sample__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_d__stream_data__field_indices_by_name[] = {
-  0,   /* field[0] = samples */
-};
-static const ProtobufCIntRange binary_io_type_d__stream_data__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
+#define binary_io_type_d__stream_data__field_descriptors NULL
+#define binary_io_type_d__stream_data__field_indices_by_name NULL
+#define binary_io_type_d__stream_data__number_ranges NULL
 const ProtobufCMessageDescriptor binary_io_type_d__stream_data__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1702,10 +1616,10 @@ const ProtobufCMessageDescriptor binary_io_type_d__stream_data__descriptor =
   "BinaryIoTypeD__StreamData",
   "binaryIoTypeD",
   sizeof(BinaryIoTypeD__StreamData),
-  1,
+  0,
   binary_io_type_d__stream_data__field_descriptors,
   binary_io_type_d__stream_data__field_indices_by_name,
-  1,  binary_io_type_d__stream_data__number_ranges,
+  0,  binary_io_type_d__stream_data__number_ranges,
   (ProtobufCMessageInit) binary_io_type_d__stream_data__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

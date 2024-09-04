@@ -354,49 +354,28 @@ struct  _BinaryIoTypeD__FunctionControlSetResponse
 struct  _BinaryIoTypeD__StreamControlStart
 {
   ProtobufCMessage base;
-  /*
-   * mask to define which channels are considered in the stream. 0 means don't send channels value, 1 means sent it
-   * LSB is Input0
-   * Defaults to all channels (0x0F)
-   */
-  uint32_t channelfiltermask;
 };
 #define BINARY_IO_TYPE_D__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__stream_control_start__descriptor) \
-    , 0 }
+     }
 
 
 struct  _BinaryIoTypeD__Sample
 {
   ProtobufCMessage base;
-  /*
-   * Timestamp for that specific channels sample. This is the time the sample was taken.
-   * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-   */
-  uint64_t timestamp;
-  /*
-   * Specifies the binary channel
-   */
-  uint32_t channel;
-  /*
-   * Specifies the binary channel value when the input value has changed.
-   */
-  protobuf_c_boolean value;
 };
 #define BINARY_IO_TYPE_D__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__sample__descriptor) \
-    , 0, 0, 0 }
+     }
 
 
 struct  _BinaryIoTypeD__StreamData
 {
   ProtobufCMessage base;
-  size_t n_samples;
-  BinaryIoTypeD__Sample **samples;
 };
 #define BINARY_IO_TYPE_D__STREAM_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__stream_data__descriptor) \
-    , 0,NULL }
+     }
 
 
 /* BinaryIoTypeD__ChannelConfig methods */

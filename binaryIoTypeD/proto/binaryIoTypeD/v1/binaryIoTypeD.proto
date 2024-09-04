@@ -164,19 +164,24 @@ message StreamControlStart {
     // mask to define which channels are considered in the stream. 0 means don't send channels value, 1 means sent it
     // LSB is Input0
     // Defaults to all channels (0x0F)
-    fixed32 channelFilterMask = 1;
+    // fixed32 channelFilterMask = 1;
+
+    // not implemented
 }
 
 message Sample {
-    // Timestamp for that specific channels sample. This is the time the sample was taken.
-    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-    fixed64 timestamp = 1;
-    // Specifies the binary channel
-    fixed32 channel = 2;
-    // Specifies the binary channel value when the input value has changed.
-    bool value = 3;
+    // // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    // fixed64 timestamp = 1;
+    // // Specifies the binary channel
+    // fixed32 channel = 2;
+    // // Specifies the binary channel value when the input value has changed.
+    // bool value = 3;
+
+    // not implemented
 }
 
 message StreamData {
-    repeated Sample samples = 1;
+    // not implemented
+    // repeated Sample samples = 1;
 }
