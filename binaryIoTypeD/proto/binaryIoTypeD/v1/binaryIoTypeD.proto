@@ -41,10 +41,13 @@ message ChannelConfig {
     // If channel is configured for output, initialValue defines the value after initialization
     // and after the watchdog has fired
     bool initialValue = 3;
+    // overload recovery timeout in ms. 
+    // The channel will be disabled for this time after an overload. A 0 uses the default value.
+    int32 overloadRecoveryTimeoutMs = 4;
     // watchdog timeout in ms. if not 0, actives the watchdog for this channel
-    fixed32 watchdogTimeoutMs = 4;
+    int32 watchdogTimeoutMs = 5;
     // fritting current enable
-    bool frittingEnable = 5;
+    bool frittingEnable = 6;
 }
 
 
