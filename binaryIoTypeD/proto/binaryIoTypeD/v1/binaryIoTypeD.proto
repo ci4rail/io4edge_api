@@ -103,17 +103,10 @@ message SetAll {
     fixed32 mask = 2;
 }
 
-// Try to recover from error state
-message SetExitError {
-    // clear error state on channels whose bit is set
-    fixed32 mask = 1;
-}
-
 message FunctionControlSet {
     oneof type {
         SetSingle single = 1;
         SetAll all = 2;
-        SetExitError exit_error = 3;
     }
 }
 
@@ -145,16 +138,11 @@ message SetSingleResponse {
     // no parameters
 }
 
-message SetExitErrorResponse {
-    // no parameters
-}
-
 // FunctionControlSetResponse 
 message FunctionControlSetResponse {
     oneof type {
         SetSingleResponse single = 1;
         SetAllResponse all = 2;
-        SetExitErrorResponse exit_error = 3;
     }
 }
 

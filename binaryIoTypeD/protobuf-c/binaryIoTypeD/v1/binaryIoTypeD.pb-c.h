@@ -25,12 +25,10 @@ typedef struct _BinaryIoTypeD__ConfigurationDescribeResponse BinaryIoTypeD__Conf
 typedef struct _BinaryIoTypeD__FunctionControlGet BinaryIoTypeD__FunctionControlGet;
 typedef struct _BinaryIoTypeD__SetSingle BinaryIoTypeD__SetSingle;
 typedef struct _BinaryIoTypeD__SetAll BinaryIoTypeD__SetAll;
-typedef struct _BinaryIoTypeD__SetExitError BinaryIoTypeD__SetExitError;
 typedef struct _BinaryIoTypeD__FunctionControlSet BinaryIoTypeD__FunctionControlSet;
 typedef struct _BinaryIoTypeD__FunctionControlGetResponse BinaryIoTypeD__FunctionControlGetResponse;
 typedef struct _BinaryIoTypeD__SetAllResponse BinaryIoTypeD__SetAllResponse;
 typedef struct _BinaryIoTypeD__SetSingleResponse BinaryIoTypeD__SetSingleResponse;
-typedef struct _BinaryIoTypeD__SetExitErrorResponse BinaryIoTypeD__SetExitErrorResponse;
 typedef struct _BinaryIoTypeD__FunctionControlSetResponse BinaryIoTypeD__FunctionControlSetResponse;
 typedef struct _BinaryIoTypeD__StreamControlStart BinaryIoTypeD__StreamControlStart;
 typedef struct _BinaryIoTypeD__Sample BinaryIoTypeD__Sample;
@@ -235,27 +233,10 @@ struct  _BinaryIoTypeD__SetAll
     , 0, 0 }
 
 
-/*
- * Try to recover from error state
- */
-struct  _BinaryIoTypeD__SetExitError
-{
-  ProtobufCMessage base;
-  /*
-   * clear error state on channels whose bit is set
-   */
-  uint32_t mask;
-};
-#define BINARY_IO_TYPE_D__SET_EXIT_ERROR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__set_exit_error__descriptor) \
-    , 0 }
-
-
 typedef enum {
   BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE__NOT_SET = 0,
   BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE_SINGLE = 1,
-  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE_ALL = 2,
-  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE_EXIT_ERROR = 3
+  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE_ALL = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__TYPE)
 } BinaryIoTypeD__FunctionControlSet__TypeCase;
 
@@ -266,7 +247,6 @@ struct  _BinaryIoTypeD__FunctionControlSet
   union {
     BinaryIoTypeD__SetSingle *single;
     BinaryIoTypeD__SetAll *all;
-    BinaryIoTypeD__SetExitError *exit_error;
   };
 };
 #define BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET__INIT \
@@ -313,20 +293,10 @@ struct  _BinaryIoTypeD__SetSingleResponse
      }
 
 
-struct  _BinaryIoTypeD__SetExitErrorResponse
-{
-  ProtobufCMessage base;
-};
-#define BINARY_IO_TYPE_D__SET_EXIT_ERROR_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__set_exit_error_response__descriptor) \
-     }
-
-
 typedef enum {
   BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET = 0,
   BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE_SINGLE = 1,
-  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ALL = 2,
-  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE_EXIT_ERROR = 3
+  BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE_ALL = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__TYPE)
 } BinaryIoTypeD__FunctionControlSetResponse__TypeCase;
 
@@ -340,7 +310,6 @@ struct  _BinaryIoTypeD__FunctionControlSetResponse
   union {
     BinaryIoTypeD__SetSingleResponse *single;
     BinaryIoTypeD__SetAllResponse *all;
-    BinaryIoTypeD__SetExitErrorResponse *exit_error;
   };
 };
 #define BINARY_IO_TYPE_D__FUNCTION_CONTROL_SET_RESPONSE__INIT \
@@ -568,25 +537,6 @@ BinaryIoTypeD__SetAll *
 void   binary_io_type_d__set_all__free_unpacked
                      (BinaryIoTypeD__SetAll *message,
                       ProtobufCAllocator *allocator);
-/* BinaryIoTypeD__SetExitError methods */
-void   binary_io_type_d__set_exit_error__init
-                     (BinaryIoTypeD__SetExitError         *message);
-size_t binary_io_type_d__set_exit_error__get_packed_size
-                     (const BinaryIoTypeD__SetExitError   *message);
-size_t binary_io_type_d__set_exit_error__pack
-                     (const BinaryIoTypeD__SetExitError   *message,
-                      uint8_t             *out);
-size_t binary_io_type_d__set_exit_error__pack_to_buffer
-                     (const BinaryIoTypeD__SetExitError   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeD__SetExitError *
-       binary_io_type_d__set_exit_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_d__set_exit_error__free_unpacked
-                     (BinaryIoTypeD__SetExitError *message,
-                      ProtobufCAllocator *allocator);
 /* BinaryIoTypeD__FunctionControlSet methods */
 void   binary_io_type_d__function_control_set__init
                      (BinaryIoTypeD__FunctionControlSet         *message);
@@ -662,25 +612,6 @@ BinaryIoTypeD__SetSingleResponse *
                       const uint8_t       *data);
 void   binary_io_type_d__set_single_response__free_unpacked
                      (BinaryIoTypeD__SetSingleResponse *message,
-                      ProtobufCAllocator *allocator);
-/* BinaryIoTypeD__SetExitErrorResponse methods */
-void   binary_io_type_d__set_exit_error_response__init
-                     (BinaryIoTypeD__SetExitErrorResponse         *message);
-size_t binary_io_type_d__set_exit_error_response__get_packed_size
-                     (const BinaryIoTypeD__SetExitErrorResponse   *message);
-size_t binary_io_type_d__set_exit_error_response__pack
-                     (const BinaryIoTypeD__SetExitErrorResponse   *message,
-                      uint8_t             *out);
-size_t binary_io_type_d__set_exit_error_response__pack_to_buffer
-                     (const BinaryIoTypeD__SetExitErrorResponse   *message,
-                      ProtobufCBuffer     *buffer);
-BinaryIoTypeD__SetExitErrorResponse *
-       binary_io_type_d__set_exit_error_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   binary_io_type_d__set_exit_error_response__free_unpacked
-                     (BinaryIoTypeD__SetExitErrorResponse *message,
                       ProtobufCAllocator *allocator);
 /* BinaryIoTypeD__FunctionControlSetResponse methods */
 void   binary_io_type_d__function_control_set_response__init
@@ -790,9 +721,6 @@ typedef void (*BinaryIoTypeD__SetSingle_Closure)
 typedef void (*BinaryIoTypeD__SetAll_Closure)
                  (const BinaryIoTypeD__SetAll *message,
                   void *closure_data);
-typedef void (*BinaryIoTypeD__SetExitError_Closure)
-                 (const BinaryIoTypeD__SetExitError *message,
-                  void *closure_data);
 typedef void (*BinaryIoTypeD__FunctionControlSet_Closure)
                  (const BinaryIoTypeD__FunctionControlSet *message,
                   void *closure_data);
@@ -804,9 +732,6 @@ typedef void (*BinaryIoTypeD__SetAllResponse_Closure)
                   void *closure_data);
 typedef void (*BinaryIoTypeD__SetSingleResponse_Closure)
                  (const BinaryIoTypeD__SetSingleResponse *message,
-                  void *closure_data);
-typedef void (*BinaryIoTypeD__SetExitErrorResponse_Closure)
-                 (const BinaryIoTypeD__SetExitErrorResponse *message,
                   void *closure_data);
 typedef void (*BinaryIoTypeD__FunctionControlSetResponse_Closure)
                  (const BinaryIoTypeD__FunctionControlSetResponse *message,
@@ -838,12 +763,10 @@ extern const ProtobufCMessageDescriptor binary_io_type_d__configuration_describe
 extern const ProtobufCMessageDescriptor binary_io_type_d__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__set_single__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__set_all__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_d__set_exit_error__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__set_all_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__set_single_response__descriptor;
-extern const ProtobufCMessageDescriptor binary_io_type_d__set_exit_error_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_d__sample__descriptor;

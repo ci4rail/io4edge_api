@@ -457,51 +457,6 @@ void   binary_io_type_d__set_all__free_unpacked
   assert(message->base.descriptor == &binary_io_type_d__set_all__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   binary_io_type_d__set_exit_error__init
-                     (BinaryIoTypeD__SetExitError         *message)
-{
-  static const BinaryIoTypeD__SetExitError init_value = BINARY_IO_TYPE_D__SET_EXIT_ERROR__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_d__set_exit_error__get_packed_size
-                     (const BinaryIoTypeD__SetExitError *message)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_d__set_exit_error__pack
-                     (const BinaryIoTypeD__SetExitError *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_d__set_exit_error__pack_to_buffer
-                     (const BinaryIoTypeD__SetExitError *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeD__SetExitError *
-       binary_io_type_d__set_exit_error__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeD__SetExitError *)
-     protobuf_c_message_unpack (&binary_io_type_d__set_exit_error__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_d__set_exit_error__free_unpacked
-                     (BinaryIoTypeD__SetExitError *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   binary_io_type_d__function_control_set__init
                      (BinaryIoTypeD__FunctionControlSet         *message)
 {
@@ -680,51 +635,6 @@ void   binary_io_type_d__set_single_response__free_unpacked
   if(!message)
     return;
   assert(message->base.descriptor == &binary_io_type_d__set_single_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   binary_io_type_d__set_exit_error_response__init
-                     (BinaryIoTypeD__SetExitErrorResponse         *message)
-{
-  static const BinaryIoTypeD__SetExitErrorResponse init_value = BINARY_IO_TYPE_D__SET_EXIT_ERROR_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t binary_io_type_d__set_exit_error_response__get_packed_size
-                     (const BinaryIoTypeD__SetExitErrorResponse *message)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t binary_io_type_d__set_exit_error_response__pack
-                     (const BinaryIoTypeD__SetExitErrorResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t binary_io_type_d__set_exit_error_response__pack_to_buffer
-                     (const BinaryIoTypeD__SetExitErrorResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-BinaryIoTypeD__SetExitErrorResponse *
-       binary_io_type_d__set_exit_error_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (BinaryIoTypeD__SetExitErrorResponse *)
-     protobuf_c_message_unpack (&binary_io_type_d__set_exit_error_response__descriptor,
-                                allocator, len, data);
-}
-void   binary_io_type_d__set_exit_error_response__free_unpacked
-                     (BinaryIoTypeD__SetExitErrorResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &binary_io_type_d__set_exit_error_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   binary_io_type_d__function_control_set_response__init
@@ -1298,45 +1208,7 @@ const ProtobufCMessageDescriptor binary_io_type_d__set_all__descriptor =
   (ProtobufCMessageInit) binary_io_type_d__set_all__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor binary_io_type_d__set_exit_error__field_descriptors[1] =
-{
-  {
-    "mask",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(BinaryIoTypeD__SetExitError, mask),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned binary_io_type_d__set_exit_error__field_indices_by_name[] = {
-  0,   /* field[0] = mask */
-};
-static const ProtobufCIntRange binary_io_type_d__set_exit_error__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor binary_io_type_d__set_exit_error__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeD.SetExitError",
-  "SetExitError",
-  "BinaryIoTypeD__SetExitError",
-  "binaryIoTypeD",
-  sizeof(BinaryIoTypeD__SetExitError),
-  1,
-  binary_io_type_d__set_exit_error__field_descriptors,
-  binary_io_type_d__set_exit_error__field_indices_by_name,
-  1,  binary_io_type_d__set_exit_error__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_d__set_exit_error__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set__field_descriptors[2] =
 {
   {
     "single",
@@ -1362,28 +1234,15 @@ static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set__fi
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "exit_error",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeD__FunctionControlSet, type_case),
-    offsetof(BinaryIoTypeD__FunctionControlSet, exit_error),
-    &binary_io_type_d__set_exit_error__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_d__function_control_set__field_indices_by_name[] = {
   1,   /* field[1] = all */
-  2,   /* field[2] = exit_error */
   0,   /* field[0] = single */
 };
 static const ProtobufCIntRange binary_io_type_d__function_control_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor binary_io_type_d__function_control_set__descriptor =
 {
@@ -1393,7 +1252,7 @@ const ProtobufCMessageDescriptor binary_io_type_d__function_control_set__descrip
   "BinaryIoTypeD__FunctionControlSet",
   "binaryIoTypeD",
   sizeof(BinaryIoTypeD__FunctionControlSet),
-  3,
+  2,
   binary_io_type_d__function_control_set__field_descriptors,
   binary_io_type_d__function_control_set__field_indices_by_name,
   1,  binary_io_type_d__function_control_set__number_ranges,
@@ -1487,25 +1346,7 @@ const ProtobufCMessageDescriptor binary_io_type_d__set_single_response__descript
   (ProtobufCMessageInit) binary_io_type_d__set_single_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define binary_io_type_d__set_exit_error_response__field_descriptors NULL
-#define binary_io_type_d__set_exit_error_response__field_indices_by_name NULL
-#define binary_io_type_d__set_exit_error_response__number_ranges NULL
-const ProtobufCMessageDescriptor binary_io_type_d__set_exit_error_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "binaryIoTypeD.SetExitErrorResponse",
-  "SetExitErrorResponse",
-  "BinaryIoTypeD__SetExitErrorResponse",
-  "binaryIoTypeD",
-  sizeof(BinaryIoTypeD__SetExitErrorResponse),
-  0,
-  binary_io_type_d__set_exit_error_response__field_descriptors,
-  binary_io_type_d__set_exit_error_response__field_indices_by_name,
-  0,  binary_io_type_d__set_exit_error_response__number_ranges,
-  (ProtobufCMessageInit) binary_io_type_d__set_exit_error_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set_response__field_descriptors[2] =
 {
   {
     "single",
@@ -1531,28 +1372,15 @@ static const ProtobufCFieldDescriptor binary_io_type_d__function_control_set_res
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "exit_error",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(BinaryIoTypeD__FunctionControlSetResponse, type_case),
-    offsetof(BinaryIoTypeD__FunctionControlSetResponse, exit_error),
-    &binary_io_type_d__set_exit_error_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned binary_io_type_d__function_control_set_response__field_indices_by_name[] = {
   1,   /* field[1] = all */
-  2,   /* field[2] = exit_error */
   0,   /* field[0] = single */
 };
 static const ProtobufCIntRange binary_io_type_d__function_control_set_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor binary_io_type_d__function_control_set_response__descriptor =
 {
@@ -1562,7 +1390,7 @@ const ProtobufCMessageDescriptor binary_io_type_d__function_control_set_response
   "BinaryIoTypeD__FunctionControlSetResponse",
   "binaryIoTypeD",
   sizeof(BinaryIoTypeD__FunctionControlSetResponse),
-  3,
+  2,
   binary_io_type_d__function_control_set_response__field_descriptors,
   binary_io_type_d__function_control_set_response__field_indices_by_name,
   1,  binary_io_type_d__function_control_set_response__number_ranges,
