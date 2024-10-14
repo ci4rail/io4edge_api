@@ -1,18 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: (c) 2023 Ci4Rail GmbH
 
-// Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02.
+// Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02 or SIO03.
 // It defines the messages exchanged between the Tracelet and the localization
-// system. The messages are transported over TCP, with a little framing
-// protocol:
-//
-// Format of a TCP message:
-// - Byte 0: 0xFE
-// - Byte 1: 0xED
-// - Byte 2..5: Length of marshalled protobuf data (Byte 2=LSB)
-// - Byte 6..n: Marshalled Protobuf Data
-//
-// The Tracelet is the TCP client, the localization system is the TCP server.
+// system. The messages are transported over UDP, with handshaking
+// 
+// The tracelet is the UDP client and the localization system is the UDP server.
 
 syntax = "proto3";
 
@@ -21,28 +14,11 @@ import "google/protobuf/timestamp.proto";
 package tracelet;
 option go_package = "./tracelet";
 
-// message sent from server to tracelet
-
-message ServerToTracelet {
-  message LocationRequest {} // request the location of the tracelet
-  message StatusRequest {}   // request the status of the tracelet
-
-  // id of the request, will be echoed in StatusResponse
-  int32 id = 1;
-  oneof type {
-    // request the location of the tracelet
-    LocationRequest location = 2;
-    // request the status of the tracelet
-    StatusRequest status = 3;
-  }
-}
-
 // message sent from tracelet to server
 
 message TraceletToServer {
 
-  // Sub-message sent in response to a location request OR
-  // periodically sent by the tracelet
+  // Sub-message sent periodically sent by the tracelet
   message Location {
 
     message Gnss {
@@ -69,6 +45,18 @@ message TraceletToServer {
       // 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 
       // 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
       int32 fix_type = 7;
+
+      // heading of motion in [deg], relative to true north
+      double head_motion = 8;
+
+      // heading of vehicle in [deg], relative to true north
+      double head_vehicle = 9;
+
+      // heading valid (bit 0=motion valid, 1=vehicle valid))
+      uint32 head_valid = 10;
+
+      // speed in [m/s]
+      double ground_speed = 11;
     }
 
     message Uwb {
@@ -91,7 +79,68 @@ message TraceletToServer {
 
       // horizontal accuracy in [m]
       double eph = 7;
+
+      // type of fix 
+      // 0 = invalid, 1 = UWB/IMU, 2 - IMU only
+      int32 fix_type = 8;
+
+      // heading of motion in [deg]
+      // relative to site coordinate system, counterclockwise, 0 in direction of pos. x axis
+      double head_motion = 9;
+
+      // heading of vehicle in [deg] - future extension
+      double head_vehicle = 10;
+
+      // heading valid (bit 0=motion valid, 1=vehicle valid))
+      uint32 head_valid = 11;
+
+      // speed in [m/s]
+      double ground_speed = 12;
     }
+
+    message Fused {
+      // Fused location valid. If false, the other fields are not valid
+      bool valid = 1;
+
+      // WGS84 coordinates
+      // latitude in [deg]
+      double latitude = 2;
+
+      // longitude in [deg]
+      double longitude = 3;
+
+      // altitude in [m] - future extension
+      double altitude = 4; 
+
+      // horizontal accuracy in [m]
+      double eph = 5;
+
+      // heading of motion in [deg] - future extension
+      double head_motion = 6;  
+
+      // heading of vehicle in [deg] - future extension
+      double head_vehicle = 7;
+
+      // heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+      uint32 head_valid = 8;
+
+      // speed in [m/s] - future extension
+      double ground_speed = 9;
+    }
+
+    // Acceleration data - all values in (m/s^2)
+    message Acceleration {
+        double x_max = 1; // Maximum acceleration in x direction in last period 
+        double y_max = 2;
+        double z_max = 3;
+        double x_min = 4; // Minimum acceleration in x direction in last period
+        double y_min = 5;
+        double z_min = 6;
+        double x_avg = 7; // Average acceleration in x direction in last period
+        double y_avg = 8;
+        double z_avg = 9;
+    }
+
 
     enum Direction {
       // Invalid direction
@@ -110,6 +159,9 @@ message TraceletToServer {
     // Data from UWB subsystem
     Uwb uwb = 2;
 
+    // Fused location
+    Fused fused = 7;
+
     // Driving direction of the vehicle
     Direction direction = 3;
 
@@ -122,26 +174,12 @@ message TraceletToServer {
     // Current Tracelet Temperature in [°C]
     double temperature = 6;
 
+    // Acceleration data
+    Acceleration acceleration = 8;
+
   } // Location
 
-  // Sub-message sent in response to a status request
-  message StatusResponse {
-    // number of tracelet power Ups
-    int32 power_up_count = 1;
-    // Tracelet has a valid time
-    bool has_time = 2;
-    // Status of the UWB module (0=OK, error code otherwise)
-    int32 uwb_module_status = 3;
-    // Status of the GNSS module (0=OK, error code otherwise)
-    int32 gnss_module_status = 4;
-    // Status of Main processor IMU (0=OK, error code otherwise)
-    int32 imu1_status = 5;
-    // Status of tachometer signal (0=OK, error code otherwise)
-    int32 tacho_status = 6;
-  }
-
-  // Tracelet will echo the ID of the request here.
-  // For messages sent without a request, the ID is 0
+  // Currently not used, always 0
   int32 id = 1;
 
   // timestamp when the message was sent by the tracelet
@@ -158,6 +196,6 @@ message TraceletToServer {
   oneof type {
     Location location = 5;     // periodically sent by the tracelet or in
                                // response to a location request
-    StatusResponse status = 6; // sent in response to the status request
+    // possible future messages
   }
 }
