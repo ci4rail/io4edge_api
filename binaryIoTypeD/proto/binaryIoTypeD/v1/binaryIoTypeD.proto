@@ -1,0 +1,175 @@
+/*
+Copyright © 2024 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+// Binary I/O as on EKF SO1
+
+syntax = "proto3";
+
+package binaryIoTypeD;
+option go_package = "binaryIoTypeD/v1";
+
+// ============= Configuration =================
+enum ChannelMode {
+    // configure as low active input channel
+    BINARYIOTYPED_INPUT_LOW_ACTIVE = 0;
+    // configure as high active input channel
+    BINARYIOTYPED_INPUT_HIGH_ACTIVE = 1;
+    // configure as low active output channel
+    BINARYIOTYPED_OUTPUT_LOW_ACTIVE = 2;
+    // configure as high active output channel
+    BINARYIOTYPED_OUTPUT_HIGH_ACTIVE = 3;
+}
+
+message ChannelConfig {
+    // channel number (0..n)
+    int32 channel = 1;
+    // direction and type
+    ChannelMode mode = 2;
+    // If channel is configured for output, initialValue defines the value after initialization
+    // and after the watchdog has fired
+    bool initialValue = 3;
+    // overload recovery timeout in ms. 
+    // The channel will be disabled for this time after an overload. A 0 uses the default value.
+    int32 overloadRecoveryTimeoutMs = 4;
+    // watchdog timeout in ms. if not 0, actives the watchdog for this channel
+    int32 watchdogTimeoutMs = 5;
+    // fritting current enable
+    bool frittingEnable = 6;
+}
+
+
+message ConfigurationSet {
+    // per channel configuration (one per channel/pin). The channel number is part of each ChannelConfig entry.
+    // missing channels remain unchanged
+    repeated ChannelConfig channelConfig = 1;
+}
+
+message ConfigurationSetResponse {
+    // not implemented
+}
+
+message ConfigurationGet {
+    // no parameters
+}
+
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // per channel configuration (one per channel/pin)
+    repeated ChannelConfig channelConfig = 1;
+}
+
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    fixed32 numberOfChannels = 1;
+}
+
+
+// ============= FunctionControl =================
+
+// get value of all binary channels
+message FunctionControlGet {
+    // no parameters
+}
+
+// Sets the value of a single binary channel
+message SetSingle {
+    // Number of the binary output channel
+    fixed32 channel = 1;
+    // State of the binary output channel. 0 means inactive, 1 means active
+    bool state = 2;
+}
+
+// Sets all binary channels
+message SetAll {
+    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Output0
+    fixed32 values = 1;
+    // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is Output0
+    fixed32 mask = 2;
+}
+
+message FunctionControlSet {
+    oneof type {
+        SetSingle single = 1;
+        SetAll all = 2;
+    }
+}
+
+// Channel diagnostic bits. Multiple bits may be set at the same time.
+enum ChannelDiag {
+    NoDiag = 0;
+    // group supply voltage missing (input values can't be determined, output values can't be set)
+    NoSupplyVoltage = 1;
+    // channel or group overload (output is disabled)
+    Overload = 2;
+}
+
+
+message FunctionControlGetResponse {
+    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
+    // In case the input value is unknown, its value is reported as 0. The input value is invalid if
+    // the diag NoSupplyVoltage bit is set.
+    fixed32 inputs = 1;
+    // diagnostic information for each channel, containing the ChannelDiag bits.
+    // first diag corresponds to channel 0, second to channel 1, etc.
+    repeated uint32 diag = 2;
+}
+
+message SetAllResponse {
+    // no parameters
+}
+
+message SetSingleResponse {
+    // no parameters
+}
+
+// FunctionControlSetResponse 
+message FunctionControlSetResponse {
+    oneof type {
+        SetSingleResponse single = 1;
+        SetAllResponse all = 2;
+    }
+}
+
+
+// ============= StreamControl ==================
+message StreamControlStart {
+    // mask to define which channels are considered in the stream. 0 means don't send channels value, 1 means sent it
+    // LSB is Input0
+    // Defaults to all channels (0x0F)
+    // fixed32 channelFilterMask = 1;
+
+    // not implemented
+}
+
+message Sample {
+    // // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    // fixed64 timestamp = 1;
+    // // Specifies the binary channel
+    // fixed32 channel = 2;
+    // // Specifies the binary channel value when the input value has changed.
+    // bool value = 3;
+
+    // not implemented
+}
+
+message StreamData {
+    // not implemented
+    // repeated Sample samples = 1;
+}
