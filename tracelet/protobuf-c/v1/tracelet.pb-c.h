@@ -22,6 +22,7 @@ typedef struct _Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToS
 typedef struct _Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
 typedef struct _Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
 typedef struct _Tracelet__TraceletToServer__Location__Acceleration Tracelet__TraceletToServer__Location__Acceleration;
+typedef struct _Tracelet__TraceletMetrics Tracelet__TraceletMetrics;
 
 
 /* --- enums --- */
@@ -303,17 +304,54 @@ struct  _Tracelet__TraceletToServer
    * status of the tracelet ignition signal
    */
   protobuf_c_boolean ignition;
+  Tracelet__TraceletMetrics *metrics;
   Tracelet__TraceletToServer__TypeCase type_case;
   union {
     /*
-     * periodically sent by the tracelet or in
+     * periodically sent by the tracelet
      */
     Tracelet__TraceletToServer__Location *location;
   };
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__descriptor) \
-    , 0, NULL, (char *)protobuf_c_empty_string, 0, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+    , 0, NULL, (char *)protobuf_c_empty_string, 0, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+
+
+/*
+ * Tracelet metrics. May be sent together with the location message
+ */
+struct  _Tracelet__TraceletMetrics
+{
+  ProtobufCMessage base;
+  /*
+   * Wifi RSSI (dBm), NAN if not connected
+   */
+  double wifi_rssi_dbm;
+  /*
+   * Last two bytes of connected AP MAC address as a number
+   */
+  int64_t wifi_ap;
+  /*
+   * GNSS fix type (0-7)
+   */
+  int64_t gnss_fix_type_enum;
+  /*
+   * GNSS horizontal accuracy in meters  
+   */
+  double gnss_eph_meters;
+  /*
+   * number of satellites in view (GPS)
+   */
+  int64_t gnss_num_sats___system___gps;
+  /*
+   * number of satellites in view (GLONASS)
+   */
+  int64_t gnss_num_sats___system___glonass;
+};
+#define TRACELET__TRACELET_METRICS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
+    , 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */
@@ -350,6 +388,25 @@ Tracelet__TraceletToServer *
 void   tracelet__tracelet_to_server__free_unpacked
                      (Tracelet__TraceletToServer *message,
                       ProtobufCAllocator *allocator);
+/* Tracelet__TraceletMetrics methods */
+void   tracelet__tracelet_metrics__init
+                     (Tracelet__TraceletMetrics         *message);
+size_t tracelet__tracelet_metrics__get_packed_size
+                     (const Tracelet__TraceletMetrics   *message);
+size_t tracelet__tracelet_metrics__pack
+                     (const Tracelet__TraceletMetrics   *message,
+                      uint8_t             *out);
+size_t tracelet__tracelet_metrics__pack_to_buffer
+                     (const Tracelet__TraceletMetrics   *message,
+                      ProtobufCBuffer     *buffer);
+Tracelet__TraceletMetrics *
+       tracelet__tracelet_metrics__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   tracelet__tracelet_metrics__free_unpacked
+                     (Tracelet__TraceletMetrics *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Tracelet__TraceletToServer__Location__Gnss_Closure)
@@ -370,6 +427,9 @@ typedef void (*Tracelet__TraceletToServer__Location_Closure)
 typedef void (*Tracelet__TraceletToServer_Closure)
                  (const Tracelet__TraceletToServer *message,
                   void *closure_data);
+typedef void (*Tracelet__TraceletMetrics_Closure)
+                 (const Tracelet__TraceletMetrics *message,
+                  void *closure_data);
 
 /* --- services --- */
 
@@ -383,6 +443,7 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__acceleration__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor;
 
 PROTOBUF_C__END_DECLS
 

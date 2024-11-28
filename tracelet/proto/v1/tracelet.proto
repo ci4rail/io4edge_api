@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: (c) 2023 Ci4Rail GmbH
+// SPDX-FileCopyrightText: (c) 2024 Ci4Rail GmbH
 
 // Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02 or SIO03.
 // It defines the messages exchanged between the Tracelet and the localization
@@ -194,8 +194,19 @@ message TraceletToServer {
   bool ignition = 4;
 
   oneof type {
-    Location location = 5;     // periodically sent by the tracelet or in
-                               // response to a location request
+    Location location = 5;     // periodically sent by the tracelet
     // possible future messages
   }
+
+  TraceletMetrics metrics = 10;
+}
+
+// Tracelet metrics. May be sent together with the location message
+message TraceletMetrics {
+  double wifi_rssi_dbm = 1;           // Wifi RSSI (dBm), NAN if not connected
+  int64 wifi_ap = 2;                  // Last two bytes of connected AP MAC address as a number
+  int64 gnss_fix_type_enum = 3;       // GNSS fix type (0-7)
+  double gnss_eph_meters = 4;         // GNSS horizontal accuracy in meters  
+  int64 gnss_num_sats___system___gps = 5; // number of satellites in view (GPS)
+  int64 gnss_num_sats___system___glonass = 6; // number of satellites in view (GLONASS)
 }
