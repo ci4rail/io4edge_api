@@ -324,6 +324,25 @@ struct  _Tracelet__TraceletToServer
 struct  _Tracelet__TraceletMetrics
 {
   ProtobufCMessage base;
+  int64_t health___type___uwb_comm;
+  int64_t health___type___uwb_firmware;
+  int64_t health___type___uwb_config;
+  int64_t health___type___gnss_com;
+  int64_t health___type___ubx_firmware;
+  int64_t health___type___ubx_config;
+  int64_t health___type___actors_startup;
+  /*
+   * Number of SNTP time updates
+   */
+  int64_t sntp_updates;
+  /*
+   * Free heap (bytes)
+   */
+  int64_t free_heap_bytes;
+  /*
+   * System time in seconds since 1970 UTC
+   */
+  double system_time_seconds;
   /*
    * Wifi RSSI (dBm), NAN if not connected
    */
@@ -341,6 +360,17 @@ struct  _Tracelet__TraceletMetrics
    */
   double gnss_eph_meters;
   /*
+   * GNSS latitude in degrees
+   */
+  double gnss_lat_degrees;
+  /*
+   * GNSS longitude in degrees
+   */
+  double gnss_lon_degrees;
+  double gnss_heading___info___head_veh_valid;
+  double gnss_heading___info___head_veh;
+  double gnss_heading___info___head_mot;
+  /*
    * number of satellites in view (GPS)
    */
   int64_t gnss_num_sats___system___gps;
@@ -348,10 +378,114 @@ struct  _Tracelet__TraceletMetrics
    * number of satellites in view (GLONASS)
    */
   int64_t gnss_num_sats___system___glonass;
+  /*
+   * number of satellites in view (Beidou)
+   */
+  int64_t gnss_num_sats___system___beidou;
+  /*
+   * number of satellites in view (Galileo)
+   */
+  int64_t gnss_num_sats___system___galileo;
+  /*
+   * number of satellites in view (QZSS)
+   */
+  int64_t gnss_num_sats___system___qzss;
+  /*
+   * Number of GNSS UART errors
+   */
+  int64_t gnss_uart_errors___type___parse_gsv;
+  int64_t gnss_uart_errors___type___sentence_invalid;
+  int64_t gnss_uart_errors___type___sentence_unknown;
+  int64_t gnss_uart_errors___type___hw_fifo;
+  int64_t gnss_uart_errors___type___buf_full;
+  int64_t gnss_uart_errors___type___char;
+  double gnss_protection_level___info___tmir;
+  double gnss_protection_level___info___pos1;
+  double gnss_protection_level___info___pos2;
+  double gnss_protection_level___info___pos3;
+  double gnss_protection_level___info___pos_valid;
+  double gnss_protection_level___info___pos_frame;
+  /*
+   * Number of satellites used in fix
+   */
+  double gnss_num_sv;
+  /*
+   * gain of programmable amplifier
+   */
+  double gnss_pga___block___rf1;
+  double gnss_pga___block___rf2;
+  /*
+   * UBX Sensor fusion status (0-3)
+   */
+  int64_t ubx_sensor_fusion_status_enum;
+  /*
+   * UBX GNSS reference station
+   */
+  int64_t ubx_ref_station_id;
+  /*
+   * Temperature reported by UBX chip (deg C)
+   */
+  double ubx_temperature_degrees;
+  /*
+   * Has Connection to NTRIP Caster
+   */
+  int64_t ntrip_is_connected;
+  /*
+   * Bytes sent to NTRIP Caster
+   */
+  int64_t ntrip_transfer_bytes___direction___send;
+  /*
+   * Bytes received from NTRIP Caster
+   */
+  int64_t ntrip_transfer_bytes___direction___recv;
+  /*
+   * UWB location valid
+   */
+  int64_t uwb_is_valid;
+  /*
+   * UWB X position (m)
+   */
+  double uwb_x_meters;
+  /*
+   * UWB Y position (m)
+   */
+  double uwb_y_meters;
+  /*
+   * UWB horizontal accuracy in meters
+   */
+  double uwb_eph_meters;
+  /*
+   * UWB Role from Status Report (0-4) 3=TAG
+   */
+  int64_t uwb_status_role_enum;
+  /*
+   * UWB State from Status Report(0-4)
+   */
+  int64_t uwb_status_state_enum;
+  /*
+   * UWB Motion Sensor State from Status Report (0..2), 1=MOVE
+   */
+  int64_t uwb_status_motion_state_enum;
+  /*
+   * Speed in meters per second
+   */
+  double speed_meters_per_second;
+  /*
+   * Mileage in meters
+   */
+  double mileage_meters;
+  /*
+   * Localization Server Interface gets ACKs from server
+   */
+  int64_t lsi_is_connected;
+  /*
+   * Localization Server Interface missed ACKs from server
+   */
+  int64_t lsi_acks_missed;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */
