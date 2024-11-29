@@ -320,6 +320,7 @@ struct  _Tracelet__TraceletToServer
 
 /*
  * Tracelet metrics. May be sent together with the location message
+ * Metric families are written in the form of metric___label___labelvalue
  */
 struct  _Tracelet__TraceletMetrics
 {
@@ -327,7 +328,7 @@ struct  _Tracelet__TraceletMetrics
   int64_t health___type___uwb_comm;
   int64_t health___type___uwb_firmware;
   int64_t health___type___uwb_config;
-  int64_t health___type___gnss_com;
+  int64_t health___type___gnss_comm;
   int64_t health___type___ubx_firmware;
   int64_t health___type___ubx_config;
   int64_t health___type___actors_startup;
@@ -408,12 +409,12 @@ struct  _Tracelet__TraceletMetrics
   /*
    * Number of satellites used in fix
    */
-  double gnss_num_sv;
+  int64_t gnss_num_sv;
   /*
    * gain of programmable amplifier
    */
-  double gnss_pga___block___rf1;
-  double gnss_pga___block___rf2;
+  int64_t gnss_pga___block___rf1;
+  int64_t gnss_pga___block___rf2;
   /*
    * UBX Sensor fusion status (0-3)
    */

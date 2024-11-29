@@ -1062,12 +1062,12 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "health___type___gnss_com",
+    "health___type___gnss_comm",
     4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, health___type___gnss_com),
+    offsetof(Tracelet__TraceletMetrics, health___type___gnss_comm),
     NULL,
     NULL,
     0,             /* flags */
@@ -1461,7 +1461,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     "gnss_num_sv",
     37,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, gnss_num_sv),
     NULL,
@@ -1473,7 +1473,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     "gnss_pga___block___rf1",
     38,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, gnss_pga___block___rf1),
     NULL,
@@ -1485,7 +1485,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     "gnss_pga___block___rf2",
     39,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, gnss_pga___block___rf2),
     NULL,
@@ -1728,7 +1728,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   25,   /* field[25] = gnss_uart_errors___type___sentence_invalid */
   26,   /* field[26] = gnss_uart_errors___type___sentence_unknown */
   6,   /* field[6] = health___type___actors_startup */
-  3,   /* field[3] = health___type___gnss_com */
+  3,   /* field[3] = health___type___gnss_comm */
   5,   /* field[5] = health___type___ubx_config */
   4,   /* field[4] = health___type___ubx_firmware */
   0,   /* field[0] = health___type___uwb_comm */

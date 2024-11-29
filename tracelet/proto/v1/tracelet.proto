@@ -202,11 +202,12 @@ message TraceletToServer {
 }
 
 // Tracelet metrics. May be sent together with the location message
+// Metric families are written in the form of metric___label___labelvalue
 message TraceletMetrics {
   int64 health___type___uwb_comm = 1; 
   int64 health___type___uwb_firmware = 2;
   int64 health___type___uwb_config = 3;
-  int64 health___type___gnss_com = 4;
+  int64 health___type___gnss_comm = 4;
   int64 health___type___ubx_firmware = 5;
   int64 health___type___ubx_config = 6;
   int64 health___type___actors_startup = 7;
@@ -244,9 +245,9 @@ message TraceletMetrics {
   double gnss_protection_level___info___pos_valid = 35;
   double gnss_protection_level___info___pos_frame = 36;
 
-  double gnss_num_sv = 37;                                // Number of satellites used in fix
-  double gnss_pga___block___rf1 = 38;                     // gain of programmable amplifier
-  double gnss_pga___block___rf2 = 39;
+  int64 gnss_num_sv = 37;                                // Number of satellites used in fix
+  int64 gnss_pga___block___rf1 = 38;                     // gain of programmable amplifier
+  int64 gnss_pga___block___rf2 = 39;
   int64 ubx_sensor_fusion_status_enum = 40;               // UBX Sensor fusion status (0-3)
   int64 ubx_ref_station_id = 41;                          // UBX GNSS reference station
   double ubx_temperature_degrees = 42;                    // Temperature reported by UBX chip (deg C)
