@@ -353,25 +353,6 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t wifi_ap;
   /*
-   * GNSS fix type (0-7)
-   */
-  int64_t gnss_fix_type_enum;
-  /*
-   * GNSS horizontal accuracy in meters  
-   */
-  double gnss_eph_meters;
-  /*
-   * GNSS latitude in degrees
-   */
-  double gnss_lat_degrees;
-  /*
-   * GNSS longitude in degrees
-   */
-  double gnss_lon_degrees;
-  double gnss_heading___info___head_veh_valid;
-  double gnss_heading___info___head_veh;
-  double gnss_heading___info___head_mot;
-  /*
    * number of satellites in view (GPS)
    */
   int64_t gnss_num_sats___system___gps;
@@ -424,10 +405,6 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t ubx_ref_station_id;
   /*
-   * Temperature reported by UBX chip (deg C)
-   */
-  double ubx_temperature_degrees;
-  /*
    * Has Connection to NTRIP Caster
    */
   int64_t ntrip_is_connected;
@@ -439,22 +416,6 @@ struct  _Tracelet__TraceletMetrics
    * Bytes received from NTRIP Caster
    */
   int64_t ntrip_transfer_bytes___direction___recv;
-  /*
-   * UWB location valid
-   */
-  int64_t uwb_is_valid;
-  /*
-   * UWB X position (m)
-   */
-  double uwb_x_meters;
-  /*
-   * UWB Y position (m)
-   */
-  double uwb_y_meters;
-  /*
-   * UWB horizontal accuracy in meters
-   */
-  double uwb_eph_meters;
   /*
    * UWB Role from Status Report (0-4) 3=TAG
    */
@@ -468,14 +429,6 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_status_motion_state_enum;
   /*
-   * Speed in meters per second
-   */
-  double speed_meters_per_second;
-  /*
-   * Mileage in meters
-   */
-  double mileage_meters;
-  /*
    * Localization Server Interface gets ACKs from server
    */
   int64_t lsi_is_connected;
@@ -486,7 +439,7 @@ struct  _Tracelet__TraceletMetrics
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */

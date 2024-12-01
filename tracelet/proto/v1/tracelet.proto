@@ -219,54 +219,38 @@ message TraceletMetrics {
   double wifi_rssi_dbm = 11;                              // Wifi RSSI (dBm), NAN if not connected
   int64 wifi_ap = 12;                                     // Last two bytes of connected AP MAC address as a number
 
-  int64 gnss_fix_type_enum = 13;                          // GNSS fix type (0-7)
-  double gnss_eph_meters = 14;                            // GNSS horizontal accuracy in meters  
-  double gnss_lat_degrees = 15;                           // GNSS latitude in degrees
-  double gnss_lon_degrees = 16;                           // GNSS longitude in degrees
-  double gnss_heading___info___head_veh_valid = 17;
-  double gnss_heading___info___head_veh = 18;
-  double gnss_heading___info___head_mot = 19;
+  int64 gnss_num_sats___system___gps = 13;                // number of satellites in view (GPS)
+  int64 gnss_num_sats___system___glonass = 14;            // number of satellites in view (GLONASS)
+  int64 gnss_num_sats___system___beidou = 15;             // number of satellites in view (Beidou)
+  int64 gnss_num_sats___system___galileo = 16;            // number of satellites in view (Galileo)
+  int64 gnss_num_sats___system___qzss = 17;               // number of satellites in view (QZSS)
+  int64 gnss_uart_errors___type___parse_gsv = 18;         // Number of GNSS UART errors
+  int64 gnss_uart_errors___type___sentence_invalid = 19;           
+  int64 gnss_uart_errors___type___sentence_unknown = 20;      
+  int64 gnss_uart_errors___type___hw_fifo = 21;
+  int64 gnss_uart_errors___type___buf_full = 22;
+  int64 gnss_uart_errors___type___char = 23;
+  double gnss_protection_level___info___tmir = 24;
+  double gnss_protection_level___info___pos1 = 25;
+  double gnss_protection_level___info___pos2 = 26;
+  double gnss_protection_level___info___pos3 = 27;
+  double gnss_protection_level___info___pos_valid = 28;
+  double gnss_protection_level___info___pos_frame = 29;
 
-  int64 gnss_num_sats___system___gps = 20;                // number of satellites in view (GPS)
-  int64 gnss_num_sats___system___glonass = 21;            // number of satellites in view (GLONASS)
-  int64 gnss_num_sats___system___beidou = 22;             // number of satellites in view (Beidou)
-  int64 gnss_num_sats___system___galileo = 23;            // number of satellites in view (Galileo)
-  int64 gnss_num_sats___system___qzss = 24;               // number of satellites in view (QZSS)
-  int64 gnss_uart_errors___type___parse_gsv = 25;         // Number of GNSS UART errors
-  int64 gnss_uart_errors___type___sentence_invalid = 26;           
-  int64 gnss_uart_errors___type___sentence_unknown = 27;      
-  int64 gnss_uart_errors___type___hw_fifo = 28;
-  int64 gnss_uart_errors___type___buf_full = 29;
-  int64 gnss_uart_errors___type___char = 30;
-  double gnss_protection_level___info___tmir = 31;
-  double gnss_protection_level___info___pos1 = 32;
-  double gnss_protection_level___info___pos2 = 33;
-  double gnss_protection_level___info___pos3 = 34;
-  double gnss_protection_level___info___pos_valid = 35;
-  double gnss_protection_level___info___pos_frame = 36;
+  int64 gnss_num_sv = 30;                                // Number of satellites used in fix
+  int64 gnss_pga___block___rf1 = 31;                     // gain of programmable amplifier
+  int64 gnss_pga___block___rf2 = 32;
+  int64 ubx_sensor_fusion_status_enum = 33;               // UBX Sensor fusion status (0-3)
+  int64 ubx_ref_station_id = 34;                          // UBX GNSS reference station
+  int64 ntrip_is_connected = 35;                          // Has Connection to NTRIP Caster
+  int64 ntrip_transfer_bytes___direction___send = 36;     // Bytes sent to NTRIP Caster
+  int64 ntrip_transfer_bytes___direction___recv = 37;     // Bytes received from NTRIP Caster
 
-  int64 gnss_num_sv = 37;                                // Number of satellites used in fix
-  int64 gnss_pga___block___rf1 = 38;                     // gain of programmable amplifier
-  int64 gnss_pga___block___rf2 = 39;
-  int64 ubx_sensor_fusion_status_enum = 40;               // UBX Sensor fusion status (0-3)
-  int64 ubx_ref_station_id = 41;                          // UBX GNSS reference station
-  double ubx_temperature_degrees = 42;                    // Temperature reported by UBX chip (deg C)
-  int64 ntrip_is_connected = 43;                          // Has Connection to NTRIP Caster
-  int64 ntrip_transfer_bytes___direction___send = 44;     // Bytes sent to NTRIP Caster
-  int64 ntrip_transfer_bytes___direction___recv = 45;     // Bytes received from NTRIP Caster
+  int64 uwb_status_role_enum = 38;                        // UWB Role from Status Report (0-4) 3=TAG
+  int64 uwb_status_state_enum = 39;                       // UWB State from Status Report(0-4)
+  int64 uwb_status_motion_state_enum = 40;                // UWB Motion Sensor State from Status Report (0..2), 1=MOVE
 
-  int64 uwb_is_valid = 46;                                // UWB location valid
-  double uwb_x_meters = 47;                               // UWB X position (m)
-  double uwb_y_meters = 48;                               // UWB Y position (m)
-  double uwb_eph_meters = 49;                             // UWB horizontal accuracy in meters
-  int64 uwb_status_role_enum = 50;                        // UWB Role from Status Report (0-4) 3=TAG
-  int64 uwb_status_state_enum = 51;                       // UWB State from Status Report(0-4)
-  int64 uwb_status_motion_state_enum = 52;                // UWB Motion Sensor State from Status Report (0..2), 1=MOVE
-
-  double speed_meters_per_second = 53;                    // Speed in meters per second
-  double mileage_meters = 54;                             // Mileage in meters
-
-  int64 lsi_is_connected = 55;                            // Localization Server Interface gets ACKs from server
-  int64 lsi_acks_missed = 56;                             // Localization Server Interface missed ACKs from server
+  int64 lsi_is_connected = 41;                            // Localization Server Interface gets ACKs from server
+  int64 lsi_acks_missed = 42;                             // Localization Server Interface missed ACKs from server
 }
 
