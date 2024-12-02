@@ -252,5 +252,8 @@ message TraceletMetrics {
 
   int64 lsi_is_connected = 41;                            // Localization Server Interface gets ACKs from server
   int64 lsi_acks_missed = 42;                             // Localization Server Interface missed ACKs from server
+
+  int64 ubx_boot_type_enum = 43;                          // UBX Boot type (0-10)
+  int64 ubx_runtime = 44;                                 // UBX Runtime in seconds
 }
 

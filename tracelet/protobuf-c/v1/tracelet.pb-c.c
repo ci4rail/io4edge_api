@@ -1023,7 +1023,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   (ProtobufCMessageInit) tracelet__tracelet_to_server__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[42] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[44] =
 {
   {
     "health___type___uwb_comm",
@@ -1529,6 +1529,30 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ubx_boot_type_enum",
+    43,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_boot_type_enum),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ubx_runtime",
+    44,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_runtime),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   8,   /* field[8] = free_heap_bytes */
@@ -1566,7 +1590,9 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   35,   /* field[35] = ntrip_transfer_bytes___direction___send */
   7,   /* field[7] = sntp_updates */
   9,   /* field[9] = system_time_seconds */
+  42,   /* field[42] = ubx_boot_type_enum */
   33,   /* field[33] = ubx_ref_station_id */
+  43,   /* field[43] = ubx_runtime */
   32,   /* field[32] = ubx_sensor_fusion_status_enum */
   39,   /* field[39] = uwb_status_motion_state_enum */
   37,   /* field[37] = uwb_status_role_enum */
@@ -1577,7 +1603,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
 static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 42 }
+  { 0, 44 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1587,7 +1613,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  42,
+  44,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
   1,  tracelet__tracelet_metrics__number_ranges,
