@@ -198,6 +198,8 @@ message TraceletToServer {
     // possible future messages
   }
 
+  string firmware_version = 7; // Firmware version of the tracelet
+
   TraceletMetrics metrics = 10;
 }
 
@@ -255,5 +257,12 @@ message TraceletMetrics {
 
   int64 ubx_boot_type_enum = 43;                          // UBX Boot type (0-10)
   int64 ubx_runtime = 44;                                 // UBX Runtime in seconds
+
+  int64 ubx_sensor_fusion_detail___type___wt_init = 45;   // WT Initialization status (0..2)
+  int64 ubx_sensor_fusion_detail___type___mnt_alg = 46;   // Automatic IMU MntAlg status (0..3)
+  int64 ubx_sensor_fusion_detail___type___ins_init = 47;  // INS Initialization status (0..2)
+  int64 ubx_sensor_fusion_detail___type___imu_init = 48;  // INS State (0..2)
+
+  int64 sensor_fusion_state = 49;                         // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
 }
 
