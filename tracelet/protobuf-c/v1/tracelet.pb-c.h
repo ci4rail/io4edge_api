@@ -304,6 +304,10 @@ struct  _Tracelet__TraceletToServer
    * status of the tracelet ignition signal
    */
   protobuf_c_boolean ignition;
+  /*
+   * Firmware version of the tracelet
+   */
+  char *firmware_version;
   Tracelet__TraceletMetrics *metrics;
   Tracelet__TraceletToServer__TypeCase type_case;
   union {
@@ -315,7 +319,7 @@ struct  _Tracelet__TraceletToServer
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__descriptor) \
-    , 0, NULL, (char *)protobuf_c_empty_string, 0, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+    , 0, NULL, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
 
 
 /*
@@ -444,10 +448,30 @@ struct  _Tracelet__TraceletMetrics
    * UBX Runtime in seconds
    */
   int64_t ubx_runtime;
+  /*
+   * WT Initialization status (0..2)
+   */
+  int64_t ubx_sensor_fusion_detail___type___wt_init;
+  /*
+   * Automatic IMU MntAlg status (0..3)
+   */
+  int64_t ubx_sensor_fusion_detail___type___mnt_alg;
+  /*
+   * INS Initialization status (0..2)
+   */
+  int64_t ubx_sensor_fusion_detail___type___ins_init;
+  /*
+   * INS State (0..2)
+   */
+  int64_t ubx_sensor_fusion_detail___type___imu_init;
+  /*
+   * Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
+   */
+  int64_t sensor_fusion_state;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */

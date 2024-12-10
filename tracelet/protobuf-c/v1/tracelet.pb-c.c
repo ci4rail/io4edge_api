@@ -919,7 +919,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descrip
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[6] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[7] =
 {
   {
     "id",
@@ -982,6 +982,18 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "firmware_version",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer, firmware_version),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "metrics",
     10,
     PROTOBUF_C_LABEL_NONE,
@@ -996,17 +1008,19 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
 };
 static const unsigned tracelet__tracelet_to_server__field_indices_by_name[] = {
   1,   /* field[1] = delivery_ts */
+  5,   /* field[5] = firmware_version */
   0,   /* field[0] = id */
   3,   /* field[3] = ignition */
   4,   /* field[4] = location */
-  5,   /* field[5] = metrics */
+  6,   /* field[6] = metrics */
   2,   /* field[2] = tracelet_id */
 };
-static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[2 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[3 + 1] =
 {
   { 1, 0 },
-  { 10, 5 },
-  { 0, 6 }
+  { 7, 5 },
+  { 10, 6 },
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
 {
@@ -1016,14 +1030,14 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   "Tracelet__TraceletToServer",
   "tracelet",
   sizeof(Tracelet__TraceletToServer),
-  6,
+  7,
   tracelet__tracelet_to_server__field_descriptors,
   tracelet__tracelet_to_server__field_indices_by_name,
-  2,  tracelet__tracelet_to_server__number_ranges,
+  3,  tracelet__tracelet_to_server__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[44] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[49] =
 {
   {
     "health___type___uwb_comm",
@@ -1553,6 +1567,66 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ubx_sensor_fusion_detail___type___wt_init",
+    45,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_sensor_fusion_detail___type___wt_init),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ubx_sensor_fusion_detail___type___mnt_alg",
+    46,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_sensor_fusion_detail___type___mnt_alg),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ubx_sensor_fusion_detail___type___ins_init",
+    47,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_sensor_fusion_detail___type___ins_init),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ubx_sensor_fusion_detail___type___imu_init",
+    48,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, ubx_sensor_fusion_detail___type___imu_init),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "sensor_fusion_state",
+    49,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, sensor_fusion_state),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   8,   /* field[8] = free_heap_bytes */
@@ -1588,11 +1662,16 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   34,   /* field[34] = ntrip_is_connected */
   36,   /* field[36] = ntrip_transfer_bytes___direction___recv */
   35,   /* field[35] = ntrip_transfer_bytes___direction___send */
+  48,   /* field[48] = sensor_fusion_state */
   7,   /* field[7] = sntp_updates */
   9,   /* field[9] = system_time_seconds */
   42,   /* field[42] = ubx_boot_type_enum */
   33,   /* field[33] = ubx_ref_station_id */
   43,   /* field[43] = ubx_runtime */
+  47,   /* field[47] = ubx_sensor_fusion_detail___type___imu_init */
+  46,   /* field[46] = ubx_sensor_fusion_detail___type___ins_init */
+  45,   /* field[45] = ubx_sensor_fusion_detail___type___mnt_alg */
+  44,   /* field[44] = ubx_sensor_fusion_detail___type___wt_init */
   32,   /* field[32] = ubx_sensor_fusion_status_enum */
   39,   /* field[39] = uwb_status_motion_state_enum */
   37,   /* field[37] = uwb_status_role_enum */
@@ -1603,7 +1682,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
 static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 44 }
+  { 0, 49 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1613,7 +1692,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  44,
+  49,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
   1,  tracelet__tracelet_metrics__number_ranges,
