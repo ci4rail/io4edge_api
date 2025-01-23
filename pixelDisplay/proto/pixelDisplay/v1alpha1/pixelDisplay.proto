@@ -74,6 +74,8 @@ message Pixel {
     fixed32 b = 3;
 }
 
+// Upload a pixel image to display on a specific screen area
+// Start and end coordinates are inclusive
 message SetPixelArea {
     fixed32 start_x = 1;
     fixed32 start_y = 2;
@@ -89,7 +91,7 @@ message SetDisplayOn {
 message FunctionControlSet {
     oneof type {
         SetPixelArea set_pixel_area = 1;
-        SetDisplayOn display_on = 2;
+        SetDisplayOff display_off = 2;
     }
 }
 
