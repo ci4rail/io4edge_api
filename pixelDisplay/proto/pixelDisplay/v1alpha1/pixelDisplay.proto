@@ -91,7 +91,7 @@ message SetDisplayOn {
 message FunctionControlSet {
     oneof type {
         SetPixelArea set_pixel_area = 1;
-        SetDisplayOff display_off = 2;
+        SetDisplayOn display_on = 2;
     }
 }
 
