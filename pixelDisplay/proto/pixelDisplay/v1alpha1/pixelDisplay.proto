@@ -1,0 +1,128 @@
+/*
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package pixelDisplay;
+option go_package = "pixelDisplay/v1alpha1";
+
+// ============= Configuration =================
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    // not implemented
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // not implemented
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // not implemented
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // not implemented
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    fixed32 hight_pixel = 1;
+    fixed32 width_pixel = 2;
+}
+
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
+    oneof type {
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // not implemented
+}
+
+message Pixel {
+    fixed32 r = 1;
+    fixed32 g = 2;
+    fixed32 b = 3;
+}
+
+message SetPixelArea {
+    fixed32 start_x = 1;
+    fixed32 start_y = 2;
+    fixed32 end_x = 3;
+    repeated Pixel image = 4;
+}
+
+message SetDisplayOn {
+    bool on = 1;
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    oneof type {
+        SetPixelArea set_pixel_area = 1;
+        SetDisplayOn display_on = 2;
+    }
+}
+
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    // not implemented
+}
+
+message SetPixelAreaResponse {
+    // no parameters
+}
+
+message SetDisplayOnResponse {
+    // no parameters
+}
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    oneof type {
+        SetPixelAreaResponse set_pixel_area = 1;
+        SetDisplayOnResponse display_on = 2;
+    }
+}
+
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // not implemented
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    // not implemented
+}
