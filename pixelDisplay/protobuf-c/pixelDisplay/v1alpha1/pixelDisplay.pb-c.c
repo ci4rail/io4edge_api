@@ -367,51 +367,6 @@ void   pixel_display__function_control_get__free_unpacked
   assert(message->base.descriptor == &pixel_display__function_control_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   pixel_display__pixel__init
-                     (PixelDisplay__Pixel         *message)
-{
-  static const PixelDisplay__Pixel init_value = PIXEL_DISPLAY__PIXEL__INIT;
-  *message = init_value;
-}
-size_t pixel_display__pixel__get_packed_size
-                     (const PixelDisplay__Pixel *message)
-{
-  assert(message->base.descriptor == &pixel_display__pixel__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t pixel_display__pixel__pack
-                     (const PixelDisplay__Pixel *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &pixel_display__pixel__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t pixel_display__pixel__pack_to_buffer
-                     (const PixelDisplay__Pixel *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &pixel_display__pixel__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-PixelDisplay__Pixel *
-       pixel_display__pixel__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (PixelDisplay__Pixel *)
-     protobuf_c_message_unpack (&pixel_display__pixel__descriptor,
-                                allocator, len, data);
-}
-void   pixel_display__pixel__free_unpacked
-                     (PixelDisplay__Pixel *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &pixel_display__pixel__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   pixel_display__set_pixel_area__init
                      (PixelDisplay__SetPixelArea         *message)
 {
@@ -907,7 +862,7 @@ const ProtobufCMessageDescriptor pixel_display__configuration_describe__descript
   (ProtobufCMessageInit) pixel_display__configuration_describe__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor pixel_display__configuration_describe_response__field_descriptors[2] =
+static const ProtobufCFieldDescriptor pixel_display__configuration_describe_response__field_descriptors[3] =
 {
   {
     "hight_pixel",
@@ -933,15 +888,28 @@ static const ProtobufCFieldDescriptor pixel_display__configuration_describe_resp
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "max_lines",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(PixelDisplay__ConfigurationDescribeResponse, max_lines),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned pixel_display__configuration_describe_response__field_indices_by_name[] = {
   0,   /* field[0] = hight_pixel */
+  2,   /* field[2] = max_lines */
   1,   /* field[1] = width_pixel */
 };
 static const ProtobufCIntRange pixel_display__configuration_describe_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor pixel_display__configuration_describe_response__descriptor =
 {
@@ -951,7 +919,7 @@ const ProtobufCMessageDescriptor pixel_display__configuration_describe_response_
   "PixelDisplay__ConfigurationDescribeResponse",
   "pixelDisplay",
   sizeof(PixelDisplay__ConfigurationDescribeResponse),
-  2,
+  3,
   pixel_display__configuration_describe_response__field_descriptors,
   pixel_display__configuration_describe_response__field_indices_by_name,
   1,  pixel_display__configuration_describe_response__number_ranges,
@@ -1040,70 +1008,6 @@ const ProtobufCMessageDescriptor pixel_display__function_control_get__descriptor
   (ProtobufCMessageInit) pixel_display__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor pixel_display__pixel__field_descriptors[3] =
-{
-  {
-    "r",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(PixelDisplay__Pixel, r),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "g",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(PixelDisplay__Pixel, g),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "b",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
-    0,   /* quantifier_offset */
-    offsetof(PixelDisplay__Pixel, b),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned pixel_display__pixel__field_indices_by_name[] = {
-  2,   /* field[2] = b */
-  1,   /* field[1] = g */
-  0,   /* field[0] = r */
-};
-static const ProtobufCIntRange pixel_display__pixel__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
-const ProtobufCMessageDescriptor pixel_display__pixel__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "pixelDisplay.Pixel",
-  "Pixel",
-  "PixelDisplay__Pixel",
-  "pixelDisplay",
-  sizeof(PixelDisplay__Pixel),
-  3,
-  pixel_display__pixel__field_descriptors,
-  pixel_display__pixel__field_indices_by_name,
-  1,  pixel_display__pixel__number_ranges,
-  (ProtobufCMessageInit) pixel_display__pixel__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
 static const ProtobufCFieldDescriptor pixel_display__set_pixel_area__field_descriptors[4] =
 {
   {
@@ -1145,11 +1049,11 @@ static const ProtobufCFieldDescriptor pixel_display__set_pixel_area__field_descr
   {
     "image",
     4,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(PixelDisplay__SetPixelArea, n_image),
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BYTES,
+    0,   /* quantifier_offset */
     offsetof(PixelDisplay__SetPixelArea, image),
-    &pixel_display__pixel__descriptor,
+    NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */

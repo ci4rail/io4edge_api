@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(pixelDisplay/v1alpha1/pixelDisplay.proto\x12\x0cpixelDisplay\"\x12\n\x10\x43onfigurationSet\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"I\n\x1d\x43onfigurationDescribeResponse\x12\x13\n\x0bhight_pixel\x18\x01 \x01(\x07\x12\x13\n\x0bwidth_pixel\x18\x02 \x01(\x07\"\xce\x01\n\x15\x43onfigurationResponse\x12\x35\n\x03get\x18\x01 \x01(\x0b\x32&.pixelDisplay.ConfigurationGetResponseH\x00\x12\x35\n\x03set\x18\x02 \x01(\x0b\x32&.pixelDisplay.ConfigurationSetResponseH\x00\x12?\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32+.pixelDisplay.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"\x14\n\x12\x46unctionControlGet\"(\n\x05Pixel\x12\t\n\x01r\x18\x01 \x01(\x07\x12\t\n\x01g\x18\x02 \x01(\x07\x12\t\n\x01\x62\x18\x03 \x01(\x07\"c\n\x0cSetPixelArea\x12\x0f\n\x07start_x\x18\x01 \x01(\x07\x12\x0f\n\x07start_y\x18\x02 \x01(\x07\x12\r\n\x05\x65nd_x\x18\x03 \x01(\x07\x12\"\n\x05image\x18\x04 \x03(\x0b\x32\x13.pixelDisplay.Pixel\"\x1a\n\x0cSetDisplayOn\x12\n\n\x02on\x18\x01 \x01(\x08\"\x84\x01\n\x12\x46unctionControlSet\x12\x34\n\x0eset_pixel_area\x18\x01 \x01(\x0b\x32\x1a.pixelDisplay.SetPixelAreaH\x00\x12\x30\n\ndisplay_on\x18\x02 \x01(\x0b\x32\x1a.pixelDisplay.SetDisplayOnH\x00\x42\x06\n\x04type\"\x1c\n\x1a\x46unctionControlGetResponse\"\x16\n\x14SetPixelAreaResponse\"\x16\n\x14SetDisplayOnResponse\"\x9c\x01\n\x1a\x46unctionControlSetResponse\x12<\n\x0eset_pixel_area\x18\x01 \x01(\x0b\x32\".pixelDisplay.SetPixelAreaResponseH\x00\x12\x38\n\ndisplay_on\x18\x02 \x01(\x0b\x32\".pixelDisplay.SetDisplayOnResponseH\x00\x42\x06\n\x04type\"\x14\n\x12StreamControlStart\"\x0c\n\nStreamDataB\x17Z\x15pixelDisplay/v1alpha1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(pixelDisplay/v1alpha1/pixelDisplay.proto\x12\x0cpixelDisplay\"\x12\n\x10\x43onfigurationSet\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\\\n\x1d\x43onfigurationDescribeResponse\x12\x13\n\x0bhight_pixel\x18\x01 \x01(\x07\x12\x13\n\x0bwidth_pixel\x18\x02 \x01(\x07\x12\x11\n\tmax_lines\x18\x03 \x01(\x07\"\xce\x01\n\x15\x43onfigurationResponse\x12\x35\n\x03get\x18\x01 \x01(\x0b\x32&.pixelDisplay.ConfigurationGetResponseH\x00\x12\x35\n\x03set\x18\x02 \x01(\x0b\x32&.pixelDisplay.ConfigurationSetResponseH\x00\x12?\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32+.pixelDisplay.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"\x14\n\x12\x46unctionControlGet\"N\n\x0cSetPixelArea\x12\x0f\n\x07start_x\x18\x01 \x01(\x07\x12\x0f\n\x07start_y\x18\x02 \x01(\x07\x12\r\n\x05\x65nd_x\x18\x03 \x01(\x07\x12\r\n\x05image\x18\x04 \x01(\x0c\"\x1a\n\x0cSetDisplayOn\x12\n\n\x02on\x18\x01 \x01(\x08\"\x84\x01\n\x12\x46unctionControlSet\x12\x34\n\x0eset_pixel_area\x18\x01 \x01(\x0b\x32\x1a.pixelDisplay.SetPixelAreaH\x00\x12\x30\n\ndisplay_on\x18\x02 \x01(\x0b\x32\x1a.pixelDisplay.SetDisplayOnH\x00\x42\x06\n\x04type\"\x1c\n\x1a\x46unctionControlGetResponse\"\x16\n\x14SetPixelAreaResponse\"\x16\n\x14SetDisplayOnResponse\"\x9c\x01\n\x1a\x46unctionControlSetResponse\x12<\n\x0eset_pixel_area\x18\x01 \x01(\x0b\x32\".pixelDisplay.SetPixelAreaResponseH\x00\x12\x38\n\ndisplay_on\x18\x02 \x01(\x0b\x32\".pixelDisplay.SetDisplayOnResponseH\x00\x42\x06\n\x04type\"\x14\n\x12StreamControlStart\"\x0c\n\nStreamDataB\x17Z\x15pixelDisplay/v1alpha1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,29 +32,27 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_CONFIGURATIONDESCRIBE']._serialized_start=154
   _globals['_CONFIGURATIONDESCRIBE']._serialized_end=177
   _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=179
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=252
-  _globals['_CONFIGURATIONRESPONSE']._serialized_start=255
-  _globals['_CONFIGURATIONRESPONSE']._serialized_end=461
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=463
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=483
-  _globals['_PIXEL']._serialized_start=485
-  _globals['_PIXEL']._serialized_end=525
-  _globals['_SETPIXELAREA']._serialized_start=527
-  _globals['_SETPIXELAREA']._serialized_end=626
-  _globals['_SETDISPLAYON']._serialized_start=628
-  _globals['_SETDISPLAYON']._serialized_end=654
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=657
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=789
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=791
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=819
-  _globals['_SETPIXELAREARESPONSE']._serialized_start=821
-  _globals['_SETPIXELAREARESPONSE']._serialized_end=843
-  _globals['_SETDISPLAYONRESPONSE']._serialized_start=845
-  _globals['_SETDISPLAYONRESPONSE']._serialized_end=867
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=870
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=1026
-  _globals['_STREAMCONTROLSTART']._serialized_start=1028
-  _globals['_STREAMCONTROLSTART']._serialized_end=1048
-  _globals['_STREAMDATA']._serialized_start=1050
-  _globals['_STREAMDATA']._serialized_end=1062
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=271
+  _globals['_CONFIGURATIONRESPONSE']._serialized_start=274
+  _globals['_CONFIGURATIONRESPONSE']._serialized_end=480
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=482
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=502
+  _globals['_SETPIXELAREA']._serialized_start=504
+  _globals['_SETPIXELAREA']._serialized_end=582
+  _globals['_SETDISPLAYON']._serialized_start=584
+  _globals['_SETDISPLAYON']._serialized_end=610
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=613
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=745
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=747
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=775
+  _globals['_SETPIXELAREARESPONSE']._serialized_start=777
+  _globals['_SETPIXELAREARESPONSE']._serialized_end=799
+  _globals['_SETDISPLAYONRESPONSE']._serialized_start=801
+  _globals['_SETDISPLAYONRESPONSE']._serialized_end=823
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=826
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=982
+  _globals['_STREAMCONTROLSTART']._serialized_start=984
+  _globals['_STREAMCONTROLSTART']._serialized_end=1004
+  _globals['_STREAMDATA']._serialized_start=1006
+  _globals['_STREAMDATA']._serialized_end=1018
 # @@protoc_insertion_point(module_scope)

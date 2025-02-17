@@ -49,6 +49,7 @@ message ConfigurationDescribe {
 message ConfigurationDescribeResponse {
     fixed32 hight_pixel = 1;
     fixed32 width_pixel = 2;
+    fixed32 max_lines = 3; // maximum lines to transfere in one message
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -68,19 +69,13 @@ message FunctionControlGet {
     // not implemented
 }
 
-message Pixel {
-    fixed32 r = 1;
-    fixed32 g = 2;
-    fixed32 b = 3;
-}
-
 // Upload a pixel image to display on a specific screen area
 // Start and end coordinates are inclusive
 message SetPixelArea {
     fixed32 start_x = 1;
     fixed32 start_y = 2;
     fixed32 end_x = 3;
-    repeated Pixel image = 4;
+    bytes image = 4;
 }
 
 message SetDisplayOn {

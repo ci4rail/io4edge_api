@@ -23,7 +23,6 @@ typedef struct _PixelDisplay__ConfigurationDescribe PixelDisplay__ConfigurationD
 typedef struct _PixelDisplay__ConfigurationDescribeResponse PixelDisplay__ConfigurationDescribeResponse;
 typedef struct _PixelDisplay__ConfigurationResponse PixelDisplay__ConfigurationResponse;
 typedef struct _PixelDisplay__FunctionControlGet PixelDisplay__FunctionControlGet;
-typedef struct _PixelDisplay__Pixel PixelDisplay__Pixel;
 typedef struct _PixelDisplay__SetPixelArea PixelDisplay__SetPixelArea;
 typedef struct _PixelDisplay__SetDisplayOn PixelDisplay__SetDisplayOn;
 typedef struct _PixelDisplay__FunctionControlSet PixelDisplay__FunctionControlSet;
@@ -106,10 +105,14 @@ struct  _PixelDisplay__ConfigurationDescribeResponse
   ProtobufCMessage base;
   uint32_t hight_pixel;
   uint32_t width_pixel;
+  /*
+   * maximum lines to transfere in one
+   */
+  uint32_t max_lines;
 };
 #define PIXEL_DISPLAY__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&pixel_display__configuration_describe_response__descriptor) \
-    , 0, 0 }
+    , 0, 0, 0 }
 
 
 typedef enum {
@@ -150,30 +153,21 @@ struct  _PixelDisplay__FunctionControlGet
      }
 
 
-struct  _PixelDisplay__Pixel
-{
-  ProtobufCMessage base;
-  uint32_t r;
-  uint32_t g;
-  uint32_t b;
-};
-#define PIXEL_DISPLAY__PIXEL__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&pixel_display__pixel__descriptor) \
-    , 0, 0, 0 }
-
-
+/*
+ * Upload a pixel image to display on a specific screen area
+ * Start and end coordinates are inclusive
+ */
 struct  _PixelDisplay__SetPixelArea
 {
   ProtobufCMessage base;
   uint32_t start_x;
   uint32_t start_y;
   uint32_t end_x;
-  size_t n_image;
-  PixelDisplay__Pixel **image;
+  ProtobufCBinaryData image;
 };
 #define PIXEL_DISPLAY__SET_PIXEL_AREA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&pixel_display__set_pixel_area__descriptor) \
-    , 0, 0, 0, 0,NULL }
+    , 0, 0, 0, {0,NULL} }
 
 
 struct  _PixelDisplay__SetDisplayOn
@@ -441,25 +435,6 @@ PixelDisplay__FunctionControlGet *
 void   pixel_display__function_control_get__free_unpacked
                      (PixelDisplay__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
-/* PixelDisplay__Pixel methods */
-void   pixel_display__pixel__init
-                     (PixelDisplay__Pixel         *message);
-size_t pixel_display__pixel__get_packed_size
-                     (const PixelDisplay__Pixel   *message);
-size_t pixel_display__pixel__pack
-                     (const PixelDisplay__Pixel   *message,
-                      uint8_t             *out);
-size_t pixel_display__pixel__pack_to_buffer
-                     (const PixelDisplay__Pixel   *message,
-                      ProtobufCBuffer     *buffer);
-PixelDisplay__Pixel *
-       pixel_display__pixel__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   pixel_display__pixel__free_unpacked
-                     (PixelDisplay__Pixel *message,
-                      ProtobufCAllocator *allocator);
 /* PixelDisplay__SetPixelArea methods */
 void   pixel_display__set_pixel_area__init
                      (PixelDisplay__SetPixelArea         *message);
@@ -657,9 +632,6 @@ typedef void (*PixelDisplay__ConfigurationResponse_Closure)
 typedef void (*PixelDisplay__FunctionControlGet_Closure)
                  (const PixelDisplay__FunctionControlGet *message,
                   void *closure_data);
-typedef void (*PixelDisplay__Pixel_Closure)
-                 (const PixelDisplay__Pixel *message,
-                  void *closure_data);
 typedef void (*PixelDisplay__SetPixelArea_Closure)
                  (const PixelDisplay__SetPixelArea *message,
                   void *closure_data);
@@ -701,7 +673,6 @@ extern const ProtobufCMessageDescriptor pixel_display__configuration_describe__d
 extern const ProtobufCMessageDescriptor pixel_display__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor pixel_display__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor pixel_display__function_control_get__descriptor;
-extern const ProtobufCMessageDescriptor pixel_display__pixel__descriptor;
 extern const ProtobufCMessageDescriptor pixel_display__set_pixel_area__descriptor;
 extern const ProtobufCMessageDescriptor pixel_display__set_display_on__descriptor;
 extern const ProtobufCMessageDescriptor pixel_display__function_control_set__descriptor;
