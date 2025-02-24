@@ -865,12 +865,12 @@ const ProtobufCMessageDescriptor pixel_display__configuration_describe__descript
 static const ProtobufCFieldDescriptor pixel_display__configuration_describe_response__field_descriptors[3] =
 {
   {
-    "hight_pixel",
+    "height_pixel",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(PixelDisplay__ConfigurationDescribeResponse, hight_pixel),
+    offsetof(PixelDisplay__ConfigurationDescribeResponse, height_pixel),
     NULL,
     NULL,
     0,             /* flags */
@@ -889,12 +889,12 @@ static const ProtobufCFieldDescriptor pixel_display__configuration_describe_resp
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "max_lines",
+    "max_num_of_pixel",
     3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED32,
     0,   /* quantifier_offset */
-    offsetof(PixelDisplay__ConfigurationDescribeResponse, max_lines),
+    offsetof(PixelDisplay__ConfigurationDescribeResponse, max_num_of_pixel),
     NULL,
     NULL,
     0,             /* flags */
@@ -902,8 +902,8 @@ static const ProtobufCFieldDescriptor pixel_display__configuration_describe_resp
   },
 };
 static const unsigned pixel_display__configuration_describe_response__field_indices_by_name[] = {
-  0,   /* field[0] = hight_pixel */
-  2,   /* field[2] = max_lines */
+  0,   /* field[0] = height_pixel */
+  2,   /* field[2] = max_num_of_pixel */
   1,   /* field[1] = width_pixel */
 };
 static const ProtobufCIntRange pixel_display__configuration_describe_response__number_ranges[1 + 1] =

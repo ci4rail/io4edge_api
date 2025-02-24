@@ -103,12 +103,12 @@ struct  _PixelDisplay__ConfigurationDescribe
 struct  _PixelDisplay__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
-  uint32_t hight_pixel;
+  uint32_t height_pixel;
   uint32_t width_pixel;
   /*
-   * maximum lines to transfere in one
+   * maximum number of pixels to set transmit at once
    */
-  uint32_t max_lines;
+  uint32_t max_num_of_pixel;
 };
 #define PIXEL_DISPLAY__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&pixel_display__configuration_describe_response__descriptor) \

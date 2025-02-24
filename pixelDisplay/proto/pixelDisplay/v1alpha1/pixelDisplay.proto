@@ -47,9 +47,9 @@ message ConfigurationDescribe {
 }
 
 message ConfigurationDescribeResponse {
-    fixed32 hight_pixel = 1;
+    fixed32 height_pixel = 1;
     fixed32 width_pixel = 2;
-    fixed32 max_lines = 3; // maximum lines to transfere in one message
+    fixed32 max_num_of_pixel = 3; // maximum number of pixels to set transmit at once
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
