@@ -408,10 +408,12 @@ struct  _BinaryIoTypeB__StreamControlStart
 struct  _BinaryIoTypeB__Sample
 {
   ProtobufCMessage base;
+  uint64_t timestamp;
+  uint32_t inputs;
 };
 #define BINARY_IO_TYPE_B__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__sample__descriptor) \
-     }
+    , 0, 0 }
 
 
 /*
@@ -420,10 +422,12 @@ struct  _BinaryIoTypeB__Sample
 struct  _BinaryIoTypeB__StreamData
 {
   ProtobufCMessage base;
+  size_t n_samples;
+  BinaryIoTypeB__Sample **samples;
 };
 #define BINARY_IO_TYPE_B__STREAM_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__stream_data__descriptor) \
-     }
+    , 0,NULL }
 
 
 /* BinaryIoTypeB__ConfigurationSet methods */

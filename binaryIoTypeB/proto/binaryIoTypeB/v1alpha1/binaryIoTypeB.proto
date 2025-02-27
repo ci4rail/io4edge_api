@@ -160,14 +160,15 @@ message FunctionControlSetResponse {
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    // not implemented
+    // no parameters
 }
 
 message Sample {
-    // not implemented
+    fixed64 timestamp = 1;
+    fixed32 inputs = 2;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
 message StreamData {
-    // not implemented
+    repeated Sample samples = 1;
 }
