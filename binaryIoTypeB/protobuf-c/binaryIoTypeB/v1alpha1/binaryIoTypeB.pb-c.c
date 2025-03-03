@@ -907,6 +907,51 @@ void   binary_io_type_b__function_control_set_response__free_unpacked
   assert(message->base.descriptor == &binary_io_type_b__function_control_set_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   binary_io_type_b__subscribe_channel__init
+                     (BinaryIoTypeB__SubscribeChannel         *message)
+{
+  static const BinaryIoTypeB__SubscribeChannel init_value = BINARY_IO_TYPE_B__SUBSCRIBE_CHANNEL__INIT;
+  *message = init_value;
+}
+size_t binary_io_type_b__subscribe_channel__get_packed_size
+                     (const BinaryIoTypeB__SubscribeChannel *message)
+{
+  assert(message->base.descriptor == &binary_io_type_b__subscribe_channel__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t binary_io_type_b__subscribe_channel__pack
+                     (const BinaryIoTypeB__SubscribeChannel *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &binary_io_type_b__subscribe_channel__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t binary_io_type_b__subscribe_channel__pack_to_buffer
+                     (const BinaryIoTypeB__SubscribeChannel *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &binary_io_type_b__subscribe_channel__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+BinaryIoTypeB__SubscribeChannel *
+       binary_io_type_b__subscribe_channel__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (BinaryIoTypeB__SubscribeChannel *)
+     protobuf_c_message_unpack (&binary_io_type_b__subscribe_channel__descriptor,
+                                allocator, len, data);
+}
+void   binary_io_type_b__subscribe_channel__free_unpacked
+                     (BinaryIoTypeB__SubscribeChannel *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &binary_io_type_b__subscribe_channel__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   binary_io_type_b__stream_control_start__init
                      (BinaryIoTypeB__StreamControlStart         *message)
 {
@@ -1792,9 +1837,80 @@ const ProtobufCMessageDescriptor binary_io_type_b__function_control_set_response
   (ProtobufCMessageInit) binary_io_type_b__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define binary_io_type_b__stream_control_start__field_descriptors NULL
-#define binary_io_type_b__stream_control_start__field_indices_by_name NULL
-#define binary_io_type_b__stream_control_start__number_ranges NULL
+static const ProtobufCFieldDescriptor binary_io_type_b__subscribe_channel__field_descriptors[2] =
+{
+  {
+    "channel",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeB__SubscribeChannel, channel),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "subscriptionType",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(BinaryIoTypeB__SubscribeChannel, subscriptiontype),
+    &binary_io_type_b__subscription_type__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_b__subscribe_channel__field_indices_by_name[] = {
+  0,   /* field[0] = channel */
+  1,   /* field[1] = subscriptionType */
+};
+static const ProtobufCIntRange binary_io_type_b__subscribe_channel__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor binary_io_type_b__subscribe_channel__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "binaryIoTypeB.SubscribeChannel",
+  "SubscribeChannel",
+  "BinaryIoTypeB__SubscribeChannel",
+  "binaryIoTypeB",
+  sizeof(BinaryIoTypeB__SubscribeChannel),
+  2,
+  binary_io_type_b__subscribe_channel__field_descriptors,
+  binary_io_type_b__subscribe_channel__field_indices_by_name,
+  1,  binary_io_type_b__subscribe_channel__number_ranges,
+  (ProtobufCMessageInit) binary_io_type_b__subscribe_channel__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor binary_io_type_b__stream_control_start__field_descriptors[1] =
+{
+  {
+    "subscribeChannel",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(BinaryIoTypeB__StreamControlStart, n_subscribechannel),
+    offsetof(BinaryIoTypeB__StreamControlStart, subscribechannel),
+    &binary_io_type_b__subscribe_channel__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned binary_io_type_b__stream_control_start__field_indices_by_name[] = {
+  0,   /* field[0] = subscribeChannel */
+};
+static const ProtobufCIntRange binary_io_type_b__stream_control_start__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor binary_io_type_b__stream_control_start__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1803,10 +1919,10 @@ const ProtobufCMessageDescriptor binary_io_type_b__stream_control_start__descrip
   "BinaryIoTypeB__StreamControlStart",
   "binaryIoTypeB",
   sizeof(BinaryIoTypeB__StreamControlStart),
-  0,
+  1,
   binary_io_type_b__stream_control_start__field_descriptors,
   binary_io_type_b__stream_control_start__field_indices_by_name,
-  0,  binary_io_type_b__stream_control_start__number_ranges,
+  1,  binary_io_type_b__stream_control_start__number_ranges,
   (ProtobufCMessageInit) binary_io_type_b__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1927,5 +2043,35 @@ const ProtobufCEnumDescriptor binary_io_type_b__channel_direction__descriptor =
   binary_io_type_b__channel_direction__enum_values_by_name,
   1,
   binary_io_type_b__channel_direction__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCEnumValue binary_io_type_b__subscription_type__enum_values_by_number[3] =
+{
+  { "BINARYIOTYPEB_ON_RISING_EDGE", "BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_RISING_EDGE", 0 },
+  { "BINARYIOTYPEB_ON_FALLING_EDGE", "BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_FALLING_EDGE", 1 },
+  { "BINARYIOTYPEB_ON_ANY_EDGE", "BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_ANY_EDGE", 2 },
+};
+static const ProtobufCIntRange binary_io_type_b__subscription_type__value_ranges[] = {
+{0, 0},{0, 3}
+};
+static const ProtobufCEnumValueIndex binary_io_type_b__subscription_type__enum_values_by_name[3] =
+{
+  { "BINARYIOTYPEB_ON_ANY_EDGE", 2 },
+  { "BINARYIOTYPEB_ON_FALLING_EDGE", 1 },
+  { "BINARYIOTYPEB_ON_RISING_EDGE", 0 },
+};
+const ProtobufCEnumDescriptor binary_io_type_b__subscription_type__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "binaryIoTypeB.SubscriptionType",
+  "SubscriptionType",
+  "BinaryIoTypeB__SubscriptionType",
+  "binaryIoTypeB",
+  3,
+  binary_io_type_b__subscription_type__enum_values_by_number,
+  3,
+  binary_io_type_b__subscription_type__enum_values_by_name,
+  1,
+  binary_io_type_b__subscription_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

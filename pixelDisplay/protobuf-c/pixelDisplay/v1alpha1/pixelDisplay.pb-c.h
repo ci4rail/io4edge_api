@@ -106,7 +106,7 @@ struct  _PixelDisplay__ConfigurationDescribeResponse
   uint32_t height_pixel;
   uint32_t width_pixel;
   /*
-   * maximum number of pixels to set transmit at once
+   * maximum number of pixels to transmit at once
    */
   uint32_t max_num_of_pixel;
 };
@@ -163,6 +163,9 @@ struct  _PixelDisplay__SetPixelArea
   uint32_t start_x;
   uint32_t start_y;
   uint32_t end_x;
+  /*
+   * containing RGB pixel data (3 bytes per pixel) in a with the deflate algorythm compressed format
+   */
   ProtobufCBinaryData image;
 };
 #define PIXEL_DISPLAY__SET_PIXEL_AREA__INIT \

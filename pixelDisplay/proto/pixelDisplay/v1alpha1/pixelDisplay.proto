@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ message ConfigurationDescribe {
 message ConfigurationDescribeResponse {
     fixed32 height_pixel = 1;
     fixed32 width_pixel = 2;
-    fixed32 max_num_of_pixel = 3; // maximum number of pixels to set transmit at once
+    fixed32 max_num_of_pixel = 3; // maximum number of pixels to transmit at once
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -75,7 +75,7 @@ message SetPixelArea {
     fixed32 start_x = 1;
     fixed32 start_y = 2;
     fixed32 end_x = 3;
-    bytes image = 4;
+    bytes image = 4; // containing RGB pixel data (3 bytes per pixel) in a with the deflate algorythm compressed format
 }
 
 message SetDisplayOn {

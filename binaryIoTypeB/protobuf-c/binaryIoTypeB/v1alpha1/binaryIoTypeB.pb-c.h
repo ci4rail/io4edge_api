@@ -35,6 +35,7 @@ typedef struct _BinaryIoTypeB__FunctionControlGetResponse BinaryIoTypeB__Functio
 typedef struct _BinaryIoTypeB__SetSingleResponse BinaryIoTypeB__SetSingleResponse;
 typedef struct _BinaryIoTypeB__SetAllResponse BinaryIoTypeB__SetAllResponse;
 typedef struct _BinaryIoTypeB__FunctionControlSetResponse BinaryIoTypeB__FunctionControlSetResponse;
+typedef struct _BinaryIoTypeB__SubscribeChannel BinaryIoTypeB__SubscribeChannel;
 typedef struct _BinaryIoTypeB__StreamControlStart BinaryIoTypeB__StreamControlStart;
 typedef struct _BinaryIoTypeB__Sample BinaryIoTypeB__Sample;
 typedef struct _BinaryIoTypeB__StreamData BinaryIoTypeB__StreamData;
@@ -57,6 +58,21 @@ typedef enum _BinaryIoTypeB__ChannelDirection {
   BINARY_IO_TYPE_B__CHANNEL_DIRECTION__BINARYIOTYPEB_INPUT_OUTPUT = 2
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__CHANNEL_DIRECTION)
 } BinaryIoTypeB__ChannelDirection;
+typedef enum _BinaryIoTypeB__SubscriptionType {
+  /*
+   * Report on rising edge
+   */
+  BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_RISING_EDGE = 0,
+  /*
+   * Report on falling edge
+   */
+  BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_FALLING_EDGE = 1,
+  /*
+   * Report on any edge
+   */
+  BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_ANY_EDGE = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE)
+} BinaryIoTypeB__SubscriptionType;
 
 /* --- messages --- */
 
@@ -392,6 +408,23 @@ struct  _BinaryIoTypeB__FunctionControlSetResponse
     , BINARY_IO_TYPE_B__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET, {0} }
 
 
+struct  _BinaryIoTypeB__SubscribeChannel
+{
+  ProtobufCMessage base;
+  /*
+   * Number of the binary input channel
+   */
+  uint32_t channel;
+  /*
+   * Define on which channel event client shall be reported
+   */
+  BinaryIoTypeB__SubscriptionType subscriptiontype;
+};
+#define BINARY_IO_TYPE_B__SUBSCRIBE_CHANNEL__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__subscribe_channel__descriptor) \
+    , 0, BINARY_IO_TYPE_B__SUBSCRIPTION_TYPE__BINARYIOTYPEB_ON_RISING_EDGE }
+
+
 /*
  * ============= StreamControl ==================
  * StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
@@ -399,10 +432,12 @@ struct  _BinaryIoTypeB__FunctionControlSetResponse
 struct  _BinaryIoTypeB__StreamControlStart
 {
   ProtobufCMessage base;
+  size_t n_subscribechannel;
+  BinaryIoTypeB__SubscribeChannel **subscribechannel;
 };
 #define BINARY_IO_TYPE_B__STREAM_CONTROL_START__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_b__stream_control_start__descriptor) \
-     }
+    , 0,NULL }
 
 
 struct  _BinaryIoTypeB__Sample
@@ -810,6 +845,25 @@ BinaryIoTypeB__FunctionControlSetResponse *
 void   binary_io_type_b__function_control_set_response__free_unpacked
                      (BinaryIoTypeB__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
+/* BinaryIoTypeB__SubscribeChannel methods */
+void   binary_io_type_b__subscribe_channel__init
+                     (BinaryIoTypeB__SubscribeChannel         *message);
+size_t binary_io_type_b__subscribe_channel__get_packed_size
+                     (const BinaryIoTypeB__SubscribeChannel   *message);
+size_t binary_io_type_b__subscribe_channel__pack
+                     (const BinaryIoTypeB__SubscribeChannel   *message,
+                      uint8_t             *out);
+size_t binary_io_type_b__subscribe_channel__pack_to_buffer
+                     (const BinaryIoTypeB__SubscribeChannel   *message,
+                      ProtobufCBuffer     *buffer);
+BinaryIoTypeB__SubscribeChannel *
+       binary_io_type_b__subscribe_channel__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   binary_io_type_b__subscribe_channel__free_unpacked
+                     (BinaryIoTypeB__SubscribeChannel *message,
+                      ProtobufCAllocator *allocator);
 /* BinaryIoTypeB__StreamControlStart methods */
 void   binary_io_type_b__stream_control_start__init
                      (BinaryIoTypeB__StreamControlStart         *message);
@@ -929,6 +983,9 @@ typedef void (*BinaryIoTypeB__SetAllResponse_Closure)
 typedef void (*BinaryIoTypeB__FunctionControlSetResponse_Closure)
                  (const BinaryIoTypeB__FunctionControlSetResponse *message,
                   void *closure_data);
+typedef void (*BinaryIoTypeB__SubscribeChannel_Closure)
+                 (const BinaryIoTypeB__SubscribeChannel *message,
+                  void *closure_data);
 typedef void (*BinaryIoTypeB__StreamControlStart_Closure)
                  (const BinaryIoTypeB__StreamControlStart *message,
                   void *closure_data);
@@ -945,6 +1002,7 @@ typedef void (*BinaryIoTypeB__StreamData_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    binary_io_type_b__channel_direction__descriptor;
+extern const ProtobufCEnumDescriptor    binary_io_type_b__subscription_type__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__configuration_get__descriptor;
@@ -965,6 +1023,7 @@ extern const ProtobufCMessageDescriptor binary_io_type_b__function_control_get_r
 extern const ProtobufCMessageDescriptor binary_io_type_b__set_single_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__set_all_response__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__function_control_set_response__descriptor;
+extern const ProtobufCMessageDescriptor binary_io_type_b__subscribe_channel__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__sample__descriptor;
 extern const ProtobufCMessageDescriptor binary_io_type_b__stream_data__descriptor;
