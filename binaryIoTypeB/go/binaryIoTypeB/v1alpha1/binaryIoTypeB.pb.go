@@ -87,6 +87,58 @@ func (ChannelDirection) EnumDescriptor() ([]byte, []int) {
 	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{0}
 }
 
+type SubscriptionType int32
+
+const (
+	// Report on rising edge
+	SubscriptionType_BINARYIOTYPEB_ON_RISING_EDGE SubscriptionType = 0
+	// Report on falling edge
+	SubscriptionType_BINARYIOTYPEB_ON_FALLING_EDGE SubscriptionType = 1
+	// Report on any edge
+	SubscriptionType_BINARYIOTYPEB_ON_ANY_EDGE SubscriptionType = 2
+)
+
+// Enum value maps for SubscriptionType.
+var (
+	SubscriptionType_name = map[int32]string{
+		0: "BINARYIOTYPEB_ON_RISING_EDGE",
+		1: "BINARYIOTYPEB_ON_FALLING_EDGE",
+		2: "BINARYIOTYPEB_ON_ANY_EDGE",
+	}
+	SubscriptionType_value = map[string]int32{
+		"BINARYIOTYPEB_ON_RISING_EDGE":  0,
+		"BINARYIOTYPEB_ON_FALLING_EDGE": 1,
+		"BINARYIOTYPEB_ON_ANY_EDGE":     2,
+	}
+)
+
+func (x SubscriptionType) Enum() *SubscriptionType {
+	p := new(SubscriptionType)
+	*p = x
+	return p
+}
+
+func (x SubscriptionType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SubscriptionType) Descriptor() protoreflect.EnumDescriptor {
+	return file_binaryIoTypeB_proto_enumTypes[1].Descriptor()
+}
+
+func (SubscriptionType) Type() protoreflect.EnumType {
+	return &file_binaryIoTypeB_proto_enumTypes[1]
+}
+
+func (x SubscriptionType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SubscriptionType.Descriptor instead.
+func (SubscriptionType) EnumDescriptor() ([]byte, []int) {
+	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{1}
+}
+
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
 	state         protoimpl.MessageState
@@ -1207,18 +1259,77 @@ func (*FunctionControlSetResponse_Single) isFunctionControlSetResponse_Type() {}
 
 func (*FunctionControlSetResponse_All) isFunctionControlSetResponse_Type() {}
 
+type SubscribeChannel struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Number of the binary input channel
+	Channel uint32 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	// Define on which channel event client shall be reported
+	SubscriptionType SubscriptionType `protobuf:"varint,2,opt,name=subscriptionType,proto3,enum=binaryIoTypeB.SubscriptionType" json:"subscriptionType,omitempty"`
+}
+
+func (x *SubscribeChannel) Reset() {
+	*x = SubscribeChannel{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_binaryIoTypeB_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubscribeChannel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscribeChannel) ProtoMessage() {}
+
+func (x *SubscribeChannel) ProtoReflect() protoreflect.Message {
+	mi := &file_binaryIoTypeB_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscribeChannel.ProtoReflect.Descriptor instead.
+func (*SubscribeChannel) Descriptor() ([]byte, []int) {
+	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SubscribeChannel) GetChannel() uint32 {
+	if x != nil {
+		return x.Channel
+	}
+	return 0
+}
+
+func (x *SubscribeChannel) GetSubscriptionType() SubscriptionType {
+	if x != nil {
+		return x.SubscriptionType
+	}
+	return SubscriptionType_BINARYIOTYPEB_ON_RISING_EDGE
+}
+
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 type StreamControlStart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	SubscribeChannel []*SubscribeChannel `protobuf:"bytes,1,rep,name=subscribeChannel,proto3" json:"subscribeChannel,omitempty"`
 }
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeB_proto_msgTypes[20]
+		mi := &file_binaryIoTypeB_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1231,7 +1342,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeB_proto_msgTypes[20]
+	mi := &file_binaryIoTypeB_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,19 +1355,29 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{20}
+	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *StreamControlStart) GetSubscribeChannel() []*SubscribeChannel {
+	if x != nil {
+		return x.SubscribeChannel
+	}
+	return nil
 }
 
 type Sample struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Timestamp uint64 `protobuf:"fixed64,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Inputs    uint32 `protobuf:"fixed32,2,opt,name=inputs,proto3" json:"inputs,omitempty"`
 }
 
 func (x *Sample) Reset() {
 	*x = Sample{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeB_proto_msgTypes[21]
+		mi := &file_binaryIoTypeB_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1269,7 +1390,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeB_proto_msgTypes[21]
+	mi := &file_binaryIoTypeB_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1282,7 +1403,21 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{21}
+	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *Sample) GetTimestamp() uint64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
+func (x *Sample) GetInputs() uint32 {
+	if x != nil {
+		return x.Inputs
+	}
+	return 0
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
@@ -1290,12 +1425,14 @@ type StreamData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Samples []*Sample `protobuf:"bytes,1,rep,name=samples,proto3" json:"samples,omitempty"`
 }
 
 func (x *StreamData) Reset() {
 	*x = StreamData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_binaryIoTypeB_proto_msgTypes[22]
+		mi := &file_binaryIoTypeB_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1308,7 +1445,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_binaryIoTypeB_proto_msgTypes[22]
+	mi := &file_binaryIoTypeB_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1321,7 +1458,14 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{22}
+	return file_binaryIoTypeB_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *StreamData) GetSamples() []*Sample {
+	if x != nil {
+		return x.Samples
+	}
+	return nil
 }
 
 var File_binaryIoTypeB_proto protoreflect.FileDescriptor
@@ -1419,18 +1563,45 @@ var file_binaryIoTypeB_proto_rawDesc = []byte{
 	0x03, 0x61, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x62, 0x69, 0x6e,
 	0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x42, 0x2e, 0x53, 0x65, 0x74, 0x41, 0x6c,
 	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x00, 0x52, 0x03, 0x61, 0x6c, 0x6c,
-	0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72, 0x74, 0x22, 0x08,
-	0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x22, 0x0c, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x2a, 0x65, 0x0a, 0x10, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
-	0x6c, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x13, 0x42, 0x49,
-	0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59, 0x50, 0x45, 0x42, 0x5f, 0x49, 0x4e, 0x50, 0x55,
-	0x54, 0x10, 0x00, 0x12, 0x18, 0x0a, 0x14, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54,
-	0x59, 0x50, 0x45, 0x42, 0x5f, 0x4f, 0x55, 0x54, 0x50, 0x55, 0x54, 0x10, 0x01, 0x12, 0x1e, 0x0a,
-	0x1a, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59, 0x50, 0x45, 0x42, 0x5f, 0x49,
-	0x4e, 0x50, 0x55, 0x54, 0x5f, 0x4f, 0x55, 0x54, 0x50, 0x55, 0x54, 0x10, 0x02, 0x42, 0x18, 0x5a,
-	0x16, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x42, 0x2f, 0x76,
-	0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x79, 0x0a, 0x10, 0x53, 0x75, 0x62, 0x73,
+	0x63, 0x72, 0x69, 0x62, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x18, 0x0a, 0x07,
+	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x52, 0x07, 0x63,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x4b, 0x0a, 0x10, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x1f, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x42,
+	0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70,
+	0x65, 0x52, 0x10, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x54,
+	0x79, 0x70, 0x65, 0x22, 0x61, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x6f, 0x6c, 0x53, 0x74, 0x61, 0x72, 0x74, 0x12, 0x4b, 0x0a, 0x10, 0x73, 0x75, 0x62,
+	0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f, 0x54, 0x79,
+	0x70, 0x65, 0x42, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x43, 0x68, 0x61,
+	0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x10, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x22, 0x3e, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65,
+	0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x06, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x16,
+	0x0a, 0x06, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x06,
+	0x69, 0x6e, 0x70, 0x75, 0x74, 0x73, 0x22, 0x3d, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f,
+	0x54, 0x79, 0x70, 0x65, 0x42, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x52, 0x07, 0x73, 0x61,
+	0x6d, 0x70, 0x6c, 0x65, 0x73, 0x2a, 0x65, 0x0a, 0x10, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x17, 0x0a, 0x13, 0x42, 0x49, 0x4e,
+	0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59, 0x50, 0x45, 0x42, 0x5f, 0x49, 0x4e, 0x50, 0x55, 0x54,
+	0x10, 0x00, 0x12, 0x18, 0x0a, 0x14, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59,
+	0x50, 0x45, 0x42, 0x5f, 0x4f, 0x55, 0x54, 0x50, 0x55, 0x54, 0x10, 0x01, 0x12, 0x1e, 0x0a, 0x1a,
+	0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59, 0x50, 0x45, 0x42, 0x5f, 0x49, 0x4e,
+	0x50, 0x55, 0x54, 0x5f, 0x4f, 0x55, 0x54, 0x50, 0x55, 0x54, 0x10, 0x02, 0x2a, 0x76, 0x0a, 0x10,
+	0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x20, 0x0a, 0x1c, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59, 0x50, 0x45,
+	0x42, 0x5f, 0x4f, 0x4e, 0x5f, 0x52, 0x49, 0x53, 0x49, 0x4e, 0x47, 0x5f, 0x45, 0x44, 0x47, 0x45,
+	0x10, 0x00, 0x12, 0x21, 0x0a, 0x1d, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49, 0x4f, 0x54, 0x59,
+	0x50, 0x45, 0x42, 0x5f, 0x4f, 0x4e, 0x5f, 0x46, 0x41, 0x4c, 0x4c, 0x49, 0x4e, 0x47, 0x5f, 0x45,
+	0x44, 0x47, 0x45, 0x10, 0x01, 0x12, 0x1d, 0x0a, 0x19, 0x42, 0x49, 0x4e, 0x41, 0x52, 0x59, 0x49,
+	0x4f, 0x54, 0x59, 0x50, 0x45, 0x42, 0x5f, 0x4f, 0x4e, 0x5f, 0x41, 0x4e, 0x59, 0x5f, 0x45, 0x44,
+	0x47, 0x45, 0x10, 0x02, 0x42, 0x18, 0x5a, 0x16, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x49, 0x6f,
+	0x54, 0x79, 0x70, 0x65, 0x42, 0x2f, 0x76, 0x31, 0x61, 0x6c, 0x70, 0x68, 0x61, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1445,53 +1616,58 @@ func file_binaryIoTypeB_proto_rawDescGZIP() []byte {
 	return file_binaryIoTypeB_proto_rawDescData
 }
 
-var file_binaryIoTypeB_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_binaryIoTypeB_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_binaryIoTypeB_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_binaryIoTypeB_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_binaryIoTypeB_proto_goTypes = []interface{}{
 	(ChannelDirection)(0),                 // 0: binaryIoTypeB.ChannelDirection
-	(*ConfigurationSet)(nil),              // 1: binaryIoTypeB.ConfigurationSet
-	(*ConfigurationSetResponse)(nil),      // 2: binaryIoTypeB.ConfigurationSetResponse
-	(*ConfigurationGet)(nil),              // 3: binaryIoTypeB.ConfigurationGet
-	(*ConfigurationGetResponse)(nil),      // 4: binaryIoTypeB.ConfigurationGetResponse
-	(*ConfigurationDescribe)(nil),         // 5: binaryIoTypeB.ConfigurationDescribe
-	(*ChannelConfig)(nil),                 // 6: binaryIoTypeB.ChannelConfig
-	(*ConfigurationDescribeResponse)(nil), // 7: binaryIoTypeB.ConfigurationDescribeResponse
-	(*ConfigurationResponse)(nil),         // 8: binaryIoTypeB.ConfigurationResponse
-	(*GetSingle)(nil),                     // 9: binaryIoTypeB.GetSingle
-	(*GetAll)(nil),                        // 10: binaryIoTypeB.GetAll
-	(*FunctionControlGet)(nil),            // 11: binaryIoTypeB.FunctionControlGet
-	(*SetSingle)(nil),                     // 12: binaryIoTypeB.SetSingle
-	(*SetAll)(nil),                        // 13: binaryIoTypeB.SetAll
-	(*FunctionControlSet)(nil),            // 14: binaryIoTypeB.FunctionControlSet
-	(*GetSingleResponse)(nil),             // 15: binaryIoTypeB.GetSingleResponse
-	(*GetAllResponse)(nil),                // 16: binaryIoTypeB.GetAllResponse
-	(*FunctionControlGetResponse)(nil),    // 17: binaryIoTypeB.FunctionControlGetResponse
-	(*SetSingleResponse)(nil),             // 18: binaryIoTypeB.SetSingleResponse
-	(*SetAllResponse)(nil),                // 19: binaryIoTypeB.SetAllResponse
-	(*FunctionControlSetResponse)(nil),    // 20: binaryIoTypeB.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 21: binaryIoTypeB.StreamControlStart
-	(*Sample)(nil),                        // 22: binaryIoTypeB.Sample
-	(*StreamData)(nil),                    // 23: binaryIoTypeB.StreamData
+	(SubscriptionType)(0),                 // 1: binaryIoTypeB.SubscriptionType
+	(*ConfigurationSet)(nil),              // 2: binaryIoTypeB.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 3: binaryIoTypeB.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 4: binaryIoTypeB.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 5: binaryIoTypeB.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 6: binaryIoTypeB.ConfigurationDescribe
+	(*ChannelConfig)(nil),                 // 7: binaryIoTypeB.ChannelConfig
+	(*ConfigurationDescribeResponse)(nil), // 8: binaryIoTypeB.ConfigurationDescribeResponse
+	(*ConfigurationResponse)(nil),         // 9: binaryIoTypeB.ConfigurationResponse
+	(*GetSingle)(nil),                     // 10: binaryIoTypeB.GetSingle
+	(*GetAll)(nil),                        // 11: binaryIoTypeB.GetAll
+	(*FunctionControlGet)(nil),            // 12: binaryIoTypeB.FunctionControlGet
+	(*SetSingle)(nil),                     // 13: binaryIoTypeB.SetSingle
+	(*SetAll)(nil),                        // 14: binaryIoTypeB.SetAll
+	(*FunctionControlSet)(nil),            // 15: binaryIoTypeB.FunctionControlSet
+	(*GetSingleResponse)(nil),             // 16: binaryIoTypeB.GetSingleResponse
+	(*GetAllResponse)(nil),                // 17: binaryIoTypeB.GetAllResponse
+	(*FunctionControlGetResponse)(nil),    // 18: binaryIoTypeB.FunctionControlGetResponse
+	(*SetSingleResponse)(nil),             // 19: binaryIoTypeB.SetSingleResponse
+	(*SetAllResponse)(nil),                // 20: binaryIoTypeB.SetAllResponse
+	(*FunctionControlSetResponse)(nil),    // 21: binaryIoTypeB.FunctionControlSetResponse
+	(*SubscribeChannel)(nil),              // 22: binaryIoTypeB.SubscribeChannel
+	(*StreamControlStart)(nil),            // 23: binaryIoTypeB.StreamControlStart
+	(*Sample)(nil),                        // 24: binaryIoTypeB.Sample
+	(*StreamData)(nil),                    // 25: binaryIoTypeB.StreamData
 }
 var file_binaryIoTypeB_proto_depIdxs = []int32{
 	0,  // 0: binaryIoTypeB.ChannelConfig.direction:type_name -> binaryIoTypeB.ChannelDirection
-	6,  // 1: binaryIoTypeB.ConfigurationDescribeResponse.channelConfig:type_name -> binaryIoTypeB.ChannelConfig
-	4,  // 2: binaryIoTypeB.ConfigurationResponse.get:type_name -> binaryIoTypeB.ConfigurationGetResponse
-	2,  // 3: binaryIoTypeB.ConfigurationResponse.set:type_name -> binaryIoTypeB.ConfigurationSetResponse
-	7,  // 4: binaryIoTypeB.ConfigurationResponse.describe:type_name -> binaryIoTypeB.ConfigurationDescribeResponse
-	9,  // 5: binaryIoTypeB.FunctionControlGet.single:type_name -> binaryIoTypeB.GetSingle
-	10, // 6: binaryIoTypeB.FunctionControlGet.all:type_name -> binaryIoTypeB.GetAll
-	12, // 7: binaryIoTypeB.FunctionControlSet.single:type_name -> binaryIoTypeB.SetSingle
-	13, // 8: binaryIoTypeB.FunctionControlSet.all:type_name -> binaryIoTypeB.SetAll
-	15, // 9: binaryIoTypeB.FunctionControlGetResponse.single:type_name -> binaryIoTypeB.GetSingleResponse
-	16, // 10: binaryIoTypeB.FunctionControlGetResponse.all:type_name -> binaryIoTypeB.GetAllResponse
-	18, // 11: binaryIoTypeB.FunctionControlSetResponse.single:type_name -> binaryIoTypeB.SetSingleResponse
-	19, // 12: binaryIoTypeB.FunctionControlSetResponse.all:type_name -> binaryIoTypeB.SetAllResponse
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	7,  // 1: binaryIoTypeB.ConfigurationDescribeResponse.channelConfig:type_name -> binaryIoTypeB.ChannelConfig
+	5,  // 2: binaryIoTypeB.ConfigurationResponse.get:type_name -> binaryIoTypeB.ConfigurationGetResponse
+	3,  // 3: binaryIoTypeB.ConfigurationResponse.set:type_name -> binaryIoTypeB.ConfigurationSetResponse
+	8,  // 4: binaryIoTypeB.ConfigurationResponse.describe:type_name -> binaryIoTypeB.ConfigurationDescribeResponse
+	10, // 5: binaryIoTypeB.FunctionControlGet.single:type_name -> binaryIoTypeB.GetSingle
+	11, // 6: binaryIoTypeB.FunctionControlGet.all:type_name -> binaryIoTypeB.GetAll
+	13, // 7: binaryIoTypeB.FunctionControlSet.single:type_name -> binaryIoTypeB.SetSingle
+	14, // 8: binaryIoTypeB.FunctionControlSet.all:type_name -> binaryIoTypeB.SetAll
+	16, // 9: binaryIoTypeB.FunctionControlGetResponse.single:type_name -> binaryIoTypeB.GetSingleResponse
+	17, // 10: binaryIoTypeB.FunctionControlGetResponse.all:type_name -> binaryIoTypeB.GetAllResponse
+	19, // 11: binaryIoTypeB.FunctionControlSetResponse.single:type_name -> binaryIoTypeB.SetSingleResponse
+	20, // 12: binaryIoTypeB.FunctionControlSetResponse.all:type_name -> binaryIoTypeB.SetAllResponse
+	1,  // 13: binaryIoTypeB.SubscribeChannel.subscriptionType:type_name -> binaryIoTypeB.SubscriptionType
+	22, // 14: binaryIoTypeB.StreamControlStart.subscribeChannel:type_name -> binaryIoTypeB.SubscribeChannel
+	24, // 15: binaryIoTypeB.StreamData.samples:type_name -> binaryIoTypeB.Sample
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_binaryIoTypeB_proto_init() }
@@ -1741,7 +1917,7 @@ func file_binaryIoTypeB_proto_init() {
 			}
 		}
 		file_binaryIoTypeB_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StreamControlStart); i {
+			switch v := v.(*SubscribeChannel); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1753,7 +1929,7 @@ func file_binaryIoTypeB_proto_init() {
 			}
 		}
 		file_binaryIoTypeB_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Sample); i {
+			switch v := v.(*StreamControlStart); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1765,6 +1941,18 @@ func file_binaryIoTypeB_proto_init() {
 			}
 		}
 		file_binaryIoTypeB_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Sample); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_binaryIoTypeB_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StreamData); i {
 			case 0:
 				return &v.state
@@ -1803,8 +1991,8 @@ func file_binaryIoTypeB_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_binaryIoTypeB_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   23,
+			NumEnums:      2,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@ limitations under the License.
 */
 syntax = "proto3";
 
-package binaryIoTypeB;
-option go_package = "binaryIoTypeB/v1alpha1";
+package pixelDisplay;
+option go_package = "pixelDisplay/v1alpha1";
 
 // ============= Configuration =================
 
@@ -46,24 +46,10 @@ message ConfigurationDescribe {
     // no parameters
 }
 
-enum ChannelDirection {
-    // input channel
-    BINARYIOTYPEB_INPUT = 0;
-    // output channel
-    BINARYIOTYPEB_OUTPUT = 1;
-    // input/output channel
-    BINARYIOTYPEB_INPUT_OUTPUT = 2;
-}
-
-message ChannelConfig {
-    // channel number
-    fixed32 channel = 1;
-    // channel direction
-    ChannelDirection direction = 2;
-}
-
 message ConfigurationDescribeResponse {
-    repeated ChannelConfig channelConfig = 1;
+    fixed32 height_pixel = 1;
+    fixed32 width_pixel = 2;
+    fixed32 max_num_of_pixel = 3; // maximum number of pixels to transmit at once
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -77,114 +63,63 @@ message ConfigurationResponse {
 
 
 // ============= FunctionControl =================
-// Gets the current value of a single binary channel
-message GetSingle {
-    // Specifies the binary input channel (0 - (number of channels - 1))
-    fixed32 channel = 1;
-}
-
-// Gets the values of all binary channels
-message GetAll {
-    // mask to define which channels are affected by the get all command. 0 means not set, 1 means set, LSB is Output0
-    fixed32 mask = 1;
-}
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    oneof type {
-        GetSingle single = 1;
-        GetAll all = 2;
-    }
+    // not implemented
 }
 
-// Sets the value of a single binary channel
-message SetSingle {
-    // Number of the binary output channel (0 - (number of channels - 1))
-    fixed32 channel = 1;
-    // State of the binary output channel. false means inactive, true means active.
-    bool state = 2;
+// Upload a pixel image to display on a specific screen area
+// Start and end coordinates are inclusive
+message SetPixelArea {
+    fixed32 start_x = 1;
+    fixed32 start_y = 2;
+    fixed32 end_x = 3;
+    bytes image = 4; // containing RGB pixel data (3 bytes per pixel) in a with the deflate algorythm compressed format
 }
 
-// Sets all binary channels
-message SetAll {
-    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Output0
-    fixed32 values = 1;
-    // mask to define which channels are affected by the set all command. 0 means not set, 1 means set, LSB is Output0
-    fixed32 mask = 2;
+message SetDisplayOn {
+    bool on = 1;
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
     oneof type {
-        SetSingle single = 1;
-        SetAll all = 2;
+        SetPixelArea set_pixel_area = 1;
+        SetDisplayOn display_on = 2;
     }
 }
 
-message GetSingleResponse {
-    // Number of the binary input channel
-    fixed32 channel = 1;
-    // State for the bianry input channel
-    bool state = 2;
-}
-
-message GetAllResponse {
-    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
-    fixed32 inputs = 1;
-}
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    oneof type {
-        GetSingleResponse single = 1;
-        GetAllResponse all = 2;
-    }
+    // not implemented
 }
 
-message SetSingleResponse {
+message SetPixelAreaResponse {
     // no parameters
 }
 
-message SetAllResponse {
+message SetDisplayOnResponse {
     // no parameters
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
     oneof type {
-        SetSingleResponse single = 1;
-        SetAllResponse all = 2;
+        SetPixelAreaResponse set_pixel_area = 1;
+        SetDisplayOnResponse display_on = 2;
     }
 }
 
-enum SubscriptionType {
-    // Report on rising edge
-    BINARYIOTYPEB_ON_RISING_EDGE = 0;
-    // Report on falling edge
-    BINARYIOTYPEB_ON_FALLING_EDGE = 1;
-    // Report on any edge
-    BINARYIOTYPEB_ON_ANY_EDGE = 2;
-}
-
-message SubscribeChannel {
-    // Number of the binary input channel
-    fixed32 channel = 1;
-    // Define on which channel event client shall be reported
-    SubscriptionType subscriptionType = 2;
-}
 
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    repeated SubscribeChannel subscribeChannel = 1;
-}
-
-message Sample {
-    fixed64 timestamp = 1;
-    fixed32 inputs = 2;
+    // not implemented
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
 message StreamData {
-    repeated Sample samples = 1;
+    // not implemented
 }
