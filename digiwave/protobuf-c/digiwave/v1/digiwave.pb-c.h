@@ -15,35 +15,23 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct _Bitbus__ConfigurationSet Bitbus__ConfigurationSet;
-typedef struct _Bitbus__ConfigurationSetResponse Bitbus__ConfigurationSetResponse;
-typedef struct _Bitbus__ConfigurationGet Bitbus__ConfigurationGet;
-typedef struct _Bitbus__ConfigurationGetResponse Bitbus__ConfigurationGetResponse;
-typedef struct _Bitbus__ConfigurationDescribe Bitbus__ConfigurationDescribe;
-typedef struct _Bitbus__ConfigurationDescribeResponse Bitbus__ConfigurationDescribeResponse;
-typedef struct _Bitbus__FunctionControlGet Bitbus__FunctionControlGet;
-typedef struct _Bitbus__Frame Bitbus__Frame;
-typedef struct _Bitbus__FunctionControlSet Bitbus__FunctionControlSet;
-typedef struct _Bitbus__FunctionControlGetResponse Bitbus__FunctionControlGetResponse;
-typedef struct _Bitbus__FunctionControlSetResponse Bitbus__FunctionControlSetResponse;
-typedef struct _Bitbus__StreamControlStart Bitbus__StreamControlStart;
-typedef struct _Bitbus__Sample Bitbus__Sample;
-typedef struct _Bitbus__StreamData Bitbus__StreamData;
+typedef struct _Digiwave__ConfigurationSet Digiwave__ConfigurationSet;
+typedef struct _Digiwave__ConfigurationSetResponse Digiwave__ConfigurationSetResponse;
+typedef struct _Digiwave__ConfigurationGet Digiwave__ConfigurationGet;
+typedef struct _Digiwave__ConfigurationGetResponse Digiwave__ConfigurationGetResponse;
+typedef struct _Digiwave__ConfigurationDescribe Digiwave__ConfigurationDescribe;
+typedef struct _Digiwave__ConfigurationDescribeResponse Digiwave__ConfigurationDescribeResponse;
+typedef struct _Digiwave__FunctionControlGet Digiwave__FunctionControlGet;
+typedef struct _Digiwave__FunctionControlSet Digiwave__FunctionControlSet;
+typedef struct _Digiwave__FunctionControlGetResponse Digiwave__FunctionControlGetResponse;
+typedef struct _Digiwave__FunctionControlSetResponse Digiwave__FunctionControlSetResponse;
+typedef struct _Digiwave__StreamControlStart Digiwave__StreamControlStart;
+typedef struct _Digiwave__Sample Digiwave__Sample;
+typedef struct _Digiwave__StreamData Digiwave__StreamData;
 
 
 /* --- enums --- */
 
-typedef enum _Bitbus__Sample__Flags {
-  /*
-   * no flags set
-   */
-  BITBUS__SAMPLE__FLAGS__none = 0,
-  /*
-   * frame has a bad CRC
-   */
-  BITBUS__SAMPLE__FLAGS__bad_crc = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BITBUS__SAMPLE__FLAGS)
-} Bitbus__Sample__Flags;
 
 /* --- messages --- */
 
@@ -51,41 +39,29 @@ typedef enum _Bitbus__Sample__Flags {
  * ConfigurationSet to pass to
  * Functionblock.Configuration.functionSpecificConfigurationSet hook
  */
-struct  _Bitbus__ConfigurationSet
+struct  _Digiwave__ConfigurationSet
 {
   ProtobufCMessage base;
-  /*
-   * if true, frames with wrong CRC are not discarded
-   */
-  protobuf_c_boolean ignore_crc;
-  /*
-   * if true, the baudrate shall be set to 62500 (otherwise 375000)
-   */
-  protobuf_c_boolean baud_62500;
   /*
    * if true, recveive frames that are sent by myself
    */
   protobuf_c_boolean full_duplex;
-  /*
-   * bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
-   */
-  ProtobufCBinaryData address_filter;
 };
-#define BITBUS__CONFIGURATION_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_set__descriptor) \
-    , 0, 0, 0, {0,NULL} }
+#define DIGIWAVE__CONFIGURATION_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_set__descriptor) \
+    , 0 }
 
 
 /*
  * ConfigurationSetResponse to pass to
  * Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
  */
-struct  _Bitbus__ConfigurationSetResponse
+struct  _Digiwave__ConfigurationSetResponse
 {
   ProtobufCMessage base;
 };
-#define BITBUS__CONFIGURATION_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_set_response__descriptor) \
+#define DIGIWAVE__CONFIGURATION_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_set_response__descriptor) \
      }
 
 
@@ -93,12 +69,12 @@ struct  _Bitbus__ConfigurationSetResponse
  * ConfigurationGet to pass to
  * Functionblock.Configuration.functionSpecificConfigurationGet hook
  */
-struct  _Bitbus__ConfigurationGet
+struct  _Digiwave__ConfigurationGet
 {
   ProtobufCMessage base;
 };
-#define BITBUS__CONFIGURATION_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_get__descriptor) \
+#define DIGIWAVE__CONFIGURATION_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_get__descriptor) \
      }
 
 
@@ -107,12 +83,12 @@ struct  _Bitbus__ConfigurationGet
  * Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse
  * hook Returns the current hardware configuration
  */
-struct  _Bitbus__ConfigurationGetResponse
+struct  _Digiwave__ConfigurationGetResponse
 {
   ProtobufCMessage base;
 };
-#define BITBUS__CONFIGURATION_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_get_response__descriptor) \
+#define DIGIWAVE__CONFIGURATION_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_get_response__descriptor) \
      }
 
 
@@ -120,21 +96,21 @@ struct  _Bitbus__ConfigurationGetResponse
  * ConfigurationDescribe to pass to
  * Functionblock.Configuration.functionSpecificConfigurationDescribe hook
  */
-struct  _Bitbus__ConfigurationDescribe
+struct  _Digiwave__ConfigurationDescribe
 {
   ProtobufCMessage base;
 };
-#define BITBUS__CONFIGURATION_DESCRIBE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_describe__descriptor) \
+#define DIGIWAVE__CONFIGURATION_DESCRIBE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_describe__descriptor) \
      }
 
 
-struct  _Bitbus__ConfigurationDescribeResponse
+struct  _Digiwave__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
 };
-#define BITBUS__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__configuration_describe_response__descriptor) \
+#define DIGIWAVE__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_describe_response__descriptor) \
      }
 
 
@@ -142,45 +118,30 @@ struct  _Bitbus__ConfigurationDescribeResponse
  * FunctionControlGet to pass to
  * Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
  */
-struct  _Bitbus__FunctionControlGet
+struct  _Digiwave__FunctionControlGet
 {
   ProtobufCMessage base;
 };
-#define BITBUS__FUNCTION_CONTROL_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__function_control_get__descriptor) \
+#define DIGIWAVE__FUNCTION_CONTROL_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__function_control_get__descriptor) \
      }
-
-
-struct  _Bitbus__Frame
-{
-  ProtobufCMessage base;
-  /*
-   * byte 0: address
-   * byte 1: control
-   * byte 2..n: information
-   */
-  ProtobufCBinaryData bitbus_frame;
-};
-#define BITBUS__FRAME__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__frame__descriptor) \
-    , {0,NULL} }
 
 
 /*
  * FunctionControlSet to pass to
  * Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
  */
-struct  _Bitbus__FunctionControlSet
+struct  _Digiwave__FunctionControlSet
 {
   ProtobufCMessage base;
   /*
-   * frames to send to the bus
+   * raw data to for waveform generator
    */
-  size_t n_frames;
-  Bitbus__Frame **frames;
+  size_t n_data;
+  ProtobufCBinaryData *data;
 };
-#define BITBUS__FUNCTION_CONTROL_SET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__function_control_set__descriptor) \
+#define DIGIWAVE__FUNCTION_CONTROL_SET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__function_control_set__descriptor) \
     , 0,NULL }
 
 
@@ -188,12 +149,12 @@ struct  _Bitbus__FunctionControlSet
  * FunctionControlGetResponse to pass to
  * Functionblock.FunctionControlResponse.functionSpecificControlGet hook
  */
-struct  _Bitbus__FunctionControlGetResponse
+struct  _Digiwave__FunctionControlGetResponse
 {
   ProtobufCMessage base;
 };
-#define BITBUS__FUNCTION_CONTROL_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__function_control_get_response__descriptor) \
+#define DIGIWAVE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__function_control_get_response__descriptor) \
      }
 
 
@@ -201,12 +162,12 @@ struct  _Bitbus__FunctionControlGetResponse
  * FunctionControlSetResponse to pass to
  * Functionblock.FunctionControlResponse.functionSpecificControlSet hook
  */
-struct  _Bitbus__FunctionControlSetResponse
+struct  _Digiwave__FunctionControlSetResponse
 {
   ProtobufCMessage base;
 };
-#define BITBUS__FUNCTION_CONTROL_SET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__function_control_set_response__descriptor) \
+#define DIGIWAVE__FUNCTION_CONTROL_SET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__function_control_set_response__descriptor) \
      }
 
 
@@ -214,365 +175,329 @@ struct  _Bitbus__FunctionControlSetResponse
  * StreamControlStart to pass to
  * Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
  */
-struct  _Bitbus__StreamControlStart
+struct  _Digiwave__StreamControlStart
 {
   ProtobufCMessage base;
 };
-#define BITBUS__STREAM_CONTROL_START__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__stream_control_start__descriptor) \
+#define DIGIWAVE__STREAM_CONTROL_START__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__stream_control_start__descriptor) \
      }
 
 
-struct  _Bitbus__Sample
+struct  _Digiwave__Sample
 {
   ProtobufCMessage base;
   /*
-   * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+   * raw data block from waveform analyzer
    */
-  uint64_t timestamp;
-  /*
-   * flags for the sample (bitmask with values from Flags enum)
-   */
-  uint32_t flags;
-  /*
-   * Frame received from the bus
-   * byte 0: address
-   * byte 1: control
-   * byte 2..n: information
-   */
-  ProtobufCBinaryData bitbus_frame;
+  ProtobufCBinaryData transitions_block;
 };
-#define BITBUS__SAMPLE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__sample__descriptor) \
-    , 0, 0, {0,NULL} }
+#define DIGIWAVE__SAMPLE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__sample__descriptor) \
+    , {0,NULL} }
 
 
 /*
  * StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
  */
-struct  _Bitbus__StreamData
+struct  _Digiwave__StreamData
 {
   ProtobufCMessage base;
-  /*
-   * frames received from the bus with timestamp
-   */
   size_t n_samples;
-  Bitbus__Sample **samples;
+  Digiwave__Sample **samples;
 };
-#define BITBUS__STREAM_DATA__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus__stream_data__descriptor) \
+#define DIGIWAVE__STREAM_DATA__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&digiwave__stream_data__descriptor) \
     , 0,NULL }
 
 
-/* Bitbus__ConfigurationSet methods */
-void   bitbus__configuration_set__init
-                     (Bitbus__ConfigurationSet         *message);
-size_t bitbus__configuration_set__get_packed_size
-                     (const Bitbus__ConfigurationSet   *message);
-size_t bitbus__configuration_set__pack
-                     (const Bitbus__ConfigurationSet   *message,
+/* Digiwave__ConfigurationSet methods */
+void   digiwave__configuration_set__init
+                     (Digiwave__ConfigurationSet         *message);
+size_t digiwave__configuration_set__get_packed_size
+                     (const Digiwave__ConfigurationSet   *message);
+size_t digiwave__configuration_set__pack
+                     (const Digiwave__ConfigurationSet   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_set__pack_to_buffer
-                     (const Bitbus__ConfigurationSet   *message,
+size_t digiwave__configuration_set__pack_to_buffer
+                     (const Digiwave__ConfigurationSet   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationSet *
-       bitbus__configuration_set__unpack
+Digiwave__ConfigurationSet *
+       digiwave__configuration_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_set__free_unpacked
-                     (Bitbus__ConfigurationSet *message,
+void   digiwave__configuration_set__free_unpacked
+                     (Digiwave__ConfigurationSet *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__ConfigurationSetResponse methods */
-void   bitbus__configuration_set_response__init
-                     (Bitbus__ConfigurationSetResponse         *message);
-size_t bitbus__configuration_set_response__get_packed_size
-                     (const Bitbus__ConfigurationSetResponse   *message);
-size_t bitbus__configuration_set_response__pack
-                     (const Bitbus__ConfigurationSetResponse   *message,
+/* Digiwave__ConfigurationSetResponse methods */
+void   digiwave__configuration_set_response__init
+                     (Digiwave__ConfigurationSetResponse         *message);
+size_t digiwave__configuration_set_response__get_packed_size
+                     (const Digiwave__ConfigurationSetResponse   *message);
+size_t digiwave__configuration_set_response__pack
+                     (const Digiwave__ConfigurationSetResponse   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_set_response__pack_to_buffer
-                     (const Bitbus__ConfigurationSetResponse   *message,
+size_t digiwave__configuration_set_response__pack_to_buffer
+                     (const Digiwave__ConfigurationSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationSetResponse *
-       bitbus__configuration_set_response__unpack
+Digiwave__ConfigurationSetResponse *
+       digiwave__configuration_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_set_response__free_unpacked
-                     (Bitbus__ConfigurationSetResponse *message,
+void   digiwave__configuration_set_response__free_unpacked
+                     (Digiwave__ConfigurationSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__ConfigurationGet methods */
-void   bitbus__configuration_get__init
-                     (Bitbus__ConfigurationGet         *message);
-size_t bitbus__configuration_get__get_packed_size
-                     (const Bitbus__ConfigurationGet   *message);
-size_t bitbus__configuration_get__pack
-                     (const Bitbus__ConfigurationGet   *message,
+/* Digiwave__ConfigurationGet methods */
+void   digiwave__configuration_get__init
+                     (Digiwave__ConfigurationGet         *message);
+size_t digiwave__configuration_get__get_packed_size
+                     (const Digiwave__ConfigurationGet   *message);
+size_t digiwave__configuration_get__pack
+                     (const Digiwave__ConfigurationGet   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_get__pack_to_buffer
-                     (const Bitbus__ConfigurationGet   *message,
+size_t digiwave__configuration_get__pack_to_buffer
+                     (const Digiwave__ConfigurationGet   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationGet *
-       bitbus__configuration_get__unpack
+Digiwave__ConfigurationGet *
+       digiwave__configuration_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_get__free_unpacked
-                     (Bitbus__ConfigurationGet *message,
+void   digiwave__configuration_get__free_unpacked
+                     (Digiwave__ConfigurationGet *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__ConfigurationGetResponse methods */
-void   bitbus__configuration_get_response__init
-                     (Bitbus__ConfigurationGetResponse         *message);
-size_t bitbus__configuration_get_response__get_packed_size
-                     (const Bitbus__ConfigurationGetResponse   *message);
-size_t bitbus__configuration_get_response__pack
-                     (const Bitbus__ConfigurationGetResponse   *message,
+/* Digiwave__ConfigurationGetResponse methods */
+void   digiwave__configuration_get_response__init
+                     (Digiwave__ConfigurationGetResponse         *message);
+size_t digiwave__configuration_get_response__get_packed_size
+                     (const Digiwave__ConfigurationGetResponse   *message);
+size_t digiwave__configuration_get_response__pack
+                     (const Digiwave__ConfigurationGetResponse   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_get_response__pack_to_buffer
-                     (const Bitbus__ConfigurationGetResponse   *message,
+size_t digiwave__configuration_get_response__pack_to_buffer
+                     (const Digiwave__ConfigurationGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationGetResponse *
-       bitbus__configuration_get_response__unpack
+Digiwave__ConfigurationGetResponse *
+       digiwave__configuration_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_get_response__free_unpacked
-                     (Bitbus__ConfigurationGetResponse *message,
+void   digiwave__configuration_get_response__free_unpacked
+                     (Digiwave__ConfigurationGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__ConfigurationDescribe methods */
-void   bitbus__configuration_describe__init
-                     (Bitbus__ConfigurationDescribe         *message);
-size_t bitbus__configuration_describe__get_packed_size
-                     (const Bitbus__ConfigurationDescribe   *message);
-size_t bitbus__configuration_describe__pack
-                     (const Bitbus__ConfigurationDescribe   *message,
+/* Digiwave__ConfigurationDescribe methods */
+void   digiwave__configuration_describe__init
+                     (Digiwave__ConfigurationDescribe         *message);
+size_t digiwave__configuration_describe__get_packed_size
+                     (const Digiwave__ConfigurationDescribe   *message);
+size_t digiwave__configuration_describe__pack
+                     (const Digiwave__ConfigurationDescribe   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_describe__pack_to_buffer
-                     (const Bitbus__ConfigurationDescribe   *message,
+size_t digiwave__configuration_describe__pack_to_buffer
+                     (const Digiwave__ConfigurationDescribe   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationDescribe *
-       bitbus__configuration_describe__unpack
+Digiwave__ConfigurationDescribe *
+       digiwave__configuration_describe__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_describe__free_unpacked
-                     (Bitbus__ConfigurationDescribe *message,
+void   digiwave__configuration_describe__free_unpacked
+                     (Digiwave__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__ConfigurationDescribeResponse methods */
-void   bitbus__configuration_describe_response__init
-                     (Bitbus__ConfigurationDescribeResponse         *message);
-size_t bitbus__configuration_describe_response__get_packed_size
-                     (const Bitbus__ConfigurationDescribeResponse   *message);
-size_t bitbus__configuration_describe_response__pack
-                     (const Bitbus__ConfigurationDescribeResponse   *message,
+/* Digiwave__ConfigurationDescribeResponse methods */
+void   digiwave__configuration_describe_response__init
+                     (Digiwave__ConfigurationDescribeResponse         *message);
+size_t digiwave__configuration_describe_response__get_packed_size
+                     (const Digiwave__ConfigurationDescribeResponse   *message);
+size_t digiwave__configuration_describe_response__pack
+                     (const Digiwave__ConfigurationDescribeResponse   *message,
                       uint8_t             *out);
-size_t bitbus__configuration_describe_response__pack_to_buffer
-                     (const Bitbus__ConfigurationDescribeResponse   *message,
+size_t digiwave__configuration_describe_response__pack_to_buffer
+                     (const Digiwave__ConfigurationDescribeResponse   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__ConfigurationDescribeResponse *
-       bitbus__configuration_describe_response__unpack
+Digiwave__ConfigurationDescribeResponse *
+       digiwave__configuration_describe_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__configuration_describe_response__free_unpacked
-                     (Bitbus__ConfigurationDescribeResponse *message,
+void   digiwave__configuration_describe_response__free_unpacked
+                     (Digiwave__ConfigurationDescribeResponse *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__FunctionControlGet methods */
-void   bitbus__function_control_get__init
-                     (Bitbus__FunctionControlGet         *message);
-size_t bitbus__function_control_get__get_packed_size
-                     (const Bitbus__FunctionControlGet   *message);
-size_t bitbus__function_control_get__pack
-                     (const Bitbus__FunctionControlGet   *message,
+/* Digiwave__FunctionControlGet methods */
+void   digiwave__function_control_get__init
+                     (Digiwave__FunctionControlGet         *message);
+size_t digiwave__function_control_get__get_packed_size
+                     (const Digiwave__FunctionControlGet   *message);
+size_t digiwave__function_control_get__pack
+                     (const Digiwave__FunctionControlGet   *message,
                       uint8_t             *out);
-size_t bitbus__function_control_get__pack_to_buffer
-                     (const Bitbus__FunctionControlGet   *message,
+size_t digiwave__function_control_get__pack_to_buffer
+                     (const Digiwave__FunctionControlGet   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__FunctionControlGet *
-       bitbus__function_control_get__unpack
+Digiwave__FunctionControlGet *
+       digiwave__function_control_get__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__function_control_get__free_unpacked
-                     (Bitbus__FunctionControlGet *message,
+void   digiwave__function_control_get__free_unpacked
+                     (Digiwave__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__Frame methods */
-void   bitbus__frame__init
-                     (Bitbus__Frame         *message);
-size_t bitbus__frame__get_packed_size
-                     (const Bitbus__Frame   *message);
-size_t bitbus__frame__pack
-                     (const Bitbus__Frame   *message,
+/* Digiwave__FunctionControlSet methods */
+void   digiwave__function_control_set__init
+                     (Digiwave__FunctionControlSet         *message);
+size_t digiwave__function_control_set__get_packed_size
+                     (const Digiwave__FunctionControlSet   *message);
+size_t digiwave__function_control_set__pack
+                     (const Digiwave__FunctionControlSet   *message,
                       uint8_t             *out);
-size_t bitbus__frame__pack_to_buffer
-                     (const Bitbus__Frame   *message,
+size_t digiwave__function_control_set__pack_to_buffer
+                     (const Digiwave__FunctionControlSet   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__Frame *
-       bitbus__frame__unpack
+Digiwave__FunctionControlSet *
+       digiwave__function_control_set__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__frame__free_unpacked
-                     (Bitbus__Frame *message,
+void   digiwave__function_control_set__free_unpacked
+                     (Digiwave__FunctionControlSet *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__FunctionControlSet methods */
-void   bitbus__function_control_set__init
-                     (Bitbus__FunctionControlSet         *message);
-size_t bitbus__function_control_set__get_packed_size
-                     (const Bitbus__FunctionControlSet   *message);
-size_t bitbus__function_control_set__pack
-                     (const Bitbus__FunctionControlSet   *message,
+/* Digiwave__FunctionControlGetResponse methods */
+void   digiwave__function_control_get_response__init
+                     (Digiwave__FunctionControlGetResponse         *message);
+size_t digiwave__function_control_get_response__get_packed_size
+                     (const Digiwave__FunctionControlGetResponse   *message);
+size_t digiwave__function_control_get_response__pack
+                     (const Digiwave__FunctionControlGetResponse   *message,
                       uint8_t             *out);
-size_t bitbus__function_control_set__pack_to_buffer
-                     (const Bitbus__FunctionControlSet   *message,
+size_t digiwave__function_control_get_response__pack_to_buffer
+                     (const Digiwave__FunctionControlGetResponse   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__FunctionControlSet *
-       bitbus__function_control_set__unpack
+Digiwave__FunctionControlGetResponse *
+       digiwave__function_control_get_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__function_control_set__free_unpacked
-                     (Bitbus__FunctionControlSet *message,
+void   digiwave__function_control_get_response__free_unpacked
+                     (Digiwave__FunctionControlGetResponse *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__FunctionControlGetResponse methods */
-void   bitbus__function_control_get_response__init
-                     (Bitbus__FunctionControlGetResponse         *message);
-size_t bitbus__function_control_get_response__get_packed_size
-                     (const Bitbus__FunctionControlGetResponse   *message);
-size_t bitbus__function_control_get_response__pack
-                     (const Bitbus__FunctionControlGetResponse   *message,
+/* Digiwave__FunctionControlSetResponse methods */
+void   digiwave__function_control_set_response__init
+                     (Digiwave__FunctionControlSetResponse         *message);
+size_t digiwave__function_control_set_response__get_packed_size
+                     (const Digiwave__FunctionControlSetResponse   *message);
+size_t digiwave__function_control_set_response__pack
+                     (const Digiwave__FunctionControlSetResponse   *message,
                       uint8_t             *out);
-size_t bitbus__function_control_get_response__pack_to_buffer
-                     (const Bitbus__FunctionControlGetResponse   *message,
+size_t digiwave__function_control_set_response__pack_to_buffer
+                     (const Digiwave__FunctionControlSetResponse   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__FunctionControlGetResponse *
-       bitbus__function_control_get_response__unpack
+Digiwave__FunctionControlSetResponse *
+       digiwave__function_control_set_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__function_control_get_response__free_unpacked
-                     (Bitbus__FunctionControlGetResponse *message,
+void   digiwave__function_control_set_response__free_unpacked
+                     (Digiwave__FunctionControlSetResponse *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__FunctionControlSetResponse methods */
-void   bitbus__function_control_set_response__init
-                     (Bitbus__FunctionControlSetResponse         *message);
-size_t bitbus__function_control_set_response__get_packed_size
-                     (const Bitbus__FunctionControlSetResponse   *message);
-size_t bitbus__function_control_set_response__pack
-                     (const Bitbus__FunctionControlSetResponse   *message,
+/* Digiwave__StreamControlStart methods */
+void   digiwave__stream_control_start__init
+                     (Digiwave__StreamControlStart         *message);
+size_t digiwave__stream_control_start__get_packed_size
+                     (const Digiwave__StreamControlStart   *message);
+size_t digiwave__stream_control_start__pack
+                     (const Digiwave__StreamControlStart   *message,
                       uint8_t             *out);
-size_t bitbus__function_control_set_response__pack_to_buffer
-                     (const Bitbus__FunctionControlSetResponse   *message,
+size_t digiwave__stream_control_start__pack_to_buffer
+                     (const Digiwave__StreamControlStart   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__FunctionControlSetResponse *
-       bitbus__function_control_set_response__unpack
+Digiwave__StreamControlStart *
+       digiwave__stream_control_start__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__function_control_set_response__free_unpacked
-                     (Bitbus__FunctionControlSetResponse *message,
+void   digiwave__stream_control_start__free_unpacked
+                     (Digiwave__StreamControlStart *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__StreamControlStart methods */
-void   bitbus__stream_control_start__init
-                     (Bitbus__StreamControlStart         *message);
-size_t bitbus__stream_control_start__get_packed_size
-                     (const Bitbus__StreamControlStart   *message);
-size_t bitbus__stream_control_start__pack
-                     (const Bitbus__StreamControlStart   *message,
+/* Digiwave__Sample methods */
+void   digiwave__sample__init
+                     (Digiwave__Sample         *message);
+size_t digiwave__sample__get_packed_size
+                     (const Digiwave__Sample   *message);
+size_t digiwave__sample__pack
+                     (const Digiwave__Sample   *message,
                       uint8_t             *out);
-size_t bitbus__stream_control_start__pack_to_buffer
-                     (const Bitbus__StreamControlStart   *message,
+size_t digiwave__sample__pack_to_buffer
+                     (const Digiwave__Sample   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__StreamControlStart *
-       bitbus__stream_control_start__unpack
+Digiwave__Sample *
+       digiwave__sample__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__stream_control_start__free_unpacked
-                     (Bitbus__StreamControlStart *message,
+void   digiwave__sample__free_unpacked
+                     (Digiwave__Sample *message,
                       ProtobufCAllocator *allocator);
-/* Bitbus__Sample methods */
-void   bitbus__sample__init
-                     (Bitbus__Sample         *message);
-size_t bitbus__sample__get_packed_size
-                     (const Bitbus__Sample   *message);
-size_t bitbus__sample__pack
-                     (const Bitbus__Sample   *message,
+/* Digiwave__StreamData methods */
+void   digiwave__stream_data__init
+                     (Digiwave__StreamData         *message);
+size_t digiwave__stream_data__get_packed_size
+                     (const Digiwave__StreamData   *message);
+size_t digiwave__stream_data__pack
+                     (const Digiwave__StreamData   *message,
                       uint8_t             *out);
-size_t bitbus__sample__pack_to_buffer
-                     (const Bitbus__Sample   *message,
+size_t digiwave__stream_data__pack_to_buffer
+                     (const Digiwave__StreamData   *message,
                       ProtobufCBuffer     *buffer);
-Bitbus__Sample *
-       bitbus__sample__unpack
+Digiwave__StreamData *
+       digiwave__stream_data__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   bitbus__sample__free_unpacked
-                     (Bitbus__Sample *message,
-                      ProtobufCAllocator *allocator);
-/* Bitbus__StreamData methods */
-void   bitbus__stream_data__init
-                     (Bitbus__StreamData         *message);
-size_t bitbus__stream_data__get_packed_size
-                     (const Bitbus__StreamData   *message);
-size_t bitbus__stream_data__pack
-                     (const Bitbus__StreamData   *message,
-                      uint8_t             *out);
-size_t bitbus__stream_data__pack_to_buffer
-                     (const Bitbus__StreamData   *message,
-                      ProtobufCBuffer     *buffer);
-Bitbus__StreamData *
-       bitbus__stream_data__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   bitbus__stream_data__free_unpacked
-                     (Bitbus__StreamData *message,
+void   digiwave__stream_data__free_unpacked
+                     (Digiwave__StreamData *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Bitbus__ConfigurationSet_Closure)
-                 (const Bitbus__ConfigurationSet *message,
+typedef void (*Digiwave__ConfigurationSet_Closure)
+                 (const Digiwave__ConfigurationSet *message,
                   void *closure_data);
-typedef void (*Bitbus__ConfigurationSetResponse_Closure)
-                 (const Bitbus__ConfigurationSetResponse *message,
+typedef void (*Digiwave__ConfigurationSetResponse_Closure)
+                 (const Digiwave__ConfigurationSetResponse *message,
                   void *closure_data);
-typedef void (*Bitbus__ConfigurationGet_Closure)
-                 (const Bitbus__ConfigurationGet *message,
+typedef void (*Digiwave__ConfigurationGet_Closure)
+                 (const Digiwave__ConfigurationGet *message,
                   void *closure_data);
-typedef void (*Bitbus__ConfigurationGetResponse_Closure)
-                 (const Bitbus__ConfigurationGetResponse *message,
+typedef void (*Digiwave__ConfigurationGetResponse_Closure)
+                 (const Digiwave__ConfigurationGetResponse *message,
                   void *closure_data);
-typedef void (*Bitbus__ConfigurationDescribe_Closure)
-                 (const Bitbus__ConfigurationDescribe *message,
+typedef void (*Digiwave__ConfigurationDescribe_Closure)
+                 (const Digiwave__ConfigurationDescribe *message,
                   void *closure_data);
-typedef void (*Bitbus__ConfigurationDescribeResponse_Closure)
-                 (const Bitbus__ConfigurationDescribeResponse *message,
+typedef void (*Digiwave__ConfigurationDescribeResponse_Closure)
+                 (const Digiwave__ConfigurationDescribeResponse *message,
                   void *closure_data);
-typedef void (*Bitbus__FunctionControlGet_Closure)
-                 (const Bitbus__FunctionControlGet *message,
+typedef void (*Digiwave__FunctionControlGet_Closure)
+                 (const Digiwave__FunctionControlGet *message,
                   void *closure_data);
-typedef void (*Bitbus__Frame_Closure)
-                 (const Bitbus__Frame *message,
+typedef void (*Digiwave__FunctionControlSet_Closure)
+                 (const Digiwave__FunctionControlSet *message,
                   void *closure_data);
-typedef void (*Bitbus__FunctionControlSet_Closure)
-                 (const Bitbus__FunctionControlSet *message,
+typedef void (*Digiwave__FunctionControlGetResponse_Closure)
+                 (const Digiwave__FunctionControlGetResponse *message,
                   void *closure_data);
-typedef void (*Bitbus__FunctionControlGetResponse_Closure)
-                 (const Bitbus__FunctionControlGetResponse *message,
+typedef void (*Digiwave__FunctionControlSetResponse_Closure)
+                 (const Digiwave__FunctionControlSetResponse *message,
                   void *closure_data);
-typedef void (*Bitbus__FunctionControlSetResponse_Closure)
-                 (const Bitbus__FunctionControlSetResponse *message,
+typedef void (*Digiwave__StreamControlStart_Closure)
+                 (const Digiwave__StreamControlStart *message,
                   void *closure_data);
-typedef void (*Bitbus__StreamControlStart_Closure)
-                 (const Bitbus__StreamControlStart *message,
+typedef void (*Digiwave__Sample_Closure)
+                 (const Digiwave__Sample *message,
                   void *closure_data);
-typedef void (*Bitbus__Sample_Closure)
-                 (const Bitbus__Sample *message,
-                  void *closure_data);
-typedef void (*Bitbus__StreamData_Closure)
-                 (const Bitbus__StreamData *message,
+typedef void (*Digiwave__StreamData_Closure)
+                 (const Digiwave__StreamData *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -580,21 +505,19 @@ typedef void (*Bitbus__StreamData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor bitbus__configuration_set__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__configuration_set_response__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__configuration_get__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__configuration_get_response__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__configuration_describe__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__configuration_describe_response__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__function_control_get__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__frame__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__function_control_set__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__function_control_get_response__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__function_control_set_response__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__stream_control_start__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__sample__descriptor;
-extern const ProtobufCEnumDescriptor    bitbus__sample__flags__descriptor;
-extern const ProtobufCMessageDescriptor bitbus__stream_data__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_set__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_set_response__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_get__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_get_response__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__configuration_describe_response__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__function_control_get__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__function_control_set__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__function_control_get_response__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__function_control_set_response__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__stream_control_start__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__sample__descriptor;
+extern const ProtobufCMessageDescriptor digiwave__stream_data__descriptor;
 
 PROTOBUF_C__END_DECLS
 
