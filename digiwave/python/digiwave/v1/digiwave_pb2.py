@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x64igiwave/v1/digiwave.proto\x12\x08\x64igiwave\"\'\n\x10\x43onfigurationSet\x12\x13\n\x0b\x66ull_duplex\x18\x01 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\"\n\x12\x46unctionControlSet\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x0c\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"#\n\x06Sample\x12\x19\n\x11transitions_block\x18\x01 \x01(\x0c\"/\n\nStreamData\x12!\n\x07samples\x18\x01 \x03(\x0b\x32\x10.digiwave.SampleB\rZ\x0b\x64igiwave/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x64igiwave/v1/digiwave.proto\x12\x08\x64igiwave\"9\n\x10\x43onfigurationSet\x12\x13\n\x0b\x66ull_duplex\x18\x01 \x01(\x08\x12\x10\n\x08\x63laim_rx\x18\x02 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\"\n\x12\x46unctionControlSet\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x0c\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"#\n\x06Sample\x12\x19\n\x11transitions_block\x18\x01 \x01(\x0c\"/\n\nStreamData\x12!\n\x07samples\x18\x01 \x03(\x0b\x32\x10.digiwave.SampleB\rZ\x0b\x64igiwave/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,29 +22,29 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\013digiwave/v1'
   _globals['_CONFIGURATIONSET']._serialized_start=40
-  _globals['_CONFIGURATIONSET']._serialized_end=79
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=81
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=107
-  _globals['_CONFIGURATIONGET']._serialized_start=109
-  _globals['_CONFIGURATIONGET']._serialized_end=127
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=129
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=155
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=157
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=180
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=182
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=213
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=215
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=235
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=237
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=271
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=273
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=301
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=303
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=331
-  _globals['_STREAMCONTROLSTART']._serialized_start=333
-  _globals['_STREAMCONTROLSTART']._serialized_end=353
-  _globals['_SAMPLE']._serialized_start=355
-  _globals['_SAMPLE']._serialized_end=390
-  _globals['_STREAMDATA']._serialized_start=392
-  _globals['_STREAMDATA']._serialized_end=439
+  _globals['_CONFIGURATIONSET']._serialized_end=97
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=99
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=125
+  _globals['_CONFIGURATIONGET']._serialized_start=127
+  _globals['_CONFIGURATIONGET']._serialized_end=145
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=147
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=173
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=175
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=198
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=200
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=231
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=233
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=253
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=255
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=289
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=291
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=319
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=321
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=349
+  _globals['_STREAMCONTROLSTART']._serialized_start=351
+  _globals['_STREAMCONTROLSTART']._serialized_end=371
+  _globals['_SAMPLE']._serialized_start=373
+  _globals['_SAMPLE']._serialized_end=408
+  _globals['_STREAMDATA']._serialized_start=410
+  _globals['_STREAMDATA']._serialized_end=457
 # @@protoc_insertion_point(module_scope)

@@ -46,10 +46,14 @@ struct  _Digiwave__ConfigurationSet
    * if true, recveive frames that are sent by myself
    */
   protobuf_c_boolean full_duplex;
+  /*
+   * if true, claim the RX channel for digiwave
+   */
+  protobuf_c_boolean claim_rx;
 };
 #define DIGIWAVE__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_set__descriptor) \
-    , 0 }
+    , 0, 0 }
 
 
 /*
