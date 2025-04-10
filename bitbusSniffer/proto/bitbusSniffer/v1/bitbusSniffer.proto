@@ -1,0 +1,125 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package bitbusSniffer;
+option go_package = "bitbusSniffer/v1";
+
+// ============= Configuration =================
+
+// ConfigurationSet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+  bool ignore_crc = 1; // if true, frames with wrong CRC are not discarded
+  bool baud_62500 = 2; // if true, the baudrate shall be set to 62500 (otherwise 375000)
+  bool full_duplex = 3; // if true, recveive frames that are sent by myself
+  bytes address_filter = 4; // bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
+                            // Set bit to 1 to receive frames with the corresponding address)
+}
+
+// ConfigurationSetResponse to pass to
+// Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+  // no parameters
+}
+
+// ConfigurationGet to pass to
+// Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+  // no parameters
+}
+
+// ConfigurationGetResponse to pass to
+// Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse
+// hook Returns the current hardware configuration
+message ConfigurationGetResponse {
+  // not implemented
+}
+
+// ConfigurationDescribe to pass to
+// Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+  // no parameters
+}
+
+message ConfigurationDescribeResponse {
+  // Not implemented
+}
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+  // no parameters
+}
+
+message Frame {
+  // byte 0: address
+  // byte 1: control
+  // byte 2..n: information
+  bytes bitbus_frame = 1; 
+}
+
+// FunctionControlSet to pass to
+// Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+  repeated Frame frames = 1; // frames to send to the bus
+}
+
+// FunctionControlGetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+  // Not implemented
+}
+
+// FunctionControlSetResponse to pass to
+// Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+  // Not implemented
+}
+
+// ============= StreamControl ==================
+
+// StreamControlStart to pass to
+// Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+  // no parameters
+}
+
+message Sample {
+  enum Flags {
+    none = 0; // no flags set
+    bad_crc = 0x01; // frame has a bad CRC
+  }
+
+  // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+  fixed64 timestamp = 1;
+
+  // flags for the sample (bitmask with values from Flags enum)
+  uint32 flags = 2; 
+
+  // Frame received from the bus
+  // byte 0: address
+  // byte 1: control
+  // byte 2..n: information
+  bytes bitbus_frame = 3; 
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+  repeated Sample samples = 1; // frames received from the bus with timestamp
+}
