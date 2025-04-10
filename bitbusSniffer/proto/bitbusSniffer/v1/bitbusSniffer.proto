@@ -25,8 +25,7 @@ option go_package = "bitbusSniffer/v1";
 message ConfigurationSet {
   bool ignore_crc = 1; // if true, frames with wrong CRC are not discarded
   bool baud_62500 = 2; // if true, the baudrate shall be set to 62500 (otherwise 375000)
-  bool full_duplex = 3; // if true, recveive frames that are sent by myself
-  bytes address_filter = 4; // bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
+  bytes address_filter = 3; // bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
                             // Set bit to 1 to receive frames with the corresponding address)
 }
 

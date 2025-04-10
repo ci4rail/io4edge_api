@@ -63,17 +63,13 @@ struct  _BitbusSniffer__ConfigurationSet
    */
   protobuf_c_boolean baud_62500;
   /*
-   * if true, recveive frames that are sent by myself
-   */
-  protobuf_c_boolean full_duplex;
-  /*
    * bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
    */
   ProtobufCBinaryData address_filter;
 };
 #define BITBUS_SNIFFER__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__configuration_set__descriptor) \
-    , 0, 0, 0, {0,NULL} }
+    , 0, 0, {0,NULL} }
 
 
 /*
