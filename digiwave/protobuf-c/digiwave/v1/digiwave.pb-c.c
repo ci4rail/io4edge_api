@@ -756,9 +756,9 @@ static const ProtobufCFieldDescriptor digiwave__function_control_set__field_desc
   {
     "data",
     1,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BYTES,
-    offsetof(Digiwave__FunctionControlSet, n_data),
+    0,   /* quantifier_offset */
     offsetof(Digiwave__FunctionControlSet, data),
     NULL,
     NULL,

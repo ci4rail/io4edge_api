@@ -139,14 +139,13 @@ struct  _Digiwave__FunctionControlSet
 {
   ProtobufCMessage base;
   /*
-   * raw data to for waveform generator
+   * raw data for waveform generator
    */
-  size_t n_data;
-  ProtobufCBinaryData *data;
+  ProtobufCBinaryData data;
 };
 #define DIGIWAVE__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&digiwave__function_control_set__descriptor) \
-    , 0,NULL }
+    , {0,NULL} }
 
 
 /*
