@@ -67,7 +67,7 @@ message FunctionControlGet {
 // FunctionControlSet to pass to
 // Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-  repeated bytes data = 1; // raw data to for waveform generator
+  bytes data = 1; // raw data for waveform generator
 }
 
 // FunctionControlGetResponse to pass to

@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x64igiwave/v1/digiwave.proto\x12\x08\x64igiwave\"9\n\x10\x43onfigurationSet\x12\x13\n\x0b\x66ull_duplex\x18\x01 \x01(\x08\x12\x10\n\x08\x63laim_rx\x18\x02 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\"\n\x12\x46unctionControlSet\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x0c\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"#\n\x06Sample\x12\x19\n\x11transitions_block\x18\x01 \x01(\x0c\"/\n\nStreamData\x12!\n\x07samples\x18\x01 \x03(\x0b\x32\x10.digiwave.SampleB\rZ\x0b\x64igiwave/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x64igiwave/v1/digiwave.proto\x12\x08\x64igiwave\"9\n\x10\x43onfigurationSet\x12\x13\n\x0b\x66ull_duplex\x18\x01 \x01(\x08\x12\x10\n\x08\x63laim_rx\x18\x02 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\"\n\x12\x46unctionControlSet\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"#\n\x06Sample\x12\x19\n\x11transitions_block\x18\x01 \x01(\x0c\"/\n\nStreamData\x12!\n\x07samples\x18\x01 \x03(\x0b\x32\x10.digiwave.SampleB\rZ\x0b\x64igiwave/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
