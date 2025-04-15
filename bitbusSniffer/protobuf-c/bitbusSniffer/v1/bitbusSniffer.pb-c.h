@@ -43,9 +43,13 @@ typedef enum _BitbusSniffer__Sample__Flags {
    */
   BITBUS_SNIFFER__SAMPLE__FLAGS__bad_crc = 1,
   /*
-   * one or more message were lost before this frame
+   * one or more message were lost (between uc and fpga) before this frame
    */
-  BITBUS_SNIFFER__SAMPLE__FLAGS__frames_lost = 16
+  BITBUS_SNIFFER__SAMPLE__FLAGS__frames_lost = 16,
+  /*
+   * buffer overrun (between uc and host) before this frame
+   */
+  BITBUS_SNIFFER__SAMPLE__FLAGS__buf_overrun = 32
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BITBUS_SNIFFER__SAMPLE__FLAGS)
 } BitbusSniffer__Sample__Flags;
 

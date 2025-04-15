@@ -103,7 +103,8 @@ message Sample {
   enum Flags {
     none = 0; // no flags set
     bad_crc = 0x01; // frame has a bad CRC
-    frames_lost = 0x10; // one or more message were lost before this frame
+    frames_lost = 0x10; // one or more message were lost (between uc and fpga) before this frame
+    buf_overrun = 0x20; // buffer overrun (between uc and host) before this frame
   }
 
   // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
