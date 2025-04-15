@@ -592,7 +592,7 @@ void   digiwave__stream_data__free_unpacked
   assert(message->base.descriptor == &digiwave__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor digiwave__configuration_set__field_descriptors[2] =
+static const ProtobufCFieldDescriptor digiwave__configuration_set__field_descriptors[3] =
 {
   {
     "full_duplex",
@@ -618,15 +618,28 @@ static const ProtobufCFieldDescriptor digiwave__configuration_set__field_descrip
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "loopback",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Digiwave__ConfigurationSet, loopback),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned digiwave__configuration_set__field_indices_by_name[] = {
   1,   /* field[1] = claim_rx */
   0,   /* field[0] = full_duplex */
+  2,   /* field[2] = loopback */
 };
 static const ProtobufCIntRange digiwave__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor digiwave__configuration_set__descriptor =
 {
@@ -636,7 +649,7 @@ const ProtobufCMessageDescriptor digiwave__configuration_set__descriptor =
   "Digiwave__ConfigurationSet",
   "digiwave",
   sizeof(Digiwave__ConfigurationSet),
-  2,
+  3,
   digiwave__configuration_set__field_descriptors,
   digiwave__configuration_set__field_indices_by_name,
   1,  digiwave__configuration_set__number_ranges,

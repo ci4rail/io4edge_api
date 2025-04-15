@@ -939,17 +939,19 @@ const ProtobufCMessageDescriptor bitbus_sniffer__stream_control_start__descripto
   (ProtobufCMessageInit) bitbus_sniffer__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue bitbus_sniffer__sample__flags__enum_values_by_number[2] =
+static const ProtobufCEnumValue bitbus_sniffer__sample__flags__enum_values_by_number[3] =
 {
   { "none", "BITBUS_SNIFFER__SAMPLE__FLAGS__none", 0 },
   { "bad_crc", "BITBUS_SNIFFER__SAMPLE__FLAGS__bad_crc", 1 },
+  { "frames_lost", "BITBUS_SNIFFER__SAMPLE__FLAGS__frames_lost", 16 },
 };
 static const ProtobufCIntRange bitbus_sniffer__sample__flags__value_ranges[] = {
-{0, 0},{0, 2}
+{0, 0},{16, 2},{0, 3}
 };
-static const ProtobufCEnumValueIndex bitbus_sniffer__sample__flags__enum_values_by_name[2] =
+static const ProtobufCEnumValueIndex bitbus_sniffer__sample__flags__enum_values_by_name[3] =
 {
   { "bad_crc", 1 },
+  { "frames_lost", 2 },
   { "none", 0 },
 };
 const ProtobufCEnumDescriptor bitbus_sniffer__sample__flags__descriptor =
@@ -959,11 +961,11 @@ const ProtobufCEnumDescriptor bitbus_sniffer__sample__flags__descriptor =
   "Flags",
   "BitbusSniffer__Sample__Flags",
   "bitbusSniffer",
-  2,
+  3,
   bitbus_sniffer__sample__flags__enum_values_by_number,
-  2,
+  3,
   bitbus_sniffer__sample__flags__enum_values_by_name,
-  1,
+  2,
   bitbus_sniffer__sample__flags__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

@@ -50,10 +50,14 @@ struct  _Digiwave__ConfigurationSet
    * if true, claim the RX channel for digiwave
    */
   protobuf_c_boolean claim_rx;
+  /*
+   * if true, use internal loopback
+   */
+  protobuf_c_boolean loopback;
 };
 #define DIGIWAVE__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&digiwave__configuration_set__descriptor) \
-    , 0, 0 }
+    , 0, 0, 0 }
 
 
 /*

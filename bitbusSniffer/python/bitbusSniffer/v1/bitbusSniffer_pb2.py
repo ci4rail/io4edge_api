@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$bitbusSniffer/v1/bitbusSniffer.proto\x12\rbitbusSniffer\"R\n\x10\x43onfigurationSet\x12\x12\n\nignore_crc\x18\x01 \x01(\x08\x12\x12\n\nbaud_62500\x18\x02 \x01(\x08\x12\x16\n\x0e\x61\x64\x64ress_filter\x18\x03 \x01(\x0c\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\x1d\n\x05\x46rame\x12\x14\n\x0c\x62itbus_frame\x18\x01 \x01(\x0c\":\n\x12\x46unctionControlSet\x12$\n\x06\x66rames\x18\x01 \x03(\x0b\x32\x14.bitbusSniffer.Frame\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"`\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\r\n\x05\x66lags\x18\x02 \x01(\r\x12\x14\n\x0c\x62itbus_frame\x18\x03 \x01(\x0c\"\x1e\n\x05\x46lags\x12\x08\n\x04none\x10\x00\x12\x0b\n\x07\x62\x61\x64_crc\x10\x01\"4\n\nStreamData\x12&\n\x07samples\x18\x01 \x03(\x0b\x32\x15.bitbusSniffer.SampleB\x12Z\x10\x62itbusSniffer/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$bitbusSniffer/v1/bitbusSniffer.proto\x12\rbitbusSniffer\"R\n\x10\x43onfigurationSet\x12\x12\n\nignore_crc\x18\x01 \x01(\x08\x12\x12\n\nbaud_62500\x18\x02 \x01(\x08\x12\x16\n\x0e\x61\x64\x64ress_filter\x18\x03 \x01(\x0c\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\x1d\n\x05\x46rame\x12\x14\n\x0c\x62itbus_frame\x18\x01 \x01(\x0c\":\n\x12\x46unctionControlSet\x12$\n\x06\x66rames\x18\x01 \x03(\x0b\x32\x14.bitbusSniffer.Frame\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"q\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\r\n\x05\x66lags\x18\x02 \x01(\r\x12\x14\n\x0c\x62itbus_frame\x18\x03 \x01(\x0c\"/\n\x05\x46lags\x12\x08\n\x04none\x10\x00\x12\x0b\n\x07\x62\x61\x64_crc\x10\x01\x12\x0f\n\x0b\x66rames_lost\x10\x10\"4\n\nStreamData\x12&\n\x07samples\x18\x01 \x03(\x0b\x32\x15.bitbusSniffer.SampleB\x12Z\x10\x62itbusSniffer/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -46,9 +46,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_STREAMCONTROLSTART']._serialized_start=446
   _globals['_STREAMCONTROLSTART']._serialized_end=466
   _globals['_SAMPLE']._serialized_start=468
-  _globals['_SAMPLE']._serialized_end=564
+  _globals['_SAMPLE']._serialized_end=581
   _globals['_SAMPLE_FLAGS']._serialized_start=534
-  _globals['_SAMPLE_FLAGS']._serialized_end=564
-  _globals['_STREAMDATA']._serialized_start=566
-  _globals['_STREAMDATA']._serialized_end=618
+  _globals['_SAMPLE_FLAGS']._serialized_end=581
+  _globals['_STREAMDATA']._serialized_start=583
+  _globals['_STREAMDATA']._serialized_end=635
 # @@protoc_insertion_point(module_scope)
