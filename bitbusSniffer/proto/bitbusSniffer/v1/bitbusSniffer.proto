@@ -103,6 +103,7 @@ message Sample {
   enum Flags {
     none = 0; // no flags set
     bad_crc = 0x01; // frame has a bad CRC
+    frames_lost = 0x10; // one or more message were lost before this frame
   }
 
   // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
