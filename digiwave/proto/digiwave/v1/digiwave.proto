@@ -25,6 +25,7 @@ option go_package = "digiwave/v1";
 message ConfigurationSet {
   bool full_duplex = 1; // if true, recveive frames that are sent by myself
   bool claim_rx = 2; // if true, claim the RX channel for digiwave
+  bool loopback = 3; // if true, use internal loopback
 }
 
 // ConfigurationSetResponse to pass to
