@@ -1037,7 +1037,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   (ProtobufCMessageInit) tracelet__tracelet_to_server__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[49] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[50] =
 {
   {
     "health___type___uwb_comm",
@@ -1627,6 +1627,18 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "uwb_num_sats",
+    50,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_num_sats),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   8,   /* field[8] = free_heap_bytes */
@@ -1673,6 +1685,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   45,   /* field[45] = ubx_sensor_fusion_detail___type___mnt_alg */
   44,   /* field[44] = ubx_sensor_fusion_detail___type___wt_init */
   32,   /* field[32] = ubx_sensor_fusion_status_enum */
+  49,   /* field[49] = uwb_num_sats */
   39,   /* field[39] = uwb_status_motion_state_enum */
   37,   /* field[37] = uwb_status_role_enum */
   38,   /* field[38] = uwb_status_state_enum */
@@ -1682,7 +1695,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
 static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 49 }
+  { 0, 50 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1692,7 +1705,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  49,
+  50,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
   1,  tracelet__tracelet_metrics__number_ranges,

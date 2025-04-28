@@ -251,18 +251,20 @@ message TraceletMetrics {
   int64 uwb_status_role_enum = 38;                        // UWB Role from Status Report (0-4) 3=TAG
   int64 uwb_status_state_enum = 39;                       // UWB State from Status Report(0-4)
   int64 uwb_status_motion_state_enum = 40;                // UWB Motion Sensor State from Status Report (0..2), 1=MOVE
-
+  
   int64 lsi_is_connected = 41;                            // Localization Server Interface gets ACKs from server
   int64 lsi_acks_missed = 42;                             // Localization Server Interface missed ACKs from server
-
+  
   int64 ubx_boot_type_enum = 43;                          // UBX Boot type (0-10)
   int64 ubx_runtime = 44;                                 // UBX Runtime in seconds
-
+  
   int64 ubx_sensor_fusion_detail___type___wt_init = 45;   // WT Initialization status (0..2)
   int64 ubx_sensor_fusion_detail___type___mnt_alg = 46;   // Automatic IMU MntAlg status (0..3)
   int64 ubx_sensor_fusion_detail___type___ins_init = 47;  // INS Initialization status (0..2)
   int64 ubx_sensor_fusion_detail___type___imu_init = 48;  // INS State (0..2)
-
+  
   int64 sensor_fusion_state = 49;                         // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
+
+  int64 uwb_num_sats = 50;                                 // Number of satlets in view
 }
 

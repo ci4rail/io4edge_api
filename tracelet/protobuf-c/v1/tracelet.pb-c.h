@@ -468,10 +468,14 @@ struct  _Tracelet__TraceletMetrics
    * Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
    */
   int64_t sensor_fusion_state;
+  /*
+   * Number of satlets in view
+   */
+  int64_t uwb_num_sats;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */
