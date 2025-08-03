@@ -21,7 +21,7 @@ typedef struct _Tracelet__TraceletToServer__Location Tracelet__TraceletToServer_
 typedef struct _Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
 typedef struct _Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
 typedef struct _Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
-typedef struct _Tracelet__TraceletToServer__Location__Acceleration Tracelet__TraceletToServer__Location__Acceleration;
+typedef struct _Tracelet__TraceletMessageID Tracelet__TraceletMessageID;
 typedef struct _Tracelet__TraceletMetrics Tracelet__TraceletMetrics;
 
 
@@ -92,13 +92,17 @@ struct  _Tracelet__TraceletToServer__Location__Gnss
    */
   uint32_t head_valid;
   /*
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
    * speed in [m/s]
    */
   double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Uwb
@@ -148,13 +152,17 @@ struct  _Tracelet__TraceletToServer__Location__Uwb
    */
   uint32_t head_valid;
   /*
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
    * speed in [m/s]
    */
   double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__UWB__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__uwb__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 struct  _Tracelet__TraceletToServer__Location__Fused
@@ -174,7 +182,7 @@ struct  _Tracelet__TraceletToServer__Location__Fused
    */
   double longitude;
   /*
-   * altitude in [m] - future extension
+   * altitude in [m] 
    */
   double altitude;
   /*
@@ -190,47 +198,21 @@ struct  _Tracelet__TraceletToServer__Location__Fused
    */
   double head_vehicle;
   /*
-   * heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
    */
   uint32_t head_valid;
   /*
-   * speed in [m/s] - future extension
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
+   * speed in [m/s] 
    */
   double ground_speed;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__FUSED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__fused__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-
-
-/*
- * Acceleration data - all values in (m/s^2)
- */
-struct  _Tracelet__TraceletToServer__Location__Acceleration
-{
-  ProtobufCMessage base;
-  /*
-   * Maximum acceleration in x direction in last period 
-   */
-  double x_max;
-  double y_max;
-  double z_max;
-  /*
-   * Minimum acceleration in x direction in last period
-   */
-  double x_min;
-  double y_min;
-  double z_min;
-  /*
-   * Average acceleration in x direction in last period
-   */
-  double x_avg;
-  double y_avg;
-  double z_avg;
-};
-#define TRACELET__TRACELET_TO_SERVER__LOCATION__ACCELERATION__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__acceleration__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /*
@@ -267,14 +249,10 @@ struct  _Tracelet__TraceletToServer__Location
    * Current Tracelet Temperature in [°C]
    */
   double temperature;
-  /*
-   * Acceleration data
-   */
-  Tracelet__TraceletToServer__Location__Acceleration *acceleration;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__descriptor) \
-    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0, NULL }
+    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
 
 
 typedef enum {
@@ -287,9 +265,13 @@ struct  _Tracelet__TraceletToServer
 {
   ProtobufCMessage base;
   /*
-   * Currently not used, always 0
+   * message UUIDv4 as a 16 byte value
    */
-  int32_t id;
+  Tracelet__TraceletMessageID *uuid;
+  /*
+   * IPv4 address of the tracelet, in network byte order
+   */
+  uint32_t ipv4_address;
   /*
    * timestamp when the message was sent by the tracelet
    * If the Tracelet has no valid time, receive_ts is set to 1970-Jan-1 00:00
@@ -319,7 +301,21 @@ struct  _Tracelet__TraceletToServer
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__descriptor) \
-    , 0, NULL, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+    , NULL, 0, NULL, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+
+
+struct  _Tracelet__TraceletMessageID
+{
+  ProtobufCMessage base;
+  /*
+   * UUIDv4 as a 16 byte value
+   * The UUID is used to uniquely identify the tracelet message in the localization system
+   */
+  ProtobufCBinaryData value;
+};
+#define TRACELET__TRACELET_MESSAGE_ID__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_message_id__descriptor) \
+    , {0,NULL} }
 
 
 /*
@@ -377,35 +373,35 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t gnss_num_sats___system___qzss;
   /*
-   * Number of GNSS UART errors
+   * GNSS UART HW FIFO full
    */
-  int64_t gnss_uart_errors___type___parse_gsv;
-  int64_t gnss_uart_errors___type___sentence_invalid;
-  int64_t gnss_uart_errors___type___sentence_unknown;
   int64_t gnss_uart_errors___type___hw_fifo;
+  /*
+   * GNSS UART buffer full, data lost
+   */
   int64_t gnss_uart_errors___type___buf_full;
+  /*
+   * GNSS UART character errors, e.g. framing errors
+   */
   int64_t gnss_uart_errors___type___char;
-  double gnss_protection_level___info___tmir;
-  double gnss_protection_level___info___pos1;
-  double gnss_protection_level___info___pos2;
-  double gnss_protection_level___info___pos3;
-  double gnss_protection_level___info___pos_valid;
-  double gnss_protection_level___info___pos_frame;
   /*
    * Number of satellites used in fix
    */
   int64_t gnss_num_sv;
   /*
-   * gain of programmable amplifier
+   * gain of programmable amplifier for RF band 1 (db)
    */
   int64_t gnss_pga___block___rf1;
+  /*
+   * gain of programmable amplifier for RF band 2 (db)
+   */
   int64_t gnss_pga___block___rf2;
   /*
-   * UBX Sensor fusion status (0-3)
+   * UBX Sensor fusion status (0=init 1=fusion 2=suspended 3=disabled)
    */
   int64_t ubx_sensor_fusion_status_enum;
   /*
-   * UBX GNSS reference station
+   * UBX GNSS reference station. May not be updated if no reference station
    */
   int64_t ubx_ref_station_id;
   /*
@@ -421,15 +417,15 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t ntrip_transfer_bytes___direction___recv;
   /*
-   * UWB Role from Status Report (0-4) 3=TAG
+   * UWB Role from Status Report (0-4) 3=TAG  TODO: needed?
    */
   int64_t uwb_status_role_enum;
   /*
-   * UWB State from Status Report(0-4)
+   * UWB State from Status Report(0-4) TODO: needed?
    */
   int64_t uwb_status_state_enum;
   /*
-   * UWB Motion Sensor State from Status Report (0..2), 1=MOVE
+   * UWB Motion Sensor State from Status Report (0..2), 1=MOVE TODO: needed?
    */
   int64_t uwb_status_motion_state_enum;
   /*
@@ -437,11 +433,11 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t lsi_is_connected;
   /*
-   * Localization Server Interface missed ACKs from server
+   * Localization Server Interface number of missed ACKs from server
    */
   int64_t lsi_acks_missed;
   /*
-   * UBX Boot type (0-10)
+   * UBX Boot type (0=unknown, 1=cold-start, 2=watchdog, 3=hardware reset, 4=hardware backup, 5=software backup, 6=software reset, 7=vio fail, 8=vdd_x fail, 9=vdd_rf fail, 10=v_core_high fail, 11=system reset)
    */
   int64_t ubx_boot_type_enum;
   /*
@@ -449,19 +445,19 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t ubx_runtime;
   /*
-   * WT Initialization status (0..2)
+   * WT Initialization status (0=off, 1=initializing, 2=initialized)
    */
   int64_t ubx_sensor_fusion_detail___type___wt_init;
   /*
-   * Automatic IMU MntAlg status (0..3)
+   * Automatic IMU MntAlg status (0=off, 1=initializing, 2=initialized, 3=initialized)
    */
   int64_t ubx_sensor_fusion_detail___type___mnt_alg;
   /*
-   * INS Initialization status (0..2)
+   * INS Initialization status (0=off, 1=initializing, 2=initialized)
    */
   int64_t ubx_sensor_fusion_detail___type___ins_init;
   /*
-   * INS State (0..2)
+   * INS State (0=off, 1=initializing, 2=initialized)
    */
   int64_t ubx_sensor_fusion_detail___type___imu_init;
   /*
@@ -469,13 +465,133 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t sensor_fusion_state;
   /*
-   * Number of satlets in view
+   * Number of UWB satlets in view
    */
   int64_t uwb_num_sats;
+  /*
+   * Address of UWB Satlet 1
+   */
+  int64_t uwb_sat_1___type___addr;
+  /*
+   * RSSI of UWB Satlet 1
+   */
+  int64_t uwb_sat_1___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_1___type___nlos;
+  /*
+   * Address of UWB Satlet 2
+   */
+  int64_t uwb_sat_2___type___addr;
+  /*
+   * RSSI of UWB Satlet 2
+   */
+  int64_t uwb_sat_2___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_2___type___nlos;
+  /*
+   * Address of UWB Satlet 3
+   */
+  int64_t uwb_sat_3___type___addr;
+  /*
+   * RSSI of UWB Satlet 3
+   */
+  int64_t uwb_sat_3___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_3___type___nlos;
+  /*
+   * Address of UWB Satlet 4
+   */
+  int64_t uwb_sat_4___type___addr;
+  /*
+   * RSSI of UWB Satlet 4
+   */
+  int64_t uwb_sat_4___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_4___type___nlos;
+  /*
+   * Address of UWB Satlet 5
+   */
+  int64_t uwb_sat_5___type___addr;
+  /*
+   * RSSI of UWB Satlet 5
+   */
+  int64_t uwb_sat_5___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_5___type___nlos;
+  /*
+   * Address of UWB Satlet 6
+   */
+  int64_t uwb_sat_6___type___addr;
+  /*
+   * RSSI of UWB Satlet 6
+   */
+  int64_t uwb_sat_6___type___rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat_6___type___nlos;
+  /*
+   * CPU Load of CPU 0 in percent
+   */
+  int64_t cpu_load_percent___cpu___0;
+  /*
+   * CPU Load of CPU 1 in percent
+   */
+  int64_t cpu_load_percent___cpu___1;
+  /*
+   * Uptime in seconds since last reboot
+   */
+  int64_t uptime_seconds;
+  /*
+   * Sleep Manager State (0=NORMAL, 1=WANT_SLEEP, 2=WANT_SLEEP_CONFIRM, 3=PREPARE_SLEEP, 4=SLEEP, 5=WAKE)
+   */
+  int64_t sleep_manager_state;
+  /*
+   * Last power cut time in seconds since 1.1.1970 UTC
+   */
+  int64_t last_power_cut_unix_seconds;
+  /*
+   * Number of power-on resets
+   */
+  int64_t reset_count___type___poweron;
+  /*
+   * Number of software resets
+   */
+  int64_t reset_count___type___software;
+  /*
+   * Number of interrupt watchdog resets
+   */
+  int64_t reset_count___type___interruptwd;
+  /*
+   * Number of task watchdog resets
+   */
+  int64_t reset_count___type___taskwd;
+  /*
+   * Number of other watchdog resets
+   */
+  int64_t reset_count___type___wd;
+  /*
+   * Number of brownout resets
+   */
+  int64_t reset_count___type___brownout;
+  /*
+   * Number of unknown resets
+   */
+  int64_t reset_count___type___unknown;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */
@@ -487,9 +603,6 @@ void   tracelet__tracelet_to_server__location__uwb__init
 /* Tracelet__TraceletToServer__Location__Fused methods */
 void   tracelet__tracelet_to_server__location__fused__init
                      (Tracelet__TraceletToServer__Location__Fused         *message);
-/* Tracelet__TraceletToServer__Location__Acceleration methods */
-void   tracelet__tracelet_to_server__location__acceleration__init
-                     (Tracelet__TraceletToServer__Location__Acceleration         *message);
 /* Tracelet__TraceletToServer__Location methods */
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message);
@@ -511,6 +624,25 @@ Tracelet__TraceletToServer *
                       const uint8_t       *data);
 void   tracelet__tracelet_to_server__free_unpacked
                      (Tracelet__TraceletToServer *message,
+                      ProtobufCAllocator *allocator);
+/* Tracelet__TraceletMessageID methods */
+void   tracelet__tracelet_message_id__init
+                     (Tracelet__TraceletMessageID         *message);
+size_t tracelet__tracelet_message_id__get_packed_size
+                     (const Tracelet__TraceletMessageID   *message);
+size_t tracelet__tracelet_message_id__pack
+                     (const Tracelet__TraceletMessageID   *message,
+                      uint8_t             *out);
+size_t tracelet__tracelet_message_id__pack_to_buffer
+                     (const Tracelet__TraceletMessageID   *message,
+                      ProtobufCBuffer     *buffer);
+Tracelet__TraceletMessageID *
+       tracelet__tracelet_message_id__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   tracelet__tracelet_message_id__free_unpacked
+                     (Tracelet__TraceletMessageID *message,
                       ProtobufCAllocator *allocator);
 /* Tracelet__TraceletMetrics methods */
 void   tracelet__tracelet_metrics__init
@@ -542,14 +674,14 @@ typedef void (*Tracelet__TraceletToServer__Location__Uwb_Closure)
 typedef void (*Tracelet__TraceletToServer__Location__Fused_Closure)
                  (const Tracelet__TraceletToServer__Location__Fused *message,
                   void *closure_data);
-typedef void (*Tracelet__TraceletToServer__Location__Acceleration_Closure)
-                 (const Tracelet__TraceletToServer__Location__Acceleration *message,
-                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer__Location_Closure)
                  (const Tracelet__TraceletToServer__Location *message,
                   void *closure_data);
 typedef void (*Tracelet__TraceletToServer_Closure)
                  (const Tracelet__TraceletToServer *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletMessageID_Closure)
+                 (const Tracelet__TraceletMessageID *message,
                   void *closure_data);
 typedef void (*Tracelet__TraceletMetrics_Closure)
                  (const Tracelet__TraceletMetrics *message,
@@ -565,8 +697,8 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
-extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__acceleration__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor;
 
 PROTOBUF_C__END_DECLS

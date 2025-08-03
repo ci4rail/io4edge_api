@@ -25,12 +25,6 @@ void   tracelet__tracelet_to_server__location__fused__init
   static const Tracelet__TraceletToServer__Location__Fused init_value = TRACELET__TRACELET_TO_SERVER__LOCATION__FUSED__INIT;
   *message = init_value;
 }
-void   tracelet__tracelet_to_server__location__acceleration__init
-                     (Tracelet__TraceletToServer__Location__Acceleration         *message)
-{
-  static const Tracelet__TraceletToServer__Location__Acceleration init_value = TRACELET__TRACELET_TO_SERVER__LOCATION__ACCELERATION__INIT;
-  *message = init_value;
-}
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message)
 {
@@ -82,6 +76,51 @@ void   tracelet__tracelet_to_server__free_unpacked
   assert(message->base.descriptor == &tracelet__tracelet_to_server__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   tracelet__tracelet_message_id__init
+                     (Tracelet__TraceletMessageID         *message)
+{
+  static const Tracelet__TraceletMessageID init_value = TRACELET__TRACELET_MESSAGE_ID__INIT;
+  *message = init_value;
+}
+size_t tracelet__tracelet_message_id__get_packed_size
+                     (const Tracelet__TraceletMessageID *message)
+{
+  assert(message->base.descriptor == &tracelet__tracelet_message_id__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t tracelet__tracelet_message_id__pack
+                     (const Tracelet__TraceletMessageID *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &tracelet__tracelet_message_id__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t tracelet__tracelet_message_id__pack_to_buffer
+                     (const Tracelet__TraceletMessageID *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &tracelet__tracelet_message_id__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Tracelet__TraceletMessageID *
+       tracelet__tracelet_message_id__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Tracelet__TraceletMessageID *)
+     protobuf_c_message_unpack (&tracelet__tracelet_message_id__descriptor,
+                                allocator, len, data);
+}
+void   tracelet__tracelet_message_id__free_unpacked
+                     (Tracelet__TraceletMessageID *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &tracelet__tracelet_message_id__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   tracelet__tracelet_metrics__init
                      (Tracelet__TraceletMetrics         *message)
 {
@@ -127,7 +166,7 @@ void   tracelet__tracelet_metrics__free_unpacked
   assert(message->base.descriptor == &tracelet__tracelet_metrics__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[11] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gnss__field_descriptors[12] =
 {
   {
     "valid",
@@ -261,6 +300,18 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__gn
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "head_precision",
+    12,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Gnss, head_precision),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__gnss__field_indices_by_name[] = {
   3,   /* field[3] = altitude */
@@ -269,6 +320,7 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
   6,   /* field[6] = fix_type */
   10,   /* field[10] = ground_speed */
   7,   /* field[7] = head_motion */
+  11,   /* field[11] = head_precision */
   9,   /* field[9] = head_valid */
   8,   /* field[8] = head_vehicle */
   1,   /* field[1] = latitude */
@@ -278,7 +330,7 @@ static const unsigned tracelet__tracelet_to_server__location__gnss__field_indice
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__gnss__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 11 }
+  { 0, 12 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor =
 {
@@ -288,14 +340,14 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__d
   "Tracelet__TraceletToServer__Location__Gnss",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Gnss),
-  11,
+  12,
   tracelet__tracelet_to_server__location__gnss__field_descriptors,
   tracelet__tracelet_to_server__location__gnss__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__gnss__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__gnss__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uwb__field_descriptors[12] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uwb__field_descriptors[13] =
 {
   {
     "valid",
@@ -441,12 +493,25 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__uw
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "head_precision",
+    13,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Uwb, head_precision),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__uwb__field_indices_by_name[] = {
   6,   /* field[6] = eph */
   7,   /* field[7] = fix_type */
   11,   /* field[11] = ground_speed */
   8,   /* field[8] = head_motion */
+  12,   /* field[12] = head_precision */
   10,   /* field[10] = head_valid */
   9,   /* field[9] = head_vehicle */
   5,   /* field[5] = location_signature */
@@ -459,7 +524,7 @@ static const unsigned tracelet__tracelet_to_server__location__uwb__field_indices
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__uwb__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 12 }
+  { 0, 13 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor =
 {
@@ -469,14 +534,14 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__de
   "Tracelet__TraceletToServer__Location__Uwb",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Uwb),
-  12,
+  13,
   tracelet__tracelet_to_server__location__uwb__field_descriptors,
   tracelet__tracelet_to_server__location__uwb__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__uwb__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__uwb__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__fused__field_descriptors[9] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__fused__field_descriptors[10] =
 {
   {
     "valid",
@@ -586,12 +651,25 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__fu
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "head_precision",
+    10,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location__Fused, head_precision),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__fused__field_indices_by_name[] = {
   3,   /* field[3] = altitude */
   4,   /* field[4] = eph */
   8,   /* field[8] = ground_speed */
   5,   /* field[5] = head_motion */
+  9,   /* field[9] = head_precision */
   7,   /* field[7] = head_valid */
   6,   /* field[6] = head_vehicle */
   1,   /* field[1] = latitude */
@@ -601,7 +679,7 @@ static const unsigned tracelet__tracelet_to_server__location__fused__field_indic
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__fused__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 9 }
+  { 0, 10 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor =
 {
@@ -611,153 +689,11 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__
   "Tracelet__TraceletToServer__Location__Fused",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location__Fused),
-  9,
+  10,
   tracelet__tracelet_to_server__location__fused__field_descriptors,
   tracelet__tracelet_to_server__location__fused__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__fused__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__fused__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__acceleration__field_descriptors[9] =
-{
-  {
-    "x_max",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, x_max),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "y_max",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, y_max),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "z_max",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, z_max),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "x_min",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, x_min),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "y_min",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, y_min),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "z_min",
-    6,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, z_min),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "x_avg",
-    7,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, x_avg),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "y_avg",
-    8,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, y_avg),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "z_avg",
-    9,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location__Acceleration, z_avg),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned tracelet__tracelet_to_server__location__acceleration__field_indices_by_name[] = {
-  6,   /* field[6] = x_avg */
-  0,   /* field[0] = x_max */
-  3,   /* field[3] = x_min */
-  7,   /* field[7] = y_avg */
-  1,   /* field[1] = y_max */
-  4,   /* field[4] = y_min */
-  8,   /* field[8] = z_avg */
-  2,   /* field[2] = z_max */
-  5,   /* field[5] = z_min */
-};
-static const ProtobufCIntRange tracelet__tracelet_to_server__location__acceleration__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 9 }
-};
-const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__acceleration__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "tracelet.TraceletToServer.Location.Acceleration",
-  "Acceleration",
-  "Tracelet__TraceletToServer__Location__Acceleration",
-  "tracelet",
-  sizeof(Tracelet__TraceletToServer__Location__Acceleration),
-  9,
-  tracelet__tracelet_to_server__location__acceleration__field_descriptors,
-  tracelet__tracelet_to_server__location__acceleration__field_indices_by_name,
-  1,  tracelet__tracelet_to_server__location__acceleration__number_ranges,
-  (ProtobufCMessageInit) tracelet__tracelet_to_server__location__acceleration__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue tracelet__tracelet_to_server__location__direction__enum_values_by_number[3] =
@@ -790,7 +726,7 @@ const ProtobufCEnumDescriptor tracelet__tracelet_to_server__location__direction_
   tracelet__tracelet_to_server__location__direction__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__field_descriptors[8] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__field_descriptors[7] =
 {
   {
     "gnss",
@@ -876,21 +812,8 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__fi
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "acceleration",
-    8,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer__Location, acceleration),
-    &tracelet__tracelet_to_server__location__acceleration__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned tracelet__tracelet_to_server__location__field_indices_by_name[] = {
-  7,   /* field[7] = acceleration */
   2,   /* field[2] = direction */
   6,   /* field[6] = fused */
   0,   /* field[0] = gnss */
@@ -902,7 +825,7 @@ static const unsigned tracelet__tracelet_to_server__location__field_indices_by_n
 static const ProtobufCIntRange tracelet__tracelet_to_server__location__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 8 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descriptor =
 {
@@ -912,27 +835,15 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descrip
   "Tracelet__TraceletToServer__Location",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location),
-  8,
+  7,
   tracelet__tracelet_to_server__location__field_descriptors,
   tracelet__tracelet_to_server__location__field_indices_by_name,
   1,  tracelet__tracelet_to_server__location__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[7] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[8] =
 {
-  {
-    "id",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT32,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletToServer, id),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
   {
     "delivery_ts",
     2,
@@ -994,6 +905,30 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "uuid",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer, uuid),
+    &tracelet__tracelet_message_id__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ipv4_address",
+    9,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer, ipv4_address),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "metrics",
     10,
     PROTOBUF_C_LABEL_NONE,
@@ -1007,20 +942,20 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
   },
 };
 static const unsigned tracelet__tracelet_to_server__field_indices_by_name[] = {
-  1,   /* field[1] = delivery_ts */
-  5,   /* field[5] = firmware_version */
-  0,   /* field[0] = id */
-  3,   /* field[3] = ignition */
-  4,   /* field[4] = location */
-  6,   /* field[6] = metrics */
-  2,   /* field[2] = tracelet_id */
+  0,   /* field[0] = delivery_ts */
+  4,   /* field[4] = firmware_version */
+  2,   /* field[2] = ignition */
+  6,   /* field[6] = ipv4_address */
+  3,   /* field[3] = location */
+  7,   /* field[7] = metrics */
+  1,   /* field[1] = tracelet_id */
+  5,   /* field[5] = uuid */
 };
-static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[3 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[2 + 1] =
 {
-  { 1, 0 },
-  { 7, 5 },
-  { 10, 6 },
-  { 0, 7 }
+  { 2, 0 },
+  { 7, 4 },
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
 {
@@ -1030,14 +965,52 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   "Tracelet__TraceletToServer",
   "tracelet",
   sizeof(Tracelet__TraceletToServer),
-  7,
+  8,
   tracelet__tracelet_to_server__field_descriptors,
   tracelet__tracelet_to_server__field_indices_by_name,
-  3,  tracelet__tracelet_to_server__number_ranges,
+  2,  tracelet__tracelet_to_server__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[50] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_message_id__field_descriptors[1] =
+{
+  {
+    "value",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BYTES,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMessageID, value),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned tracelet__tracelet_message_id__field_indices_by_name[] = {
+  0,   /* field[0] = value */
+};
+static const ProtobufCIntRange tracelet__tracelet_message_id__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "tracelet.TraceletMessageID",
+  "TraceletMessageID",
+  "Tracelet__TraceletMessageID",
+  "tracelet",
+  sizeof(Tracelet__TraceletMessageID),
+  1,
+  tracelet__tracelet_message_id__field_descriptors,
+  tracelet__tracelet_message_id__field_indices_by_name,
+  1,  tracelet__tracelet_message_id__number_ranges,
+  (ProtobufCMessageInit) tracelet__tracelet_message_id__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[71] =
 {
   {
     "health___type___uwb_comm",
@@ -1244,42 +1217,6 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "gnss_uart_errors___type___parse_gsv",
-    18,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_uart_errors___type___parse_gsv),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_uart_errors___type___sentence_invalid",
-    19,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_uart_errors___type___sentence_invalid),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_uart_errors___type___sentence_unknown",
-    20,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_uart_errors___type___sentence_unknown),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "gnss_uart_errors___type___hw_fifo",
     21,
     PROTOBUF_C_LABEL_NONE,
@@ -1310,78 +1247,6 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, gnss_uart_errors___type___char),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___tmir",
-    24,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___tmir),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___pos1",
-    25,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___pos1),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___pos2",
-    26,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___pos2),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___pos3",
-    27,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___pos3),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___pos_valid",
-    28,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___pos_valid),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "gnss_protection_level___info___pos_frame",
-    29,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, gnss_protection_level___info___pos_frame),
     NULL,
     NULL,
     0,             /* flags */
@@ -1639,29 +1504,382 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "uwb_sat_1___type___addr",
+    51,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_1___type___rssi",
+    52,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_1___type___nlos",
+    53,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_2___type___addr",
+    54,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_2___type___rssi",
+    55,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_2___type___nlos",
+    56,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_3___type___addr",
+    57,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_3___type___rssi",
+    58,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_3___type___nlos",
+    59,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_4___type___addr",
+    60,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_4___type___rssi",
+    61,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_4___type___nlos",
+    62,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_5___type___addr",
+    63,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_5___type___rssi",
+    64,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_5___type___nlos",
+    65,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_6___type___addr",
+    66,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___addr),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_6___type___rssi",
+    67,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___rssi),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uwb_sat_6___type___nlos",
+    68,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___nlos),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "cpu_load_percent___cpu___0",
+    69,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, cpu_load_percent___cpu___0),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "cpu_load_percent___cpu___1",
+    70,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, cpu_load_percent___cpu___1),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "uptime_seconds",
+    71,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uptime_seconds),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "sleep_manager_state",
+    72,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, sleep_manager_state),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "last_power_cut_unix_seconds",
+    73,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, last_power_cut_unix_seconds),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___poweron",
+    80,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___poweron),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___software",
+    81,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___software),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___interruptwd",
+    82,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___interruptwd),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___taskwd",
+    83,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___taskwd),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___wd",
+    84,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___wd),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___brownout",
+    85,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___brownout),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___unknown",
+    86,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___unknown),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
+  59,   /* field[59] = cpu_load_percent___cpu___0 */
+  60,   /* field[60] = cpu_load_percent___cpu___1 */
   8,   /* field[8] = free_heap_bytes */
   14,   /* field[14] = gnss_num_sats___system___beidou */
   15,   /* field[15] = gnss_num_sats___system___galileo */
   13,   /* field[13] = gnss_num_sats___system___glonass */
   12,   /* field[12] = gnss_num_sats___system___gps */
   16,   /* field[16] = gnss_num_sats___system___qzss */
-  29,   /* field[29] = gnss_num_sv */
-  30,   /* field[30] = gnss_pga___block___rf1 */
-  31,   /* field[31] = gnss_pga___block___rf2 */
-  24,   /* field[24] = gnss_protection_level___info___pos1 */
-  25,   /* field[25] = gnss_protection_level___info___pos2 */
-  26,   /* field[26] = gnss_protection_level___info___pos3 */
-  28,   /* field[28] = gnss_protection_level___info___pos_frame */
-  27,   /* field[27] = gnss_protection_level___info___pos_valid */
-  23,   /* field[23] = gnss_protection_level___info___tmir */
-  21,   /* field[21] = gnss_uart_errors___type___buf_full */
-  22,   /* field[22] = gnss_uart_errors___type___char */
-  20,   /* field[20] = gnss_uart_errors___type___hw_fifo */
-  17,   /* field[17] = gnss_uart_errors___type___parse_gsv */
-  18,   /* field[18] = gnss_uart_errors___type___sentence_invalid */
-  19,   /* field[19] = gnss_uart_errors___type___sentence_unknown */
+  20,   /* field[20] = gnss_num_sv */
+  21,   /* field[21] = gnss_pga___block___rf1 */
+  22,   /* field[22] = gnss_pga___block___rf2 */
+  18,   /* field[18] = gnss_uart_errors___type___buf_full */
+  19,   /* field[19] = gnss_uart_errors___type___char */
+  17,   /* field[17] = gnss_uart_errors___type___hw_fifo */
   6,   /* field[6] = health___type___actors_startup */
   3,   /* field[3] = health___type___gnss_comm */
   5,   /* field[5] = health___type___ubx_config */
@@ -1669,33 +1887,64 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   0,   /* field[0] = health___type___uwb_comm */
   2,   /* field[2] = health___type___uwb_config */
   1,   /* field[1] = health___type___uwb_firmware */
-  41,   /* field[41] = lsi_acks_missed */
-  40,   /* field[40] = lsi_is_connected */
-  34,   /* field[34] = ntrip_is_connected */
-  36,   /* field[36] = ntrip_transfer_bytes___direction___recv */
-  35,   /* field[35] = ntrip_transfer_bytes___direction___send */
-  48,   /* field[48] = sensor_fusion_state */
+  63,   /* field[63] = last_power_cut_unix_seconds */
+  32,   /* field[32] = lsi_acks_missed */
+  31,   /* field[31] = lsi_is_connected */
+  25,   /* field[25] = ntrip_is_connected */
+  27,   /* field[27] = ntrip_transfer_bytes___direction___recv */
+  26,   /* field[26] = ntrip_transfer_bytes___direction___send */
+  69,   /* field[69] = reset_count___type___brownout */
+  66,   /* field[66] = reset_count___type___interruptwd */
+  64,   /* field[64] = reset_count___type___poweron */
+  65,   /* field[65] = reset_count___type___software */
+  67,   /* field[67] = reset_count___type___taskwd */
+  70,   /* field[70] = reset_count___type___unknown */
+  68,   /* field[68] = reset_count___type___wd */
+  39,   /* field[39] = sensor_fusion_state */
+  62,   /* field[62] = sleep_manager_state */
   7,   /* field[7] = sntp_updates */
   9,   /* field[9] = system_time_seconds */
-  42,   /* field[42] = ubx_boot_type_enum */
-  33,   /* field[33] = ubx_ref_station_id */
-  43,   /* field[43] = ubx_runtime */
-  47,   /* field[47] = ubx_sensor_fusion_detail___type___imu_init */
-  46,   /* field[46] = ubx_sensor_fusion_detail___type___ins_init */
-  45,   /* field[45] = ubx_sensor_fusion_detail___type___mnt_alg */
-  44,   /* field[44] = ubx_sensor_fusion_detail___type___wt_init */
-  32,   /* field[32] = ubx_sensor_fusion_status_enum */
-  49,   /* field[49] = uwb_num_sats */
-  39,   /* field[39] = uwb_status_motion_state_enum */
-  37,   /* field[37] = uwb_status_role_enum */
-  38,   /* field[38] = uwb_status_state_enum */
+  33,   /* field[33] = ubx_boot_type_enum */
+  24,   /* field[24] = ubx_ref_station_id */
+  34,   /* field[34] = ubx_runtime */
+  38,   /* field[38] = ubx_sensor_fusion_detail___type___imu_init */
+  37,   /* field[37] = ubx_sensor_fusion_detail___type___ins_init */
+  36,   /* field[36] = ubx_sensor_fusion_detail___type___mnt_alg */
+  35,   /* field[35] = ubx_sensor_fusion_detail___type___wt_init */
+  23,   /* field[23] = ubx_sensor_fusion_status_enum */
+  61,   /* field[61] = uptime_seconds */
+  40,   /* field[40] = uwb_num_sats */
+  41,   /* field[41] = uwb_sat_1___type___addr */
+  43,   /* field[43] = uwb_sat_1___type___nlos */
+  42,   /* field[42] = uwb_sat_1___type___rssi */
+  44,   /* field[44] = uwb_sat_2___type___addr */
+  46,   /* field[46] = uwb_sat_2___type___nlos */
+  45,   /* field[45] = uwb_sat_2___type___rssi */
+  47,   /* field[47] = uwb_sat_3___type___addr */
+  49,   /* field[49] = uwb_sat_3___type___nlos */
+  48,   /* field[48] = uwb_sat_3___type___rssi */
+  50,   /* field[50] = uwb_sat_4___type___addr */
+  52,   /* field[52] = uwb_sat_4___type___nlos */
+  51,   /* field[51] = uwb_sat_4___type___rssi */
+  53,   /* field[53] = uwb_sat_5___type___addr */
+  55,   /* field[55] = uwb_sat_5___type___nlos */
+  54,   /* field[54] = uwb_sat_5___type___rssi */
+  56,   /* field[56] = uwb_sat_6___type___addr */
+  58,   /* field[58] = uwb_sat_6___type___nlos */
+  57,   /* field[57] = uwb_sat_6___type___rssi */
+  30,   /* field[30] = uwb_status_motion_state_enum */
+  28,   /* field[28] = uwb_status_role_enum */
+  29,   /* field[29] = uwb_status_state_enum */
   11,   /* field[11] = wifi_ap */
   10,   /* field[10] = wifi_rssi_dbm */
 };
-static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[1 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[4 + 1] =
 {
   { 1, 0 },
-  { 0, 50 }
+  { 21, 17 },
+  { 30, 20 },
+  { 80, 64 },
+  { 0, 71 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1705,10 +1954,10 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  50,
+  71,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
-  1,  tracelet__tracelet_metrics__number_ranges,
+  4,  tracelet__tracelet_metrics__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_metrics__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
