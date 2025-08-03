@@ -115,7 +115,7 @@ message TraceletToServer {
       // longitude in [deg]
       double longitude = 3;
 
-      // altitude in [m] - future extension
+      // altitude in [m] 
       double altitude = 4; 
 
       // horizontal accuracy in [m]
@@ -127,10 +127,13 @@ message TraceletToServer {
       // heading of vehicle in [deg] - future extension
       double head_vehicle = 7;
 
-      // heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+      // heading valid (bit 0=motion valid, 1=vehicle valid))
       uint32 head_valid = 8;
 
-      // speed in [m/s] - future extension
+      // heading precision in [deg]
+      float head_precision = 10;
+
+      // speed in [m/s] 
       double ground_speed = 9;
     }
 
