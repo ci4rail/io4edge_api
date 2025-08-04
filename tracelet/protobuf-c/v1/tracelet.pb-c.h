@@ -473,7 +473,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_1___type___addr;
   /*
-   * RSSI of UWB Satlet 1
+   * RSSI of UWB Satlet 1 (dBm)
    */
   int64_t uwb_sat_1___type___rssi;
   /*
@@ -485,7 +485,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_2___type___addr;
   /*
-   * RSSI of UWB Satlet 2
+   * RSSI of UWB Satlet 2 (dBm)
    */
   int64_t uwb_sat_2___type___rssi;
   /*
@@ -497,7 +497,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_3___type___addr;
   /*
-   * RSSI of UWB Satlet 3
+   * RSSI of UWB Satlet 3 (dBm)
    */
   int64_t uwb_sat_3___type___rssi;
   /*
@@ -509,7 +509,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_4___type___addr;
   /*
-   * RSSI of UWB Satlet 4
+   * RSSI of UWB Satlet 4 (dBm)
    */
   int64_t uwb_sat_4___type___rssi;
   /*
@@ -521,7 +521,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_5___type___addr;
   /*
-   * RSSI of UWB Satlet 5
+   * RSSI of UWB Satlet 5 (dBm)
    */
   int64_t uwb_sat_5___type___rssi;
   /*
@@ -533,7 +533,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uwb_sat_6___type___addr;
   /*
-   * RSSI of UWB Satlet 6
+   * RSSI of UWB Satlet 6 (dBm)
    */
   int64_t uwb_sat_6___type___rssi;
   /*
@@ -588,10 +588,14 @@ struct  _Tracelet__TraceletMetrics
    * Number of unknown resets
    */
   int64_t reset_count___type___unknown;
+  /*
+   * Tacho speed from UWB subsystem in m/s (always positive)
+   */
+  int64_t uwb_tacho_speed;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */

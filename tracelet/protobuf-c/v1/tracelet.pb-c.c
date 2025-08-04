@@ -1010,7 +1010,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor =
   (ProtobufCMessageInit) tracelet__tracelet_message_id__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[71] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[72] =
 {
   {
     "health___type___uwb_comm",
@@ -1864,6 +1864,18 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "uwb_tacho_speed",
+    87,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_tacho_speed),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   59,   /* field[59] = cpu_load_percent___cpu___0 */
@@ -1935,6 +1947,7 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   30,   /* field[30] = uwb_status_motion_state_enum */
   28,   /* field[28] = uwb_status_role_enum */
   29,   /* field[29] = uwb_status_state_enum */
+  71,   /* field[71] = uwb_tacho_speed */
   11,   /* field[11] = wifi_ap */
   10,   /* field[10] = wifi_rssi_dbm */
 };
@@ -1944,7 +1957,7 @@ static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[4 + 1] 
   { 21, 17 },
   { 30, 20 },
   { 80, 64 },
-  { 0, 71 }
+  { 0, 72 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1954,7 +1967,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  71,
+  72,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
   4,  tracelet__tracelet_metrics__number_ranges,

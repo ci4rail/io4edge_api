@@ -309,22 +309,22 @@ type TraceletMetrics struct {
 	SensorFusionState                    int64   `protobuf:"varint,49,opt,name=sensor_fusion_state,json=sensorFusionState,proto3" json:"sensor_fusion_state,omitempty"`                                                              // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
 	UwbNumSats                           int64   `protobuf:"varint,50,opt,name=uwb_num_sats,json=uwbNumSats,proto3" json:"uwb_num_sats,omitempty"`                                                                                   // Number of UWB satlets in view
 	UwbSat_1__Type__Addr                 int64   `protobuf:"varint,51,opt,name=uwb_sat_1___type___addr,json=uwbSat1TypeAddr,proto3" json:"uwb_sat_1___type___addr,omitempty"`                                                        // Address of UWB Satlet 1
-	UwbSat_1__Type__Rssi                 int64   `protobuf:"varint,52,opt,name=uwb_sat_1___type___rssi,json=uwbSat1TypeRssi,proto3" json:"uwb_sat_1___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 1
+	UwbSat_1__Type__Rssi                 int64   `protobuf:"varint,52,opt,name=uwb_sat_1___type___rssi,json=uwbSat1TypeRssi,proto3" json:"uwb_sat_1___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 1 (dBm)
 	UwbSat_1__Type__Nlos                 int64   `protobuf:"varint,53,opt,name=uwb_sat_1___type___nlos,json=uwbSat1TypeNlos,proto3" json:"uwb_sat_1___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
 	UwbSat_2__Type__Addr                 int64   `protobuf:"varint,54,opt,name=uwb_sat_2___type___addr,json=uwbSat2TypeAddr,proto3" json:"uwb_sat_2___type___addr,omitempty"`                                                        // Address of UWB Satlet 2
-	UwbSat_2__Type__Rssi                 int64   `protobuf:"varint,55,opt,name=uwb_sat_2___type___rssi,json=uwbSat2TypeRssi,proto3" json:"uwb_sat_2___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 2
+	UwbSat_2__Type__Rssi                 int64   `protobuf:"varint,55,opt,name=uwb_sat_2___type___rssi,json=uwbSat2TypeRssi,proto3" json:"uwb_sat_2___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 2 (dBm)
 	UwbSat_2__Type__Nlos                 int64   `protobuf:"varint,56,opt,name=uwb_sat_2___type___nlos,json=uwbSat2TypeNlos,proto3" json:"uwb_sat_2___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
 	UwbSat_3__Type__Addr                 int64   `protobuf:"varint,57,opt,name=uwb_sat_3___type___addr,json=uwbSat3TypeAddr,proto3" json:"uwb_sat_3___type___addr,omitempty"`                                                        // Address of UWB Satlet 3
-	UwbSat_3__Type__Rssi                 int64   `protobuf:"varint,58,opt,name=uwb_sat_3___type___rssi,json=uwbSat3TypeRssi,proto3" json:"uwb_sat_3___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 3
+	UwbSat_3__Type__Rssi                 int64   `protobuf:"varint,58,opt,name=uwb_sat_3___type___rssi,json=uwbSat3TypeRssi,proto3" json:"uwb_sat_3___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 3 (dBm)
 	UwbSat_3__Type__Nlos                 int64   `protobuf:"varint,59,opt,name=uwb_sat_3___type___nlos,json=uwbSat3TypeNlos,proto3" json:"uwb_sat_3___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
 	UwbSat_4__Type__Addr                 int64   `protobuf:"varint,60,opt,name=uwb_sat_4___type___addr,json=uwbSat4TypeAddr,proto3" json:"uwb_sat_4___type___addr,omitempty"`                                                        // Address of UWB Satlet 4
-	UwbSat_4__Type__Rssi                 int64   `protobuf:"varint,61,opt,name=uwb_sat_4___type___rssi,json=uwbSat4TypeRssi,proto3" json:"uwb_sat_4___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 4
+	UwbSat_4__Type__Rssi                 int64   `protobuf:"varint,61,opt,name=uwb_sat_4___type___rssi,json=uwbSat4TypeRssi,proto3" json:"uwb_sat_4___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 4 (dBm)
 	UwbSat_4__Type__Nlos                 int64   `protobuf:"varint,62,opt,name=uwb_sat_4___type___nlos,json=uwbSat4TypeNlos,proto3" json:"uwb_sat_4___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
 	UwbSat_5__Type__Addr                 int64   `protobuf:"varint,63,opt,name=uwb_sat_5___type___addr,json=uwbSat5TypeAddr,proto3" json:"uwb_sat_5___type___addr,omitempty"`                                                        // Address of UWB Satlet 5
-	UwbSat_5__Type__Rssi                 int64   `protobuf:"varint,64,opt,name=uwb_sat_5___type___rssi,json=uwbSat5TypeRssi,proto3" json:"uwb_sat_5___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 5
+	UwbSat_5__Type__Rssi                 int64   `protobuf:"varint,64,opt,name=uwb_sat_5___type___rssi,json=uwbSat5TypeRssi,proto3" json:"uwb_sat_5___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 5 (dBm)
 	UwbSat_5__Type__Nlos                 int64   `protobuf:"varint,65,opt,name=uwb_sat_5___type___nlos,json=uwbSat5TypeNlos,proto3" json:"uwb_sat_5___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
 	UwbSat_6__Type__Addr                 int64   `protobuf:"varint,66,opt,name=uwb_sat_6___type___addr,json=uwbSat6TypeAddr,proto3" json:"uwb_sat_6___type___addr,omitempty"`                                                        // Address of UWB Satlet 6
-	UwbSat_6__Type__Rssi                 int64   `protobuf:"varint,67,opt,name=uwb_sat_6___type___rssi,json=uwbSat6TypeRssi,proto3" json:"uwb_sat_6___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 6
+	UwbSat_6__Type__Rssi                 int64   `protobuf:"varint,67,opt,name=uwb_sat_6___type___rssi,json=uwbSat6TypeRssi,proto3" json:"uwb_sat_6___type___rssi,omitempty"`                                                        // RSSI of UWB Satlet 6 (dBm)
 	UwbSat_6__Type__Nlos                 int64   `protobuf:"varint,68,opt,name=uwb_sat_6___type___nlos,json=uwbSat6TypeNlos,proto3" json:"uwb_sat_6___type___nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
 	CpuLoadPercent__Cpu___0              int64   `protobuf:"varint,69,opt,name=cpu_load_percent___cpu___0,json=cpuLoadPercentCpu0,proto3" json:"cpu_load_percent___cpu___0,omitempty"`                                               // CPU Load of CPU 0 in percent
 	CpuLoadPercent__Cpu___1              int64   `protobuf:"varint,70,opt,name=cpu_load_percent___cpu___1,json=cpuLoadPercentCpu1,proto3" json:"cpu_load_percent___cpu___1,omitempty"`                                               // CPU Load of CPU 1 in percent
@@ -338,6 +338,7 @@ type TraceletMetrics struct {
 	ResetCount__Type__Wd                 int64   `protobuf:"varint,84,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of other watchdog resets
 	ResetCount__Type__Brownout           int64   `protobuf:"varint,85,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
 	ResetCount__Type__Unknown            int64   `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown resets
+	UwbTachoSpeed                        int64   `protobuf:"varint,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                          // Tacho speed from UWB subsystem in m/s (always positive)
 }
 
 func (x *TraceletMetrics) Reset() {
@@ -865,6 +866,13 @@ func (x *TraceletMetrics) GetResetCount__Type__Brownout() int64 {
 func (x *TraceletMetrics) GetResetCount__Type__Unknown() int64 {
 	if x != nil {
 		return x.ResetCount__Type__Unknown
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbTachoSpeed() int64 {
+	if x != nil {
+		return x.UwbTachoSpeed
 	}
 	return 0
 }
@@ -1536,7 +1544,7 @@ var file_tracelet_proto_rawDesc = []byte{
 	0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x29, 0x0a, 0x11, 0x54, 0x72, 0x61, 0x63,
 	0x65, 0x6c, 0x65, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x49, 0x44, 0x12, 0x14, 0x0a,
 	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x22, 0xd3, 0x1e, 0x0a, 0x0f, 0x54, 0x72, 0x61, 0x63, 0x65, 0x6c, 0x65, 0x74,
+	0x6c, 0x75, 0x65, 0x22, 0xfb, 0x1e, 0x0a, 0x0f, 0x54, 0x72, 0x61, 0x63, 0x65, 0x6c, 0x65, 0x74,
 	0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x12, 0x33, 0x0a, 0x18, 0x68, 0x65, 0x61, 0x6c, 0x74,
 	0x68, 0x5f, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x5f, 0x5f, 0x75, 0x77, 0x62, 0x5f, 0x63,
 	0x6f, 0x6d, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x11, 0x68, 0x65, 0x61, 0x6c, 0x74,
@@ -1781,8 +1789,11 @@ var file_tracelet_proto_rawDesc = []byte{
 	0x72, 0x65, 0x73, 0x65, 0x74, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x5f, 0x5f, 0x74, 0x79,
 	0x70, 0x65, 0x5f, 0x5f, 0x5f, 0x75, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x18, 0x56, 0x20, 0x01,
 	0x28, 0x03, 0x52, 0x15, 0x72, 0x65, 0x73, 0x65, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79,
-	0x70, 0x65, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x74,
-	0x72, 0x61, 0x63, 0x65, 0x6c, 0x65, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x65, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x12, 0x26, 0x0a, 0x0f, 0x75, 0x77, 0x62,
+	0x5f, 0x74, 0x61, 0x63, 0x68, 0x6f, 0x5f, 0x73, 0x70, 0x65, 0x65, 0x64, 0x18, 0x57, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x0d, 0x75, 0x77, 0x62, 0x54, 0x61, 0x63, 0x68, 0x6f, 0x53, 0x70, 0x65, 0x65,
+	0x64, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x74, 0x72, 0x61, 0x63, 0x65, 0x6c, 0x65, 0x74, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
