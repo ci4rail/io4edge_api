@@ -288,24 +288,24 @@ message TraceletMetrics {
   int64 sensor_fusion_state = 49;                         // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
 
   int64 uwb_num_sats = 50;                                // Number of UWB satlets in view
-  int64 uwb_sat_1___type___addr = 51;                     // Address of UWB Satlet 1
-  int64 uwb_sat_1___type___rssi = 52;                     // RSSI of UWB Satlet 1 (dBm)
-  int64 uwb_sat_1___type___nlos = 53;                     // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
-  int64 uwb_sat_2___type___addr = 54;                     // Address of UWB Satlet 2
-  int64 uwb_sat_2___type___rssi = 55;                     // RSSI of UWB Satlet 2 (dBm)
-  int64 uwb_sat_2___type___nlos = 56;                     // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
-  int64 uwb_sat_3___type___addr = 57;                     // Address of UWB Satlet 3
-  int64 uwb_sat_3___type___rssi = 58;                     // RSSI of UWB Satlet 3 (dBm)
-  int64 uwb_sat_3___type___nlos = 59;                     // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
-  int64 uwb_sat_4___type___addr = 60;                     // Address of UWB Satlet 4
-  int64 uwb_sat_4___type___rssi = 61;                     // RSSI of UWB Satlet 4 (dBm)
-  int64 uwb_sat_4___type___nlos = 62;                     // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
-  int64 uwb_sat_5___type___addr = 63;                     // Address of UWB Satlet 5
-  int64 uwb_sat_5___type___rssi = 64;                     // RSSI of UWB Satlet 5 (dBm)
-  int64 uwb_sat_5___type___nlos = 65;                     // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
-  int64 uwb_sat_6___type___addr = 66;                     // Address of UWB Satlet 6
-  int64 uwb_sat_6___type___rssi = 67;                     // RSSI of UWB Satlet 6 (dBm)
-  int64 uwb_sat_6___type___nlos = 68;                     // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___1_addr = 51;                     // Address of UWB Satlet 1
+  int64 uwb_sat___type___1_rssi = 52;                     // RSSI of UWB Satlet 1 (dBm)
+  int64 uwb_sat___type___1_nlos = 53;                     // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___2_addr = 54;                     // Address of UWB Satlet 2
+  int64 uwb_sat___type___2_rssi = 55;                     // RSSI of UWB Satlet 2 (dBm)
+  int64 uwb_sat___type___2_nlos = 56;                     // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___3_addr = 57;                     // Address of UWB Satlet 3
+  int64 uwb_sat___type___3_rssi = 58;                     // RSSI of UWB Satlet 3 (dBm)
+  int64 uwb_sat___type___3_nlos = 59;                     // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___4_addr = 60;                     // Address of UWB Satlet 4
+  int64 uwb_sat___type___4_rssi = 61;                     // RSSI of UWB Satlet 4 (dBm)
+  int64 uwb_sat___type___4_nlos = 62;                     // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___5_addr = 63;                     // Address of UWB Satlet 5
+  int64 uwb_sat___type___5_rssi = 64;                     // RSSI of UWB Satlet 5 (dBm)
+  int64 uwb_sat___type___5_nlos = 65;                     // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
+  int64 uwb_sat___type___6_addr = 66;                     // Address of UWB Satlet 6
+  int64 uwb_sat___type___6_rssi = 67;                     // RSSI of UWB Satlet 6 (dBm)
+  int64 uwb_sat___type___6_nlos = 68;                     // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
 
   int64 cpu_load_percent___cpu___0 = 69;                // CPU Load of CPU 0 in percent
   int64 cpu_load_percent___cpu___1 = 70;                // CPU Load of CPU 1 in percent

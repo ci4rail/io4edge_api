@@ -471,75 +471,75 @@ struct  _Tracelet__TraceletMetrics
   /*
    * Address of UWB Satlet 1
    */
-  int64_t uwb_sat_1___type___addr;
+  int64_t uwb_sat___type___1_addr;
   /*
    * RSSI of UWB Satlet 1 (dBm)
    */
-  int64_t uwb_sat_1___type___rssi;
+  int64_t uwb_sat___type___1_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_1___type___nlos;
+  int64_t uwb_sat___type___1_nlos;
   /*
    * Address of UWB Satlet 2
    */
-  int64_t uwb_sat_2___type___addr;
+  int64_t uwb_sat___type___2_addr;
   /*
    * RSSI of UWB Satlet 2 (dBm)
    */
-  int64_t uwb_sat_2___type___rssi;
+  int64_t uwb_sat___type___2_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_2___type___nlos;
+  int64_t uwb_sat___type___2_nlos;
   /*
    * Address of UWB Satlet 3
    */
-  int64_t uwb_sat_3___type___addr;
+  int64_t uwb_sat___type___3_addr;
   /*
    * RSSI of UWB Satlet 3 (dBm)
    */
-  int64_t uwb_sat_3___type___rssi;
+  int64_t uwb_sat___type___3_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_3___type___nlos;
+  int64_t uwb_sat___type___3_nlos;
   /*
    * Address of UWB Satlet 4
    */
-  int64_t uwb_sat_4___type___addr;
+  int64_t uwb_sat___type___4_addr;
   /*
    * RSSI of UWB Satlet 4 (dBm)
    */
-  int64_t uwb_sat_4___type___rssi;
+  int64_t uwb_sat___type___4_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_4___type___nlos;
+  int64_t uwb_sat___type___4_nlos;
   /*
    * Address of UWB Satlet 5
    */
-  int64_t uwb_sat_5___type___addr;
+  int64_t uwb_sat___type___5_addr;
   /*
    * RSSI of UWB Satlet 5 (dBm)
    */
-  int64_t uwb_sat_5___type___rssi;
+  int64_t uwb_sat___type___5_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_5___type___nlos;
+  int64_t uwb_sat___type___5_nlos;
   /*
    * Address of UWB Satlet 6
    */
-  int64_t uwb_sat_6___type___addr;
+  int64_t uwb_sat___type___6_addr;
   /*
    * RSSI of UWB Satlet 6 (dBm)
    */
-  int64_t uwb_sat_6___type___rssi;
+  int64_t uwb_sat___type___6_rssi;
   /*
    * non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
    */
-  int64_t uwb_sat_6___type___nlos;
+  int64_t uwb_sat___type___6_nlos;
   /*
    * CPU Load of CPU 0 in percent
    */

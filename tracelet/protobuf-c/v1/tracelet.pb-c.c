@@ -1505,216 +1505,216 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_1___type___addr",
+    "uwb_sat___type___1_addr",
     51,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___1_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_1___type___rssi",
+    "uwb_sat___type___1_rssi",
     52,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___1_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_1___type___nlos",
+    "uwb_sat___type___1_nlos",
     53,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_1___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___1_nlos),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_2___type___addr",
+    "uwb_sat___type___2_addr",
     54,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___2_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_2___type___rssi",
+    "uwb_sat___type___2_rssi",
     55,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___2_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_2___type___nlos",
+    "uwb_sat___type___2_nlos",
     56,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_2___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___2_nlos),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_3___type___addr",
+    "uwb_sat___type___3_addr",
     57,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___3_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_3___type___rssi",
+    "uwb_sat___type___3_rssi",
     58,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___3_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_3___type___nlos",
+    "uwb_sat___type___3_nlos",
     59,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_3___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___3_nlos),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_4___type___addr",
+    "uwb_sat___type___4_addr",
     60,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___4_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_4___type___rssi",
+    "uwb_sat___type___4_rssi",
     61,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___4_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_4___type___nlos",
+    "uwb_sat___type___4_nlos",
     62,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_4___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___4_nlos),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_5___type___addr",
+    "uwb_sat___type___5_addr",
     63,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___5_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_5___type___rssi",
+    "uwb_sat___type___5_rssi",
     64,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___5_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_5___type___nlos",
+    "uwb_sat___type___5_nlos",
     65,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_5___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___5_nlos),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_6___type___addr",
+    "uwb_sat___type___6_addr",
     66,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___addr),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___6_addr),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_6___type___rssi",
+    "uwb_sat___type___6_rssi",
     67,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___rssi),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___6_rssi),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "uwb_sat_6___type___nlos",
+    "uwb_sat___type___6_nlos",
     68,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_sat_6___type___nlos),
+    offsetof(Tracelet__TraceletMetrics, uwb_sat___type___6_nlos),
     NULL,
     NULL,
     0,             /* flags */
@@ -1926,24 +1926,24 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   23,   /* field[23] = ubx_sensor_fusion_status_enum */
   61,   /* field[61] = uptime_seconds */
   40,   /* field[40] = uwb_num_sats */
-  41,   /* field[41] = uwb_sat_1___type___addr */
-  43,   /* field[43] = uwb_sat_1___type___nlos */
-  42,   /* field[42] = uwb_sat_1___type___rssi */
-  44,   /* field[44] = uwb_sat_2___type___addr */
-  46,   /* field[46] = uwb_sat_2___type___nlos */
-  45,   /* field[45] = uwb_sat_2___type___rssi */
-  47,   /* field[47] = uwb_sat_3___type___addr */
-  49,   /* field[49] = uwb_sat_3___type___nlos */
-  48,   /* field[48] = uwb_sat_3___type___rssi */
-  50,   /* field[50] = uwb_sat_4___type___addr */
-  52,   /* field[52] = uwb_sat_4___type___nlos */
-  51,   /* field[51] = uwb_sat_4___type___rssi */
-  53,   /* field[53] = uwb_sat_5___type___addr */
-  55,   /* field[55] = uwb_sat_5___type___nlos */
-  54,   /* field[54] = uwb_sat_5___type___rssi */
-  56,   /* field[56] = uwb_sat_6___type___addr */
-  58,   /* field[58] = uwb_sat_6___type___nlos */
-  57,   /* field[57] = uwb_sat_6___type___rssi */
+  41,   /* field[41] = uwb_sat___type___1_addr */
+  43,   /* field[43] = uwb_sat___type___1_nlos */
+  42,   /* field[42] = uwb_sat___type___1_rssi */
+  44,   /* field[44] = uwb_sat___type___2_addr */
+  46,   /* field[46] = uwb_sat___type___2_nlos */
+  45,   /* field[45] = uwb_sat___type___2_rssi */
+  47,   /* field[47] = uwb_sat___type___3_addr */
+  49,   /* field[49] = uwb_sat___type___3_nlos */
+  48,   /* field[48] = uwb_sat___type___3_rssi */
+  50,   /* field[50] = uwb_sat___type___4_addr */
+  52,   /* field[52] = uwb_sat___type___4_nlos */
+  51,   /* field[51] = uwb_sat___type___4_rssi */
+  53,   /* field[53] = uwb_sat___type___5_addr */
+  55,   /* field[55] = uwb_sat___type___5_nlos */
+  54,   /* field[54] = uwb_sat___type___5_rssi */
+  56,   /* field[56] = uwb_sat___type___6_addr */
+  58,   /* field[58] = uwb_sat___type___6_nlos */
+  57,   /* field[57] = uwb_sat___type___6_rssi */
   30,   /* field[30] = uwb_status_motion_state_enum */
   28,   /* field[28] = uwb_status_role_enum */
   29,   /* field[29] = uwb_status_state_enum */
