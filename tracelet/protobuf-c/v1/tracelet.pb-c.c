@@ -1868,7 +1868,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     "uwb_tacho_speed",
     87,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
+    PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, uwb_tacho_speed),
     NULL,

@@ -338,7 +338,7 @@ type TraceletMetrics struct {
 	ResetCount__Type__Wd                 int64   `protobuf:"varint,84,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of other watchdog resets
 	ResetCount__Type__Brownout           int64   `protobuf:"varint,85,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
 	ResetCount__Type__Unknown            int64   `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown resets
-	UwbTachoSpeed                        int64   `protobuf:"varint,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                          // Tacho speed from UWB subsystem in m/s (always positive)
+	UwbTachoSpeed                        float64 `protobuf:"fixed64,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                         // Tacho speed from UWB subsystem in m/s (always positive)
 }
 
 func (x *TraceletMetrics) Reset() {
@@ -870,7 +870,7 @@ func (x *TraceletMetrics) GetResetCount__Type__Unknown() int64 {
 	return 0
 }
 
-func (x *TraceletMetrics) GetUwbTachoSpeed() int64 {
+func (x *TraceletMetrics) GetUwbTachoSpeed() float64 {
 	if x != nil {
 		return x.UwbTachoSpeed
 	}
@@ -1791,7 +1791,7 @@ var file_tracelet_proto_rawDesc = []byte{
 	0x28, 0x03, 0x52, 0x15, 0x72, 0x65, 0x73, 0x65, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79,
 	0x70, 0x65, 0x55, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x12, 0x26, 0x0a, 0x0f, 0x75, 0x77, 0x62,
 	0x5f, 0x74, 0x61, 0x63, 0x68, 0x6f, 0x5f, 0x73, 0x70, 0x65, 0x65, 0x64, 0x18, 0x57, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x0d, 0x75, 0x77, 0x62, 0x54, 0x61, 0x63, 0x68, 0x6f, 0x53, 0x70, 0x65, 0x65,
+	0x28, 0x01, 0x52, 0x0d, 0x75, 0x77, 0x62, 0x54, 0x61, 0x63, 0x68, 0x6f, 0x53, 0x70, 0x65, 0x65,
 	0x64, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x74, 0x72, 0x61, 0x63, 0x65, 0x6c, 0x65, 0x74, 0x62,
 	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }

@@ -591,7 +591,7 @@ struct  _Tracelet__TraceletMetrics
   /*
    * Tacho speed from UWB subsystem in m/s (always positive)
    */
-  int64_t uwb_tacho_speed;
+  double uwb_tacho_speed;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
