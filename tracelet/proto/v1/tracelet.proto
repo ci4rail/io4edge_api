@@ -322,6 +322,6 @@ message TraceletMetrics {
   int64 reset_count___type___brownout = 85;             // Number of brownout resets
   int64 reset_count___type___unknown = 86;              // Number of unknown resets
 
-  int64 uwb_tacho_speed = 87;                            // Tacho speed from UWB subsystem in m/s (always positive)
+  double uwb_tacho_speed = 87;                            // Tacho speed from UWB subsystem in m/s (always positive)
 } 
 
