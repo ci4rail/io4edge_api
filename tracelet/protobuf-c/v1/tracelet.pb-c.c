@@ -1805,24 +1805,12 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "reset_count___type___interruptwd",
+    "reset_count___type___panic",
     82,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, reset_count___type___interruptwd),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "reset_count___type___taskwd",
-    83,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, reset_count___type___taskwd),
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___panic),
     NULL,
     NULL,
     0,             /* flags */
@@ -1830,7 +1818,7 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
   },
   {
     "reset_count___type___wd",
-    84,
+    83,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
@@ -1842,11 +1830,23 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
   },
   {
     "reset_count___type___brownout",
-    85,
+    84,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, reset_count___type___brownout),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___pwrglitch",
+    85,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___pwrglitch),
     NULL,
     NULL,
     0,             /* flags */
@@ -1905,13 +1905,13 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   25,   /* field[25] = ntrip_is_connected */
   27,   /* field[27] = ntrip_transfer_bytes___direction___recv */
   26,   /* field[26] = ntrip_transfer_bytes___direction___send */
-  69,   /* field[69] = reset_count___type___brownout */
-  66,   /* field[66] = reset_count___type___interruptwd */
+  68,   /* field[68] = reset_count___type___brownout */
+  66,   /* field[66] = reset_count___type___panic */
   64,   /* field[64] = reset_count___type___poweron */
+  69,   /* field[69] = reset_count___type___pwrglitch */
   65,   /* field[65] = reset_count___type___software */
-  67,   /* field[67] = reset_count___type___taskwd */
   70,   /* field[70] = reset_count___type___unknown */
-  68,   /* field[68] = reset_count___type___wd */
+  67,   /* field[67] = reset_count___type___wd */
   39,   /* field[39] = sensor_fusion_state */
   62,   /* field[62] = sleep_manager_state */
   7,   /* field[7] = sntp_updates */

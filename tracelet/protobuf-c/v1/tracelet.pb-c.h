@@ -553,7 +553,7 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t uptime_seconds;
   /*
-   * Sleep Manager State (0=NORMAL, 1=WANT_SLEEP, 2=WANT_SLEEP_CONFIRM, 3=PREPARE_SLEEP, 4=SLEEP, 5=WAKE)
+   * Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
    */
   int64_t sleep_manager_state;
   /*
@@ -569,15 +569,11 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t reset_count___type___software;
   /*
-   * Number of interrupt watchdog resets
+   * Number of panic resets
    */
-  int64_t reset_count___type___interruptwd;
+  int64_t reset_count___type___panic;
   /*
-   * Number of task watchdog resets
-   */
-  int64_t reset_count___type___taskwd;
-  /*
-   * Number of other watchdog resets
+   * Number of watchdog resets (interupt, task or other wd)
    */
   int64_t reset_count___type___wd;
   /*
@@ -585,7 +581,11 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t reset_count___type___brownout;
   /*
-   * Number of unknown resets
+   * Number of power glitch resets
+   */
+  int64_t reset_count___type___pwrglitch;
+  /*
+   * Number of unknown (other) resets
    */
   int64_t reset_count___type___unknown;
   /*

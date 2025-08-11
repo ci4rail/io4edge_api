@@ -316,11 +316,11 @@ message TraceletMetrics {
 
   int64 reset_count___type___poweron = 80;              // Number of power-on resets
   int64 reset_count___type___software = 81;             // Number of software resets
-  int64 reset_count___type___interruptwd = 82;          // Number of interrupt watchdog resets
-  int64 reset_count___type___taskwd = 83;               // Number of task watchdog resets
-  int64 reset_count___type___wd = 84;                   // Number of other watchdog resets
-  int64 reset_count___type___brownout = 85;             // Number of brownout resets
-  int64 reset_count___type___unknown = 86;              // Number of unknown resets
+  int64 reset_count___type___panic = 82;                // Number of panic resets
+  int64 reset_count___type___wd = 83;                   // Number of watchdog resets (interupt, task or other wd)
+  int64 reset_count___type___brownout = 84;             // Number of brownout resets
+  int64 reset_count___type___pwrglitch = 85;            // Number of power glitch resets
+  int64 reset_count___type___unknown = 86;              // Number of unknown (other) resets
 
   double uwb_tacho_speed = 87;                            // Tacho speed from UWB subsystem in m/s (always positive)
 } 
