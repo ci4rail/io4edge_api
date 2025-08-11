@@ -311,7 +311,7 @@ message TraceletMetrics {
   int64 cpu_load_percent___cpu___1 = 70;                // CPU Load of CPU 1 in percent
 
   int64 uptime_seconds = 71;                            // Uptime in seconds since last reboot
-  int64 sleep_manager_state = 72;                       // Sleep Manager State (0=NORMAL, 1=WANT_SLEEP, 2=WANT_SLEEP_CONFIRM, 3=PREPARE_SLEEP, 4=SLEEP, 5=WAKE)
+  int64 sleep_manager_state = 72;                       // Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
   int64 last_power_cut_unix_seconds = 73;               // Last power cut time in seconds since 1.1.1970 UTC
 
   int64 reset_count___type___poweron = 80;              // Number of power-on resets
