@@ -1,0 +1,124 @@
+/*
+Copyright © 2022 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package colorLED;
+option go_package = "colorLED/v1alpha1";
+
+// ============= Configuration =================
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    // not implemented
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // not implemented
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // not implemented
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // not implemented
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+enum Color {
+    COLOR_RED = 0;
+    COLOR_GREEN = 1;
+    COLOR_BLUE = 2;
+    COLOR_WHITE = 3;
+    COLOR_YELLOW = 4;
+    COLOR_CYAN = 5;
+    COLOR_PURPLE = 6;
+    COLOR_OFF = 7;
+}
+
+enum ChannelColor {
+    // RED Channel
+    CHANNEL_COLOR_RED = 0;
+    // GREEN Channel
+    CHANNEL_COLOR_GREEN = 1;
+    // BLUE Channel
+    CHANNEL_COLOR_BLUE = 2;
+}
+
+message ChannelConfig {
+    // channel number
+    fixed32 channel = 1;
+    // channel color
+    ChannelColor channelColor = 2;
+}
+
+message ConfigurationDescribeResponse {
+    repeated ChannelConfig channelConfig = 1;
+    bool blink = 2; // if true the channels support blinking
+}
+
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
+    oneof type {
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // not implemented
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    Color color = 1;
+    bool blink = 2; // if true the channel is blinking
+}
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    Color color = 1;
+    bool blink = 2; // if true the channel is blinking
+}
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    // no parameters
+}
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // not implemented
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    // not implemented
+}
