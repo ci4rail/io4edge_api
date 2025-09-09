@@ -47,14 +47,14 @@ message ConfigurationDescribe {
 }
 
 enum Color {
-    COLOR_RED = 0;
-    COLOR_GREEN = 1;
-    COLOR_BLUE = 2;
-    COLOR_WHITE = 3;
-    COLOR_YELLOW = 4;
-    COLOR_CYAN = 5;
-    COLOR_PURPLE = 6;
-    COLOR_OFF = 7;
+    RED = 0;
+    GREEN = 1;
+    BLUE = 2;
+    WHITE = 3;
+    YELLOW = 4;
+    CYAN = 5;
+    PURPLE = 6;
+    OFF = 7;
 }
 
 message ConfigurationDescribeResponse {

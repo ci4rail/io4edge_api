@@ -33,14 +33,14 @@ typedef struct _ColorLED__StreamData ColorLED__StreamData;
 /* --- enums --- */
 
 typedef enum _ColorLED__Color {
-  COLOR_LED__COLOR__COLOR_RED = 0,
-  COLOR_LED__COLOR__COLOR_GREEN = 1,
-  COLOR_LED__COLOR__COLOR_BLUE = 2,
-  COLOR_LED__COLOR__COLOR_WHITE = 3,
-  COLOR_LED__COLOR__COLOR_YELLOW = 4,
-  COLOR_LED__COLOR__COLOR_CYAN = 5,
-  COLOR_LED__COLOR__COLOR_PURPLE = 6,
-  COLOR_LED__COLOR__COLOR_OFF = 7
+  COLOR_LED__COLOR__RED = 0,
+  COLOR_LED__COLOR__GREEN = 1,
+  COLOR_LED__COLOR__BLUE = 2,
+  COLOR_LED__COLOR__WHITE = 3,
+  COLOR_LED__COLOR__YELLOW = 4,
+  COLOR_LED__COLOR__CYAN = 5,
+  COLOR_LED__COLOR__PURPLE = 6,
+  COLOR_LED__COLOR__OFF = 7
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__COLOR)
 } ColorLED__Color;
 
@@ -172,7 +172,7 @@ struct  _ColorLED__FunctionControlSet
 };
 #define COLOR_LED__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_set__descriptor) \
-    , COLOR_LED__COLOR__COLOR_RED, 0 }
+    , COLOR_LED__COLOR__RED, 0 }
 
 
 /*
@@ -189,7 +189,7 @@ struct  _ColorLED__FunctionControlGetResponse
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get_response__descriptor) \
-    , COLOR_LED__COLOR__COLOR_RED, 0 }
+    , COLOR_LED__COLOR__RED, 0 }
 
 
 /*

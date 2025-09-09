@@ -960,28 +960,28 @@ const ProtobufCMessageDescriptor color_led__stream_data__descriptor =
 };
 static const ProtobufCEnumValue color_led__color__enum_values_by_number[8] =
 {
-  { "COLOR_RED", "COLOR_LED__COLOR__COLOR_RED", 0 },
-  { "COLOR_GREEN", "COLOR_LED__COLOR__COLOR_GREEN", 1 },
-  { "COLOR_BLUE", "COLOR_LED__COLOR__COLOR_BLUE", 2 },
-  { "COLOR_WHITE", "COLOR_LED__COLOR__COLOR_WHITE", 3 },
-  { "COLOR_YELLOW", "COLOR_LED__COLOR__COLOR_YELLOW", 4 },
-  { "COLOR_CYAN", "COLOR_LED__COLOR__COLOR_CYAN", 5 },
-  { "COLOR_PURPLE", "COLOR_LED__COLOR__COLOR_PURPLE", 6 },
-  { "COLOR_OFF", "COLOR_LED__COLOR__COLOR_OFF", 7 },
+  { "RED", "COLOR_LED__COLOR__RED", 0 },
+  { "GREEN", "COLOR_LED__COLOR__GREEN", 1 },
+  { "BLUE", "COLOR_LED__COLOR__BLUE", 2 },
+  { "WHITE", "COLOR_LED__COLOR__WHITE", 3 },
+  { "YELLOW", "COLOR_LED__COLOR__YELLOW", 4 },
+  { "CYAN", "COLOR_LED__COLOR__CYAN", 5 },
+  { "PURPLE", "COLOR_LED__COLOR__PURPLE", 6 },
+  { "OFF", "COLOR_LED__COLOR__OFF", 7 },
 };
 static const ProtobufCIntRange color_led__color__value_ranges[] = {
 {0, 0},{0, 8}
 };
 static const ProtobufCEnumValueIndex color_led__color__enum_values_by_name[8] =
 {
-  { "COLOR_BLUE", 2 },
-  { "COLOR_CYAN", 5 },
-  { "COLOR_GREEN", 1 },
-  { "COLOR_OFF", 7 },
-  { "COLOR_PURPLE", 6 },
-  { "COLOR_RED", 0 },
-  { "COLOR_WHITE", 3 },
-  { "COLOR_YELLOW", 4 },
+  { "BLUE", 2 },
+  { "CYAN", 5 },
+  { "GREEN", 1 },
+  { "OFF", 7 },
+  { "PURPLE", 6 },
+  { "RED", 0 },
+  { "WHITE", 3 },
+  { "YELLOW", 4 },
 };
 const ProtobufCEnumDescriptor color_led__color__descriptor =
 {
