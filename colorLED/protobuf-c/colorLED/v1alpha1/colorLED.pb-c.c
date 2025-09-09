@@ -791,7 +791,7 @@ const ProtobufCMessageDescriptor color_led__channel_config__descriptor =
   (ProtobufCMessageInit) color_led__channel_config__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor color_led__configuration_describe_response__field_descriptors[1] =
+static const ProtobufCFieldDescriptor color_led__configuration_describe_response__field_descriptors[2] =
 {
   {
     "channelConfig",
@@ -805,14 +805,27 @@ static const ProtobufCFieldDescriptor color_led__configuration_describe_response
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "maxChannels",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(ColorLED__ConfigurationDescribeResponse, maxchannels),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned color_led__configuration_describe_response__field_indices_by_name[] = {
   0,   /* field[0] = channelConfig */
+  1,   /* field[1] = maxChannels */
 };
 static const ProtobufCIntRange color_led__configuration_describe_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor color_led__configuration_describe_response__descriptor =
 {
@@ -822,7 +835,7 @@ const ProtobufCMessageDescriptor color_led__configuration_describe_response__des
   "ColorLED__ConfigurationDescribeResponse",
   "colorLED",
   sizeof(ColorLED__ConfigurationDescribeResponse),
-  1,
+  2,
   color_led__configuration_describe_response__field_descriptors,
   color_led__configuration_describe_response__field_indices_by_name,
   1,  color_led__configuration_describe_response__number_ranges,

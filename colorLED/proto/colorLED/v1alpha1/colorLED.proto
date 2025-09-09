@@ -68,6 +68,7 @@ message ChannelConfig {
 
 message ConfigurationDescribeResponse {
     repeated ChannelConfig channelConfig = 1;
+    fixed32 maxChannels = 2; // maximum number of channels supported by the hardware
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook

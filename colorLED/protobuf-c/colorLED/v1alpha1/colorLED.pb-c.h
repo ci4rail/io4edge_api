@@ -134,10 +134,14 @@ struct  _ColorLED__ConfigurationDescribeResponse
   ProtobufCMessage base;
   size_t n_channelconfig;
   ColorLED__ChannelConfig **channelconfig;
+  /*
+   * maximum number of channels supported by the hardware
+   */
+  uint32_t maxchannels;
 };
 #define COLOR_LED__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__configuration_describe_response__descriptor) \
-    , 0,NULL }
+    , 0,NULL, 0 }
 
 
 typedef enum {
