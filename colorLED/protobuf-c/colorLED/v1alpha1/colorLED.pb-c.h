@@ -172,10 +172,11 @@ struct  _ColorLED__ConfigurationResponse
 struct  _ColorLED__FunctionControlGet
 {
   ProtobufCMessage base;
+  uint32_t channel;
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get__descriptor) \
-     }
+    , 0 }
 
 
 /*
@@ -199,7 +200,6 @@ struct  _ColorLED__FunctionControlSet
 struct  _ColorLED__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-  uint32_t channel;
   ColorLED__Color color;
   /*
    * if true the channel is blinking
@@ -208,7 +208,7 @@ struct  _ColorLED__FunctionControlGetResponse
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get_response__descriptor) \
-    , 0, COLOR_LED__COLOR__RED, 0 }
+    , COLOR_LED__COLOR__RED, 0 }
 
 
 /*

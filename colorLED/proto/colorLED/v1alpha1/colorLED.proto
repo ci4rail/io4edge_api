@@ -84,7 +84,7 @@ message ConfigurationResponse {
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    // not implemented
+    fixed32 channel = 1;
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
@@ -96,7 +96,6 @@ message FunctionControlSet {
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    fixed32 channel = 1;
     Color color = 2;
     bool blink = 3; // if true the channel is blinking
 }
