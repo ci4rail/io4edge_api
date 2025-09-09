@@ -20,7 +20,6 @@ typedef struct _ColorLED__ConfigurationSetResponse ColorLED__ConfigurationSetRes
 typedef struct _ColorLED__ConfigurationGet ColorLED__ConfigurationGet;
 typedef struct _ColorLED__ConfigurationGetResponse ColorLED__ConfigurationGetResponse;
 typedef struct _ColorLED__ConfigurationDescribe ColorLED__ConfigurationDescribe;
-typedef struct _ColorLED__ChannelConfig ColorLED__ChannelConfig;
 typedef struct _ColorLED__ConfigurationDescribeResponse ColorLED__ConfigurationDescribeResponse;
 typedef struct _ColorLED__ConfigurationResponse ColorLED__ConfigurationResponse;
 typedef struct _ColorLED__FunctionControlGet ColorLED__FunctionControlGet;
@@ -44,21 +43,6 @@ typedef enum _ColorLED__Color {
   COLOR_LED__COLOR__COLOR_OFF = 7
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__COLOR)
 } ColorLED__Color;
-typedef enum _ColorLED__ChannelColor {
-  /*
-   * RED Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_RED = 0,
-  /*
-   * GREEN Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_GREEN = 1,
-  /*
-   * BLUE Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_BLUE = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__CHANNEL_COLOR)
-} ColorLED__ChannelColor;
 
 /* --- messages --- */
 
@@ -123,28 +107,9 @@ struct  _ColorLED__ConfigurationDescribe
      }
 
 
-struct  _ColorLED__ChannelConfig
-{
-  ProtobufCMessage base;
-  /*
-   * channel number
-   */
-  uint32_t channel;
-  /*
-   * channel color
-   */
-  ColorLED__ChannelColor channelcolor;
-};
-#define COLOR_LED__CHANNEL_CONFIG__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&color_led__channel_config__descriptor) \
-    , 0, COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_RED }
-
-
 struct  _ColorLED__ConfigurationDescribeResponse
 {
   ProtobufCMessage base;
-  size_t n_channelconfig;
-  ColorLED__ChannelConfig **channelconfig;
   /*
    * if true the channels support blinking
    */
@@ -152,7 +117,7 @@ struct  _ColorLED__ConfigurationDescribeResponse
 };
 #define COLOR_LED__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__configuration_describe_response__descriptor) \
-    , 0,NULL, 0 }
+    , 0 }
 
 
 typedef enum {
@@ -359,25 +324,6 @@ ColorLED__ConfigurationDescribe *
 void   color_led__configuration_describe__free_unpacked
                      (ColorLED__ConfigurationDescribe *message,
                       ProtobufCAllocator *allocator);
-/* ColorLED__ChannelConfig methods */
-void   color_led__channel_config__init
-                     (ColorLED__ChannelConfig         *message);
-size_t color_led__channel_config__get_packed_size
-                     (const ColorLED__ChannelConfig   *message);
-size_t color_led__channel_config__pack
-                     (const ColorLED__ChannelConfig   *message,
-                      uint8_t             *out);
-size_t color_led__channel_config__pack_to_buffer
-                     (const ColorLED__ChannelConfig   *message,
-                      ProtobufCBuffer     *buffer);
-ColorLED__ChannelConfig *
-       color_led__channel_config__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   color_led__channel_config__free_unpacked
-                     (ColorLED__ChannelConfig *message,
-                      ProtobufCAllocator *allocator);
 /* ColorLED__ConfigurationDescribeResponse methods */
 void   color_led__configuration_describe_response__init
                      (ColorLED__ConfigurationDescribeResponse         *message);
@@ -547,9 +493,6 @@ typedef void (*ColorLED__ConfigurationGetResponse_Closure)
 typedef void (*ColorLED__ConfigurationDescribe_Closure)
                  (const ColorLED__ConfigurationDescribe *message,
                   void *closure_data);
-typedef void (*ColorLED__ChannelConfig_Closure)
-                 (const ColorLED__ChannelConfig *message,
-                  void *closure_data);
 typedef void (*ColorLED__ConfigurationDescribeResponse_Closure)
                  (const ColorLED__ConfigurationDescribeResponse *message,
                   void *closure_data);
@@ -581,13 +524,11 @@ typedef void (*ColorLED__StreamData_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    color_led__color__descriptor;
-extern const ProtobufCEnumDescriptor    color_led__channel_color__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_get__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_get_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_describe__descriptor;
-extern const ProtobufCMessageDescriptor color_led__channel_config__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__function_control_get__descriptor;

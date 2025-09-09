@@ -57,24 +57,7 @@ enum Color {
     COLOR_OFF = 7;
 }
 
-enum ChannelColor {
-    // RED Channel
-    CHANNEL_COLOR_RED = 0;
-    // GREEN Channel
-    CHANNEL_COLOR_GREEN = 1;
-    // BLUE Channel
-    CHANNEL_COLOR_BLUE = 2;
-}
-
-message ChannelConfig {
-    // channel number
-    fixed32 channel = 1;
-    // channel color
-    ChannelColor channelColor = 2;
-}
-
 message ConfigurationDescribeResponse {
-    repeated ChannelConfig channelConfig = 1;
     bool blink = 2; // if true the channels support blinking
 }
 
