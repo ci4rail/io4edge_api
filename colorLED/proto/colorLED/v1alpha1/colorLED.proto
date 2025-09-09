@@ -57,8 +57,17 @@ enum Color {
     OFF = 7;
 }
 
+message ChannelConfig {
+    // channel number
+    fixed32 channel = 1;
+    // channel color
+    Color color = 2;
+    bool blink = 3; // if true the channel supports blinking
+}
+
+
 message ConfigurationDescribeResponse {
-    bool blink = 2; // if true the channels support blinking
+    repeated ChannelConfig channelConfig = 1;
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -80,14 +89,16 @@ message FunctionControlGet {
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-    Color color = 1;
-    bool blink = 2; // if true the channel is blinking
+    fixed32 channel = 1;
+    Color color = 2;
+    bool blink = 3;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    Color color = 1;
-    bool blink = 2; // if true the channel is blinking
+    fixed32 channel = 1;
+    Color color = 2;
+    bool blink = 3; // if true the channel is blinking
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
