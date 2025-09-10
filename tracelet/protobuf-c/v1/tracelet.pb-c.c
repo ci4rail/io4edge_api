@@ -1010,7 +1010,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor =
   (ProtobufCMessageInit) tracelet__tracelet_message_id__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[72] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[70] =
 {
   {
     "health___type___uwb_comm",
@@ -1343,42 +1343,6 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
     offsetof(Tracelet__TraceletMetrics, ntrip_transfer_bytes___direction___recv),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "uwb_status_role_enum",
-    38,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_status_role_enum),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "uwb_status_state_enum",
-    39,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_status_state_enum),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "uwb_status_motion_state_enum",
-    40,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(Tracelet__TraceletMetrics, uwb_status_motion_state_enum),
     NULL,
     NULL,
     0,             /* flags */
@@ -1876,10 +1840,22 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "uwb_pan_id",
+    88,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, uwb_pan_id),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
-  59,   /* field[59] = cpu_load_percent___cpu___0 */
-  60,   /* field[60] = cpu_load_percent___cpu___1 */
+  56,   /* field[56] = cpu_load_percent___cpu___0 */
+  57,   /* field[57] = cpu_load_percent___cpu___1 */
   8,   /* field[8] = free_heap_bytes */
   14,   /* field[14] = gnss_num_sats___system___beidou */
   15,   /* field[15] = gnss_num_sats___system___galileo */
@@ -1899,65 +1875,64 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   0,   /* field[0] = health___type___uwb_comm */
   2,   /* field[2] = health___type___uwb_config */
   1,   /* field[1] = health___type___uwb_firmware */
-  63,   /* field[63] = last_power_cut_unix_seconds */
-  32,   /* field[32] = lsi_acks_missed */
-  31,   /* field[31] = lsi_is_connected */
+  60,   /* field[60] = last_power_cut_unix_seconds */
+  29,   /* field[29] = lsi_acks_missed */
+  28,   /* field[28] = lsi_is_connected */
   25,   /* field[25] = ntrip_is_connected */
   27,   /* field[27] = ntrip_transfer_bytes___direction___recv */
   26,   /* field[26] = ntrip_transfer_bytes___direction___send */
-  68,   /* field[68] = reset_count___type___brownout */
-  66,   /* field[66] = reset_count___type___panic */
-  64,   /* field[64] = reset_count___type___poweron */
-  69,   /* field[69] = reset_count___type___pwrglitch */
-  65,   /* field[65] = reset_count___type___software */
-  70,   /* field[70] = reset_count___type___unknown */
-  67,   /* field[67] = reset_count___type___wd */
-  39,   /* field[39] = sensor_fusion_state */
-  62,   /* field[62] = sleep_manager_state */
+  65,   /* field[65] = reset_count___type___brownout */
+  63,   /* field[63] = reset_count___type___panic */
+  61,   /* field[61] = reset_count___type___poweron */
+  66,   /* field[66] = reset_count___type___pwrglitch */
+  62,   /* field[62] = reset_count___type___software */
+  67,   /* field[67] = reset_count___type___unknown */
+  64,   /* field[64] = reset_count___type___wd */
+  36,   /* field[36] = sensor_fusion_state */
+  59,   /* field[59] = sleep_manager_state */
   7,   /* field[7] = sntp_updates */
   9,   /* field[9] = system_time_seconds */
-  33,   /* field[33] = ubx_boot_type_enum */
+  30,   /* field[30] = ubx_boot_type_enum */
   24,   /* field[24] = ubx_ref_station_id */
-  34,   /* field[34] = ubx_runtime */
-  38,   /* field[38] = ubx_sensor_fusion_detail___type___imu_init */
-  37,   /* field[37] = ubx_sensor_fusion_detail___type___ins_init */
-  36,   /* field[36] = ubx_sensor_fusion_detail___type___mnt_alg */
-  35,   /* field[35] = ubx_sensor_fusion_detail___type___wt_init */
+  31,   /* field[31] = ubx_runtime */
+  35,   /* field[35] = ubx_sensor_fusion_detail___type___imu_init */
+  34,   /* field[34] = ubx_sensor_fusion_detail___type___ins_init */
+  33,   /* field[33] = ubx_sensor_fusion_detail___type___mnt_alg */
+  32,   /* field[32] = ubx_sensor_fusion_detail___type___wt_init */
   23,   /* field[23] = ubx_sensor_fusion_status_enum */
-  61,   /* field[61] = uptime_seconds */
-  40,   /* field[40] = uwb_num_sats */
-  41,   /* field[41] = uwb_sat___type___1_addr */
-  43,   /* field[43] = uwb_sat___type___1_nlos */
-  42,   /* field[42] = uwb_sat___type___1_rssi */
-  44,   /* field[44] = uwb_sat___type___2_addr */
-  46,   /* field[46] = uwb_sat___type___2_nlos */
-  45,   /* field[45] = uwb_sat___type___2_rssi */
-  47,   /* field[47] = uwb_sat___type___3_addr */
-  49,   /* field[49] = uwb_sat___type___3_nlos */
-  48,   /* field[48] = uwb_sat___type___3_rssi */
-  50,   /* field[50] = uwb_sat___type___4_addr */
-  52,   /* field[52] = uwb_sat___type___4_nlos */
-  51,   /* field[51] = uwb_sat___type___4_rssi */
-  53,   /* field[53] = uwb_sat___type___5_addr */
-  55,   /* field[55] = uwb_sat___type___5_nlos */
-  54,   /* field[54] = uwb_sat___type___5_rssi */
-  56,   /* field[56] = uwb_sat___type___6_addr */
-  58,   /* field[58] = uwb_sat___type___6_nlos */
-  57,   /* field[57] = uwb_sat___type___6_rssi */
-  30,   /* field[30] = uwb_status_motion_state_enum */
-  28,   /* field[28] = uwb_status_role_enum */
-  29,   /* field[29] = uwb_status_state_enum */
-  71,   /* field[71] = uwb_tacho_speed */
+  58,   /* field[58] = uptime_seconds */
+  37,   /* field[37] = uwb_num_sats */
+  69,   /* field[69] = uwb_pan_id */
+  38,   /* field[38] = uwb_sat___type___1_addr */
+  40,   /* field[40] = uwb_sat___type___1_nlos */
+  39,   /* field[39] = uwb_sat___type___1_rssi */
+  41,   /* field[41] = uwb_sat___type___2_addr */
+  43,   /* field[43] = uwb_sat___type___2_nlos */
+  42,   /* field[42] = uwb_sat___type___2_rssi */
+  44,   /* field[44] = uwb_sat___type___3_addr */
+  46,   /* field[46] = uwb_sat___type___3_nlos */
+  45,   /* field[45] = uwb_sat___type___3_rssi */
+  47,   /* field[47] = uwb_sat___type___4_addr */
+  49,   /* field[49] = uwb_sat___type___4_nlos */
+  48,   /* field[48] = uwb_sat___type___4_rssi */
+  50,   /* field[50] = uwb_sat___type___5_addr */
+  52,   /* field[52] = uwb_sat___type___5_nlos */
+  51,   /* field[51] = uwb_sat___type___5_rssi */
+  53,   /* field[53] = uwb_sat___type___6_addr */
+  55,   /* field[55] = uwb_sat___type___6_nlos */
+  54,   /* field[54] = uwb_sat___type___6_rssi */
+  68,   /* field[68] = uwb_tacho_speed */
   11,   /* field[11] = wifi_ap */
   10,   /* field[10] = wifi_rssi_dbm */
 };
-static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[4 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[5 + 1] =
 {
   { 1, 0 },
   { 21, 17 },
   { 30, 20 },
-  { 80, 64 },
-  { 0, 72 }
+  { 41, 28 },
+  { 80, 61 },
+  { 0, 70 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -1967,10 +1942,10 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  72,
+  70,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
-  4,  tracelet__tracelet_metrics__number_ranges,
+  5,  tracelet__tracelet_metrics__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_metrics__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -417,18 +417,6 @@ struct  _Tracelet__TraceletMetrics
    */
   int64_t ntrip_transfer_bytes___direction___recv;
   /*
-   * UWB Role from Status Report (0-4) 3=TAG  TODO: needed?
-   */
-  int64_t uwb_status_role_enum;
-  /*
-   * UWB State from Status Report(0-4) TODO: needed?
-   */
-  int64_t uwb_status_state_enum;
-  /*
-   * UWB Motion Sensor State from Status Report (0..2), 1=MOVE TODO: needed?
-   */
-  int64_t uwb_status_motion_state_enum;
-  /*
    * Localization Server Interface gets ACKs from server
    */
   int64_t lsi_is_connected;
@@ -592,10 +580,14 @@ struct  _Tracelet__TraceletMetrics
    * Tacho speed from UWB subsystem in m/s (always positive)
    */
   double uwb_tacho_speed;
+  /*
+   * UWB PAN ID from Status Report
+   */
+  int64_t uwb_pan_id;
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */
