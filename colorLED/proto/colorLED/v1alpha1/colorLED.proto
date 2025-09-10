@@ -47,35 +47,28 @@ message ConfigurationDescribe {
 }
 
 enum Color {
-    COLOR_RED = 0;
-    COLOR_GREEN = 1;
-    COLOR_BLUE = 2;
-    COLOR_WHITE = 3;
-    COLOR_YELLOW = 4;
-    COLOR_CYAN = 5;
-    COLOR_PURPLE = 6;
-    COLOR_OFF = 7;
-}
-
-enum ChannelColor {
-    // RED Channel
-    CHANNEL_COLOR_RED = 0;
-    // GREEN Channel
-    CHANNEL_COLOR_GREEN = 1;
-    // BLUE Channel
-    CHANNEL_COLOR_BLUE = 2;
+    RED = 0;
+    GREEN = 1;
+    BLUE = 2;
+    WHITE = 3;
+    YELLOW = 4;
+    CYAN = 5;
+    PURPLE = 6;
+    OFF = 7;
 }
 
 message ChannelConfig {
     // channel number
     fixed32 channel = 1;
     // channel color
-    ChannelColor channelColor = 2;
+    Color color = 2;
+    bool blink = 3; // if true the channel supports blinking
 }
+
 
 message ConfigurationDescribeResponse {
     repeated ChannelConfig channelConfig = 1;
-    bool blink = 2; // if true the channels support blinking
+    fixed32 maxChannels = 2; // maximum number of channels supported by the hardware
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -92,19 +85,20 @@ message ConfigurationResponse {
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    // not implemented
+    fixed32 channel = 1;
 }
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-    Color color = 1;
-    bool blink = 2; // if true the channel is blinking
+    fixed32 channel = 1;
+    Color color = 2;
+    bool blink = 3;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    Color color = 1;
-    bool blink = 2; // if true the channel is blinking
+    Color color = 2;
+    bool blink = 3; // if true the channel is blinking
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
