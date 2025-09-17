@@ -24,7 +24,6 @@ message ChannelConfig {
     // channel number (0..n)
     int32 channel = 1;
     // sample rate in [Hz]. 
-    // A 0 value means to optimize for DC measurements.
     float sample_rate = 2;
     // gain (e.g. 1,2,4,8)
     int32 gain = 3;
@@ -97,8 +96,8 @@ message StreamControlStart {
     fixed32 channelMask = 1; 
 }
 
-// a SampleGroup contains samples for one or more channels taken at the same time
-message SampleGroup {
+// a Sample contains samples for one or more channels taken at the same time
+message Sample {
     // Timestamp for that specific channels sample. This is the time the sample was taken.
     // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
     fixed64 timestamp = 1;
@@ -110,5 +109,5 @@ message SampleGroup {
 
 // data to tranport via stream
 message StreamData {
-    repeated SampleGroup samples = 1;
+    repeated Sample samples = 1;
 }

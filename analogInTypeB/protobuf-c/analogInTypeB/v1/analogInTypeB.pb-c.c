@@ -592,49 +592,49 @@ void   analog_in_type_b__stream_control_start__free_unpacked
   assert(message->base.descriptor == &analog_in_type_b__stream_control_start__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   analog_in_type_b__sample_group__init
-                     (AnalogInTypeB__SampleGroup         *message)
+void   analog_in_type_b__sample__init
+                     (AnalogInTypeB__Sample         *message)
 {
-  static const AnalogInTypeB__SampleGroup init_value = ANALOG_IN_TYPE_B__SAMPLE_GROUP__INIT;
+  static const AnalogInTypeB__Sample init_value = ANALOG_IN_TYPE_B__SAMPLE__INIT;
   *message = init_value;
 }
-size_t analog_in_type_b__sample_group__get_packed_size
-                     (const AnalogInTypeB__SampleGroup *message)
+size_t analog_in_type_b__sample__get_packed_size
+                     (const AnalogInTypeB__Sample *message)
 {
-  assert(message->base.descriptor == &analog_in_type_b__sample_group__descriptor);
+  assert(message->base.descriptor == &analog_in_type_b__sample__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t analog_in_type_b__sample_group__pack
-                     (const AnalogInTypeB__SampleGroup *message,
+size_t analog_in_type_b__sample__pack
+                     (const AnalogInTypeB__Sample *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &analog_in_type_b__sample_group__descriptor);
+  assert(message->base.descriptor == &analog_in_type_b__sample__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t analog_in_type_b__sample_group__pack_to_buffer
-                     (const AnalogInTypeB__SampleGroup *message,
+size_t analog_in_type_b__sample__pack_to_buffer
+                     (const AnalogInTypeB__Sample *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &analog_in_type_b__sample_group__descriptor);
+  assert(message->base.descriptor == &analog_in_type_b__sample__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-AnalogInTypeB__SampleGroup *
-       analog_in_type_b__sample_group__unpack
+AnalogInTypeB__Sample *
+       analog_in_type_b__sample__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (AnalogInTypeB__SampleGroup *)
-     protobuf_c_message_unpack (&analog_in_type_b__sample_group__descriptor,
+  return (AnalogInTypeB__Sample *)
+     protobuf_c_message_unpack (&analog_in_type_b__sample__descriptor,
                                 allocator, len, data);
 }
-void   analog_in_type_b__sample_group__free_unpacked
-                     (AnalogInTypeB__SampleGroup *message,
+void   analog_in_type_b__sample__free_unpacked
+                     (AnalogInTypeB__Sample *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &analog_in_type_b__sample_group__descriptor);
+  assert(message->base.descriptor == &analog_in_type_b__sample__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   analog_in_type_b__stream_data__init
@@ -1108,7 +1108,7 @@ const ProtobufCMessageDescriptor analog_in_type_b__stream_control_start__descrip
   (ProtobufCMessageInit) analog_in_type_b__stream_control_start__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor analog_in_type_b__sample_group__field_descriptors[3] =
+static const ProtobufCFieldDescriptor analog_in_type_b__sample__field_descriptors[3] =
 {
   {
     "timestamp",
@@ -1116,7 +1116,7 @@ static const ProtobufCFieldDescriptor analog_in_type_b__sample_group__field_desc
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FIXED64,
     0,   /* quantifier_offset */
-    offsetof(AnalogInTypeB__SampleGroup, timestamp),
+    offsetof(AnalogInTypeB__Sample, timestamp),
     NULL,
     NULL,
     0,             /* flags */
@@ -1128,7 +1128,7 @@ static const ProtobufCFieldDescriptor analog_in_type_b__sample_group__field_desc
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(AnalogInTypeB__SampleGroup, basechannel),
+    offsetof(AnalogInTypeB__Sample, basechannel),
     NULL,
     NULL,
     0,             /* flags */
@@ -1139,37 +1139,37 @@ static const ProtobufCFieldDescriptor analog_in_type_b__sample_group__field_desc
     3,
     PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_FLOAT,
-    offsetof(AnalogInTypeB__SampleGroup, n_value),
-    offsetof(AnalogInTypeB__SampleGroup, value),
+    offsetof(AnalogInTypeB__Sample, n_value),
+    offsetof(AnalogInTypeB__Sample, value),
     NULL,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned analog_in_type_b__sample_group__field_indices_by_name[] = {
+static const unsigned analog_in_type_b__sample__field_indices_by_name[] = {
   1,   /* field[1] = baseChannel */
   0,   /* field[0] = timestamp */
   2,   /* field[2] = value */
 };
-static const ProtobufCIntRange analog_in_type_b__sample_group__number_ranges[1 + 1] =
+static const ProtobufCIntRange analog_in_type_b__sample__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 3 }
 };
-const ProtobufCMessageDescriptor analog_in_type_b__sample_group__descriptor =
+const ProtobufCMessageDescriptor analog_in_type_b__sample__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "analogInTypeB.SampleGroup",
-  "SampleGroup",
-  "AnalogInTypeB__SampleGroup",
+  "analogInTypeB.Sample",
+  "Sample",
+  "AnalogInTypeB__Sample",
   "analogInTypeB",
-  sizeof(AnalogInTypeB__SampleGroup),
+  sizeof(AnalogInTypeB__Sample),
   3,
-  analog_in_type_b__sample_group__field_descriptors,
-  analog_in_type_b__sample_group__field_indices_by_name,
-  1,  analog_in_type_b__sample_group__number_ranges,
-  (ProtobufCMessageInit) analog_in_type_b__sample_group__init,
+  analog_in_type_b__sample__field_descriptors,
+  analog_in_type_b__sample__field_indices_by_name,
+  1,  analog_in_type_b__sample__number_ranges,
+  (ProtobufCMessageInit) analog_in_type_b__sample__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor analog_in_type_b__stream_data__field_descriptors[1] =
@@ -1181,7 +1181,7 @@ static const ProtobufCFieldDescriptor analog_in_type_b__stream_data__field_descr
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(AnalogInTypeB__StreamData, n_samples),
     offsetof(AnalogInTypeB__StreamData, samples),
-    &analog_in_type_b__sample_group__descriptor,
+    &analog_in_type_b__sample__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */

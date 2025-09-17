@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$analogInTypeB/v1/analogInTypeB.proto\x12\ranalogInTypeB\"C\n\rChannelConfig\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x05\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x02\x12\x0c\n\x04gain\x18\x03 \x01(\x05\"f\n\x19\x43hannelGroupSpecification\x12\x10\n\x08\x63hannels\x18\x01 \x03(\x05\x12\x1e\n\x16supported_sample_rates\x18\x02 \x03(\x02\x12\x17\n\x0fsupported_gains\x18\x03 \x03(\x05\"G\n\x10\x43onfigurationSet\x12\x33\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x1c.analogInTypeB.ChannelConfig\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"O\n\x18\x43onfigurationGetResponse\x12\x33\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x1c.analogInTypeB.ChannelConfig\"\x17\n\x15\x43onfigurationDescribe\"g\n\x1d\x43onfigurationDescribeResponse\x12\x46\n\x14\x63hannelSpecification\x18\x01 \x03(\x0b\x32(.analogInTypeB.ChannelGroupSpecification\"\x14\n\x12\x46unctionControlGet\"\x14\n\x12\x46unctionControlSet\"+\n\x1a\x46unctionControlGetResponse\x12\r\n\x05value\x18\x01 \x03(\x02\"\x1c\n\x1a\x46unctionControlSetResponse\")\n\x12StreamControlStart\x12\x13\n\x0b\x63hannelMask\x18\x01 \x01(\x07\"D\n\x0bSampleGroup\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x13\n\x0b\x62\x61seChannel\x18\x02 \x01(\x05\x12\r\n\x05value\x18\x03 \x03(\x02\"9\n\nStreamData\x12+\n\x07samples\x18\x01 \x03(\x0b\x32\x1a.analogInTypeB.SampleGroupB\x12Z\x10\x61nalogInTypeB/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$analogInTypeB/v1/analogInTypeB.proto\x12\ranalogInTypeB\"C\n\rChannelConfig\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x05\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x02\x12\x0c\n\x04gain\x18\x03 \x01(\x05\"f\n\x19\x43hannelGroupSpecification\x12\x10\n\x08\x63hannels\x18\x01 \x03(\x05\x12\x1e\n\x16supported_sample_rates\x18\x02 \x03(\x02\x12\x17\n\x0fsupported_gains\x18\x03 \x03(\x05\"G\n\x10\x43onfigurationSet\x12\x33\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x1c.analogInTypeB.ChannelConfig\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"O\n\x18\x43onfigurationGetResponse\x12\x33\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x1c.analogInTypeB.ChannelConfig\"\x17\n\x15\x43onfigurationDescribe\"g\n\x1d\x43onfigurationDescribeResponse\x12\x46\n\x14\x63hannelSpecification\x18\x01 \x03(\x0b\x32(.analogInTypeB.ChannelGroupSpecification\"\x14\n\x12\x46unctionControlGet\"\x14\n\x12\x46unctionControlSet\"+\n\x1a\x46unctionControlGetResponse\x12\r\n\x05value\x18\x01 \x03(\x02\"\x1c\n\x1a\x46unctionControlSetResponse\")\n\x12StreamControlStart\x12\x13\n\x0b\x63hannelMask\x18\x01 \x01(\x07\"?\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x13\n\x0b\x62\x61seChannel\x18\x02 \x01(\x05\x12\r\n\x05value\x18\x03 \x03(\x02\"4\n\nStreamData\x12&\n\x07samples\x18\x01 \x03(\x0b\x32\x15.analogInTypeB.SampleB\x12Z\x10\x61nalogInTypeB/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -47,8 +47,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=677
   _globals['_STREAMCONTROLSTART']._serialized_start=679
   _globals['_STREAMCONTROLSTART']._serialized_end=720
-  _globals['_SAMPLEGROUP']._serialized_start=722
-  _globals['_SAMPLEGROUP']._serialized_end=790
-  _globals['_STREAMDATA']._serialized_start=792
-  _globals['_STREAMDATA']._serialized_end=849
+  _globals['_SAMPLE']._serialized_start=722
+  _globals['_SAMPLE']._serialized_end=785
+  _globals['_STREAMDATA']._serialized_start=787
+  _globals['_STREAMDATA']._serialized_end=839
 # @@protoc_insertion_point(module_scope)

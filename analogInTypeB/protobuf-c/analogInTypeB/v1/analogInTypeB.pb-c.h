@@ -28,7 +28,7 @@ typedef struct _AnalogInTypeB__FunctionControlSet AnalogInTypeB__FunctionControl
 typedef struct _AnalogInTypeB__FunctionControlGetResponse AnalogInTypeB__FunctionControlGetResponse;
 typedef struct _AnalogInTypeB__FunctionControlSetResponse AnalogInTypeB__FunctionControlSetResponse;
 typedef struct _AnalogInTypeB__StreamControlStart AnalogInTypeB__StreamControlStart;
-typedef struct _AnalogInTypeB__SampleGroup AnalogInTypeB__SampleGroup;
+typedef struct _AnalogInTypeB__Sample AnalogInTypeB__Sample;
 typedef struct _AnalogInTypeB__StreamData AnalogInTypeB__StreamData;
 
 
@@ -46,7 +46,6 @@ struct  _AnalogInTypeB__ChannelConfig
   int32_t channel;
   /*
    * sample rate in [Hz]. 
-   * A 0 value means to optimize for DC measurements.
    */
   float sample_rate;
   /*
@@ -215,9 +214,9 @@ struct  _AnalogInTypeB__StreamControlStart
 
 
 /*
- * a SampleGroup contains samples for one or more channels taken at the same time
+ * a Sample contains samples for one or more channels taken at the same time
  */
-struct  _AnalogInTypeB__SampleGroup
+struct  _AnalogInTypeB__Sample
 {
   ProtobufCMessage base;
   /*
@@ -235,8 +234,8 @@ struct  _AnalogInTypeB__SampleGroup
   size_t n_value;
   float *value;
 };
-#define ANALOG_IN_TYPE_B__SAMPLE_GROUP__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_b__sample_group__descriptor) \
+#define ANALOG_IN_TYPE_B__SAMPLE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_b__sample__descriptor) \
     , 0, 0, 0,NULL }
 
 
@@ -247,7 +246,7 @@ struct  _AnalogInTypeB__StreamData
 {
   ProtobufCMessage base;
   size_t n_samples;
-  AnalogInTypeB__SampleGroup **samples;
+  AnalogInTypeB__Sample **samples;
 };
 #define ANALOG_IN_TYPE_B__STREAM_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&analog_in_type_b__stream_data__descriptor) \
@@ -501,24 +500,24 @@ AnalogInTypeB__StreamControlStart *
 void   analog_in_type_b__stream_control_start__free_unpacked
                      (AnalogInTypeB__StreamControlStart *message,
                       ProtobufCAllocator *allocator);
-/* AnalogInTypeB__SampleGroup methods */
-void   analog_in_type_b__sample_group__init
-                     (AnalogInTypeB__SampleGroup         *message);
-size_t analog_in_type_b__sample_group__get_packed_size
-                     (const AnalogInTypeB__SampleGroup   *message);
-size_t analog_in_type_b__sample_group__pack
-                     (const AnalogInTypeB__SampleGroup   *message,
+/* AnalogInTypeB__Sample methods */
+void   analog_in_type_b__sample__init
+                     (AnalogInTypeB__Sample         *message);
+size_t analog_in_type_b__sample__get_packed_size
+                     (const AnalogInTypeB__Sample   *message);
+size_t analog_in_type_b__sample__pack
+                     (const AnalogInTypeB__Sample   *message,
                       uint8_t             *out);
-size_t analog_in_type_b__sample_group__pack_to_buffer
-                     (const AnalogInTypeB__SampleGroup   *message,
+size_t analog_in_type_b__sample__pack_to_buffer
+                     (const AnalogInTypeB__Sample   *message,
                       ProtobufCBuffer     *buffer);
-AnalogInTypeB__SampleGroup *
-       analog_in_type_b__sample_group__unpack
+AnalogInTypeB__Sample *
+       analog_in_type_b__sample__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   analog_in_type_b__sample_group__free_unpacked
-                     (AnalogInTypeB__SampleGroup *message,
+void   analog_in_type_b__sample__free_unpacked
+                     (AnalogInTypeB__Sample *message,
                       ProtobufCAllocator *allocator);
 /* AnalogInTypeB__StreamData methods */
 void   analog_in_type_b__stream_data__init
@@ -580,8 +579,8 @@ typedef void (*AnalogInTypeB__FunctionControlSetResponse_Closure)
 typedef void (*AnalogInTypeB__StreamControlStart_Closure)
                  (const AnalogInTypeB__StreamControlStart *message,
                   void *closure_data);
-typedef void (*AnalogInTypeB__SampleGroup_Closure)
-                 (const AnalogInTypeB__SampleGroup *message,
+typedef void (*AnalogInTypeB__Sample_Closure)
+                 (const AnalogInTypeB__Sample *message,
                   void *closure_data);
 typedef void (*AnalogInTypeB__StreamData_Closure)
                  (const AnalogInTypeB__StreamData *message,
@@ -605,7 +604,7 @@ extern const ProtobufCMessageDescriptor analog_in_type_b__function_control_set__
 extern const ProtobufCMessageDescriptor analog_in_type_b__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_b__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_b__stream_control_start__descriptor;
-extern const ProtobufCMessageDescriptor analog_in_type_b__sample_group__descriptor;
+extern const ProtobufCMessageDescriptor analog_in_type_b__sample__descriptor;
 extern const ProtobufCMessageDescriptor analog_in_type_b__stream_data__descriptor;
 
 PROTOBUF_C__END_DECLS
