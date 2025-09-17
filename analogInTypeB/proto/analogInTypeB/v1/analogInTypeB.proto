@@ -1,0 +1,116 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package analogInTypeB;
+option go_package = "analogInTypeB/v1";
+
+// ============= Configuration =================
+
+message ChannelConfig {
+    // channel number (0..n)
+    int32 channel = 1;
+    float sample_rate = 2;
+    int32 gain = 3;
+}
+
+message ChannelSpecification {
+    // channel number (0..n)
+    int32 channel = 1;
+    repeated float supported_sample_rates = 2;
+    repeated int32 supported_gains = 3;
+}
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    // per channel configuration (one per channel). The channel number is part of each ChannelConfig entry.
+    // missing channels remain unchanged
+    repeated ChannelConfig channelConfig = 1;
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // no parameters
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // no parameters
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // per channel configuration (one per channel). The channel number is part of each ChannelConfig entry.
+    repeated ChannelConfig channelConfig = 1;
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    repeated ChannelSpecification channelSpecification = 1;
+}
+
+// ============= FunctionControl =================
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // no parameters
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    // Not implemented
+}
+
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    // one value per channel, channel number is implicit by position in array
+    repeated float value = 1;  
+}
+
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    // Not implemented
+}
+
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // which channels to include in the stream. LSB is channel 0, 1: include, 0: exclude
+    fixed32 channelMask = 1; 
+}
+
+message Sample {
+    // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    // Specifies the analog input channel number 0..n to which the value belongs
+    int32 channel = 2;  
+    // Specifies the analog input channel value
+    float value = 3;
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    repeated Sample samples = 1;
+}
