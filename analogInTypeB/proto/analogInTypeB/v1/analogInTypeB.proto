@@ -13,6 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+/*
+AnalogInTypeB function block defines an interface for multi channel analog input modules, such as 
+the Ci4Rail IOU09 module.
+It supports configuration of sample rates and gains per channel, reading the current values
+of all channels and streaming the values of selected channels at the configured sample rates. 
+*/
 syntax = "proto3";
 
 package analogInTypeB;
