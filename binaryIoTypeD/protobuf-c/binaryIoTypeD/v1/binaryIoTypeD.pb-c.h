@@ -42,21 +42,21 @@ typedef struct _BinaryIoTypeD__StreamData BinaryIoTypeD__StreamData;
  */
 typedef enum _BinaryIoTypeD__ChannelMode {
   /*
-   * configure as low active input channel
-   */
-  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_LOW_ACTIVE = 0,
-  /*
    * configure as high active input channel
    */
-  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_HIGH_ACTIVE = 1,
+  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_HIGH_ACTIVE = 0,
   /*
-   * configure as low active output channel
+   * configure as low active input channel
    */
-  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_OUTPUT_LOW_ACTIVE = 2,
+  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_LOW_ACTIVE = 1,
   /*
    * configure as high active output channel
    */
-  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_OUTPUT_HIGH_ACTIVE = 3
+  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_OUTPUT_HIGH_ACTIVE = 2,
+  /*
+   * configure as low active output channel
+   */
+  BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_OUTPUT_LOW_ACTIVE = 3
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(BINARY_IO_TYPE_D__CHANNEL_MODE)
 } BinaryIoTypeD__ChannelMode;
 /*
@@ -109,7 +109,7 @@ struct  _BinaryIoTypeD__ChannelConfig
 };
 #define BINARY_IO_TYPE_D__CHANNEL_CONFIG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__channel_config__descriptor) \
-    , 0, BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_LOW_ACTIVE, 0, 0, 0, 0 }
+    , 0, BINARY_IO_TYPE_D__CHANNEL_MODE__BINARYIOTYPED_INPUT_HIGH_ACTIVE, 0, 0, 0, 0 }
 
 
 struct  _BinaryIoTypeD__ConfigurationSet
