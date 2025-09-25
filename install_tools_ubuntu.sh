@@ -1,12 +1,12 @@
 # define the versions of the tools to install
-GO_VERSION='1.20.6'
+GO_VERSION='1.25.1'
 
-PROTOC_VERSION=24.0-rc2
-PROTOC_VERSION_WITH_DASH=24.0-rc-2
+PROTOC_VERSION=32.1
+PROTOC_VERSION_WITH_DASH=32.1
 
-PROTOCC_VERSION=1.3.3-1ubuntu0.1
+PROTOCC_VERSION=1.4.1-1ubuntu4
 
-PROTOCGO_VERSION=v1.31.0
+PROTOCGO_VERSION=v1.36.9
 
 # install go
 wget -q https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
