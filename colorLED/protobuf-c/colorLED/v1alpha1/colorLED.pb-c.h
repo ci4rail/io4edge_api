@@ -34,31 +34,16 @@ typedef struct _ColorLED__StreamData ColorLED__StreamData;
 /* --- enums --- */
 
 typedef enum _ColorLED__Color {
-  COLOR_LED__COLOR__COLOR_RED = 0,
-  COLOR_LED__COLOR__COLOR_GREEN = 1,
-  COLOR_LED__COLOR__COLOR_BLUE = 2,
-  COLOR_LED__COLOR__COLOR_WHITE = 3,
-  COLOR_LED__COLOR__COLOR_YELLOW = 4,
-  COLOR_LED__COLOR__COLOR_CYAN = 5,
-  COLOR_LED__COLOR__COLOR_PURPLE = 6,
-  COLOR_LED__COLOR__COLOR_OFF = 7
+  COLOR_LED__COLOR__RED = 0,
+  COLOR_LED__COLOR__GREEN = 1,
+  COLOR_LED__COLOR__BLUE = 2,
+  COLOR_LED__COLOR__WHITE = 3,
+  COLOR_LED__COLOR__YELLOW = 4,
+  COLOR_LED__COLOR__CYAN = 5,
+  COLOR_LED__COLOR__PURPLE = 6,
+  COLOR_LED__COLOR__OFF = 7
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__COLOR)
 } ColorLED__Color;
-typedef enum _ColorLED__ChannelColor {
-  /*
-   * RED Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_RED = 0,
-  /*
-   * GREEN Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_GREEN = 1,
-  /*
-   * BLUE Channel
-   */
-  COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_BLUE = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__CHANNEL_COLOR)
-} ColorLED__ChannelColor;
 
 /* --- messages --- */
 
@@ -133,11 +118,15 @@ struct  _ColorLED__ChannelConfig
   /*
    * channel color
    */
-  ColorLED__ChannelColor channelcolor;
+  ColorLED__Color color;
+  /*
+   * if true the channel supports blinking
+   */
+  protobuf_c_boolean blink;
 };
 #define COLOR_LED__CHANNEL_CONFIG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__channel_config__descriptor) \
-    , 0, COLOR_LED__CHANNEL_COLOR__CHANNEL_COLOR_RED }
+    , 0, COLOR_LED__COLOR__RED, 0 }
 
 
 struct  _ColorLED__ConfigurationDescribeResponse
@@ -146,9 +135,9 @@ struct  _ColorLED__ConfigurationDescribeResponse
   size_t n_channelconfig;
   ColorLED__ChannelConfig **channelconfig;
   /*
-   * if true the channels support blinking
+   * maximum number of channels supported by the hardware
    */
-  protobuf_c_boolean blink;
+  uint32_t maxchannels;
 };
 #define COLOR_LED__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__configuration_describe_response__descriptor) \
@@ -187,10 +176,11 @@ struct  _ColorLED__ConfigurationResponse
 struct  _ColorLED__FunctionControlGet
 {
   ProtobufCMessage base;
+  uint32_t channel;
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get__descriptor) \
-     }
+    , 0 }
 
 
 /*
@@ -199,15 +189,13 @@ struct  _ColorLED__FunctionControlGet
 struct  _ColorLED__FunctionControlSet
 {
   ProtobufCMessage base;
+  uint32_t channel;
   ColorLED__Color color;
-  /*
-   * if true the channel is blinking
-   */
   protobuf_c_boolean blink;
 };
 #define COLOR_LED__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_set__descriptor) \
-    , COLOR_LED__COLOR__COLOR_RED, 0 }
+    , 0, COLOR_LED__COLOR__RED, 0 }
 
 
 /*
@@ -224,7 +212,7 @@ struct  _ColorLED__FunctionControlGetResponse
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get_response__descriptor) \
-    , COLOR_LED__COLOR__COLOR_RED, 0 }
+    , COLOR_LED__COLOR__RED, 0 }
 
 
 /*
@@ -581,7 +569,6 @@ typedef void (*ColorLED__StreamData_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    color_led__color__descriptor;
-extern const ProtobufCEnumDescriptor    color_led__channel_color__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_get__descriptor;
