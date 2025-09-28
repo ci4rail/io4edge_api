@@ -157,17 +157,34 @@ message FunctionControlSetResponse {
     }
 }
 
+enum SubscriptionType {
+    // Report on rising edge
+    BINARYIOTYPEB_ON_RISING_EDGE = 0;
+    // Report on falling edge
+    BINARYIOTYPEB_ON_FALLING_EDGE = 1;
+    // Report on any edge
+    BINARYIOTYPEB_ON_ANY_EDGE = 2;
+}
+
+message SubscribeChannel {
+    // Number of the binary input channel
+    fixed32 channel = 1;
+    // Define on which channel event client shall be reported
+    SubscriptionType subscriptionType = 2;
+}
+
 // ============= StreamControl ==================
 // StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 message StreamControlStart {
-    // not implemented
+    repeated SubscribeChannel subscribeChannel = 1;
 }
 
 message Sample {
-    // not implemented
+    fixed64 timestamp = 1;
+    fixed32 inputs = 2;
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
 message StreamData {
-    // not implemented
+    repeated Sample samples = 1;
 }

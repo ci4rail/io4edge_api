@@ -1,0 +1,120 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/*
+AnalogInTypeB function block defines an interface for multi channel analog input modules, such as 
+the Ci4Rail IOU09 module.
+It supports configuration of sample rates and gains per channel, reading the current values
+of all channels and streaming the values of selected channels at the configured sample rates. 
+*/
+syntax = "proto3";
+
+package analogInTypeB;
+option go_package = "analogInTypeB/v1";
+
+// ============= Configuration =================
+
+message ChannelConfig {
+    // channel number (0..n)
+    int32 channel = 1;
+    // sample rate in [Hz]. 
+    float sample_rate = 2;
+    // gain (e.g. 1,2,4,8)
+    int32 gain = 3;
+}
+
+// A channelgroup specification describes a group of channels that belong together
+// i.e. they share the same sample rates
+message ChannelGroupSpecification {
+    // channels belonging to that group (0..n)
+    repeated int32 channels = 1;
+    // supported sample rates for that group in [Hz]
+    repeated float supported_sample_rates = 2;
+    // supported gains for that group (e.g. 1,2,4,8)
+    repeated int32 supported_gains = 3;
+}
+
+message ConfigurationSet {
+    // per channel configuration (one per channel). The channel number is part of each ChannelConfig entry.
+    // missing channels remain unchanged
+    repeated ChannelConfig channelConfig = 1;
+}
+
+message ConfigurationSetResponse {
+    // no parameters
+}
+
+message ConfigurationGet {
+    // no parameters
+}
+
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // per channel configuration (one per channel). The channel number is part of each ChannelConfig entry.
+    repeated ChannelConfig channelConfig = 1;
+}
+
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    repeated ChannelGroupSpecification channelSpecification = 1;
+}
+
+// ============= FunctionControl =================
+
+message FunctionControlGet {
+    // no parameters
+}
+
+message FunctionControlSet {
+    // Not implemented
+}
+
+
+message FunctionControlGetResponse {
+    // one value per channel, channel number is implicit by position in array
+    repeated float value = 1;  
+}
+
+
+message FunctionControlSetResponse {
+    // Not implemented
+}
+
+
+// ============= StreamControl ==================
+message StreamControlStart {
+    // which channels to include in the stream. LSB is channel 0, 1: include, 0: exclude
+    fixed32 channelMask = 1; 
+}
+
+// a Sample contains samples for one or more channels taken at the same time
+message Sample {
+    // Timestamp for that specific channels sample. This is the time the sample was taken.
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1;
+    // Specifies the analog input channel number 0..n to which the value belongs
+    int32 baseChannel = 2;  
+    // Specifies the analog input channel value
+    repeated float value = 3;
+}
+
+// data to tranport via stream
+message StreamData {
+    repeated Sample samples = 1;
+}

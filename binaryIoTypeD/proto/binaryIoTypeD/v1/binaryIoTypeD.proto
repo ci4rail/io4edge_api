@@ -23,14 +23,14 @@ option go_package = "binaryIoTypeD/v1";
 
 // ============= Configuration =================
 enum ChannelMode {
-    // configure as low active input channel
-    BINARYIOTYPED_INPUT_LOW_ACTIVE = 0;
     // configure as high active input channel
-    BINARYIOTYPED_INPUT_HIGH_ACTIVE = 1;
-    // configure as low active output channel
-    BINARYIOTYPED_OUTPUT_LOW_ACTIVE = 2;
+    BINARYIOTYPED_INPUT_HIGH_ACTIVE = 0;
+    // configure as low active input channel
+    BINARYIOTYPED_INPUT_LOW_ACTIVE = 1;
     // configure as high active output channel
-    BINARYIOTYPED_OUTPUT_HIGH_ACTIVE = 3;
+    BINARYIOTYPED_OUTPUT_HIGH_ACTIVE = 2;
+    // configure as low active output channel
+    BINARYIOTYPED_OUTPUT_LOW_ACTIVE = 3;
 }
 
 message ChannelConfig {
@@ -149,27 +149,13 @@ message FunctionControlSetResponse {
 
 // ============= StreamControl ==================
 message StreamControlStart {
-    // mask to define which channels are considered in the stream. 0 means don't send channels value, 1 means sent it
-    // LSB is Input0
-    // Defaults to all channels (0x0F)
-    // fixed32 channelFilterMask = 1;
-
     // not implemented
 }
 
 message Sample {
-    // // Timestamp for that specific channels sample. This is the time the sample was taken.
-    // // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
-    // fixed64 timestamp = 1;
-    // // Specifies the binary channel
-    // fixed32 channel = 2;
-    // // Specifies the binary channel value when the input value has changed.
-    // bool value = 3;
-
     // not implemented
 }
 
 message StreamData {
     // not implemented
-    // repeated Sample samples = 1;
 }
