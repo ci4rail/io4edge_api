@@ -15,3 +15,689 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 #include "google/protobuf/timestamp.pb-c.h"
+
+typedef struct Tracelet__TraceletToServer Tracelet__TraceletToServer;
+typedef struct Tracelet__TraceletToServer__Location Tracelet__TraceletToServer__Location;
+typedef struct Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
+typedef struct Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
+typedef struct Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
+typedef struct Tracelet__TraceletMessageID Tracelet__TraceletMessageID;
+typedef struct Tracelet__TraceletMetrics Tracelet__TraceletMetrics;
+
+
+/* --- enums --- */
+
+typedef enum _Tracelet__TraceletToServer__Location__Direction {
+  /*
+   * Invalid direction
+   */
+  TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION = 0,
+  /*
+   * CAB A
+   */
+  TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__CAB_A_DIRECTION = 1,
+  /*
+   * CAB B
+   */
+  TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__CAB_B_DIRECTION = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION)
+} Tracelet__TraceletToServer__Location__Direction;
+
+/* --- messages --- */
+
+struct  Tracelet__TraceletToServer__Location__Gnss
+{
+  ProtobufCMessage base;
+  /*
+   * GNSS location valid. If false, the other fields are not valid
+   */
+  protobuf_c_boolean valid;
+  /*
+   * WGS84 coordinates
+   * latitude in [deg]
+   */
+  double latitude;
+  /*
+   * longitude in [deg]
+   */
+  double longitude;
+  /*
+   * altitude in [m]
+   */
+  double altitude;
+  /*
+   * horizontal accuracy in [m]
+   */
+  double eph;
+  /*
+   * vertical accuracy in [m]
+   */
+  double epv;
+  /*
+   * type of fix 
+   * 0 = invalid, 1 = GPS fix, 2 = DGPS fix, 3 = PPS fix, 4 = Real Time Kinematic, 
+   * 5 = Float RTK, 6 = estimated, 7 = Manual input mode, 8 = Simulation mode
+   */
+  int32_t fix_type;
+  /*
+   * heading of motion in [deg], relative to true north
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg], relative to true north
+   */
+  double head_vehicle;
+  /*
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
+   */
+  uint32_t head_valid;
+  /*
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
+   * speed in [m/s]
+   */
+  double ground_speed;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__GNSS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__gnss__descriptor) \
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+
+struct  Tracelet__TraceletToServer__Location__Uwb
+{
+  ProtobufCMessage base;
+  /*
+   * UWB location valid. If false, the other fields are not valid
+   */
+  protobuf_c_boolean valid;
+  /*
+   * location of tracelet in space
+   * Units: [m], can be negative. Resolution 0.1m
+   */
+  double x;
+  double y;
+  double z;
+  /*
+   * Site ID
+   * a 16 bit unsigned value
+   */
+  uint32_t site_id;
+  /*
+   * Location signature
+   * can be used to validate the received location
+   */
+  uint64_t location_signature;
+  /*
+   * horizontal accuracy in [m]
+   */
+  double eph;
+  /*
+   * type of fix 
+   * 0 = invalid, 1 = UWB/IMU, 2 - IMU only
+   */
+  int32_t fix_type;
+  /*
+   * heading of motion in [deg]
+   * relative to site coordinate system, counterclockwise, 0 in direction of pos. x axis
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg] - future extension
+   */
+  double head_vehicle;
+  /*
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
+   */
+  uint32_t head_valid;
+  /*
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
+   * speed in [m/s]
+   */
+  double ground_speed;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__UWB__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__uwb__descriptor) \
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+
+struct  Tracelet__TraceletToServer__Location__Fused
+{
+  ProtobufCMessage base;
+  /*
+   * Fused location valid. If false, the other fields are not valid
+   */
+  protobuf_c_boolean valid;
+  /*
+   * WGS84 coordinates
+   * latitude in [deg]
+   */
+  double latitude;
+  /*
+   * longitude in [deg]
+   */
+  double longitude;
+  /*
+   * altitude in [m] 
+   */
+  double altitude;
+  /*
+   * horizontal accuracy in [m]
+   */
+  double eph;
+  /*
+   * heading of motion in [deg] - future extension
+   */
+  double head_motion;
+  /*
+   * heading of vehicle in [deg] - future extension
+   */
+  double head_vehicle;
+  /*
+   * heading valid (bit 0=motion valid, 1=vehicle valid))
+   */
+  uint32_t head_valid;
+  /*
+   * heading precision in [deg]
+   */
+  float head_precision;
+  /*
+   * speed in [m/s] 
+   */
+  double ground_speed;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__FUSED__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__fused__descriptor) \
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+
+/*
+ * Sub-message sent periodically sent by the tracelet
+ */
+struct  Tracelet__TraceletToServer__Location
+{
+  ProtobufCMessage base;
+  /*
+   * Data from GNSS subsystem
+   */
+  Tracelet__TraceletToServer__Location__Gnss *gnss;
+  /*
+   * Data from UWB subsystem
+   */
+  Tracelet__TraceletToServer__Location__Uwb *uwb;
+  /*
+   * Fused location
+   */
+  Tracelet__TraceletToServer__Location__Fused *fused;
+  /*
+   * Driving direction of the vehicle
+   */
+  Tracelet__TraceletToServer__Location__Direction direction;
+  /*
+   * Vehicle Speed in [m/s]
+   */
+  double speed;
+  /*
+   * Vehicle Mileage in [km]
+   */
+  int32_t mileage;
+  /*
+   * Current Tracelet Temperature in [°C]
+   */
+  double temperature;
+};
+#define TRACELET__TRACELET_TO_SERVER__LOCATION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__descriptor) \
+    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
+
+
+typedef enum {
+  TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET = 0,
+  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__TRACELET_TO_SERVER__TYPE__CASE)
+} Tracelet__TraceletToServer__TypeCase;
+
+struct  Tracelet__TraceletToServer
+{
+  ProtobufCMessage base;
+  /*
+   * message UUIDv4 as a 16 byte value
+   */
+  Tracelet__TraceletMessageID *uuid;
+  /*
+   * IPv4 address of the tracelet, in network byte order
+   */
+  uint32_t ipv4_address;
+  /*
+   * timestamp when the message was sent by the tracelet
+   * If the Tracelet has no valid time, receive_ts is set to 1970-Jan-1 00:00
+   * UTC
+   */
+  Google__Protobuf__Timestamp *delivery_ts;
+  /*
+   * tracelet ID as provisioned in tracelet. Could be a vehicle ID
+   */
+  char *tracelet_id;
+  /*
+   * status of the tracelet ignition signal
+   */
+  protobuf_c_boolean ignition;
+  /*
+   * Firmware version of the tracelet
+   */
+  char *firmware_version;
+  Tracelet__TraceletMetrics *metrics;
+  Tracelet__TraceletToServer__TypeCase type_case;
+  union {
+    /*
+     * periodically sent by the tracelet
+     */
+    Tracelet__TraceletToServer__Location *location;
+  };
+};
+#define TRACELET__TRACELET_TO_SERVER__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__descriptor) \
+    , NULL, 0, NULL, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, NULL, TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET, {0} }
+
+
+struct  Tracelet__TraceletMessageID
+{
+  ProtobufCMessage base;
+  /*
+   * UUIDv4 as a 16 byte value
+   * The UUID is used to uniquely identify the tracelet message in the localization system
+   */
+  ProtobufCBinaryData value;
+};
+#define TRACELET__TRACELET_MESSAGE_ID__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_message_id__descriptor) \
+    , {0,NULL} }
+
+
+/*
+ * Tracelet metrics. May be sent together with the location message
+ * Metric families are written in the form of metric___label___labelvalue
+ */
+struct  Tracelet__TraceletMetrics
+{
+  ProtobufCMessage base;
+  int64_t health___type___uwb_comm;
+  int64_t health___type___uwb_firmware;
+  int64_t health___type___uwb_config;
+  int64_t health___type___gnss_comm;
+  int64_t health___type___ubx_firmware;
+  int64_t health___type___ubx_config;
+  int64_t health___type___actors_startup;
+  /*
+   * Number of SNTP time updates
+   */
+  int64_t sntp_updates;
+  /*
+   * Free heap (bytes)
+   */
+  int64_t free_heap_bytes;
+  /*
+   * System time in seconds since 1970 UTC
+   */
+  double system_time_seconds;
+  /*
+   * Wifi RSSI (dBm), NAN if not connected
+   */
+  double wifi_rssi_dbm;
+  /*
+   * Last two bytes of connected AP MAC address as a number
+   */
+  int64_t wifi_ap;
+  /*
+   * number of satellites in view (GPS)
+   */
+  int64_t gnss_num_sats___system___gps;
+  /*
+   * number of satellites in view (GLONASS)
+   */
+  int64_t gnss_num_sats___system___glonass;
+  /*
+   * number of satellites in view (Beidou)
+   */
+  int64_t gnss_num_sats___system___beidou;
+  /*
+   * number of satellites in view (Galileo)
+   */
+  int64_t gnss_num_sats___system___galileo;
+  /*
+   * number of satellites in view (QZSS)
+   */
+  int64_t gnss_num_sats___system___qzss;
+  /*
+   * GNSS UART HW FIFO full
+   */
+  int64_t gnss_uart_errors___type___hw_fifo;
+  /*
+   * GNSS UART buffer full, data lost
+   */
+  int64_t gnss_uart_errors___type___buf_full;
+  /*
+   * GNSS UART character errors, e.g. framing errors
+   */
+  int64_t gnss_uart_errors___type___char;
+  /*
+   * Number of satellites used in fix
+   */
+  int64_t gnss_num_sv;
+  /*
+   * gain of programmable amplifier for RF band 1 (db)
+   */
+  int64_t gnss_pga___block___rf1;
+  /*
+   * gain of programmable amplifier for RF band 2 (db)
+   */
+  int64_t gnss_pga___block___rf2;
+  /*
+   * UBX Sensor fusion status (0=init 1=fusion 2=suspended 3=disabled)
+   */
+  int64_t ubx_sensor_fusion_status_enum;
+  /*
+   * UBX GNSS reference station. May not be updated if no reference station
+   */
+  int64_t ubx_ref_station_id;
+  /*
+   * Has Connection to NTRIP Caster
+   */
+  int64_t ntrip_is_connected;
+  /*
+   * Bytes sent to NTRIP Caster
+   */
+  int64_t ntrip_transfer_bytes___direction___send;
+  /*
+   * Bytes received from NTRIP Caster
+   */
+  int64_t ntrip_transfer_bytes___direction___recv;
+  /*
+   * Localization Server Interface gets ACKs from server
+   */
+  int64_t lsi_is_connected;
+  /*
+   * Localization Server Interface number of missed ACKs from server
+   */
+  int64_t lsi_acks_missed;
+  /*
+   * UBX Boot type (0=unknown, 1=cold-start, 2=watchdog, 3=hardware reset, 4=hardware backup, 5=software backup, 6=software reset, 7=vio fail, 8=vdd_x fail, 9=vdd_rf fail, 10=v_core_high fail, 11=system reset)
+   */
+  int64_t ubx_boot_type_enum;
+  /*
+   * UBX Runtime in seconds
+   */
+  int64_t ubx_runtime;
+  /*
+   * WT Initialization status (0=off, 1=initializing, 2=initialized)
+   */
+  int64_t ubx_sensor_fusion_detail___type___wt_init;
+  /*
+   * Automatic IMU MntAlg status (0=off, 1=initializing, 2=initialized, 3=initialized)
+   */
+  int64_t ubx_sensor_fusion_detail___type___mnt_alg;
+  /*
+   * INS Initialization status (0=off, 1=initializing, 2=initialized)
+   */
+  int64_t ubx_sensor_fusion_detail___type___ins_init;
+  /*
+   * INS State (0=off, 1=initializing, 2=initialized)
+   */
+  int64_t ubx_sensor_fusion_detail___type___imu_init;
+  /*
+   * Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
+   */
+  int64_t sensor_fusion_state;
+  /*
+   * Number of UWB satlets in view
+   */
+  int64_t uwb_num_sats;
+  /*
+   * Address of UWB Satlet 1
+   */
+  int64_t uwb_sat___type___1_addr;
+  /*
+   * RSSI of UWB Satlet 1 (dBm)
+   */
+  int64_t uwb_sat___type___1_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___1_nlos;
+  /*
+   * Address of UWB Satlet 2
+   */
+  int64_t uwb_sat___type___2_addr;
+  /*
+   * RSSI of UWB Satlet 2 (dBm)
+   */
+  int64_t uwb_sat___type___2_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___2_nlos;
+  /*
+   * Address of UWB Satlet 3
+   */
+  int64_t uwb_sat___type___3_addr;
+  /*
+   * RSSI of UWB Satlet 3 (dBm)
+   */
+  int64_t uwb_sat___type___3_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___3_nlos;
+  /*
+   * Address of UWB Satlet 4
+   */
+  int64_t uwb_sat___type___4_addr;
+  /*
+   * RSSI of UWB Satlet 4 (dBm)
+   */
+  int64_t uwb_sat___type___4_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___4_nlos;
+  /*
+   * Address of UWB Satlet 5
+   */
+  int64_t uwb_sat___type___5_addr;
+  /*
+   * RSSI of UWB Satlet 5 (dBm)
+   */
+  int64_t uwb_sat___type___5_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___5_nlos;
+  /*
+   * Address of UWB Satlet 6
+   */
+  int64_t uwb_sat___type___6_addr;
+  /*
+   * RSSI of UWB Satlet 6 (dBm)
+   */
+  int64_t uwb_sat___type___6_rssi;
+  /*
+   * non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
+   */
+  int64_t uwb_sat___type___6_nlos;
+  /*
+   * CPU Load of CPU 0 in percent
+   */
+  int64_t cpu_load_percent___cpu___0;
+  /*
+   * CPU Load of CPU 1 in percent
+   */
+  int64_t cpu_load_percent___cpu___1;
+  /*
+   * Uptime in seconds since last reboot
+   */
+  int64_t uptime_seconds;
+  /*
+   * Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
+   */
+  int64_t sleep_manager_state;
+  /*
+   * Last power cut time in seconds since 1.1.1970 UTC
+   */
+  int64_t last_power_cut_unix_seconds;
+  /*
+   * Number of power-on resets
+   */
+  int64_t reset_count___type___poweron;
+  /*
+   * Number of software resets
+   */
+  int64_t reset_count___type___software;
+  /*
+   * Number of panic resets
+   */
+  int64_t reset_count___type___panic;
+  /*
+   * Number of watchdog resets (interupt, task or other wd)
+   */
+  int64_t reset_count___type___wd;
+  /*
+   * Number of brownout resets
+   */
+  int64_t reset_count___type___brownout;
+  /*
+   * Number of power glitch resets
+   */
+  int64_t reset_count___type___pwrglitch;
+  /*
+   * Number of unknown (other) resets
+   */
+  int64_t reset_count___type___unknown;
+  /*
+   * Tacho speed from UWB subsystem in m/s (always positive)
+   */
+  double uwb_tacho_speed;
+  /*
+   * UWB PAN ID from Status Report
+   */
+  int64_t uwb_pan_id;
+};
+#define TRACELET__TRACELET_METRICS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+
+/* Tracelet__TraceletToServer__Location__Gnss methods */
+void   tracelet__tracelet_to_server__location__gnss__init
+                     (Tracelet__TraceletToServer__Location__Gnss         *message);
+/* Tracelet__TraceletToServer__Location__Uwb methods */
+void   tracelet__tracelet_to_server__location__uwb__init
+                     (Tracelet__TraceletToServer__Location__Uwb         *message);
+/* Tracelet__TraceletToServer__Location__Fused methods */
+void   tracelet__tracelet_to_server__location__fused__init
+                     (Tracelet__TraceletToServer__Location__Fused         *message);
+/* Tracelet__TraceletToServer__Location methods */
+void   tracelet__tracelet_to_server__location__init
+                     (Tracelet__TraceletToServer__Location         *message);
+/* Tracelet__TraceletToServer methods */
+void   tracelet__tracelet_to_server__init
+                     (Tracelet__TraceletToServer         *message);
+size_t tracelet__tracelet_to_server__get_packed_size
+                     (const Tracelet__TraceletToServer   *message);
+size_t tracelet__tracelet_to_server__pack
+                     (const Tracelet__TraceletToServer   *message,
+                      uint8_t             *out);
+size_t tracelet__tracelet_to_server__pack_to_buffer
+                     (const Tracelet__TraceletToServer   *message,
+                      ProtobufCBuffer     *buffer);
+Tracelet__TraceletToServer *
+       tracelet__tracelet_to_server__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   tracelet__tracelet_to_server__free_unpacked
+                     (Tracelet__TraceletToServer *message,
+                      ProtobufCAllocator *allocator);
+/* Tracelet__TraceletMessageID methods */
+void   tracelet__tracelet_message_id__init
+                     (Tracelet__TraceletMessageID         *message);
+size_t tracelet__tracelet_message_id__get_packed_size
+                     (const Tracelet__TraceletMessageID   *message);
+size_t tracelet__tracelet_message_id__pack
+                     (const Tracelet__TraceletMessageID   *message,
+                      uint8_t             *out);
+size_t tracelet__tracelet_message_id__pack_to_buffer
+                     (const Tracelet__TraceletMessageID   *message,
+                      ProtobufCBuffer     *buffer);
+Tracelet__TraceletMessageID *
+       tracelet__tracelet_message_id__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   tracelet__tracelet_message_id__free_unpacked
+                     (Tracelet__TraceletMessageID *message,
+                      ProtobufCAllocator *allocator);
+/* Tracelet__TraceletMetrics methods */
+void   tracelet__tracelet_metrics__init
+                     (Tracelet__TraceletMetrics         *message);
+size_t tracelet__tracelet_metrics__get_packed_size
+                     (const Tracelet__TraceletMetrics   *message);
+size_t tracelet__tracelet_metrics__pack
+                     (const Tracelet__TraceletMetrics   *message,
+                      uint8_t             *out);
+size_t tracelet__tracelet_metrics__pack_to_buffer
+                     (const Tracelet__TraceletMetrics   *message,
+                      ProtobufCBuffer     *buffer);
+Tracelet__TraceletMetrics *
+       tracelet__tracelet_metrics__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   tracelet__tracelet_metrics__free_unpacked
+                     (Tracelet__TraceletMetrics *message,
+                      ProtobufCAllocator *allocator);
+/* --- per-message closures --- */
+
+typedef void (*Tracelet__TraceletToServer__Location__Gnss_Closure)
+                 (const Tracelet__TraceletToServer__Location__Gnss *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletToServer__Location__Uwb_Closure)
+                 (const Tracelet__TraceletToServer__Location__Uwb *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletToServer__Location__Fused_Closure)
+                 (const Tracelet__TraceletToServer__Location__Fused *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletToServer__Location_Closure)
+                 (const Tracelet__TraceletToServer__Location *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletToServer_Closure)
+                 (const Tracelet__TraceletToServer *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletMessageID_Closure)
+                 (const Tracelet__TraceletMessageID *message,
+                  void *closure_data);
+typedef void (*Tracelet__TraceletMetrics_Closure)
+                 (const Tracelet__TraceletMetrics *message,
+                  void *closure_data);
+
+/* --- services --- */
+
+
+/* --- descriptors --- */
+
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__gnss__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
+extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor;
+
+PROTOBUF_C__END_DECLS
+
+
+#endif  /* PROTOBUF_C_tracelet_2eproto__INCLUDED */
