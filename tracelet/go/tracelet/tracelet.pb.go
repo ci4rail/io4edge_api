@@ -84,10 +84,7 @@ func (TraceletToServer_Location_Direction) EnumDescriptor() ([]byte, []int) {
 }
 
 type TraceletToServer struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
+	state protoimpl.MessageState `protogen:"open.v1"`
 	// message UUIDv4 as a 16 byte value
 	Uuid        *TraceletMessageID `protobuf:"bytes,8,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Ipv4Address uint32             `protobuf:"fixed32,9,opt,name=ipv4_address,json=ipv4Address,proto3" json:"ipv4_address,omitempty"` // IPv4 address of the tracelet, in network byte order
@@ -102,9 +99,11 @@ type TraceletToServer struct {
 	// Types that are valid to be assigned to Type:
 	//
 	//	*TraceletToServer_Location_
-	Type          isTraceletToServer_Type `protobuf_oneof:"type"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Type            isTraceletToServer_Type `protobuf_oneof:"type"`
+	FirmwareVersion string                  `protobuf:"bytes,7,opt,name=firmware_version,json=firmwareVersion,proto3" json:"firmware_version,omitempty"` // Firmware version of the tracelet
+	Metrics         *TraceletMetrics        `protobuf:"bytes,10,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *TraceletToServer) Reset() {
@@ -172,16 +171,18 @@ func (x *TraceletToServer) GetIgnition() bool {
 	return false
 }
 
-func (m *TraceletToServer) GetType() isTraceletToServer_Type {
-	if m != nil {
-		return m.Type
+func (x *TraceletToServer) GetType() isTraceletToServer_Type {
+	if x != nil {
+		return x.Type
 	}
 	return nil
 }
 
 func (x *TraceletToServer) GetLocation() *TraceletToServer_Location {
-	if x, ok := x.GetType().(*TraceletToServer_Location_); ok {
-		return x.Location
+	if x != nil {
+		if x, ok := x.Type.(*TraceletToServer_Location_); ok {
+			return x.Location
+		}
 	}
 	return nil
 }
@@ -211,22 +212,19 @@ type TraceletToServer_Location_ struct {
 func (*TraceletToServer_Location_) isTraceletToServer_Type() {}
 
 type TraceletMessageID struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
+	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUIDv4 as a 16 byte value
 	// The UUID is used to uniquely identify the tracelet message in the localization system
-	Value []byte `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	Value         []byte `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TraceletMessageID) Reset() {
 	*x = TraceletMessageID{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_tracelet_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_tracelet_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *TraceletMessageID) String() string {
@@ -237,7 +235,7 @@ func (*TraceletMessageID) ProtoMessage() {}
 
 func (x *TraceletMessageID) ProtoReflect() protoreflect.Message {
 	mi := &file_tracelet_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -262,89 +260,86 @@ func (x *TraceletMessageID) GetValue() []byte {
 // Tracelet metrics. May be sent together with the location message
 // Metric families are written in the form of metric___label___labelvalue
 type TraceletMetrics struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Health__Type__UwbComm                int64   `protobuf:"varint,1,opt,name=health___type___uwb_comm,json=healthTypeUwbComm,proto3" json:"health___type___uwb_comm,omitempty"`
-	Health__Type__UwbFirmware            int64   `protobuf:"varint,2,opt,name=health___type___uwb_firmware,json=healthTypeUwbFirmware,proto3" json:"health___type___uwb_firmware,omitempty"`
-	Health__Type__UwbConfig              int64   `protobuf:"varint,3,opt,name=health___type___uwb_config,json=healthTypeUwbConfig,proto3" json:"health___type___uwb_config,omitempty"`
-	Health__Type__GnssComm               int64   `protobuf:"varint,4,opt,name=health___type___gnss_comm,json=healthTypeGnssComm,proto3" json:"health___type___gnss_comm,omitempty"`
-	Health__Type__UbxFirmware            int64   `protobuf:"varint,5,opt,name=health___type___ubx_firmware,json=healthTypeUbxFirmware,proto3" json:"health___type___ubx_firmware,omitempty"`
-	Health__Type__UbxConfig              int64   `protobuf:"varint,6,opt,name=health___type___ubx_config,json=healthTypeUbxConfig,proto3" json:"health___type___ubx_config,omitempty"`
-	Health__Type__ActorsStartup          int64   `protobuf:"varint,7,opt,name=health___type___actors_startup,json=healthTypeActorsStartup,proto3" json:"health___type___actors_startup,omitempty"`
-	SntpUpdates                          int64   `protobuf:"varint,8,opt,name=sntp_updates,json=sntpUpdates,proto3" json:"sntp_updates,omitempty"`                                                                                   // Number of SNTP time updates
-	FreeHeapBytes                        int64   `protobuf:"varint,9,opt,name=free_heap_bytes,json=freeHeapBytes,proto3" json:"free_heap_bytes,omitempty"`                                                                           // Free heap (bytes)
-	SystemTimeSeconds                    float64 `protobuf:"fixed64,10,opt,name=system_time_seconds,json=systemTimeSeconds,proto3" json:"system_time_seconds,omitempty"`                                                             // System time in seconds since 1970 UTC
-	WifiRssiDbm                          float64 `protobuf:"fixed64,11,opt,name=wifi_rssi_dbm,json=wifiRssiDbm,proto3" json:"wifi_rssi_dbm,omitempty"`                                                                               // Wifi RSSI (dBm), NAN if not connected
-	WifiAp                               int64   `protobuf:"varint,12,opt,name=wifi_ap,json=wifiAp,proto3" json:"wifi_ap,omitempty"`                                                                                                 // Last two bytes of connected AP MAC address as a number
-	GnssNumSats__System__Gps             int64   `protobuf:"varint,13,opt,name=gnss_num_sats___system___gps,json=gnssNumSatsSystemGps,proto3" json:"gnss_num_sats___system___gps,omitempty"`                                         // number of satellites in view (GPS)
-	GnssNumSats__System__Glonass         int64   `protobuf:"varint,14,opt,name=gnss_num_sats___system___glonass,json=gnssNumSatsSystemGlonass,proto3" json:"gnss_num_sats___system___glonass,omitempty"`                             // number of satellites in view (GLONASS)
-	GnssNumSats__System__Beidou          int64   `protobuf:"varint,15,opt,name=gnss_num_sats___system___beidou,json=gnssNumSatsSystemBeidou,proto3" json:"gnss_num_sats___system___beidou,omitempty"`                                // number of satellites in view (Beidou)
-	GnssNumSats__System__Galileo         int64   `protobuf:"varint,16,opt,name=gnss_num_sats___system___galileo,json=gnssNumSatsSystemGalileo,proto3" json:"gnss_num_sats___system___galileo,omitempty"`                             // number of satellites in view (Galileo)
-	GnssNumSats__System__Qzss            int64   `protobuf:"varint,17,opt,name=gnss_num_sats___system___qzss,json=gnssNumSatsSystemQzss,proto3" json:"gnss_num_sats___system___qzss,omitempty"`                                      // number of satellites in view (QZSS)
-	GnssUartErrors__Type__HwFifo         int64   `protobuf:"varint,21,opt,name=gnss_uart_errors___type___hw_fifo,json=gnssUartErrorsTypeHwFifo,proto3" json:"gnss_uart_errors___type___hw_fifo,omitempty"`                           // GNSS UART HW FIFO full
-	GnssUartErrors__Type__BufFull        int64   `protobuf:"varint,22,opt,name=gnss_uart_errors___type___buf_full,json=gnssUartErrorsTypeBufFull,proto3" json:"gnss_uart_errors___type___buf_full,omitempty"`                        // GNSS UART buffer full, data lost
-	GnssUartErrors__Type__Char           int64   `protobuf:"varint,23,opt,name=gnss_uart_errors___type___char,json=gnssUartErrorsTypeChar,proto3" json:"gnss_uart_errors___type___char,omitempty"`                                   // GNSS UART character errors, e.g. framing errors
-	GnssNumSv                            int64   `protobuf:"varint,30,opt,name=gnss_num_sv,json=gnssNumSv,proto3" json:"gnss_num_sv,omitempty"`                                                                                      // Number of satellites used in fix
-	GnssPga__Block__Rf1                  int64   `protobuf:"varint,31,opt,name=gnss_pga___block___rf1,json=gnssPgaBlockRf1,proto3" json:"gnss_pga___block___rf1,omitempty"`                                                          // gain of programmable amplifier for RF band 1 (db)
-	GnssPga__Block__Rf2                  int64   `protobuf:"varint,32,opt,name=gnss_pga___block___rf2,json=gnssPgaBlockRf2,proto3" json:"gnss_pga___block___rf2,omitempty"`                                                          // gain of programmable amplifier for RF band 2 (db)
-	UbxSensorFusionStatusEnum            int64   `protobuf:"varint,33,opt,name=ubx_sensor_fusion_status_enum,json=ubxSensorFusionStatusEnum,proto3" json:"ubx_sensor_fusion_status_enum,omitempty"`                                  // UBX Sensor fusion status (0=init 1=fusion 2=suspended 3=disabled)
-	UbxRefStationId                      int64   `protobuf:"varint,34,opt,name=ubx_ref_station_id,json=ubxRefStationId,proto3" json:"ubx_ref_station_id,omitempty"`                                                                  // UBX GNSS reference station. May not be updated if no reference station
-	NtripIsConnected                     int64   `protobuf:"varint,35,opt,name=ntrip_is_connected,json=ntripIsConnected,proto3" json:"ntrip_is_connected,omitempty"`                                                                 // Has Connection to NTRIP Caster
-	NtripTransferBytes__Direction__Send  int64   `protobuf:"varint,36,opt,name=ntrip_transfer_bytes___direction___send,json=ntripTransferBytesDirectionSend,proto3" json:"ntrip_transfer_bytes___direction___send,omitempty"`        // Bytes sent to NTRIP Caster
-	NtripTransferBytes__Direction__Recv  int64   `protobuf:"varint,37,opt,name=ntrip_transfer_bytes___direction___recv,json=ntripTransferBytesDirectionRecv,proto3" json:"ntrip_transfer_bytes___direction___recv,omitempty"`        // Bytes received from NTRIP Caster
-	LsiIsConnected                       int64   `protobuf:"varint,41,opt,name=lsi_is_connected,json=lsiIsConnected,proto3" json:"lsi_is_connected,omitempty"`                                                                       // Localization Server Interface gets ACKs from server
-	LsiAcksMissed                        int64   `protobuf:"varint,42,opt,name=lsi_acks_missed,json=lsiAcksMissed,proto3" json:"lsi_acks_missed,omitempty"`                                                                          // Localization Server Interface number of missed ACKs from server
-	UbxBootTypeEnum                      int64   `protobuf:"varint,43,opt,name=ubx_boot_type_enum,json=ubxBootTypeEnum,proto3" json:"ubx_boot_type_enum,omitempty"`                                                                  // UBX Boot type (0=unknown, 1=cold-start, 2=watchdog, 3=hardware reset, 4=hardware backup, 5=software backup, 6=software reset, 7=vio fail, 8=vdd_x fail, 9=vdd_rf fail, 10=v_core_high fail, 11=system reset)
-	UbxRuntime                           int64   `protobuf:"varint,44,opt,name=ubx_runtime,json=ubxRuntime,proto3" json:"ubx_runtime,omitempty"`                                                                                     // UBX Runtime in seconds
-	UbxSensorFusionDetail__Type__WtInit  int64   `protobuf:"varint,45,opt,name=ubx_sensor_fusion_detail___type___wt_init,json=ubxSensorFusionDetailTypeWtInit,proto3" json:"ubx_sensor_fusion_detail___type___wt_init,omitempty"`    // WT Initialization status (0=off, 1=initializing, 2=initialized)
-	UbxSensorFusionDetail__Type__MntAlg  int64   `protobuf:"varint,46,opt,name=ubx_sensor_fusion_detail___type___mnt_alg,json=ubxSensorFusionDetailTypeMntAlg,proto3" json:"ubx_sensor_fusion_detail___type___mnt_alg,omitempty"`    // Automatic IMU MntAlg status (0=off, 1=initializing, 2=initialized, 3=initialized)
-	UbxSensorFusionDetail__Type__InsInit int64   `protobuf:"varint,47,opt,name=ubx_sensor_fusion_detail___type___ins_init,json=ubxSensorFusionDetailTypeInsInit,proto3" json:"ubx_sensor_fusion_detail___type___ins_init,omitempty"` // INS Initialization status (0=off, 1=initializing, 2=initialized)
-	UbxSensorFusionDetail__Type__ImuInit int64   `protobuf:"varint,48,opt,name=ubx_sensor_fusion_detail___type___imu_init,json=ubxSensorFusionDetailTypeImuInit,proto3" json:"ubx_sensor_fusion_detail___type___imu_init,omitempty"` // INS State (0=off, 1=initializing, 2=initialized)
-	SensorFusionState                    int64   `protobuf:"varint,49,opt,name=sensor_fusion_state,json=sensorFusionState,proto3" json:"sensor_fusion_state,omitempty"`                                                              // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
-	UwbNumSats                           int64   `protobuf:"varint,50,opt,name=uwb_num_sats,json=uwbNumSats,proto3" json:"uwb_num_sats,omitempty"`                                                                                   // Number of UWB satlets in view
-	UwbSat__Type___1Addr                 int64   `protobuf:"varint,51,opt,name=uwb_sat___type___1_addr,json=uwbSatType1Addr,proto3" json:"uwb_sat___type___1_addr,omitempty"`                                                        // Address of UWB Satlet 1
-	UwbSat__Type___1Rssi                 int64   `protobuf:"varint,52,opt,name=uwb_sat___type___1_rssi,json=uwbSatType1Rssi,proto3" json:"uwb_sat___type___1_rssi,omitempty"`                                                        // RSSI of UWB Satlet 1 (dBm)
-	UwbSat__Type___1Nlos                 int64   `protobuf:"varint,53,opt,name=uwb_sat___type___1_nlos,json=uwbSatType1Nlos,proto3" json:"uwb_sat___type___1_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
-	UwbSat__Type___2Addr                 int64   `protobuf:"varint,54,opt,name=uwb_sat___type___2_addr,json=uwbSatType2Addr,proto3" json:"uwb_sat___type___2_addr,omitempty"`                                                        // Address of UWB Satlet 2
-	UwbSat__Type___2Rssi                 int64   `protobuf:"varint,55,opt,name=uwb_sat___type___2_rssi,json=uwbSatType2Rssi,proto3" json:"uwb_sat___type___2_rssi,omitempty"`                                                        // RSSI of UWB Satlet 2 (dBm)
-	UwbSat__Type___2Nlos                 int64   `protobuf:"varint,56,opt,name=uwb_sat___type___2_nlos,json=uwbSatType2Nlos,proto3" json:"uwb_sat___type___2_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
-	UwbSat__Type___3Addr                 int64   `protobuf:"varint,57,opt,name=uwb_sat___type___3_addr,json=uwbSatType3Addr,proto3" json:"uwb_sat___type___3_addr,omitempty"`                                                        // Address of UWB Satlet 3
-	UwbSat__Type___3Rssi                 int64   `protobuf:"varint,58,opt,name=uwb_sat___type___3_rssi,json=uwbSatType3Rssi,proto3" json:"uwb_sat___type___3_rssi,omitempty"`                                                        // RSSI of UWB Satlet 3 (dBm)
-	UwbSat__Type___3Nlos                 int64   `protobuf:"varint,59,opt,name=uwb_sat___type___3_nlos,json=uwbSatType3Nlos,proto3" json:"uwb_sat___type___3_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
-	UwbSat__Type___4Addr                 int64   `protobuf:"varint,60,opt,name=uwb_sat___type___4_addr,json=uwbSatType4Addr,proto3" json:"uwb_sat___type___4_addr,omitempty"`                                                        // Address of UWB Satlet 4
-	UwbSat__Type___4Rssi                 int64   `protobuf:"varint,61,opt,name=uwb_sat___type___4_rssi,json=uwbSatType4Rssi,proto3" json:"uwb_sat___type___4_rssi,omitempty"`                                                        // RSSI of UWB Satlet 4 (dBm)
-	UwbSat__Type___4Nlos                 int64   `protobuf:"varint,62,opt,name=uwb_sat___type___4_nlos,json=uwbSatType4Nlos,proto3" json:"uwb_sat___type___4_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
-	UwbSat__Type___5Addr                 int64   `protobuf:"varint,63,opt,name=uwb_sat___type___5_addr,json=uwbSatType5Addr,proto3" json:"uwb_sat___type___5_addr,omitempty"`                                                        // Address of UWB Satlet 5
-	UwbSat__Type___5Rssi                 int64   `protobuf:"varint,64,opt,name=uwb_sat___type___5_rssi,json=uwbSatType5Rssi,proto3" json:"uwb_sat___type___5_rssi,omitempty"`                                                        // RSSI of UWB Satlet 5 (dBm)
-	UwbSat__Type___5Nlos                 int64   `protobuf:"varint,65,opt,name=uwb_sat___type___5_nlos,json=uwbSatType5Nlos,proto3" json:"uwb_sat___type___5_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
-	UwbSat__Type___6Addr                 int64   `protobuf:"varint,66,opt,name=uwb_sat___type___6_addr,json=uwbSatType6Addr,proto3" json:"uwb_sat___type___6_addr,omitempty"`                                                        // Address of UWB Satlet 6
-	UwbSat__Type___6Rssi                 int64   `protobuf:"varint,67,opt,name=uwb_sat___type___6_rssi,json=uwbSatType6Rssi,proto3" json:"uwb_sat___type___6_rssi,omitempty"`                                                        // RSSI of UWB Satlet 6 (dBm)
-	UwbSat__Type___6Nlos                 int64   `protobuf:"varint,68,opt,name=uwb_sat___type___6_nlos,json=uwbSatType6Nlos,proto3" json:"uwb_sat___type___6_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
-	CpuLoadPercent__Cpu___0              int64   `protobuf:"varint,69,opt,name=cpu_load_percent___cpu___0,json=cpuLoadPercentCpu0,proto3" json:"cpu_load_percent___cpu___0,omitempty"`                                               // CPU Load of CPU 0 in percent
-	CpuLoadPercent__Cpu___1              int64   `protobuf:"varint,70,opt,name=cpu_load_percent___cpu___1,json=cpuLoadPercentCpu1,proto3" json:"cpu_load_percent___cpu___1,omitempty"`                                               // CPU Load of CPU 1 in percent
-	UptimeSeconds                        int64   `protobuf:"varint,71,opt,name=uptime_seconds,json=uptimeSeconds,proto3" json:"uptime_seconds,omitempty"`                                                                            // Uptime in seconds since last reboot
-	SleepManagerState                    int64   `protobuf:"varint,72,opt,name=sleep_manager_state,json=sleepManagerState,proto3" json:"sleep_manager_state,omitempty"`                                                              // Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
-	LastPowerCutUnixSeconds              int64   `protobuf:"varint,73,opt,name=last_power_cut_unix_seconds,json=lastPowerCutUnixSeconds,proto3" json:"last_power_cut_unix_seconds,omitempty"`                                        // Last power cut time in seconds since 1.1.1970 UTC
-	ResetCount__Type__Poweron            int64   `protobuf:"varint,80,opt,name=reset_count___type___poweron,json=resetCountTypePoweron,proto3" json:"reset_count___type___poweron,omitempty"`                                        // Number of power-on resets
-	ResetCount__Type__Software           int64   `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets
-	ResetCount__Type__Panic              int64   `protobuf:"varint,82,opt,name=reset_count___type___panic,json=resetCountTypePanic,proto3" json:"reset_count___type___panic,omitempty"`                                              // Number of panic resets
-	ResetCount__Type__Wd                 int64   `protobuf:"varint,83,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of watchdog resets (interupt, task or other wd)
-	ResetCount__Type__Brownout           int64   `protobuf:"varint,84,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
-	ResetCount__Type__Pwrglitch          int64   `protobuf:"varint,85,opt,name=reset_count___type___pwrglitch,json=resetCountTypePwrglitch,proto3" json:"reset_count___type___pwrglitch,omitempty"`                                  // Number of power glitch resets
-	ResetCount__Type__Unknown            int64   `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown (other) resets
-	UwbTachoSpeed                        float64 `protobuf:"fixed64,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                         // Tacho speed from UWB subsystem in m/s (always positive)
-	UwbPanId                             int64   `protobuf:"varint,88,opt,name=uwb_pan_id,json=uwbPanId,proto3" json:"uwb_pan_id,omitempty"`                                                                                         // UWB PAN ID from Status Report
+	state                                protoimpl.MessageState `protogen:"open.v1"`
+	Health__Type__UwbComm                int64                  `protobuf:"varint,1,opt,name=health___type___uwb_comm,json=healthTypeUwbComm,proto3" json:"health___type___uwb_comm,omitempty"`
+	Health__Type__UwbFirmware            int64                  `protobuf:"varint,2,opt,name=health___type___uwb_firmware,json=healthTypeUwbFirmware,proto3" json:"health___type___uwb_firmware,omitempty"`
+	Health__Type__UwbConfig              int64                  `protobuf:"varint,3,opt,name=health___type___uwb_config,json=healthTypeUwbConfig,proto3" json:"health___type___uwb_config,omitempty"`
+	Health__Type__GnssComm               int64                  `protobuf:"varint,4,opt,name=health___type___gnss_comm,json=healthTypeGnssComm,proto3" json:"health___type___gnss_comm,omitempty"`
+	Health__Type__UbxFirmware            int64                  `protobuf:"varint,5,opt,name=health___type___ubx_firmware,json=healthTypeUbxFirmware,proto3" json:"health___type___ubx_firmware,omitempty"`
+	Health__Type__UbxConfig              int64                  `protobuf:"varint,6,opt,name=health___type___ubx_config,json=healthTypeUbxConfig,proto3" json:"health___type___ubx_config,omitempty"`
+	Health__Type__ActorsStartup          int64                  `protobuf:"varint,7,opt,name=health___type___actors_startup,json=healthTypeActorsStartup,proto3" json:"health___type___actors_startup,omitempty"`
+	SntpUpdates                          int64                  `protobuf:"varint,8,opt,name=sntp_updates,json=sntpUpdates,proto3" json:"sntp_updates,omitempty"`                                                                                   // Number of SNTP time updates
+	FreeHeapBytes                        int64                  `protobuf:"varint,9,opt,name=free_heap_bytes,json=freeHeapBytes,proto3" json:"free_heap_bytes,omitempty"`                                                                           // Free heap (bytes)
+	SystemTimeSeconds                    float64                `protobuf:"fixed64,10,opt,name=system_time_seconds,json=systemTimeSeconds,proto3" json:"system_time_seconds,omitempty"`                                                             // System time in seconds since 1970 UTC
+	WifiRssiDbm                          float64                `protobuf:"fixed64,11,opt,name=wifi_rssi_dbm,json=wifiRssiDbm,proto3" json:"wifi_rssi_dbm,omitempty"`                                                                               // Wifi RSSI (dBm), NAN if not connected
+	WifiAp                               int64                  `protobuf:"varint,12,opt,name=wifi_ap,json=wifiAp,proto3" json:"wifi_ap,omitempty"`                                                                                                 // Last two bytes of connected AP MAC address as a number
+	GnssNumSats__System__Gps             int64                  `protobuf:"varint,13,opt,name=gnss_num_sats___system___gps,json=gnssNumSatsSystemGps,proto3" json:"gnss_num_sats___system___gps,omitempty"`                                         // number of satellites in view (GPS)
+	GnssNumSats__System__Glonass         int64                  `protobuf:"varint,14,opt,name=gnss_num_sats___system___glonass,json=gnssNumSatsSystemGlonass,proto3" json:"gnss_num_sats___system___glonass,omitempty"`                             // number of satellites in view (GLONASS)
+	GnssNumSats__System__Beidou          int64                  `protobuf:"varint,15,opt,name=gnss_num_sats___system___beidou,json=gnssNumSatsSystemBeidou,proto3" json:"gnss_num_sats___system___beidou,omitempty"`                                // number of satellites in view (Beidou)
+	GnssNumSats__System__Galileo         int64                  `protobuf:"varint,16,opt,name=gnss_num_sats___system___galileo,json=gnssNumSatsSystemGalileo,proto3" json:"gnss_num_sats___system___galileo,omitempty"`                             // number of satellites in view (Galileo)
+	GnssNumSats__System__Qzss            int64                  `protobuf:"varint,17,opt,name=gnss_num_sats___system___qzss,json=gnssNumSatsSystemQzss,proto3" json:"gnss_num_sats___system___qzss,omitempty"`                                      // number of satellites in view (QZSS)
+	GnssUartErrors__Type__HwFifo         int64                  `protobuf:"varint,21,opt,name=gnss_uart_errors___type___hw_fifo,json=gnssUartErrorsTypeHwFifo,proto3" json:"gnss_uart_errors___type___hw_fifo,omitempty"`                           // GNSS UART HW FIFO full
+	GnssUartErrors__Type__BufFull        int64                  `protobuf:"varint,22,opt,name=gnss_uart_errors___type___buf_full,json=gnssUartErrorsTypeBufFull,proto3" json:"gnss_uart_errors___type___buf_full,omitempty"`                        // GNSS UART buffer full, data lost
+	GnssUartErrors__Type__Char           int64                  `protobuf:"varint,23,opt,name=gnss_uart_errors___type___char,json=gnssUartErrorsTypeChar,proto3" json:"gnss_uart_errors___type___char,omitempty"`                                   // GNSS UART character errors, e.g. framing errors
+	GnssNumSv                            int64                  `protobuf:"varint,30,opt,name=gnss_num_sv,json=gnssNumSv,proto3" json:"gnss_num_sv,omitempty"`                                                                                      // Number of satellites used in fix
+	GnssPga__Block__Rf1                  int64                  `protobuf:"varint,31,opt,name=gnss_pga___block___rf1,json=gnssPgaBlockRf1,proto3" json:"gnss_pga___block___rf1,omitempty"`                                                          // gain of programmable amplifier for RF band 1 (db)
+	GnssPga__Block__Rf2                  int64                  `protobuf:"varint,32,opt,name=gnss_pga___block___rf2,json=gnssPgaBlockRf2,proto3" json:"gnss_pga___block___rf2,omitempty"`                                                          // gain of programmable amplifier for RF band 2 (db)
+	UbxSensorFusionStatusEnum            int64                  `protobuf:"varint,33,opt,name=ubx_sensor_fusion_status_enum,json=ubxSensorFusionStatusEnum,proto3" json:"ubx_sensor_fusion_status_enum,omitempty"`                                  // UBX Sensor fusion status (0=init 1=fusion 2=suspended 3=disabled)
+	UbxRefStationId                      int64                  `protobuf:"varint,34,opt,name=ubx_ref_station_id,json=ubxRefStationId,proto3" json:"ubx_ref_station_id,omitempty"`                                                                  // UBX GNSS reference station. May not be updated if no reference station
+	NtripIsConnected                     int64                  `protobuf:"varint,35,opt,name=ntrip_is_connected,json=ntripIsConnected,proto3" json:"ntrip_is_connected,omitempty"`                                                                 // Has Connection to NTRIP Caster
+	NtripTransferBytes__Direction__Send  int64                  `protobuf:"varint,36,opt,name=ntrip_transfer_bytes___direction___send,json=ntripTransferBytesDirectionSend,proto3" json:"ntrip_transfer_bytes___direction___send,omitempty"`        // Bytes sent to NTRIP Caster
+	NtripTransferBytes__Direction__Recv  int64                  `protobuf:"varint,37,opt,name=ntrip_transfer_bytes___direction___recv,json=ntripTransferBytesDirectionRecv,proto3" json:"ntrip_transfer_bytes___direction___recv,omitempty"`        // Bytes received from NTRIP Caster
+	LsiIsConnected                       int64                  `protobuf:"varint,41,opt,name=lsi_is_connected,json=lsiIsConnected,proto3" json:"lsi_is_connected,omitempty"`                                                                       // Localization Server Interface gets ACKs from server
+	LsiAcksMissed                        int64                  `protobuf:"varint,42,opt,name=lsi_acks_missed,json=lsiAcksMissed,proto3" json:"lsi_acks_missed,omitempty"`                                                                          // Localization Server Interface number of missed ACKs from server
+	UbxBootTypeEnum                      int64                  `protobuf:"varint,43,opt,name=ubx_boot_type_enum,json=ubxBootTypeEnum,proto3" json:"ubx_boot_type_enum,omitempty"`                                                                  // UBX Boot type (0=unknown, 1=cold-start, 2=watchdog, 3=hardware reset, 4=hardware backup, 5=software backup, 6=software reset, 7=vio fail, 8=vdd_x fail, 9=vdd_rf fail, 10=v_core_high fail, 11=system reset)
+	UbxRuntime                           int64                  `protobuf:"varint,44,opt,name=ubx_runtime,json=ubxRuntime,proto3" json:"ubx_runtime,omitempty"`                                                                                     // UBX Runtime in seconds
+	UbxSensorFusionDetail__Type__WtInit  int64                  `protobuf:"varint,45,opt,name=ubx_sensor_fusion_detail___type___wt_init,json=ubxSensorFusionDetailTypeWtInit,proto3" json:"ubx_sensor_fusion_detail___type___wt_init,omitempty"`    // WT Initialization status (0=off, 1=initializing, 2=initialized)
+	UbxSensorFusionDetail__Type__MntAlg  int64                  `protobuf:"varint,46,opt,name=ubx_sensor_fusion_detail___type___mnt_alg,json=ubxSensorFusionDetailTypeMntAlg,proto3" json:"ubx_sensor_fusion_detail___type___mnt_alg,omitempty"`    // Automatic IMU MntAlg status (0=off, 1=initializing, 2=initialized, 3=initialized)
+	UbxSensorFusionDetail__Type__InsInit int64                  `protobuf:"varint,47,opt,name=ubx_sensor_fusion_detail___type___ins_init,json=ubxSensorFusionDetailTypeInsInit,proto3" json:"ubx_sensor_fusion_detail___type___ins_init,omitempty"` // INS Initialization status (0=off, 1=initializing, 2=initialized)
+	UbxSensorFusionDetail__Type__ImuInit int64                  `protobuf:"varint,48,opt,name=ubx_sensor_fusion_detail___type___imu_init,json=ubxSensorFusionDetailTypeImuInit,proto3" json:"ubx_sensor_fusion_detail___type___imu_init,omitempty"` // INS State (0=off, 1=initializing, 2=initialized)
+	SensorFusionState                    int64                  `protobuf:"varint,49,opt,name=sensor_fusion_state,json=sensorFusionState,proto3" json:"sensor_fusion_state,omitempty"`                                                              // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
+	UwbNumSats                           int64                  `protobuf:"varint,50,opt,name=uwb_num_sats,json=uwbNumSats,proto3" json:"uwb_num_sats,omitempty"`                                                                                   // Number of UWB satlets in view
+	UwbSat__Type___1Addr                 int64                  `protobuf:"varint,51,opt,name=uwb_sat___type___1_addr,json=uwbSatType1Addr,proto3" json:"uwb_sat___type___1_addr,omitempty"`                                                        // Address of UWB Satlet 1
+	UwbSat__Type___1Rssi                 int64                  `protobuf:"varint,52,opt,name=uwb_sat___type___1_rssi,json=uwbSatType1Rssi,proto3" json:"uwb_sat___type___1_rssi,omitempty"`                                                        // RSSI of UWB Satlet 1 (dBm)
+	UwbSat__Type___1Nlos                 int64                  `protobuf:"varint,53,opt,name=uwb_sat___type___1_nlos,json=uwbSatType1Nlos,proto3" json:"uwb_sat___type___1_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
+	UwbSat__Type___2Addr                 int64                  `protobuf:"varint,54,opt,name=uwb_sat___type___2_addr,json=uwbSatType2Addr,proto3" json:"uwb_sat___type___2_addr,omitempty"`                                                        // Address of UWB Satlet 2
+	UwbSat__Type___2Rssi                 int64                  `protobuf:"varint,55,opt,name=uwb_sat___type___2_rssi,json=uwbSatType2Rssi,proto3" json:"uwb_sat___type___2_rssi,omitempty"`                                                        // RSSI of UWB Satlet 2 (dBm)
+	UwbSat__Type___2Nlos                 int64                  `protobuf:"varint,56,opt,name=uwb_sat___type___2_nlos,json=uwbSatType2Nlos,proto3" json:"uwb_sat___type___2_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
+	UwbSat__Type___3Addr                 int64                  `protobuf:"varint,57,opt,name=uwb_sat___type___3_addr,json=uwbSatType3Addr,proto3" json:"uwb_sat___type___3_addr,omitempty"`                                                        // Address of UWB Satlet 3
+	UwbSat__Type___3Rssi                 int64                  `protobuf:"varint,58,opt,name=uwb_sat___type___3_rssi,json=uwbSatType3Rssi,proto3" json:"uwb_sat___type___3_rssi,omitempty"`                                                        // RSSI of UWB Satlet 3 (dBm)
+	UwbSat__Type___3Nlos                 int64                  `protobuf:"varint,59,opt,name=uwb_sat___type___3_nlos,json=uwbSatType3Nlos,proto3" json:"uwb_sat___type___3_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
+	UwbSat__Type___4Addr                 int64                  `protobuf:"varint,60,opt,name=uwb_sat___type___4_addr,json=uwbSatType4Addr,proto3" json:"uwb_sat___type___4_addr,omitempty"`                                                        // Address of UWB Satlet 4
+	UwbSat__Type___4Rssi                 int64                  `protobuf:"varint,61,opt,name=uwb_sat___type___4_rssi,json=uwbSatType4Rssi,proto3" json:"uwb_sat___type___4_rssi,omitempty"`                                                        // RSSI of UWB Satlet 4 (dBm)
+	UwbSat__Type___4Nlos                 int64                  `protobuf:"varint,62,opt,name=uwb_sat___type___4_nlos,json=uwbSatType4Nlos,proto3" json:"uwb_sat___type___4_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
+	UwbSat__Type___5Addr                 int64                  `protobuf:"varint,63,opt,name=uwb_sat___type___5_addr,json=uwbSatType5Addr,proto3" json:"uwb_sat___type___5_addr,omitempty"`                                                        // Address of UWB Satlet 5
+	UwbSat__Type___5Rssi                 int64                  `protobuf:"varint,64,opt,name=uwb_sat___type___5_rssi,json=uwbSatType5Rssi,proto3" json:"uwb_sat___type___5_rssi,omitempty"`                                                        // RSSI of UWB Satlet 5 (dBm)
+	UwbSat__Type___5Nlos                 int64                  `protobuf:"varint,65,opt,name=uwb_sat___type___5_nlos,json=uwbSatType5Nlos,proto3" json:"uwb_sat___type___5_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
+	UwbSat__Type___6Addr                 int64                  `protobuf:"varint,66,opt,name=uwb_sat___type___6_addr,json=uwbSatType6Addr,proto3" json:"uwb_sat___type___6_addr,omitempty"`                                                        // Address of UWB Satlet 6
+	UwbSat__Type___6Rssi                 int64                  `protobuf:"varint,67,opt,name=uwb_sat___type___6_rssi,json=uwbSatType6Rssi,proto3" json:"uwb_sat___type___6_rssi,omitempty"`                                                        // RSSI of UWB Satlet 6 (dBm)
+	UwbSat__Type___6Nlos                 int64                  `protobuf:"varint,68,opt,name=uwb_sat___type___6_nlos,json=uwbSatType6Nlos,proto3" json:"uwb_sat___type___6_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
+	CpuLoadPercent__Cpu___0              int64                  `protobuf:"varint,69,opt,name=cpu_load_percent___cpu___0,json=cpuLoadPercentCpu0,proto3" json:"cpu_load_percent___cpu___0,omitempty"`                                               // CPU Load of CPU 0 in percent
+	CpuLoadPercent__Cpu___1              int64                  `protobuf:"varint,70,opt,name=cpu_load_percent___cpu___1,json=cpuLoadPercentCpu1,proto3" json:"cpu_load_percent___cpu___1,omitempty"`                                               // CPU Load of CPU 1 in percent
+	UptimeSeconds                        int64                  `protobuf:"varint,71,opt,name=uptime_seconds,json=uptimeSeconds,proto3" json:"uptime_seconds,omitempty"`                                                                            // Uptime in seconds since last reboot
+	SleepManagerState                    int64                  `protobuf:"varint,72,opt,name=sleep_manager_state,json=sleepManagerState,proto3" json:"sleep_manager_state,omitempty"`                                                              // Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
+	LastPowerCutUnixSeconds              int64                  `protobuf:"varint,73,opt,name=last_power_cut_unix_seconds,json=lastPowerCutUnixSeconds,proto3" json:"last_power_cut_unix_seconds,omitempty"`                                        // Last power cut time in seconds since 1.1.1970 UTC
+	ResetCount__Type__Poweron            int64                  `protobuf:"varint,80,opt,name=reset_count___type___poweron,json=resetCountTypePoweron,proto3" json:"reset_count___type___poweron,omitempty"`                                        // Number of power-on resets
+	ResetCount__Type__Software           int64                  `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets
+	ResetCount__Type__Panic              int64                  `protobuf:"varint,82,opt,name=reset_count___type___panic,json=resetCountTypePanic,proto3" json:"reset_count___type___panic,omitempty"`                                              // Number of panic resets
+	ResetCount__Type__Wd                 int64                  `protobuf:"varint,83,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of watchdog resets (interupt, task or other wd)
+	ResetCount__Type__Brownout           int64                  `protobuf:"varint,84,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
+	ResetCount__Type__Pwrglitch          int64                  `protobuf:"varint,85,opt,name=reset_count___type___pwrglitch,json=resetCountTypePwrglitch,proto3" json:"reset_count___type___pwrglitch,omitempty"`                                  // Number of power glitch resets
+	ResetCount__Type__Unknown            int64                  `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown (other) resets
+	UwbTachoSpeed                        float64                `protobuf:"fixed64,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                         // Tacho speed from UWB subsystem in m/s (always positive)
+	UwbPanId                             int64                  `protobuf:"varint,88,opt,name=uwb_pan_id,json=uwbPanId,proto3" json:"uwb_pan_id,omitempty"`                                                                                         // UWB PAN ID from Status Report
+	unknownFields                        protoimpl.UnknownFields
+	sizeCache                            protoimpl.SizeCache
 }
 
 func (x *TraceletMetrics) Reset() {
 	*x = TraceletMetrics{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_tracelet_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_tracelet_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *TraceletMetrics) String() string {
@@ -355,7 +350,7 @@ func (*TraceletMetrics) ProtoMessage() {}
 
 func (x *TraceletMetrics) ProtoReflect() protoreflect.Message {
 	mi := &file_tracelet_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -699,18 +694,16 @@ func (x *TraceletMetrics) GetUwbSat__Type___3Nlos() int64 {
 	return 0
 }
 
-func (x *TraceletToServer) GetType() isTraceletToServer_Type {
+func (x *TraceletMetrics) GetUwbSat__Type___4Addr() int64 {
 	if x != nil {
-		return x.Type
+		return x.UwbSat__Type___4Addr
 	}
 	return 0
 }
 
-func (x *TraceletToServer) GetLocation() *TraceletToServer_Location {
+func (x *TraceletMetrics) GetUwbSat__Type___4Rssi() int64 {
 	if x != nil {
-		if x, ok := x.Type.(*TraceletToServer_Location_); ok {
-			return x.Location
-		}
+		return x.UwbSat__Type___4Rssi
 	}
 	return 0
 }
@@ -878,16 +871,14 @@ type TraceletToServer_Location struct {
 	// Vehicle Mileage in [km]
 	Mileage int32 `protobuf:"varint,5,opt,name=mileage,proto3" json:"mileage,omitempty"`
 	// Current Tracelet Temperature in [°C]
-	Temperature float64 `protobuf:"fixed64,6,opt,name=temperature,proto3" json:"temperature,omitempty"`
-	// Acceleration data
-	Acceleration  *TraceletToServer_Location_Acceleration `protobuf:"bytes,8,opt,name=acceleration,proto3" json:"acceleration,omitempty"`
+	Temperature   float64 `protobuf:"fixed64,6,opt,name=temperature,proto3" json:"temperature,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TraceletToServer_Location) Reset() {
 	*x = TraceletToServer_Location{}
-	mi := &file_tracelet_proto_msgTypes[1]
+	mi := &file_tracelet_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -899,7 +890,7 @@ func (x *TraceletToServer_Location) String() string {
 func (*TraceletToServer_Location) ProtoMessage() {}
 
 func (x *TraceletToServer_Location) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[1]
+	mi := &file_tracelet_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -999,7 +990,7 @@ type TraceletToServer_Location_Gnss struct {
 
 func (x *TraceletToServer_Location_Gnss) Reset() {
 	*x = TraceletToServer_Location_Gnss{}
-	mi := &file_tracelet_proto_msgTypes[2]
+	mi := &file_tracelet_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1011,7 +1002,7 @@ func (x *TraceletToServer_Location_Gnss) String() string {
 func (*TraceletToServer_Location_Gnss) ProtoMessage() {}
 
 func (x *TraceletToServer_Location_Gnss) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[2]
+	mi := &file_tracelet_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1148,7 +1139,7 @@ type TraceletToServer_Location_Uwb struct {
 
 func (x *TraceletToServer_Location_Uwb) Reset() {
 	*x = TraceletToServer_Location_Uwb{}
-	mi := &file_tracelet_proto_msgTypes[3]
+	mi := &file_tracelet_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1160,7 +1151,7 @@ func (x *TraceletToServer_Location_Uwb) String() string {
 func (*TraceletToServer_Location_Uwb) ProtoMessage() {}
 
 func (x *TraceletToServer_Location_Uwb) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[3]
+	mi := &file_tracelet_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1286,5 +1277,335 @@ type TraceletToServer_Location_Fused struct {
 	HeadVehicle float64 `protobuf:"fixed64,7,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`
 	// heading valid (bit 0=motion valid, 1=vehicle valid))
 	HeadValid uint32 `protobuf:"varint,8,opt,name=head_valid,json=headValid,proto3" json:"head_valid,omitempty"`
+	// heading precision in [deg]
+	HeadPrecision float32 `protobuf:"fixed32,10,opt,name=head_precision,json=headPrecision,proto3" json:"head_precision,omitempty"`
+	// speed in [m/s]
+	GroundSpeed   float64 `protobuf:"fixed64,9,opt,name=ground_speed,json=groundSpeed,proto3" json:"ground_speed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
 func (x *TraceletToServer_Location_Fused) Reset() {
 	*x = TraceletToServer_Location_Fused{}
+	mi := &file_tracelet_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TraceletToServer_Location_Fused) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceletToServer_Location_Fused) ProtoMessage() {}
+
+func (x *TraceletToServer_Location_Fused) ProtoReflect() protoreflect.Message {
+	mi := &file_tracelet_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceletToServer_Location_Fused.ProtoReflect.Descriptor instead.
+func (*TraceletToServer_Location_Fused) Descriptor() ([]byte, []int) {
+	return file_tracelet_proto_rawDescGZIP(), []int{0, 0, 2}
+}
+
+func (x *TraceletToServer_Location_Fused) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
+}
+
+func (x *TraceletToServer_Location_Fused) GetLatitude() float64 {
+	if x != nil {
+		return x.Latitude
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetLongitude() float64 {
+	if x != nil {
+		return x.Longitude
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetAltitude() float64 {
+	if x != nil {
+		return x.Altitude
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetEph() float64 {
+	if x != nil {
+		return x.Eph
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetHeadMotion() float64 {
+	if x != nil {
+		return x.HeadMotion
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetHeadVehicle() float64 {
+	if x != nil {
+		return x.HeadVehicle
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetHeadValid() uint32 {
+	if x != nil {
+		return x.HeadValid
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetHeadPrecision() float32 {
+	if x != nil {
+		return x.HeadPrecision
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location_Fused) GetGroundSpeed() float64 {
+	if x != nil {
+		return x.GroundSpeed
+	}
+	return 0
+}
+
+var File_tracelet_proto protoreflect.FileDescriptor
+
+const file_tracelet_proto_rawDesc = "" +
+	"\n" +
+	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xba\x0e\n" +
+	"\x10TraceletToServer\x12/\n" +
+	"\x04uuid\x18\b \x01(\v2\x1b.tracelet.TraceletMessageIDR\x04uuid\x12!\n" +
+	"\fipv4_address\x18\t \x01(\aR\vipv4Address\x12;\n" +
+	"\vdelivery_ts\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"deliveryTs\x12\x1f\n" +
+	"\vtracelet_id\x18\x03 \x01(\tR\n" +
+	"traceletId\x12\x1a\n" +
+	"\bignition\x18\x04 \x01(\bR\bignition\x12A\n" +
+	"\blocation\x18\x05 \x01(\v2#.tracelet.TraceletToServer.LocationH\x00R\blocation\x12)\n" +
+	"\x10firmware_version\x18\a \x01(\tR\x0ffirmwareVersion\x123\n" +
+	"\ametrics\x18\n" +
+	" \x01(\v2\x19.tracelet.TraceletMetricsR\ametrics\x1a\xac\v\n" +
+	"\bLocation\x12<\n" +
+	"\x04gnss\x18\x01 \x01(\v2(.tracelet.TraceletToServer.Location.GnssR\x04gnss\x129\n" +
+	"\x03uwb\x18\x02 \x01(\v2'.tracelet.TraceletToServer.Location.UwbR\x03uwb\x12?\n" +
+	"\x05fused\x18\a \x01(\v2).tracelet.TraceletToServer.Location.FusedR\x05fused\x12K\n" +
+	"\tdirection\x18\x03 \x01(\x0e2-.tracelet.TraceletToServer.Location.DirectionR\tdirection\x12\x14\n" +
+	"\x05speed\x18\x04 \x01(\x01R\x05speed\x12\x18\n" +
+	"\amileage\x18\x05 \x01(\x05R\amileage\x12 \n" +
+	"\vtemperature\x18\x06 \x01(\x01R\vtemperature\x1a\xde\x02\n" +
+	"\x04Gnss\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +
+	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
+	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12\x1a\n" +
+	"\baltitude\x18\x04 \x01(\x01R\baltitude\x12\x10\n" +
+	"\x03eph\x18\x05 \x01(\x01R\x03eph\x12\x10\n" +
+	"\x03epv\x18\x06 \x01(\x01R\x03epv\x12\x19\n" +
+	"\bfix_type\x18\a \x01(\x05R\afixType\x12\x1f\n" +
+	"\vhead_motion\x18\b \x01(\x01R\n" +
+	"headMotion\x12!\n" +
+	"\fhead_vehicle\x18\t \x01(\x01R\vheadVehicle\x12\x1d\n" +
+	"\n" +
+	"head_valid\x18\n" +
+	" \x01(\rR\theadValid\x12%\n" +
+	"\x0ehead_precision\x18\f \x01(\x02R\rheadPrecision\x12!\n" +
+	"\fground_speed\x18\v \x01(\x01R\vgroundSpeed\x1a\xe7\x02\n" +
+	"\x03Uwb\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\f\n" +
+	"\x01x\x18\x02 \x01(\x01R\x01x\x12\f\n" +
+	"\x01y\x18\x03 \x01(\x01R\x01y\x12\f\n" +
+	"\x01z\x18\x04 \x01(\x01R\x01z\x12\x17\n" +
+	"\asite_id\x18\x05 \x01(\rR\x06siteId\x12-\n" +
+	"\x12location_signature\x18\x06 \x01(\x06R\x11locationSignature\x12\x10\n" +
+	"\x03eph\x18\a \x01(\x01R\x03eph\x12\x19\n" +
+	"\bfix_type\x18\b \x01(\x05R\afixType\x12\x1f\n" +
+	"\vhead_motion\x18\t \x01(\x01R\n" +
+	"headMotion\x12!\n" +
+	"\fhead_vehicle\x18\n" +
+	" \x01(\x01R\vheadVehicle\x12\x1d\n" +
+	"\n" +
+	"head_valid\x18\v \x01(\rR\theadValid\x12%\n" +
+	"\x0ehead_precision\x18\r \x01(\x02R\rheadPrecision\x12!\n" +
+	"\fground_speed\x18\f \x01(\x01R\vgroundSpeed\x1a\xb2\x02\n" +
+	"\x05Fused\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +
+	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
+	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12\x1a\n" +
+	"\baltitude\x18\x04 \x01(\x01R\baltitude\x12\x10\n" +
+	"\x03eph\x18\x05 \x01(\x01R\x03eph\x12\x1f\n" +
+	"\vhead_motion\x18\x06 \x01(\x01R\n" +
+	"headMotion\x12!\n" +
+	"\fhead_vehicle\x18\a \x01(\x01R\vheadVehicle\x12\x1d\n" +
+	"\n" +
+	"head_valid\x18\b \x01(\rR\theadValid\x12%\n" +
+	"\x0ehead_precision\x18\n" +
+	" \x01(\x02R\rheadPrecision\x12!\n" +
+	"\fground_speed\x18\t \x01(\x01R\vgroundSpeed\"G\n" +
+	"\tDirection\x12\x10\n" +
+	"\fNO_DIRECTION\x10\x00\x12\x13\n" +
+	"\x0fCAB_A_DIRECTION\x10\x01\x12\x13\n" +
+	"\x0fCAB_B_DIRECTION\x10\x02B\x06\n" +
+	"\x04type\")\n" +
+	"\x11TraceletMessageID\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\fR\x05value\"\xef\x1d\n" +
+	"\x0fTraceletMetrics\x123\n" +
+	"\x18health___type___uwb_comm\x18\x01 \x01(\x03R\x11healthTypeUwbComm\x12;\n" +
+	"\x1chealth___type___uwb_firmware\x18\x02 \x01(\x03R\x15healthTypeUwbFirmware\x127\n" +
+	"\x1ahealth___type___uwb_config\x18\x03 \x01(\x03R\x13healthTypeUwbConfig\x125\n" +
+	"\x19health___type___gnss_comm\x18\x04 \x01(\x03R\x12healthTypeGnssComm\x12;\n" +
+	"\x1chealth___type___ubx_firmware\x18\x05 \x01(\x03R\x15healthTypeUbxFirmware\x127\n" +
+	"\x1ahealth___type___ubx_config\x18\x06 \x01(\x03R\x13healthTypeUbxConfig\x12?\n" +
+	"\x1ehealth___type___actors_startup\x18\a \x01(\x03R\x17healthTypeActorsStartup\x12!\n" +
+	"\fsntp_updates\x18\b \x01(\x03R\vsntpUpdates\x12&\n" +
+	"\x0ffree_heap_bytes\x18\t \x01(\x03R\rfreeHeapBytes\x12.\n" +
+	"\x13system_time_seconds\x18\n" +
+	" \x01(\x01R\x11systemTimeSeconds\x12\"\n" +
+	"\rwifi_rssi_dbm\x18\v \x01(\x01R\vwifiRssiDbm\x12\x17\n" +
+	"\awifi_ap\x18\f \x01(\x03R\x06wifiAp\x12:\n" +
+	"\x1cgnss_num_sats___system___gps\x18\r \x01(\x03R\x14gnssNumSatsSystemGps\x12B\n" +
+	" gnss_num_sats___system___glonass\x18\x0e \x01(\x03R\x18gnssNumSatsSystemGlonass\x12@\n" +
+	"\x1fgnss_num_sats___system___beidou\x18\x0f \x01(\x03R\x17gnssNumSatsSystemBeidou\x12B\n" +
+	" gnss_num_sats___system___galileo\x18\x10 \x01(\x03R\x18gnssNumSatsSystemGalileo\x12<\n" +
+	"\x1dgnss_num_sats___system___qzss\x18\x11 \x01(\x03R\x15gnssNumSatsSystemQzss\x12C\n" +
+	"!gnss_uart_errors___type___hw_fifo\x18\x15 \x01(\x03R\x18gnssUartErrorsTypeHwFifo\x12E\n" +
+	"\"gnss_uart_errors___type___buf_full\x18\x16 \x01(\x03R\x19gnssUartErrorsTypeBufFull\x12>\n" +
+	"\x1egnss_uart_errors___type___char\x18\x17 \x01(\x03R\x16gnssUartErrorsTypeChar\x12\x1e\n" +
+	"\vgnss_num_sv\x18\x1e \x01(\x03R\tgnssNumSv\x12/\n" +
+	"\x16gnss_pga___block___rf1\x18\x1f \x01(\x03R\x0fgnssPgaBlockRf1\x12/\n" +
+	"\x16gnss_pga___block___rf2\x18  \x01(\x03R\x0fgnssPgaBlockRf2\x12@\n" +
+	"\x1dubx_sensor_fusion_status_enum\x18! \x01(\x03R\x19ubxSensorFusionStatusEnum\x12+\n" +
+	"\x12ubx_ref_station_id\x18\" \x01(\x03R\x0fubxRefStationId\x12,\n" +
+	"\x12ntrip_is_connected\x18# \x01(\x03R\x10ntripIsConnected\x12P\n" +
+	"'ntrip_transfer_bytes___direction___send\x18$ \x01(\x03R\x1fntripTransferBytesDirectionSend\x12P\n" +
+	"'ntrip_transfer_bytes___direction___recv\x18% \x01(\x03R\x1fntripTransferBytesDirectionRecv\x12(\n" +
+	"\x10lsi_is_connected\x18) \x01(\x03R\x0elsiIsConnected\x12&\n" +
+	"\x0flsi_acks_missed\x18* \x01(\x03R\rlsiAcksMissed\x12+\n" +
+	"\x12ubx_boot_type_enum\x18+ \x01(\x03R\x0fubxBootTypeEnum\x12\x1f\n" +
+	"\vubx_runtime\x18, \x01(\x03R\n" +
+	"ubxRuntime\x12R\n" +
+	")ubx_sensor_fusion_detail___type___wt_init\x18- \x01(\x03R\x1fubxSensorFusionDetailTypeWtInit\x12R\n" +
+	")ubx_sensor_fusion_detail___type___mnt_alg\x18. \x01(\x03R\x1fubxSensorFusionDetailTypeMntAlg\x12T\n" +
+	"*ubx_sensor_fusion_detail___type___ins_init\x18/ \x01(\x03R ubxSensorFusionDetailTypeInsInit\x12T\n" +
+	"*ubx_sensor_fusion_detail___type___imu_init\x180 \x01(\x03R ubxSensorFusionDetailTypeImuInit\x12.\n" +
+	"\x13sensor_fusion_state\x181 \x01(\x03R\x11sensorFusionState\x12 \n" +
+	"\fuwb_num_sats\x182 \x01(\x03R\n" +
+	"uwbNumSats\x120\n" +
+	"\x17uwb_sat___type___1_addr\x183 \x01(\x03R\x0fuwbSatType1Addr\x120\n" +
+	"\x17uwb_sat___type___1_rssi\x184 \x01(\x03R\x0fuwbSatType1Rssi\x120\n" +
+	"\x17uwb_sat___type___1_nlos\x185 \x01(\x03R\x0fuwbSatType1Nlos\x120\n" +
+	"\x17uwb_sat___type___2_addr\x186 \x01(\x03R\x0fuwbSatType2Addr\x120\n" +
+	"\x17uwb_sat___type___2_rssi\x187 \x01(\x03R\x0fuwbSatType2Rssi\x120\n" +
+	"\x17uwb_sat___type___2_nlos\x188 \x01(\x03R\x0fuwbSatType2Nlos\x120\n" +
+	"\x17uwb_sat___type___3_addr\x189 \x01(\x03R\x0fuwbSatType3Addr\x120\n" +
+	"\x17uwb_sat___type___3_rssi\x18: \x01(\x03R\x0fuwbSatType3Rssi\x120\n" +
+	"\x17uwb_sat___type___3_nlos\x18; \x01(\x03R\x0fuwbSatType3Nlos\x120\n" +
+	"\x17uwb_sat___type___4_addr\x18< \x01(\x03R\x0fuwbSatType4Addr\x120\n" +
+	"\x17uwb_sat___type___4_rssi\x18= \x01(\x03R\x0fuwbSatType4Rssi\x120\n" +
+	"\x17uwb_sat___type___4_nlos\x18> \x01(\x03R\x0fuwbSatType4Nlos\x120\n" +
+	"\x17uwb_sat___type___5_addr\x18? \x01(\x03R\x0fuwbSatType5Addr\x120\n" +
+	"\x17uwb_sat___type___5_rssi\x18@ \x01(\x03R\x0fuwbSatType5Rssi\x120\n" +
+	"\x17uwb_sat___type___5_nlos\x18A \x01(\x03R\x0fuwbSatType5Nlos\x120\n" +
+	"\x17uwb_sat___type___6_addr\x18B \x01(\x03R\x0fuwbSatType6Addr\x120\n" +
+	"\x17uwb_sat___type___6_rssi\x18C \x01(\x03R\x0fuwbSatType6Rssi\x120\n" +
+	"\x17uwb_sat___type___6_nlos\x18D \x01(\x03R\x0fuwbSatType6Nlos\x126\n" +
+	"\x1acpu_load_percent___cpu___0\x18E \x01(\x03R\x12cpuLoadPercentCpu0\x126\n" +
+	"\x1acpu_load_percent___cpu___1\x18F \x01(\x03R\x12cpuLoadPercentCpu1\x12%\n" +
+	"\x0euptime_seconds\x18G \x01(\x03R\ruptimeSeconds\x12.\n" +
+	"\x13sleep_manager_state\x18H \x01(\x03R\x11sleepManagerState\x12<\n" +
+	"\x1blast_power_cut_unix_seconds\x18I \x01(\x03R\x17lastPowerCutUnixSeconds\x12;\n" +
+	"\x1creset_count___type___poweron\x18P \x01(\x03R\x15resetCountTypePoweron\x12=\n" +
+	"\x1dreset_count___type___software\x18Q \x01(\x03R\x16resetCountTypeSoftware\x127\n" +
+	"\x1areset_count___type___panic\x18R \x01(\x03R\x13resetCountTypePanic\x121\n" +
+	"\x17reset_count___type___wd\x18S \x01(\x03R\x10resetCountTypeWd\x12=\n" +
+	"\x1dreset_count___type___brownout\x18T \x01(\x03R\x16resetCountTypeBrownout\x12?\n" +
+	"\x1ereset_count___type___pwrglitch\x18U \x01(\x03R\x17resetCountTypePwrglitch\x12;\n" +
+	"\x1creset_count___type___unknown\x18V \x01(\x03R\x15resetCountTypeUnknown\x12&\n" +
+	"\x0fuwb_tacho_speed\x18W \x01(\x01R\ruwbTachoSpeed\x12\x1c\n" +
+	"\n" +
+	"uwb_pan_id\x18X \x01(\x03R\buwbPanIdB\fZ\n" +
+	"./traceletb\x06proto3"
+
+var (
+	file_tracelet_proto_rawDescOnce sync.Once
+	file_tracelet_proto_rawDescData []byte
+)
+
+func file_tracelet_proto_rawDescGZIP() []byte {
+	file_tracelet_proto_rawDescOnce.Do(func() {
+		file_tracelet_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_tracelet_proto_rawDesc), len(file_tracelet_proto_rawDesc)))
+	})
+	return file_tracelet_proto_rawDescData
+}
+
+var file_tracelet_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_tracelet_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_tracelet_proto_goTypes = []any{
+	(TraceletToServer_Location_Direction)(0), // 0: tracelet.TraceletToServer.Location.Direction
+	(*TraceletToServer)(nil),                 // 1: tracelet.TraceletToServer
+	(*TraceletMessageID)(nil),                // 2: tracelet.TraceletMessageID
+	(*TraceletMetrics)(nil),                  // 3: tracelet.TraceletMetrics
+	(*TraceletToServer_Location)(nil),        // 4: tracelet.TraceletToServer.Location
+	(*TraceletToServer_Location_Gnss)(nil),   // 5: tracelet.TraceletToServer.Location.Gnss
+	(*TraceletToServer_Location_Uwb)(nil),    // 6: tracelet.TraceletToServer.Location.Uwb
+	(*TraceletToServer_Location_Fused)(nil),  // 7: tracelet.TraceletToServer.Location.Fused
+	(*timestamppb.Timestamp)(nil),            // 8: google.protobuf.Timestamp
+}
+var file_tracelet_proto_depIdxs = []int32{
+	2, // 0: tracelet.TraceletToServer.uuid:type_name -> tracelet.TraceletMessageID
+	8, // 1: tracelet.TraceletToServer.delivery_ts:type_name -> google.protobuf.Timestamp
+	4, // 2: tracelet.TraceletToServer.location:type_name -> tracelet.TraceletToServer.Location
+	3, // 3: tracelet.TraceletToServer.metrics:type_name -> tracelet.TraceletMetrics
+	5, // 4: tracelet.TraceletToServer.Location.gnss:type_name -> tracelet.TraceletToServer.Location.Gnss
+	6, // 5: tracelet.TraceletToServer.Location.uwb:type_name -> tracelet.TraceletToServer.Location.Uwb
+	7, // 6: tracelet.TraceletToServer.Location.fused:type_name -> tracelet.TraceletToServer.Location.Fused
+	0, // 7: tracelet.TraceletToServer.Location.direction:type_name -> tracelet.TraceletToServer.Location.Direction
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
+}
+
+func init() { file_tracelet_proto_init() }
+func file_tracelet_proto_init() {
+	if File_tracelet_proto != nil {
+		return
+	}
+	file_tracelet_proto_msgTypes[0].OneofWrappers = []any{
+		(*TraceletToServer_Location_)(nil),
+	}
+	type x struct{}
+	out := protoimpl.TypeBuilder{
+		File: protoimpl.DescBuilder{
+			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tracelet_proto_rawDesc), len(file_tracelet_proto_rawDesc)),
+			NumEnums:      1,
+			NumMessages:   7,
+			NumExtensions: 0,
+			NumServices:   0,
+		},
+		GoTypes:           file_tracelet_proto_goTypes,
+		DependencyIndexes: file_tracelet_proto_depIdxs,
+		EnumInfos:         file_tracelet_proto_enumTypes,
+		MessageInfos:      file_tracelet_proto_msgTypes,
+	}.Build()
+	File_tracelet_proto = out.File
+	file_tracelet_proto_goTypes = nil
+	file_tracelet_proto_depIdxs = nil
+}
