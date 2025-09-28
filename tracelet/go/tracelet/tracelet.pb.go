@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: (c) 2023 Ci4Rail GmbH
+// SPDX-FileCopyrightText: (c) 2024-2025 Ci4Rail GmbH
 
-// Protobuf definitiions for Ci4Rail Tracelet, e.g. SIO02 or SIO03.
+// Protobuf definitiions for Ci4Rail Tracelet, e.g. LTR01, SIO02 or SIO03.
 // It defines the messages exchanged between the Tracelet and the localization
 // system. The messages are transported over UDP, with handshaking
 //
@@ -84,9 +84,13 @@ func (TraceletToServer_Location_Direction) EnumDescriptor() ([]byte, []int) {
 }
 
 type TraceletToServer struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Currently not used, always 0
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// message UUIDv4 as a 16 byte value
+	Uuid        *TraceletMessageID `protobuf:"bytes,8,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Ipv4Address uint32             `protobuf:"fixed32,9,opt,name=ipv4_address,json=ipv4Address,proto3" json:"ipv4_address,omitempty"` // IPv4 address of the tracelet, in network byte order
 	// timestamp when the message was sent by the tracelet
 	// If the Tracelet has no valid time, receive_ts is set to 1970-Jan-1 00:00
 	// UTC
@@ -133,9 +137,16 @@ func (*TraceletToServer) Descriptor() ([]byte, []int) {
 	return file_tracelet_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TraceletToServer) GetId() int32 {
+func (x *TraceletToServer) GetUuid() *TraceletMessageID {
 	if x != nil {
-		return x.Id
+		return x.Uuid
+	}
+	return nil
+}
+
+func (x *TraceletToServer) GetIpv4Address() uint32 {
+	if x != nil {
+		return x.Ipv4Address
 	}
 	return 0
 }
@@ -161,18 +172,30 @@ func (x *TraceletToServer) GetIgnition() bool {
 	return false
 }
 
-func (x *TraceletToServer) GetType() isTraceletToServer_Type {
-	if x != nil {
-		return x.Type
+func (m *TraceletToServer) GetType() isTraceletToServer_Type {
+	if m != nil {
+		return m.Type
 	}
 	return nil
 }
 
 func (x *TraceletToServer) GetLocation() *TraceletToServer_Location {
+	if x, ok := x.GetType().(*TraceletToServer_Location_); ok {
+		return x.Location
+	}
+	return nil
+}
+
+func (x *TraceletToServer) GetFirmwareVersion() string {
 	if x != nil {
-		if x, ok := x.Type.(*TraceletToServer_Location_); ok {
-			return x.Location
-		}
+		return x.FirmwareVersion
+	}
+	return ""
+}
+
+func (x *TraceletToServer) GetMetrics() *TraceletMetrics {
+	if x != nil {
+		return x.Metrics
 	}
 	return nil
 }
@@ -182,10 +205,662 @@ type isTraceletToServer_Type interface {
 }
 
 type TraceletToServer_Location_ struct {
-	Location *TraceletToServer_Location `protobuf:"bytes,5,opt,name=location,proto3,oneof"` // periodically sent by the tracelet or in
+	Location *TraceletToServer_Location `protobuf:"bytes,5,opt,name=location,proto3,oneof"` // periodically sent by the tracelet
 }
 
 func (*TraceletToServer_Location_) isTraceletToServer_Type() {}
+
+type TraceletMessageID struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// UUIDv4 as a 16 byte value
+	// The UUID is used to uniquely identify the tracelet message in the localization system
+	Value []byte `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *TraceletMessageID) Reset() {
+	*x = TraceletMessageID{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tracelet_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TraceletMessageID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceletMessageID) ProtoMessage() {}
+
+func (x *TraceletMessageID) ProtoReflect() protoreflect.Message {
+	mi := &file_tracelet_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceletMessageID.ProtoReflect.Descriptor instead.
+func (*TraceletMessageID) Descriptor() ([]byte, []int) {
+	return file_tracelet_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *TraceletMessageID) GetValue() []byte {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+// Tracelet metrics. May be sent together with the location message
+// Metric families are written in the form of metric___label___labelvalue
+type TraceletMetrics struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Health__Type__UwbComm                int64   `protobuf:"varint,1,opt,name=health___type___uwb_comm,json=healthTypeUwbComm,proto3" json:"health___type___uwb_comm,omitempty"`
+	Health__Type__UwbFirmware            int64   `protobuf:"varint,2,opt,name=health___type___uwb_firmware,json=healthTypeUwbFirmware,proto3" json:"health___type___uwb_firmware,omitempty"`
+	Health__Type__UwbConfig              int64   `protobuf:"varint,3,opt,name=health___type___uwb_config,json=healthTypeUwbConfig,proto3" json:"health___type___uwb_config,omitempty"`
+	Health__Type__GnssComm               int64   `protobuf:"varint,4,opt,name=health___type___gnss_comm,json=healthTypeGnssComm,proto3" json:"health___type___gnss_comm,omitempty"`
+	Health__Type__UbxFirmware            int64   `protobuf:"varint,5,opt,name=health___type___ubx_firmware,json=healthTypeUbxFirmware,proto3" json:"health___type___ubx_firmware,omitempty"`
+	Health__Type__UbxConfig              int64   `protobuf:"varint,6,opt,name=health___type___ubx_config,json=healthTypeUbxConfig,proto3" json:"health___type___ubx_config,omitempty"`
+	Health__Type__ActorsStartup          int64   `protobuf:"varint,7,opt,name=health___type___actors_startup,json=healthTypeActorsStartup,proto3" json:"health___type___actors_startup,omitempty"`
+	SntpUpdates                          int64   `protobuf:"varint,8,opt,name=sntp_updates,json=sntpUpdates,proto3" json:"sntp_updates,omitempty"`                                                                                   // Number of SNTP time updates
+	FreeHeapBytes                        int64   `protobuf:"varint,9,opt,name=free_heap_bytes,json=freeHeapBytes,proto3" json:"free_heap_bytes,omitempty"`                                                                           // Free heap (bytes)
+	SystemTimeSeconds                    float64 `protobuf:"fixed64,10,opt,name=system_time_seconds,json=systemTimeSeconds,proto3" json:"system_time_seconds,omitempty"`                                                             // System time in seconds since 1970 UTC
+	WifiRssiDbm                          float64 `protobuf:"fixed64,11,opt,name=wifi_rssi_dbm,json=wifiRssiDbm,proto3" json:"wifi_rssi_dbm,omitempty"`                                                                               // Wifi RSSI (dBm), NAN if not connected
+	WifiAp                               int64   `protobuf:"varint,12,opt,name=wifi_ap,json=wifiAp,proto3" json:"wifi_ap,omitempty"`                                                                                                 // Last two bytes of connected AP MAC address as a number
+	GnssNumSats__System__Gps             int64   `protobuf:"varint,13,opt,name=gnss_num_sats___system___gps,json=gnssNumSatsSystemGps,proto3" json:"gnss_num_sats___system___gps,omitempty"`                                         // number of satellites in view (GPS)
+	GnssNumSats__System__Glonass         int64   `protobuf:"varint,14,opt,name=gnss_num_sats___system___glonass,json=gnssNumSatsSystemGlonass,proto3" json:"gnss_num_sats___system___glonass,omitempty"`                             // number of satellites in view (GLONASS)
+	GnssNumSats__System__Beidou          int64   `protobuf:"varint,15,opt,name=gnss_num_sats___system___beidou,json=gnssNumSatsSystemBeidou,proto3" json:"gnss_num_sats___system___beidou,omitempty"`                                // number of satellites in view (Beidou)
+	GnssNumSats__System__Galileo         int64   `protobuf:"varint,16,opt,name=gnss_num_sats___system___galileo,json=gnssNumSatsSystemGalileo,proto3" json:"gnss_num_sats___system___galileo,omitempty"`                             // number of satellites in view (Galileo)
+	GnssNumSats__System__Qzss            int64   `protobuf:"varint,17,opt,name=gnss_num_sats___system___qzss,json=gnssNumSatsSystemQzss,proto3" json:"gnss_num_sats___system___qzss,omitempty"`                                      // number of satellites in view (QZSS)
+	GnssUartErrors__Type__HwFifo         int64   `protobuf:"varint,21,opt,name=gnss_uart_errors___type___hw_fifo,json=gnssUartErrorsTypeHwFifo,proto3" json:"gnss_uart_errors___type___hw_fifo,omitempty"`                           // GNSS UART HW FIFO full
+	GnssUartErrors__Type__BufFull        int64   `protobuf:"varint,22,opt,name=gnss_uart_errors___type___buf_full,json=gnssUartErrorsTypeBufFull,proto3" json:"gnss_uart_errors___type___buf_full,omitempty"`                        // GNSS UART buffer full, data lost
+	GnssUartErrors__Type__Char           int64   `protobuf:"varint,23,opt,name=gnss_uart_errors___type___char,json=gnssUartErrorsTypeChar,proto3" json:"gnss_uart_errors___type___char,omitempty"`                                   // GNSS UART character errors, e.g. framing errors
+	GnssNumSv                            int64   `protobuf:"varint,30,opt,name=gnss_num_sv,json=gnssNumSv,proto3" json:"gnss_num_sv,omitempty"`                                                                                      // Number of satellites used in fix
+	GnssPga__Block__Rf1                  int64   `protobuf:"varint,31,opt,name=gnss_pga___block___rf1,json=gnssPgaBlockRf1,proto3" json:"gnss_pga___block___rf1,omitempty"`                                                          // gain of programmable amplifier for RF band 1 (db)
+	GnssPga__Block__Rf2                  int64   `protobuf:"varint,32,opt,name=gnss_pga___block___rf2,json=gnssPgaBlockRf2,proto3" json:"gnss_pga___block___rf2,omitempty"`                                                          // gain of programmable amplifier for RF band 2 (db)
+	UbxSensorFusionStatusEnum            int64   `protobuf:"varint,33,opt,name=ubx_sensor_fusion_status_enum,json=ubxSensorFusionStatusEnum,proto3" json:"ubx_sensor_fusion_status_enum,omitempty"`                                  // UBX Sensor fusion status (0=init 1=fusion 2=suspended 3=disabled)
+	UbxRefStationId                      int64   `protobuf:"varint,34,opt,name=ubx_ref_station_id,json=ubxRefStationId,proto3" json:"ubx_ref_station_id,omitempty"`                                                                  // UBX GNSS reference station. May not be updated if no reference station
+	NtripIsConnected                     int64   `protobuf:"varint,35,opt,name=ntrip_is_connected,json=ntripIsConnected,proto3" json:"ntrip_is_connected,omitempty"`                                                                 // Has Connection to NTRIP Caster
+	NtripTransferBytes__Direction__Send  int64   `protobuf:"varint,36,opt,name=ntrip_transfer_bytes___direction___send,json=ntripTransferBytesDirectionSend,proto3" json:"ntrip_transfer_bytes___direction___send,omitempty"`        // Bytes sent to NTRIP Caster
+	NtripTransferBytes__Direction__Recv  int64   `protobuf:"varint,37,opt,name=ntrip_transfer_bytes___direction___recv,json=ntripTransferBytesDirectionRecv,proto3" json:"ntrip_transfer_bytes___direction___recv,omitempty"`        // Bytes received from NTRIP Caster
+	LsiIsConnected                       int64   `protobuf:"varint,41,opt,name=lsi_is_connected,json=lsiIsConnected,proto3" json:"lsi_is_connected,omitempty"`                                                                       // Localization Server Interface gets ACKs from server
+	LsiAcksMissed                        int64   `protobuf:"varint,42,opt,name=lsi_acks_missed,json=lsiAcksMissed,proto3" json:"lsi_acks_missed,omitempty"`                                                                          // Localization Server Interface number of missed ACKs from server
+	UbxBootTypeEnum                      int64   `protobuf:"varint,43,opt,name=ubx_boot_type_enum,json=ubxBootTypeEnum,proto3" json:"ubx_boot_type_enum,omitempty"`                                                                  // UBX Boot type (0=unknown, 1=cold-start, 2=watchdog, 3=hardware reset, 4=hardware backup, 5=software backup, 6=software reset, 7=vio fail, 8=vdd_x fail, 9=vdd_rf fail, 10=v_core_high fail, 11=system reset)
+	UbxRuntime                           int64   `protobuf:"varint,44,opt,name=ubx_runtime,json=ubxRuntime,proto3" json:"ubx_runtime,omitempty"`                                                                                     // UBX Runtime in seconds
+	UbxSensorFusionDetail__Type__WtInit  int64   `protobuf:"varint,45,opt,name=ubx_sensor_fusion_detail___type___wt_init,json=ubxSensorFusionDetailTypeWtInit,proto3" json:"ubx_sensor_fusion_detail___type___wt_init,omitempty"`    // WT Initialization status (0=off, 1=initializing, 2=initialized)
+	UbxSensorFusionDetail__Type__MntAlg  int64   `protobuf:"varint,46,opt,name=ubx_sensor_fusion_detail___type___mnt_alg,json=ubxSensorFusionDetailTypeMntAlg,proto3" json:"ubx_sensor_fusion_detail___type___mnt_alg,omitempty"`    // Automatic IMU MntAlg status (0=off, 1=initializing, 2=initialized, 3=initialized)
+	UbxSensorFusionDetail__Type__InsInit int64   `protobuf:"varint,47,opt,name=ubx_sensor_fusion_detail___type___ins_init,json=ubxSensorFusionDetailTypeInsInit,proto3" json:"ubx_sensor_fusion_detail___type___ins_init,omitempty"` // INS Initialization status (0=off, 1=initializing, 2=initialized)
+	UbxSensorFusionDetail__Type__ImuInit int64   `protobuf:"varint,48,opt,name=ubx_sensor_fusion_detail___type___imu_init,json=ubxSensorFusionDetailTypeImuInit,proto3" json:"ubx_sensor_fusion_detail___type___imu_init,omitempty"` // INS State (0=off, 1=initializing, 2=initialized)
+	SensorFusionState                    int64   `protobuf:"varint,49,opt,name=sensor_fusion_state,json=sensorFusionState,proto3" json:"sensor_fusion_state,omitempty"`                                                              // Sensor Fusion State (0=NONE, 1=UWB, 2=GNSS, 3=UWB-to-GNSS)
+	UwbNumSats                           int64   `protobuf:"varint,50,opt,name=uwb_num_sats,json=uwbNumSats,proto3" json:"uwb_num_sats,omitempty"`                                                                                   // Number of UWB satlets in view
+	UwbSat__Type___1Addr                 int64   `protobuf:"varint,51,opt,name=uwb_sat___type___1_addr,json=uwbSatType1Addr,proto3" json:"uwb_sat___type___1_addr,omitempty"`                                                        // Address of UWB Satlet 1
+	UwbSat__Type___1Rssi                 int64   `protobuf:"varint,52,opt,name=uwb_sat___type___1_rssi,json=uwbSatType1Rssi,proto3" json:"uwb_sat___type___1_rssi,omitempty"`                                                        // RSSI of UWB Satlet 1 (dBm)
+	UwbSat__Type___1Nlos                 int64   `protobuf:"varint,53,opt,name=uwb_sat___type___1_nlos,json=uwbSatType1Nlos,proto3" json:"uwb_sat___type___1_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 1 (0=LOS 1=NLOS)
+	UwbSat__Type___2Addr                 int64   `protobuf:"varint,54,opt,name=uwb_sat___type___2_addr,json=uwbSatType2Addr,proto3" json:"uwb_sat___type___2_addr,omitempty"`                                                        // Address of UWB Satlet 2
+	UwbSat__Type___2Rssi                 int64   `protobuf:"varint,55,opt,name=uwb_sat___type___2_rssi,json=uwbSatType2Rssi,proto3" json:"uwb_sat___type___2_rssi,omitempty"`                                                        // RSSI of UWB Satlet 2 (dBm)
+	UwbSat__Type___2Nlos                 int64   `protobuf:"varint,56,opt,name=uwb_sat___type___2_nlos,json=uwbSatType2Nlos,proto3" json:"uwb_sat___type___2_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 2 (0=LOS 1=NLOS)
+	UwbSat__Type___3Addr                 int64   `protobuf:"varint,57,opt,name=uwb_sat___type___3_addr,json=uwbSatType3Addr,proto3" json:"uwb_sat___type___3_addr,omitempty"`                                                        // Address of UWB Satlet 3
+	UwbSat__Type___3Rssi                 int64   `protobuf:"varint,58,opt,name=uwb_sat___type___3_rssi,json=uwbSatType3Rssi,proto3" json:"uwb_sat___type___3_rssi,omitempty"`                                                        // RSSI of UWB Satlet 3 (dBm)
+	UwbSat__Type___3Nlos                 int64   `protobuf:"varint,59,opt,name=uwb_sat___type___3_nlos,json=uwbSatType3Nlos,proto3" json:"uwb_sat___type___3_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 3 (0=LOS 1=NLOS)
+	UwbSat__Type___4Addr                 int64   `protobuf:"varint,60,opt,name=uwb_sat___type___4_addr,json=uwbSatType4Addr,proto3" json:"uwb_sat___type___4_addr,omitempty"`                                                        // Address of UWB Satlet 4
+	UwbSat__Type___4Rssi                 int64   `protobuf:"varint,61,opt,name=uwb_sat___type___4_rssi,json=uwbSatType4Rssi,proto3" json:"uwb_sat___type___4_rssi,omitempty"`                                                        // RSSI of UWB Satlet 4 (dBm)
+	UwbSat__Type___4Nlos                 int64   `protobuf:"varint,62,opt,name=uwb_sat___type___4_nlos,json=uwbSatType4Nlos,proto3" json:"uwb_sat___type___4_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 4 (0=LOS 1=NLOS)
+	UwbSat__Type___5Addr                 int64   `protobuf:"varint,63,opt,name=uwb_sat___type___5_addr,json=uwbSatType5Addr,proto3" json:"uwb_sat___type___5_addr,omitempty"`                                                        // Address of UWB Satlet 5
+	UwbSat__Type___5Rssi                 int64   `protobuf:"varint,64,opt,name=uwb_sat___type___5_rssi,json=uwbSatType5Rssi,proto3" json:"uwb_sat___type___5_rssi,omitempty"`                                                        // RSSI of UWB Satlet 5 (dBm)
+	UwbSat__Type___5Nlos                 int64   `protobuf:"varint,65,opt,name=uwb_sat___type___5_nlos,json=uwbSatType5Nlos,proto3" json:"uwb_sat___type___5_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 5 (0=LOS 1=NLOS)
+	UwbSat__Type___6Addr                 int64   `protobuf:"varint,66,opt,name=uwb_sat___type___6_addr,json=uwbSatType6Addr,proto3" json:"uwb_sat___type___6_addr,omitempty"`                                                        // Address of UWB Satlet 6
+	UwbSat__Type___6Rssi                 int64   `protobuf:"varint,67,opt,name=uwb_sat___type___6_rssi,json=uwbSatType6Rssi,proto3" json:"uwb_sat___type___6_rssi,omitempty"`                                                        // RSSI of UWB Satlet 6 (dBm)
+	UwbSat__Type___6Nlos                 int64   `protobuf:"varint,68,opt,name=uwb_sat___type___6_nlos,json=uwbSatType6Nlos,proto3" json:"uwb_sat___type___6_nlos,omitempty"`                                                        // non-line of sight indicator of UWB Satlet 6 (0=LOS 1=NLOS)
+	CpuLoadPercent__Cpu___0              int64   `protobuf:"varint,69,opt,name=cpu_load_percent___cpu___0,json=cpuLoadPercentCpu0,proto3" json:"cpu_load_percent___cpu___0,omitempty"`                                               // CPU Load of CPU 0 in percent
+	CpuLoadPercent__Cpu___1              int64   `protobuf:"varint,70,opt,name=cpu_load_percent___cpu___1,json=cpuLoadPercentCpu1,proto3" json:"cpu_load_percent___cpu___1,omitempty"`                                               // CPU Load of CPU 1 in percent
+	UptimeSeconds                        int64   `protobuf:"varint,71,opt,name=uptime_seconds,json=uptimeSeconds,proto3" json:"uptime_seconds,omitempty"`                                                                            // Uptime in seconds since last reboot
+	SleepManagerState                    int64   `protobuf:"varint,72,opt,name=sleep_manager_state,json=sleepManagerState,proto3" json:"sleep_manager_state,omitempty"`                                                              // Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
+	LastPowerCutUnixSeconds              int64   `protobuf:"varint,73,opt,name=last_power_cut_unix_seconds,json=lastPowerCutUnixSeconds,proto3" json:"last_power_cut_unix_seconds,omitempty"`                                        // Last power cut time in seconds since 1.1.1970 UTC
+	ResetCount__Type__Poweron            int64   `protobuf:"varint,80,opt,name=reset_count___type___poweron,json=resetCountTypePoweron,proto3" json:"reset_count___type___poweron,omitempty"`                                        // Number of power-on resets
+	ResetCount__Type__Software           int64   `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets
+	ResetCount__Type__Panic              int64   `protobuf:"varint,82,opt,name=reset_count___type___panic,json=resetCountTypePanic,proto3" json:"reset_count___type___panic,omitempty"`                                              // Number of panic resets
+	ResetCount__Type__Wd                 int64   `protobuf:"varint,83,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of watchdog resets (interupt, task or other wd)
+	ResetCount__Type__Brownout           int64   `protobuf:"varint,84,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
+	ResetCount__Type__Pwrglitch          int64   `protobuf:"varint,85,opt,name=reset_count___type___pwrglitch,json=resetCountTypePwrglitch,proto3" json:"reset_count___type___pwrglitch,omitempty"`                                  // Number of power glitch resets
+	ResetCount__Type__Unknown            int64   `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown (other) resets
+	UwbTachoSpeed                        float64 `protobuf:"fixed64,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                         // Tacho speed from UWB subsystem in m/s (always positive)
+	UwbPanId                             int64   `protobuf:"varint,88,opt,name=uwb_pan_id,json=uwbPanId,proto3" json:"uwb_pan_id,omitempty"`                                                                                         // UWB PAN ID from Status Report
+}
+
+func (x *TraceletMetrics) Reset() {
+	*x = TraceletMetrics{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tracelet_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TraceletMetrics) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceletMetrics) ProtoMessage() {}
+
+func (x *TraceletMetrics) ProtoReflect() protoreflect.Message {
+	mi := &file_tracelet_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceletMetrics.ProtoReflect.Descriptor instead.
+func (*TraceletMetrics) Descriptor() ([]byte, []int) {
+	return file_tracelet_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TraceletMetrics) GetHealth__Type__UwbComm() int64 {
+	if x != nil {
+		return x.Health__Type__UwbComm
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__UwbFirmware() int64 {
+	if x != nil {
+		return x.Health__Type__UwbFirmware
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__UwbConfig() int64 {
+	if x != nil {
+		return x.Health__Type__UwbConfig
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__GnssComm() int64 {
+	if x != nil {
+		return x.Health__Type__GnssComm
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__UbxFirmware() int64 {
+	if x != nil {
+		return x.Health__Type__UbxFirmware
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__UbxConfig() int64 {
+	if x != nil {
+		return x.Health__Type__UbxConfig
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetHealth__Type__ActorsStartup() int64 {
+	if x != nil {
+		return x.Health__Type__ActorsStartup
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetSntpUpdates() int64 {
+	if x != nil {
+		return x.SntpUpdates
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetFreeHeapBytes() int64 {
+	if x != nil {
+		return x.FreeHeapBytes
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetSystemTimeSeconds() float64 {
+	if x != nil {
+		return x.SystemTimeSeconds
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetWifiRssiDbm() float64 {
+	if x != nil {
+		return x.WifiRssiDbm
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetWifiAp() int64 {
+	if x != nil {
+		return x.WifiAp
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSats__System__Gps() int64 {
+	if x != nil {
+		return x.GnssNumSats__System__Gps
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSats__System__Glonass() int64 {
+	if x != nil {
+		return x.GnssNumSats__System__Glonass
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSats__System__Beidou() int64 {
+	if x != nil {
+		return x.GnssNumSats__System__Beidou
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSats__System__Galileo() int64 {
+	if x != nil {
+		return x.GnssNumSats__System__Galileo
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSats__System__Qzss() int64 {
+	if x != nil {
+		return x.GnssNumSats__System__Qzss
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssUartErrors__Type__HwFifo() int64 {
+	if x != nil {
+		return x.GnssUartErrors__Type__HwFifo
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssUartErrors__Type__BufFull() int64 {
+	if x != nil {
+		return x.GnssUartErrors__Type__BufFull
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssUartErrors__Type__Char() int64 {
+	if x != nil {
+		return x.GnssUartErrors__Type__Char
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssNumSv() int64 {
+	if x != nil {
+		return x.GnssNumSv
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssPga__Block__Rf1() int64 {
+	if x != nil {
+		return x.GnssPga__Block__Rf1
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetGnssPga__Block__Rf2() int64 {
+	if x != nil {
+		return x.GnssPga__Block__Rf2
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxSensorFusionStatusEnum() int64 {
+	if x != nil {
+		return x.UbxSensorFusionStatusEnum
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxRefStationId() int64 {
+	if x != nil {
+		return x.UbxRefStationId
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetNtripIsConnected() int64 {
+	if x != nil {
+		return x.NtripIsConnected
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetNtripTransferBytes__Direction__Send() int64 {
+	if x != nil {
+		return x.NtripTransferBytes__Direction__Send
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetNtripTransferBytes__Direction__Recv() int64 {
+	if x != nil {
+		return x.NtripTransferBytes__Direction__Recv
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetLsiIsConnected() int64 {
+	if x != nil {
+		return x.LsiIsConnected
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetLsiAcksMissed() int64 {
+	if x != nil {
+		return x.LsiAcksMissed
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxBootTypeEnum() int64 {
+	if x != nil {
+		return x.UbxBootTypeEnum
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxRuntime() int64 {
+	if x != nil {
+		return x.UbxRuntime
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxSensorFusionDetail__Type__WtInit() int64 {
+	if x != nil {
+		return x.UbxSensorFusionDetail__Type__WtInit
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxSensorFusionDetail__Type__MntAlg() int64 {
+	if x != nil {
+		return x.UbxSensorFusionDetail__Type__MntAlg
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxSensorFusionDetail__Type__InsInit() int64 {
+	if x != nil {
+		return x.UbxSensorFusionDetail__Type__InsInit
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUbxSensorFusionDetail__Type__ImuInit() int64 {
+	if x != nil {
+		return x.UbxSensorFusionDetail__Type__ImuInit
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetSensorFusionState() int64 {
+	if x != nil {
+		return x.SensorFusionState
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbNumSats() int64 {
+	if x != nil {
+		return x.UwbNumSats
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___1Addr() int64 {
+	if x != nil {
+		return x.UwbSat__Type___1Addr
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___1Rssi() int64 {
+	if x != nil {
+		return x.UwbSat__Type___1Rssi
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___1Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___1Nlos
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___2Addr() int64 {
+	if x != nil {
+		return x.UwbSat__Type___2Addr
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___2Rssi() int64 {
+	if x != nil {
+		return x.UwbSat__Type___2Rssi
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___2Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___2Nlos
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___3Addr() int64 {
+	if x != nil {
+		return x.UwbSat__Type___3Addr
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___3Rssi() int64 {
+	if x != nil {
+		return x.UwbSat__Type___3Rssi
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___3Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___3Nlos
+	}
+	return 0
+}
+
+func (x *TraceletToServer) GetType() isTraceletToServer_Type {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *TraceletToServer) GetLocation() *TraceletToServer_Location {
+	if x != nil {
+		if x, ok := x.Type.(*TraceletToServer_Location_); ok {
+			return x.Location
+		}
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___4Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___4Nlos
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___5Addr() int64 {
+	if x != nil {
+		return x.UwbSat__Type___5Addr
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___5Rssi() int64 {
+	if x != nil {
+		return x.UwbSat__Type___5Rssi
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___5Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___5Nlos
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___6Addr() int64 {
+	if x != nil {
+		return x.UwbSat__Type___6Addr
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___6Rssi() int64 {
+	if x != nil {
+		return x.UwbSat__Type___6Rssi
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbSat__Type___6Nlos() int64 {
+	if x != nil {
+		return x.UwbSat__Type___6Nlos
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetCpuLoadPercent__Cpu___0() int64 {
+	if x != nil {
+		return x.CpuLoadPercent__Cpu___0
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetCpuLoadPercent__Cpu___1() int64 {
+	if x != nil {
+		return x.CpuLoadPercent__Cpu___1
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUptimeSeconds() int64 {
+	if x != nil {
+		return x.UptimeSeconds
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetSleepManagerState() int64 {
+	if x != nil {
+		return x.SleepManagerState
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetLastPowerCutUnixSeconds() int64 {
+	if x != nil {
+		return x.LastPowerCutUnixSeconds
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Poweron() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Poweron
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Software() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Software
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Panic() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Panic
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Wd() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Wd
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Brownout() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Brownout
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Pwrglitch() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Pwrglitch
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Unknown() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Unknown
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbTachoSpeed() float64 {
+	if x != nil {
+		return x.UwbTachoSpeed
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetUwbPanId() int64 {
+	if x != nil {
+		return x.UwbPanId
+	}
+	return 0
+}
 
 // Sub-message sent periodically sent by the tracelet
 type TraceletToServer_Location struct {
@@ -289,13 +964,6 @@ func (x *TraceletToServer_Location) GetTemperature() float64 {
 	return 0
 }
 
-func (x *TraceletToServer_Location) GetAcceleration() *TraceletToServer_Location_Acceleration {
-	if x != nil {
-		return x.Acceleration
-	}
-	return nil
-}
-
 type TraceletToServer_Location_Gnss struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// GNSS location valid. If false, the other fields are not valid
@@ -321,6 +989,8 @@ type TraceletToServer_Location_Gnss struct {
 	HeadVehicle float64 `protobuf:"fixed64,9,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`
 	// heading valid (bit 0=motion valid, 1=vehicle valid))
 	HeadValid uint32 `protobuf:"varint,10,opt,name=head_valid,json=headValid,proto3" json:"head_valid,omitempty"`
+	// heading precision in [deg]
+	HeadPrecision float32 `protobuf:"fixed32,12,opt,name=head_precision,json=headPrecision,proto3" json:"head_precision,omitempty"`
 	// speed in [m/s]
 	GroundSpeed   float64 `protobuf:"fixed64,11,opt,name=ground_speed,json=groundSpeed,proto3" json:"ground_speed,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -427,6 +1097,13 @@ func (x *TraceletToServer_Location_Gnss) GetHeadValid() uint32 {
 	return 0
 }
 
+func (x *TraceletToServer_Location_Gnss) GetHeadPrecision() float32 {
+	if x != nil {
+		return x.HeadPrecision
+	}
+	return 0
+}
+
 func (x *TraceletToServer_Location_Gnss) GetGroundSpeed() float64 {
 	if x != nil {
 		return x.GroundSpeed
@@ -461,6 +1138,8 @@ type TraceletToServer_Location_Uwb struct {
 	HeadVehicle float64 `protobuf:"fixed64,10,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`
 	// heading valid (bit 0=motion valid, 1=vehicle valid))
 	HeadValid uint32 `protobuf:"varint,11,opt,name=head_valid,json=headValid,proto3" json:"head_valid,omitempty"`
+	// heading precision in [deg]
+	HeadPrecision float32 `protobuf:"fixed32,13,opt,name=head_precision,json=headPrecision,proto3" json:"head_precision,omitempty"`
 	// speed in [m/s]
 	GroundSpeed   float64 `protobuf:"fixed64,12,opt,name=ground_speed,json=groundSpeed,proto3" json:"ground_speed,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -574,6 +1253,13 @@ func (x *TraceletToServer_Location_Uwb) GetHeadValid() uint32 {
 	return 0
 }
 
+func (x *TraceletToServer_Location_Uwb) GetHeadPrecision() float32 {
+	if x != nil {
+		return x.HeadPrecision
+	}
+	return 0
+}
+
 func (x *TraceletToServer_Location_Uwb) GetGroundSpeed() float64 {
 	if x != nil {
 		return x.GroundSpeed
@@ -590,7 +1276,7 @@ type TraceletToServer_Location_Fused struct {
 	Latitude float64 `protobuf:"fixed64,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	// longitude in [deg]
 	Longitude float64 `protobuf:"fixed64,3,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	// altitude in [m] - future extension
+	// altitude in [m]
 	Altitude float64 `protobuf:"fixed64,4,opt,name=altitude,proto3" json:"altitude,omitempty"`
 	// horizontal accuracy in [m]
 	Eph float64 `protobuf:"fixed64,5,opt,name=eph,proto3" json:"eph,omitempty"`
@@ -598,361 +1284,7 @@ type TraceletToServer_Location_Fused struct {
 	HeadMotion float64 `protobuf:"fixed64,6,opt,name=head_motion,json=headMotion,proto3" json:"head_motion,omitempty"`
 	// heading of vehicle in [deg] - future extension
 	HeadVehicle float64 `protobuf:"fixed64,7,opt,name=head_vehicle,json=headVehicle,proto3" json:"head_vehicle,omitempty"`
-	// heading valid (bit 0=motion valid, 1=vehicle valid)) - future extension
+	// heading valid (bit 0=motion valid, 1=vehicle valid))
 	HeadValid uint32 `protobuf:"varint,8,opt,name=head_valid,json=headValid,proto3" json:"head_valid,omitempty"`
-	// speed in [m/s] - future extension
-	GroundSpeed   float64 `protobuf:"fixed64,9,opt,name=ground_speed,json=groundSpeed,proto3" json:"ground_speed,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
 func (x *TraceletToServer_Location_Fused) Reset() {
 	*x = TraceletToServer_Location_Fused{}
-	mi := &file_tracelet_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TraceletToServer_Location_Fused) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TraceletToServer_Location_Fused) ProtoMessage() {}
-
-func (x *TraceletToServer_Location_Fused) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TraceletToServer_Location_Fused.ProtoReflect.Descriptor instead.
-func (*TraceletToServer_Location_Fused) Descriptor() ([]byte, []int) {
-	return file_tracelet_proto_rawDescGZIP(), []int{0, 0, 2}
-}
-
-func (x *TraceletToServer_Location_Fused) GetValid() bool {
-	if x != nil {
-		return x.Valid
-	}
-	return false
-}
-
-func (x *TraceletToServer_Location_Fused) GetLatitude() float64 {
-	if x != nil {
-		return x.Latitude
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetLongitude() float64 {
-	if x != nil {
-		return x.Longitude
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetAltitude() float64 {
-	if x != nil {
-		return x.Altitude
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetEph() float64 {
-	if x != nil {
-		return x.Eph
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetHeadMotion() float64 {
-	if x != nil {
-		return x.HeadMotion
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetHeadVehicle() float64 {
-	if x != nil {
-		return x.HeadVehicle
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetHeadValid() uint32 {
-	if x != nil {
-		return x.HeadValid
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Fused) GetGroundSpeed() float64 {
-	if x != nil {
-		return x.GroundSpeed
-	}
-	return 0
-}
-
-// Acceleration data - all values in (m/s^2)
-type TraceletToServer_Location_Acceleration struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	XMax          float64                `protobuf:"fixed64,1,opt,name=x_max,json=xMax,proto3" json:"x_max,omitempty"` // Maximum acceleration in x direction in last period
-	YMax          float64                `protobuf:"fixed64,2,opt,name=y_max,json=yMax,proto3" json:"y_max,omitempty"`
-	ZMax          float64                `protobuf:"fixed64,3,opt,name=z_max,json=zMax,proto3" json:"z_max,omitempty"`
-	XMin          float64                `protobuf:"fixed64,4,opt,name=x_min,json=xMin,proto3" json:"x_min,omitempty"` // Minimum acceleration in x direction in last period
-	YMin          float64                `protobuf:"fixed64,5,opt,name=y_min,json=yMin,proto3" json:"y_min,omitempty"`
-	ZMin          float64                `protobuf:"fixed64,6,opt,name=z_min,json=zMin,proto3" json:"z_min,omitempty"`
-	XAvg          float64                `protobuf:"fixed64,7,opt,name=x_avg,json=xAvg,proto3" json:"x_avg,omitempty"` // Average acceleration in x direction in last period
-	YAvg          float64                `protobuf:"fixed64,8,opt,name=y_avg,json=yAvg,proto3" json:"y_avg,omitempty"`
-	ZAvg          float64                `protobuf:"fixed64,9,opt,name=z_avg,json=zAvg,proto3" json:"z_avg,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TraceletToServer_Location_Acceleration) Reset() {
-	*x = TraceletToServer_Location_Acceleration{}
-	mi := &file_tracelet_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TraceletToServer_Location_Acceleration) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TraceletToServer_Location_Acceleration) ProtoMessage() {}
-
-func (x *TraceletToServer_Location_Acceleration) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TraceletToServer_Location_Acceleration.ProtoReflect.Descriptor instead.
-func (*TraceletToServer_Location_Acceleration) Descriptor() ([]byte, []int) {
-	return file_tracelet_proto_rawDescGZIP(), []int{0, 0, 3}
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetXMax() float64 {
-	if x != nil {
-		return x.XMax
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetYMax() float64 {
-	if x != nil {
-		return x.YMax
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetZMax() float64 {
-	if x != nil {
-		return x.ZMax
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetXMin() float64 {
-	if x != nil {
-		return x.XMin
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetYMin() float64 {
-	if x != nil {
-		return x.YMin
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetZMin() float64 {
-	if x != nil {
-		return x.ZMin
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetXAvg() float64 {
-	if x != nil {
-		return x.XAvg
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetYAvg() float64 {
-	if x != nil {
-		return x.YAvg
-	}
-	return 0
-}
-
-func (x *TraceletToServer_Location_Acceleration) GetZAvg() float64 {
-	if x != nil {
-		return x.ZAvg
-	}
-	return 0
-}
-
-var File_tracelet_proto protoreflect.FileDescriptor
-
-const file_tracelet_proto_rawDesc = "" +
-	"\n" +
-	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc5\x0e\n" +
-	"\x10TraceletToServer\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12;\n" +
-	"\vdelivery_ts\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"deliveryTs\x12\x1f\n" +
-	"\vtracelet_id\x18\x03 \x01(\tR\n" +
-	"traceletId\x12\x1a\n" +
-	"\bignition\x18\x04 \x01(\bR\bignition\x12A\n" +
-	"\blocation\x18\x05 \x01(\v2#.tracelet.TraceletToServer.LocationH\x00R\blocation\x1a\xdb\f\n" +
-	"\bLocation\x12<\n" +
-	"\x04gnss\x18\x01 \x01(\v2(.tracelet.TraceletToServer.Location.GnssR\x04gnss\x129\n" +
-	"\x03uwb\x18\x02 \x01(\v2'.tracelet.TraceletToServer.Location.UwbR\x03uwb\x12?\n" +
-	"\x05fused\x18\a \x01(\v2).tracelet.TraceletToServer.Location.FusedR\x05fused\x12K\n" +
-	"\tdirection\x18\x03 \x01(\x0e2-.tracelet.TraceletToServer.Location.DirectionR\tdirection\x12\x14\n" +
-	"\x05speed\x18\x04 \x01(\x01R\x05speed\x12\x18\n" +
-	"\amileage\x18\x05 \x01(\x05R\amileage\x12 \n" +
-	"\vtemperature\x18\x06 \x01(\x01R\vtemperature\x12T\n" +
-	"\facceleration\x18\b \x01(\v20.tracelet.TraceletToServer.Location.AccelerationR\facceleration\x1a\xb7\x02\n" +
-	"\x04Gnss\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +
-	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12\x1a\n" +
-	"\baltitude\x18\x04 \x01(\x01R\baltitude\x12\x10\n" +
-	"\x03eph\x18\x05 \x01(\x01R\x03eph\x12\x10\n" +
-	"\x03epv\x18\x06 \x01(\x01R\x03epv\x12\x19\n" +
-	"\bfix_type\x18\a \x01(\x05R\afixType\x12\x1f\n" +
-	"\vhead_motion\x18\b \x01(\x01R\n" +
-	"headMotion\x12!\n" +
-	"\fhead_vehicle\x18\t \x01(\x01R\vheadVehicle\x12\x1d\n" +
-	"\n" +
-	"head_valid\x18\n" +
-	" \x01(\rR\theadValid\x12!\n" +
-	"\fground_speed\x18\v \x01(\x01R\vgroundSpeed\x1a\xc0\x02\n" +
-	"\x03Uwb\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\f\n" +
-	"\x01x\x18\x02 \x01(\x01R\x01x\x12\f\n" +
-	"\x01y\x18\x03 \x01(\x01R\x01y\x12\f\n" +
-	"\x01z\x18\x04 \x01(\x01R\x01z\x12\x17\n" +
-	"\asite_id\x18\x05 \x01(\rR\x06siteId\x12-\n" +
-	"\x12location_signature\x18\x06 \x01(\x06R\x11locationSignature\x12\x10\n" +
-	"\x03eph\x18\a \x01(\x01R\x03eph\x12\x19\n" +
-	"\bfix_type\x18\b \x01(\x05R\afixType\x12\x1f\n" +
-	"\vhead_motion\x18\t \x01(\x01R\n" +
-	"headMotion\x12!\n" +
-	"\fhead_vehicle\x18\n" +
-	" \x01(\x01R\vheadVehicle\x12\x1d\n" +
-	"\n" +
-	"head_valid\x18\v \x01(\rR\theadValid\x12!\n" +
-	"\fground_speed\x18\f \x01(\x01R\vgroundSpeed\x1a\x8b\x02\n" +
-	"\x05Fused\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +
-	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12\x1a\n" +
-	"\baltitude\x18\x04 \x01(\x01R\baltitude\x12\x10\n" +
-	"\x03eph\x18\x05 \x01(\x01R\x03eph\x12\x1f\n" +
-	"\vhead_motion\x18\x06 \x01(\x01R\n" +
-	"headMotion\x12!\n" +
-	"\fhead_vehicle\x18\a \x01(\x01R\vheadVehicle\x12\x1d\n" +
-	"\n" +
-	"head_valid\x18\b \x01(\rR\theadValid\x12!\n" +
-	"\fground_speed\x18\t \x01(\x01R\vgroundSpeed\x1a\xcb\x01\n" +
-	"\fAcceleration\x12\x13\n" +
-	"\x05x_max\x18\x01 \x01(\x01R\x04xMax\x12\x13\n" +
-	"\x05y_max\x18\x02 \x01(\x01R\x04yMax\x12\x13\n" +
-	"\x05z_max\x18\x03 \x01(\x01R\x04zMax\x12\x13\n" +
-	"\x05x_min\x18\x04 \x01(\x01R\x04xMin\x12\x13\n" +
-	"\x05y_min\x18\x05 \x01(\x01R\x04yMin\x12\x13\n" +
-	"\x05z_min\x18\x06 \x01(\x01R\x04zMin\x12\x13\n" +
-	"\x05x_avg\x18\a \x01(\x01R\x04xAvg\x12\x13\n" +
-	"\x05y_avg\x18\b \x01(\x01R\x04yAvg\x12\x13\n" +
-	"\x05z_avg\x18\t \x01(\x01R\x04zAvg\"G\n" +
-	"\tDirection\x12\x10\n" +
-	"\fNO_DIRECTION\x10\x00\x12\x13\n" +
-	"\x0fCAB_A_DIRECTION\x10\x01\x12\x13\n" +
-	"\x0fCAB_B_DIRECTION\x10\x02B\x06\n" +
-	"\x04typeB\fZ\n" +
-	"./traceletb\x06proto3"
-
-var (
-	file_tracelet_proto_rawDescOnce sync.Once
-	file_tracelet_proto_rawDescData []byte
-)
-
-func file_tracelet_proto_rawDescGZIP() []byte {
-	file_tracelet_proto_rawDescOnce.Do(func() {
-		file_tracelet_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_tracelet_proto_rawDesc), len(file_tracelet_proto_rawDesc)))
-	})
-	return file_tracelet_proto_rawDescData
-}
-
-var file_tracelet_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_tracelet_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_tracelet_proto_goTypes = []any{
-	(TraceletToServer_Location_Direction)(0),       // 0: tracelet.TraceletToServer.Location.Direction
-	(*TraceletToServer)(nil),                       // 1: tracelet.TraceletToServer
-	(*TraceletToServer_Location)(nil),              // 2: tracelet.TraceletToServer.Location
-	(*TraceletToServer_Location_Gnss)(nil),         // 3: tracelet.TraceletToServer.Location.Gnss
-	(*TraceletToServer_Location_Uwb)(nil),          // 4: tracelet.TraceletToServer.Location.Uwb
-	(*TraceletToServer_Location_Fused)(nil),        // 5: tracelet.TraceletToServer.Location.Fused
-	(*TraceletToServer_Location_Acceleration)(nil), // 6: tracelet.TraceletToServer.Location.Acceleration
-	(*timestamppb.Timestamp)(nil),                  // 7: google.protobuf.Timestamp
-}
-var file_tracelet_proto_depIdxs = []int32{
-	7, // 0: tracelet.TraceletToServer.delivery_ts:type_name -> google.protobuf.Timestamp
-	2, // 1: tracelet.TraceletToServer.location:type_name -> tracelet.TraceletToServer.Location
-	3, // 2: tracelet.TraceletToServer.Location.gnss:type_name -> tracelet.TraceletToServer.Location.Gnss
-	4, // 3: tracelet.TraceletToServer.Location.uwb:type_name -> tracelet.TraceletToServer.Location.Uwb
-	5, // 4: tracelet.TraceletToServer.Location.fused:type_name -> tracelet.TraceletToServer.Location.Fused
-	0, // 5: tracelet.TraceletToServer.Location.direction:type_name -> tracelet.TraceletToServer.Location.Direction
-	6, // 6: tracelet.TraceletToServer.Location.acceleration:type_name -> tracelet.TraceletToServer.Location.Acceleration
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
-}
-
-func init() { file_tracelet_proto_init() }
-func file_tracelet_proto_init() {
-	if File_tracelet_proto != nil {
-		return
-	}
-	file_tracelet_proto_msgTypes[0].OneofWrappers = []any{
-		(*TraceletToServer_Location_)(nil),
-	}
-	type x struct{}
-	out := protoimpl.TypeBuilder{
-		File: protoimpl.DescBuilder{
-			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tracelet_proto_rawDesc), len(file_tracelet_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   6,
-			NumExtensions: 0,
-			NumServices:   0,
-		},
-		GoTypes:           file_tracelet_proto_goTypes,
-		DependencyIndexes: file_tracelet_proto_depIdxs,
-		EnumInfos:         file_tracelet_proto_enumTypes,
-		MessageInfos:      file_tracelet_proto_msgTypes,
-	}.Build()
-	File_tracelet_proto = out.File
-	file_tracelet_proto_goTypes = nil
-	file_tracelet_proto_depIdxs = nil
-}
