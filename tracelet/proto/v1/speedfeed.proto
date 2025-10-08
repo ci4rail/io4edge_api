@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: (c) 2024 Ci4Rail GmbH
+
+// Protobuf extension definitiions for Ci4Rail Tracelet.
+// The speedfeed extension allow to provide external speed data to the tracelet.
+// The tracelet is the UDP server.
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package tracelet;
+option go_package = "./tracelet";
+
+// message sent to tracelet
+
+message SpeedFeed {
+
+  // time tag - when the speed was measured
+  // can be a relative time tag
+  // unit: ms
+  fixed32 time_tag = 1;
+
+  int32 direction = 2; // direction of the speed measurement,  1=forward, -1=reverse, 0=unknown
+ 
+  oneof info {
+    // speed in [m/s]. Provide positive value
+    double speed = 3;
+
+    // absolute wheeltick value 
+    fixed32 single_tick = 4;
+  }
+}
