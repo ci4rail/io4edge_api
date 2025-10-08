@@ -1,0 +1,200 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/*
+AnalogInTypeB function block defines an interface for multi channel analog input modules, such as 
+the Ci4Rail IOU09 module.
+It supports configuration of sample rates and gains per channel, reading the current values
+of all channels and streaming the values of selected channels at the configured sample rates. 
+*/
+syntax = "proto3";
+
+package programmablePsu;
+option go_package = "programmablePsu/v1";
+
+// ============= Configuration =================
+
+message ConfigurationSet {
+    // not implemented
+}
+
+message ConfigurationSetResponse {
+    // no parameters
+}
+
+message ConfigurationGet {
+    // not implemented
+}
+
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    // not implemented
+}
+
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    // Maximum supported voltage in Volts
+    double max_voltage = 1;
+    // Maximum supported current in Amps
+    double max_current = 2;
+    // Maximum supported power in Watts
+    double max_power = 3;
+}
+
+// ============= FunctionControl ==================
+
+message SetDefaults {
+    // no parameters
+}
+
+// Set desired voltage level
+// Voltage will be output only if the output is also enabled via setOutputEnabled().
+// Current limit will be adjusted to maximum allowed power if (level * current_limit > max_power).
+message SetVoltageLevel {
+    // voltage level in Volts
+    double level = 1;
+}
+
+message SetOutputEnabled {
+    // true: output enabled, false: output disabled
+    bool enabled = 1;
+}
+
+message SetCurrentLimit {
+    // current limit in Amps
+    double limit = 1;
+}
+
+// Set shutdown recovery behavior. 
+// The PSU will shut down itself (disable its output) when an overtemperature 
+// condition has been detected. 
+// The PSU may stay either stay off until application calls 
+// Recover() or it may re-enable the output when the overtemperature 
+// condition disappears.
+message SetRecoveryMode {
+    // true: auto recover enabled, false: auto recover disabled
+    bool auto_recover = 1;
+}
+
+// Recover from shutdown. Required when the recovery mode is set to manual.
+message Recover {
+    // no parameters    
+}
+
+message CalibrationValues {
+    double voltage_offset = 1;
+    double voltage_gain = 2;
+    double current_offset = 3;
+    double current_gain = 4;
+}
+
+message FunctionControlSet {
+    oneof type {
+        SetDefaults setDefaults = 1;
+        SetVoltageLevel setVoltageLevel = 2;
+        SetOutputEnabled setOutputEnabled = 3;
+        SetCurrentLimit setCurrentLimit = 4;
+        SetRecoveryMode setRecoveryMode = 5;
+        Recover recover = 6;
+        // save & apply calibration values
+        CalibrationValues saveCalibrationValues = 7; 
+    }
+}
+
+message FunctionControlSetResponse {
+    // no parameters
+}
+
+message MeasureVoltage {
+    // no parameters
+}
+
+message MeasureVoltageResponse {
+    // measured voltage in Volts
+    double voltage = 1;
+}
+
+message MeasureCurrent {
+    // no parameters
+}
+
+message MeasureCurrentResponse {
+    // measured current in Amps
+    double current = 1;
+}
+
+message MeasureTemperature {
+    // no parameters
+}
+
+message MeasureTemperatureResponse {
+    // measured temperature in degree Celsius
+    double temperature = 1;
+}
+
+message GetStatus {
+    // no parameters
+}
+
+message GetStatusResponse {
+    enum ErrorFlags {
+        none = 0; // no error
+        internal_error = 0x01; 
+        input_under_voltage = 0x02;
+        input_over_voltage = 0x04;
+        current_limit_active = 0x08;
+        shutdown_over_temperature = 0x10;
+        sense_line_error = 0x20;
+    }
+    uint32 error_flags = 1; // bitmask of ErrorFlags
+}
+
+message FunctionControlGet {
+    oneof type {
+        MeasureVoltage measureVoltage = 1;
+        MeasureCurrent measureCurrent = 2;
+        MeasureTemperature measureTemperature = 3;
+        GetStatus getStatus = 4;
+        CalibrationValues getCalibrationValues = 5;
+    }
+}
+
+message FunctionControlGetResponse {
+    oneof type {
+        MeasureVoltageResponse measureVoltageResponse = 1;
+        MeasureCurrentResponse measureCurrentResponse = 2;
+        MeasureTemperatureResponse measureTemperatureResponse = 3;
+        GetStatusResponse getStatusResponse = 4;
+    }
+}
+
+// ============= StreamControl ==================
+message StreamControlStart {
+    // not implemented
+}
+
+// a Sample contains samples for one or more channels taken at the same time
+message Sample {
+    // not implemented
+}
+
+// data to tranport via stream
+message StreamData {
+    // not implemented
+}
