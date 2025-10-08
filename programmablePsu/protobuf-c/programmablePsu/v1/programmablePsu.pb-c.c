@@ -7,6 +7,51 @@
 #endif
 
 #include "programmablePsu.pb-c.h"
+void   programmable_psu__calibration_values__init
+                     (ProgrammablePsu__CalibrationValues         *message)
+{
+  static const ProgrammablePsu__CalibrationValues init_value = PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT;
+  *message = init_value;
+}
+size_t programmable_psu__calibration_values__get_packed_size
+                     (const ProgrammablePsu__CalibrationValues *message)
+{
+  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t programmable_psu__calibration_values__pack
+                     (const ProgrammablePsu__CalibrationValues *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t programmable_psu__calibration_values__pack_to_buffer
+                     (const ProgrammablePsu__CalibrationValues *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProgrammablePsu__CalibrationValues *
+       programmable_psu__calibration_values__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProgrammablePsu__CalibrationValues *)
+     protobuf_c_message_unpack (&programmable_psu__calibration_values__descriptor,
+                                allocator, len, data);
+}
+void   programmable_psu__calibration_values__free_unpacked
+                     (ProgrammablePsu__CalibrationValues *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   programmable_psu__configuration_set__init
                      (ProgrammablePsu__ConfigurationSet         *message)
 {
@@ -547,49 +592,49 @@ void   programmable_psu__recover__free_unpacked
   assert(message->base.descriptor == &programmable_psu__recover__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   programmable_psu__calibration_values__init
-                     (ProgrammablePsu__CalibrationValues         *message)
+void   programmable_psu__recover_response__init
+                     (ProgrammablePsu__RecoverResponse         *message)
 {
-  static const ProgrammablePsu__CalibrationValues init_value = PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT;
+  static const ProgrammablePsu__RecoverResponse init_value = PROGRAMMABLE_PSU__RECOVER_RESPONSE__INIT;
   *message = init_value;
 }
-size_t programmable_psu__calibration_values__get_packed_size
-                     (const ProgrammablePsu__CalibrationValues *message)
+size_t programmable_psu__recover_response__get_packed_size
+                     (const ProgrammablePsu__RecoverResponse *message)
 {
-  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t programmable_psu__calibration_values__pack
-                     (const ProgrammablePsu__CalibrationValues *message,
+size_t programmable_psu__recover_response__pack
+                     (const ProgrammablePsu__RecoverResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t programmable_psu__calibration_values__pack_to_buffer
-                     (const ProgrammablePsu__CalibrationValues *message,
+size_t programmable_psu__recover_response__pack_to_buffer
+                     (const ProgrammablePsu__RecoverResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-ProgrammablePsu__CalibrationValues *
-       programmable_psu__calibration_values__unpack
+ProgrammablePsu__RecoverResponse *
+       programmable_psu__recover_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (ProgrammablePsu__CalibrationValues *)
-     protobuf_c_message_unpack (&programmable_psu__calibration_values__descriptor,
+  return (ProgrammablePsu__RecoverResponse *)
+     protobuf_c_message_unpack (&programmable_psu__recover_response__descriptor,
                                 allocator, len, data);
 }
-void   programmable_psu__calibration_values__free_unpacked
-                     (ProgrammablePsu__CalibrationValues *message,
+void   programmable_psu__recover_response__free_unpacked
+                     (ProgrammablePsu__RecoverResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &programmable_psu__calibration_values__descriptor);
+  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   programmable_psu__function_control_set__init
@@ -680,366 +725,6 @@ void   programmable_psu__function_control_set_response__free_unpacked
   if(!message)
     return;
   assert(message->base.descriptor == &programmable_psu__function_control_set_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_voltage__init
-                     (ProgrammablePsu__MeasureVoltage         *message)
-{
-  static const ProgrammablePsu__MeasureVoltage init_value = PROGRAMMABLE_PSU__MEASURE_VOLTAGE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_voltage__get_packed_size
-                     (const ProgrammablePsu__MeasureVoltage *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_voltage__pack
-                     (const ProgrammablePsu__MeasureVoltage *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_voltage__pack_to_buffer
-                     (const ProgrammablePsu__MeasureVoltage *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureVoltage *
-       programmable_psu__measure_voltage__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureVoltage *)
-     protobuf_c_message_unpack (&programmable_psu__measure_voltage__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_voltage__free_unpacked
-                     (ProgrammablePsu__MeasureVoltage *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_voltage__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_voltage_response__init
-                     (ProgrammablePsu__MeasureVoltageResponse         *message)
-{
-  static const ProgrammablePsu__MeasureVoltageResponse init_value = PROGRAMMABLE_PSU__MEASURE_VOLTAGE_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_voltage_response__get_packed_size
-                     (const ProgrammablePsu__MeasureVoltageResponse *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_voltage_response__pack
-                     (const ProgrammablePsu__MeasureVoltageResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_voltage_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureVoltageResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_voltage_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureVoltageResponse *
-       programmable_psu__measure_voltage_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureVoltageResponse *)
-     protobuf_c_message_unpack (&programmable_psu__measure_voltage_response__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_voltage_response__free_unpacked
-                     (ProgrammablePsu__MeasureVoltageResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_voltage_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_current__init
-                     (ProgrammablePsu__MeasureCurrent         *message)
-{
-  static const ProgrammablePsu__MeasureCurrent init_value = PROGRAMMABLE_PSU__MEASURE_CURRENT__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_current__get_packed_size
-                     (const ProgrammablePsu__MeasureCurrent *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_current__pack
-                     (const ProgrammablePsu__MeasureCurrent *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_current__pack_to_buffer
-                     (const ProgrammablePsu__MeasureCurrent *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureCurrent *
-       programmable_psu__measure_current__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureCurrent *)
-     protobuf_c_message_unpack (&programmable_psu__measure_current__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_current__free_unpacked
-                     (ProgrammablePsu__MeasureCurrent *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_current__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_current_response__init
-                     (ProgrammablePsu__MeasureCurrentResponse         *message)
-{
-  static const ProgrammablePsu__MeasureCurrentResponse init_value = PROGRAMMABLE_PSU__MEASURE_CURRENT_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_current_response__get_packed_size
-                     (const ProgrammablePsu__MeasureCurrentResponse *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_current_response__pack
-                     (const ProgrammablePsu__MeasureCurrentResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_current_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureCurrentResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_current_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureCurrentResponse *
-       programmable_psu__measure_current_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureCurrentResponse *)
-     protobuf_c_message_unpack (&programmable_psu__measure_current_response__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_current_response__free_unpacked
-                     (ProgrammablePsu__MeasureCurrentResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_current_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_temperature__init
-                     (ProgrammablePsu__MeasureTemperature         *message)
-{
-  static const ProgrammablePsu__MeasureTemperature init_value = PROGRAMMABLE_PSU__MEASURE_TEMPERATURE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_temperature__get_packed_size
-                     (const ProgrammablePsu__MeasureTemperature *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_temperature__pack
-                     (const ProgrammablePsu__MeasureTemperature *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_temperature__pack_to_buffer
-                     (const ProgrammablePsu__MeasureTemperature *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureTemperature *
-       programmable_psu__measure_temperature__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureTemperature *)
-     protobuf_c_message_unpack (&programmable_psu__measure_temperature__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_temperature__free_unpacked
-                     (ProgrammablePsu__MeasureTemperature *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_temperature__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__measure_temperature_response__init
-                     (ProgrammablePsu__MeasureTemperatureResponse         *message)
-{
-  static const ProgrammablePsu__MeasureTemperatureResponse init_value = PROGRAMMABLE_PSU__MEASURE_TEMPERATURE_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__measure_temperature_response__get_packed_size
-                     (const ProgrammablePsu__MeasureTemperatureResponse *message)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__measure_temperature_response__pack
-                     (const ProgrammablePsu__MeasureTemperatureResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__measure_temperature_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureTemperatureResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__measure_temperature_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__MeasureTemperatureResponse *
-       programmable_psu__measure_temperature_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__MeasureTemperatureResponse *)
-     protobuf_c_message_unpack (&programmable_psu__measure_temperature_response__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__measure_temperature_response__free_unpacked
-                     (ProgrammablePsu__MeasureTemperatureResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__measure_temperature_response__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__get_status__init
-                     (ProgrammablePsu__GetStatus         *message)
-{
-  static const ProgrammablePsu__GetStatus init_value = PROGRAMMABLE_PSU__GET_STATUS__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__get_status__get_packed_size
-                     (const ProgrammablePsu__GetStatus *message)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__get_status__pack
-                     (const ProgrammablePsu__GetStatus *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__get_status__pack_to_buffer
-                     (const ProgrammablePsu__GetStatus *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__GetStatus *
-       programmable_psu__get_status__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__GetStatus *)
-     protobuf_c_message_unpack (&programmable_psu__get_status__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__get_status__free_unpacked
-                     (ProgrammablePsu__GetStatus *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__get_status__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__get_status_response__init
-                     (ProgrammablePsu__GetStatusResponse         *message)
-{
-  static const ProgrammablePsu__GetStatusResponse init_value = PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__get_status_response__get_packed_size
-                     (const ProgrammablePsu__GetStatusResponse *message)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__get_status_response__pack
-                     (const ProgrammablePsu__GetStatusResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__get_status_response__pack_to_buffer
-                     (const ProgrammablePsu__GetStatusResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__get_status_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__GetStatusResponse *
-       programmable_psu__get_status_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__GetStatusResponse *)
-     protobuf_c_message_unpack (&programmable_psu__get_status_response__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__get_status_response__free_unpacked
-                     (ProgrammablePsu__GetStatusResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__get_status_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   programmable_psu__function_control_get__init
@@ -1267,9 +952,119 @@ void   programmable_psu__stream_data__free_unpacked
   assert(message->base.descriptor == &programmable_psu__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-#define programmable_psu__configuration_set__field_descriptors NULL
-#define programmable_psu__configuration_set__field_indices_by_name NULL
-#define programmable_psu__configuration_set__number_ranges NULL
+static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[4] =
+{
+  {
+    "voltage_offset",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, voltage_offset),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "voltage_gain",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, voltage_gain),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "current_offset",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, current_offset),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "current_gain",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, current_gain),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned programmable_psu__calibration_values__field_indices_by_name[] = {
+  3,   /* field[3] = current_gain */
+  2,   /* field[2] = current_offset */
+  1,   /* field[1] = voltage_gain */
+  0,   /* field[0] = voltage_offset */
+};
+static const ProtobufCIntRange programmable_psu__calibration_values__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 4 }
+};
+const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "programmablePsu.CalibrationValues",
+  "CalibrationValues",
+  "ProgrammablePsu__CalibrationValues",
+  "programmablePsu",
+  sizeof(ProgrammablePsu__CalibrationValues),
+  4,
+  programmable_psu__calibration_values__field_descriptors,
+  programmable_psu__calibration_values__field_indices_by_name,
+  1,  programmable_psu__calibration_values__number_ranges,
+  (ProtobufCMessageInit) programmable_psu__calibration_values__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor programmable_psu__configuration_set__field_descriptors[2] =
+{
+  {
+    "calibrationValues",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProgrammablePsu__ConfigurationSet, type_case),
+    offsetof(ProgrammablePsu__ConfigurationSet, calibrationvalues),
+    &programmable_psu__calibration_values__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "auto_recover",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    offsetof(ProgrammablePsu__ConfigurationSet, type_case),
+    offsetof(ProgrammablePsu__ConfigurationSet, auto_recover),
+    NULL,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned programmable_psu__configuration_set__field_indices_by_name[] = {
+  1,   /* field[1] = auto_recover */
+  0,   /* field[0] = calibrationValues */
+};
+static const ProtobufCIntRange programmable_psu__configuration_set__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
 const ProtobufCMessageDescriptor programmable_psu__configuration_set__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1278,10 +1073,10 @@ const ProtobufCMessageDescriptor programmable_psu__configuration_set__descriptor
   "ProgrammablePsu__ConfigurationSet",
   "programmablePsu",
   sizeof(ProgrammablePsu__ConfigurationSet),
-  0,
+  2,
   programmable_psu__configuration_set__field_descriptors,
   programmable_psu__configuration_set__field_indices_by_name,
-  0,  programmable_psu__configuration_set__number_ranges,
+  1,  programmable_psu__configuration_set__number_ranges,
   (ProtobufCMessageInit) programmable_psu__configuration_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1321,9 +1116,42 @@ const ProtobufCMessageDescriptor programmable_psu__configuration_get__descriptor
   (ProtobufCMessageInit) programmable_psu__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define programmable_psu__configuration_get_response__field_descriptors NULL
-#define programmable_psu__configuration_get_response__field_indices_by_name NULL
-#define programmable_psu__configuration_get_response__number_ranges NULL
+static const ProtobufCFieldDescriptor programmable_psu__configuration_get_response__field_descriptors[2] =
+{
+  {
+    "calibration_values",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__ConfigurationGetResponse, calibration_values),
+    &programmable_psu__calibration_values__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "auto_recover",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__ConfigurationGetResponse, auto_recover),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned programmable_psu__configuration_get_response__field_indices_by_name[] = {
+  1,   /* field[1] = auto_recover */
+  0,   /* field[0] = calibration_values */
+};
+static const ProtobufCIntRange programmable_psu__configuration_get_response__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
 const ProtobufCMessageDescriptor programmable_psu__configuration_get_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1332,10 +1160,10 @@ const ProtobufCMessageDescriptor programmable_psu__configuration_get_response__d
   "ProgrammablePsu__ConfigurationGetResponse",
   "programmablePsu",
   sizeof(ProgrammablePsu__ConfigurationGetResponse),
-  0,
+  2,
   programmable_psu__configuration_get_response__field_descriptors,
   programmable_psu__configuration_get_response__field_indices_by_name,
-  0,  programmable_psu__configuration_get_response__number_ranges,
+  1,  programmable_psu__configuration_get_response__number_ranges,
   (ProtobufCMessageInit) programmable_psu__configuration_get_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1609,84 +1437,45 @@ const ProtobufCMessageDescriptor programmable_psu__recover__descriptor =
   (ProtobufCMessageInit) programmable_psu__recover__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[4] =
+static const ProtobufCFieldDescriptor programmable_psu__recover_response__field_descriptors[1] =
 {
   {
-    "voltage_offset",
+    "success",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, voltage_offset),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "voltage_gain",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, voltage_gain),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "current_offset",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, current_offset),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "current_gain",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, current_gain),
+    offsetof(ProgrammablePsu__RecoverResponse, success),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned programmable_psu__calibration_values__field_indices_by_name[] = {
-  3,   /* field[3] = current_gain */
-  2,   /* field[2] = current_offset */
-  1,   /* field[1] = voltage_gain */
-  0,   /* field[0] = voltage_offset */
+static const unsigned programmable_psu__recover_response__field_indices_by_name[] = {
+  0,   /* field[0] = success */
 };
-static const ProtobufCIntRange programmable_psu__calibration_values__number_ranges[1 + 1] =
+static const ProtobufCIntRange programmable_psu__recover_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 1 }
 };
-const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor =
+const ProtobufCMessageDescriptor programmable_psu__recover_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.CalibrationValues",
-  "CalibrationValues",
-  "ProgrammablePsu__CalibrationValues",
+  "programmablePsu.RecoverResponse",
+  "RecoverResponse",
+  "ProgrammablePsu__RecoverResponse",
   "programmablePsu",
-  sizeof(ProgrammablePsu__CalibrationValues),
-  4,
-  programmable_psu__calibration_values__field_descriptors,
-  programmable_psu__calibration_values__field_indices_by_name,
-  1,  programmable_psu__calibration_values__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__calibration_values__init,
+  sizeof(ProgrammablePsu__RecoverResponse),
+  1,
+  programmable_psu__recover_response__field_descriptors,
+  programmable_psu__recover_response__field_indices_by_name,
+  1,  programmable_psu__recover_response__number_ranges,
+  (ProtobufCMessageInit) programmable_psu__recover_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor programmable_psu__function_control_set__field_descriptors[7] =
+static const ProtobufCFieldDescriptor programmable_psu__function_control_set__field_descriptors[5] =
 {
   {
     "setDefaults",
@@ -1737,20 +1526,8 @@ static const ProtobufCFieldDescriptor programmable_psu__function_control_set__fi
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "setRecoveryMode",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlSet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlSet, setrecoverymode),
-    &programmable_psu__set_recovery_mode__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "recover",
-    6,
+    5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProgrammablePsu__FunctionControlSet, type_case),
@@ -1760,32 +1537,18 @@ static const ProtobufCFieldDescriptor programmable_psu__function_control_set__fi
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "saveCalibrationValues",
-    7,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlSet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlSet, savecalibrationvalues),
-    &programmable_psu__calibration_values__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned programmable_psu__function_control_set__field_indices_by_name[] = {
-  5,   /* field[5] = recover */
-  6,   /* field[6] = saveCalibrationValues */
+  4,   /* field[4] = recover */
   3,   /* field[3] = setCurrentLimit */
   0,   /* field[0] = setDefaults */
   2,   /* field[2] = setOutputEnabled */
-  4,   /* field[4] = setRecoveryMode */
   1,   /* field[1] = setVoltageLevel */
 };
 static const ProtobufCIntRange programmable_psu__function_control_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 7 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor programmable_psu__function_control_set__descriptor =
 {
@@ -1795,16 +1558,36 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_set__descrip
   "ProgrammablePsu__FunctionControlSet",
   "programmablePsu",
   sizeof(ProgrammablePsu__FunctionControlSet),
-  7,
+  5,
   programmable_psu__function_control_set__field_descriptors,
   programmable_psu__function_control_set__field_indices_by_name,
   1,  programmable_psu__function_control_set__number_ranges,
   (ProtobufCMessageInit) programmable_psu__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define programmable_psu__function_control_set_response__field_descriptors NULL
-#define programmable_psu__function_control_set_response__field_indices_by_name NULL
-#define programmable_psu__function_control_set_response__number_ranges NULL
+static const ProtobufCFieldDescriptor programmable_psu__function_control_set_response__field_descriptors[1] =
+{
+  {
+    "recoverResponse",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProgrammablePsu__FunctionControlSetResponse, type_case),
+    offsetof(ProgrammablePsu__FunctionControlSetResponse, recoverresponse),
+    &programmable_psu__recover_response__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned programmable_psu__function_control_set_response__field_indices_by_name[] = {
+  0,   /* field[0] = recoverResponse */
+};
+static const ProtobufCIntRange programmable_psu__function_control_set_response__number_ranges[1 + 1] =
+{
+  { 5, 0 },
+  { 0, 1 }
+};
 const ProtobufCMessageDescriptor programmable_psu__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1813,350 +1596,16 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_set_response
   "ProgrammablePsu__FunctionControlSetResponse",
   "programmablePsu",
   sizeof(ProgrammablePsu__FunctionControlSetResponse),
-  0,
+  1,
   programmable_psu__function_control_set_response__field_descriptors,
   programmable_psu__function_control_set_response__field_indices_by_name,
-  0,  programmable_psu__function_control_set_response__number_ranges,
+  1,  programmable_psu__function_control_set_response__number_ranges,
   (ProtobufCMessageInit) programmable_psu__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define programmable_psu__measure_voltage__field_descriptors NULL
-#define programmable_psu__measure_voltage__field_indices_by_name NULL
-#define programmable_psu__measure_voltage__number_ranges NULL
-const ProtobufCMessageDescriptor programmable_psu__measure_voltage__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureVoltage",
-  "MeasureVoltage",
-  "ProgrammablePsu__MeasureVoltage",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureVoltage),
-  0,
-  programmable_psu__measure_voltage__field_descriptors,
-  programmable_psu__measure_voltage__field_indices_by_name,
-  0,  programmable_psu__measure_voltage__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_voltage__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__measure_voltage_response__field_descriptors[1] =
-{
-  {
-    "voltage",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__MeasureVoltageResponse, voltage),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__measure_voltage_response__field_indices_by_name[] = {
-  0,   /* field[0] = voltage */
-};
-static const ProtobufCIntRange programmable_psu__measure_voltage_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__measure_voltage_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureVoltageResponse",
-  "MeasureVoltageResponse",
-  "ProgrammablePsu__MeasureVoltageResponse",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureVoltageResponse),
-  1,
-  programmable_psu__measure_voltage_response__field_descriptors,
-  programmable_psu__measure_voltage_response__field_indices_by_name,
-  1,  programmable_psu__measure_voltage_response__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_voltage_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-#define programmable_psu__measure_current__field_descriptors NULL
-#define programmable_psu__measure_current__field_indices_by_name NULL
-#define programmable_psu__measure_current__number_ranges NULL
-const ProtobufCMessageDescriptor programmable_psu__measure_current__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureCurrent",
-  "MeasureCurrent",
-  "ProgrammablePsu__MeasureCurrent",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureCurrent),
-  0,
-  programmable_psu__measure_current__field_descriptors,
-  programmable_psu__measure_current__field_indices_by_name,
-  0,  programmable_psu__measure_current__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_current__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__measure_current_response__field_descriptors[1] =
-{
-  {
-    "current",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__MeasureCurrentResponse, current),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__measure_current_response__field_indices_by_name[] = {
-  0,   /* field[0] = current */
-};
-static const ProtobufCIntRange programmable_psu__measure_current_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__measure_current_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureCurrentResponse",
-  "MeasureCurrentResponse",
-  "ProgrammablePsu__MeasureCurrentResponse",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureCurrentResponse),
-  1,
-  programmable_psu__measure_current_response__field_descriptors,
-  programmable_psu__measure_current_response__field_indices_by_name,
-  1,  programmable_psu__measure_current_response__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_current_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-#define programmable_psu__measure_temperature__field_descriptors NULL
-#define programmable_psu__measure_temperature__field_indices_by_name NULL
-#define programmable_psu__measure_temperature__number_ranges NULL
-const ProtobufCMessageDescriptor programmable_psu__measure_temperature__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureTemperature",
-  "MeasureTemperature",
-  "ProgrammablePsu__MeasureTemperature",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureTemperature),
-  0,
-  programmable_psu__measure_temperature__field_descriptors,
-  programmable_psu__measure_temperature__field_indices_by_name,
-  0,  programmable_psu__measure_temperature__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_temperature__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__measure_temperature_response__field_descriptors[1] =
-{
-  {
-    "temperature",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_DOUBLE,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__MeasureTemperatureResponse, temperature),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__measure_temperature_response__field_indices_by_name[] = {
-  0,   /* field[0] = temperature */
-};
-static const ProtobufCIntRange programmable_psu__measure_temperature_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__measure_temperature_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.MeasureTemperatureResponse",
-  "MeasureTemperatureResponse",
-  "ProgrammablePsu__MeasureTemperatureResponse",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__MeasureTemperatureResponse),
-  1,
-  programmable_psu__measure_temperature_response__field_descriptors,
-  programmable_psu__measure_temperature_response__field_indices_by_name,
-  1,  programmable_psu__measure_temperature_response__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__measure_temperature_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-#define programmable_psu__get_status__field_descriptors NULL
-#define programmable_psu__get_status__field_indices_by_name NULL
-#define programmable_psu__get_status__number_ranges NULL
-const ProtobufCMessageDescriptor programmable_psu__get_status__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.GetStatus",
-  "GetStatus",
-  "ProgrammablePsu__GetStatus",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__GetStatus),
-  0,
-  programmable_psu__get_status__field_descriptors,
-  programmable_psu__get_status__field_indices_by_name,
-  0,  programmable_psu__get_status__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__get_status__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCEnumValue programmable_psu__get_status_response__error_flags__enum_values_by_number[7] =
-{
-  { "none", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__none", 0 },
-  { "internal_error", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__internal_error", 1 },
-  { "input_under_voltage", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__input_under_voltage", 2 },
-  { "input_over_voltage", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__input_over_voltage", 4 },
-  { "current_limit_active", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__current_limit_active", 8 },
-  { "shutdown_over_temperature", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__shutdown_over_temperature", 16 },
-  { "sense_line_error", "PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__sense_line_error", 32 },
-};
-static const ProtobufCIntRange programmable_psu__get_status_response__error_flags__value_ranges[] = {
-{0, 0},{4, 3},{8, 4},{16, 5},{32, 6},{0, 7}
-};
-static const ProtobufCEnumValueIndex programmable_psu__get_status_response__error_flags__enum_values_by_name[7] =
-{
-  { "current_limit_active", 4 },
-  { "input_over_voltage", 3 },
-  { "input_under_voltage", 2 },
-  { "internal_error", 1 },
-  { "none", 0 },
-  { "sense_line_error", 6 },
-  { "shutdown_over_temperature", 5 },
-};
-const ProtobufCEnumDescriptor programmable_psu__get_status_response__error_flags__descriptor =
-{
-  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "programmablePsu.GetStatusResponse.ErrorFlags",
-  "ErrorFlags",
-  "ProgrammablePsu__GetStatusResponse__ErrorFlags",
-  "programmablePsu",
-  7,
-  programmable_psu__get_status_response__error_flags__enum_values_by_number,
-  7,
-  programmable_psu__get_status_response__error_flags__enum_values_by_name,
-  5,
-  programmable_psu__get_status_response__error_flags__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__get_status_response__field_descriptors[1] =
-{
-  {
-    "error_flags",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__GetStatusResponse, error_flags),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__get_status_response__field_indices_by_name[] = {
-  0,   /* field[0] = error_flags */
-};
-static const ProtobufCIntRange programmable_psu__get_status_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__get_status_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.GetStatusResponse",
-  "GetStatusResponse",
-  "ProgrammablePsu__GetStatusResponse",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__GetStatusResponse),
-  1,
-  programmable_psu__get_status_response__field_descriptors,
-  programmable_psu__get_status_response__field_indices_by_name,
-  1,  programmable_psu__get_status_response__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__get_status_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__function_control_get__field_descriptors[5] =
-{
-  {
-    "measureVoltage",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGet, measurevoltage),
-    &programmable_psu__measure_voltage__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "measureCurrent",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGet, measurecurrent),
-    &programmable_psu__measure_current__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "measureTemperature",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGet, measuretemperature),
-    &programmable_psu__measure_temperature__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "getStatus",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGet, getstatus),
-    &programmable_psu__get_status__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "getCalibrationValues",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGet, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGet, getcalibrationvalues),
-    &programmable_psu__calibration_values__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__function_control_get__field_indices_by_name[] = {
-  4,   /* field[4] = getCalibrationValues */
-  3,   /* field[3] = getStatus */
-  1,   /* field[1] = measureCurrent */
-  2,   /* field[2] = measureTemperature */
-  0,   /* field[0] = measureVoltage */
-};
-static const ProtobufCIntRange programmable_psu__function_control_get__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 5 }
-};
+#define programmable_psu__function_control_get__field_descriptors NULL
+#define programmable_psu__function_control_get__field_indices_by_name NULL
+#define programmable_psu__function_control_get__number_ranges NULL
 const ProtobufCMessageDescriptor programmable_psu__function_control_get__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -2165,74 +1614,192 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_get__descrip
   "ProgrammablePsu__FunctionControlGet",
   "programmablePsu",
   sizeof(ProgrammablePsu__FunctionControlGet),
-  5,
+  0,
   programmable_psu__function_control_get__field_descriptors,
   programmable_psu__function_control_get__field_indices_by_name,
-  1,  programmable_psu__function_control_get__number_ranges,
+  0,  programmable_psu__function_control_get__number_ranges,
   (ProtobufCMessageInit) programmable_psu__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor programmable_psu__function_control_get_response__field_descriptors[4] =
+static const ProtobufCEnumValue programmable_psu__function_control_get_response__error_flags__enum_values_by_number[6] =
+{
+  { "none", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__none", 0 },
+  { "internal_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__internal_error", 1 },
+  { "input_under_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_under_voltage", 2 },
+  { "input_over_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_over_voltage", 4 },
+  { "current_limit_active", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__current_limit_active", 8 },
+  { "sense_line_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__sense_line_error", 16 },
+};
+static const ProtobufCIntRange programmable_psu__function_control_get_response__error_flags__value_ranges[] = {
+{0, 0},{4, 3},{8, 4},{16, 5},{0, 6}
+};
+static const ProtobufCEnumValueIndex programmable_psu__function_control_get_response__error_flags__enum_values_by_name[6] =
+{
+  { "current_limit_active", 4 },
+  { "input_over_voltage", 3 },
+  { "input_under_voltage", 2 },
+  { "internal_error", 1 },
+  { "none", 0 },
+  { "sense_line_error", 5 },
+};
+const ProtobufCEnumDescriptor programmable_psu__function_control_get_response__error_flags__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "programmablePsu.FunctionControlGetResponse.ErrorFlags",
+  "ErrorFlags",
+  "ProgrammablePsu__FunctionControlGetResponse__ErrorFlags",
+  "programmablePsu",
+  6,
+  programmable_psu__function_control_get_response__error_flags__enum_values_by_number,
+  6,
+  programmable_psu__function_control_get_response__error_flags__enum_values_by_name,
+  4,
+  programmable_psu__function_control_get_response__error_flags__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCEnumValue programmable_psu__function_control_get_response__output_state__enum_values_by_number[3] =
+{
+  { "off", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__off", 0 },
+  { "on", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__on", 1 },
+  { "shutdown", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__shutdown", 2 },
+};
+static const ProtobufCIntRange programmable_psu__function_control_get_response__output_state__value_ranges[] = {
+{0, 0},{0, 3}
+};
+static const ProtobufCEnumValueIndex programmable_psu__function_control_get_response__output_state__enum_values_by_name[3] =
+{
+  { "off", 0 },
+  { "on", 1 },
+  { "shutdown", 2 },
+};
+const ProtobufCEnumDescriptor programmable_psu__function_control_get_response__output_state__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "programmablePsu.FunctionControlGetResponse.OutputState",
+  "OutputState",
+  "ProgrammablePsu__FunctionControlGetResponse__OutputState",
+  "programmablePsu",
+  3,
+  programmable_psu__function_control_get_response__output_state__enum_values_by_number,
+  3,
+  programmable_psu__function_control_get_response__output_state__enum_values_by_name,
+  1,
+  programmable_psu__function_control_get_response__output_state__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCFieldDescriptor programmable_psu__function_control_get_response__field_descriptors[8] =
 {
   {
-    "measureVoltageResponse",
+    "desired_voltage",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, measurevoltageresponse),
-    &programmable_psu__measure_voltage_response__descriptor,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, desired_voltage),
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    NULL,
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "measureCurrentResponse",
+    "measured_sense_voltage",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, measurecurrentresponse),
-    &programmable_psu__measure_current_response__descriptor,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, measured_sense_voltage),
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    NULL,
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "measureTemperatureResponse",
+    "measured_output_voltage",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, measuretemperatureresponse),
-    &programmable_psu__measure_temperature_response__descriptor,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, measured_output_voltage),
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    NULL,
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "getStatusResponse",
+    "current_limit",
     4,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, type_case),
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, getstatusresponse),
-    &programmable_psu__get_status_response__descriptor,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, current_limit),
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "measured_current",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, measured_current),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "error_flags",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, error_flags),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "output_state",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, output_state),
+    &programmable_psu__function_control_get_response__output_state__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "temperature",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, temperature),
+    NULL,
+    NULL,
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned programmable_psu__function_control_get_response__field_indices_by_name[] = {
-  3,   /* field[3] = getStatusResponse */
-  1,   /* field[1] = measureCurrentResponse */
-  2,   /* field[2] = measureTemperatureResponse */
-  0,   /* field[0] = measureVoltageResponse */
+  3,   /* field[3] = current_limit */
+  0,   /* field[0] = desired_voltage */
+  5,   /* field[5] = error_flags */
+  4,   /* field[4] = measured_current */
+  2,   /* field[2] = measured_output_voltage */
+  1,   /* field[1] = measured_sense_voltage */
+  6,   /* field[6] = output_state */
+  7,   /* field[7] = temperature */
 };
 static const ProtobufCIntRange programmable_psu__function_control_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor programmable_psu__function_control_get_response__descriptor =
 {
@@ -2242,7 +1809,7 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_get_response
   "ProgrammablePsu__FunctionControlGetResponse",
   "programmablePsu",
   sizeof(ProgrammablePsu__FunctionControlGetResponse),
-  4,
+  8,
   programmable_psu__function_control_get_response__field_descriptors,
   programmable_psu__function_control_get_response__field_indices_by_name,
   1,  programmable_psu__function_control_get_response__number_ranges,

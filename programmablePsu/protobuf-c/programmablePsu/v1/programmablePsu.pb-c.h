@@ -15,6 +15,7 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
+typedef struct ProgrammablePsu__CalibrationValues ProgrammablePsu__CalibrationValues;
 typedef struct ProgrammablePsu__ConfigurationSet ProgrammablePsu__ConfigurationSet;
 typedef struct ProgrammablePsu__ConfigurationSetResponse ProgrammablePsu__ConfigurationSetResponse;
 typedef struct ProgrammablePsu__ConfigurationGet ProgrammablePsu__ConfigurationGet;
@@ -27,17 +28,9 @@ typedef struct ProgrammablePsu__SetOutputEnabled ProgrammablePsu__SetOutputEnabl
 typedef struct ProgrammablePsu__SetCurrentLimit ProgrammablePsu__SetCurrentLimit;
 typedef struct ProgrammablePsu__SetRecoveryMode ProgrammablePsu__SetRecoveryMode;
 typedef struct ProgrammablePsu__Recover ProgrammablePsu__Recover;
-typedef struct ProgrammablePsu__CalibrationValues ProgrammablePsu__CalibrationValues;
+typedef struct ProgrammablePsu__RecoverResponse ProgrammablePsu__RecoverResponse;
 typedef struct ProgrammablePsu__FunctionControlSet ProgrammablePsu__FunctionControlSet;
 typedef struct ProgrammablePsu__FunctionControlSetResponse ProgrammablePsu__FunctionControlSetResponse;
-typedef struct ProgrammablePsu__MeasureVoltage ProgrammablePsu__MeasureVoltage;
-typedef struct ProgrammablePsu__MeasureVoltageResponse ProgrammablePsu__MeasureVoltageResponse;
-typedef struct ProgrammablePsu__MeasureCurrent ProgrammablePsu__MeasureCurrent;
-typedef struct ProgrammablePsu__MeasureCurrentResponse ProgrammablePsu__MeasureCurrentResponse;
-typedef struct ProgrammablePsu__MeasureTemperature ProgrammablePsu__MeasureTemperature;
-typedef struct ProgrammablePsu__MeasureTemperatureResponse ProgrammablePsu__MeasureTemperatureResponse;
-typedef struct ProgrammablePsu__GetStatus ProgrammablePsu__GetStatus;
-typedef struct ProgrammablePsu__GetStatusResponse ProgrammablePsu__GetStatusResponse;
 typedef struct ProgrammablePsu__FunctionControlGet ProgrammablePsu__FunctionControlGet;
 typedef struct ProgrammablePsu__FunctionControlGetResponse ProgrammablePsu__FunctionControlGetResponse;
 typedef struct ProgrammablePsu__StreamControlStart ProgrammablePsu__StreamControlStart;
@@ -47,29 +40,83 @@ typedef struct ProgrammablePsu__StreamData ProgrammablePsu__StreamData;
 
 /* --- enums --- */
 
-typedef enum _ProgrammablePsu__GetStatusResponse__ErrorFlags {
+typedef enum _ProgrammablePsu__FunctionControlGetResponse__ErrorFlags {
   /*
    * no error
    */
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__none = 0,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__internal_error = 1,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__input_under_voltage = 2,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__input_over_voltage = 4,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__current_limit_active = 8,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__shutdown_over_temperature = 16,
-  PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS__sense_line_error = 32
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__ERROR_FLAGS)
-} ProgrammablePsu__GetStatusResponse__ErrorFlags;
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__none = 0,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__internal_error = 1,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_under_voltage = 2,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_over_voltage = 4,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__current_limit_active = 8,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__sense_line_error = 16
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS)
+} ProgrammablePsu__FunctionControlGetResponse__ErrorFlags;
+typedef enum _ProgrammablePsu__FunctionControlGetResponse__OutputState {
+  /*
+   * output disabled
+   */
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__off = 0,
+  /*
+   * output enabled
+   */
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__on = 1,
+  /*
+   * output disabled due to overtemperature condition
+   */
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__shutdown = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE)
+} ProgrammablePsu__FunctionControlGetResponse__OutputState;
 
 /* --- messages --- */
+
+/*
+ * ============= Configuration =================
+ */
+struct  ProgrammablePsu__CalibrationValues
+{
+  ProtobufCMessage base;
+  double voltage_offset;
+  double voltage_gain;
+  double current_offset;
+  double current_gain;
+};
+#define PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__calibration_values__descriptor) \
+    , 0, 0, 0, 0 }
+
+
+typedef enum {
+  PROGRAMMABLE_PSU__CONFIGURATION_SET__TYPE__NOT_SET = 0,
+  PROGRAMMABLE_PSU__CONFIGURATION_SET__TYPE_CALIBRATION_VALUES = 1,
+  PROGRAMMABLE_PSU__CONFIGURATION_SET__TYPE_AUTO_RECOVER = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__CONFIGURATION_SET__TYPE__CASE)
+} ProgrammablePsu__ConfigurationSet__TypeCase;
 
 struct  ProgrammablePsu__ConfigurationSet
 {
   ProtobufCMessage base;
+  ProgrammablePsu__ConfigurationSet__TypeCase type_case;
+  union {
+    /*
+     * save & apply calibration values
+     */
+    ProgrammablePsu__CalibrationValues *calibrationvalues;
+    /*
+     * Set shutdown recovery behavior. 
+     * The PSU will shut down itself (disable its output) when an overtemperature 
+     * condition has been detected. 
+     * The PSU may stay either stay off until application calls 
+     * Recover() or it may re-enable the output when the overtemperature 
+     * condition disappears.
+     * default: auto_recover = true
+     */
+    protobuf_c_boolean auto_recover;
+  };
 };
 #define PROGRAMMABLE_PSU__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__configuration_set__descriptor) \
-     }
+    , PROGRAMMABLE_PSU__CONFIGURATION_SET__TYPE__NOT_SET, {0} }
 
 
 struct  ProgrammablePsu__ConfigurationSetResponse
@@ -96,10 +143,12 @@ struct  ProgrammablePsu__ConfigurationGet
 struct  ProgrammablePsu__ConfigurationGetResponse
 {
   ProtobufCMessage base;
+  ProgrammablePsu__CalibrationValues *calibration_values;
+  protobuf_c_boolean auto_recover;
 };
 #define PROGRAMMABLE_PSU__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__configuration_get_response__descriptor) \
-     }
+    , NULL, 0 }
 
 
 struct  ProgrammablePsu__ConfigurationDescribe
@@ -185,14 +234,6 @@ struct  ProgrammablePsu__SetCurrentLimit
     , 0 }
 
 
-/*
- * Set shutdown recovery behavior. 
- * The PSU will shut down itself (disable its output) when an overtemperature 
- * condition has been detected. 
- * The PSU may stay either stay off until application calls 
- * Recover() or it may re-enable the output when the overtemperature 
- * condition disappears.
- */
 struct  ProgrammablePsu__SetRecoveryMode
 {
   ProtobufCMessage base;
@@ -218,17 +259,17 @@ struct  ProgrammablePsu__Recover
      }
 
 
-struct  ProgrammablePsu__CalibrationValues
+struct  ProgrammablePsu__RecoverResponse
 {
   ProtobufCMessage base;
-  double voltage_offset;
-  double voltage_gain;
-  double current_offset;
-  double current_gain;
+  /*
+   * true: recovery successful, false: recovery failed (e.g. overtemperature condition still present)
+   */
+  protobuf_c_boolean success;
 };
-#define PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__calibration_values__descriptor) \
-    , 0, 0, 0, 0 }
+#define PROGRAMMABLE_PSU__RECOVER_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__recover_response__descriptor) \
+    , 0 }
 
 
 typedef enum {
@@ -237,9 +278,7 @@ typedef enum {
   PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_SET_VOLTAGE_LEVEL = 2,
   PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_SET_OUTPUT_ENABLED = 3,
   PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_SET_CURRENT_LIMIT = 4,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_SET_RECOVERY_MODE = 5,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_RECOVER = 6,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_SAVE_CALIBRATION_VALUES = 7
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE_RECOVER = 5
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE__CASE)
 } ProgrammablePsu__FunctionControlSet__TypeCase;
 
@@ -252,12 +291,7 @@ struct  ProgrammablePsu__FunctionControlSet
     ProgrammablePsu__SetVoltageLevel *setvoltagelevel;
     ProgrammablePsu__SetOutputEnabled *setoutputenabled;
     ProgrammablePsu__SetCurrentLimit *setcurrentlimit;
-    ProgrammablePsu__SetRecoveryMode *setrecoverymode;
     ProgrammablePsu__Recover *recover;
-    /*
-     * save & apply calibration values
-     */
-    ProgrammablePsu__CalibrationValues *savecalibrationvalues;
   };
 };
 #define PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__INIT \
@@ -265,153 +299,73 @@ struct  ProgrammablePsu__FunctionControlSet
     , PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE__NOT_SET, {0} }
 
 
+typedef enum {
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET = 0,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE_RECOVER_RESPONSE = 5
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__CASE)
+} ProgrammablePsu__FunctionControlSetResponse__TypeCase;
+
 struct  ProgrammablePsu__FunctionControlSetResponse
 {
   ProtobufCMessage base;
+  ProgrammablePsu__FunctionControlSetResponse__TypeCase type_case;
+  union {
+    ProgrammablePsu__RecoverResponse *recoverresponse;
+  };
 };
 #define PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__function_control_set_response__descriptor) \
-     }
+    , PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET, {0} }
 
 
-struct  ProgrammablePsu__MeasureVoltage
+struct  ProgrammablePsu__FunctionControlGet
 {
   ProtobufCMessage base;
 };
-#define PROGRAMMABLE_PSU__MEASURE_VOLTAGE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_voltage__descriptor) \
+#define PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__function_control_get__descriptor) \
      }
 
 
-struct  ProgrammablePsu__MeasureVoltageResponse
+struct  ProgrammablePsu__FunctionControlGetResponse
 {
   ProtobufCMessage base;
   /*
-   * measured voltage in Volts
+   * currently set voltage level in Volts
    */
-  double voltage;
-};
-#define PROGRAMMABLE_PSU__MEASURE_VOLTAGE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_voltage_response__descriptor) \
-    , 0 }
-
-
-struct  ProgrammablePsu__MeasureCurrent
-{
-  ProtobufCMessage base;
-};
-#define PROGRAMMABLE_PSU__MEASURE_CURRENT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_current__descriptor) \
-     }
-
-
-struct  ProgrammablePsu__MeasureCurrentResponse
-{
-  ProtobufCMessage base;
+  double desired_voltage;
   /*
-   * measured current in Amps
+   * currently measured voltage in Volts at sense lines
    */
-  double current;
-};
-#define PROGRAMMABLE_PSU__MEASURE_CURRENT_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_current_response__descriptor) \
-    , 0 }
-
-
-struct  ProgrammablePsu__MeasureTemperature
-{
-  ProtobufCMessage base;
-};
-#define PROGRAMMABLE_PSU__MEASURE_TEMPERATURE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_temperature__descriptor) \
-     }
-
-
-struct  ProgrammablePsu__MeasureTemperatureResponse
-{
-  ProtobufCMessage base;
+  double measured_sense_voltage;
+  /*
+   * currently measured voltage in Volts at output terminals
+   */
+  double measured_output_voltage;
+  /*
+   * currently set current limit in Amps
+   */
+  double current_limit;
+  /*
+   * currently measured current in Amps
+   */
+  double measured_current;
+  /*
+   * error flags (bitmask of ErrorFlags)
+   */
+  uint32_t error_flags;
+  /*
+   * output enabled state
+   */
+  ProgrammablePsu__FunctionControlGetResponse__OutputState output_state;
   /*
    * measured temperature in degree Celsius
    */
   double temperature;
 };
-#define PROGRAMMABLE_PSU__MEASURE_TEMPERATURE_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__measure_temperature_response__descriptor) \
-    , 0 }
-
-
-struct  ProgrammablePsu__GetStatus
-{
-  ProtobufCMessage base;
-};
-#define PROGRAMMABLE_PSU__GET_STATUS__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__get_status__descriptor) \
-     }
-
-
-struct  ProgrammablePsu__GetStatusResponse
-{
-  ProtobufCMessage base;
-  /*
-   * bitmask of ErrorFlags
-   */
-  uint32_t error_flags;
-};
-#define PROGRAMMABLE_PSU__GET_STATUS_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__get_status_response__descriptor) \
-    , 0 }
-
-
-typedef enum {
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE__NOT_SET = 0,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE_MEASURE_VOLTAGE = 1,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE_MEASURE_CURRENT = 2,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE_MEASURE_TEMPERATURE = 3,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE_GET_STATUS = 4,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE_GET_CALIBRATION_VALUES = 5
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE__CASE)
-} ProgrammablePsu__FunctionControlGet__TypeCase;
-
-struct  ProgrammablePsu__FunctionControlGet
-{
-  ProtobufCMessage base;
-  ProgrammablePsu__FunctionControlGet__TypeCase type_case;
-  union {
-    ProgrammablePsu__MeasureVoltage *measurevoltage;
-    ProgrammablePsu__MeasureCurrent *measurecurrent;
-    ProgrammablePsu__MeasureTemperature *measuretemperature;
-    ProgrammablePsu__GetStatus *getstatus;
-    ProgrammablePsu__CalibrationValues *getcalibrationvalues;
-  };
-};
-#define PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__function_control_get__descriptor) \
-    , PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET__TYPE__NOT_SET, {0} }
-
-
-typedef enum {
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET = 0,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE_MEASURE_VOLTAGE_RESPONSE = 1,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE_MEASURE_CURRENT_RESPONSE = 2,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE_MEASURE_TEMPERATURE_RESPONSE = 3,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE_GET_STATUS_RESPONSE = 4
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE__CASE)
-} ProgrammablePsu__FunctionControlGetResponse__TypeCase;
-
-struct  ProgrammablePsu__FunctionControlGetResponse
-{
-  ProtobufCMessage base;
-  ProgrammablePsu__FunctionControlGetResponse__TypeCase type_case;
-  union {
-    ProgrammablePsu__MeasureVoltageResponse *measurevoltageresponse;
-    ProgrammablePsu__MeasureCurrentResponse *measurecurrentresponse;
-    ProgrammablePsu__MeasureTemperatureResponse *measuretemperatureresponse;
-    ProgrammablePsu__GetStatusResponse *getstatusresponse;
-  };
-};
 #define PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__function_control_get_response__descriptor) \
-    , PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__TYPE__NOT_SET, {0} }
+    , 0, 0, 0, 0, 0, 0, PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__OUTPUT_STATE__off, 0 }
 
 
 /*
@@ -450,6 +404,25 @@ struct  ProgrammablePsu__StreamData
      }
 
 
+/* ProgrammablePsu__CalibrationValues methods */
+void   programmable_psu__calibration_values__init
+                     (ProgrammablePsu__CalibrationValues         *message);
+size_t programmable_psu__calibration_values__get_packed_size
+                     (const ProgrammablePsu__CalibrationValues   *message);
+size_t programmable_psu__calibration_values__pack
+                     (const ProgrammablePsu__CalibrationValues   *message,
+                      uint8_t             *out);
+size_t programmable_psu__calibration_values__pack_to_buffer
+                     (const ProgrammablePsu__CalibrationValues   *message,
+                      ProtobufCBuffer     *buffer);
+ProgrammablePsu__CalibrationValues *
+       programmable_psu__calibration_values__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   programmable_psu__calibration_values__free_unpacked
+                     (ProgrammablePsu__CalibrationValues *message,
+                      ProtobufCAllocator *allocator);
 /* ProgrammablePsu__ConfigurationSet methods */
 void   programmable_psu__configuration_set__init
                      (ProgrammablePsu__ConfigurationSet         *message);
@@ -678,24 +651,24 @@ ProgrammablePsu__Recover *
 void   programmable_psu__recover__free_unpacked
                      (ProgrammablePsu__Recover *message,
                       ProtobufCAllocator *allocator);
-/* ProgrammablePsu__CalibrationValues methods */
-void   programmable_psu__calibration_values__init
-                     (ProgrammablePsu__CalibrationValues         *message);
-size_t programmable_psu__calibration_values__get_packed_size
-                     (const ProgrammablePsu__CalibrationValues   *message);
-size_t programmable_psu__calibration_values__pack
-                     (const ProgrammablePsu__CalibrationValues   *message,
+/* ProgrammablePsu__RecoverResponse methods */
+void   programmable_psu__recover_response__init
+                     (ProgrammablePsu__RecoverResponse         *message);
+size_t programmable_psu__recover_response__get_packed_size
+                     (const ProgrammablePsu__RecoverResponse   *message);
+size_t programmable_psu__recover_response__pack
+                     (const ProgrammablePsu__RecoverResponse   *message,
                       uint8_t             *out);
-size_t programmable_psu__calibration_values__pack_to_buffer
-                     (const ProgrammablePsu__CalibrationValues   *message,
+size_t programmable_psu__recover_response__pack_to_buffer
+                     (const ProgrammablePsu__RecoverResponse   *message,
                       ProtobufCBuffer     *buffer);
-ProgrammablePsu__CalibrationValues *
-       programmable_psu__calibration_values__unpack
+ProgrammablePsu__RecoverResponse *
+       programmable_psu__recover_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   programmable_psu__calibration_values__free_unpacked
-                     (ProgrammablePsu__CalibrationValues *message,
+void   programmable_psu__recover_response__free_unpacked
+                     (ProgrammablePsu__RecoverResponse *message,
                       ProtobufCAllocator *allocator);
 /* ProgrammablePsu__FunctionControlSet methods */
 void   programmable_psu__function_control_set__init
@@ -734,158 +707,6 @@ ProgrammablePsu__FunctionControlSetResponse *
                       const uint8_t       *data);
 void   programmable_psu__function_control_set_response__free_unpacked
                      (ProgrammablePsu__FunctionControlSetResponse *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureVoltage methods */
-void   programmable_psu__measure_voltage__init
-                     (ProgrammablePsu__MeasureVoltage         *message);
-size_t programmable_psu__measure_voltage__get_packed_size
-                     (const ProgrammablePsu__MeasureVoltage   *message);
-size_t programmable_psu__measure_voltage__pack
-                     (const ProgrammablePsu__MeasureVoltage   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_voltage__pack_to_buffer
-                     (const ProgrammablePsu__MeasureVoltage   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureVoltage *
-       programmable_psu__measure_voltage__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_voltage__free_unpacked
-                     (ProgrammablePsu__MeasureVoltage *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureVoltageResponse methods */
-void   programmable_psu__measure_voltage_response__init
-                     (ProgrammablePsu__MeasureVoltageResponse         *message);
-size_t programmable_psu__measure_voltage_response__get_packed_size
-                     (const ProgrammablePsu__MeasureVoltageResponse   *message);
-size_t programmable_psu__measure_voltage_response__pack
-                     (const ProgrammablePsu__MeasureVoltageResponse   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_voltage_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureVoltageResponse   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureVoltageResponse *
-       programmable_psu__measure_voltage_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_voltage_response__free_unpacked
-                     (ProgrammablePsu__MeasureVoltageResponse *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureCurrent methods */
-void   programmable_psu__measure_current__init
-                     (ProgrammablePsu__MeasureCurrent         *message);
-size_t programmable_psu__measure_current__get_packed_size
-                     (const ProgrammablePsu__MeasureCurrent   *message);
-size_t programmable_psu__measure_current__pack
-                     (const ProgrammablePsu__MeasureCurrent   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_current__pack_to_buffer
-                     (const ProgrammablePsu__MeasureCurrent   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureCurrent *
-       programmable_psu__measure_current__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_current__free_unpacked
-                     (ProgrammablePsu__MeasureCurrent *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureCurrentResponse methods */
-void   programmable_psu__measure_current_response__init
-                     (ProgrammablePsu__MeasureCurrentResponse         *message);
-size_t programmable_psu__measure_current_response__get_packed_size
-                     (const ProgrammablePsu__MeasureCurrentResponse   *message);
-size_t programmable_psu__measure_current_response__pack
-                     (const ProgrammablePsu__MeasureCurrentResponse   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_current_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureCurrentResponse   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureCurrentResponse *
-       programmable_psu__measure_current_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_current_response__free_unpacked
-                     (ProgrammablePsu__MeasureCurrentResponse *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureTemperature methods */
-void   programmable_psu__measure_temperature__init
-                     (ProgrammablePsu__MeasureTemperature         *message);
-size_t programmable_psu__measure_temperature__get_packed_size
-                     (const ProgrammablePsu__MeasureTemperature   *message);
-size_t programmable_psu__measure_temperature__pack
-                     (const ProgrammablePsu__MeasureTemperature   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_temperature__pack_to_buffer
-                     (const ProgrammablePsu__MeasureTemperature   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureTemperature *
-       programmable_psu__measure_temperature__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_temperature__free_unpacked
-                     (ProgrammablePsu__MeasureTemperature *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__MeasureTemperatureResponse methods */
-void   programmable_psu__measure_temperature_response__init
-                     (ProgrammablePsu__MeasureTemperatureResponse         *message);
-size_t programmable_psu__measure_temperature_response__get_packed_size
-                     (const ProgrammablePsu__MeasureTemperatureResponse   *message);
-size_t programmable_psu__measure_temperature_response__pack
-                     (const ProgrammablePsu__MeasureTemperatureResponse   *message,
-                      uint8_t             *out);
-size_t programmable_psu__measure_temperature_response__pack_to_buffer
-                     (const ProgrammablePsu__MeasureTemperatureResponse   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__MeasureTemperatureResponse *
-       programmable_psu__measure_temperature_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__measure_temperature_response__free_unpacked
-                     (ProgrammablePsu__MeasureTemperatureResponse *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__GetStatus methods */
-void   programmable_psu__get_status__init
-                     (ProgrammablePsu__GetStatus         *message);
-size_t programmable_psu__get_status__get_packed_size
-                     (const ProgrammablePsu__GetStatus   *message);
-size_t programmable_psu__get_status__pack
-                     (const ProgrammablePsu__GetStatus   *message,
-                      uint8_t             *out);
-size_t programmable_psu__get_status__pack_to_buffer
-                     (const ProgrammablePsu__GetStatus   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__GetStatus *
-       programmable_psu__get_status__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__get_status__free_unpacked
-                     (ProgrammablePsu__GetStatus *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__GetStatusResponse methods */
-void   programmable_psu__get_status_response__init
-                     (ProgrammablePsu__GetStatusResponse         *message);
-size_t programmable_psu__get_status_response__get_packed_size
-                     (const ProgrammablePsu__GetStatusResponse   *message);
-size_t programmable_psu__get_status_response__pack
-                     (const ProgrammablePsu__GetStatusResponse   *message,
-                      uint8_t             *out);
-size_t programmable_psu__get_status_response__pack_to_buffer
-                     (const ProgrammablePsu__GetStatusResponse   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__GetStatusResponse *
-       programmable_psu__get_status_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__get_status_response__free_unpacked
-                     (ProgrammablePsu__GetStatusResponse *message,
                       ProtobufCAllocator *allocator);
 /* ProgrammablePsu__FunctionControlGet methods */
 void   programmable_psu__function_control_get__init
@@ -984,6 +805,9 @@ void   programmable_psu__stream_data__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
+typedef void (*ProgrammablePsu__CalibrationValues_Closure)
+                 (const ProgrammablePsu__CalibrationValues *message,
+                  void *closure_data);
 typedef void (*ProgrammablePsu__ConfigurationSet_Closure)
                  (const ProgrammablePsu__ConfigurationSet *message,
                   void *closure_data);
@@ -1020,38 +844,14 @@ typedef void (*ProgrammablePsu__SetRecoveryMode_Closure)
 typedef void (*ProgrammablePsu__Recover_Closure)
                  (const ProgrammablePsu__Recover *message,
                   void *closure_data);
-typedef void (*ProgrammablePsu__CalibrationValues_Closure)
-                 (const ProgrammablePsu__CalibrationValues *message,
+typedef void (*ProgrammablePsu__RecoverResponse_Closure)
+                 (const ProgrammablePsu__RecoverResponse *message,
                   void *closure_data);
 typedef void (*ProgrammablePsu__FunctionControlSet_Closure)
                  (const ProgrammablePsu__FunctionControlSet *message,
                   void *closure_data);
 typedef void (*ProgrammablePsu__FunctionControlSetResponse_Closure)
                  (const ProgrammablePsu__FunctionControlSetResponse *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureVoltage_Closure)
-                 (const ProgrammablePsu__MeasureVoltage *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureVoltageResponse_Closure)
-                 (const ProgrammablePsu__MeasureVoltageResponse *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureCurrent_Closure)
-                 (const ProgrammablePsu__MeasureCurrent *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureCurrentResponse_Closure)
-                 (const ProgrammablePsu__MeasureCurrentResponse *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureTemperature_Closure)
-                 (const ProgrammablePsu__MeasureTemperature *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__MeasureTemperatureResponse_Closure)
-                 (const ProgrammablePsu__MeasureTemperatureResponse *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__GetStatus_Closure)
-                 (const ProgrammablePsu__GetStatus *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__GetStatusResponse_Closure)
-                 (const ProgrammablePsu__GetStatusResponse *message,
                   void *closure_data);
 typedef void (*ProgrammablePsu__FunctionControlGet_Closure)
                  (const ProgrammablePsu__FunctionControlGet *message,
@@ -1074,6 +874,7 @@ typedef void (*ProgrammablePsu__StreamData_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__configuration_get__descriptor;
@@ -1086,20 +887,13 @@ extern const ProtobufCMessageDescriptor programmable_psu__set_output_enabled__de
 extern const ProtobufCMessageDescriptor programmable_psu__set_current_limit__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__set_recovery_mode__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__recover__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor;
+extern const ProtobufCMessageDescriptor programmable_psu__recover_response__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_set_response__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_voltage__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_voltage_response__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_current__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_current_response__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_temperature__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__measure_temperature_response__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__get_status__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__get_status_response__descriptor;
-extern const ProtobufCEnumDescriptor    programmable_psu__get_status_response__error_flags__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_get_response__descriptor;
+extern const ProtobufCEnumDescriptor    programmable_psu__function_control_get_response__error_flags__descriptor;
+extern const ProtobufCEnumDescriptor    programmable_psu__function_control_get_response__output_state__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__sample__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__stream_data__descriptor;

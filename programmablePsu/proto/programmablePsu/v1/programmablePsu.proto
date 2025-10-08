@@ -15,20 +15,36 @@ limitations under the License.
 */
 
 /*
-AnalogInTypeB function block defines an interface for multi channel analog input modules, such as 
-the Ci4Rail IOU09 module.
-It supports configuration of sample rates and gains per channel, reading the current values
-of all channels and streaming the values of selected channels at the configured sample rates. 
+programmablePsu function block defines an interface for a programmable power 
+supply unit (PSU), such as EKF CQ2/SQ2.
 */
+
 syntax = "proto3";
 
 package programmablePsu;
 option go_package = "programmablePsu/v1";
 
 // ============= Configuration =================
+message CalibrationValues {
+    double voltage_offset = 1;
+    double voltage_gain = 2;
+    double current_offset = 3;
+    double current_gain = 4;
+}
 
 message ConfigurationSet {
-    // not implemented
+    oneof type {
+        // save & apply calibration values
+        CalibrationValues calibrationValues = 1; 
+        // Set shutdown recovery behavior. 
+        // The PSU will shut down itself (disable its output) when an overtemperature 
+        // condition has been detected. 
+        // The PSU may stay either stay off until application calls 
+        // Recover() or it may re-enable the output when the overtemperature 
+        // condition disappears.
+        // default: auto_recover = true
+        bool auto_recover = 2;
+    }
 }
 
 message ConfigurationSetResponse {
@@ -36,12 +52,13 @@ message ConfigurationSetResponse {
 }
 
 message ConfigurationGet {
-    // not implemented
+    // no parameters
 }
 
 // Returns the current hardware configuration
 message ConfigurationGetResponse {
-    // not implemented
+    CalibrationValues calibration_values = 1;
+    bool auto_recover = 2;
 }
 
 message ConfigurationDescribe {
@@ -81,12 +98,6 @@ message SetCurrentLimit {
     double limit = 1;
 }
 
-// Set shutdown recovery behavior. 
-// The PSU will shut down itself (disable its output) when an overtemperature 
-// condition has been detected. 
-// The PSU may stay either stay off until application calls 
-// Recover() or it may re-enable the output when the overtemperature 
-// condition disappears.
 message SetRecoveryMode {
     // true: auto recover enabled, false: auto recover disabled
     bool auto_recover = 1;
@@ -97,12 +108,11 @@ message Recover {
     // no parameters    
 }
 
-message CalibrationValues {
-    double voltage_offset = 1;
-    double voltage_gain = 2;
-    double current_offset = 3;
-    double current_gain = 4;
+message RecoverResponse {
+    // true: recovery successful, false: recovery failed (e.g. overtemperature condition still present)
+    bool success = 1; 
 }
+
 
 message FunctionControlSet {
     oneof type {
@@ -110,78 +120,51 @@ message FunctionControlSet {
         SetVoltageLevel setVoltageLevel = 2;
         SetOutputEnabled setOutputEnabled = 3;
         SetCurrentLimit setCurrentLimit = 4;
-        SetRecoveryMode setRecoveryMode = 5;
-        Recover recover = 6;
-        // save & apply calibration values
-        CalibrationValues saveCalibrationValues = 7; 
+        Recover recover = 5;
     }
 }
 
 message FunctionControlSetResponse {
+    oneof type {
+        RecoverResponse recoverResponse = 5;
+    }
+}
+
+message FunctionControlGet {
     // no parameters
 }
 
-message MeasureVoltage {
-    // no parameters
-}
-
-message MeasureVoltageResponse {
-    // measured voltage in Volts
-    double voltage = 1;
-}
-
-message MeasureCurrent {
-    // no parameters
-}
-
-message MeasureCurrentResponse {
-    // measured current in Amps
-    double current = 1;
-}
-
-message MeasureTemperature {
-    // no parameters
-}
-
-message MeasureTemperatureResponse {
-    // measured temperature in degree Celsius
-    double temperature = 1;
-}
-
-message GetStatus {
-    // no parameters
-}
-
-message GetStatusResponse {
+message FunctionControlGetResponse {
     enum ErrorFlags {
         none = 0; // no error
         internal_error = 0x01; 
         input_under_voltage = 0x02;
         input_over_voltage = 0x04;
         current_limit_active = 0x08;
-        shutdown_over_temperature = 0x10;
-        sense_line_error = 0x20;
+        sense_line_error = 0x10;
     }
-    uint32 error_flags = 1; // bitmask of ErrorFlags
-}
+    enum OutputState {
+        off = 0; // output disabled
+        on = 1; // output enabled
+        shutdown = 2; // output disabled due to overtemperature condition
+    }
 
-message FunctionControlGet {
-    oneof type {
-        MeasureVoltage measureVoltage = 1;
-        MeasureCurrent measureCurrent = 2;
-        MeasureTemperature measureTemperature = 3;
-        GetStatus getStatus = 4;
-        CalibrationValues getCalibrationValues = 5;
-    }
-}
-
-message FunctionControlGetResponse {
-    oneof type {
-        MeasureVoltageResponse measureVoltageResponse = 1;
-        MeasureCurrentResponse measureCurrentResponse = 2;
-        MeasureTemperatureResponse measureTemperatureResponse = 3;
-        GetStatusResponse getStatusResponse = 4;
-    }
+    // currently set voltage level in Volts
+    double desired_voltage = 1; 
+    // currently measured voltage in Volts at sense lines
+    double measured_sense_voltage = 2; 
+    // currently measured voltage in Volts at output terminals
+    double measured_output_voltage = 3;
+    // currently set current limit in Amps
+    double current_limit = 4;
+    // currently measured current in Amps
+    double measured_current = 5;
+    // error flags (bitmask of ErrorFlags)
+    uint32 error_flags = 6;
+    // output enabled state
+    OutputState output_state = 7;
+    // measured temperature in degree Celsius
+    double temperature = 8;
 }
 
 // ============= StreamControl ==================
