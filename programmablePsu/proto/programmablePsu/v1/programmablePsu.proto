@@ -135,7 +135,7 @@ message FunctionControlGet {
 }
 
 message FunctionControlGetResponse {
-    enum ErrorFlags {
+    enum DiagFlags {
         none = 0; // no error
         internal_error = 0x01; 
         input_under_voltage = 0x02;
@@ -159,8 +159,8 @@ message FunctionControlGetResponse {
     double current_limit = 4;
     // currently measured current in Amps
     double measured_current = 5;
-    // error flags (bitmask of ErrorFlags)
-    uint32 error_flags = 6;
+    // error flags (bitmask of DiagFlags)
+    uint32 diag_flags = 6;
     // output enabled state
     OutputState output_state = 7;
     // measured temperature in degree Celsius
