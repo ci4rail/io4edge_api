@@ -98,21 +98,10 @@ message SetCurrentLimit {
     double limit = 1;
 }
 
-message SetRecoveryMode {
-    // true: auto recover enabled, false: auto recover disabled
-    bool auto_recover = 1;
-}
-
 // Recover from shutdown. Required when the recovery mode is set to manual.
 message Recover {
     // no parameters    
 }
-
-message RecoverResponse {
-    // true: recovery successful, false: recovery failed (e.g. overtemperature condition still present)
-    bool success = 1; 
-}
-
 
 message FunctionControlSet {
     oneof type {
@@ -125,9 +114,7 @@ message FunctionControlSet {
 }
 
 message FunctionControlSetResponse {
-    oneof type {
-        RecoverResponse recoverResponse = 5;
-    }
+    // no parameters
 }
 
 message FunctionControlGet {

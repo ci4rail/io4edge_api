@@ -26,9 +26,7 @@ typedef struct ProgrammablePsu__SetDefaults ProgrammablePsu__SetDefaults;
 typedef struct ProgrammablePsu__SetVoltageLevel ProgrammablePsu__SetVoltageLevel;
 typedef struct ProgrammablePsu__SetOutputEnabled ProgrammablePsu__SetOutputEnabled;
 typedef struct ProgrammablePsu__SetCurrentLimit ProgrammablePsu__SetCurrentLimit;
-typedef struct ProgrammablePsu__SetRecoveryMode ProgrammablePsu__SetRecoveryMode;
 typedef struct ProgrammablePsu__Recover ProgrammablePsu__Recover;
-typedef struct ProgrammablePsu__RecoverResponse ProgrammablePsu__RecoverResponse;
 typedef struct ProgrammablePsu__FunctionControlSet ProgrammablePsu__FunctionControlSet;
 typedef struct ProgrammablePsu__FunctionControlSetResponse ProgrammablePsu__FunctionControlSetResponse;
 typedef struct ProgrammablePsu__FunctionControlGet ProgrammablePsu__FunctionControlGet;
@@ -40,18 +38,18 @@ typedef struct ProgrammablePsu__StreamData ProgrammablePsu__StreamData;
 
 /* --- enums --- */
 
-typedef enum _ProgrammablePsu__FunctionControlGetResponse__ErrorFlags {
+typedef enum _ProgrammablePsu__FunctionControlGetResponse__DiagFlags {
   /*
    * no error
    */
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__none = 0,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__internal_error = 1,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_under_voltage = 2,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_over_voltage = 4,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__current_limit_active = 8,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__sense_line_error = 16
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS)
-} ProgrammablePsu__FunctionControlGetResponse__ErrorFlags;
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__none = 0,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__internal_error = 1,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__input_under_voltage = 2,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__input_over_voltage = 4,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__current_limit_active = 8,
+  PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__sense_line_error = 16
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS)
+} ProgrammablePsu__FunctionControlGetResponse__DiagFlags;
 typedef enum _ProgrammablePsu__FunctionControlGetResponse__OutputState {
   /*
    * output disabled
@@ -234,19 +232,6 @@ struct  ProgrammablePsu__SetCurrentLimit
     , 0 }
 
 
-struct  ProgrammablePsu__SetRecoveryMode
-{
-  ProtobufCMessage base;
-  /*
-   * true: auto recover enabled, false: auto recover disabled
-   */
-  protobuf_c_boolean auto_recover;
-};
-#define PROGRAMMABLE_PSU__SET_RECOVERY_MODE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__set_recovery_mode__descriptor) \
-    , 0 }
-
-
 /*
  * Recover from shutdown. Required when the recovery mode is set to manual.
  */
@@ -257,19 +242,6 @@ struct  ProgrammablePsu__Recover
 #define PROGRAMMABLE_PSU__RECOVER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__recover__descriptor) \
      }
-
-
-struct  ProgrammablePsu__RecoverResponse
-{
-  ProtobufCMessage base;
-  /*
-   * true: recovery successful, false: recovery failed (e.g. overtemperature condition still present)
-   */
-  protobuf_c_boolean success;
-};
-#define PROGRAMMABLE_PSU__RECOVER_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__recover_response__descriptor) \
-    , 0 }
 
 
 typedef enum {
@@ -299,23 +271,13 @@ struct  ProgrammablePsu__FunctionControlSet
     , PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET__TYPE__NOT_SET, {0} }
 
 
-typedef enum {
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET = 0,
-  PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE_RECOVER_RESPONSE = 5
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__CASE)
-} ProgrammablePsu__FunctionControlSetResponse__TypeCase;
-
 struct  ProgrammablePsu__FunctionControlSetResponse
 {
   ProtobufCMessage base;
-  ProgrammablePsu__FunctionControlSetResponse__TypeCase type_case;
-  union {
-    ProgrammablePsu__RecoverResponse *recoverresponse;
-  };
 };
 #define PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__function_control_set_response__descriptor) \
-    , PROGRAMMABLE_PSU__FUNCTION_CONTROL_SET_RESPONSE__TYPE__NOT_SET, {0} }
+     }
 
 
 struct  ProgrammablePsu__FunctionControlGet
@@ -351,9 +313,9 @@ struct  ProgrammablePsu__FunctionControlGetResponse
    */
   double measured_current;
   /*
-   * error flags (bitmask of ErrorFlags)
+   * error flags (bitmask of DiagFlags)
    */
-  uint32_t error_flags;
+  uint32_t diag_flags;
   /*
    * output enabled state
    */
@@ -613,25 +575,6 @@ ProgrammablePsu__SetCurrentLimit *
 void   programmable_psu__set_current_limit__free_unpacked
                      (ProgrammablePsu__SetCurrentLimit *message,
                       ProtobufCAllocator *allocator);
-/* ProgrammablePsu__SetRecoveryMode methods */
-void   programmable_psu__set_recovery_mode__init
-                     (ProgrammablePsu__SetRecoveryMode         *message);
-size_t programmable_psu__set_recovery_mode__get_packed_size
-                     (const ProgrammablePsu__SetRecoveryMode   *message);
-size_t programmable_psu__set_recovery_mode__pack
-                     (const ProgrammablePsu__SetRecoveryMode   *message,
-                      uint8_t             *out);
-size_t programmable_psu__set_recovery_mode__pack_to_buffer
-                     (const ProgrammablePsu__SetRecoveryMode   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__SetRecoveryMode *
-       programmable_psu__set_recovery_mode__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__set_recovery_mode__free_unpacked
-                     (ProgrammablePsu__SetRecoveryMode *message,
-                      ProtobufCAllocator *allocator);
 /* ProgrammablePsu__Recover methods */
 void   programmable_psu__recover__init
                      (ProgrammablePsu__Recover         *message);
@@ -650,25 +593,6 @@ ProgrammablePsu__Recover *
                       const uint8_t       *data);
 void   programmable_psu__recover__free_unpacked
                      (ProgrammablePsu__Recover *message,
-                      ProtobufCAllocator *allocator);
-/* ProgrammablePsu__RecoverResponse methods */
-void   programmable_psu__recover_response__init
-                     (ProgrammablePsu__RecoverResponse         *message);
-size_t programmable_psu__recover_response__get_packed_size
-                     (const ProgrammablePsu__RecoverResponse   *message);
-size_t programmable_psu__recover_response__pack
-                     (const ProgrammablePsu__RecoverResponse   *message,
-                      uint8_t             *out);
-size_t programmable_psu__recover_response__pack_to_buffer
-                     (const ProgrammablePsu__RecoverResponse   *message,
-                      ProtobufCBuffer     *buffer);
-ProgrammablePsu__RecoverResponse *
-       programmable_psu__recover_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   programmable_psu__recover_response__free_unpacked
-                     (ProgrammablePsu__RecoverResponse *message,
                       ProtobufCAllocator *allocator);
 /* ProgrammablePsu__FunctionControlSet methods */
 void   programmable_psu__function_control_set__init
@@ -838,14 +762,8 @@ typedef void (*ProgrammablePsu__SetOutputEnabled_Closure)
 typedef void (*ProgrammablePsu__SetCurrentLimit_Closure)
                  (const ProgrammablePsu__SetCurrentLimit *message,
                   void *closure_data);
-typedef void (*ProgrammablePsu__SetRecoveryMode_Closure)
-                 (const ProgrammablePsu__SetRecoveryMode *message,
-                  void *closure_data);
 typedef void (*ProgrammablePsu__Recover_Closure)
                  (const ProgrammablePsu__Recover *message,
-                  void *closure_data);
-typedef void (*ProgrammablePsu__RecoverResponse_Closure)
-                 (const ProgrammablePsu__RecoverResponse *message,
                   void *closure_data);
 typedef void (*ProgrammablePsu__FunctionControlSet_Closure)
                  (const ProgrammablePsu__FunctionControlSet *message,
@@ -885,14 +803,12 @@ extern const ProtobufCMessageDescriptor programmable_psu__set_defaults__descript
 extern const ProtobufCMessageDescriptor programmable_psu__set_voltage_level__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__set_output_enabled__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__set_current_limit__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__set_recovery_mode__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__recover__descriptor;
-extern const ProtobufCMessageDescriptor programmable_psu__recover_response__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_set_response__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__function_control_get_response__descriptor;
-extern const ProtobufCEnumDescriptor    programmable_psu__function_control_get_response__error_flags__descriptor;
+extern const ProtobufCEnumDescriptor    programmable_psu__function_control_get_response__diag_flags__descriptor;
 extern const ProtobufCEnumDescriptor    programmable_psu__function_control_get_response__output_state__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__stream_control_start__descriptor;
 extern const ProtobufCMessageDescriptor programmable_psu__sample__descriptor;

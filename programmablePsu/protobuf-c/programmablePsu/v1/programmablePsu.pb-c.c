@@ -502,51 +502,6 @@ void   programmable_psu__set_current_limit__free_unpacked
   assert(message->base.descriptor == &programmable_psu__set_current_limit__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   programmable_psu__set_recovery_mode__init
-                     (ProgrammablePsu__SetRecoveryMode         *message)
-{
-  static const ProgrammablePsu__SetRecoveryMode init_value = PROGRAMMABLE_PSU__SET_RECOVERY_MODE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__set_recovery_mode__get_packed_size
-                     (const ProgrammablePsu__SetRecoveryMode *message)
-{
-  assert(message->base.descriptor == &programmable_psu__set_recovery_mode__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__set_recovery_mode__pack
-                     (const ProgrammablePsu__SetRecoveryMode *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__set_recovery_mode__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__set_recovery_mode__pack_to_buffer
-                     (const ProgrammablePsu__SetRecoveryMode *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__set_recovery_mode__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__SetRecoveryMode *
-       programmable_psu__set_recovery_mode__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__SetRecoveryMode *)
-     protobuf_c_message_unpack (&programmable_psu__set_recovery_mode__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__set_recovery_mode__free_unpacked
-                     (ProgrammablePsu__SetRecoveryMode *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__set_recovery_mode__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   programmable_psu__recover__init
                      (ProgrammablePsu__Recover         *message)
 {
@@ -590,51 +545,6 @@ void   programmable_psu__recover__free_unpacked
   if(!message)
     return;
   assert(message->base.descriptor == &programmable_psu__recover__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   programmable_psu__recover_response__init
-                     (ProgrammablePsu__RecoverResponse         *message)
-{
-  static const ProgrammablePsu__RecoverResponse init_value = PROGRAMMABLE_PSU__RECOVER_RESPONSE__INIT;
-  *message = init_value;
-}
-size_t programmable_psu__recover_response__get_packed_size
-                     (const ProgrammablePsu__RecoverResponse *message)
-{
-  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t programmable_psu__recover_response__pack
-                     (const ProgrammablePsu__RecoverResponse *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t programmable_psu__recover_response__pack_to_buffer
-                     (const ProgrammablePsu__RecoverResponse *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProgrammablePsu__RecoverResponse *
-       programmable_psu__recover_response__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (ProgrammablePsu__RecoverResponse *)
-     protobuf_c_message_unpack (&programmable_psu__recover_response__descriptor,
-                                allocator, len, data);
-}
-void   programmable_psu__recover_response__free_unpacked
-                     (ProgrammablePsu__RecoverResponse *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &programmable_psu__recover_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   programmable_psu__function_control_set__init
@@ -1381,44 +1291,6 @@ const ProtobufCMessageDescriptor programmable_psu__set_current_limit__descriptor
   (ProtobufCMessageInit) programmable_psu__set_current_limit__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor programmable_psu__set_recovery_mode__field_descriptors[1] =
-{
-  {
-    "auto_recover",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__SetRecoveryMode, auto_recover),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__set_recovery_mode__field_indices_by_name[] = {
-  0,   /* field[0] = auto_recover */
-};
-static const ProtobufCIntRange programmable_psu__set_recovery_mode__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__set_recovery_mode__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.SetRecoveryMode",
-  "SetRecoveryMode",
-  "ProgrammablePsu__SetRecoveryMode",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__SetRecoveryMode),
-  1,
-  programmable_psu__set_recovery_mode__field_descriptors,
-  programmable_psu__set_recovery_mode__field_indices_by_name,
-  1,  programmable_psu__set_recovery_mode__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__set_recovery_mode__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
 #define programmable_psu__recover__field_descriptors NULL
 #define programmable_psu__recover__field_indices_by_name NULL
 #define programmable_psu__recover__number_ranges NULL
@@ -1435,44 +1307,6 @@ const ProtobufCMessageDescriptor programmable_psu__recover__descriptor =
   programmable_psu__recover__field_indices_by_name,
   0,  programmable_psu__recover__number_ranges,
   (ProtobufCMessageInit) programmable_psu__recover__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor programmable_psu__recover_response__field_descriptors[1] =
-{
-  {
-    "success",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
-    0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__RecoverResponse, success),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__recover_response__field_indices_by_name[] = {
-  0,   /* field[0] = success */
-};
-static const ProtobufCIntRange programmable_psu__recover_response__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor programmable_psu__recover_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "programmablePsu.RecoverResponse",
-  "RecoverResponse",
-  "ProgrammablePsu__RecoverResponse",
-  "programmablePsu",
-  sizeof(ProgrammablePsu__RecoverResponse),
-  1,
-  programmable_psu__recover_response__field_descriptors,
-  programmable_psu__recover_response__field_indices_by_name,
-  1,  programmable_psu__recover_response__number_ranges,
-  (ProtobufCMessageInit) programmable_psu__recover_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor programmable_psu__function_control_set__field_descriptors[5] =
@@ -1565,29 +1399,9 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_set__descrip
   (ProtobufCMessageInit) programmable_psu__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor programmable_psu__function_control_set_response__field_descriptors[1] =
-{
-  {
-    "recoverResponse",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProgrammablePsu__FunctionControlSetResponse, type_case),
-    offsetof(ProgrammablePsu__FunctionControlSetResponse, recoverresponse),
-    &programmable_psu__recover_response__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned programmable_psu__function_control_set_response__field_indices_by_name[] = {
-  0,   /* field[0] = recoverResponse */
-};
-static const ProtobufCIntRange programmable_psu__function_control_set_response__number_ranges[1 + 1] =
-{
-  { 5, 0 },
-  { 0, 1 }
-};
+#define programmable_psu__function_control_set_response__field_descriptors NULL
+#define programmable_psu__function_control_set_response__field_indices_by_name NULL
+#define programmable_psu__function_control_set_response__number_ranges NULL
 const ProtobufCMessageDescriptor programmable_psu__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -1596,10 +1410,10 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_set_response
   "ProgrammablePsu__FunctionControlSetResponse",
   "programmablePsu",
   sizeof(ProgrammablePsu__FunctionControlSetResponse),
-  1,
+  0,
   programmable_psu__function_control_set_response__field_descriptors,
   programmable_psu__function_control_set_response__field_indices_by_name,
-  1,  programmable_psu__function_control_set_response__number_ranges,
+  0,  programmable_psu__function_control_set_response__number_ranges,
   (ProtobufCMessageInit) programmable_psu__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1621,19 +1435,19 @@ const ProtobufCMessageDescriptor programmable_psu__function_control_get__descrip
   (ProtobufCMessageInit) programmable_psu__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue programmable_psu__function_control_get_response__error_flags__enum_values_by_number[6] =
+static const ProtobufCEnumValue programmable_psu__function_control_get_response__diag_flags__enum_values_by_number[6] =
 {
-  { "none", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__none", 0 },
-  { "internal_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__internal_error", 1 },
-  { "input_under_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_under_voltage", 2 },
-  { "input_over_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__input_over_voltage", 4 },
-  { "current_limit_active", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__current_limit_active", 8 },
-  { "sense_line_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__ERROR_FLAGS__sense_line_error", 16 },
+  { "none", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__none", 0 },
+  { "internal_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__internal_error", 1 },
+  { "input_under_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__input_under_voltage", 2 },
+  { "input_over_voltage", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__input_over_voltage", 4 },
+  { "current_limit_active", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__current_limit_active", 8 },
+  { "sense_line_error", "PROGRAMMABLE_PSU__FUNCTION_CONTROL_GET_RESPONSE__DIAG_FLAGS__sense_line_error", 16 },
 };
-static const ProtobufCIntRange programmable_psu__function_control_get_response__error_flags__value_ranges[] = {
+static const ProtobufCIntRange programmable_psu__function_control_get_response__diag_flags__value_ranges[] = {
 {0, 0},{4, 3},{8, 4},{16, 5},{0, 6}
 };
-static const ProtobufCEnumValueIndex programmable_psu__function_control_get_response__error_flags__enum_values_by_name[6] =
+static const ProtobufCEnumValueIndex programmable_psu__function_control_get_response__diag_flags__enum_values_by_name[6] =
 {
   { "current_limit_active", 4 },
   { "input_over_voltage", 3 },
@@ -1642,19 +1456,19 @@ static const ProtobufCEnumValueIndex programmable_psu__function_control_get_resp
   { "none", 0 },
   { "sense_line_error", 5 },
 };
-const ProtobufCEnumDescriptor programmable_psu__function_control_get_response__error_flags__descriptor =
+const ProtobufCEnumDescriptor programmable_psu__function_control_get_response__diag_flags__descriptor =
 {
   PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "programmablePsu.FunctionControlGetResponse.ErrorFlags",
-  "ErrorFlags",
-  "ProgrammablePsu__FunctionControlGetResponse__ErrorFlags",
+  "programmablePsu.FunctionControlGetResponse.DiagFlags",
+  "DiagFlags",
+  "ProgrammablePsu__FunctionControlGetResponse__DiagFlags",
   "programmablePsu",
   6,
-  programmable_psu__function_control_get_response__error_flags__enum_values_by_number,
+  programmable_psu__function_control_get_response__diag_flags__enum_values_by_number,
   6,
-  programmable_psu__function_control_get_response__error_flags__enum_values_by_name,
+  programmable_psu__function_control_get_response__diag_flags__enum_values_by_name,
   4,
-  programmable_psu__function_control_get_response__error_flags__value_ranges,
+  programmable_psu__function_control_get_response__diag_flags__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
 static const ProtobufCEnumValue programmable_psu__function_control_get_response__output_state__enum_values_by_number[3] =
@@ -1750,12 +1564,12 @@ static const ProtobufCFieldDescriptor programmable_psu__function_control_get_res
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "error_flags",
+    "diag_flags",
     6,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__FunctionControlGetResponse, error_flags),
+    offsetof(ProgrammablePsu__FunctionControlGetResponse, diag_flags),
     NULL,
     NULL,
     0,             /* flags */
@@ -1789,7 +1603,7 @@ static const ProtobufCFieldDescriptor programmable_psu__function_control_get_res
 static const unsigned programmable_psu__function_control_get_response__field_indices_by_name[] = {
   3,   /* field[3] = current_limit */
   0,   /* field[0] = desired_voltage */
-  5,   /* field[5] = error_flags */
+  5,   /* field[5] = diag_flags */
   4,   /* field[4] = measured_current */
   2,   /* field[2] = measured_output_voltage */
   1,   /* field[1] = measured_sense_voltage */

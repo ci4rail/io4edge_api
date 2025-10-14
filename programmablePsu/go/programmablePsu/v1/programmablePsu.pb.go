@@ -40,20 +40,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type FunctionControlGetResponse_ErrorFlags int32
+type FunctionControlGetResponse_DiagFlags int32
 
 const (
-	FunctionControlGetResponse_none                 FunctionControlGetResponse_ErrorFlags = 0 // no error
-	FunctionControlGetResponse_internal_error       FunctionControlGetResponse_ErrorFlags = 1
-	FunctionControlGetResponse_input_under_voltage  FunctionControlGetResponse_ErrorFlags = 2
-	FunctionControlGetResponse_input_over_voltage   FunctionControlGetResponse_ErrorFlags = 4
-	FunctionControlGetResponse_current_limit_active FunctionControlGetResponse_ErrorFlags = 8
-	FunctionControlGetResponse_sense_line_error     FunctionControlGetResponse_ErrorFlags = 16
+	FunctionControlGetResponse_none                 FunctionControlGetResponse_DiagFlags = 0 // no error
+	FunctionControlGetResponse_internal_error       FunctionControlGetResponse_DiagFlags = 1
+	FunctionControlGetResponse_input_under_voltage  FunctionControlGetResponse_DiagFlags = 2
+	FunctionControlGetResponse_input_over_voltage   FunctionControlGetResponse_DiagFlags = 4
+	FunctionControlGetResponse_current_limit_active FunctionControlGetResponse_DiagFlags = 8
+	FunctionControlGetResponse_sense_line_error     FunctionControlGetResponse_DiagFlags = 16
 )
 
-// Enum value maps for FunctionControlGetResponse_ErrorFlags.
+// Enum value maps for FunctionControlGetResponse_DiagFlags.
 var (
-	FunctionControlGetResponse_ErrorFlags_name = map[int32]string{
+	FunctionControlGetResponse_DiagFlags_name = map[int32]string{
 		0:  "none",
 		1:  "internal_error",
 		2:  "input_under_voltage",
@@ -61,7 +61,7 @@ var (
 		8:  "current_limit_active",
 		16: "sense_line_error",
 	}
-	FunctionControlGetResponse_ErrorFlags_value = map[string]int32{
+	FunctionControlGetResponse_DiagFlags_value = map[string]int32{
 		"none":                 0,
 		"internal_error":       1,
 		"input_under_voltage":  2,
@@ -71,31 +71,31 @@ var (
 	}
 )
 
-func (x FunctionControlGetResponse_ErrorFlags) Enum() *FunctionControlGetResponse_ErrorFlags {
-	p := new(FunctionControlGetResponse_ErrorFlags)
+func (x FunctionControlGetResponse_DiagFlags) Enum() *FunctionControlGetResponse_DiagFlags {
+	p := new(FunctionControlGetResponse_DiagFlags)
 	*p = x
 	return p
 }
 
-func (x FunctionControlGetResponse_ErrorFlags) String() string {
+func (x FunctionControlGetResponse_DiagFlags) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (FunctionControlGetResponse_ErrorFlags) Descriptor() protoreflect.EnumDescriptor {
+func (FunctionControlGetResponse_DiagFlags) Descriptor() protoreflect.EnumDescriptor {
 	return file_programmablePsu_proto_enumTypes[0].Descriptor()
 }
 
-func (FunctionControlGetResponse_ErrorFlags) Type() protoreflect.EnumType {
+func (FunctionControlGetResponse_DiagFlags) Type() protoreflect.EnumType {
 	return &file_programmablePsu_proto_enumTypes[0]
 }
 
-func (x FunctionControlGetResponse_ErrorFlags) Number() protoreflect.EnumNumber {
+func (x FunctionControlGetResponse_DiagFlags) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use FunctionControlGetResponse_ErrorFlags.Descriptor instead.
-func (FunctionControlGetResponse_ErrorFlags) EnumDescriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{17, 0}
+// Deprecated: Use FunctionControlGetResponse_DiagFlags.Descriptor instead.
+func (FunctionControlGetResponse_DiagFlags) EnumDescriptor() ([]byte, []int) {
+	return file_programmablePsu_proto_rawDescGZIP(), []int{15, 0}
 }
 
 type FunctionControlGetResponse_OutputState int32
@@ -144,7 +144,7 @@ func (x FunctionControlGetResponse_OutputState) Number() protoreflect.EnumNumber
 
 // Deprecated: Use FunctionControlGetResponse_OutputState.Descriptor instead.
 func (FunctionControlGetResponse_OutputState) EnumDescriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{17, 1}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{15, 1}
 }
 
 // ============= Configuration =================
@@ -704,51 +704,6 @@ func (x *SetCurrentLimit) GetLimit() float64 {
 	return 0
 }
 
-type SetRecoveryMode struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// true: auto recover enabled, false: auto recover disabled
-	AutoRecover   bool `protobuf:"varint,1,opt,name=auto_recover,json=autoRecover,proto3" json:"auto_recover,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SetRecoveryMode) Reset() {
-	*x = SetRecoveryMode{}
-	mi := &file_programmablePsu_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SetRecoveryMode) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SetRecoveryMode) ProtoMessage() {}
-
-func (x *SetRecoveryMode) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SetRecoveryMode.ProtoReflect.Descriptor instead.
-func (*SetRecoveryMode) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *SetRecoveryMode) GetAutoRecover() bool {
-	if x != nil {
-		return x.AutoRecover
-	}
-	return false
-}
-
 // Recover from shutdown. Required when the recovery mode is set to manual.
 type Recover struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -758,7 +713,7 @@ type Recover struct {
 
 func (x *Recover) Reset() {
 	*x = Recover{}
-	mi := &file_programmablePsu_proto_msgTypes[12]
+	mi := &file_programmablePsu_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -770,7 +725,7 @@ func (x *Recover) String() string {
 func (*Recover) ProtoMessage() {}
 
 func (x *Recover) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[12]
+	mi := &file_programmablePsu_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -783,52 +738,7 @@ func (x *Recover) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Recover.ProtoReflect.Descriptor instead.
 func (*Recover) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{12}
-}
-
-type RecoverResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// true: recovery successful, false: recovery failed (e.g. overtemperature condition still present)
-	Success       bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RecoverResponse) Reset() {
-	*x = RecoverResponse{}
-	mi := &file_programmablePsu_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RecoverResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RecoverResponse) ProtoMessage() {}
-
-func (x *RecoverResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RecoverResponse.ProtoReflect.Descriptor instead.
-func (*RecoverResponse) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *RecoverResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
+	return file_programmablePsu_proto_rawDescGZIP(), []int{11}
 }
 
 type FunctionControlSet struct {
@@ -847,7 +757,7 @@ type FunctionControlSet struct {
 
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
-	mi := &file_programmablePsu_proto_msgTypes[14]
+	mi := &file_programmablePsu_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -859,7 +769,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[14]
+	mi := &file_programmablePsu_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -872,7 +782,7 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{14}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *FunctionControlSet) GetType() isFunctionControlSet_Type {
@@ -962,18 +872,14 @@ func (*FunctionControlSet_SetCurrentLimit) isFunctionControlSet_Type() {}
 func (*FunctionControlSet_Recover) isFunctionControlSet_Type() {}
 
 type FunctionControlSetResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Type:
-	//
-	//	*FunctionControlSetResponse_RecoverResponse
-	Type          isFunctionControlSetResponse_Type `protobuf_oneof:"type"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FunctionControlSetResponse) Reset() {
 	*x = FunctionControlSetResponse{}
-	mi := &file_programmablePsu_proto_msgTypes[15]
+	mi := &file_programmablePsu_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -985,7 +891,7 @@ func (x *FunctionControlSetResponse) String() string {
 func (*FunctionControlSetResponse) ProtoMessage() {}
 
 func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[15]
+	mi := &file_programmablePsu_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -998,34 +904,8 @@ func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{15}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{13}
 }
-
-func (x *FunctionControlSetResponse) GetType() isFunctionControlSetResponse_Type {
-	if x != nil {
-		return x.Type
-	}
-	return nil
-}
-
-func (x *FunctionControlSetResponse) GetRecoverResponse() *RecoverResponse {
-	if x != nil {
-		if x, ok := x.Type.(*FunctionControlSetResponse_RecoverResponse); ok {
-			return x.RecoverResponse
-		}
-	}
-	return nil
-}
-
-type isFunctionControlSetResponse_Type interface {
-	isFunctionControlSetResponse_Type()
-}
-
-type FunctionControlSetResponse_RecoverResponse struct {
-	RecoverResponse *RecoverResponse `protobuf:"bytes,5,opt,name=recoverResponse,proto3,oneof"`
-}
-
-func (*FunctionControlSetResponse_RecoverResponse) isFunctionControlSetResponse_Type() {}
 
 type FunctionControlGet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1035,7 +915,7 @@ type FunctionControlGet struct {
 
 func (x *FunctionControlGet) Reset() {
 	*x = FunctionControlGet{}
-	mi := &file_programmablePsu_proto_msgTypes[16]
+	mi := &file_programmablePsu_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1047,7 +927,7 @@ func (x *FunctionControlGet) String() string {
 func (*FunctionControlGet) ProtoMessage() {}
 
 func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[16]
+	mi := &file_programmablePsu_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1060,7 +940,7 @@ func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGet.ProtoReflect.Descriptor instead.
 func (*FunctionControlGet) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{16}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{14}
 }
 
 type FunctionControlGetResponse struct {
@@ -1075,8 +955,8 @@ type FunctionControlGetResponse struct {
 	CurrentLimit float64 `protobuf:"fixed64,4,opt,name=current_limit,json=currentLimit,proto3" json:"current_limit,omitempty"`
 	// currently measured current in Amps
 	MeasuredCurrent float64 `protobuf:"fixed64,5,opt,name=measured_current,json=measuredCurrent,proto3" json:"measured_current,omitempty"`
-	// error flags (bitmask of ErrorFlags)
-	ErrorFlags uint32 `protobuf:"varint,6,opt,name=error_flags,json=errorFlags,proto3" json:"error_flags,omitempty"`
+	// error flags (bitmask of DiagFlags)
+	DiagFlags uint32 `protobuf:"varint,6,opt,name=diag_flags,json=diagFlags,proto3" json:"diag_flags,omitempty"`
 	// output enabled state
 	OutputState FunctionControlGetResponse_OutputState `protobuf:"varint,7,opt,name=output_state,json=outputState,proto3,enum=programmablePsu.FunctionControlGetResponse_OutputState" json:"output_state,omitempty"`
 	// measured temperature in degree Celsius
@@ -1087,7 +967,7 @@ type FunctionControlGetResponse struct {
 
 func (x *FunctionControlGetResponse) Reset() {
 	*x = FunctionControlGetResponse{}
-	mi := &file_programmablePsu_proto_msgTypes[17]
+	mi := &file_programmablePsu_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1099,7 +979,7 @@ func (x *FunctionControlGetResponse) String() string {
 func (*FunctionControlGetResponse) ProtoMessage() {}
 
 func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[17]
+	mi := &file_programmablePsu_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1112,7 +992,7 @@ func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{17}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *FunctionControlGetResponse) GetDesiredVoltage() float64 {
@@ -1150,9 +1030,9 @@ func (x *FunctionControlGetResponse) GetMeasuredCurrent() float64 {
 	return 0
 }
 
-func (x *FunctionControlGetResponse) GetErrorFlags() uint32 {
+func (x *FunctionControlGetResponse) GetDiagFlags() uint32 {
 	if x != nil {
-		return x.ErrorFlags
+		return x.DiagFlags
 	}
 	return 0
 }
@@ -1180,7 +1060,7 @@ type StreamControlStart struct {
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
-	mi := &file_programmablePsu_proto_msgTypes[18]
+	mi := &file_programmablePsu_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1192,7 +1072,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[18]
+	mi := &file_programmablePsu_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1205,7 +1085,7 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{18}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{16}
 }
 
 // a Sample contains samples for one or more channels taken at the same time
@@ -1217,7 +1097,7 @@ type Sample struct {
 
 func (x *Sample) Reset() {
 	*x = Sample{}
-	mi := &file_programmablePsu_proto_msgTypes[19]
+	mi := &file_programmablePsu_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1229,7 +1109,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[19]
+	mi := &file_programmablePsu_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1242,7 +1122,7 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{19}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{17}
 }
 
 // data to tranport via stream
@@ -1254,7 +1134,7 @@ type StreamData struct {
 
 func (x *StreamData) Reset() {
 	*x = StreamData{}
-	mi := &file_programmablePsu_proto_msgTypes[20]
+	mi := &file_programmablePsu_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1266,7 +1146,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_programmablePsu_proto_msgTypes[20]
+	mi := &file_programmablePsu_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1279,7 +1159,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_programmablePsu_proto_rawDescGZIP(), []int{20}
+	return file_programmablePsu_proto_rawDescGZIP(), []int{18}
 }
 
 var File_programmablePsu_proto protoreflect.FileDescriptor
@@ -1314,35 +1194,28 @@ const file_programmablePsu_proto_rawDesc = "" +
 	"\x10SetOutputEnabled\x12\x18\n" +
 	"\aenabled\x18\x01 \x01(\bR\aenabled\"'\n" +
 	"\x0fSetCurrentLimit\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x01R\x05limit\"4\n" +
-	"\x0fSetRecoveryMode\x12!\n" +
-	"\fauto_recover\x18\x01 \x01(\bR\vautoRecover\"\t\n" +
-	"\aRecover\"+\n" +
-	"\x0fRecoverResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x81\x03\n" +
+	"\x05limit\x18\x01 \x01(\x01R\x05limit\"\t\n" +
+	"\aRecover\"\x81\x03\n" +
 	"\x12FunctionControlSet\x12@\n" +
 	"\vsetDefaults\x18\x01 \x01(\v2\x1c.programmablePsu.SetDefaultsH\x00R\vsetDefaults\x12L\n" +
 	"\x0fsetVoltageLevel\x18\x02 \x01(\v2 .programmablePsu.SetVoltageLevelH\x00R\x0fsetVoltageLevel\x12O\n" +
 	"\x10setOutputEnabled\x18\x03 \x01(\v2!.programmablePsu.SetOutputEnabledH\x00R\x10setOutputEnabled\x12L\n" +
 	"\x0fsetCurrentLimit\x18\x04 \x01(\v2 .programmablePsu.SetCurrentLimitH\x00R\x0fsetCurrentLimit\x124\n" +
 	"\arecover\x18\x05 \x01(\v2\x18.programmablePsu.RecoverH\x00R\arecoverB\x06\n" +
-	"\x04type\"r\n" +
-	"\x1aFunctionControlSetResponse\x12L\n" +
-	"\x0frecoverResponse\x18\x05 \x01(\v2 .programmablePsu.RecoverResponseH\x00R\x0frecoverResponseB\x06\n" +
-	"\x04type\"\x14\n" +
-	"\x12FunctionControlGet\"\xde\x04\n" +
+	"\x04type\"\x1c\n" +
+	"\x1aFunctionControlSetResponse\"\x14\n" +
+	"\x12FunctionControlGet\"\xdb\x04\n" +
 	"\x1aFunctionControlGetResponse\x12'\n" +
 	"\x0fdesired_voltage\x18\x01 \x01(\x01R\x0edesiredVoltage\x124\n" +
 	"\x16measured_sense_voltage\x18\x02 \x01(\x01R\x14measuredSenseVoltage\x126\n" +
 	"\x17measured_output_voltage\x18\x03 \x01(\x01R\x15measuredOutputVoltage\x12#\n" +
 	"\rcurrent_limit\x18\x04 \x01(\x01R\fcurrentLimit\x12)\n" +
-	"\x10measured_current\x18\x05 \x01(\x01R\x0fmeasuredCurrent\x12\x1f\n" +
-	"\verror_flags\x18\x06 \x01(\rR\n" +
-	"errorFlags\x12Z\n" +
-	"\foutput_state\x18\a \x01(\x0e27.programmablePsu.FunctionControlGetResponse.OutputStateR\voutputState\x12 \n" +
-	"\vtemperature\x18\b \x01(\x01R\vtemperature\"\x8b\x01\n" +
+	"\x10measured_current\x18\x05 \x01(\x01R\x0fmeasuredCurrent\x12\x1d\n" +
 	"\n" +
-	"ErrorFlags\x12\b\n" +
+	"diag_flags\x18\x06 \x01(\rR\tdiagFlags\x12Z\n" +
+	"\foutput_state\x18\a \x01(\x0e27.programmablePsu.FunctionControlGetResponse.OutputStateR\voutputState\x12 \n" +
+	"\vtemperature\x18\b \x01(\x01R\vtemperature\"\x8a\x01\n" +
+	"\tDiagFlags\x12\b\n" +
 	"\x04none\x10\x00\x12\x12\n" +
 	"\x0einternal_error\x10\x01\x12\x17\n" +
 	"\x13input_under_voltage\x10\x02\x12\x16\n" +
@@ -1371,9 +1244,9 @@ func file_programmablePsu_proto_rawDescGZIP() []byte {
 }
 
 var file_programmablePsu_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_programmablePsu_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_programmablePsu_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_programmablePsu_proto_goTypes = []any{
-	(FunctionControlGetResponse_ErrorFlags)(0),  // 0: programmablePsu.FunctionControlGetResponse.ErrorFlags
+	(FunctionControlGetResponse_DiagFlags)(0),   // 0: programmablePsu.FunctionControlGetResponse.DiagFlags
 	(FunctionControlGetResponse_OutputState)(0), // 1: programmablePsu.FunctionControlGetResponse.OutputState
 	(*CalibrationValues)(nil),                   // 2: programmablePsu.CalibrationValues
 	(*ConfigurationSet)(nil),                    // 3: programmablePsu.ConfigurationSet
@@ -1386,16 +1259,14 @@ var file_programmablePsu_proto_goTypes = []any{
 	(*SetVoltageLevel)(nil),                     // 10: programmablePsu.SetVoltageLevel
 	(*SetOutputEnabled)(nil),                    // 11: programmablePsu.SetOutputEnabled
 	(*SetCurrentLimit)(nil),                     // 12: programmablePsu.SetCurrentLimit
-	(*SetRecoveryMode)(nil),                     // 13: programmablePsu.SetRecoveryMode
-	(*Recover)(nil),                             // 14: programmablePsu.Recover
-	(*RecoverResponse)(nil),                     // 15: programmablePsu.RecoverResponse
-	(*FunctionControlSet)(nil),                  // 16: programmablePsu.FunctionControlSet
-	(*FunctionControlSetResponse)(nil),          // 17: programmablePsu.FunctionControlSetResponse
-	(*FunctionControlGet)(nil),                  // 18: programmablePsu.FunctionControlGet
-	(*FunctionControlGetResponse)(nil),          // 19: programmablePsu.FunctionControlGetResponse
-	(*StreamControlStart)(nil),                  // 20: programmablePsu.StreamControlStart
-	(*Sample)(nil),                              // 21: programmablePsu.Sample
-	(*StreamData)(nil),                          // 22: programmablePsu.StreamData
+	(*Recover)(nil),                             // 13: programmablePsu.Recover
+	(*FunctionControlSet)(nil),                  // 14: programmablePsu.FunctionControlSet
+	(*FunctionControlSetResponse)(nil),          // 15: programmablePsu.FunctionControlSetResponse
+	(*FunctionControlGet)(nil),                  // 16: programmablePsu.FunctionControlGet
+	(*FunctionControlGetResponse)(nil),          // 17: programmablePsu.FunctionControlGetResponse
+	(*StreamControlStart)(nil),                  // 18: programmablePsu.StreamControlStart
+	(*Sample)(nil),                              // 19: programmablePsu.Sample
+	(*StreamData)(nil),                          // 20: programmablePsu.StreamData
 }
 var file_programmablePsu_proto_depIdxs = []int32{
 	2,  // 0: programmablePsu.ConfigurationSet.calibrationValues:type_name -> programmablePsu.CalibrationValues
@@ -1404,14 +1275,13 @@ var file_programmablePsu_proto_depIdxs = []int32{
 	10, // 3: programmablePsu.FunctionControlSet.setVoltageLevel:type_name -> programmablePsu.SetVoltageLevel
 	11, // 4: programmablePsu.FunctionControlSet.setOutputEnabled:type_name -> programmablePsu.SetOutputEnabled
 	12, // 5: programmablePsu.FunctionControlSet.setCurrentLimit:type_name -> programmablePsu.SetCurrentLimit
-	14, // 6: programmablePsu.FunctionControlSet.recover:type_name -> programmablePsu.Recover
-	15, // 7: programmablePsu.FunctionControlSetResponse.recoverResponse:type_name -> programmablePsu.RecoverResponse
-	1,  // 8: programmablePsu.FunctionControlGetResponse.output_state:type_name -> programmablePsu.FunctionControlGetResponse.OutputState
-	9,  // [9:9] is the sub-list for method output_type
-	9,  // [9:9] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	13, // 6: programmablePsu.FunctionControlSet.recover:type_name -> programmablePsu.Recover
+	1,  // 7: programmablePsu.FunctionControlGetResponse.output_state:type_name -> programmablePsu.FunctionControlGetResponse.OutputState
+	8,  // [8:8] is the sub-list for method output_type
+	8,  // [8:8] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_programmablePsu_proto_init() }
@@ -1423,15 +1293,12 @@ func file_programmablePsu_proto_init() {
 		(*ConfigurationSet_CalibrationValues)(nil),
 		(*ConfigurationSet_AutoRecover)(nil),
 	}
-	file_programmablePsu_proto_msgTypes[14].OneofWrappers = []any{
+	file_programmablePsu_proto_msgTypes[12].OneofWrappers = []any{
 		(*FunctionControlSet_SetDefaults)(nil),
 		(*FunctionControlSet_SetVoltageLevel)(nil),
 		(*FunctionControlSet_SetOutputEnabled)(nil),
 		(*FunctionControlSet_SetCurrentLimit)(nil),
 		(*FunctionControlSet_Recover)(nil),
-	}
-	file_programmablePsu_proto_msgTypes[15].OneofWrappers = []any{
-		(*FunctionControlSetResponse_RecoverResponse)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1439,7 +1306,7 @@ func file_programmablePsu_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_programmablePsu_proto_rawDesc), len(file_programmablePsu_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   21,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
