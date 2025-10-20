@@ -862,11 +862,23 @@ void   programmable_psu__stream_data__free_unpacked
   assert(message->base.descriptor == &programmable_psu__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[4] =
+static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[5] =
 {
   {
-    "voltage_offset",
+    "calibration_date",
     1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, calibration_date),
+    &google__protobuf__timestamp__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "voltage_offset",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
@@ -878,7 +890,7 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
   {
     "voltage_gain",
-    2,
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
@@ -890,7 +902,7 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
   {
     "current_offset",
-    3,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
@@ -902,7 +914,7 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
   {
     "current_gain",
-    4,
+    5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
@@ -914,15 +926,16 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
 };
 static const unsigned programmable_psu__calibration_values__field_indices_by_name[] = {
-  3,   /* field[3] = current_gain */
-  2,   /* field[2] = current_offset */
-  1,   /* field[1] = voltage_gain */
-  0,   /* field[0] = voltage_offset */
+  0,   /* field[0] = calibration_date */
+  4,   /* field[4] = current_gain */
+  3,   /* field[3] = current_offset */
+  2,   /* field[2] = voltage_gain */
+  1,   /* field[1] = voltage_offset */
 };
 static const ProtobufCIntRange programmable_psu__calibration_values__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor =
 {
@@ -932,7 +945,7 @@ const ProtobufCMessageDescriptor programmable_psu__calibration_values__descripto
   "ProgrammablePsu__CalibrationValues",
   "programmablePsu",
   sizeof(ProgrammablePsu__CalibrationValues),
-  4,
+  5,
   programmable_psu__calibration_values__field_descriptors,
   programmable_psu__calibration_values__field_indices_by_name,
   1,  programmable_psu__calibration_values__number_ranges,

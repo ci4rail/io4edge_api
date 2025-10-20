@@ -20,16 +20,18 @@ supply unit (PSU), such as EKF CQ2/SQ2.
 */
 
 syntax = "proto3";
+import "google/protobuf/timestamp.proto";
 
 package programmablePsu;
 option go_package = "programmablePsu/v1";
 
 // ============= Configuration =================
 message CalibrationValues {
-    double voltage_offset = 1;
-    double voltage_gain = 2;
-    double current_offset = 3;
-    double current_gain = 4;
+    google.protobuf.Timestamp calibration_date = 1;
+    double voltage_offset = 2;
+    double voltage_gain = 3;
+    double current_offset = 4;
+    double current_gain = 5;
 }
 
 message ConfigurationSet {
