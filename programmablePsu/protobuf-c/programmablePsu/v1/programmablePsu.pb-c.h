@@ -101,7 +101,7 @@ struct  ProgrammablePsu__ConfigurationSet
     /*
      * save & apply calibration values
      */
-    ProgrammablePsu__CalibrationValues *calibrationvalues;
+    ProgrammablePsu__CalibrationValues *calibration_values;
     /*
      * Set shutdown recovery behavior. 
      * The PSU will shut down itself (disable its output) when an overtemperature 

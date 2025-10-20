@@ -37,7 +37,7 @@ message CalibrationValues {
 message ConfigurationSet {
     oneof type {
         // save & apply calibration values
-        CalibrationValues calibrationValues = 1; 
+        CalibrationValues calibration_values = 1; 
         // Set shutdown recovery behavior. 
         // The PSU will shut down itself (disable its output) when an overtemperature 
         // condition has been detected. 

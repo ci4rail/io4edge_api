@@ -955,12 +955,12 @@ const ProtobufCMessageDescriptor programmable_psu__calibration_values__descripto
 static const ProtobufCFieldDescriptor programmable_psu__configuration_set__field_descriptors[2] =
 {
   {
-    "calibrationValues",
+    "calibration_values",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProgrammablePsu__ConfigurationSet, type_case),
-    offsetof(ProgrammablePsu__ConfigurationSet, calibrationvalues),
+    offsetof(ProgrammablePsu__ConfigurationSet, calibration_values),
     &programmable_psu__calibration_values__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
@@ -981,7 +981,7 @@ static const ProtobufCFieldDescriptor programmable_psu__configuration_set__field
 };
 static const unsigned programmable_psu__configuration_set__field_indices_by_name[] = {
   1,   /* field[1] = auto_recover */
-  0,   /* field[0] = calibrationValues */
+  0,   /* field[0] = calibration_values */
 };
 static const ProtobufCIntRange programmable_psu__configuration_set__number_ranges[1 + 1] =
 {
