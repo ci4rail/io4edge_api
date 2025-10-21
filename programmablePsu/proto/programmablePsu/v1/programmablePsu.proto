@@ -1,0 +1,178 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/*
+programmablePsu function block defines an interface for a programmable power 
+supply unit (PSU), such as EKF CQ2/SQ2.
+*/
+
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package programmablePsu;
+option go_package = "programmablePsu/v1";
+
+// ============= Configuration =================
+message CalibrationValues {
+    google.protobuf.Timestamp calibration_date = 1;
+    double dac_voffs = 2;
+    double dac_vgain = 3;
+    double dac_coffs = 4;
+    double dac_cgain = 5;
+    double adc_vout_offs = 6;
+    double adc_vout_gain = 7;
+    double adc_vsense_offs = 8;
+    double adc_vsense_gain = 9;
+    double adc_coffs = 10;
+    double adc_cgain = 11;
+}
+
+message ConfigurationSet {
+    oneof type {
+        // save & apply calibration values
+        CalibrationValues calibration_values = 1; 
+        // Set shutdown recovery behavior. 
+        // The PSU will shut down itself (disable its output) when an overtemperature 
+        // condition has been detected. 
+        // The PSU may stay either stay off until application calls 
+        // Recover() or it may re-enable the output when the overtemperature 
+        // condition disappears.
+        // default: auto_recover = true
+        bool auto_recover = 2;
+    }
+}
+
+message ConfigurationSetResponse {
+    // no parameters
+}
+
+message ConfigurationGet {
+    // no parameters
+}
+
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    CalibrationValues calibration_values = 1;
+    bool auto_recover = 2;
+}
+
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    // Maximum supported voltage in Volts
+    double max_voltage = 1;
+    // Maximum supported current in Amps
+    double max_current = 2;
+    // Maximum supported power in Watts
+    double max_power = 3;
+}
+
+// ============= FunctionControl ==================
+
+message SetDefaults {
+    // no parameters
+}
+
+// Set desired voltage level
+// Voltage will be output only if the output is also enabled via setOutputEnabled().
+// Current limit will be adjusted to maximum allowed power if (level * current_limit > max_power).
+message SetVoltageLevel {
+    // voltage level in Volts
+    double level = 1;
+}
+
+message SetOutputEnabled {
+    // true: output enabled, false: output disabled
+    bool enabled = 1;
+}
+
+message SetCurrentLimit {
+    // current limit in Amps
+    double limit = 1;
+}
+
+// Recover from shutdown. Required when the recovery mode is set to manual.
+message Recover {
+    // no parameters    
+}
+
+message FunctionControlSet {
+    oneof type {
+        SetDefaults setDefaults = 1;
+        SetVoltageLevel setVoltageLevel = 2;
+        SetOutputEnabled setOutputEnabled = 3;
+        SetCurrentLimit setCurrentLimit = 4;
+        Recover recover = 5;
+    }
+}
+
+message FunctionControlSetResponse {
+    // no parameters
+}
+
+message FunctionControlGet {
+    // no parameters
+}
+
+message FunctionControlGetResponse {
+    enum DiagFlags {
+        none = 0; // no error
+        internal_error = 0x01; 
+        input_under_voltage = 0x02;
+        input_over_voltage = 0x04;
+        current_limit_active = 0x08;
+        sense_line_error = 0x10;
+    }
+    enum OutputState {
+        off = 0; // output disabled
+        on = 1; // output enabled
+        shutdown = 2; // output disabled due to overtemperature condition
+    }
+
+    // currently set voltage level in Volts
+    double desired_voltage = 1; 
+    // currently measured voltage in Volts at sense lines
+    double measured_sense_voltage = 2; 
+    // currently measured voltage in Volts at output terminals
+    double measured_output_voltage = 3;
+    // currently set current limit in Amps
+    double current_limit = 4;
+    // currently measured current in Amps
+    double measured_current = 5;
+    // error flags (bitmask of DiagFlags)
+    uint32 diag_flags = 6;
+    // output enabled state
+    OutputState output_state = 7;
+    // measured temperature in degree Celsius
+    double temperature = 8;
+}
+
+// ============= StreamControl ==================
+message StreamControlStart {
+    // not implemented
+}
+
+// a Sample contains samples for one or more channels taken at the same time
+message Sample {
+    // not implemented
+}
+
+// data to tranport via stream
+message StreamData {
+    // not implemented
+}
