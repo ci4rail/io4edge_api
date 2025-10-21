@@ -76,14 +76,20 @@ struct  ProgrammablePsu__CalibrationValues
 {
   ProtobufCMessage base;
   Google__Protobuf__Timestamp *calibration_date;
-  double voltage_offset;
-  double voltage_gain;
-  double current_offset;
-  double current_gain;
+  double dac_voffs;
+  double dac_vgain;
+  double dac_coffs;
+  double dac_cgain;
+  double adc_vout_offs;
+  double adc_vout_gain;
+  double adc_vsense_offs;
+  double adc_vsense_gain;
+  double adc_coffs;
+  double adc_cain;
 };
 #define PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__calibration_values__descriptor) \
-    , NULL, 0, 0, 0, 0 }
+    , NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 typedef enum {

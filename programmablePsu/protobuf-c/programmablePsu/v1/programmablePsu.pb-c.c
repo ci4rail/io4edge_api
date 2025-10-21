@@ -862,7 +862,7 @@ void   programmable_psu__stream_data__free_unpacked
   assert(message->base.descriptor == &programmable_psu__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[5] =
+static const ProtobufCFieldDescriptor programmable_psu__calibration_values__field_descriptors[11] =
 {
   {
     "calibration_date",
@@ -877,48 +877,120 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "voltage_offset",
+    "dac_voffs",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, voltage_offset),
+    offsetof(ProgrammablePsu__CalibrationValues, dac_voffs),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "voltage_gain",
+    "dac_vgain",
     3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, voltage_gain),
+    offsetof(ProgrammablePsu__CalibrationValues, dac_vgain),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "current_offset",
+    "dac_coffs",
     4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, current_offset),
+    offsetof(ProgrammablePsu__CalibrationValues, dac_coffs),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "current_gain",
+    "dac_cgain",
     5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, current_gain),
+    offsetof(ProgrammablePsu__CalibrationValues, dac_cgain),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_vout_offs",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_vout_offs),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_vout_gain",
+    7,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_vout_gain),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_vsense_offs",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_vsense_offs),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_vsense_gain",
+    9,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_vsense_gain),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_coffs",
+    10,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_coffs),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "adc_cain",
+    11,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_DOUBLE,
+    0,   /* quantifier_offset */
+    offsetof(ProgrammablePsu__CalibrationValues, adc_cain),
     NULL,
     NULL,
     0,             /* flags */
@@ -926,16 +998,22 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
 };
 static const unsigned programmable_psu__calibration_values__field_indices_by_name[] = {
+  10,   /* field[10] = adc_cain */
+  9,   /* field[9] = adc_coffs */
+  6,   /* field[6] = adc_vout_gain */
+  5,   /* field[5] = adc_vout_offs */
+  8,   /* field[8] = adc_vsense_gain */
+  7,   /* field[7] = adc_vsense_offs */
   0,   /* field[0] = calibration_date */
-  4,   /* field[4] = current_gain */
-  3,   /* field[3] = current_offset */
-  2,   /* field[2] = voltage_gain */
-  1,   /* field[1] = voltage_offset */
+  4,   /* field[4] = dac_cgain */
+  3,   /* field[3] = dac_coffs */
+  2,   /* field[2] = dac_vgain */
+  1,   /* field[1] = dac_voffs */
 };
 static const ProtobufCIntRange programmable_psu__calibration_values__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 0, 11 }
 };
 const ProtobufCMessageDescriptor programmable_psu__calibration_values__descriptor =
 {
@@ -945,7 +1023,7 @@ const ProtobufCMessageDescriptor programmable_psu__calibration_values__descripto
   "ProgrammablePsu__CalibrationValues",
   "programmablePsu",
   sizeof(ProgrammablePsu__CalibrationValues),
-  5,
+  11,
   programmable_psu__calibration_values__field_descriptors,
   programmable_psu__calibration_values__field_indices_by_name,
   1,  programmable_psu__calibration_values__number_ranges,

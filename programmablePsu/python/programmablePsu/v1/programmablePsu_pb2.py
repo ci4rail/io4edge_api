@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(programmablePsu/v1/programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa5\x01\n\x11\x43\x61librationValues\x12\x34\n\x10\x63\x61libration_date\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x16\n\x0evoltage_offset\x18\x02 \x01(\x01\x12\x14\n\x0cvoltage_gain\x18\x03 \x01(\x01\x12\x16\n\x0e\x63urrent_offset\x18\x04 \x01(\x01\x12\x14\n\x0c\x63urrent_gain\x18\x05 \x01(\x01\"t\n\x10\x43onfigurationSet\x12@\n\x12\x63\x61libration_values\x18\x01 \x01(\x0b\x32\".programmablePsu.CalibrationValuesH\x00\x12\x16\n\x0c\x61uto_recover\x18\x02 \x01(\x08H\x00\x42\x06\n\x04type\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"p\n\x18\x43onfigurationGetResponse\x12>\n\x12\x63\x61libration_values\x18\x01 \x01(\x0b\x32\".programmablePsu.CalibrationValues\x12\x14\n\x0c\x61uto_recover\x18\x02 \x01(\x08\"\x17\n\x15\x43onfigurationDescribe\"\\\n\x1d\x43onfigurationDescribeResponse\x12\x13\n\x0bmax_voltage\x18\x01 \x01(\x01\x12\x13\n\x0bmax_current\x18\x02 \x01(\x01\x12\x11\n\tmax_power\x18\x03 \x01(\x01\"\r\n\x0bSetDefaults\" \n\x0fSetVoltageLevel\x12\r\n\x05level\x18\x01 \x01(\x01\"#\n\x10SetOutputEnabled\x12\x0f\n\x07\x65nabled\x18\x01 \x01(\x08\" \n\x0fSetCurrentLimit\x12\r\n\x05limit\x18\x01 \x01(\x01\"\t\n\x07Recover\"\xb7\x02\n\x12\x46unctionControlSet\x12\x33\n\x0bsetDefaults\x18\x01 \x01(\x0b\x32\x1c.programmablePsu.SetDefaultsH\x00\x12;\n\x0fsetVoltageLevel\x18\x02 \x01(\x0b\x32 .programmablePsu.SetVoltageLevelH\x00\x12=\n\x10setOutputEnabled\x18\x03 \x01(\x0b\x32!.programmablePsu.SetOutputEnabledH\x00\x12;\n\x0fsetCurrentLimit\x18\x04 \x01(\x0b\x32 .programmablePsu.SetCurrentLimitH\x00\x12+\n\x07recover\x18\x05 \x01(\x0b\x32\x18.programmablePsu.RecoverH\x00\x42\x06\n\x04type\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12\x46unctionControlGet\"\xda\x03\n\x1a\x46unctionControlGetResponse\x12\x17\n\x0f\x64\x65sired_voltage\x18\x01 \x01(\x01\x12\x1e\n\x16measured_sense_voltage\x18\x02 \x01(\x01\x12\x1f\n\x17measured_output_voltage\x18\x03 \x01(\x01\x12\x15\n\rcurrent_limit\x18\x04 \x01(\x01\x12\x18\n\x10measured_current\x18\x05 \x01(\x01\x12\x12\n\ndiag_flags\x18\x06 \x01(\r\x12M\n\x0coutput_state\x18\x07 \x01(\x0e\x32\x37.programmablePsu.FunctionControlGetResponse.OutputState\x12\x13\n\x0btemperature\x18\x08 \x01(\x01\"\x8a\x01\n\tDiagFlags\x12\x08\n\x04none\x10\x00\x12\x12\n\x0einternal_error\x10\x01\x12\x17\n\x13input_under_voltage\x10\x02\x12\x16\n\x12input_over_voltage\x10\x04\x12\x18\n\x14\x63urrent_limit_active\x10\x08\x12\x14\n\x10sense_line_error\x10\x10\",\n\x0bOutputState\x12\x07\n\x03off\x10\x00\x12\x06\n\x02on\x10\x01\x12\x0c\n\x08shutdown\x10\x02\"\x14\n\x12StreamControlStart\"\x08\n\x06Sample\"\x0c\n\nStreamDataB\x14Z\x12programmablePsu/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n(programmablePsu/v1/programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9a\x02\n\x11\x43\x61librationValues\x12\x34\n\x10\x63\x61libration_date\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\tdac_voffs\x18\x02 \x01(\x01\x12\x11\n\tdac_vgain\x18\x03 \x01(\x01\x12\x11\n\tdac_coffs\x18\x04 \x01(\x01\x12\x11\n\tdac_cgain\x18\x05 \x01(\x01\x12\x15\n\radc_vout_offs\x18\x06 \x01(\x01\x12\x15\n\radc_vout_gain\x18\x07 \x01(\x01\x12\x17\n\x0f\x61\x64\x63_vsense_offs\x18\x08 \x01(\x01\x12\x17\n\x0f\x61\x64\x63_vsense_gain\x18\t \x01(\x01\x12\x11\n\tadc_coffs\x18\n \x01(\x01\x12\x10\n\x08\x61\x64\x63_cain\x18\x0b \x01(\x01\"t\n\x10\x43onfigurationSet\x12@\n\x12\x63\x61libration_values\x18\x01 \x01(\x0b\x32\".programmablePsu.CalibrationValuesH\x00\x12\x16\n\x0c\x61uto_recover\x18\x02 \x01(\x08H\x00\x42\x06\n\x04type\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"p\n\x18\x43onfigurationGetResponse\x12>\n\x12\x63\x61libration_values\x18\x01 \x01(\x0b\x32\".programmablePsu.CalibrationValues\x12\x14\n\x0c\x61uto_recover\x18\x02 \x01(\x08\"\x17\n\x15\x43onfigurationDescribe\"\\\n\x1d\x43onfigurationDescribeResponse\x12\x13\n\x0bmax_voltage\x18\x01 \x01(\x01\x12\x13\n\x0bmax_current\x18\x02 \x01(\x01\x12\x11\n\tmax_power\x18\x03 \x01(\x01\"\r\n\x0bSetDefaults\" \n\x0fSetVoltageLevel\x12\r\n\x05level\x18\x01 \x01(\x01\"#\n\x10SetOutputEnabled\x12\x0f\n\x07\x65nabled\x18\x01 \x01(\x08\" \n\x0fSetCurrentLimit\x12\r\n\x05limit\x18\x01 \x01(\x01\"\t\n\x07Recover\"\xb7\x02\n\x12\x46unctionControlSet\x12\x33\n\x0bsetDefaults\x18\x01 \x01(\x0b\x32\x1c.programmablePsu.SetDefaultsH\x00\x12;\n\x0fsetVoltageLevel\x18\x02 \x01(\x0b\x32 .programmablePsu.SetVoltageLevelH\x00\x12=\n\x10setOutputEnabled\x18\x03 \x01(\x0b\x32!.programmablePsu.SetOutputEnabledH\x00\x12;\n\x0fsetCurrentLimit\x18\x04 \x01(\x0b\x32 .programmablePsu.SetCurrentLimitH\x00\x12+\n\x07recover\x18\x05 \x01(\x0b\x32\x18.programmablePsu.RecoverH\x00\x42\x06\n\x04type\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12\x46unctionControlGet\"\xda\x03\n\x1a\x46unctionControlGetResponse\x12\x17\n\x0f\x64\x65sired_voltage\x18\x01 \x01(\x01\x12\x1e\n\x16measured_sense_voltage\x18\x02 \x01(\x01\x12\x1f\n\x17measured_output_voltage\x18\x03 \x01(\x01\x12\x15\n\rcurrent_limit\x18\x04 \x01(\x01\x12\x18\n\x10measured_current\x18\x05 \x01(\x01\x12\x12\n\ndiag_flags\x18\x06 \x01(\r\x12M\n\x0coutput_state\x18\x07 \x01(\x0e\x32\x37.programmablePsu.FunctionControlGetResponse.OutputState\x12\x13\n\x0btemperature\x18\x08 \x01(\x01\"\x8a\x01\n\tDiagFlags\x12\x08\n\x04none\x10\x00\x12\x12\n\x0einternal_error\x10\x01\x12\x17\n\x13input_under_voltage\x10\x02\x12\x16\n\x12input_over_voltage\x10\x04\x12\x18\n\x14\x63urrent_limit_active\x10\x08\x12\x14\n\x10sense_line_error\x10\x10\",\n\x0bOutputState\x12\x07\n\x03off\x10\x00\x12\x06\n\x02on\x10\x01\x12\x0c\n\x08shutdown\x10\x02\"\x14\n\x12StreamControlStart\"\x08\n\x06Sample\"\x0c\n\nStreamDataB\x14Z\x12programmablePsu/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,45 +34,45 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\022programmablePsu/v1'
   _globals['_CALIBRATIONVALUES']._serialized_start=95
-  _globals['_CALIBRATIONVALUES']._serialized_end=260
-  _globals['_CONFIGURATIONSET']._serialized_start=262
-  _globals['_CONFIGURATIONSET']._serialized_end=378
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=380
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=406
-  _globals['_CONFIGURATIONGET']._serialized_start=408
-  _globals['_CONFIGURATIONGET']._serialized_end=426
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=428
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=540
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=542
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=565
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=567
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=659
-  _globals['_SETDEFAULTS']._serialized_start=661
-  _globals['_SETDEFAULTS']._serialized_end=674
-  _globals['_SETVOLTAGELEVEL']._serialized_start=676
-  _globals['_SETVOLTAGELEVEL']._serialized_end=708
-  _globals['_SETOUTPUTENABLED']._serialized_start=710
-  _globals['_SETOUTPUTENABLED']._serialized_end=745
-  _globals['_SETCURRENTLIMIT']._serialized_start=747
-  _globals['_SETCURRENTLIMIT']._serialized_end=779
-  _globals['_RECOVER']._serialized_start=781
-  _globals['_RECOVER']._serialized_end=790
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=793
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=1104
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=1106
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=1134
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=1136
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=1156
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=1159
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=1633
-  _globals['_FUNCTIONCONTROLGETRESPONSE_DIAGFLAGS']._serialized_start=1449
-  _globals['_FUNCTIONCONTROLGETRESPONSE_DIAGFLAGS']._serialized_end=1587
-  _globals['_FUNCTIONCONTROLGETRESPONSE_OUTPUTSTATE']._serialized_start=1589
-  _globals['_FUNCTIONCONTROLGETRESPONSE_OUTPUTSTATE']._serialized_end=1633
-  _globals['_STREAMCONTROLSTART']._serialized_start=1635
-  _globals['_STREAMCONTROLSTART']._serialized_end=1655
-  _globals['_SAMPLE']._serialized_start=1657
-  _globals['_SAMPLE']._serialized_end=1665
-  _globals['_STREAMDATA']._serialized_start=1667
-  _globals['_STREAMDATA']._serialized_end=1679
+  _globals['_CALIBRATIONVALUES']._serialized_end=377
+  _globals['_CONFIGURATIONSET']._serialized_start=379
+  _globals['_CONFIGURATIONSET']._serialized_end=495
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=497
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=523
+  _globals['_CONFIGURATIONGET']._serialized_start=525
+  _globals['_CONFIGURATIONGET']._serialized_end=543
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=545
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=657
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=659
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=682
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=684
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=776
+  _globals['_SETDEFAULTS']._serialized_start=778
+  _globals['_SETDEFAULTS']._serialized_end=791
+  _globals['_SETVOLTAGELEVEL']._serialized_start=793
+  _globals['_SETVOLTAGELEVEL']._serialized_end=825
+  _globals['_SETOUTPUTENABLED']._serialized_start=827
+  _globals['_SETOUTPUTENABLED']._serialized_end=862
+  _globals['_SETCURRENTLIMIT']._serialized_start=864
+  _globals['_SETCURRENTLIMIT']._serialized_end=896
+  _globals['_RECOVER']._serialized_start=898
+  _globals['_RECOVER']._serialized_end=907
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=910
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=1221
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=1223
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=1251
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=1253
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=1273
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=1276
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=1750
+  _globals['_FUNCTIONCONTROLGETRESPONSE_DIAGFLAGS']._serialized_start=1566
+  _globals['_FUNCTIONCONTROLGETRESPONSE_DIAGFLAGS']._serialized_end=1704
+  _globals['_FUNCTIONCONTROLGETRESPONSE_OUTPUTSTATE']._serialized_start=1706
+  _globals['_FUNCTIONCONTROLGETRESPONSE_OUTPUTSTATE']._serialized_end=1750
+  _globals['_STREAMCONTROLSTART']._serialized_start=1752
+  _globals['_STREAMCONTROLSTART']._serialized_end=1772
+  _globals['_SAMPLE']._serialized_start=1774
+  _globals['_SAMPLE']._serialized_end=1782
+  _globals['_STREAMDATA']._serialized_start=1784
+  _globals['_STREAMDATA']._serialized_end=1796
 # @@protoc_insertion_point(module_scope)

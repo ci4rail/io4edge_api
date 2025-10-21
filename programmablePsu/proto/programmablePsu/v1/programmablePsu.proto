@@ -28,10 +28,16 @@ option go_package = "programmablePsu/v1";
 // ============= Configuration =================
 message CalibrationValues {
     google.protobuf.Timestamp calibration_date = 1;
-    double voltage_offset = 2;
-    double voltage_gain = 3;
-    double current_offset = 4;
-    double current_gain = 5;
+    double dac_voffs = 2;
+    double dac_vgain = 3;
+    double dac_coffs = 4;
+    double dac_cgain = 5;
+    double adc_vout_offs = 6;
+    double adc_vout_gain = 7;
+    double adc_vsense_offs = 8;
+    double adc_vsense_gain = 9;
+    double adc_coffs = 10;
+    double adc_cain = 11;
 }
 
 message ConfigurationSet {

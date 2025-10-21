@@ -152,10 +152,16 @@ func (FunctionControlGetResponse_OutputState) EnumDescriptor() ([]byte, []int) {
 type CalibrationValues struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	CalibrationDate *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=calibration_date,json=calibrationDate,proto3" json:"calibration_date,omitempty"`
-	VoltageOffset   float64                `protobuf:"fixed64,2,opt,name=voltage_offset,json=voltageOffset,proto3" json:"voltage_offset,omitempty"`
-	VoltageGain     float64                `protobuf:"fixed64,3,opt,name=voltage_gain,json=voltageGain,proto3" json:"voltage_gain,omitempty"`
-	CurrentOffset   float64                `protobuf:"fixed64,4,opt,name=current_offset,json=currentOffset,proto3" json:"current_offset,omitempty"`
-	CurrentGain     float64                `protobuf:"fixed64,5,opt,name=current_gain,json=currentGain,proto3" json:"current_gain,omitempty"`
+	DacVoffs        float64                `protobuf:"fixed64,2,opt,name=dac_voffs,json=dacVoffs,proto3" json:"dac_voffs,omitempty"`
+	DacVgain        float64                `protobuf:"fixed64,3,opt,name=dac_vgain,json=dacVgain,proto3" json:"dac_vgain,omitempty"`
+	DacCoffs        float64                `protobuf:"fixed64,4,opt,name=dac_coffs,json=dacCoffs,proto3" json:"dac_coffs,omitempty"`
+	DacCgain        float64                `protobuf:"fixed64,5,opt,name=dac_cgain,json=dacCgain,proto3" json:"dac_cgain,omitempty"`
+	AdcVoutOffs     float64                `protobuf:"fixed64,6,opt,name=adc_vout_offs,json=adcVoutOffs,proto3" json:"adc_vout_offs,omitempty"`
+	AdcVoutGain     float64                `protobuf:"fixed64,7,opt,name=adc_vout_gain,json=adcVoutGain,proto3" json:"adc_vout_gain,omitempty"`
+	AdcVsenseOffs   float64                `protobuf:"fixed64,8,opt,name=adc_vsense_offs,json=adcVsenseOffs,proto3" json:"adc_vsense_offs,omitempty"`
+	AdcVsenseGain   float64                `protobuf:"fixed64,9,opt,name=adc_vsense_gain,json=adcVsenseGain,proto3" json:"adc_vsense_gain,omitempty"`
+	AdcCoffs        float64                `protobuf:"fixed64,10,opt,name=adc_coffs,json=adcCoffs,proto3" json:"adc_coffs,omitempty"`
+	AdcCain         float64                `protobuf:"fixed64,11,opt,name=adc_cain,json=adcCain,proto3" json:"adc_cain,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -197,30 +203,72 @@ func (x *CalibrationValues) GetCalibrationDate() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *CalibrationValues) GetVoltageOffset() float64 {
+func (x *CalibrationValues) GetDacVoffs() float64 {
 	if x != nil {
-		return x.VoltageOffset
+		return x.DacVoffs
 	}
 	return 0
 }
 
-func (x *CalibrationValues) GetVoltageGain() float64 {
+func (x *CalibrationValues) GetDacVgain() float64 {
 	if x != nil {
-		return x.VoltageGain
+		return x.DacVgain
 	}
 	return 0
 }
 
-func (x *CalibrationValues) GetCurrentOffset() float64 {
+func (x *CalibrationValues) GetDacCoffs() float64 {
 	if x != nil {
-		return x.CurrentOffset
+		return x.DacCoffs
 	}
 	return 0
 }
 
-func (x *CalibrationValues) GetCurrentGain() float64 {
+func (x *CalibrationValues) GetDacCgain() float64 {
 	if x != nil {
-		return x.CurrentGain
+		return x.DacCgain
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcVoutOffs() float64 {
+	if x != nil {
+		return x.AdcVoutOffs
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcVoutGain() float64 {
+	if x != nil {
+		return x.AdcVoutGain
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcVsenseOffs() float64 {
+	if x != nil {
+		return x.AdcVsenseOffs
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcVsenseGain() float64 {
+	if x != nil {
+		return x.AdcVsenseGain
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcCoffs() float64 {
+	if x != nil {
+		return x.AdcCoffs
+	}
+	return 0
+}
+
+func (x *CalibrationValues) GetAdcCain() float64 {
+	if x != nil {
+		return x.AdcCain
 	}
 	return 0
 }
@@ -1175,13 +1223,20 @@ var File_programmablePsu_proto protoreflect.FileDescriptor
 
 const file_programmablePsu_proto_rawDesc = "" +
 	"\n" +
-	"\x15programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\x01\n" +
+	"\x15programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\x03\n" +
 	"\x11CalibrationValues\x12E\n" +
-	"\x10calibration_date\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0fcalibrationDate\x12%\n" +
-	"\x0evoltage_offset\x18\x02 \x01(\x01R\rvoltageOffset\x12!\n" +
-	"\fvoltage_gain\x18\x03 \x01(\x01R\vvoltageGain\x12%\n" +
-	"\x0ecurrent_offset\x18\x04 \x01(\x01R\rcurrentOffset\x12!\n" +
-	"\fcurrent_gain\x18\x05 \x01(\x01R\vcurrentGain\"\x94\x01\n" +
+	"\x10calibration_date\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0fcalibrationDate\x12\x1b\n" +
+	"\tdac_voffs\x18\x02 \x01(\x01R\bdacVoffs\x12\x1b\n" +
+	"\tdac_vgain\x18\x03 \x01(\x01R\bdacVgain\x12\x1b\n" +
+	"\tdac_coffs\x18\x04 \x01(\x01R\bdacCoffs\x12\x1b\n" +
+	"\tdac_cgain\x18\x05 \x01(\x01R\bdacCgain\x12\"\n" +
+	"\radc_vout_offs\x18\x06 \x01(\x01R\vadcVoutOffs\x12\"\n" +
+	"\radc_vout_gain\x18\a \x01(\x01R\vadcVoutGain\x12&\n" +
+	"\x0fadc_vsense_offs\x18\b \x01(\x01R\radcVsenseOffs\x12&\n" +
+	"\x0fadc_vsense_gain\x18\t \x01(\x01R\radcVsenseGain\x12\x1b\n" +
+	"\tadc_coffs\x18\n" +
+	" \x01(\x01R\badcCoffs\x12\x19\n" +
+	"\badc_cain\x18\v \x01(\x01R\aadcCain\"\x94\x01\n" +
 	"\x10ConfigurationSet\x12S\n" +
 	"\x12calibration_values\x18\x01 \x01(\v2\".programmablePsu.CalibrationValuesH\x00R\x11calibrationValues\x12#\n" +
 	"\fauto_recover\x18\x02 \x01(\bH\x00R\vautoRecoverB\x06\n" +
