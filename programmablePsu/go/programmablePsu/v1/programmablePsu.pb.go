@@ -161,7 +161,7 @@ type CalibrationValues struct {
 	AdcVsenseOffs   float64                `protobuf:"fixed64,8,opt,name=adc_vsense_offs,json=adcVsenseOffs,proto3" json:"adc_vsense_offs,omitempty"`
 	AdcVsenseGain   float64                `protobuf:"fixed64,9,opt,name=adc_vsense_gain,json=adcVsenseGain,proto3" json:"adc_vsense_gain,omitempty"`
 	AdcCoffs        float64                `protobuf:"fixed64,10,opt,name=adc_coffs,json=adcCoffs,proto3" json:"adc_coffs,omitempty"`
-	AdcCain         float64                `protobuf:"fixed64,11,opt,name=adc_cain,json=adcCain,proto3" json:"adc_cain,omitempty"`
+	AdcCgain        float64                `protobuf:"fixed64,11,opt,name=adc_cgain,json=adcCgain,proto3" json:"adc_cgain,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -266,9 +266,9 @@ func (x *CalibrationValues) GetAdcCoffs() float64 {
 	return 0
 }
 
-func (x *CalibrationValues) GetAdcCain() float64 {
+func (x *CalibrationValues) GetAdcCgain() float64 {
 	if x != nil {
-		return x.AdcCain
+		return x.AdcCgain
 	}
 	return 0
 }
@@ -1223,7 +1223,7 @@ var File_programmablePsu_proto protoreflect.FileDescriptor
 
 const file_programmablePsu_proto_rawDesc = "" +
 	"\n" +
-	"\x15programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\x03\n" +
+	"\x15programmablePsu.proto\x12\x0fprogrammablePsu\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x03\n" +
 	"\x11CalibrationValues\x12E\n" +
 	"\x10calibration_date\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0fcalibrationDate\x12\x1b\n" +
 	"\tdac_voffs\x18\x02 \x01(\x01R\bdacVoffs\x12\x1b\n" +
@@ -1235,8 +1235,8 @@ const file_programmablePsu_proto_rawDesc = "" +
 	"\x0fadc_vsense_offs\x18\b \x01(\x01R\radcVsenseOffs\x12&\n" +
 	"\x0fadc_vsense_gain\x18\t \x01(\x01R\radcVsenseGain\x12\x1b\n" +
 	"\tadc_coffs\x18\n" +
-	" \x01(\x01R\badcCoffs\x12\x19\n" +
-	"\badc_cain\x18\v \x01(\x01R\aadcCain\"\x94\x01\n" +
+	" \x01(\x01R\badcCoffs\x12\x1b\n" +
+	"\tadc_cgain\x18\v \x01(\x01R\badcCgain\"\x94\x01\n" +
 	"\x10ConfigurationSet\x12S\n" +
 	"\x12calibration_values\x18\x01 \x01(\v2\".programmablePsu.CalibrationValuesH\x00R\x11calibrationValues\x12#\n" +
 	"\fauto_recover\x18\x02 \x01(\bH\x00R\vautoRecoverB\x06\n" +

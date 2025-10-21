@@ -37,7 +37,7 @@ message CalibrationValues {
     double adc_vsense_offs = 8;
     double adc_vsense_gain = 9;
     double adc_coffs = 10;
-    double adc_cain = 11;
+    double adc_cgain = 11;
 }
 
 message ConfigurationSet {

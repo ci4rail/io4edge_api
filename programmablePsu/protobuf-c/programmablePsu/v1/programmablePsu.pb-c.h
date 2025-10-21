@@ -85,7 +85,7 @@ struct  ProgrammablePsu__CalibrationValues
   double adc_vsense_offs;
   double adc_vsense_gain;
   double adc_coffs;
-  double adc_cain;
+  double adc_cgain;
 };
 #define PROGRAMMABLE_PSU__CALIBRATION_VALUES__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&programmable_psu__calibration_values__descriptor) \

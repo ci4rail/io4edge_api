@@ -985,12 +985,12 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "adc_cain",
+    "adc_cgain",
     11,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_DOUBLE,
     0,   /* quantifier_offset */
-    offsetof(ProgrammablePsu__CalibrationValues, adc_cain),
+    offsetof(ProgrammablePsu__CalibrationValues, adc_cgain),
     NULL,
     NULL,
     0,             /* flags */
@@ -998,7 +998,7 @@ static const ProtobufCFieldDescriptor programmable_psu__calibration_values__fiel
   },
 };
 static const unsigned programmable_psu__calibration_values__field_indices_by_name[] = {
-  10,   /* field[10] = adc_cain */
+  10,   /* field[10] = adc_cgain */
   9,   /* field[9] = adc_coffs */
   6,   /* field[6] = adc_vout_gain */
   5,   /* field[5] = adc_vout_offs */
