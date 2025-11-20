@@ -322,6 +322,7 @@ type TraceletMetrics struct {
 	UptimeSeconds                        int64                  `protobuf:"varint,71,opt,name=uptime_seconds,json=uptimeSeconds,proto3" json:"uptime_seconds,omitempty"`                                                                            // Uptime in seconds since last reboot
 	SleepManagerState                    int64                  `protobuf:"varint,72,opt,name=sleep_manager_state,json=sleepManagerState,proto3" json:"sleep_manager_state,omitempty"`                                                              // Sleep Manager State (0=UNDEF, 1=DISABLED, 2=NORMAL, 3=WANT_SLEEP, 4=WANT_SLEEP_CONFIRM, 5=PREPARE_SLEEP, 6=SLEEP, 7=WAKE)
 	LastPowerCutUnixSeconds              int64                  `protobuf:"varint,73,opt,name=last_power_cut_unix_seconds,json=lastPowerCutUnixSeconds,proto3" json:"last_power_cut_unix_seconds,omitempty"`                                        // Last power cut time in seconds since 1.1.1970 UTC
+	MileageMm                            int64                  `protobuf:"varint,74,opt,name=mileage_mm,json=mileageMm,proto3" json:"mileage_mm,omitempty"`                                                                                        // Traveled distance in millimeters
 	ResetCount__Type__Poweron            int64                  `protobuf:"varint,80,opt,name=reset_count___type___poweron,json=resetCountTypePoweron,proto3" json:"reset_count___type___poweron,omitempty"`                                        // Number of power-on resets
 	ResetCount__Type__Software           int64                  `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets
 	ResetCount__Type__Panic              int64                  `protobuf:"varint,82,opt,name=reset_count___type___panic,json=resetCountTypePanic,proto3" json:"reset_count___type___panic,omitempty"`                                              // Number of panic resets
@@ -788,6 +789,13 @@ func (x *TraceletMetrics) GetSleepManagerState() int64 {
 func (x *TraceletMetrics) GetLastPowerCutUnixSeconds() int64 {
 	if x != nil {
 		return x.LastPowerCutUnixSeconds
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetMileageMm() int64 {
+	if x != nil {
+		return x.MileageMm
 	}
 	return 0
 }
@@ -1463,7 +1471,7 @@ const file_tracelet_proto_rawDesc = "" +
 	"\x0fCAB_B_DIRECTION\x10\x02B\x06\n" +
 	"\x04type\")\n" +
 	"\x11TraceletMessageID\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\fR\x05value\"\xef\x1d\n" +
+	"\x05value\x18\x01 \x01(\fR\x05value\"\x8e\x1e\n" +
 	"\x0fTraceletMetrics\x123\n" +
 	"\x18health___type___uwb_comm\x18\x01 \x01(\x03R\x11healthTypeUwbComm\x12;\n" +
 	"\x1chealth___type___uwb_firmware\x18\x02 \x01(\x03R\x15healthTypeUwbFirmware\x127\n" +
@@ -1528,7 +1536,9 @@ const file_tracelet_proto_rawDesc = "" +
 	"\x1acpu_load_percent___cpu___1\x18F \x01(\x03R\x12cpuLoadPercentCpu1\x12%\n" +
 	"\x0euptime_seconds\x18G \x01(\x03R\ruptimeSeconds\x12.\n" +
 	"\x13sleep_manager_state\x18H \x01(\x03R\x11sleepManagerState\x12<\n" +
-	"\x1blast_power_cut_unix_seconds\x18I \x01(\x03R\x17lastPowerCutUnixSeconds\x12;\n" +
+	"\x1blast_power_cut_unix_seconds\x18I \x01(\x03R\x17lastPowerCutUnixSeconds\x12\x1d\n" +
+	"\n" +
+	"mileage_mm\x18J \x01(\x03R\tmileageMm\x12;\n" +
 	"\x1creset_count___type___poweron\x18P \x01(\x03R\x15resetCountTypePoweron\x12=\n" +
 	"\x1dreset_count___type___software\x18Q \x01(\x03R\x16resetCountTypeSoftware\x127\n" +
 	"\x1areset_count___type___panic\x18R \x01(\x03R\x13resetCountTypePanic\x121\n" +
