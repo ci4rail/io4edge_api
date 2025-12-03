@@ -23,8 +23,8 @@ typedef struct Ssm__ConfigurationGetResponse Ssm__ConfigurationGetResponse;
 typedef struct Ssm__ConfigurationDescribe Ssm__ConfigurationDescribe;
 typedef struct Ssm__ConfigurationDescribeResponse Ssm__ConfigurationDescribeResponse;
 typedef struct Ssm__ConfigurationResponse Ssm__ConfigurationResponse;
-typedef struct Ssm__StateCommandError Ssm__StateCommandError;
-typedef struct Ssm__HostCommandError Ssm__HostCommandError;
+typedef struct Ssm__StateCommandResponse Ssm__StateCommandResponse;
+typedef struct Ssm__HostCommandResponse Ssm__HostCommandResponse;
 typedef struct Ssm__FunctionControlGet Ssm__FunctionControlGet;
 typedef struct Ssm__FunctionControlSet Ssm__FunctionControlSet;
 typedef struct Ssm__FunctionControlGetResponse Ssm__FunctionControlGetResponse;
@@ -108,40 +108,40 @@ typedef enum _Ssm__SystemState {
   SSM__SYSTEM_STATE__POWERCUT = 10
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__SYSTEM_STATE)
 } Ssm__SystemState;
-typedef enum _Ssm__StateCommandErrorType {
+typedef enum _Ssm__StateCommandResponseType {
   /*
    * no error
    */
-  SSM__STATE_COMMAND_ERROR_TYPE__STATE_OK = 0,
+  SSM__STATE_COMMAND_RESPONSE_TYPE__STATE_OK = 0,
   /*
    * invalid state transition
    */
-  SSM__STATE_COMMAND_ERROR_TYPE__INVALID_STATE = 1,
+  SSM__STATE_COMMAND_RESPONSE_TYPE__INVALID_STATE_ERROR = 1,
   /*
    * unknown error occurred
    */
-  SSM__STATE_COMMAND_ERROR_TYPE__UNKNOWN_STATE_ERROR = 2
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__STATE_COMMAND_ERROR_TYPE)
-} Ssm__StateCommandErrorType;
-typedef enum _Ssm__HostCommandErrorType {
+  SSM__STATE_COMMAND_RESPONSE_TYPE__UNKNOWN_STATE_ERROR = 2
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__STATE_COMMAND_RESPONSE_TYPE)
+} Ssm__StateCommandResponseType;
+typedef enum _Ssm__HostCommandResponseType {
   /*
    * no error
    */
-  SSM__HOST_COMMAND_ERROR_TYPE__CMD_OK = 0,
+  SSM__HOST_COMMAND_RESPONSE_TYPE__CMD_OK = 0,
   /*
    * invalid state for host command
    */
-  SSM__HOST_COMMAND_ERROR_TYPE__INVALID_CMD_STATE = 1,
+  SSM__HOST_COMMAND_RESPONSE_TYPE__INVALID_CMD_STATE_ERROR = 1,
   /*
    * command execution failed
    */
-  SSM__HOST_COMMAND_ERROR_TYPE__CMD_FAILED = 2,
+  SSM__HOST_COMMAND_RESPONSE_TYPE__CMD_FAILED_ERROR = 2,
   /*
    * unknown error occurred
    */
-  SSM__HOST_COMMAND_ERROR_TYPE__UNKNOWN_CMD_ERROR = 3
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__HOST_COMMAND_ERROR_TYPE)
-} Ssm__HostCommandErrorType;
+  SSM__HOST_COMMAND_RESPONSE_TYPE__UNKNOWN_CMD_ERROR = 3
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__HOST_COMMAND_RESPONSE_TYPE)
+} Ssm__HostCommandResponseType;
 
 /* --- messages --- */
 
@@ -513,38 +513,38 @@ struct  Ssm__ConfigurationResponse
     , SSM__CONFIGURATION_RESPONSE__TYPE__NOT_SET, {0} }
 
 
-struct  Ssm__StateCommandError
+struct  Ssm__StateCommandResponse
 {
   ProtobufCMessage base;
   /*
-   * type of error
+   * response type
    */
-  Ssm__StateCommandErrorType type;
+  Ssm__StateCommandResponseType response;
+  /*
+   * response message
+   */
+  char *message;
+};
+#define SSM__STATE_COMMAND_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&ssm__state_command_response__descriptor) \
+    , SSM__STATE_COMMAND_RESPONSE_TYPE__STATE_OK, (char *)protobuf_c_empty_string }
+
+
+struct  Ssm__HostCommandResponse
+{
+  ProtobufCMessage base;
+  /*
+   * response type
+   */
+  Ssm__HostCommandResponseType response;
   /*
    * error message
    */
   char *message;
 };
-#define SSM__STATE_COMMAND_ERROR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&ssm__state_command_error__descriptor) \
-    , SSM__STATE_COMMAND_ERROR_TYPE__STATE_OK, (char *)protobuf_c_empty_string }
-
-
-struct  Ssm__HostCommandError
-{
-  ProtobufCMessage base;
-  /*
-   * type of error
-   */
-  Ssm__HostCommandErrorType type;
-  /*
-   * error message
-   */
-  char *message;
-};
-#define SSM__HOST_COMMAND_ERROR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&ssm__host_command_error__descriptor) \
-    , SSM__HOST_COMMAND_ERROR_TYPE__CMD_OK, (char *)protobuf_c_empty_string }
+#define SSM__HOST_COMMAND_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&ssm__host_command_response__descriptor) \
+    , SSM__HOST_COMMAND_RESPONSE_TYPE__CMD_OK, (char *)protobuf_c_empty_string }
 
 
 /*
@@ -645,8 +645,8 @@ struct  Ssm__FunctionControlSetResponse
   ProtobufCMessage base;
   Ssm__FunctionControlSetResponse__ResultCase result_case;
   union {
-    Ssm__StateCommandError *state_error;
-    Ssm__HostCommandError *host_error;
+    Ssm__StateCommandResponse *state_error;
+    Ssm__HostCommandResponse *host_error;
   };
 };
 #define SSM__FUNCTION_CONTROL_SET_RESPONSE__INIT \
@@ -812,43 +812,43 @@ Ssm__ConfigurationResponse *
 void   ssm__configuration_response__free_unpacked
                      (Ssm__ConfigurationResponse *message,
                       ProtobufCAllocator *allocator);
-/* Ssm__StateCommandError methods */
-void   ssm__state_command_error__init
-                     (Ssm__StateCommandError         *message);
-size_t ssm__state_command_error__get_packed_size
-                     (const Ssm__StateCommandError   *message);
-size_t ssm__state_command_error__pack
-                     (const Ssm__StateCommandError   *message,
+/* Ssm__StateCommandResponse methods */
+void   ssm__state_command_response__init
+                     (Ssm__StateCommandResponse         *message);
+size_t ssm__state_command_response__get_packed_size
+                     (const Ssm__StateCommandResponse   *message);
+size_t ssm__state_command_response__pack
+                     (const Ssm__StateCommandResponse   *message,
                       uint8_t             *out);
-size_t ssm__state_command_error__pack_to_buffer
-                     (const Ssm__StateCommandError   *message,
+size_t ssm__state_command_response__pack_to_buffer
+                     (const Ssm__StateCommandResponse   *message,
                       ProtobufCBuffer     *buffer);
-Ssm__StateCommandError *
-       ssm__state_command_error__unpack
+Ssm__StateCommandResponse *
+       ssm__state_command_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   ssm__state_command_error__free_unpacked
-                     (Ssm__StateCommandError *message,
+void   ssm__state_command_response__free_unpacked
+                     (Ssm__StateCommandResponse *message,
                       ProtobufCAllocator *allocator);
-/* Ssm__HostCommandError methods */
-void   ssm__host_command_error__init
-                     (Ssm__HostCommandError         *message);
-size_t ssm__host_command_error__get_packed_size
-                     (const Ssm__HostCommandError   *message);
-size_t ssm__host_command_error__pack
-                     (const Ssm__HostCommandError   *message,
+/* Ssm__HostCommandResponse methods */
+void   ssm__host_command_response__init
+                     (Ssm__HostCommandResponse         *message);
+size_t ssm__host_command_response__get_packed_size
+                     (const Ssm__HostCommandResponse   *message);
+size_t ssm__host_command_response__pack
+                     (const Ssm__HostCommandResponse   *message,
                       uint8_t             *out);
-size_t ssm__host_command_error__pack_to_buffer
-                     (const Ssm__HostCommandError   *message,
+size_t ssm__host_command_response__pack_to_buffer
+                     (const Ssm__HostCommandResponse   *message,
                       ProtobufCBuffer     *buffer);
-Ssm__HostCommandError *
-       ssm__host_command_error__unpack
+Ssm__HostCommandResponse *
+       ssm__host_command_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   ssm__host_command_error__free_unpacked
-                     (Ssm__HostCommandError *message,
+void   ssm__host_command_response__free_unpacked
+                     (Ssm__HostCommandResponse *message,
                       ProtobufCAllocator *allocator);
 /* Ssm__FunctionControlGet methods */
 void   ssm__function_control_get__init
@@ -987,11 +987,11 @@ typedef void (*Ssm__ConfigurationDescribeResponse_Closure)
 typedef void (*Ssm__ConfigurationResponse_Closure)
                  (const Ssm__ConfigurationResponse *message,
                   void *closure_data);
-typedef void (*Ssm__StateCommandError_Closure)
-                 (const Ssm__StateCommandError *message,
+typedef void (*Ssm__StateCommandResponse_Closure)
+                 (const Ssm__StateCommandResponse *message,
                   void *closure_data);
-typedef void (*Ssm__HostCommandError_Closure)
-                 (const Ssm__HostCommandError *message,
+typedef void (*Ssm__HostCommandResponse_Closure)
+                 (const Ssm__HostCommandResponse *message,
                   void *closure_data);
 typedef void (*Ssm__FunctionControlGet_Closure)
                  (const Ssm__FunctionControlGet *message,
@@ -1020,8 +1020,8 @@ typedef void (*Ssm__StreamData_Closure)
 extern const ProtobufCEnumDescriptor    ssm__reboot_method__descriptor;
 extern const ProtobufCEnumDescriptor    ssm__watchdog_strategy__descriptor;
 extern const ProtobufCEnumDescriptor    ssm__system_state__descriptor;
-extern const ProtobufCEnumDescriptor    ssm__state_command_error_type__descriptor;
-extern const ProtobufCEnumDescriptor    ssm__host_command_error_type__descriptor;
+extern const ProtobufCEnumDescriptor    ssm__state_command_response_type__descriptor;
+extern const ProtobufCEnumDescriptor    ssm__host_command_response_type__descriptor;
 extern const ProtobufCMessageDescriptor ssm__configuration_set__descriptor;
 extern const ProtobufCMessageDescriptor ssm__configuration_set_response__descriptor;
 extern const ProtobufCMessageDescriptor ssm__configuration_get__descriptor;
@@ -1029,8 +1029,8 @@ extern const ProtobufCMessageDescriptor ssm__configuration_get_response__descrip
 extern const ProtobufCMessageDescriptor ssm__configuration_describe__descriptor;
 extern const ProtobufCMessageDescriptor ssm__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor ssm__configuration_response__descriptor;
-extern const ProtobufCMessageDescriptor ssm__state_command_error__descriptor;
-extern const ProtobufCMessageDescriptor ssm__host_command_error__descriptor;
+extern const ProtobufCMessageDescriptor ssm__state_command_response__descriptor;
+extern const ProtobufCMessageDescriptor ssm__host_command_response__descriptor;
 extern const ProtobufCMessageDescriptor ssm__function_control_get__descriptor;
 extern const ProtobufCMessageDescriptor ssm__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor ssm__function_control_get_response__descriptor;

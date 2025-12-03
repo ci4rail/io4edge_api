@@ -29,7 +29,7 @@ C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 %_pb2.py ::  %.proto
 	@mkdir -p python/
 	@echo " generating $@"
-	@protoc -I./proto -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --python_out=python/
+	@protoc -I./proto -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --python_out=python/ --pyi_out=python/
 
 PY_TARGETS := $(PROTOS:.proto=_pb2.py)
 

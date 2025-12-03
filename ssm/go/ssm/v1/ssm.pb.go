@@ -205,104 +205,104 @@ func (SystemState) EnumDescriptor() ([]byte, []int) {
 	return file_ssm_proto_rawDescGZIP(), []int{2}
 }
 
-type StateCommandErrorType int32
+type StateCommandResponseType int32
 
 const (
-	StateCommandErrorType_STATE_OK            StateCommandErrorType = 0 // no error
-	StateCommandErrorType_INVALID_STATE       StateCommandErrorType = 1 // invalid state transition
-	StateCommandErrorType_UNKNOWN_STATE_ERROR StateCommandErrorType = 2 // unknown error occurred
+	StateCommandResponseType_STATE_OK            StateCommandResponseType = 0 // no error
+	StateCommandResponseType_INVALID_STATE_ERROR StateCommandResponseType = 1 // invalid state transition
+	StateCommandResponseType_UNKNOWN_STATE_ERROR StateCommandResponseType = 2 // unknown error occurred
 )
 
-// Enum value maps for StateCommandErrorType.
+// Enum value maps for StateCommandResponseType.
 var (
-	StateCommandErrorType_name = map[int32]string{
+	StateCommandResponseType_name = map[int32]string{
 		0: "STATE_OK",
-		1: "INVALID_STATE",
+		1: "INVALID_STATE_ERROR",
 		2: "UNKNOWN_STATE_ERROR",
 	}
-	StateCommandErrorType_value = map[string]int32{
+	StateCommandResponseType_value = map[string]int32{
 		"STATE_OK":            0,
-		"INVALID_STATE":       1,
+		"INVALID_STATE_ERROR": 1,
 		"UNKNOWN_STATE_ERROR": 2,
 	}
 )
 
-func (x StateCommandErrorType) Enum() *StateCommandErrorType {
-	p := new(StateCommandErrorType)
+func (x StateCommandResponseType) Enum() *StateCommandResponseType {
+	p := new(StateCommandResponseType)
 	*p = x
 	return p
 }
 
-func (x StateCommandErrorType) String() string {
+func (x StateCommandResponseType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (StateCommandErrorType) Descriptor() protoreflect.EnumDescriptor {
+func (StateCommandResponseType) Descriptor() protoreflect.EnumDescriptor {
 	return file_ssm_proto_enumTypes[3].Descriptor()
 }
 
-func (StateCommandErrorType) Type() protoreflect.EnumType {
+func (StateCommandResponseType) Type() protoreflect.EnumType {
 	return &file_ssm_proto_enumTypes[3]
 }
 
-func (x StateCommandErrorType) Number() protoreflect.EnumNumber {
+func (x StateCommandResponseType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use StateCommandErrorType.Descriptor instead.
-func (StateCommandErrorType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use StateCommandResponseType.Descriptor instead.
+func (StateCommandResponseType) EnumDescriptor() ([]byte, []int) {
 	return file_ssm_proto_rawDescGZIP(), []int{3}
 }
 
-type HostCommandErrorType int32
+type HostCommandResponseType int32
 
 const (
-	HostCommandErrorType_CMD_OK            HostCommandErrorType = 0 // no error
-	HostCommandErrorType_INVALID_CMD_STATE HostCommandErrorType = 1 // invalid state for host command
-	HostCommandErrorType_CMD_FAILED        HostCommandErrorType = 2 // command execution failed
-	HostCommandErrorType_UNKNOWN_CMD_ERROR HostCommandErrorType = 3 // unknown error occurred
+	HostCommandResponseType_CMD_OK                  HostCommandResponseType = 0 // no error
+	HostCommandResponseType_INVALID_CMD_STATE_ERROR HostCommandResponseType = 1 // invalid state for host command
+	HostCommandResponseType_CMD_FAILED_ERROR        HostCommandResponseType = 2 // command execution failed
+	HostCommandResponseType_UNKNOWN_CMD_ERROR       HostCommandResponseType = 3 // unknown error occurred
 )
 
-// Enum value maps for HostCommandErrorType.
+// Enum value maps for HostCommandResponseType.
 var (
-	HostCommandErrorType_name = map[int32]string{
+	HostCommandResponseType_name = map[int32]string{
 		0: "CMD_OK",
-		1: "INVALID_CMD_STATE",
-		2: "CMD_FAILED",
+		1: "INVALID_CMD_STATE_ERROR",
+		2: "CMD_FAILED_ERROR",
 		3: "UNKNOWN_CMD_ERROR",
 	}
-	HostCommandErrorType_value = map[string]int32{
-		"CMD_OK":            0,
-		"INVALID_CMD_STATE": 1,
-		"CMD_FAILED":        2,
-		"UNKNOWN_CMD_ERROR": 3,
+	HostCommandResponseType_value = map[string]int32{
+		"CMD_OK":                  0,
+		"INVALID_CMD_STATE_ERROR": 1,
+		"CMD_FAILED_ERROR":        2,
+		"UNKNOWN_CMD_ERROR":       3,
 	}
 )
 
-func (x HostCommandErrorType) Enum() *HostCommandErrorType {
-	p := new(HostCommandErrorType)
+func (x HostCommandResponseType) Enum() *HostCommandResponseType {
+	p := new(HostCommandResponseType)
 	*p = x
 	return p
 }
 
-func (x HostCommandErrorType) String() string {
+func (x HostCommandResponseType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (HostCommandErrorType) Descriptor() protoreflect.EnumDescriptor {
+func (HostCommandResponseType) Descriptor() protoreflect.EnumDescriptor {
 	return file_ssm_proto_enumTypes[4].Descriptor()
 }
 
-func (HostCommandErrorType) Type() protoreflect.EnumType {
+func (HostCommandResponseType) Type() protoreflect.EnumType {
 	return &file_ssm_proto_enumTypes[4]
 }
 
-func (x HostCommandErrorType) Number() protoreflect.EnumNumber {
+func (x HostCommandResponseType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use HostCommandErrorType.Descriptor instead.
-func (HostCommandErrorType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use HostCommandResponseType.Descriptor instead.
+func (HostCommandResponseType) EnumDescriptor() ([]byte, []int) {
 	return file_ssm_proto_rawDescGZIP(), []int{4}
 }
 
@@ -1171,28 +1171,28 @@ func (*ConfigurationResponse_Set) isConfigurationResponse_Type() {}
 
 func (*ConfigurationResponse_Describe) isConfigurationResponse_Type() {}
 
-type StateCommandError struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          StateCommandErrorType  `protobuf:"varint,1,opt,name=type,proto3,enum=ssm.StateCommandErrorType" json:"type,omitempty"` // type of error
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`                           // error message
+type StateCommandResponse struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	Response      StateCommandResponseType `protobuf:"varint,1,opt,name=response,proto3,enum=ssm.StateCommandResponseType" json:"response,omitempty"` // response type
+	Message       string                   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`                                      // response message
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *StateCommandError) Reset() {
-	*x = StateCommandError{}
+func (x *StateCommandResponse) Reset() {
+	*x = StateCommandResponse{}
 	mi := &file_ssm_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StateCommandError) String() string {
+func (x *StateCommandResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StateCommandError) ProtoMessage() {}
+func (*StateCommandResponse) ProtoMessage() {}
 
-func (x *StateCommandError) ProtoReflect() protoreflect.Message {
+func (x *StateCommandResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ssm_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1204,47 +1204,47 @@ func (x *StateCommandError) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StateCommandError.ProtoReflect.Descriptor instead.
-func (*StateCommandError) Descriptor() ([]byte, []int) {
+// Deprecated: Use StateCommandResponse.ProtoReflect.Descriptor instead.
+func (*StateCommandResponse) Descriptor() ([]byte, []int) {
 	return file_ssm_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *StateCommandError) GetType() StateCommandErrorType {
+func (x *StateCommandResponse) GetResponse() StateCommandResponseType {
 	if x != nil {
-		return x.Type
+		return x.Response
 	}
-	return StateCommandErrorType_STATE_OK
+	return StateCommandResponseType_STATE_OK
 }
 
-func (x *StateCommandError) GetMessage() string {
+func (x *StateCommandResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-type HostCommandError struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          HostCommandErrorType   `protobuf:"varint,1,opt,name=type,proto3,enum=ssm.HostCommandErrorType" json:"type,omitempty"` // type of error
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`                          // error message
+type HostCommandResponse struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Response      HostCommandResponseType `protobuf:"varint,1,opt,name=response,proto3,enum=ssm.HostCommandResponseType" json:"response,omitempty"` // response type
+	Message       string                  `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`                                     // error message
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HostCommandError) Reset() {
-	*x = HostCommandError{}
+func (x *HostCommandResponse) Reset() {
+	*x = HostCommandResponse{}
 	mi := &file_ssm_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HostCommandError) String() string {
+func (x *HostCommandResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HostCommandError) ProtoMessage() {}
+func (*HostCommandResponse) ProtoMessage() {}
 
-func (x *HostCommandError) ProtoReflect() protoreflect.Message {
+func (x *HostCommandResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ssm_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1256,19 +1256,19 @@ func (x *HostCommandError) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HostCommandError.ProtoReflect.Descriptor instead.
-func (*HostCommandError) Descriptor() ([]byte, []int) {
+// Deprecated: Use HostCommandResponse.ProtoReflect.Descriptor instead.
+func (*HostCommandResponse) Descriptor() ([]byte, []int) {
 	return file_ssm_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *HostCommandError) GetType() HostCommandErrorType {
+func (x *HostCommandResponse) GetResponse() HostCommandResponseType {
 	if x != nil {
-		return x.Type
+		return x.Response
 	}
-	return HostCommandErrorType_CMD_OK
+	return HostCommandResponseType_CMD_OK
 }
 
-func (x *HostCommandError) GetMessage() string {
+func (x *HostCommandResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -1569,7 +1569,7 @@ func (x *FunctionControlSetResponse) GetResult() isFunctionControlSetResponse_Re
 	return nil
 }
 
-func (x *FunctionControlSetResponse) GetStateError() *StateCommandError {
+func (x *FunctionControlSetResponse) GetStateError() *StateCommandResponse {
 	if x != nil {
 		if x, ok := x.Result.(*FunctionControlSetResponse_StateError); ok {
 			return x.StateError
@@ -1578,7 +1578,7 @@ func (x *FunctionControlSetResponse) GetStateError() *StateCommandError {
 	return nil
 }
 
-func (x *FunctionControlSetResponse) GetHostError() *HostCommandError {
+func (x *FunctionControlSetResponse) GetHostError() *HostCommandResponse {
 	if x != nil {
 		if x, ok := x.Result.(*FunctionControlSetResponse_HostError); ok {
 			return x.HostError
@@ -1592,11 +1592,11 @@ type isFunctionControlSetResponse_Result interface {
 }
 
 type FunctionControlSetResponse_StateError struct {
-	StateError *StateCommandError `protobuf:"bytes,1,opt,name=state_error,json=stateError,proto3,oneof"`
+	StateError *StateCommandResponse `protobuf:"bytes,1,opt,name=state_error,json=stateError,proto3,oneof"`
 }
 
 type FunctionControlSetResponse_HostError struct {
-	HostError *HostCommandError `protobuf:"bytes,2,opt,name=host_error,json=hostError,proto3,oneof"`
+	HostError *HostCommandResponse `protobuf:"bytes,2,opt,name=host_error,json=hostError,proto3,oneof"`
 }
 
 func (*FunctionControlSetResponse_StateError) isFunctionControlSetResponse_Result() {}
@@ -1784,12 +1784,12 @@ const file_ssm_proto_rawDesc = "" +
 	"\x03get\x18\x01 \x01(\v2\x1d.ssm.ConfigurationGetResponseH\x00R\x03get\x121\n" +
 	"\x03set\x18\x02 \x01(\v2\x1d.ssm.ConfigurationSetResponseH\x00R\x03set\x12@\n" +
 	"\bdescribe\x18\x03 \x01(\v2\".ssm.ConfigurationDescribeResponseH\x00R\bdescribeB\x06\n" +
-	"\x04type\"]\n" +
-	"\x11StateCommandError\x12.\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1a.ssm.StateCommandErrorTypeR\x04type\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"[\n" +
-	"\x10HostCommandError\x12-\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x19.ssm.HostCommandErrorTypeR\x04type\x12\x18\n" +
+	"\x04type\"k\n" +
+	"\x14StateCommandResponse\x129\n" +
+	"\bresponse\x18\x01 \x01(\x0e2\x1d.ssm.StateCommandResponseTypeR\bresponse\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"i\n" +
+	"\x13HostCommandResponse\x128\n" +
+	"\bresponse\x18\x01 \x01(\x0e2\x1c.ssm.HostCommandResponseTypeR\bresponse\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\x14\n" +
 	"\x12FunctionControlGet\"\xc8\x01\n" +
 	"\x12FunctionControlSet\x12\x14\n" +
@@ -1802,12 +1802,12 @@ const file_ssm_proto_rawDesc = "" +
 	"\x06reboot\x18\a \x01(\bH\x00R\x06rebootB\x06\n" +
 	"\x04type\"D\n" +
 	"\x1aFunctionControlGetResponse\x12&\n" +
-	"\x05state\x18\x01 \x01(\x0e2\x10.ssm.SystemStateR\x05state\"\x99\x01\n" +
-	"\x1aFunctionControlSetResponse\x129\n" +
-	"\vstate_error\x18\x01 \x01(\v2\x16.ssm.StateCommandErrorH\x00R\n" +
-	"stateError\x126\n" +
+	"\x05state\x18\x01 \x01(\x0e2\x10.ssm.SystemStateR\x05state\"\x9f\x01\n" +
+	"\x1aFunctionControlSetResponse\x12<\n" +
+	"\vstate_error\x18\x01 \x01(\v2\x19.ssm.StateCommandResponseH\x00R\n" +
+	"stateError\x129\n" +
 	"\n" +
-	"host_error\x18\x02 \x01(\v2\x15.ssm.HostCommandErrorH\x00R\thostErrorB\b\n" +
+	"host_error\x18\x02 \x01(\v2\x18.ssm.HostCommandResponseH\x00R\thostErrorB\b\n" +
 	"\x06result\"\x14\n" +
 	"\x12StreamControlStart\"\f\n" +
 	"\n" +
@@ -1832,17 +1832,16 @@ const file_ssm_proto_rawDesc = "" +
 	"\aSTANDBY\x10\b\x12\t\n" +
 	"\x05ERROR\x10\t\x12\f\n" +
 	"\bPOWERCUT\x10\n" +
-	"*Q\n" +
-	"\x15StateCommandErrorType\x12\f\n" +
-	"\bSTATE_OK\x10\x00\x12\x11\n" +
-	"\rINVALID_STATE\x10\x01\x12\x17\n" +
-	"\x13UNKNOWN_STATE_ERROR\x10\x02*`\n" +
-	"\x14HostCommandErrorType\x12\n" +
+	"*Z\n" +
+	"\x18StateCommandResponseType\x12\f\n" +
+	"\bSTATE_OK\x10\x00\x12\x17\n" +
+	"\x13INVALID_STATE_ERROR\x10\x01\x12\x17\n" +
+	"\x13UNKNOWN_STATE_ERROR\x10\x02*o\n" +
+	"\x17HostCommandResponseType\x12\n" +
 	"\n" +
-	"\x06CMD_OK\x10\x00\x12\x15\n" +
-	"\x11INVALID_CMD_STATE\x10\x01\x12\x0e\n" +
-	"\n" +
-	"CMD_FAILED\x10\x02\x12\x15\n" +
+	"\x06CMD_OK\x10\x00\x12\x1b\n" +
+	"\x17INVALID_CMD_STATE_ERROR\x10\x01\x12\x14\n" +
+	"\x10CMD_FAILED_ERROR\x10\x02\x12\x15\n" +
 	"\x11UNKNOWN_CMD_ERROR\x10\x03B\bZ\x06ssm/v1b\x06proto3"
 
 var (
@@ -1863,8 +1862,8 @@ var file_ssm_proto_goTypes = []any{
 	(RebootMethod)(0),                     // 0: ssm.RebootMethod
 	(WatchdogStrategy)(0),                 // 1: ssm.WatchdogStrategy
 	(SystemState)(0),                      // 2: ssm.SystemState
-	(StateCommandErrorType)(0),            // 3: ssm.StateCommandErrorType
-	(HostCommandErrorType)(0),             // 4: ssm.HostCommandErrorType
+	(StateCommandResponseType)(0),         // 3: ssm.StateCommandResponseType
+	(HostCommandResponseType)(0),          // 4: ssm.HostCommandResponseType
 	(*ConfigurationSet)(nil),              // 5: ssm.ConfigurationSet
 	(*ConfigurationSetResponse)(nil),      // 6: ssm.ConfigurationSetResponse
 	(*ConfigurationGet)(nil),              // 7: ssm.ConfigurationGet
@@ -1872,8 +1871,8 @@ var file_ssm_proto_goTypes = []any{
 	(*ConfigurationDescribe)(nil),         // 9: ssm.ConfigurationDescribe
 	(*ConfigurationDescribeResponse)(nil), // 10: ssm.ConfigurationDescribeResponse
 	(*ConfigurationResponse)(nil),         // 11: ssm.ConfigurationResponse
-	(*StateCommandError)(nil),             // 12: ssm.StateCommandError
-	(*HostCommandError)(nil),              // 13: ssm.HostCommandError
+	(*StateCommandResponse)(nil),          // 12: ssm.StateCommandResponse
+	(*HostCommandResponse)(nil),           // 13: ssm.HostCommandResponse
 	(*FunctionControlGet)(nil),            // 14: ssm.FunctionControlGet
 	(*FunctionControlSet)(nil),            // 15: ssm.FunctionControlSet
 	(*FunctionControlGetResponse)(nil),    // 16: ssm.FunctionControlGetResponse
@@ -1908,11 +1907,11 @@ var file_ssm_proto_depIdxs = []int32{
 	8,  // 22: ssm.ConfigurationResponse.get:type_name -> ssm.ConfigurationGetResponse
 	6,  // 23: ssm.ConfigurationResponse.set:type_name -> ssm.ConfigurationSetResponse
 	10, // 24: ssm.ConfigurationResponse.describe:type_name -> ssm.ConfigurationDescribeResponse
-	3,  // 25: ssm.StateCommandError.type:type_name -> ssm.StateCommandErrorType
-	4,  // 26: ssm.HostCommandError.type:type_name -> ssm.HostCommandErrorType
+	3,  // 25: ssm.StateCommandResponse.response:type_name -> ssm.StateCommandResponseType
+	4,  // 26: ssm.HostCommandResponse.response:type_name -> ssm.HostCommandResponseType
 	2,  // 27: ssm.FunctionControlGetResponse.state:type_name -> ssm.SystemState
-	12, // 28: ssm.FunctionControlSetResponse.state_error:type_name -> ssm.StateCommandError
-	13, // 29: ssm.FunctionControlSetResponse.host_error:type_name -> ssm.HostCommandError
+	12, // 28: ssm.FunctionControlSetResponse.state_error:type_name -> ssm.StateCommandResponse
+	13, // 29: ssm.FunctionControlSetResponse.host_error:type_name -> ssm.HostCommandResponse
 	30, // [30:30] is the sub-list for method output_type
 	30, // [30:30] is the sub-list for method input_type
 	30, // [30:30] is the sub-list for extension type_name

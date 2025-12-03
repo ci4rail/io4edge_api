@@ -155,26 +155,26 @@ message ConfigurationResponse {
 
 // ============= FunctionControl =================
 
-enum StateCommandErrorType {
+enum StateCommandResponseType {
     STATE_OK = 0; // no error
-    INVALID_STATE = 1; // invalid state transition
+    INVALID_STATE_ERROR = 1; // invalid state transition
     UNKNOWN_STATE_ERROR = 2; // unknown error occurred
 }
 
-message StateCommandError {
-    StateCommandErrorType type = 1; // type of error
-    string message = 2; // error message
+message StateCommandResponse {
+    StateCommandResponseType response = 1; // response type
+    string message = 2; // response message
 }
 
-enum HostCommandErrorType {
+enum HostCommandResponseType {
     CMD_OK = 0; // no error
-    INVALID_CMD_STATE = 1; // invalid state for host command
-    CMD_FAILED = 2; // command execution failed
+    INVALID_CMD_STATE_ERROR = 1; // invalid state for host command
+    CMD_FAILED_ERROR = 2; // command execution failed
     UNKNOWN_CMD_ERROR = 3; // unknown error occurred
 }
 
-message HostCommandError {
-    HostCommandErrorType type = 1; // type of error
+message HostCommandResponse {
+    HostCommandResponseType response = 1; // response type
     string message = 2; // error message
 }
 
@@ -206,8 +206,8 @@ message FunctionControlGetResponse {
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 message FunctionControlSetResponse {
     oneof result {
-        StateCommandError state_error = 1;
-        HostCommandError host_error = 2;
+        StateCommandResponse state_error = 1;
+        HostCommandResponse host_error = 2;
     }
 }
 

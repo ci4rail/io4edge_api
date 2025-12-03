@@ -322,94 +322,94 @@ void   ssm__configuration_response__free_unpacked
   assert(message->base.descriptor == &ssm__configuration_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   ssm__state_command_error__init
-                     (Ssm__StateCommandError         *message)
+void   ssm__state_command_response__init
+                     (Ssm__StateCommandResponse         *message)
 {
-  static const Ssm__StateCommandError init_value = SSM__STATE_COMMAND_ERROR__INIT;
+  static const Ssm__StateCommandResponse init_value = SSM__STATE_COMMAND_RESPONSE__INIT;
   *message = init_value;
 }
-size_t ssm__state_command_error__get_packed_size
-                     (const Ssm__StateCommandError *message)
+size_t ssm__state_command_response__get_packed_size
+                     (const Ssm__StateCommandResponse *message)
 {
-  assert(message->base.descriptor == &ssm__state_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__state_command_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t ssm__state_command_error__pack
-                     (const Ssm__StateCommandError *message,
+size_t ssm__state_command_response__pack
+                     (const Ssm__StateCommandResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &ssm__state_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__state_command_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t ssm__state_command_error__pack_to_buffer
-                     (const Ssm__StateCommandError *message,
+size_t ssm__state_command_response__pack_to_buffer
+                     (const Ssm__StateCommandResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &ssm__state_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__state_command_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Ssm__StateCommandError *
-       ssm__state_command_error__unpack
+Ssm__StateCommandResponse *
+       ssm__state_command_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Ssm__StateCommandError *)
-     protobuf_c_message_unpack (&ssm__state_command_error__descriptor,
+  return (Ssm__StateCommandResponse *)
+     protobuf_c_message_unpack (&ssm__state_command_response__descriptor,
                                 allocator, len, data);
 }
-void   ssm__state_command_error__free_unpacked
-                     (Ssm__StateCommandError *message,
+void   ssm__state_command_response__free_unpacked
+                     (Ssm__StateCommandResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &ssm__state_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__state_command_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   ssm__host_command_error__init
-                     (Ssm__HostCommandError         *message)
+void   ssm__host_command_response__init
+                     (Ssm__HostCommandResponse         *message)
 {
-  static const Ssm__HostCommandError init_value = SSM__HOST_COMMAND_ERROR__INIT;
+  static const Ssm__HostCommandResponse init_value = SSM__HOST_COMMAND_RESPONSE__INIT;
   *message = init_value;
 }
-size_t ssm__host_command_error__get_packed_size
-                     (const Ssm__HostCommandError *message)
+size_t ssm__host_command_response__get_packed_size
+                     (const Ssm__HostCommandResponse *message)
 {
-  assert(message->base.descriptor == &ssm__host_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__host_command_response__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t ssm__host_command_error__pack
-                     (const Ssm__HostCommandError *message,
+size_t ssm__host_command_response__pack
+                     (const Ssm__HostCommandResponse *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &ssm__host_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__host_command_response__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t ssm__host_command_error__pack_to_buffer
-                     (const Ssm__HostCommandError *message,
+size_t ssm__host_command_response__pack_to_buffer
+                     (const Ssm__HostCommandResponse *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &ssm__host_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__host_command_response__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Ssm__HostCommandError *
-       ssm__host_command_error__unpack
+Ssm__HostCommandResponse *
+       ssm__host_command_response__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Ssm__HostCommandError *)
-     protobuf_c_message_unpack (&ssm__host_command_error__descriptor,
+  return (Ssm__HostCommandResponse *)
+     protobuf_c_message_unpack (&ssm__host_command_response__descriptor,
                                 allocator, len, data);
 }
-void   ssm__host_command_error__free_unpacked
-                     (Ssm__HostCommandError *message,
+void   ssm__host_command_response__free_unpacked
+                     (Ssm__HostCommandResponse *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &ssm__host_command_error__descriptor);
+  assert(message->base.descriptor == &ssm__host_command_response__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   ssm__function_control_get__init
@@ -1752,16 +1752,16 @@ const ProtobufCMessageDescriptor ssm__configuration_response__descriptor =
   (ProtobufCMessageInit) ssm__configuration_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor ssm__state_command_error__field_descriptors[2] =
+static const ProtobufCFieldDescriptor ssm__state_command_response__field_descriptors[2] =
 {
   {
-    "type",
+    "response",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(Ssm__StateCommandError, type),
-    &ssm__state_command_error_type__descriptor,
+    offsetof(Ssm__StateCommandResponse, response),
+    &ssm__state_command_response_type__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -1772,47 +1772,47 @@ static const ProtobufCFieldDescriptor ssm__state_command_error__field_descriptor
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Ssm__StateCommandError, message),
+    offsetof(Ssm__StateCommandResponse, message),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned ssm__state_command_error__field_indices_by_name[] = {
+static const unsigned ssm__state_command_response__field_indices_by_name[] = {
   1,   /* field[1] = message */
-  0,   /* field[0] = type */
+  0,   /* field[0] = response */
 };
-static const ProtobufCIntRange ssm__state_command_error__number_ranges[1 + 1] =
+static const ProtobufCIntRange ssm__state_command_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor ssm__state_command_error__descriptor =
+const ProtobufCMessageDescriptor ssm__state_command_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "ssm.StateCommandError",
-  "StateCommandError",
-  "Ssm__StateCommandError",
+  "ssm.StateCommandResponse",
+  "StateCommandResponse",
+  "Ssm__StateCommandResponse",
   "ssm",
-  sizeof(Ssm__StateCommandError),
+  sizeof(Ssm__StateCommandResponse),
   2,
-  ssm__state_command_error__field_descriptors,
-  ssm__state_command_error__field_indices_by_name,
-  1,  ssm__state_command_error__number_ranges,
-  (ProtobufCMessageInit) ssm__state_command_error__init,
+  ssm__state_command_response__field_descriptors,
+  ssm__state_command_response__field_indices_by_name,
+  1,  ssm__state_command_response__number_ranges,
+  (ProtobufCMessageInit) ssm__state_command_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor ssm__host_command_error__field_descriptors[2] =
+static const ProtobufCFieldDescriptor ssm__host_command_response__field_descriptors[2] =
 {
   {
-    "type",
+    "response",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(Ssm__HostCommandError, type),
-    &ssm__host_command_error_type__descriptor,
+    offsetof(Ssm__HostCommandResponse, response),
+    &ssm__host_command_response_type__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -1823,35 +1823,35 @@ static const ProtobufCFieldDescriptor ssm__host_command_error__field_descriptors
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Ssm__HostCommandError, message),
+    offsetof(Ssm__HostCommandResponse, message),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned ssm__host_command_error__field_indices_by_name[] = {
+static const unsigned ssm__host_command_response__field_indices_by_name[] = {
   1,   /* field[1] = message */
-  0,   /* field[0] = type */
+  0,   /* field[0] = response */
 };
-static const ProtobufCIntRange ssm__host_command_error__number_ranges[1 + 1] =
+static const ProtobufCIntRange ssm__host_command_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor ssm__host_command_error__descriptor =
+const ProtobufCMessageDescriptor ssm__host_command_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "ssm.HostCommandError",
-  "HostCommandError",
-  "Ssm__HostCommandError",
+  "ssm.HostCommandResponse",
+  "HostCommandResponse",
+  "Ssm__HostCommandResponse",
   "ssm",
-  sizeof(Ssm__HostCommandError),
+  sizeof(Ssm__HostCommandResponse),
   2,
-  ssm__host_command_error__field_descriptors,
-  ssm__host_command_error__field_indices_by_name,
-  1,  ssm__host_command_error__number_ranges,
-  (ProtobufCMessageInit) ssm__host_command_error__init,
+  ssm__host_command_response__field_descriptors,
+  ssm__host_command_response__field_indices_by_name,
+  1,  ssm__host_command_response__number_ranges,
+  (ProtobufCMessageInit) ssm__host_command_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 #define ssm__function_control_get__field_descriptors NULL
@@ -2035,7 +2035,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set_response__field_
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Ssm__FunctionControlSetResponse, result_case),
     offsetof(Ssm__FunctionControlSetResponse, state_error),
-    &ssm__state_command_error__descriptor,
+    &ssm__state_command_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -2047,7 +2047,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set_response__field_
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Ssm__FunctionControlSetResponse, result_case),
     offsetof(Ssm__FunctionControlSetResponse, host_error),
-    &ssm__host_command_error__descriptor,
+    &ssm__host_command_response__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -2217,65 +2217,65 @@ const ProtobufCEnumDescriptor ssm__system_state__descriptor =
   ssm__system_state__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCEnumValue ssm__state_command_error_type__enum_values_by_number[3] =
+static const ProtobufCEnumValue ssm__state_command_response_type__enum_values_by_number[3] =
 {
-  { "STATE_OK", "SSM__STATE_COMMAND_ERROR_TYPE__STATE_OK", 0 },
-  { "INVALID_STATE", "SSM__STATE_COMMAND_ERROR_TYPE__INVALID_STATE", 1 },
-  { "UNKNOWN_STATE_ERROR", "SSM__STATE_COMMAND_ERROR_TYPE__UNKNOWN_STATE_ERROR", 2 },
+  { "STATE_OK", "SSM__STATE_COMMAND_RESPONSE_TYPE__STATE_OK", 0 },
+  { "INVALID_STATE_ERROR", "SSM__STATE_COMMAND_RESPONSE_TYPE__INVALID_STATE_ERROR", 1 },
+  { "UNKNOWN_STATE_ERROR", "SSM__STATE_COMMAND_RESPONSE_TYPE__UNKNOWN_STATE_ERROR", 2 },
 };
-static const ProtobufCIntRange ssm__state_command_error_type__value_ranges[] = {
+static const ProtobufCIntRange ssm__state_command_response_type__value_ranges[] = {
 {0, 0},{0, 3}
 };
-static const ProtobufCEnumValueIndex ssm__state_command_error_type__enum_values_by_name[3] =
+static const ProtobufCEnumValueIndex ssm__state_command_response_type__enum_values_by_name[3] =
 {
-  { "INVALID_STATE", 1 },
+  { "INVALID_STATE_ERROR", 1 },
   { "STATE_OK", 0 },
   { "UNKNOWN_STATE_ERROR", 2 },
 };
-const ProtobufCEnumDescriptor ssm__state_command_error_type__descriptor =
+const ProtobufCEnumDescriptor ssm__state_command_response_type__descriptor =
 {
   PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "ssm.StateCommandErrorType",
-  "StateCommandErrorType",
-  "Ssm__StateCommandErrorType",
+  "ssm.StateCommandResponseType",
+  "StateCommandResponseType",
+  "Ssm__StateCommandResponseType",
   "ssm",
   3,
-  ssm__state_command_error_type__enum_values_by_number,
+  ssm__state_command_response_type__enum_values_by_number,
   3,
-  ssm__state_command_error_type__enum_values_by_name,
+  ssm__state_command_response_type__enum_values_by_name,
   1,
-  ssm__state_command_error_type__value_ranges,
+  ssm__state_command_response_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCEnumValue ssm__host_command_error_type__enum_values_by_number[4] =
+static const ProtobufCEnumValue ssm__host_command_response_type__enum_values_by_number[4] =
 {
-  { "CMD_OK", "SSM__HOST_COMMAND_ERROR_TYPE__CMD_OK", 0 },
-  { "INVALID_CMD_STATE", "SSM__HOST_COMMAND_ERROR_TYPE__INVALID_CMD_STATE", 1 },
-  { "CMD_FAILED", "SSM__HOST_COMMAND_ERROR_TYPE__CMD_FAILED", 2 },
-  { "UNKNOWN_CMD_ERROR", "SSM__HOST_COMMAND_ERROR_TYPE__UNKNOWN_CMD_ERROR", 3 },
+  { "CMD_OK", "SSM__HOST_COMMAND_RESPONSE_TYPE__CMD_OK", 0 },
+  { "INVALID_CMD_STATE_ERROR", "SSM__HOST_COMMAND_RESPONSE_TYPE__INVALID_CMD_STATE_ERROR", 1 },
+  { "CMD_FAILED_ERROR", "SSM__HOST_COMMAND_RESPONSE_TYPE__CMD_FAILED_ERROR", 2 },
+  { "UNKNOWN_CMD_ERROR", "SSM__HOST_COMMAND_RESPONSE_TYPE__UNKNOWN_CMD_ERROR", 3 },
 };
-static const ProtobufCIntRange ssm__host_command_error_type__value_ranges[] = {
+static const ProtobufCIntRange ssm__host_command_response_type__value_ranges[] = {
 {0, 0},{0, 4}
 };
-static const ProtobufCEnumValueIndex ssm__host_command_error_type__enum_values_by_name[4] =
+static const ProtobufCEnumValueIndex ssm__host_command_response_type__enum_values_by_name[4] =
 {
-  { "CMD_FAILED", 2 },
+  { "CMD_FAILED_ERROR", 2 },
   { "CMD_OK", 0 },
-  { "INVALID_CMD_STATE", 1 },
+  { "INVALID_CMD_STATE_ERROR", 1 },
   { "UNKNOWN_CMD_ERROR", 3 },
 };
-const ProtobufCEnumDescriptor ssm__host_command_error_type__descriptor =
+const ProtobufCEnumDescriptor ssm__host_command_response_type__descriptor =
 {
   PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
-  "ssm.HostCommandErrorType",
-  "HostCommandErrorType",
-  "Ssm__HostCommandErrorType",
+  "ssm.HostCommandResponseType",
+  "HostCommandResponseType",
+  "Ssm__HostCommandResponseType",
   "ssm",
   4,
-  ssm__host_command_error_type__enum_values_by_number,
+  ssm__host_command_response_type__enum_values_by_number,
   4,
-  ssm__host_command_error_type__enum_values_by_name,
+  ssm__host_command_response_type__enum_values_by_name,
   1,
-  ssm__host_command_error_type__value_ranges,
+  ssm__host_command_response_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
