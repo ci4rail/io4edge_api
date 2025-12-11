@@ -30,6 +30,8 @@ C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 	@mkdir -p python/
 	@echo " generating $@"
 	@protoc -I./proto -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --python_out=python/ --pyi_out=python/
+	@# Fix relative imports to absolute imports for io4edge-client-python package structure
+	@find python/ -name "*_pb2.py" -exec sed -i 's|from colorLED\.v1alpha1 import|from io4edge_client.api.colorLED.python.colorLED.v1alpha1 import|g' {} \;
 
 PY_TARGETS := $(PROTOS:.proto=_pb2.py)
 
