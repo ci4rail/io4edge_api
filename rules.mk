@@ -13,7 +13,7 @@ WELLKNOWNTYPES_PROTO = ../google_wellknowntypes/proto
 %.pb.go ::  %.proto
 	@mkdir -p go/
 	@echo " generating $@"
-	@protoc -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $< --go_out=go/
+	@protoc -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --go_out=go/
 
 GO_TARGETS := $(PROTOS:.proto=.pb.go)
 
@@ -21,7 +21,7 @@ GO_TARGETS := $(PROTOS:.proto=.pb.go)
 %.pb-c.c ::  %.proto
 	@mkdir -p protobuf-c/$(MODULE)
 	@echo " generating $@"
-	@protoc -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $< --c_out=protobuf-c/$(MODULE)
+	@protoc -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --c_out=protobuf-c/$(MODULE)
 
 C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 
@@ -29,7 +29,9 @@ C_TARGETS := $(PROTOS:.proto=.pb-c.c)
 %_pb2.py ::  %.proto
 	@mkdir -p python/
 	@echo " generating $@"
-	@protoc -I./proto -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $< --python_out=python/
+	@protoc -I./proto -I./proto/$(MODULE) -I$(WELLKNOWNTYPES_PROTO) $(EXTRA_PROTO_PATHS) $< --python_out=python/ --pyi_out=python/
+	@# Fix relative imports to absolute imports for io4edge-client-python package structure
+	@find python/ -name "*_pb2.py" -exec sed -i 's|from colorLED\.v1alpha1 import|from io4edge_client.api.colorLED.python.colorLED.v1alpha1 import|g' {} \;
 
 PY_TARGETS := $(PROTOS:.proto=_pb2.py)
 

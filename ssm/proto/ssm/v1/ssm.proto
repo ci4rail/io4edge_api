@@ -1,0 +1,224 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package ssm;
+option go_package = "ssm/v1";
+
+import "colorLED/v1alpha1/colorLED.proto";
+
+// ============= Configuration =================
+
+enum RebootMethod {
+    SOFT = 0; // soft reboot via OS command
+    HARD = 1; // hard reboot via power cycle
+}
+
+enum WatchdogStrategy {
+    PC = 0; // power cut strategy
+    SD = 1; // shut down the system
+    RE = 2; // reboot the system
+}
+
+enum SystemState {
+    OFF = 0; // off, only to be complete, cannot be returned because FW is not running at this state
+    LED_TEST = 1; // led test state
+    START_INH = 2; // start inhibit state
+    UP_DELAYED = 3; // boot up delayed state
+    BOOT_UP = 4; // system booting up
+    ON = 5; // system on
+    DOWN_DELAYED = 6; // shutdown delayed state
+    SHUTDOWN = 7; // system shutting down
+    STANDBY = 8; // system in standby
+    ERROR = 9; // system in error state
+    POWERCUT = 10; // system power cut
+}
+
+// ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
+message ConfigurationSet {
+    fixed32 pon_min_temp = 1; // minimum temperature to power on the system
+    fixed32 pon_max_temp = 2; // maximum temperature to power on the system
+    bool standby_mode = 3; // enable/disable standby mode
+    fixed32 boot_delay = 4; // maximum boot delay time in seconds
+    fixed32 wd_tout = 5; // timeout in milliseconds
+    fixed32 wd_reboot_threshold = 6; // threshold in number of reboots to trigger a reboot
+    fixed32 wd_reboot_window = 7; // time window in seconds to count reboots
+    fixed32 wd_boot_delay = 8; // delay in seconds after booting before the watchdog is enabled
+    WatchdogStrategy wd_strategy = 9; // strategy to apply on watchdog timeout
+    fixed32 pwrcycle_time = 10; // time in seconds to wait before power cycling the system
+    fixed32 shutdown_timeout = 11; // time in seconds to wait for the system to shutdown
+    fixed32 error_timeout = 12; // time in seconds to wait in error state before taking action
+    fixed32 delay_up = 13; // delay in seconds before powering on the system
+    fixed32 delay_down = 14; // delay in seconds before powering off the system
+    bool uv_detection = 15; // enable/disable undervoltage detection
+    fixed32 uv_in_threshold = 16; // undervoltage input threshold in volts
+    fixed32 uv_out_threshold = 17; // undervoltage output threshold in volts
+    colorLED.Color start_color = 18; // LED color to indicate system status
+    colorLED.Color on_color = 19; // LED color to indicate on status
+    colorLED.Color up_color = 20; // LED color to indicate up-delayed status
+    colorLED.Color down_color = 21; // LED color to indicate down-delayed status
+    colorLED.Color shutdown_color = 22; // LED color to indicate shutdown status
+    colorLED.Color standby_color = 23; // LED color to indicate standby status
+    colorLED.Color powercut_color = 24; // LED color to indicate power cut status
+    colorLED.Color error_color = 25; // LED color to indicate error status
+    colorLED.Color boot_color = 26; // LED color to indicate boot up status
+    RebootMethod reboot_method = 27; // method to use for rebooting the system
+    string power_lp_func = 28; // function name pointing to method for power button long press
+    fixed32 power_lp_time_min = 29; // minimum time in seconds for power button long press
+    string power_sp_func = 30; // function name pointing to method for power button short press
+    fixed32 power_sp_time_min = 31; // minimum time in seconds for power button
+    string reboot_func = 32; // function name pointing to method for rebooting the system
+    string ign_func = 33; // function name pointing to method for ignition signal detection
+    fixed32 sys_led = 34; // system LED identifier
+}
+
+// ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
+message ConfigurationSetResponse {
+    // not implemented
+}
+
+// ConfigurationGet to pass to Functionblock.Configuration.functionSpecificConfigurationGet hook
+message ConfigurationGet {
+    // empty
+}
+
+// ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
+// Returns the current hardware configuration
+message ConfigurationGetResponse {
+    fixed32 pon_min_temp = 1; // minimum temperature to power on the system
+    fixed32 pon_max_temp = 2; // maximum temperature to power on the system
+    bool standby_mode = 3; // enable/disable standby mode
+    fixed32 boot_delay = 4; // maximum boot delay time in seconds
+    fixed32 wd_tout = 5; // timeout in milliseconds
+    fixed32 wd_reboot_threshold = 6; // threshold in number of reboots to trigger a reboot
+    fixed32 wd_reboot_window = 7; // time window in seconds to count reboots
+    fixed32 wd_boot_delay = 8; // delay in seconds after booting before the watchdog is enabled
+    WatchdogStrategy wd_strategy = 9; // strategy to apply on watchdog timeout
+    fixed32 pwrcycle_time = 10; // time in seconds to wait before power cycling the system
+    fixed32 shutdown_timeout = 11; // time in seconds to wait for the system to shutdown
+    fixed32 error_timeout = 12; // time in seconds to wait in error state before taking action
+    fixed32 delay_up = 13; // delay in seconds before powering on the system
+    fixed32 delay_down = 14; // delay in seconds before powering off the system
+    bool uv_detection = 15; // enable/disable undervoltage detection
+    fixed32 uv_in_threshold = 16; // undervoltage input threshold in volts
+    fixed32 uv_out_threshold = 17; // undervoltage output threshold in volts
+    colorLED.Color start_color = 18; // LED color to indicate system status
+    colorLED.Color on_color = 19; // LED color to indicate on status
+    colorLED.Color up_color = 20; // LED color to indicate up-delayed status
+    colorLED.Color down_color = 21; // LED color to indicate down-delayed status
+    colorLED.Color shutdown_color = 22; // LED color to indicate shutdown status
+    colorLED.Color standby_color = 23; // LED color to indicate standby status
+    colorLED.Color powercut_color = 24; // LED color to indicate power cut status
+    colorLED.Color error_color = 25; // LED color to indicate error status
+    colorLED.Color boot_color = 26; // LED color to indicate boot up status
+    RebootMethod reboot_method = 27; // method to use for rebooting the system
+    string power_lp_func = 28; // function name pointing to method for power button long press
+    fixed32 power_lp_time_min = 29; // minimum time in seconds for power button long press
+    string power_sp_func = 30; // function name pointing to method for power button short press
+    fixed32 power_sp_time_min = 31; // minimum time in seconds for power button
+    string reboot_func = 32; // function name pointing to method for rebooting the system
+    string ign_func = 33; // function name pointing to method for ignition signal detection
+    fixed32 sys_led = 34; // system LED identifier
+}
+
+// ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
+message ConfigurationDescribe {
+    // no parameters
+}
+
+message ConfigurationDescribeResponse {
+    // todo
+}
+
+// ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
+message ConfigurationResponse {
+    oneof type {
+        ConfigurationGetResponse get = 1;
+        ConfigurationSetResponse set = 2;
+        ConfigurationDescribeResponse describe = 3;
+    }
+}
+
+
+// ============= FunctionControl =================
+
+enum StateCommandResponseType {
+    STATE_OK = 0; // no error
+    INVALID_STATE_ERROR = 1; // invalid state transition
+    UNKNOWN_STATE_ERROR = 2; // unknown error occurred
+}
+
+message StateCommandResponse {
+    StateCommandResponseType response = 1; // response type
+    string message = 2; // response message
+}
+
+enum HostCommandResponseType {
+    CMD_OK = 0; // no error
+    INVALID_CMD_STATE_ERROR = 1; // invalid state for host command
+    CMD_FAILED_ERROR = 2; // command execution failed
+    UNKNOWN_CMD_ERROR = 3; // unknown error occurred
+}
+
+message HostCommandResponse {
+    HostCommandResponseType response = 1; // response type
+    string message = 2; // error message
+}
+
+// FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
+message FunctionControlGet {
+    // empty
+}
+
+// FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+message FunctionControlSet {
+    oneof type {
+        bool kick = 1; // kick the watchdog
+        string error = 2; // set the system into error state
+        string resolve = 3; // resolve current error state
+        string fatal = 4; // set system to fatal error state
+        bool shutdown = 5; // indicate system shutdown
+        bool on = 6; // indicate system power on
+        bool reboot = 7; // indicate system reboot
+    }
+}
+
+
+// FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+message FunctionControlGetResponse {
+    SystemState state = 1; // current system state
+}
+
+
+// FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+message FunctionControlSetResponse {
+    oneof result {
+        StateCommandResponse state_error = 1;
+        HostCommandResponse host_error = 2;
+    }
+}
+
+
+// ============= StreamControl ==================
+// StreamControlStart to pass to Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
+message StreamControlStart {
+    // not implemented
+}
+
+// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
+message StreamData {
+    // not implemented
+}
