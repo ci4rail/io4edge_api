@@ -8,14 +8,16 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ConfigurationSet(_message.Message):
-    __slots__ = ("ignore_crc", "baud_62500", "address_filter")
+    __slots__ = ("ignore_crc", "baud_62500", "address_filter", "min_frame_length")
     IGNORE_CRC_FIELD_NUMBER: _ClassVar[int]
     BAUD_62500_FIELD_NUMBER: _ClassVar[int]
     ADDRESS_FILTER_FIELD_NUMBER: _ClassVar[int]
+    MIN_FRAME_LENGTH_FIELD_NUMBER: _ClassVar[int]
     ignore_crc: bool
     baud_62500: bool
     address_filter: bytes
-    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ...) -> None: ...
+    min_frame_length: int
+    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ..., min_frame_length: _Optional[int] = ...) -> None: ...
 
 class ConfigurationSetResponse(_message.Message):
     __slots__ = ()
