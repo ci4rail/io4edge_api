@@ -637,7 +637,7 @@ void   bitbus_sniffer__stream_data__free_unpacked
   assert(message->base.descriptor == &bitbus_sniffer__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor bitbus_sniffer__configuration_set__field_descriptors[3] =
+static const ProtobufCFieldDescriptor bitbus_sniffer__configuration_set__field_descriptors[4] =
 {
   {
     "ignore_crc",
@@ -675,16 +675,29 @@ static const ProtobufCFieldDescriptor bitbus_sniffer__configuration_set__field_d
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "min_frame_length",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(BitbusSniffer__ConfigurationSet, min_frame_length),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned bitbus_sniffer__configuration_set__field_indices_by_name[] = {
   2,   /* field[2] = address_filter */
   1,   /* field[1] = baud_62500 */
   0,   /* field[0] = ignore_crc */
+  3,   /* field[3] = min_frame_length */
 };
 static const ProtobufCIntRange bitbus_sniffer__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor bitbus_sniffer__configuration_set__descriptor =
 {
@@ -694,7 +707,7 @@ const ProtobufCMessageDescriptor bitbus_sniffer__configuration_set__descriptor =
   "BitbusSniffer__ConfigurationSet",
   "bitbusSniffer",
   sizeof(BitbusSniffer__ConfigurationSet),
-  3,
+  4,
   bitbus_sniffer__configuration_set__field_descriptors,
   bitbus_sniffer__configuration_set__field_indices_by_name,
   1,  bitbus_sniffer__configuration_set__number_ranges,

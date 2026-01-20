@@ -94,9 +94,12 @@ type ConfigurationSet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IgnoreCrc     bool                   `protobuf:"varint,1,opt,name=ignore_crc,json=ignoreCrc,proto3" json:"ignore_crc,omitempty"`            // if true, frames with wrong CRC are not discarded
 	Baud_62500    bool                   `protobuf:"varint,2,opt,name=baud_62500,json=baud62500,proto3" json:"baud_62500,omitempty"`            // if true, the baudrate shall be set to 62500 (otherwise 375000)
-	AddressFilter []byte                 `protobuf:"bytes,3,opt,name=address_filter,json=addressFilter,proto3" json:"address_filter,omitempty"` // bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?.
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	AddressFilter []byte                 `protobuf:"bytes,3,opt,name=address_filter,json=addressFilter,proto3" json:"address_filter,omitempty"` // bit field mask for address filter (32 bytes with 8 bits each.
+	// bit 0 = for address 1, bit 1 = for address 2, bit 2 = for address 4, bit 3 = for address 8, ...
+	// Set bit to 1 to receive frames with the corresponding address)
+	MinFrameLength int32 `protobuf:"varint,4,opt,name=min_frame_length,json=minFrameLength,proto3" json:"min_frame_length,omitempty"` // minimum frame length to capture (frames with less bytes are discarded)
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ConfigurationSet) Reset() {
@@ -148,6 +151,13 @@ func (x *ConfigurationSet) GetAddressFilter() []byte {
 		return x.AddressFilter
 	}
 	return nil
+}
+
+func (x *ConfigurationSet) GetMinFrameLength() int32 {
+	if x != nil {
+		return x.MinFrameLength
+	}
+	return 0
 }
 
 // ConfigurationSetResponse to pass to
@@ -699,13 +709,14 @@ var File_bitbusSniffer_proto protoreflect.FileDescriptor
 
 const file_bitbusSniffer_proto_rawDesc = "" +
 	"\n" +
-	"\x13bitbusSniffer.proto\x12\rbitbusSniffer\"w\n" +
+	"\x13bitbusSniffer.proto\x12\rbitbusSniffer\"\xa1\x01\n" +
 	"\x10ConfigurationSet\x12\x1d\n" +
 	"\n" +
 	"ignore_crc\x18\x01 \x01(\bR\tignoreCrc\x12\x1d\n" +
 	"\n" +
 	"baud_62500\x18\x02 \x01(\bR\tbaud62500\x12%\n" +
-	"\x0eaddress_filter\x18\x03 \x01(\fR\raddressFilter\"\x1a\n" +
+	"\x0eaddress_filter\x18\x03 \x01(\fR\raddressFilter\x12(\n" +
+	"\x10min_frame_length\x18\x04 \x01(\x05R\x0eminFrameLength\"\x1a\n" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
 	"\x10ConfigurationGet\"\x1a\n" +
 	"\x18ConfigurationGetResponse\"\x17\n" +

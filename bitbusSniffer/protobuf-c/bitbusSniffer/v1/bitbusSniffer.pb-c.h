@@ -71,13 +71,21 @@ struct  BitbusSniffer__ConfigurationSet
    */
   protobuf_c_boolean baud_62500;
   /*
-   * bit field mask for address filter (32 bytes with 8 bits each. TODO: Bit order?. 
+   * bit field mask for address filter (32 bytes with 8 bits each. 
    */
   ProtobufCBinaryData address_filter;
+  /*
+   * bit 0 = for address 1, bit 1 = for address 2, bit 2 = for address 4, bit 3 = for address 8, ...
+   * Set bit to 1 to receive frames with the corresponding address)
+   */
+  /*
+   * minimum frame length to capture (frames with less bytes are discarded)
+   */
+  int32_t min_frame_length;
 };
 #define BITBUS_SNIFFER__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__configuration_set__descriptor) \
-    , 0, 0, {0,NULL} }
+    , 0, 0, {0,NULL}, 0 }
 
 
 /*
