@@ -12,7 +12,7 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class TraceletToServer(_message.Message):
     __slots__ = ("uuid", "ipv4_address", "delivery_ts", "tracelet_id", "ignition", "location", "firmware_version", "metrics")
     class Location(_message.Message):
-        __slots__ = ("gnss", "uwb", "fused", "direction", "speed", "mileage", "temperature")
+        __slots__ = ("gnss", "uwb", "fused", "direction", "speed", "mileage", "mileage_mm", "temperature")
         class Direction(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
             __slots__ = ()
             NO_DIRECTION: _ClassVar[TraceletToServer.Location.Direction]
@@ -106,6 +106,7 @@ class TraceletToServer(_message.Message):
         DIRECTION_FIELD_NUMBER: _ClassVar[int]
         SPEED_FIELD_NUMBER: _ClassVar[int]
         MILEAGE_FIELD_NUMBER: _ClassVar[int]
+        MILEAGE_MM_FIELD_NUMBER: _ClassVar[int]
         TEMPERATURE_FIELD_NUMBER: _ClassVar[int]
         gnss: TraceletToServer.Location.Gnss
         uwb: TraceletToServer.Location.Uwb
@@ -113,8 +114,9 @@ class TraceletToServer(_message.Message):
         direction: TraceletToServer.Location.Direction
         speed: float
         mileage: int
+        mileage_mm: int
         temperature: float
-        def __init__(self, gnss: _Optional[_Union[TraceletToServer.Location.Gnss, _Mapping]] = ..., uwb: _Optional[_Union[TraceletToServer.Location.Uwb, _Mapping]] = ..., fused: _Optional[_Union[TraceletToServer.Location.Fused, _Mapping]] = ..., direction: _Optional[_Union[TraceletToServer.Location.Direction, str]] = ..., speed: _Optional[float] = ..., mileage: _Optional[int] = ..., temperature: _Optional[float] = ...) -> None: ...
+        def __init__(self, gnss: _Optional[_Union[TraceletToServer.Location.Gnss, _Mapping]] = ..., uwb: _Optional[_Union[TraceletToServer.Location.Uwb, _Mapping]] = ..., fused: _Optional[_Union[TraceletToServer.Location.Fused, _Mapping]] = ..., direction: _Optional[_Union[TraceletToServer.Location.Direction, str]] = ..., speed: _Optional[float] = ..., mileage: _Optional[int] = ..., mileage_mm: _Optional[int] = ..., temperature: _Optional[float] = ...) -> None: ...
     UUID_FIELD_NUMBER: _ClassVar[int]
     IPV4_ADDRESS_FIELD_NUMBER: _ClassVar[int]
     DELIVERY_TS_FIELD_NUMBER: _ClassVar[int]

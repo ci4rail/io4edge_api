@@ -726,7 +726,7 @@ const ProtobufCEnumDescriptor tracelet__tracelet_to_server__location__direction_
   tracelet__tracelet_to_server__location__direction__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__field_descriptors[7] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__field_descriptors[8] =
 {
   {
     "gnss",
@@ -812,20 +812,34 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__location__fi
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "mileage_mm",
+    9,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__Location, mileage_mm),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_to_server__location__field_indices_by_name[] = {
   2,   /* field[2] = direction */
   6,   /* field[6] = fused */
   0,   /* field[0] = gnss */
   4,   /* field[4] = mileage */
+  7,   /* field[7] = mileage_mm */
   3,   /* field[3] = speed */
   5,   /* field[5] = temperature */
   1,   /* field[1] = uwb */
 };
-static const ProtobufCIntRange tracelet__tracelet_to_server__location__number_ranges[1 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_to_server__location__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 7 }
+  { 9, 7 },
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descriptor =
 {
@@ -835,10 +849,10 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descrip
   "Tracelet__TraceletToServer__Location",
   "tracelet",
   sizeof(Tracelet__TraceletToServer__Location),
-  7,
+  8,
   tracelet__tracelet_to_server__location__field_descriptors,
   tracelet__tracelet_to_server__location__field_indices_by_name,
-  1,  tracelet__tracelet_to_server__location__number_ranges,
+  2,  tracelet__tracelet_to_server__location__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
