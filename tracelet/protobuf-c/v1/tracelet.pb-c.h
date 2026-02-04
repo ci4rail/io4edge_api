@@ -246,13 +246,17 @@ struct  Tracelet__TraceletToServer__Location
    */
   int32_t mileage;
   /*
+   * Vehicle Mileage in [mm]
+   */
+  int64_t mileage_mm;
+  /*
    * Current Tracelet Temperature in [°C]
    */
   double temperature;
 };
 #define TRACELET__TRACELET_TO_SERVER__LOCATION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__location__descriptor) \
-    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0 }
+    , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0, 0 }
 
 
 typedef enum {

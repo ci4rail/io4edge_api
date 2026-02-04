@@ -878,6 +878,8 @@ type TraceletToServer_Location struct {
 	Speed float64 `protobuf:"fixed64,4,opt,name=speed,proto3" json:"speed,omitempty"`
 	// Vehicle Mileage in [km]
 	Mileage int32 `protobuf:"varint,5,opt,name=mileage,proto3" json:"mileage,omitempty"`
+	// Vehicle Mileage in [mm]
+	MileageMm int64 `protobuf:"varint,9,opt,name=mileage_mm,json=mileageMm,proto3" json:"mileage_mm,omitempty"`
 	// Current Tracelet Temperature in [°C]
 	Temperature   float64 `protobuf:"fixed64,6,opt,name=temperature,proto3" json:"temperature,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -952,6 +954,13 @@ func (x *TraceletToServer_Location) GetSpeed() float64 {
 func (x *TraceletToServer_Location) GetMileage() int32 {
 	if x != nil {
 		return x.Mileage
+	}
+	return 0
+}
+
+func (x *TraceletToServer_Location) GetMileageMm() int64 {
+	if x != nil {
+		return x.MileageMm
 	}
 	return 0
 }
@@ -1397,7 +1406,7 @@ var File_tracelet_proto protoreflect.FileDescriptor
 
 const file_tracelet_proto_rawDesc = "" +
 	"\n" +
-	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xba\x0e\n" +
+	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x0e\n" +
 	"\x10TraceletToServer\x12/\n" +
 	"\x04uuid\x18\b \x01(\v2\x1b.tracelet.TraceletMessageIDR\x04uuid\x12!\n" +
 	"\fipv4_address\x18\t \x01(\aR\vipv4Address\x12;\n" +
@@ -1409,14 +1418,16 @@ const file_tracelet_proto_rawDesc = "" +
 	"\blocation\x18\x05 \x01(\v2#.tracelet.TraceletToServer.LocationH\x00R\blocation\x12)\n" +
 	"\x10firmware_version\x18\a \x01(\tR\x0ffirmwareVersion\x123\n" +
 	"\ametrics\x18\n" +
-	" \x01(\v2\x19.tracelet.TraceletMetricsR\ametrics\x1a\xac\v\n" +
+	" \x01(\v2\x19.tracelet.TraceletMetricsR\ametrics\x1a\xcb\v\n" +
 	"\bLocation\x12<\n" +
 	"\x04gnss\x18\x01 \x01(\v2(.tracelet.TraceletToServer.Location.GnssR\x04gnss\x129\n" +
 	"\x03uwb\x18\x02 \x01(\v2'.tracelet.TraceletToServer.Location.UwbR\x03uwb\x12?\n" +
 	"\x05fused\x18\a \x01(\v2).tracelet.TraceletToServer.Location.FusedR\x05fused\x12K\n" +
 	"\tdirection\x18\x03 \x01(\x0e2-.tracelet.TraceletToServer.Location.DirectionR\tdirection\x12\x14\n" +
 	"\x05speed\x18\x04 \x01(\x01R\x05speed\x12\x18\n" +
-	"\amileage\x18\x05 \x01(\x05R\amileage\x12 \n" +
+	"\amileage\x18\x05 \x01(\x05R\amileage\x12\x1d\n" +
+	"\n" +
+	"mileage_mm\x18\t \x01(\x03R\tmileageMm\x12 \n" +
 	"\vtemperature\x18\x06 \x01(\x01R\vtemperature\x1a\xde\x02\n" +
 	"\x04Gnss\x12\x14\n" +
 	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x1a\n" +

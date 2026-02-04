@@ -180,6 +180,9 @@ message TraceletToServer {
     // Vehicle Mileage in [km]
     int32 mileage = 5;
 
+    // Vehicle Mileage in [mm]
+    int64 mileage_mm = 9;
+    
     // Current Tracelet Temperature in [°C]
     double temperature = 6;
 
