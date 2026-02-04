@@ -827,7 +827,9 @@ type EepromStatusResponse struct {
 	// Last operation status (true = success, false = error)
 	LastOperationSuccess bool `protobuf:"varint,4,opt,name=last_operation_success,json=lastOperationSuccess,proto3" json:"last_operation_success,omitempty"`
 	// Error code (0 = no error)
-	ErrorCode     uint32 `protobuf:"fixed32,5,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	ErrorCode uint32 `protobuf:"fixed32,5,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	// actual block size
+	BlockSize     uint32 `protobuf:"fixed32,6,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -893,6 +895,13 @@ func (x *EepromStatusResponse) GetLastOperationSuccess() bool {
 func (x *EepromStatusResponse) GetErrorCode() uint32 {
 	if x != nil {
 		return x.ErrorCode
+	}
+	return 0
+}
+
+func (x *EepromStatusResponse) GetBlockSize() uint32 {
+	if x != nil {
+		return x.BlockSize
 	}
 	return 0
 }
@@ -1295,7 +1304,7 @@ const file_eeprom_proto_rawDesc = "" +
 	"bytes_read\x18\x03 \x01(\aR\tbytesRead\"T\n" +
 	"\x13EepromWriteResponse\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\aR\aaddress\x12#\n" +
-	"\rbytes_written\x18\x02 \x01(\aR\fbytesWritten\"\xdc\x01\n" +
+	"\rbytes_written\x18\x02 \x01(\aR\fbytesWritten\"\xfb\x01\n" +
 	"\x14EepromStatusResponse\x12\x1d\n" +
 	"\n" +
 	"total_size\x18\x01 \x01(\aR\ttotalSize\x12'\n" +
@@ -1303,7 +1312,9 @@ const file_eeprom_proto_rawDesc = "" +
 	"\x0fwrite_protected\x18\x03 \x01(\bR\x0ewriteProtected\x124\n" +
 	"\x16last_operation_success\x18\x04 \x01(\bR\x14lastOperationSuccess\x12\x1d\n" +
 	"\n" +
-	"error_code\x18\x05 \x01(\aR\terrorCode\"\xb2\x01\n" +
+	"error_code\x18\x05 \x01(\aR\terrorCode\x12\x1d\n" +
+	"\n" +
+	"block_size\x18\x06 \x01(\aR\tblockSize\"\xb2\x01\n" +
 	"\x1aFunctionControlGetResponse\x12A\n" +
 	"\rread_response\x18\x01 \x01(\v2\x1a.eeprom.EepromReadResponseH\x00R\freadResponse\x12G\n" +
 	"\x0fstatus_response\x18\x02 \x01(\v2\x1c.eeprom.EepromStatusResponseH\x00R\x0estatusResponseB\b\n" +

@@ -1465,7 +1465,7 @@ const ProtobufCMessageDescriptor eeprom__eeprom_write_response__descriptor =
   (ProtobufCMessageInit) eeprom__eeprom_write_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor eeprom__eeprom_status_response__field_descriptors[5] =
+static const ProtobufCFieldDescriptor eeprom__eeprom_status_response__field_descriptors[6] =
 {
   {
     "total_size",
@@ -1527,9 +1527,22 @@ static const ProtobufCFieldDescriptor eeprom__eeprom_status_response__field_desc
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "block_size",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FIXED32,
+    0,   /* quantifier_offset */
+    offsetof(Eeprom__EepromStatusResponse, block_size),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned eeprom__eeprom_status_response__field_indices_by_name[] = {
   1,   /* field[1] = available_bytes */
+  5,   /* field[5] = block_size */
   4,   /* field[4] = error_code */
   3,   /* field[3] = last_operation_success */
   0,   /* field[0] = total_size */
@@ -1538,7 +1551,7 @@ static const unsigned eeprom__eeprom_status_response__field_indices_by_name[] = 
 static const ProtobufCIntRange eeprom__eeprom_status_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor eeprom__eeprom_status_response__descriptor =
 {
@@ -1548,7 +1561,7 @@ const ProtobufCMessageDescriptor eeprom__eeprom_status_response__descriptor =
   "Eeprom__EepromStatusResponse",
   "eeprom",
   sizeof(Eeprom__EepromStatusResponse),
-  5,
+  6,
   eeprom__eeprom_status_response__field_descriptors,
   eeprom__eeprom_status_response__field_indices_by_name,
   1,  eeprom__eeprom_status_response__number_ranges,

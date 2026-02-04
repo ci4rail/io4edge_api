@@ -323,10 +323,14 @@ struct  Eeprom__EepromStatusResponse
    * Error code (0 = no error)
    */
   uint32_t error_code;
+  /*
+   * actual block size
+   */
+  uint32_t block_size;
 };
 #define EEPROM__EEPROM_STATUS_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__eeprom_status_response__descriptor) \
-    , 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0 }
 
 
 typedef enum {
