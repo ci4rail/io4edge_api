@@ -48,13 +48,13 @@ struct  Eeprom__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * EEPROM size in bytes (typically 512 for this implementation)
-   */
-  uint32_t eeprom_size;
-  /*
    * Block size for read/write operations (default 32 bytes)
    */
   uint32_t block_size;
+  /*
+   * Write protection flag
+   */
+  protobuf_c_boolean write_protected;
 };
 #define EEPROM__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_set__descriptor) \
@@ -92,14 +92,8 @@ struct  Eeprom__ConfigurationGet
 struct  Eeprom__ConfigurationGetResponse
 {
   ProtobufCMessage base;
-  /*
-   * EEPROM size in bytes
-   */
-  uint32_t eeprom_size;
-  /*
-   * Block size for read/write operations
-   */
   uint32_t block_size;
+  protobuf_c_boolean write_protected;
 };
 #define EEPROM__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_get_response__descriptor) \
@@ -128,7 +122,7 @@ struct  Eeprom__ConfigurationDescribeResponse
   /*
    * EEPROM capacity
    */
-  char *capacity;
+  uint32_t size;
   /*
    * Supported operations
    */
@@ -136,7 +130,7 @@ struct  Eeprom__ConfigurationDescribeResponse
 };
 #define EEPROM__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_describe_response__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string }
 
 
 typedef enum {

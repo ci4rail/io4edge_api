@@ -39,12 +39,12 @@ const (
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// EEPROM size in bytes (typically 512 for this implementation)
-	EepromSize uint32 `protobuf:"fixed32,1,opt,name=eeprom_size,json=eepromSize,proto3" json:"eeprom_size,omitempty"`
 	// Block size for read/write operations (default 32 bytes)
-	BlockSize     uint32 `protobuf:"fixed32,2,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	BlockSize uint32 `protobuf:"fixed32,1,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
+	// Write protection flag
+	WriteProtected bool `protobuf:"varint,2,opt,name=write_protected,json=writeProtected,proto3" json:"write_protected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ConfigurationSet) Reset() {
@@ -77,18 +77,18 @@ func (*ConfigurationSet) Descriptor() ([]byte, []int) {
 	return file_eeprom_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationSet) GetEepromSize() uint32 {
-	if x != nil {
-		return x.EepromSize
-	}
-	return 0
-}
-
 func (x *ConfigurationSet) GetBlockSize() uint32 {
 	if x != nil {
 		return x.BlockSize
 	}
 	return 0
+}
+
+func (x *ConfigurationSet) GetWriteProtected() bool {
+	if x != nil {
+		return x.WriteProtected
+	}
+	return false
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -168,13 +168,11 @@ func (*ConfigurationGet) Descriptor() ([]byte, []int) {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current EEPROM configuration
 type ConfigurationGetResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// EEPROM size in bytes
-	EepromSize uint32 `protobuf:"fixed32,1,opt,name=eeprom_size,json=eepromSize,proto3" json:"eeprom_size,omitempty"`
-	// Block size for read/write operations
-	BlockSize     uint32 `protobuf:"fixed32,2,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	BlockSize      uint32                 `protobuf:"fixed32,1,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
+	WriteProtected bool                   `protobuf:"varint,2,opt,name=write_protected,json=writeProtected,proto3" json:"write_protected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ConfigurationGetResponse) Reset() {
@@ -207,18 +205,18 @@ func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
 	return file_eeprom_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ConfigurationGetResponse) GetEepromSize() uint32 {
-	if x != nil {
-		return x.EepromSize
-	}
-	return 0
-}
-
 func (x *ConfigurationGetResponse) GetBlockSize() uint32 {
 	if x != nil {
 		return x.BlockSize
 	}
 	return 0
+}
+
+func (x *ConfigurationGetResponse) GetWriteProtected() bool {
+	if x != nil {
+		return x.WriteProtected
+	}
+	return false
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -263,7 +261,7 @@ type ConfigurationDescribeResponse struct {
 	// EEPROM device identification
 	Ident string `protobuf:"bytes,1,opt,name=ident,proto3" json:"ident,omitempty"`
 	// EEPROM capacity
-	Capacity string `protobuf:"bytes,2,opt,name=capacity,proto3" json:"capacity,omitempty"`
+	Size uint32 `protobuf:"fixed32,2,opt,name=size,proto3" json:"size,omitempty"`
 	// Supported operations
 	Operations    string `protobuf:"bytes,3,opt,name=operations,proto3" json:"operations,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -307,11 +305,11 @@ func (x *ConfigurationDescribeResponse) GetIdent() string {
 	return ""
 }
 
-func (x *ConfigurationDescribeResponse) GetCapacity() string {
+func (x *ConfigurationDescribeResponse) GetSize() uint32 {
 	if x != nil {
-		return x.Capacity
+		return x.Size
 	}
-	return ""
+	return 0
 }
 
 func (x *ConfigurationDescribeResponse) GetOperations() string {
@@ -1253,23 +1251,21 @@ var File_eeprom_proto protoreflect.FileDescriptor
 
 const file_eeprom_proto_rawDesc = "" +
 	"\n" +
-	"\feeprom.proto\x12\x06eeprom\"R\n" +
-	"\x10ConfigurationSet\x12\x1f\n" +
-	"\veeprom_size\x18\x01 \x01(\aR\n" +
-	"eepromSize\x12\x1d\n" +
+	"\feeprom.proto\x12\x06eeprom\"Z\n" +
+	"\x10ConfigurationSet\x12\x1d\n" +
 	"\n" +
-	"block_size\x18\x02 \x01(\aR\tblockSize\"\x1a\n" +
+	"block_size\x18\x01 \x01(\aR\tblockSize\x12'\n" +
+	"\x0fwrite_protected\x18\x02 \x01(\bR\x0ewriteProtected\"\x1a\n" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
-	"\x10ConfigurationGet\"Z\n" +
-	"\x18ConfigurationGetResponse\x12\x1f\n" +
-	"\veeprom_size\x18\x01 \x01(\aR\n" +
-	"eepromSize\x12\x1d\n" +
+	"\x10ConfigurationGet\"b\n" +
+	"\x18ConfigurationGetResponse\x12\x1d\n" +
 	"\n" +
-	"block_size\x18\x02 \x01(\aR\tblockSize\"\x17\n" +
-	"\x15ConfigurationDescribe\"q\n" +
+	"block_size\x18\x01 \x01(\aR\tblockSize\x12'\n" +
+	"\x0fwrite_protected\x18\x02 \x01(\bR\x0ewriteProtected\"\x17\n" +
+	"\x15ConfigurationDescribe\"i\n" +
 	"\x1dConfigurationDescribeResponse\x12\x14\n" +
-	"\x05ident\x18\x01 \x01(\tR\x05ident\x12\x1a\n" +
-	"\bcapacity\x18\x02 \x01(\tR\bcapacity\x12\x1e\n" +
+	"\x05ident\x18\x01 \x01(\tR\x05ident\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\aR\x04size\x12\x1e\n" +
 	"\n" +
 	"operations\x18\x03 \x01(\tR\n" +
 	"operations\"\xd0\x01\n" +
