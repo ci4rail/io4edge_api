@@ -27,6 +27,12 @@ message ConfigurationSet {
 
     // Write protection flag
     bool write_protected = 2;
+
+    // EEPROM identification string (optional, for future use)
+    string ident = 3;
+
+    // Auto-protect flag: if true, the EEPROM will automatically set write protection after a write operation
+    bool auto_protect = 4;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -44,6 +50,8 @@ message ConfigurationGet {
 message ConfigurationGetResponse {
     fixed32 block_size = 1;
     bool write_protected = 2;
+    string ident = 3;
+    bool auto_protect = 4;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
