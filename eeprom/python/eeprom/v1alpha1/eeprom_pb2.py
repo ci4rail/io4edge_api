@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1c\x65\x65prom/v1alpha1/eeprom.proto\x12\x06\x65\x65prom\"?\n\x10\x43onfigurationSet\x12\x12\n\nblock_size\x18\x01 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x02 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"G\n\x18\x43onfigurationGetResponse\x12\x12\n\nblock_size\x18\x01 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x02 \x01(\x08\"\x17\n\x15\x43onfigurationDescribe\"P\n\x1d\x43onfigurationDescribeResponse\x12\r\n\x05ident\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x07\x12\x12\n\noperations\x18\x03 \x01(\t\"\xbc\x01\n\x15\x43onfigurationResponse\x12/\n\x03get\x18\x01 \x01(\x0b\x32 .eeprom.ConfigurationGetResponseH\x00\x12/\n\x03set\x18\x02 \x01(\x0b\x32 .eeprom.ConfigurationSetResponseH\x00\x12\x39\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32%.eeprom.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"4\n\x11\x45\x65promReadRequest\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0e\n\x06length\x18\x02 \x01(\x07\"3\n\x12\x45\x65promWriteRequest\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"^\n\x12\x46unctionControlGet\x12)\n\x04read\x18\x01 \x01(\x0b\x32\x19.eeprom.EepromReadRequestH\x00\x12\x10\n\x06status\x18\x02 \x01(\x08H\x00\x42\x0b\n\toperation\"_\n\x12\x46unctionControlSet\x12+\n\x05write\x18\x01 \x01(\x0b\x32\x1a.eeprom.EepromWriteRequestH\x00\x12\x0f\n\x05\x65rase\x18\x02 \x01(\x08H\x00\x42\x0b\n\toperation\"G\n\x12\x45\x65promReadResponse\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\x12\x12\n\nbytes_read\x18\x03 \x01(\x07\"=\n\x13\x45\x65promWriteResponse\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x15\n\rbytes_written\x18\x02 \x01(\x07\"\xa4\x01\n\x14\x45\x65promStatusResponse\x12\x12\n\ntotal_size\x18\x01 \x01(\x07\x12\x17\n\x0f\x61vailable_bytes\x18\x02 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x03 \x01(\x08\x12\x1e\n\x16last_operation_success\x18\x04 \x01(\x08\x12\x12\n\nerror_code\x18\x05 \x01(\x07\x12\x12\n\nblock_size\x18\x06 \x01(\x07\"\x94\x01\n\x1a\x46unctionControlGetResponse\x12\x33\n\rread_response\x18\x01 \x01(\x0b\x32\x1a.eeprom.EepromReadResponseH\x00\x12\x37\n\x0fstatus_response\x18\x02 \x01(\x0b\x32\x1c.eeprom.EepromStatusResponseH\x00\x42\x08\n\x06result\"x\n\x1a\x46unctionControlSetResponse\x12\x35\n\x0ewrite_response\x18\x01 \x01(\x0b\x32\x1b.eeprom.EepromWriteResponseH\x00\x12\x19\n\x0f\x65rase_completed\x18\x02 \x01(\x08H\x00\x42\x08\n\x06result\"H\n\x12StreamControlStart\x12\x16\n\x0emonitor_access\x18\x01 \x01(\x08\x12\x1a\n\x12sample_interval_ms\x18\x02 \x01(\x07\"q\n\x11\x45\x65promAccessEvent\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x13\n\x0b\x61\x63\x63\x65ss_type\x18\x02 \x01(\x07\x12\x0f\n\x07\x61\x64\x64ress\x18\x03 \x01(\x07\x12\x12\n\nbyte_count\x18\x04 \x01(\x07\x12\x0f\n\x07success\x18\x05 \x01(\x08\">\n\nStreamData\x12\x30\n\raccess_events\x18\x01 \x03(\x0b\x32\x19.eeprom.EepromAccessEventB\x11Z\x0f\x65\x65prom/v1alpha1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1c\x65\x65prom/v1alpha1/eeprom.proto\x12\x06\x65\x65prom\"d\n\x10\x43onfigurationSet\x12\x12\n\nblock_size\x18\x01 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x02 \x01(\x08\x12\r\n\x05ident\x18\x03 \x01(\t\x12\x14\n\x0c\x61uto_protect\x18\x04 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"l\n\x18\x43onfigurationGetResponse\x12\x12\n\nblock_size\x18\x01 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x02 \x01(\x08\x12\r\n\x05ident\x18\x03 \x01(\t\x12\x14\n\x0c\x61uto_protect\x18\x04 \x01(\x08\"\x17\n\x15\x43onfigurationDescribe\"P\n\x1d\x43onfigurationDescribeResponse\x12\r\n\x05ident\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x07\x12\x12\n\noperations\x18\x03 \x01(\t\"\xbc\x01\n\x15\x43onfigurationResponse\x12/\n\x03get\x18\x01 \x01(\x0b\x32 .eeprom.ConfigurationGetResponseH\x00\x12/\n\x03set\x18\x02 \x01(\x0b\x32 .eeprom.ConfigurationSetResponseH\x00\x12\x39\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32%.eeprom.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"4\n\x11\x45\x65promReadRequest\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0e\n\x06length\x18\x02 \x01(\x07\"3\n\x12\x45\x65promWriteRequest\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"^\n\x12\x46unctionControlGet\x12)\n\x04read\x18\x01 \x01(\x0b\x32\x19.eeprom.EepromReadRequestH\x00\x12\x10\n\x06status\x18\x02 \x01(\x08H\x00\x42\x0b\n\toperation\"_\n\x12\x46unctionControlSet\x12+\n\x05write\x18\x01 \x01(\x0b\x32\x1a.eeprom.EepromWriteRequestH\x00\x12\x0f\n\x05\x65rase\x18\x02 \x01(\x08H\x00\x42\x0b\n\toperation\"G\n\x12\x45\x65promReadResponse\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\x12\x12\n\nbytes_read\x18\x03 \x01(\x07\"=\n\x13\x45\x65promWriteResponse\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\x07\x12\x15\n\rbytes_written\x18\x02 \x01(\x07\"\xa4\x01\n\x14\x45\x65promStatusResponse\x12\x12\n\ntotal_size\x18\x01 \x01(\x07\x12\x17\n\x0f\x61vailable_bytes\x18\x02 \x01(\x07\x12\x17\n\x0fwrite_protected\x18\x03 \x01(\x08\x12\x1e\n\x16last_operation_success\x18\x04 \x01(\x08\x12\x12\n\nerror_code\x18\x05 \x01(\x07\x12\x12\n\nblock_size\x18\x06 \x01(\x07\"\x94\x01\n\x1a\x46unctionControlGetResponse\x12\x33\n\rread_response\x18\x01 \x01(\x0b\x32\x1a.eeprom.EepromReadResponseH\x00\x12\x37\n\x0fstatus_response\x18\x02 \x01(\x0b\x32\x1c.eeprom.EepromStatusResponseH\x00\x42\x08\n\x06result\"x\n\x1a\x46unctionControlSetResponse\x12\x35\n\x0ewrite_response\x18\x01 \x01(\x0b\x32\x1b.eeprom.EepromWriteResponseH\x00\x12\x19\n\x0f\x65rase_completed\x18\x02 \x01(\x08H\x00\x42\x08\n\x06result\"H\n\x12StreamControlStart\x12\x16\n\x0emonitor_access\x18\x01 \x01(\x08\x12\x1a\n\x12sample_interval_ms\x18\x02 \x01(\x07\"q\n\x11\x45\x65promAccessEvent\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x13\n\x0b\x61\x63\x63\x65ss_type\x18\x02 \x01(\x07\x12\x0f\n\x07\x61\x64\x64ress\x18\x03 \x01(\x07\x12\x12\n\nbyte_count\x18\x04 \x01(\x07\x12\x0f\n\x07success\x18\x05 \x01(\x08\">\n\nStreamData\x12\x30\n\raccess_events\x18\x01 \x03(\x0b\x32\x19.eeprom.EepromAccessEventB\x11Z\x0f\x65\x65prom/v1alpha1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,41 +33,41 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\017eeprom/v1alpha1'
   _globals['_CONFIGURATIONSET']._serialized_start=40
-  _globals['_CONFIGURATIONSET']._serialized_end=103
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=105
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=131
-  _globals['_CONFIGURATIONGET']._serialized_start=133
-  _globals['_CONFIGURATIONGET']._serialized_end=151
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=153
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=224
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=226
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=249
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=251
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=331
-  _globals['_CONFIGURATIONRESPONSE']._serialized_start=334
-  _globals['_CONFIGURATIONRESPONSE']._serialized_end=522
-  _globals['_EEPROMREADREQUEST']._serialized_start=524
-  _globals['_EEPROMREADREQUEST']._serialized_end=576
-  _globals['_EEPROMWRITEREQUEST']._serialized_start=578
-  _globals['_EEPROMWRITEREQUEST']._serialized_end=629
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=631
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=725
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=727
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=822
-  _globals['_EEPROMREADRESPONSE']._serialized_start=824
-  _globals['_EEPROMREADRESPONSE']._serialized_end=895
-  _globals['_EEPROMWRITERESPONSE']._serialized_start=897
-  _globals['_EEPROMWRITERESPONSE']._serialized_end=958
-  _globals['_EEPROMSTATUSRESPONSE']._serialized_start=961
-  _globals['_EEPROMSTATUSRESPONSE']._serialized_end=1125
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=1128
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=1276
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=1278
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=1398
-  _globals['_STREAMCONTROLSTART']._serialized_start=1400
-  _globals['_STREAMCONTROLSTART']._serialized_end=1472
-  _globals['_EEPROMACCESSEVENT']._serialized_start=1474
-  _globals['_EEPROMACCESSEVENT']._serialized_end=1587
-  _globals['_STREAMDATA']._serialized_start=1589
-  _globals['_STREAMDATA']._serialized_end=1651
+  _globals['_CONFIGURATIONSET']._serialized_end=140
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=142
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=168
+  _globals['_CONFIGURATIONGET']._serialized_start=170
+  _globals['_CONFIGURATIONGET']._serialized_end=188
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=190
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=298
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=300
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=323
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=325
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=405
+  _globals['_CONFIGURATIONRESPONSE']._serialized_start=408
+  _globals['_CONFIGURATIONRESPONSE']._serialized_end=596
+  _globals['_EEPROMREADREQUEST']._serialized_start=598
+  _globals['_EEPROMREADREQUEST']._serialized_end=650
+  _globals['_EEPROMWRITEREQUEST']._serialized_start=652
+  _globals['_EEPROMWRITEREQUEST']._serialized_end=703
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=705
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=799
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=801
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=896
+  _globals['_EEPROMREADRESPONSE']._serialized_start=898
+  _globals['_EEPROMREADRESPONSE']._serialized_end=969
+  _globals['_EEPROMWRITERESPONSE']._serialized_start=971
+  _globals['_EEPROMWRITERESPONSE']._serialized_end=1032
+  _globals['_EEPROMSTATUSRESPONSE']._serialized_start=1035
+  _globals['_EEPROMSTATUSRESPONSE']._serialized_end=1199
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=1202
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=1350
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=1352
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=1472
+  _globals['_STREAMCONTROLSTART']._serialized_start=1474
+  _globals['_STREAMCONTROLSTART']._serialized_end=1546
+  _globals['_EEPROMACCESSEVENT']._serialized_start=1548
+  _globals['_EEPROMACCESSEVENT']._serialized_end=1661
+  _globals['_STREAMDATA']._serialized_start=1663
+  _globals['_STREAMDATA']._serialized_end=1725
 # @@protoc_insertion_point(module_scope)

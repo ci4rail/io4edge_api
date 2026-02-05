@@ -55,10 +55,18 @@ struct  Eeprom__ConfigurationSet
    * Write protection flag
    */
   protobuf_c_boolean write_protected;
+  /*
+   * EEPROM identification string (optional, for future use)
+   */
+  char *ident;
+  /*
+   * Auto-protect flag: if true, the EEPROM will automatically set write protection after a write operation
+   */
+  protobuf_c_boolean auto_protect;
 };
 #define EEPROM__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_set__descriptor) \
-    , 0, 0 }
+    , 0, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 /*
@@ -94,10 +102,12 @@ struct  Eeprom__ConfigurationGetResponse
   ProtobufCMessage base;
   uint32_t block_size;
   protobuf_c_boolean write_protected;
+  char *ident;
+  protobuf_c_boolean auto_protect;
 };
 #define EEPROM__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_get_response__descriptor) \
-    , 0, 0 }
+    , 0, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 /*

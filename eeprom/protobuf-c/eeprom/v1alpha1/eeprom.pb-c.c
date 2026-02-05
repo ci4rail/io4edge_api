@@ -862,7 +862,7 @@ void   eeprom__stream_data__free_unpacked
   assert(message->base.descriptor == &eeprom__stream_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor eeprom__configuration_set__field_descriptors[2] =
+static const ProtobufCFieldDescriptor eeprom__configuration_set__field_descriptors[4] =
 {
   {
     "block_size",
@@ -888,15 +888,41 @@ static const ProtobufCFieldDescriptor eeprom__configuration_set__field_descripto
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ident",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Eeprom__ConfigurationSet, ident),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "auto_protect",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Eeprom__ConfigurationSet, auto_protect),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned eeprom__configuration_set__field_indices_by_name[] = {
+  3,   /* field[3] = auto_protect */
   0,   /* field[0] = block_size */
+  2,   /* field[2] = ident */
   1,   /* field[1] = write_protected */
 };
 static const ProtobufCIntRange eeprom__configuration_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor eeprom__configuration_set__descriptor =
 {
@@ -906,7 +932,7 @@ const ProtobufCMessageDescriptor eeprom__configuration_set__descriptor =
   "Eeprom__ConfigurationSet",
   "eeprom",
   sizeof(Eeprom__ConfigurationSet),
-  2,
+  4,
   eeprom__configuration_set__field_descriptors,
   eeprom__configuration_set__field_indices_by_name,
   1,  eeprom__configuration_set__number_ranges,
@@ -949,7 +975,7 @@ const ProtobufCMessageDescriptor eeprom__configuration_get__descriptor =
   (ProtobufCMessageInit) eeprom__configuration_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor eeprom__configuration_get_response__field_descriptors[2] =
+static const ProtobufCFieldDescriptor eeprom__configuration_get_response__field_descriptors[4] =
 {
   {
     "block_size",
@@ -975,15 +1001,41 @@ static const ProtobufCFieldDescriptor eeprom__configuration_get_response__field_
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ident",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Eeprom__ConfigurationGetResponse, ident),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "auto_protect",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Eeprom__ConfigurationGetResponse, auto_protect),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned eeprom__configuration_get_response__field_indices_by_name[] = {
+  3,   /* field[3] = auto_protect */
   0,   /* field[0] = block_size */
+  2,   /* field[2] = ident */
   1,   /* field[1] = write_protected */
 };
 static const ProtobufCIntRange eeprom__configuration_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor eeprom__configuration_get_response__descriptor =
 {
@@ -993,7 +1045,7 @@ const ProtobufCMessageDescriptor eeprom__configuration_get_response__descriptor 
   "Eeprom__ConfigurationGetResponse",
   "eeprom",
   sizeof(Eeprom__ConfigurationGetResponse),
-  2,
+  4,
   eeprom__configuration_get_response__field_descriptors,
   eeprom__configuration_get_response__field_indices_by_name,
   1,  eeprom__configuration_get_response__number_ranges,
