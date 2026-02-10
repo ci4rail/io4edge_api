@@ -48,17 +48,25 @@ struct  Eeprom__ConfigurationSet
 {
   ProtobufCMessage base;
   /*
-   * EEPROM size in bytes (typically 512 for this implementation)
-   */
-  uint32_t eeprom_size;
-  /*
    * Block size for read/write operations (default 32 bytes)
    */
   uint32_t block_size;
+  /*
+   * Write protection flag
+   */
+  protobuf_c_boolean write_protected;
+  /*
+   * EEPROM identification string (optional, for future use)
+   */
+  char *ident;
+  /*
+   * Auto-protect flag: if true, the EEPROM will automatically set write protection after a write operation
+   */
+  protobuf_c_boolean auto_protect;
 };
 #define EEPROM__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_set__descriptor) \
-    , 0, 0 }
+    , 0, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 /*
@@ -92,18 +100,14 @@ struct  Eeprom__ConfigurationGet
 struct  Eeprom__ConfigurationGetResponse
 {
   ProtobufCMessage base;
-  /*
-   * EEPROM size in bytes
-   */
-  uint32_t eeprom_size;
-  /*
-   * Block size for read/write operations
-   */
   uint32_t block_size;
+  protobuf_c_boolean write_protected;
+  char *ident;
+  protobuf_c_boolean auto_protect;
 };
 #define EEPROM__CONFIGURATION_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_get_response__descriptor) \
-    , 0, 0 }
+    , 0, 0, (char *)protobuf_c_empty_string, 0 }
 
 
 /*
@@ -128,7 +132,7 @@ struct  Eeprom__ConfigurationDescribeResponse
   /*
    * EEPROM capacity
    */
-  char *capacity;
+  uint32_t size;
   /*
    * Supported operations
    */
@@ -136,7 +140,7 @@ struct  Eeprom__ConfigurationDescribeResponse
 };
 #define EEPROM__CONFIGURATION_DESCRIBE_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__configuration_describe_response__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string }
 
 
 typedef enum {
@@ -329,10 +333,14 @@ struct  Eeprom__EepromStatusResponse
    * Error code (0 = no error)
    */
   uint32_t error_code;
+  /*
+   * actual block size
+   */
+  uint32_t block_size;
 };
 #define EEPROM__EEPROM_STATUS_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&eeprom__eeprom_status_response__descriptor) \
-    , 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0 }
 
 
 typedef enum {

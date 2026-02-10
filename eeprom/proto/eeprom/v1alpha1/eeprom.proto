@@ -22,10 +22,17 @@ option go_package = "eeprom/v1alpha1";
 
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 message ConfigurationSet {
-    // EEPROM size in bytes (typically 512 for this implementation)
-    fixed32 eeprom_size = 1;
     // Block size for read/write operations (default 32 bytes)
-    fixed32 block_size = 2;
+    fixed32 block_size = 1;
+
+    // Write protection flag
+    bool write_protected = 2;
+
+    // EEPROM identification string (optional, for future use)
+    string ident = 3;
+
+    // Auto-protect flag: if true, the EEPROM will automatically set write protection after a write operation
+    bool auto_protect = 4;
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -41,10 +48,10 @@ message ConfigurationGet {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current EEPROM configuration
 message ConfigurationGetResponse {
-    // EEPROM size in bytes
-    fixed32 eeprom_size = 1;
-    // Block size for read/write operations
-    fixed32 block_size = 2;
+    fixed32 block_size = 1;
+    bool write_protected = 2;
+    string ident = 3;
+    bool auto_protect = 4;
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -56,7 +63,7 @@ message ConfigurationDescribeResponse {
     // EEPROM device identification
     string ident = 1;
     // EEPROM capacity
-    string capacity = 2;
+    fixed32 size = 2;
     // Supported operations
     string operations = 3;
 }
@@ -136,6 +143,8 @@ message EepromStatusResponse {
     bool last_operation_success = 4;
     // Error code (0 = no error)
     fixed32 error_code = 5;
+    // actual block size
+    fixed32 block_size = 6;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook

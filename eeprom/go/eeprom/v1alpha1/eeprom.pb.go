@@ -39,10 +39,14 @@ const (
 // ConfigurationSet to pass to Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// EEPROM size in bytes (typically 512 for this implementation)
-	EepromSize uint32 `protobuf:"fixed32,1,opt,name=eeprom_size,json=eepromSize,proto3" json:"eeprom_size,omitempty"`
 	// Block size for read/write operations (default 32 bytes)
-	BlockSize     uint32 `protobuf:"fixed32,2,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
+	BlockSize uint32 `protobuf:"fixed32,1,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
+	// Write protection flag
+	WriteProtected bool `protobuf:"varint,2,opt,name=write_protected,json=writeProtected,proto3" json:"write_protected,omitempty"`
+	// EEPROM identification string (optional, for future use)
+	Ident string `protobuf:"bytes,3,opt,name=ident,proto3" json:"ident,omitempty"`
+	// Auto-protect flag: if true, the EEPROM will automatically set write protection after a write operation
+	AutoProtect   bool `protobuf:"varint,4,opt,name=auto_protect,json=autoProtect,proto3" json:"auto_protect,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -77,18 +81,32 @@ func (*ConfigurationSet) Descriptor() ([]byte, []int) {
 	return file_eeprom_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationSet) GetEepromSize() uint32 {
-	if x != nil {
-		return x.EepromSize
-	}
-	return 0
-}
-
 func (x *ConfigurationSet) GetBlockSize() uint32 {
 	if x != nil {
 		return x.BlockSize
 	}
 	return 0
+}
+
+func (x *ConfigurationSet) GetWriteProtected() bool {
+	if x != nil {
+		return x.WriteProtected
+	}
+	return false
+}
+
+func (x *ConfigurationSet) GetIdent() string {
+	if x != nil {
+		return x.Ident
+	}
+	return ""
+}
+
+func (x *ConfigurationSet) GetAutoProtect() bool {
+	if x != nil {
+		return x.AutoProtect
+	}
+	return false
 }
 
 // ConfigurationSetResponse to pass to Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
@@ -168,13 +186,13 @@ func (*ConfigurationGet) Descriptor() ([]byte, []int) {
 // ConfigurationGetResponse to pass to Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse hook
 // Returns the current EEPROM configuration
 type ConfigurationGetResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// EEPROM size in bytes
-	EepromSize uint32 `protobuf:"fixed32,1,opt,name=eeprom_size,json=eepromSize,proto3" json:"eeprom_size,omitempty"`
-	// Block size for read/write operations
-	BlockSize     uint32 `protobuf:"fixed32,2,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	BlockSize      uint32                 `protobuf:"fixed32,1,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
+	WriteProtected bool                   `protobuf:"varint,2,opt,name=write_protected,json=writeProtected,proto3" json:"write_protected,omitempty"`
+	Ident          string                 `protobuf:"bytes,3,opt,name=ident,proto3" json:"ident,omitempty"`
+	AutoProtect    bool                   `protobuf:"varint,4,opt,name=auto_protect,json=autoProtect,proto3" json:"auto_protect,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ConfigurationGetResponse) Reset() {
@@ -207,18 +225,32 @@ func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
 	return file_eeprom_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ConfigurationGetResponse) GetEepromSize() uint32 {
-	if x != nil {
-		return x.EepromSize
-	}
-	return 0
-}
-
 func (x *ConfigurationGetResponse) GetBlockSize() uint32 {
 	if x != nil {
 		return x.BlockSize
 	}
 	return 0
+}
+
+func (x *ConfigurationGetResponse) GetWriteProtected() bool {
+	if x != nil {
+		return x.WriteProtected
+	}
+	return false
+}
+
+func (x *ConfigurationGetResponse) GetIdent() string {
+	if x != nil {
+		return x.Ident
+	}
+	return ""
+}
+
+func (x *ConfigurationGetResponse) GetAutoProtect() bool {
+	if x != nil {
+		return x.AutoProtect
+	}
+	return false
 }
 
 // ConfigurationDescribe to pass to Functionblock.Configuration.functionSpecificConfigurationDescribe hook
@@ -263,7 +295,7 @@ type ConfigurationDescribeResponse struct {
 	// EEPROM device identification
 	Ident string `protobuf:"bytes,1,opt,name=ident,proto3" json:"ident,omitempty"`
 	// EEPROM capacity
-	Capacity string `protobuf:"bytes,2,opt,name=capacity,proto3" json:"capacity,omitempty"`
+	Size uint32 `protobuf:"fixed32,2,opt,name=size,proto3" json:"size,omitempty"`
 	// Supported operations
 	Operations    string `protobuf:"bytes,3,opt,name=operations,proto3" json:"operations,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -307,11 +339,11 @@ func (x *ConfigurationDescribeResponse) GetIdent() string {
 	return ""
 }
 
-func (x *ConfigurationDescribeResponse) GetCapacity() string {
+func (x *ConfigurationDescribeResponse) GetSize() uint32 {
 	if x != nil {
-		return x.Capacity
+		return x.Size
 	}
-	return ""
+	return 0
 }
 
 func (x *ConfigurationDescribeResponse) GetOperations() string {
@@ -829,7 +861,9 @@ type EepromStatusResponse struct {
 	// Last operation status (true = success, false = error)
 	LastOperationSuccess bool `protobuf:"varint,4,opt,name=last_operation_success,json=lastOperationSuccess,proto3" json:"last_operation_success,omitempty"`
 	// Error code (0 = no error)
-	ErrorCode     uint32 `protobuf:"fixed32,5,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	ErrorCode uint32 `protobuf:"fixed32,5,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	// actual block size
+	BlockSize     uint32 `protobuf:"fixed32,6,opt,name=block_size,json=blockSize,proto3" json:"block_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -895,6 +929,13 @@ func (x *EepromStatusResponse) GetLastOperationSuccess() bool {
 func (x *EepromStatusResponse) GetErrorCode() uint32 {
 	if x != nil {
 		return x.ErrorCode
+	}
+	return 0
+}
+
+func (x *EepromStatusResponse) GetBlockSize() uint32 {
+	if x != nil {
+		return x.BlockSize
 	}
 	return 0
 }
@@ -1253,23 +1294,25 @@ var File_eeprom_proto protoreflect.FileDescriptor
 
 const file_eeprom_proto_rawDesc = "" +
 	"\n" +
-	"\feeprom.proto\x12\x06eeprom\"R\n" +
-	"\x10ConfigurationSet\x12\x1f\n" +
-	"\veeprom_size\x18\x01 \x01(\aR\n" +
-	"eepromSize\x12\x1d\n" +
+	"\feeprom.proto\x12\x06eeprom\"\x93\x01\n" +
+	"\x10ConfigurationSet\x12\x1d\n" +
 	"\n" +
-	"block_size\x18\x02 \x01(\aR\tblockSize\"\x1a\n" +
+	"block_size\x18\x01 \x01(\aR\tblockSize\x12'\n" +
+	"\x0fwrite_protected\x18\x02 \x01(\bR\x0ewriteProtected\x12\x14\n" +
+	"\x05ident\x18\x03 \x01(\tR\x05ident\x12!\n" +
+	"\fauto_protect\x18\x04 \x01(\bR\vautoProtect\"\x1a\n" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
-	"\x10ConfigurationGet\"Z\n" +
-	"\x18ConfigurationGetResponse\x12\x1f\n" +
-	"\veeprom_size\x18\x01 \x01(\aR\n" +
-	"eepromSize\x12\x1d\n" +
+	"\x10ConfigurationGet\"\x9b\x01\n" +
+	"\x18ConfigurationGetResponse\x12\x1d\n" +
 	"\n" +
-	"block_size\x18\x02 \x01(\aR\tblockSize\"\x17\n" +
-	"\x15ConfigurationDescribe\"q\n" +
+	"block_size\x18\x01 \x01(\aR\tblockSize\x12'\n" +
+	"\x0fwrite_protected\x18\x02 \x01(\bR\x0ewriteProtected\x12\x14\n" +
+	"\x05ident\x18\x03 \x01(\tR\x05ident\x12!\n" +
+	"\fauto_protect\x18\x04 \x01(\bR\vautoProtect\"\x17\n" +
+	"\x15ConfigurationDescribe\"i\n" +
 	"\x1dConfigurationDescribeResponse\x12\x14\n" +
-	"\x05ident\x18\x01 \x01(\tR\x05ident\x12\x1a\n" +
-	"\bcapacity\x18\x02 \x01(\tR\bcapacity\x12\x1e\n" +
+	"\x05ident\x18\x01 \x01(\tR\x05ident\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\aR\x04size\x12\x1e\n" +
 	"\n" +
 	"operations\x18\x03 \x01(\tR\n" +
 	"operations\"\xd0\x01\n" +
@@ -1299,7 +1342,7 @@ const file_eeprom_proto_rawDesc = "" +
 	"bytes_read\x18\x03 \x01(\aR\tbytesRead\"T\n" +
 	"\x13EepromWriteResponse\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\aR\aaddress\x12#\n" +
-	"\rbytes_written\x18\x02 \x01(\aR\fbytesWritten\"\xdc\x01\n" +
+	"\rbytes_written\x18\x02 \x01(\aR\fbytesWritten\"\xfb\x01\n" +
 	"\x14EepromStatusResponse\x12\x1d\n" +
 	"\n" +
 	"total_size\x18\x01 \x01(\aR\ttotalSize\x12'\n" +
@@ -1307,7 +1350,9 @@ const file_eeprom_proto_rawDesc = "" +
 	"\x0fwrite_protected\x18\x03 \x01(\bR\x0ewriteProtected\x124\n" +
 	"\x16last_operation_success\x18\x04 \x01(\bR\x14lastOperationSuccess\x12\x1d\n" +
 	"\n" +
-	"error_code\x18\x05 \x01(\aR\terrorCode\"\xb2\x01\n" +
+	"error_code\x18\x05 \x01(\aR\terrorCode\x12\x1d\n" +
+	"\n" +
+	"block_size\x18\x06 \x01(\aR\tblockSize\"\xb2\x01\n" +
 	"\x1aFunctionControlGetResponse\x12A\n" +
 	"\rread_response\x18\x01 \x01(\v2\x1a.eeprom.EepromReadResponseH\x00R\freadResponse\x12G\n" +
 	"\x0fstatus_response\x18\x02 \x01(\v2\x1c.eeprom.EepromStatusResponseH\x00R\x0estatusResponseB\b\n" +

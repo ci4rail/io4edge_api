@@ -7,12 +7,16 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ConfigurationSet(_message.Message):
-    __slots__ = ("eeprom_size", "block_size")
-    EEPROM_SIZE_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("block_size", "write_protected", "ident", "auto_protect")
     BLOCK_SIZE_FIELD_NUMBER: _ClassVar[int]
-    eeprom_size: int
+    WRITE_PROTECTED_FIELD_NUMBER: _ClassVar[int]
+    IDENT_FIELD_NUMBER: _ClassVar[int]
+    AUTO_PROTECT_FIELD_NUMBER: _ClassVar[int]
     block_size: int
-    def __init__(self, eeprom_size: _Optional[int] = ..., block_size: _Optional[int] = ...) -> None: ...
+    write_protected: bool
+    ident: str
+    auto_protect: bool
+    def __init__(self, block_size: _Optional[int] = ..., write_protected: _Optional[bool] = ..., ident: _Optional[str] = ..., auto_protect: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationSetResponse(_message.Message):
     __slots__ = ()
@@ -23,26 +27,30 @@ class ConfigurationGet(_message.Message):
     def __init__(self) -> None: ...
 
 class ConfigurationGetResponse(_message.Message):
-    __slots__ = ("eeprom_size", "block_size")
-    EEPROM_SIZE_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("block_size", "write_protected", "ident", "auto_protect")
     BLOCK_SIZE_FIELD_NUMBER: _ClassVar[int]
-    eeprom_size: int
+    WRITE_PROTECTED_FIELD_NUMBER: _ClassVar[int]
+    IDENT_FIELD_NUMBER: _ClassVar[int]
+    AUTO_PROTECT_FIELD_NUMBER: _ClassVar[int]
     block_size: int
-    def __init__(self, eeprom_size: _Optional[int] = ..., block_size: _Optional[int] = ...) -> None: ...
+    write_protected: bool
+    ident: str
+    auto_protect: bool
+    def __init__(self, block_size: _Optional[int] = ..., write_protected: _Optional[bool] = ..., ident: _Optional[str] = ..., auto_protect: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationDescribe(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
 class ConfigurationDescribeResponse(_message.Message):
-    __slots__ = ("ident", "capacity", "operations")
+    __slots__ = ("ident", "size", "operations")
     IDENT_FIELD_NUMBER: _ClassVar[int]
-    CAPACITY_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
     OPERATIONS_FIELD_NUMBER: _ClassVar[int]
     ident: str
-    capacity: str
+    size: int
     operations: str
-    def __init__(self, ident: _Optional[str] = ..., capacity: _Optional[str] = ..., operations: _Optional[str] = ...) -> None: ...
+    def __init__(self, ident: _Optional[str] = ..., size: _Optional[int] = ..., operations: _Optional[str] = ...) -> None: ...
 
 class ConfigurationResponse(_message.Message):
     __slots__ = ("get", "set", "describe")
@@ -105,18 +113,20 @@ class EepromWriteResponse(_message.Message):
     def __init__(self, address: _Optional[int] = ..., bytes_written: _Optional[int] = ...) -> None: ...
 
 class EepromStatusResponse(_message.Message):
-    __slots__ = ("total_size", "available_bytes", "write_protected", "last_operation_success", "error_code")
+    __slots__ = ("total_size", "available_bytes", "write_protected", "last_operation_success", "error_code", "block_size")
     TOTAL_SIZE_FIELD_NUMBER: _ClassVar[int]
     AVAILABLE_BYTES_FIELD_NUMBER: _ClassVar[int]
     WRITE_PROTECTED_FIELD_NUMBER: _ClassVar[int]
     LAST_OPERATION_SUCCESS_FIELD_NUMBER: _ClassVar[int]
     ERROR_CODE_FIELD_NUMBER: _ClassVar[int]
+    BLOCK_SIZE_FIELD_NUMBER: _ClassVar[int]
     total_size: int
     available_bytes: int
     write_protected: bool
     last_operation_success: bool
     error_code: int
-    def __init__(self, total_size: _Optional[int] = ..., available_bytes: _Optional[int] = ..., write_protected: _Optional[bool] = ..., last_operation_success: _Optional[bool] = ..., error_code: _Optional[int] = ...) -> None: ...
+    block_size: int
+    def __init__(self, total_size: _Optional[int] = ..., available_bytes: _Optional[int] = ..., write_protected: _Optional[bool] = ..., last_operation_success: _Optional[bool] = ..., error_code: _Optional[int] = ..., block_size: _Optional[int] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ("read_response", "status_response")
