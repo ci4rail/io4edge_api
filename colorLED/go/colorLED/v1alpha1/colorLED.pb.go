@@ -46,7 +46,8 @@ const (
 	Color_YELLOW Color = 4
 	Color_CYAN   Color = 5
 	Color_PURPLE Color = 6
-	Color_OFF    Color = 7
+	Color_ORANGE Color = 7
+	Color_OFF    Color = 8
 )
 
 // Enum value maps for Color.
@@ -59,7 +60,8 @@ var (
 		4: "YELLOW",
 		5: "CYAN",
 		6: "PURPLE",
-		7: "OFF",
+		7: "ORANGE",
+		8: "OFF",
 	}
 	Color_value = map[string]int32{
 		"RED":    0,
@@ -69,7 +71,8 @@ var (
 		"YELLOW": 4,
 		"CYAN":   5,
 		"PURPLE": 6,
-		"OFF":    7,
+		"ORANGE": 7,
+		"OFF":    8,
 	}
 )
 
@@ -286,20 +289,85 @@ func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
 	return file_colorLED_proto_rawDescGZIP(), []int{4}
 }
 
+type RGBColor struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Red           uint32                 `protobuf:"fixed32,1,opt,name=red,proto3" json:"red,omitempty"`
+	Green         uint32                 `protobuf:"fixed32,2,opt,name=green,proto3" json:"green,omitempty"`
+	Blue          uint32                 `protobuf:"fixed32,3,opt,name=blue,proto3" json:"blue,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RGBColor) Reset() {
+	*x = RGBColor{}
+	mi := &file_colorLED_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RGBColor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RGBColor) ProtoMessage() {}
+
+func (x *RGBColor) ProtoReflect() protoreflect.Message {
+	mi := &file_colorLED_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RGBColor.ProtoReflect.Descriptor instead.
+func (*RGBColor) Descriptor() ([]byte, []int) {
+	return file_colorLED_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RGBColor) GetRed() uint32 {
+	if x != nil {
+		return x.Red
+	}
+	return 0
+}
+
+func (x *RGBColor) GetGreen() uint32 {
+	if x != nil {
+		return x.Green
+	}
+	return 0
+}
+
+func (x *RGBColor) GetBlue() uint32 {
+	if x != nil {
+		return x.Blue
+	}
+	return 0
+}
+
 type ChannelConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// channel number
 	Channel uint32 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
 	// channel color
-	Color         Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color" json:"color,omitempty"`
-	Blink         bool  `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel supports blinking
+	//
+	// Types that are valid to be assigned to ColorType:
+	//
+	//	*ChannelConfig_Color
+	//	*ChannelConfig_Rgb
+	ColorType     isChannelConfig_ColorType `protobuf_oneof:"colorType"`
+	Blink         bool                      `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel supports blinking
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ChannelConfig) Reset() {
 	*x = ChannelConfig{}
-	mi := &file_colorLED_proto_msgTypes[5]
+	mi := &file_colorLED_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -311,7 +379,7 @@ func (x *ChannelConfig) String() string {
 func (*ChannelConfig) ProtoMessage() {}
 
 func (x *ChannelConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[5]
+	mi := &file_colorLED_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -324,7 +392,7 @@ func (x *ChannelConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelConfig.ProtoReflect.Descriptor instead.
 func (*ChannelConfig) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{5}
+	return file_colorLED_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ChannelConfig) GetChannel() uint32 {
@@ -334,11 +402,29 @@ func (x *ChannelConfig) GetChannel() uint32 {
 	return 0
 }
 
+func (x *ChannelConfig) GetColorType() isChannelConfig_ColorType {
+	if x != nil {
+		return x.ColorType
+	}
+	return nil
+}
+
 func (x *ChannelConfig) GetColor() Color {
 	if x != nil {
-		return x.Color
+		if x, ok := x.ColorType.(*ChannelConfig_Color); ok {
+			return x.Color
+		}
 	}
 	return Color_RED
+}
+
+func (x *ChannelConfig) GetRgb() *RGBColor {
+	if x != nil {
+		if x, ok := x.ColorType.(*ChannelConfig_Rgb); ok {
+			return x.Rgb
+		}
+	}
+	return nil
 }
 
 func (x *ChannelConfig) GetBlink() bool {
@@ -347,6 +433,22 @@ func (x *ChannelConfig) GetBlink() bool {
 	}
 	return false
 }
+
+type isChannelConfig_ColorType interface {
+	isChannelConfig_ColorType()
+}
+
+type ChannelConfig_Color struct {
+	Color Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color,oneof"`
+}
+
+type ChannelConfig_Rgb struct {
+	Rgb *RGBColor `protobuf:"bytes,4,opt,name=rgb,proto3,oneof"`
+}
+
+func (*ChannelConfig_Color) isChannelConfig_ColorType() {}
+
+func (*ChannelConfig_Rgb) isChannelConfig_ColorType() {}
 
 type ConfigurationDescribeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -358,7 +460,7 @@ type ConfigurationDescribeResponse struct {
 
 func (x *ConfigurationDescribeResponse) Reset() {
 	*x = ConfigurationDescribeResponse{}
-	mi := &file_colorLED_proto_msgTypes[6]
+	mi := &file_colorLED_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -370,7 +472,7 @@ func (x *ConfigurationDescribeResponse) String() string {
 func (*ConfigurationDescribeResponse) ProtoMessage() {}
 
 func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[6]
+	mi := &file_colorLED_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,7 +485,7 @@ func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{6}
+	return file_colorLED_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ConfigurationDescribeResponse) GetChannelConfig() []*ChannelConfig {
@@ -415,7 +517,7 @@ type ConfigurationResponse struct {
 
 func (x *ConfigurationResponse) Reset() {
 	*x = ConfigurationResponse{}
-	mi := &file_colorLED_proto_msgTypes[7]
+	mi := &file_colorLED_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -427,7 +529,7 @@ func (x *ConfigurationResponse) String() string {
 func (*ConfigurationResponse) ProtoMessage() {}
 
 func (x *ConfigurationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[7]
+	mi := &file_colorLED_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -440,7 +542,7 @@ func (x *ConfigurationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationResponse) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{7}
+	return file_colorLED_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ConfigurationResponse) GetType() isConfigurationResponse_Type {
@@ -509,7 +611,7 @@ type FunctionControlGet struct {
 
 func (x *FunctionControlGet) Reset() {
 	*x = FunctionControlGet{}
-	mi := &file_colorLED_proto_msgTypes[8]
+	mi := &file_colorLED_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -521,7 +623,7 @@ func (x *FunctionControlGet) String() string {
 func (*FunctionControlGet) ProtoMessage() {}
 
 func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[8]
+	mi := &file_colorLED_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -534,7 +636,7 @@ func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGet.ProtoReflect.Descriptor instead.
 func (*FunctionControlGet) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{8}
+	return file_colorLED_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *FunctionControlGet) GetChannel() uint32 {
@@ -546,17 +648,21 @@ func (x *FunctionControlGet) GetChannel() uint32 {
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 type FunctionControlSet struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Channel       uint32                 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
-	Color         Color                  `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color" json:"color,omitempty"`
-	Blink         bool                   `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"`
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	Channel uint32                 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	// Types that are valid to be assigned to ColorType:
+	//
+	//	*FunctionControlSet_Color
+	//	*FunctionControlSet_Rgb
+	ColorType     isFunctionControlSet_ColorType `protobuf_oneof:"colorType"`
+	Blink         bool                           `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
-	mi := &file_colorLED_proto_msgTypes[9]
+	mi := &file_colorLED_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -568,7 +674,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[9]
+	mi := &file_colorLED_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,7 +687,7 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{9}
+	return file_colorLED_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *FunctionControlSet) GetChannel() uint32 {
@@ -591,11 +697,29 @@ func (x *FunctionControlSet) GetChannel() uint32 {
 	return 0
 }
 
+func (x *FunctionControlSet) GetColorType() isFunctionControlSet_ColorType {
+	if x != nil {
+		return x.ColorType
+	}
+	return nil
+}
+
 func (x *FunctionControlSet) GetColor() Color {
 	if x != nil {
-		return x.Color
+		if x, ok := x.ColorType.(*FunctionControlSet_Color); ok {
+			return x.Color
+		}
 	}
 	return Color_RED
+}
+
+func (x *FunctionControlSet) GetRgb() *RGBColor {
+	if x != nil {
+		if x, ok := x.ColorType.(*FunctionControlSet_Rgb); ok {
+			return x.Rgb
+		}
+	}
+	return nil
 }
 
 func (x *FunctionControlSet) GetBlink() bool {
@@ -605,18 +729,38 @@ func (x *FunctionControlSet) GetBlink() bool {
 	return false
 }
 
+type isFunctionControlSet_ColorType interface {
+	isFunctionControlSet_ColorType()
+}
+
+type FunctionControlSet_Color struct {
+	Color Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color,oneof"`
+}
+
+type FunctionControlSet_Rgb struct {
+	Rgb *RGBColor `protobuf:"bytes,4,opt,name=rgb,proto3,oneof"`
+}
+
+func (*FunctionControlSet_Color) isFunctionControlSet_ColorType() {}
+
+func (*FunctionControlSet_Rgb) isFunctionControlSet_ColorType() {}
+
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 type FunctionControlGetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Color         Color                  `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color" json:"color,omitempty"`
-	Blink         bool                   `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel is blinking
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to ColorType:
+	//
+	//	*FunctionControlGetResponse_Color
+	//	*FunctionControlGetResponse_Rgb
+	ColorType     isFunctionControlGetResponse_ColorType `protobuf_oneof:"colorType"`
+	Blink         bool                                   `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel is blinking
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FunctionControlGetResponse) Reset() {
 	*x = FunctionControlGetResponse{}
-	mi := &file_colorLED_proto_msgTypes[10]
+	mi := &file_colorLED_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -628,7 +772,7 @@ func (x *FunctionControlGetResponse) String() string {
 func (*FunctionControlGetResponse) ProtoMessage() {}
 
 func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[10]
+	mi := &file_colorLED_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,14 +785,32 @@ func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{10}
+	return file_colorLED_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FunctionControlGetResponse) GetColorType() isFunctionControlGetResponse_ColorType {
+	if x != nil {
+		return x.ColorType
+	}
+	return nil
 }
 
 func (x *FunctionControlGetResponse) GetColor() Color {
 	if x != nil {
-		return x.Color
+		if x, ok := x.ColorType.(*FunctionControlGetResponse_Color); ok {
+			return x.Color
+		}
 	}
 	return Color_RED
+}
+
+func (x *FunctionControlGetResponse) GetRgb() *RGBColor {
+	if x != nil {
+		if x, ok := x.ColorType.(*FunctionControlGetResponse_Rgb); ok {
+			return x.Rgb
+		}
+	}
+	return nil
 }
 
 func (x *FunctionControlGetResponse) GetBlink() bool {
@@ -657,6 +819,22 @@ func (x *FunctionControlGetResponse) GetBlink() bool {
 	}
 	return false
 }
+
+type isFunctionControlGetResponse_ColorType interface {
+	isFunctionControlGetResponse_ColorType()
+}
+
+type FunctionControlGetResponse_Color struct {
+	Color Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color,oneof"`
+}
+
+type FunctionControlGetResponse_Rgb struct {
+	Rgb *RGBColor `protobuf:"bytes,1,opt,name=rgb,proto3,oneof"`
+}
+
+func (*FunctionControlGetResponse_Color) isFunctionControlGetResponse_ColorType() {}
+
+func (*FunctionControlGetResponse_Rgb) isFunctionControlGetResponse_ColorType() {}
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 type FunctionControlSetResponse struct {
@@ -667,7 +845,7 @@ type FunctionControlSetResponse struct {
 
 func (x *FunctionControlSetResponse) Reset() {
 	*x = FunctionControlSetResponse{}
-	mi := &file_colorLED_proto_msgTypes[11]
+	mi := &file_colorLED_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -679,7 +857,7 @@ func (x *FunctionControlSetResponse) String() string {
 func (*FunctionControlSetResponse) ProtoMessage() {}
 
 func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[11]
+	mi := &file_colorLED_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -692,7 +870,7 @@ func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{11}
+	return file_colorLED_proto_rawDescGZIP(), []int{12}
 }
 
 // ============= StreamControl ==================
@@ -705,7 +883,7 @@ type StreamControlStart struct {
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
-	mi := &file_colorLED_proto_msgTypes[12]
+	mi := &file_colorLED_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -717,7 +895,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[12]
+	mi := &file_colorLED_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -730,7 +908,7 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{12}
+	return file_colorLED_proto_rawDescGZIP(), []int{13}
 }
 
 // StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
@@ -742,7 +920,7 @@ type StreamData struct {
 
 func (x *StreamData) Reset() {
 	*x = StreamData{}
-	mi := &file_colorLED_proto_msgTypes[13]
+	mi := &file_colorLED_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -754,7 +932,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_colorLED_proto_msgTypes[13]
+	mi := &file_colorLED_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -767,7 +945,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_colorLED_proto_rawDescGZIP(), []int{13}
+	return file_colorLED_proto_rawDescGZIP(), []int{14}
 }
 
 var File_colorLED_proto protoreflect.FileDescriptor
@@ -779,11 +957,17 @@ const file_colorLED_proto_rawDesc = "" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
 	"\x10ConfigurationGet\"\x1a\n" +
 	"\x18ConfigurationGetResponse\"\x17\n" +
-	"\x15ConfigurationDescribe\"f\n" +
+	"\x15ConfigurationDescribe\"F\n" +
+	"\bRGBColor\x12\x10\n" +
+	"\x03red\x18\x01 \x01(\aR\x03red\x12\x14\n" +
+	"\x05green\x18\x02 \x01(\aR\x05green\x12\x12\n" +
+	"\x04blue\x18\x03 \x01(\aR\x04blue\"\x9d\x01\n" +
 	"\rChannelConfig\x12\x18\n" +
-	"\achannel\x18\x01 \x01(\aR\achannel\x12%\n" +
-	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorR\x05color\x12\x14\n" +
-	"\x05blink\x18\x03 \x01(\bR\x05blink\"\x80\x01\n" +
+	"\achannel\x18\x01 \x01(\aR\achannel\x12'\n" +
+	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
+	"\x03rgb\x18\x04 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
+	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
+	"\tcolorType\"\x80\x01\n" +
 	"\x1dConfigurationDescribeResponse\x12=\n" +
 	"\rchannelConfig\x18\x01 \x03(\v2\x17.colorLED.ChannelConfigR\rchannelConfig\x12 \n" +
 	"\vmaxChannels\x18\x02 \x01(\aR\vmaxChannels\"\xd6\x01\n" +
@@ -793,18 +977,22 @@ const file_colorLED_proto_rawDesc = "" +
 	"\bdescribe\x18\x03 \x01(\v2'.colorLED.ConfigurationDescribeResponseH\x00R\bdescribeB\x06\n" +
 	"\x04type\".\n" +
 	"\x12FunctionControlGet\x12\x18\n" +
-	"\achannel\x18\x01 \x01(\aR\achannel\"k\n" +
+	"\achannel\x18\x01 \x01(\aR\achannel\"\xa2\x01\n" +
 	"\x12FunctionControlSet\x12\x18\n" +
-	"\achannel\x18\x01 \x01(\aR\achannel\x12%\n" +
-	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorR\x05color\x12\x14\n" +
-	"\x05blink\x18\x03 \x01(\bR\x05blink\"Y\n" +
-	"\x1aFunctionControlGetResponse\x12%\n" +
-	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorR\x05color\x12\x14\n" +
-	"\x05blink\x18\x03 \x01(\bR\x05blink\"\x1c\n" +
+	"\achannel\x18\x01 \x01(\aR\achannel\x12'\n" +
+	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
+	"\x03rgb\x18\x04 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
+	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
+	"\tcolorType\"\x90\x01\n" +
+	"\x1aFunctionControlGetResponse\x12'\n" +
+	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
+	"\x03rgb\x18\x01 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
+	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
+	"\tcolorType\"\x1c\n" +
 	"\x1aFunctionControlSetResponse\"\x14\n" +
 	"\x12StreamControlStart\"\f\n" +
 	"\n" +
-	"StreamData*[\n" +
+	"StreamData*g\n" +
 	"\x05Color\x12\a\n" +
 	"\x03RED\x10\x00\x12\t\n" +
 	"\x05GREEN\x10\x01\x12\b\n" +
@@ -814,8 +1002,10 @@ const file_colorLED_proto_rawDesc = "" +
 	"\x06YELLOW\x10\x04\x12\b\n" +
 	"\x04CYAN\x10\x05\x12\n" +
 	"\n" +
-	"\x06PURPLE\x10\x06\x12\a\n" +
-	"\x03OFF\x10\aB\x13Z\x11colorLED/v1alpha1b\x06proto3"
+	"\x06PURPLE\x10\x06\x12\n" +
+	"\n" +
+	"\x06ORANGE\x10\a\x12\a\n" +
+	"\x03OFF\x10\bB\x13Z\x11colorLED/v1alpha1b\x06proto3"
 
 var (
 	file_colorLED_proto_rawDescOnce sync.Once
@@ -830,7 +1020,7 @@ func file_colorLED_proto_rawDescGZIP() []byte {
 }
 
 var file_colorLED_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_colorLED_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_colorLED_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_colorLED_proto_goTypes = []any{
 	(Color)(0),                            // 0: colorLED.Color
 	(*ConfigurationSet)(nil),              // 1: colorLED.ConfigurationSet
@@ -838,29 +1028,33 @@ var file_colorLED_proto_goTypes = []any{
 	(*ConfigurationGet)(nil),              // 3: colorLED.ConfigurationGet
 	(*ConfigurationGetResponse)(nil),      // 4: colorLED.ConfigurationGetResponse
 	(*ConfigurationDescribe)(nil),         // 5: colorLED.ConfigurationDescribe
-	(*ChannelConfig)(nil),                 // 6: colorLED.ChannelConfig
-	(*ConfigurationDescribeResponse)(nil), // 7: colorLED.ConfigurationDescribeResponse
-	(*ConfigurationResponse)(nil),         // 8: colorLED.ConfigurationResponse
-	(*FunctionControlGet)(nil),            // 9: colorLED.FunctionControlGet
-	(*FunctionControlSet)(nil),            // 10: colorLED.FunctionControlSet
-	(*FunctionControlGetResponse)(nil),    // 11: colorLED.FunctionControlGetResponse
-	(*FunctionControlSetResponse)(nil),    // 12: colorLED.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 13: colorLED.StreamControlStart
-	(*StreamData)(nil),                    // 14: colorLED.StreamData
+	(*RGBColor)(nil),                      // 6: colorLED.RGBColor
+	(*ChannelConfig)(nil),                 // 7: colorLED.ChannelConfig
+	(*ConfigurationDescribeResponse)(nil), // 8: colorLED.ConfigurationDescribeResponse
+	(*ConfigurationResponse)(nil),         // 9: colorLED.ConfigurationResponse
+	(*FunctionControlGet)(nil),            // 10: colorLED.FunctionControlGet
+	(*FunctionControlSet)(nil),            // 11: colorLED.FunctionControlSet
+	(*FunctionControlGetResponse)(nil),    // 12: colorLED.FunctionControlGetResponse
+	(*FunctionControlSetResponse)(nil),    // 13: colorLED.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 14: colorLED.StreamControlStart
+	(*StreamData)(nil),                    // 15: colorLED.StreamData
 }
 var file_colorLED_proto_depIdxs = []int32{
-	0, // 0: colorLED.ChannelConfig.color:type_name -> colorLED.Color
-	6, // 1: colorLED.ConfigurationDescribeResponse.channelConfig:type_name -> colorLED.ChannelConfig
-	4, // 2: colorLED.ConfigurationResponse.get:type_name -> colorLED.ConfigurationGetResponse
-	2, // 3: colorLED.ConfigurationResponse.set:type_name -> colorLED.ConfigurationSetResponse
-	7, // 4: colorLED.ConfigurationResponse.describe:type_name -> colorLED.ConfigurationDescribeResponse
-	0, // 5: colorLED.FunctionControlSet.color:type_name -> colorLED.Color
-	0, // 6: colorLED.FunctionControlGetResponse.color:type_name -> colorLED.Color
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	0,  // 0: colorLED.ChannelConfig.color:type_name -> colorLED.Color
+	6,  // 1: colorLED.ChannelConfig.rgb:type_name -> colorLED.RGBColor
+	7,  // 2: colorLED.ConfigurationDescribeResponse.channelConfig:type_name -> colorLED.ChannelConfig
+	4,  // 3: colorLED.ConfigurationResponse.get:type_name -> colorLED.ConfigurationGetResponse
+	2,  // 4: colorLED.ConfigurationResponse.set:type_name -> colorLED.ConfigurationSetResponse
+	8,  // 5: colorLED.ConfigurationResponse.describe:type_name -> colorLED.ConfigurationDescribeResponse
+	0,  // 6: colorLED.FunctionControlSet.color:type_name -> colorLED.Color
+	6,  // 7: colorLED.FunctionControlSet.rgb:type_name -> colorLED.RGBColor
+	0,  // 8: colorLED.FunctionControlGetResponse.color:type_name -> colorLED.Color
+	6,  // 9: colorLED.FunctionControlGetResponse.rgb:type_name -> colorLED.RGBColor
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_colorLED_proto_init() }
@@ -868,10 +1062,22 @@ func file_colorLED_proto_init() {
 	if File_colorLED_proto != nil {
 		return
 	}
-	file_colorLED_proto_msgTypes[7].OneofWrappers = []any{
+	file_colorLED_proto_msgTypes[6].OneofWrappers = []any{
+		(*ChannelConfig_Color)(nil),
+		(*ChannelConfig_Rgb)(nil),
+	}
+	file_colorLED_proto_msgTypes[8].OneofWrappers = []any{
 		(*ConfigurationResponse_Get)(nil),
 		(*ConfigurationResponse_Set)(nil),
 		(*ConfigurationResponse_Describe)(nil),
+	}
+	file_colorLED_proto_msgTypes[10].OneofWrappers = []any{
+		(*FunctionControlSet_Color)(nil),
+		(*FunctionControlSet_Rgb)(nil),
+	}
+	file_colorLED_proto_msgTypes[11].OneofWrappers = []any{
+		(*FunctionControlGetResponse_Color)(nil),
+		(*FunctionControlGetResponse_Rgb)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -879,7 +1085,7 @@ func file_colorLED_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_colorLED_proto_rawDesc), len(file_colorLED_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

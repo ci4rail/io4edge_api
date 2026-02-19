@@ -20,6 +20,7 @@ typedef struct ColorLED__ConfigurationSetResponse ColorLED__ConfigurationSetResp
 typedef struct ColorLED__ConfigurationGet ColorLED__ConfigurationGet;
 typedef struct ColorLED__ConfigurationGetResponse ColorLED__ConfigurationGetResponse;
 typedef struct ColorLED__ConfigurationDescribe ColorLED__ConfigurationDescribe;
+typedef struct ColorLED__RGBColor ColorLED__RGBColor;
 typedef struct ColorLED__ChannelConfig ColorLED__ChannelConfig;
 typedef struct ColorLED__ConfigurationDescribeResponse ColorLED__ConfigurationDescribeResponse;
 typedef struct ColorLED__ConfigurationResponse ColorLED__ConfigurationResponse;
@@ -41,7 +42,8 @@ typedef enum _ColorLED__Color {
   COLOR_LED__COLOR__YELLOW = 4,
   COLOR_LED__COLOR__CYAN = 5,
   COLOR_LED__COLOR__PURPLE = 6,
-  COLOR_LED__COLOR__OFF = 7
+  COLOR_LED__COLOR__ORANGE = 7,
+  COLOR_LED__COLOR__OFF = 8
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__COLOR)
 } ColorLED__Color;
 
@@ -108,6 +110,25 @@ struct  ColorLED__ConfigurationDescribe
      }
 
 
+struct  ColorLED__RGBColor
+{
+  ProtobufCMessage base;
+  uint32_t red;
+  uint32_t green;
+  uint32_t blue;
+};
+#define COLOR_LED__RGBCOLOR__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&color_led__rgbcolor__descriptor) \
+    , 0, 0, 0 }
+
+
+typedef enum {
+  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__NOT_SET = 0,
+  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE_COLOR = 2,
+  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE_RGB = 4
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__CASE)
+} ColorLED__ChannelConfig__ColorTypeCase;
+
 struct  ColorLED__ChannelConfig
 {
   ProtobufCMessage base;
@@ -116,17 +137,18 @@ struct  ColorLED__ChannelConfig
    */
   uint32_t channel;
   /*
-   * channel color
-   */
-  ColorLED__Color color;
-  /*
    * if true the channel supports blinking
    */
   protobuf_c_boolean blink;
+  ColorLED__ChannelConfig__ColorTypeCase color_type_case;
+  union {
+    ColorLED__Color color;
+    ColorLED__RGBColor *rgb;
+  };
 };
 #define COLOR_LED__CHANNEL_CONFIG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__channel_config__descriptor) \
-    , 0, COLOR_LED__COLOR__RED, 0 }
+    , 0, 0, COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__NOT_SET, {0} }
 
 
 struct  ColorLED__ConfigurationDescribeResponse
@@ -183,6 +205,13 @@ struct  ColorLED__FunctionControlGet
     , 0 }
 
 
+typedef enum {
+  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__NOT_SET = 0,
+  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE_COLOR = 2,
+  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE_RGB = 4
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__CASE)
+} ColorLED__FunctionControlSet__ColorTypeCase;
+
 /*
  * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
  */
@@ -190,13 +219,24 @@ struct  ColorLED__FunctionControlSet
 {
   ProtobufCMessage base;
   uint32_t channel;
-  ColorLED__Color color;
   protobuf_c_boolean blink;
+  ColorLED__FunctionControlSet__ColorTypeCase color_type_case;
+  union {
+    ColorLED__Color color;
+    ColorLED__RGBColor *rgb;
+  };
 };
 #define COLOR_LED__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_set__descriptor) \
-    , 0, COLOR_LED__COLOR__RED, 0 }
+    , 0, 0, COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__NOT_SET, {0} }
 
+
+typedef enum {
+  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__NOT_SET = 0,
+  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE_COLOR = 2,
+  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE_RGB = 1
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__CASE)
+} ColorLED__FunctionControlGetResponse__ColorTypeCase;
 
 /*
  * FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
@@ -204,15 +244,19 @@ struct  ColorLED__FunctionControlSet
 struct  ColorLED__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-  ColorLED__Color color;
   /*
    * if true the channel is blinking
    */
   protobuf_c_boolean blink;
+  ColorLED__FunctionControlGetResponse__ColorTypeCase color_type_case;
+  union {
+    ColorLED__Color color;
+    ColorLED__RGBColor *rgb;
+  };
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get_response__descriptor) \
-    , COLOR_LED__COLOR__RED, 0 }
+    , 0, COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__NOT_SET, {0} }
 
 
 /*
@@ -346,6 +390,25 @@ ColorLED__ConfigurationDescribe *
                       const uint8_t       *data);
 void   color_led__configuration_describe__free_unpacked
                      (ColorLED__ConfigurationDescribe *message,
+                      ProtobufCAllocator *allocator);
+/* ColorLED__RGBColor methods */
+void   color_led__rgbcolor__init
+                     (ColorLED__RGBColor         *message);
+size_t color_led__rgbcolor__get_packed_size
+                     (const ColorLED__RGBColor   *message);
+size_t color_led__rgbcolor__pack
+                     (const ColorLED__RGBColor   *message,
+                      uint8_t             *out);
+size_t color_led__rgbcolor__pack_to_buffer
+                     (const ColorLED__RGBColor   *message,
+                      ProtobufCBuffer     *buffer);
+ColorLED__RGBColor *
+       color_led__rgbcolor__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   color_led__rgbcolor__free_unpacked
+                     (ColorLED__RGBColor *message,
                       ProtobufCAllocator *allocator);
 /* ColorLED__ChannelConfig methods */
 void   color_led__channel_config__init
@@ -535,6 +598,9 @@ typedef void (*ColorLED__ConfigurationGetResponse_Closure)
 typedef void (*ColorLED__ConfigurationDescribe_Closure)
                  (const ColorLED__ConfigurationDescribe *message,
                   void *closure_data);
+typedef void (*ColorLED__RGBColor_Closure)
+                 (const ColorLED__RGBColor *message,
+                  void *closure_data);
 typedef void (*ColorLED__ChannelConfig_Closure)
                  (const ColorLED__ChannelConfig *message,
                   void *closure_data);
@@ -574,6 +640,7 @@ extern const ProtobufCMessageDescriptor color_led__configuration_set_response__d
 extern const ProtobufCMessageDescriptor color_led__configuration_get__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_get_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_describe__descriptor;
+extern const ProtobufCMessageDescriptor color_led__rgbcolor__descriptor;
 extern const ProtobufCMessageDescriptor color_led__channel_config__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor color_led__configuration_response__descriptor;
