@@ -36,6 +36,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Color enum to represent predefined colors
 type Color int32
 
 const (
@@ -289,11 +290,12 @@ func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
 	return file_colorLED_proto_rawDescGZIP(), []int{4}
 }
 
+// RGBColor message to represent a color in RGB format
 type RGBColor struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Red           uint32                 `protobuf:"fixed32,1,opt,name=red,proto3" json:"red,omitempty"`
-	Green         uint32                 `protobuf:"fixed32,2,opt,name=green,proto3" json:"green,omitempty"`
-	Blue          uint32                 `protobuf:"fixed32,3,opt,name=blue,proto3" json:"blue,omitempty"`
+	Red           uint32                 `protobuf:"varint,1,opt,name=red,proto3" json:"red,omitempty"`
+	Green         uint32                 `protobuf:"varint,2,opt,name=green,proto3" json:"green,omitempty"`
+	Blue          uint32                 `protobuf:"varint,3,opt,name=blue,proto3" json:"blue,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -352,15 +354,8 @@ func (x *RGBColor) GetBlue() uint32 {
 type ChannelConfig struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// channel number
-	Channel uint32 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
-	// channel color
-	//
-	// Types that are valid to be assigned to ColorType:
-	//
-	//	*ChannelConfig_Color
-	//	*ChannelConfig_Rgb
-	ColorType     isChannelConfig_ColorType `protobuf_oneof:"colorType"`
-	Blink         bool                      `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel supports blinking
+	Channel       uint32 `protobuf:"varint,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	Blink         bool   `protobuf:"varint,2,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel supports blinking
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -402,31 +397,6 @@ func (x *ChannelConfig) GetChannel() uint32 {
 	return 0
 }
 
-func (x *ChannelConfig) GetColorType() isChannelConfig_ColorType {
-	if x != nil {
-		return x.ColorType
-	}
-	return nil
-}
-
-func (x *ChannelConfig) GetColor() Color {
-	if x != nil {
-		if x, ok := x.ColorType.(*ChannelConfig_Color); ok {
-			return x.Color
-		}
-	}
-	return Color_RED
-}
-
-func (x *ChannelConfig) GetRgb() *RGBColor {
-	if x != nil {
-		if x, ok := x.ColorType.(*ChannelConfig_Rgb); ok {
-			return x.Rgb
-		}
-	}
-	return nil
-}
-
 func (x *ChannelConfig) GetBlink() bool {
 	if x != nil {
 		return x.Blink
@@ -434,26 +404,10 @@ func (x *ChannelConfig) GetBlink() bool {
 	return false
 }
 
-type isChannelConfig_ColorType interface {
-	isChannelConfig_ColorType()
-}
-
-type ChannelConfig_Color struct {
-	Color Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color,oneof"`
-}
-
-type ChannelConfig_Rgb struct {
-	Rgb *RGBColor `protobuf:"bytes,4,opt,name=rgb,proto3,oneof"`
-}
-
-func (*ChannelConfig_Color) isChannelConfig_ColorType() {}
-
-func (*ChannelConfig_Rgb) isChannelConfig_ColorType() {}
-
 type ConfigurationDescribeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChannelConfig []*ChannelConfig       `protobuf:"bytes,1,rep,name=channelConfig,proto3" json:"channelConfig,omitempty"`
-	MaxChannels   uint32                 `protobuf:"fixed32,2,opt,name=maxChannels,proto3" json:"maxChannels,omitempty"` // maximum number of channels supported by the hardware
+	MaxChannels   uint32                 `protobuf:"varint,2,opt,name=maxChannels,proto3" json:"maxChannels,omitempty"` // maximum number of channels supported by the hardware
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -604,7 +558,7 @@ func (*ConfigurationResponse_Describe) isConfigurationResponse_Type() {}
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 type FunctionControlGet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Channel       uint32                 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	Channel       uint32                 `protobuf:"varint,1,opt,name=channel,proto3" json:"channel,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -650,11 +604,11 @@ func (x *FunctionControlGet) GetChannel() uint32 {
 type FunctionControlSet struct {
 	state   protoimpl.MessageState `protogen:"open.v1"`
 	Channel uint32                 `protobuf:"fixed32,1,opt,name=channel,proto3" json:"channel,omitempty"`
-	// Types that are valid to be assigned to ColorType:
+	// Types that are valid to be assigned to Colortype:
 	//
 	//	*FunctionControlSet_Color
 	//	*FunctionControlSet_Rgb
-	ColorType     isFunctionControlSet_ColorType `protobuf_oneof:"colorType"`
+	Colortype     isFunctionControlSet_Colortype `protobuf_oneof:"colortype"`
 	Blink         bool                           `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -697,16 +651,16 @@ func (x *FunctionControlSet) GetChannel() uint32 {
 	return 0
 }
 
-func (x *FunctionControlSet) GetColorType() isFunctionControlSet_ColorType {
+func (x *FunctionControlSet) GetColortype() isFunctionControlSet_Colortype {
 	if x != nil {
-		return x.ColorType
+		return x.Colortype
 	}
 	return nil
 }
 
 func (x *FunctionControlSet) GetColor() Color {
 	if x != nil {
-		if x, ok := x.ColorType.(*FunctionControlSet_Color); ok {
+		if x, ok := x.Colortype.(*FunctionControlSet_Color); ok {
 			return x.Color
 		}
 	}
@@ -715,7 +669,7 @@ func (x *FunctionControlSet) GetColor() Color {
 
 func (x *FunctionControlSet) GetRgb() *RGBColor {
 	if x != nil {
-		if x, ok := x.ColorType.(*FunctionControlSet_Rgb); ok {
+		if x, ok := x.Colortype.(*FunctionControlSet_Rgb); ok {
 			return x.Rgb
 		}
 	}
@@ -729,8 +683,8 @@ func (x *FunctionControlSet) GetBlink() bool {
 	return false
 }
 
-type isFunctionControlSet_ColorType interface {
-	isFunctionControlSet_ColorType()
+type isFunctionControlSet_Colortype interface {
+	isFunctionControlSet_Colortype()
 }
 
 type FunctionControlSet_Color struct {
@@ -741,19 +695,15 @@ type FunctionControlSet_Rgb struct {
 	Rgb *RGBColor `protobuf:"bytes,4,opt,name=rgb,proto3,oneof"`
 }
 
-func (*FunctionControlSet_Color) isFunctionControlSet_ColorType() {}
+func (*FunctionControlSet_Color) isFunctionControlSet_Colortype() {}
 
-func (*FunctionControlSet_Rgb) isFunctionControlSet_ColorType() {}
+func (*FunctionControlSet_Rgb) isFunctionControlSet_Colortype() {}
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 type FunctionControlGetResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to ColorType:
-	//
-	//	*FunctionControlGetResponse_Color
-	//	*FunctionControlGetResponse_Rgb
-	ColorType     isFunctionControlGetResponse_ColorType `protobuf_oneof:"colorType"`
-	Blink         bool                                   `protobuf:"varint,3,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel is blinking
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rgb           *RGBColor              `protobuf:"bytes,1,opt,name=rgb,proto3" json:"rgb,omitempty"`
+	Blink         bool                   `protobuf:"varint,2,opt,name=blink,proto3" json:"blink,omitempty"` // if true the channel is blinking
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -788,27 +738,9 @@ func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
 	return file_colorLED_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *FunctionControlGetResponse) GetColorType() isFunctionControlGetResponse_ColorType {
-	if x != nil {
-		return x.ColorType
-	}
-	return nil
-}
-
-func (x *FunctionControlGetResponse) GetColor() Color {
-	if x != nil {
-		if x, ok := x.ColorType.(*FunctionControlGetResponse_Color); ok {
-			return x.Color
-		}
-	}
-	return Color_RED
-}
-
 func (x *FunctionControlGetResponse) GetRgb() *RGBColor {
 	if x != nil {
-		if x, ok := x.ColorType.(*FunctionControlGetResponse_Rgb); ok {
-			return x.Rgb
-		}
+		return x.Rgb
 	}
 	return nil
 }
@@ -819,22 +751,6 @@ func (x *FunctionControlGetResponse) GetBlink() bool {
 	}
 	return false
 }
-
-type isFunctionControlGetResponse_ColorType interface {
-	isFunctionControlGetResponse_ColorType()
-}
-
-type FunctionControlGetResponse_Color struct {
-	Color Color `protobuf:"varint,2,opt,name=color,proto3,enum=colorLED.Color,oneof"`
-}
-
-type FunctionControlGetResponse_Rgb struct {
-	Rgb *RGBColor `protobuf:"bytes,1,opt,name=rgb,proto3,oneof"`
-}
-
-func (*FunctionControlGetResponse_Color) isFunctionControlGetResponse_ColorType() {}
-
-func (*FunctionControlGetResponse_Rgb) isFunctionControlGetResponse_ColorType() {}
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook
 type FunctionControlSetResponse struct {
@@ -959,36 +875,31 @@ const file_colorLED_proto_rawDesc = "" +
 	"\x18ConfigurationGetResponse\"\x17\n" +
 	"\x15ConfigurationDescribe\"F\n" +
 	"\bRGBColor\x12\x10\n" +
-	"\x03red\x18\x01 \x01(\aR\x03red\x12\x14\n" +
-	"\x05green\x18\x02 \x01(\aR\x05green\x12\x12\n" +
-	"\x04blue\x18\x03 \x01(\aR\x04blue\"\x9d\x01\n" +
+	"\x03red\x18\x01 \x01(\rR\x03red\x12\x14\n" +
+	"\x05green\x18\x02 \x01(\rR\x05green\x12\x12\n" +
+	"\x04blue\x18\x03 \x01(\rR\x04blue\"?\n" +
 	"\rChannelConfig\x12\x18\n" +
-	"\achannel\x18\x01 \x01(\aR\achannel\x12'\n" +
-	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
-	"\x03rgb\x18\x04 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
-	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
-	"\tcolorType\"\x80\x01\n" +
+	"\achannel\x18\x01 \x01(\rR\achannel\x12\x14\n" +
+	"\x05blink\x18\x02 \x01(\bR\x05blink\"\x80\x01\n" +
 	"\x1dConfigurationDescribeResponse\x12=\n" +
 	"\rchannelConfig\x18\x01 \x03(\v2\x17.colorLED.ChannelConfigR\rchannelConfig\x12 \n" +
-	"\vmaxChannels\x18\x02 \x01(\aR\vmaxChannels\"\xd6\x01\n" +
+	"\vmaxChannels\x18\x02 \x01(\rR\vmaxChannels\"\xd6\x01\n" +
 	"\x15ConfigurationResponse\x126\n" +
 	"\x03get\x18\x01 \x01(\v2\".colorLED.ConfigurationGetResponseH\x00R\x03get\x126\n" +
 	"\x03set\x18\x02 \x01(\v2\".colorLED.ConfigurationSetResponseH\x00R\x03set\x12E\n" +
 	"\bdescribe\x18\x03 \x01(\v2'.colorLED.ConfigurationDescribeResponseH\x00R\bdescribeB\x06\n" +
 	"\x04type\".\n" +
 	"\x12FunctionControlGet\x12\x18\n" +
-	"\achannel\x18\x01 \x01(\aR\achannel\"\xa2\x01\n" +
+	"\achannel\x18\x01 \x01(\rR\achannel\"\xa2\x01\n" +
 	"\x12FunctionControlSet\x12\x18\n" +
 	"\achannel\x18\x01 \x01(\aR\achannel\x12'\n" +
 	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
 	"\x03rgb\x18\x04 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
 	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
-	"\tcolorType\"\x90\x01\n" +
-	"\x1aFunctionControlGetResponse\x12'\n" +
-	"\x05color\x18\x02 \x01(\x0e2\x0f.colorLED.ColorH\x00R\x05color\x12&\n" +
-	"\x03rgb\x18\x01 \x01(\v2\x12.colorLED.RGBColorH\x00R\x03rgb\x12\x14\n" +
-	"\x05blink\x18\x03 \x01(\bR\x05blinkB\v\n" +
-	"\tcolorType\"\x1c\n" +
+	"\tcolortype\"X\n" +
+	"\x1aFunctionControlGetResponse\x12$\n" +
+	"\x03rgb\x18\x01 \x01(\v2\x12.colorLED.RGBColorR\x03rgb\x12\x14\n" +
+	"\x05blink\x18\x02 \x01(\bR\x05blink\"\x1c\n" +
 	"\x1aFunctionControlSetResponse\"\x14\n" +
 	"\x12StreamControlStart\"\f\n" +
 	"\n" +
@@ -1040,31 +951,24 @@ var file_colorLED_proto_goTypes = []any{
 	(*StreamData)(nil),                    // 15: colorLED.StreamData
 }
 var file_colorLED_proto_depIdxs = []int32{
-	0,  // 0: colorLED.ChannelConfig.color:type_name -> colorLED.Color
-	6,  // 1: colorLED.ChannelConfig.rgb:type_name -> colorLED.RGBColor
-	7,  // 2: colorLED.ConfigurationDescribeResponse.channelConfig:type_name -> colorLED.ChannelConfig
-	4,  // 3: colorLED.ConfigurationResponse.get:type_name -> colorLED.ConfigurationGetResponse
-	2,  // 4: colorLED.ConfigurationResponse.set:type_name -> colorLED.ConfigurationSetResponse
-	8,  // 5: colorLED.ConfigurationResponse.describe:type_name -> colorLED.ConfigurationDescribeResponse
-	0,  // 6: colorLED.FunctionControlSet.color:type_name -> colorLED.Color
-	6,  // 7: colorLED.FunctionControlSet.rgb:type_name -> colorLED.RGBColor
-	0,  // 8: colorLED.FunctionControlGetResponse.color:type_name -> colorLED.Color
-	6,  // 9: colorLED.FunctionControlGetResponse.rgb:type_name -> colorLED.RGBColor
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	7, // 0: colorLED.ConfigurationDescribeResponse.channelConfig:type_name -> colorLED.ChannelConfig
+	4, // 1: colorLED.ConfigurationResponse.get:type_name -> colorLED.ConfigurationGetResponse
+	2, // 2: colorLED.ConfigurationResponse.set:type_name -> colorLED.ConfigurationSetResponse
+	8, // 3: colorLED.ConfigurationResponse.describe:type_name -> colorLED.ConfigurationDescribeResponse
+	0, // 4: colorLED.FunctionControlSet.color:type_name -> colorLED.Color
+	6, // 5: colorLED.FunctionControlSet.rgb:type_name -> colorLED.RGBColor
+	6, // 6: colorLED.FunctionControlGetResponse.rgb:type_name -> colorLED.RGBColor
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_colorLED_proto_init() }
 func file_colorLED_proto_init() {
 	if File_colorLED_proto != nil {
 		return
-	}
-	file_colorLED_proto_msgTypes[6].OneofWrappers = []any{
-		(*ChannelConfig_Color)(nil),
-		(*ChannelConfig_Rgb)(nil),
 	}
 	file_colorLED_proto_msgTypes[8].OneofWrappers = []any{
 		(*ConfigurationResponse_Get)(nil),
@@ -1074,10 +978,6 @@ func file_colorLED_proto_init() {
 	file_colorLED_proto_msgTypes[10].OneofWrappers = []any{
 		(*FunctionControlSet_Color)(nil),
 		(*FunctionControlSet_Rgb)(nil),
-	}
-	file_colorLED_proto_msgTypes[11].OneofWrappers = []any{
-		(*FunctionControlGetResponse_Color)(nil),
-		(*FunctionControlGetResponse_Rgb)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

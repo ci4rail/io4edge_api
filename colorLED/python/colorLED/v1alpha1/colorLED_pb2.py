@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n colorLED/v1alpha1/colorLED.proto\x12\x08\x63olorLED\"\x12\n\x10\x43onfigurationSet\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"4\n\x08RGBColor\x12\x0b\n\x03red\x18\x01 \x01(\x07\x12\r\n\x05green\x18\x02 \x01(\x07\x12\x0c\n\x04\x62lue\x18\x03 \x01(\x07\"\x81\x01\n\rChannelConfig\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x07\x12 \n\x05\x63olor\x18\x02 \x01(\x0e\x32\x0f.colorLED.ColorH\x00\x12!\n\x03rgb\x18\x04 \x01(\x0b\x32\x12.colorLED.RGBColorH\x00\x12\r\n\x05\x62link\x18\x03 \x01(\x08\x42\x0b\n\tcolorType\"d\n\x1d\x43onfigurationDescribeResponse\x12.\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x17.colorLED.ChannelConfig\x12\x13\n\x0bmaxChannels\x18\x02 \x01(\x07\"\xc2\x01\n\x15\x43onfigurationResponse\x12\x31\n\x03get\x18\x01 \x01(\x0b\x32\".colorLED.ConfigurationGetResponseH\x00\x12\x31\n\x03set\x18\x02 \x01(\x0b\x32\".colorLED.ConfigurationSetResponseH\x00\x12;\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32\'.colorLED.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"%\n\x12\x46unctionControlGet\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x07\"\x86\x01\n\x12\x46unctionControlSet\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x07\x12 \n\x05\x63olor\x18\x02 \x01(\x0e\x32\x0f.colorLED.ColorH\x00\x12!\n\x03rgb\x18\x04 \x01(\x0b\x32\x12.colorLED.RGBColorH\x00\x12\r\n\x05\x62link\x18\x03 \x01(\x08\x42\x0b\n\tcolorType\"}\n\x1a\x46unctionControlGetResponse\x12 \n\x05\x63olor\x18\x02 \x01(\x0e\x32\x0f.colorLED.ColorH\x00\x12!\n\x03rgb\x18\x01 \x01(\x0b\x32\x12.colorLED.RGBColorH\x00\x12\r\n\x05\x62link\x18\x03 \x01(\x08\x42\x0b\n\tcolorType\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"\x0c\n\nStreamData*g\n\x05\x43olor\x12\x07\n\x03RED\x10\x00\x12\t\n\x05GREEN\x10\x01\x12\x08\n\x04\x42LUE\x10\x02\x12\t\n\x05WHITE\x10\x03\x12\n\n\x06YELLOW\x10\x04\x12\x08\n\x04\x43YAN\x10\x05\x12\n\n\x06PURPLE\x10\x06\x12\n\n\x06ORANGE\x10\x07\x12\x07\n\x03OFF\x10\x08\x42\x13Z\x11\x63olorLED/v1alpha1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n colorLED/v1alpha1/colorLED.proto\x12\x08\x63olorLED\"\x12\n\x10\x43onfigurationSet\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"4\n\x08RGBColor\x12\x0b\n\x03red\x18\x01 \x01(\r\x12\r\n\x05green\x18\x02 \x01(\r\x12\x0c\n\x04\x62lue\x18\x03 \x01(\r\"/\n\rChannelConfig\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\r\x12\r\n\x05\x62link\x18\x02 \x01(\x08\"d\n\x1d\x43onfigurationDescribeResponse\x12.\n\rchannelConfig\x18\x01 \x03(\x0b\x32\x17.colorLED.ChannelConfig\x12\x13\n\x0bmaxChannels\x18\x02 \x01(\r\"\xc2\x01\n\x15\x43onfigurationResponse\x12\x31\n\x03get\x18\x01 \x01(\x0b\x32\".colorLED.ConfigurationGetResponseH\x00\x12\x31\n\x03set\x18\x02 \x01(\x0b\x32\".colorLED.ConfigurationSetResponseH\x00\x12;\n\x08\x64\x65scribe\x18\x03 \x01(\x0b\x32\'.colorLED.ConfigurationDescribeResponseH\x00\x42\x06\n\x04type\"%\n\x12\x46unctionControlGet\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\r\"\x86\x01\n\x12\x46unctionControlSet\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x07\x12 \n\x05\x63olor\x18\x02 \x01(\x0e\x32\x0f.colorLED.ColorH\x00\x12!\n\x03rgb\x18\x04 \x01(\x0b\x32\x12.colorLED.RGBColorH\x00\x12\r\n\x05\x62link\x18\x03 \x01(\x08\x42\x0b\n\tcolortype\"L\n\x1a\x46unctionControlGetResponse\x12\x1f\n\x03rgb\x18\x01 \x01(\x0b\x32\x12.colorLED.RGBColor\x12\r\n\x05\x62link\x18\x02 \x01(\x08\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"\x0c\n\nStreamData*g\n\x05\x43olor\x12\x07\n\x03RED\x10\x00\x12\t\n\x05GREEN\x10\x01\x12\x08\n\x04\x42LUE\x10\x02\x12\t\n\x05WHITE\x10\x03\x12\n\n\x06YELLOW\x10\x04\x12\x08\n\x04\x43YAN\x10\x05\x12\n\n\x06PURPLE\x10\x06\x12\n\n\x06ORANGE\x10\x07\x12\x07\n\x03OFF\x10\x08\x42\x13Z\x11\x63olorLED/v1alpha1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,8 +32,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'colorLED.v1alpha1.colorLED_
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\021colorLED/v1alpha1'
-  _globals['_COLOR']._serialized_start=1021
-  _globals['_COLOR']._serialized_end=1124
+  _globals['_COLOR']._serialized_start=889
+  _globals['_COLOR']._serialized_end=992
   _globals['_CONFIGURATIONSET']._serialized_start=46
   _globals['_CONFIGURATIONSET']._serialized_end=64
   _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=66
@@ -46,22 +46,22 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_CONFIGURATIONDESCRIBE']._serialized_end=165
   _globals['_RGBCOLOR']._serialized_start=167
   _globals['_RGBCOLOR']._serialized_end=219
-  _globals['_CHANNELCONFIG']._serialized_start=222
-  _globals['_CHANNELCONFIG']._serialized_end=351
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=353
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=453
-  _globals['_CONFIGURATIONRESPONSE']._serialized_start=456
-  _globals['_CONFIGURATIONRESPONSE']._serialized_end=650
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=652
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=689
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=692
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=826
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=828
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=953
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=955
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=983
-  _globals['_STREAMCONTROLSTART']._serialized_start=985
-  _globals['_STREAMCONTROLSTART']._serialized_end=1005
-  _globals['_STREAMDATA']._serialized_start=1007
-  _globals['_STREAMDATA']._serialized_end=1019
+  _globals['_CHANNELCONFIG']._serialized_start=221
+  _globals['_CHANNELCONFIG']._serialized_end=268
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=270
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=370
+  _globals['_CONFIGURATIONRESPONSE']._serialized_start=373
+  _globals['_CONFIGURATIONRESPONSE']._serialized_end=567
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=569
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=606
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=609
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=743
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=745
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=821
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=823
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=851
+  _globals['_STREAMCONTROLSTART']._serialized_start=853
+  _globals['_STREAMCONTROLSTART']._serialized_end=873
+  _globals['_STREAMDATA']._serialized_start=875
+  _globals['_STREAMDATA']._serialized_end=887
 # @@protoc_insertion_point(module_scope)

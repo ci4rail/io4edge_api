@@ -59,16 +59,12 @@ class RGBColor(_message.Message):
     def __init__(self, red: _Optional[int] = ..., green: _Optional[int] = ..., blue: _Optional[int] = ...) -> None: ...
 
 class ChannelConfig(_message.Message):
-    __slots__ = ("channel", "color", "rgb", "blink")
+    __slots__ = ("channel", "blink")
     CHANNEL_FIELD_NUMBER: _ClassVar[int]
-    COLOR_FIELD_NUMBER: _ClassVar[int]
-    RGB_FIELD_NUMBER: _ClassVar[int]
     BLINK_FIELD_NUMBER: _ClassVar[int]
     channel: int
-    color: Color
-    rgb: RGBColor
     blink: bool
-    def __init__(self, channel: _Optional[int] = ..., color: _Optional[_Union[Color, str]] = ..., rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
+    def __init__(self, channel: _Optional[int] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationDescribeResponse(_message.Message):
     __slots__ = ("channelConfig", "maxChannels")
@@ -107,14 +103,12 @@ class FunctionControlSet(_message.Message):
     def __init__(self, channel: _Optional[int] = ..., color: _Optional[_Union[Color, str]] = ..., rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
-    __slots__ = ("color", "rgb", "blink")
-    COLOR_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("rgb", "blink")
     RGB_FIELD_NUMBER: _ClassVar[int]
     BLINK_FIELD_NUMBER: _ClassVar[int]
-    color: Color
     rgb: RGBColor
     blink: bool
-    def __init__(self, color: _Optional[_Union[Color, str]] = ..., rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
+    def __init__(self, rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class FunctionControlSetResponse(_message.Message):
     __slots__ = ()

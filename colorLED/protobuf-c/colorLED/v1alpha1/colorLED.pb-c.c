@@ -778,7 +778,7 @@ static const ProtobufCFieldDescriptor color_led__rgbcolor__field_descriptors[3] 
     "red",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__RGBColor, red),
     NULL,
@@ -790,7 +790,7 @@ static const ProtobufCFieldDescriptor color_led__rgbcolor__field_descriptors[3] 
     "green",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__RGBColor, green),
     NULL,
@@ -802,7 +802,7 @@ static const ProtobufCFieldDescriptor color_led__rgbcolor__field_descriptors[3] 
     "blue",
     3,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__RGBColor, blue),
     NULL,
@@ -836,13 +836,13 @@ const ProtobufCMessageDescriptor color_led__rgbcolor__descriptor =
   (ProtobufCMessageInit) color_led__rgbcolor__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor color_led__channel_config__field_descriptors[4] =
+static const ProtobufCFieldDescriptor color_led__channel_config__field_descriptors[2] =
 {
   {
     "channel",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__ChannelConfig, channel),
     NULL,
@@ -851,20 +851,8 @@ static const ProtobufCFieldDescriptor color_led__channel_config__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "color",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    offsetof(ColorLED__ChannelConfig, color_type_case),
-    offsetof(ColorLED__ChannelConfig, color),
-    &color_led__color__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "blink",
-    3,
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -874,29 +862,15 @@ static const ProtobufCFieldDescriptor color_led__channel_config__field_descripto
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "rgb",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ColorLED__ChannelConfig, color_type_case),
-    offsetof(ColorLED__ChannelConfig, rgb),
-    &color_led__rgbcolor__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned color_led__channel_config__field_indices_by_name[] = {
-  2,   /* field[2] = blink */
+  1,   /* field[1] = blink */
   0,   /* field[0] = channel */
-  1,   /* field[1] = color */
-  3,   /* field[3] = rgb */
 };
 static const ProtobufCIntRange color_led__channel_config__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor color_led__channel_config__descriptor =
 {
@@ -906,7 +880,7 @@ const ProtobufCMessageDescriptor color_led__channel_config__descriptor =
   "ColorLED__ChannelConfig",
   "colorLED",
   sizeof(ColorLED__ChannelConfig),
-  4,
+  2,
   color_led__channel_config__field_descriptors,
   color_led__channel_config__field_indices_by_name,
   1,  color_led__channel_config__number_ranges,
@@ -931,7 +905,7 @@ static const ProtobufCFieldDescriptor color_led__configuration_describe_response
     "maxChannels",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__ConfigurationDescribeResponse, maxchannels),
     NULL,
@@ -1034,7 +1008,7 @@ static const ProtobufCFieldDescriptor color_led__function_control_get__field_des
     "channel",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FIXED32,
+    PROTOBUF_C_TYPE_UINT32,
     0,   /* quantifier_offset */
     offsetof(ColorLED__FunctionControlGet, channel),
     NULL,
@@ -1085,7 +1059,7 @@ static const ProtobufCFieldDescriptor color_led__function_control_set__field_des
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
-    offsetof(ColorLED__FunctionControlSet, color_type_case),
+    offsetof(ColorLED__FunctionControlSet, colortype_case),
     offsetof(ColorLED__FunctionControlSet, color),
     &color_led__color__descriptor,
     NULL,
@@ -1109,7 +1083,7 @@ static const ProtobufCFieldDescriptor color_led__function_control_set__field_des
     4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ColorLED__FunctionControlSet, color_type_case),
+    offsetof(ColorLED__FunctionControlSet, colortype_case),
     offsetof(ColorLED__FunctionControlSet, rgb),
     &color_led__rgbcolor__descriptor,
     NULL,
@@ -1143,35 +1117,23 @@ const ProtobufCMessageDescriptor color_led__function_control_set__descriptor =
   (ProtobufCMessageInit) color_led__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor color_led__function_control_get_response__field_descriptors[3] =
+static const ProtobufCFieldDescriptor color_led__function_control_get_response__field_descriptors[2] =
 {
   {
     "rgb",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ColorLED__FunctionControlGetResponse, color_type_case),
+    0,   /* quantifier_offset */
     offsetof(ColorLED__FunctionControlGetResponse, rgb),
     &color_led__rgbcolor__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "color",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_ENUM,
-    offsetof(ColorLED__FunctionControlGetResponse, color_type_case),
-    offsetof(ColorLED__FunctionControlGetResponse, color),
-    &color_led__color__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
     "blink",
-    3,
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
@@ -1183,14 +1145,13 @@ static const ProtobufCFieldDescriptor color_led__function_control_get_response__
   },
 };
 static const unsigned color_led__function_control_get_response__field_indices_by_name[] = {
-  2,   /* field[2] = blink */
-  1,   /* field[1] = color */
+  1,   /* field[1] = blink */
   0,   /* field[0] = rgb */
 };
 static const ProtobufCIntRange color_led__function_control_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor color_led__function_control_get_response__descriptor =
 {
@@ -1200,7 +1161,7 @@ const ProtobufCMessageDescriptor color_led__function_control_get_response__descr
   "ColorLED__FunctionControlGetResponse",
   "colorLED",
   sizeof(ColorLED__FunctionControlGetResponse),
-  3,
+  2,
   color_led__function_control_get_response__field_descriptors,
   color_led__function_control_get_response__field_indices_by_name,
   1,  color_led__function_control_get_response__number_ranges,

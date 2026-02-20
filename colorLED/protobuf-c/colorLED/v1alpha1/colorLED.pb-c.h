@@ -34,6 +34,9 @@ typedef struct ColorLED__StreamData ColorLED__StreamData;
 
 /* --- enums --- */
 
+/*
+ * Color enum to represent predefined colors
+ */
 typedef enum _ColorLED__Color {
   COLOR_LED__COLOR__RED = 0,
   COLOR_LED__COLOR__GREEN = 1,
@@ -110,6 +113,9 @@ struct  ColorLED__ConfigurationDescribe
      }
 
 
+/*
+ * RGBColor message to represent a color in RGB format
+ */
 struct  ColorLED__RGBColor
 {
   ProtobufCMessage base;
@@ -122,13 +128,6 @@ struct  ColorLED__RGBColor
     , 0, 0, 0 }
 
 
-typedef enum {
-  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__NOT_SET = 0,
-  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE_COLOR = 2,
-  COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE_RGB = 4
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__CASE)
-} ColorLED__ChannelConfig__ColorTypeCase;
-
 struct  ColorLED__ChannelConfig
 {
   ProtobufCMessage base;
@@ -140,15 +139,10 @@ struct  ColorLED__ChannelConfig
    * if true the channel supports blinking
    */
   protobuf_c_boolean blink;
-  ColorLED__ChannelConfig__ColorTypeCase color_type_case;
-  union {
-    ColorLED__Color color;
-    ColorLED__RGBColor *rgb;
-  };
 };
 #define COLOR_LED__CHANNEL_CONFIG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__channel_config__descriptor) \
-    , 0, 0, COLOR_LED__CHANNEL_CONFIG__COLOR_TYPE__NOT_SET, {0} }
+    , 0, 0 }
 
 
 struct  ColorLED__ConfigurationDescribeResponse
@@ -206,11 +200,11 @@ struct  ColorLED__FunctionControlGet
 
 
 typedef enum {
-  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__NOT_SET = 0,
-  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE_COLOR = 2,
-  COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE_RGB = 4
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__CASE)
-} ColorLED__FunctionControlSet__ColorTypeCase;
+  COLOR_LED__FUNCTION_CONTROL_SET__COLORTYPE__NOT_SET = 0,
+  COLOR_LED__FUNCTION_CONTROL_SET__COLORTYPE_COLOR = 2,
+  COLOR_LED__FUNCTION_CONTROL_SET__COLORTYPE_RGB = 4
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__FUNCTION_CONTROL_SET__COLORTYPE__CASE)
+} ColorLED__FunctionControlSet__ColortypeCase;
 
 /*
  * FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
@@ -220,7 +214,7 @@ struct  ColorLED__FunctionControlSet
   ProtobufCMessage base;
   uint32_t channel;
   protobuf_c_boolean blink;
-  ColorLED__FunctionControlSet__ColorTypeCase color_type_case;
+  ColorLED__FunctionControlSet__ColortypeCase colortype_case;
   union {
     ColorLED__Color color;
     ColorLED__RGBColor *rgb;
@@ -228,15 +222,8 @@ struct  ColorLED__FunctionControlSet
 };
 #define COLOR_LED__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_set__descriptor) \
-    , 0, 0, COLOR_LED__FUNCTION_CONTROL_SET__COLOR_TYPE__NOT_SET, {0} }
+    , 0, 0, COLOR_LED__FUNCTION_CONTROL_SET__COLORTYPE__NOT_SET, {0} }
 
-
-typedef enum {
-  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__NOT_SET = 0,
-  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE_COLOR = 2,
-  COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE_RGB = 1
-    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__CASE)
-} ColorLED__FunctionControlGetResponse__ColorTypeCase;
 
 /*
  * FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
@@ -244,19 +231,15 @@ typedef enum {
 struct  ColorLED__FunctionControlGetResponse
 {
   ProtobufCMessage base;
+  ColorLED__RGBColor *rgb;
   /*
    * if true the channel is blinking
    */
   protobuf_c_boolean blink;
-  ColorLED__FunctionControlGetResponse__ColorTypeCase color_type_case;
-  union {
-    ColorLED__Color color;
-    ColorLED__RGBColor *rgb;
-  };
 };
 #define COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&color_led__function_control_get_response__descriptor) \
-    , 0, COLOR_LED__FUNCTION_CONTROL_GET_RESPONSE__COLOR_TYPE__NOT_SET, {0} }
+    , NULL, 0 }
 
 
 /*
