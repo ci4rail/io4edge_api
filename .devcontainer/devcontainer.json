@@ -1,17 +1,21 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/universal
 {
-	"name": "Default Linux Universal",
+	"name": "Protobuf Dev Container",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	// based on Ubuntu 24.04.3
-	"image": "mcr.microsoft.com/devcontainers/universal:4.0-noble",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
 	"features": {
-		"ghcr.io/devcontainers/features/python:1": {}
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "1.25.1"
+		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
+	
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash ./install_tools_ubuntu.sh",
+	"postCreateCommand": "./install_tools_ubuntu.sh",
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 	"customizations": {
@@ -19,7 +23,8 @@
 			"extensions": [
 				"zxh404.vscode-proto3",
 				"twxs.cmake",
-				"github.copilot"
+				"github.copilot",
+				"golang.go"
 			]
 		}
 	}
