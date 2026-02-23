@@ -46,6 +46,14 @@ message ConfigurationDescribe {
     // no parameters
 }
 
+// RGBColor message to represent a color in RGB format
+message RGBColor {
+    uint32 red = 1;
+    uint32 green = 2;
+    uint32 blue = 3;
+}
+
+// Color enum to represent predefined colors
 enum Color {
     RED = 0;
     GREEN = 1;
@@ -54,21 +62,20 @@ enum Color {
     YELLOW = 4;
     CYAN = 5;
     PURPLE = 6;
-    OFF = 7;
+    ORANGE = 7;
+    OFF = 8;
 }
 
 message ChannelConfig {
     // channel number
-    fixed32 channel = 1;
-    // channel color
-    Color color = 2;
-    bool blink = 3; // if true the channel supports blinking
+    uint32 channel = 1;
+    bool blink = 2; // if true the channel supports blinking
 }
 
 
 message ConfigurationDescribeResponse {
     repeated ChannelConfig channelConfig = 1;
-    fixed32 maxChannels = 2; // maximum number of channels supported by the hardware
+    uint32 maxChannels = 2; // maximum number of channels supported by the hardware
 }
 
 // ConfigurationResponse to pass to Functionblock.ConfigurationResponse.functionSpecificConfigurationResponse hook
@@ -85,20 +92,24 @@ message ConfigurationResponse {
 
 // FunctionControlGet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 message FunctionControlGet {
-    fixed32 channel = 1;
+    uint32 channel = 1;
 }
+
 
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
     fixed32 channel = 1;
-    Color color = 2;
+    oneof colortype {
+        Color color = 2;
+        RGBColor rgb = 4;
+    }
     bool blink = 3;
 }
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 message FunctionControlGetResponse {
-    Color color = 2;
-    bool blink = 3; // if true the channel is blinking
+    RGBColor rgb = 1;
+    bool blink = 2; // if true the channel is blinking
 }
 
 // FunctionControlSetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlSet hook

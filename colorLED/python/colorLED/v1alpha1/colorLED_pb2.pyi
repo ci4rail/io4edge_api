@@ -16,6 +16,7 @@ class Color(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     YELLOW: _ClassVar[Color]
     CYAN: _ClassVar[Color]
     PURPLE: _ClassVar[Color]
+    ORANGE: _ClassVar[Color]
     OFF: _ClassVar[Color]
 RED: Color
 GREEN: Color
@@ -24,6 +25,7 @@ WHITE: Color
 YELLOW: Color
 CYAN: Color
 PURPLE: Color
+ORANGE: Color
 OFF: Color
 
 class ConfigurationSet(_message.Message):
@@ -46,15 +48,23 @@ class ConfigurationDescribe(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
+class RGBColor(_message.Message):
+    __slots__ = ("red", "green", "blue")
+    RED_FIELD_NUMBER: _ClassVar[int]
+    GREEN_FIELD_NUMBER: _ClassVar[int]
+    BLUE_FIELD_NUMBER: _ClassVar[int]
+    red: int
+    green: int
+    blue: int
+    def __init__(self, red: _Optional[int] = ..., green: _Optional[int] = ..., blue: _Optional[int] = ...) -> None: ...
+
 class ChannelConfig(_message.Message):
-    __slots__ = ("channel", "color", "blink")
+    __slots__ = ("channel", "blink")
     CHANNEL_FIELD_NUMBER: _ClassVar[int]
-    COLOR_FIELD_NUMBER: _ClassVar[int]
     BLINK_FIELD_NUMBER: _ClassVar[int]
     channel: int
-    color: Color
     blink: bool
-    def __init__(self, channel: _Optional[int] = ..., color: _Optional[_Union[Color, str]] = ..., blink: _Optional[bool] = ...) -> None: ...
+    def __init__(self, channel: _Optional[int] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationDescribeResponse(_message.Message):
     __slots__ = ("channelConfig", "maxChannels")
@@ -81,22 +91,24 @@ class FunctionControlGet(_message.Message):
     def __init__(self, channel: _Optional[int] = ...) -> None: ...
 
 class FunctionControlSet(_message.Message):
-    __slots__ = ("channel", "color", "blink")
+    __slots__ = ("channel", "color", "rgb", "blink")
     CHANNEL_FIELD_NUMBER: _ClassVar[int]
     COLOR_FIELD_NUMBER: _ClassVar[int]
+    RGB_FIELD_NUMBER: _ClassVar[int]
     BLINK_FIELD_NUMBER: _ClassVar[int]
     channel: int
     color: Color
+    rgb: RGBColor
     blink: bool
-    def __init__(self, channel: _Optional[int] = ..., color: _Optional[_Union[Color, str]] = ..., blink: _Optional[bool] = ...) -> None: ...
+    def __init__(self, channel: _Optional[int] = ..., color: _Optional[_Union[Color, str]] = ..., rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
-    __slots__ = ("color", "blink")
-    COLOR_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("rgb", "blink")
+    RGB_FIELD_NUMBER: _ClassVar[int]
     BLINK_FIELD_NUMBER: _ClassVar[int]
-    color: Color
+    rgb: RGBColor
     blink: bool
-    def __init__(self, color: _Optional[_Union[Color, str]] = ..., blink: _Optional[bool] = ...) -> None: ...
+    def __init__(self, rgb: _Optional[_Union[RGBColor, _Mapping]] = ..., blink: _Optional[bool] = ...) -> None: ...
 
 class FunctionControlSetResponse(_message.Message):
     __slots__ = ()
