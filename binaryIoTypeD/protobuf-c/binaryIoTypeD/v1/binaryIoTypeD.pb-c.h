@@ -332,19 +332,37 @@ struct  BinaryIoTypeD__StreamControlStart
 struct  BinaryIoTypeD__Sample
 {
   ProtobufCMessage base;
+  /*
+   * This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+   */
+  uint64_t timestamp;
+  /*
+   * binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
+   * In case the input value is unknown, its value is reported as 0. The input value is invalid if
+   * the diag NoSupplyVoltage bit is set.
+   */
+  uint32_t inputs;
+  /*
+   * diagnostic information for each channel, containing the ChannelDiag bits.
+   * first diag corresponds to channel 0, second to channel 1, etc.
+   */
+  size_t n_diag;
+  uint32_t *diag;
 };
 #define BINARY_IO_TYPE_D__SAMPLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__sample__descriptor) \
-     }
+    , 0, 0, 0,NULL }
 
 
 struct  BinaryIoTypeD__StreamData
 {
   ProtobufCMessage base;
+  size_t n_samples;
+  BinaryIoTypeD__Sample **samples;
 };
 #define BINARY_IO_TYPE_D__STREAM_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&binary_io_type_d__stream_data__descriptor) \
-     }
+    , 0,NULL }
 
 
 /* BinaryIoTypeD__ChannelConfig methods */
