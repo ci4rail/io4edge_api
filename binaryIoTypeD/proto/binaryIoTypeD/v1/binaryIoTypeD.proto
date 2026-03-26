@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 Ci4Rail GmbH <engineering@ci4rail.com>
+Copyright © 2024-2026 Ci4Rail GmbH <engineering@ci4rail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Binary I/O as on EKF SO1
+// Binary I/O as on EKF SQ1
 
 syntax = "proto3";
 
@@ -149,13 +149,21 @@ message FunctionControlSetResponse {
 
 // ============= StreamControl ==================
 message StreamControlStart {
-    // not implemented
+    // no parameters
 }
 
 message Sample {
-    // not implemented
+    // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+    fixed64 timestamp = 1; 
+    // binary coded map of input values. 0 means inactive, 1 means active, LSB is Input0
+    // In case the input value is unknown, its value is reported as 0. The input value is invalid if
+    // the diag NoSupplyVoltage bit is set.
+    fixed32 inputs = 2;
+    // diagnostic information for each channel, containing the ChannelDiag bits.
+    // first diag corresponds to channel 0, second to channel 1, etc.
+    repeated uint32 diag = 3;    
 }
 
 message StreamData {
-    // not implemented
+    repeated Sample samples = 1;
 }

@@ -130,9 +130,17 @@ class StreamControlStart(_message.Message):
     def __init__(self) -> None: ...
 
 class Sample(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("timestamp", "inputs", "diag")
+    TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
+    INPUTS_FIELD_NUMBER: _ClassVar[int]
+    DIAG_FIELD_NUMBER: _ClassVar[int]
+    timestamp: int
+    inputs: int
+    diag: _containers.RepeatedScalarFieldContainer[int]
+    def __init__(self, timestamp: _Optional[int] = ..., inputs: _Optional[int] = ..., diag: _Optional[_Iterable[int]] = ...) -> None: ...
 
 class StreamData(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("samples",)
+    SAMPLES_FIELD_NUMBER: _ClassVar[int]
+    samples: _containers.RepeatedCompositeFieldContainer[Sample]
+    def __init__(self, samples: _Optional[_Iterable[_Union[Sample, _Mapping]]] = ...) -> None: ...
