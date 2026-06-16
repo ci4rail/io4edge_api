@@ -911,25 +911,7 @@ const ProtobufCMessageDescriptor bitbus_slave__function_control_set__descriptor 
   (ProtobufCMessageInit) bitbus_slave__function_control_set__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-#define bitbus_slave__function_control_get_response__field_descriptors NULL
-#define bitbus_slave__function_control_get_response__field_indices_by_name NULL
-#define bitbus_slave__function_control_get_response__number_ranges NULL
-const ProtobufCMessageDescriptor bitbus_slave__function_control_get_response__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "bitbusSlave.FunctionControlGetResponse",
-  "FunctionControlGetResponse",
-  "BitbusSlave__FunctionControlGetResponse",
-  "bitbusSlave",
-  sizeof(BitbusSlave__FunctionControlGetResponse),
-  0,
-  bitbus_slave__function_control_get_response__field_descriptors,
-  bitbus_slave__function_control_get_response__field_indices_by_name,
-  0,  bitbus_slave__function_control_get_response__number_ranges,
-  (ProtobufCMessageInit) bitbus_slave__function_control_get_response__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor bitbus_slave__function_control_set_response__field_descriptors[2] =
+static const ProtobufCFieldDescriptor bitbus_slave__function_control_get_response__field_descriptors[2] =
 {
   {
     "mode",
@@ -937,7 +919,7 @@ static const ProtobufCFieldDescriptor bitbus_slave__function_control_set_respons
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(BitbusSlave__FunctionControlSetResponse, mode),
+    offsetof(BitbusSlave__FunctionControlGetResponse, mode),
     &bitbus_slave__slave_mode__descriptor,
     NULL,
     0,             /* flags */
@@ -949,22 +931,40 @@ static const ProtobufCFieldDescriptor bitbus_slave__function_control_set_respons
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
     0,   /* quantifier_offset */
-    offsetof(BitbusSlave__FunctionControlSetResponse, have_pending_tx_msg),
+    offsetof(BitbusSlave__FunctionControlGetResponse, have_pending_tx_msg),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned bitbus_slave__function_control_set_response__field_indices_by_name[] = {
+static const unsigned bitbus_slave__function_control_get_response__field_indices_by_name[] = {
   1,   /* field[1] = have_pending_tx_msg */
   0,   /* field[0] = mode */
 };
-static const ProtobufCIntRange bitbus_slave__function_control_set_response__number_ranges[1 + 1] =
+static const ProtobufCIntRange bitbus_slave__function_control_get_response__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
+const ProtobufCMessageDescriptor bitbus_slave__function_control_get_response__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "bitbusSlave.FunctionControlGetResponse",
+  "FunctionControlGetResponse",
+  "BitbusSlave__FunctionControlGetResponse",
+  "bitbusSlave",
+  sizeof(BitbusSlave__FunctionControlGetResponse),
+  2,
+  bitbus_slave__function_control_get_response__field_descriptors,
+  bitbus_slave__function_control_get_response__field_indices_by_name,
+  1,  bitbus_slave__function_control_get_response__number_ranges,
+  (ProtobufCMessageInit) bitbus_slave__function_control_get_response__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+#define bitbus_slave__function_control_set_response__field_descriptors NULL
+#define bitbus_slave__function_control_set_response__field_indices_by_name NULL
+#define bitbus_slave__function_control_set_response__number_ranges NULL
 const ProtobufCMessageDescriptor bitbus_slave__function_control_set_response__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
@@ -973,10 +973,10 @@ const ProtobufCMessageDescriptor bitbus_slave__function_control_set_response__de
   "BitbusSlave__FunctionControlSetResponse",
   "bitbusSlave",
   sizeof(BitbusSlave__FunctionControlSetResponse),
-  2,
+  0,
   bitbus_slave__function_control_set_response__field_descriptors,
   bitbus_slave__function_control_set_response__field_indices_by_name,
-  1,  bitbus_slave__function_control_set_response__number_ranges,
+  0,  bitbus_slave__function_control_set_response__number_ranges,
   (ProtobufCMessageInit) bitbus_slave__function_control_set_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

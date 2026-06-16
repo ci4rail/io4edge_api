@@ -171,27 +171,27 @@ struct  BitbusSlave__FunctionControlSet
 struct  BitbusSlave__FunctionControlGetResponse
 {
   ProtobufCMessage base;
-};
-#define BITBUS_SLAVE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus_slave__function_control_get_response__descriptor) \
-     }
-
-
-struct  BitbusSlave__FunctionControlSetResponse
-{
-  ProtobufCMessage base;
   /*
    * current mode of the slave
    */
   BitbusSlave__SlaveMode mode;
   /*
-   * if true, there is a pending application tx msg 
+   * if true, there is a pending application tx msg   
    */
   protobuf_c_boolean have_pending_tx_msg;
 };
+#define BITBUS_SLAVE__FUNCTION_CONTROL_GET_RESPONSE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&bitbus_slave__function_control_get_response__descriptor) \
+    , BITBUS_SLAVE__SLAVE_MODE__not_configured, 0 }
+
+
+struct  BitbusSlave__FunctionControlSetResponse
+{
+  ProtobufCMessage base;
+};
 #define BITBUS_SLAVE__FUNCTION_CONTROL_SET_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_slave__function_control_set_response__descriptor) \
-    , BITBUS_SLAVE__SLAVE_MODE__not_configured, 0 }
+     }
 
 
 struct  BitbusSlave__StreamControlStart

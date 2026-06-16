@@ -67,16 +67,16 @@ class FunctionControlSet(_message.Message):
     def __init__(self, tx_msg: _Optional[_Union[PreparedTxMsg, _Mapping]] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class FunctionControlSetResponse(_message.Message):
     __slots__ = ("mode", "have_pending_tx_msg")
     MODE_FIELD_NUMBER: _ClassVar[int]
     HAVE_PENDING_TX_MSG_FIELD_NUMBER: _ClassVar[int]
     mode: SlaveMode
     have_pending_tx_msg: bool
     def __init__(self, mode: _Optional[_Union[SlaveMode, str]] = ..., have_pending_tx_msg: _Optional[bool] = ...) -> None: ...
+
+class FunctionControlSetResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class StreamControlStart(_message.Message):
     __slots__ = ()

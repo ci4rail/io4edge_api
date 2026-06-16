@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n bitbusSlave/v1/bitbusSlave.proto\x12\x0b\x62itbusSlave\"\x89\x01\n\x10\x43onfigurationSet\x12\x15\n\rslave_address\x18\x01 \x01(\x05\x12\x18\n\x10max_frame_length\x18\x02 \x01(\x05\x12\x19\n\x11\x61pp_wd_timeout_ms\x18\x03 \x01(\x05\x12\x15\n\ridle_response\x18\x04 \x01(\x0c\x12\x12\n\nbaud_62500\x18\x05 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"+\n\rPreparedTxMsg\x12\x1a\n\x12\x62itbus_information\x18\x01 \x01(\x0c\"J\n\x12\x46unctionControlSet\x12,\n\x06tx_msg\x18\x01 \x01(\x0b\x32\x1a.bitbusSlave.PreparedTxMsgH\x00\x42\x06\n\x04type\"\x1c\n\x1a\x46unctionControlGetResponse\"_\n\x1a\x46unctionControlSetResponse\x12$\n\x04mode\x18\x01 \x01(\x0e\x32\x16.bitbusSlave.SlaveMode\x12\x1b\n\x13have_pending_tx_msg\x18\x02 \x01(\x08\"\x14\n\x12StreamControlStart\"7\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x1a\n\x12\x62itbus_information\x18\x02 \x01(\x0c\"2\n\nStreamData\x12$\n\x07samples\x18\x01 \x03(\x0b\x32\x13.bitbusSlave.Sample*1\n\tSlaveMode\x12\x12\n\x0enot_configured\x10\x00\x12\x07\n\x03ndm\x10\x01\x12\x07\n\x03nrm\x10\x02\x42\x10Z\x0e\x62itbusSlave/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n bitbusSlave/v1/bitbusSlave.proto\x12\x0b\x62itbusSlave\"\x89\x01\n\x10\x43onfigurationSet\x12\x15\n\rslave_address\x18\x01 \x01(\x05\x12\x18\n\x10max_frame_length\x18\x02 \x01(\x05\x12\x19\n\x11\x61pp_wd_timeout_ms\x18\x03 \x01(\x05\x12\x15\n\ridle_response\x18\x04 \x01(\x0c\x12\x12\n\nbaud_62500\x18\x05 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"+\n\rPreparedTxMsg\x12\x1a\n\x12\x62itbus_information\x18\x01 \x01(\x0c\"J\n\x12\x46unctionControlSet\x12,\n\x06tx_msg\x18\x01 \x01(\x0b\x32\x1a.bitbusSlave.PreparedTxMsgH\x00\x42\x06\n\x04type\"_\n\x1a\x46unctionControlGetResponse\x12$\n\x04mode\x18\x01 \x01(\x0e\x32\x16.bitbusSlave.SlaveMode\x12\x1b\n\x13have_pending_tx_msg\x18\x02 \x01(\x08\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"7\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\x1a\n\x12\x62itbus_information\x18\x02 \x01(\x0c\"2\n\nStreamData\x12$\n\x07samples\x18\x01 \x03(\x0b\x32\x13.bitbusSlave.Sample*1\n\tSlaveMode\x12\x12\n\x0enot_configured\x10\x00\x12\x07\n\x03ndm\x10\x01\x12\x07\n\x03nrm\x10\x02\x42\x10Z\x0e\x62itbusSlave/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -53,8 +53,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_FUNCTIONCONTROLSET']._serialized_start=390
   _globals['_FUNCTIONCONTROLSET']._serialized_end=464
   _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=466
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=494
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=496
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=561
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=563
   _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=591
   _globals['_STREAMCONTROLSTART']._serialized_start=593
   _globals['_STREAMCONTROLSTART']._serialized_end=613
