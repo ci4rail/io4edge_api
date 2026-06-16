@@ -73,7 +73,8 @@ message FunctionControlSet {
 }
 
 message FunctionControlGetResponse {
-  
+    SlaveMode mode = 1; // current mode of the slave
+    bool have_pending_tx_msg = 2; // if true, there is a pending application tx msg   
 }
 
 enum SlaveMode {
@@ -83,8 +84,7 @@ enum SlaveMode {
 }
 
 message FunctionControlSetResponse {
-    SlaveMode mode = 1; // current mode of the slave
-    bool have_pending_tx_msg = 2; // if true, there is a pending application tx msg 
+  // no parameters
 }
 
 // ============= StreamControl ==================
