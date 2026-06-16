@@ -68,17 +68,10 @@ message FunctionControlGet {
   // no parameters
 }
 
-message Frame {
-  // byte 0: address
-  // byte 1: control
-  // byte 2..n: information
-  bytes bitbus_frame = 1; 
-}
-
 // FunctionControlSet to pass to
 // Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
-  repeated Frame frames = 1; // frames to send to the bus
+  // Not implemented
 }
 
 // FunctionControlGetResponse to pass to

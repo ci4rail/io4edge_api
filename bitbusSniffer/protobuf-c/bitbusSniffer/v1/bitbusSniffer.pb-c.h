@@ -22,7 +22,6 @@ typedef struct BitbusSniffer__ConfigurationGetResponse BitbusSniffer__Configurat
 typedef struct BitbusSniffer__ConfigurationDescribe BitbusSniffer__ConfigurationDescribe;
 typedef struct BitbusSniffer__ConfigurationDescribeResponse BitbusSniffer__ConfigurationDescribeResponse;
 typedef struct BitbusSniffer__FunctionControlGet BitbusSniffer__FunctionControlGet;
-typedef struct BitbusSniffer__Frame BitbusSniffer__Frame;
 typedef struct BitbusSniffer__FunctionControlSet BitbusSniffer__FunctionControlSet;
 typedef struct BitbusSniffer__FunctionControlGetResponse BitbusSniffer__FunctionControlGetResponse;
 typedef struct BitbusSniffer__FunctionControlSetResponse BitbusSniffer__FunctionControlSetResponse;
@@ -163,21 +162,6 @@ struct  BitbusSniffer__FunctionControlGet
      }
 
 
-struct  BitbusSniffer__Frame
-{
-  ProtobufCMessage base;
-  /*
-   * byte 0: address
-   * byte 1: control
-   * byte 2..n: information
-   */
-  ProtobufCBinaryData bitbus_frame;
-};
-#define BITBUS_SNIFFER__FRAME__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__frame__descriptor) \
-    , {0,NULL} }
-
-
 /*
  * FunctionControlSet to pass to
  * Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
@@ -185,15 +169,10 @@ struct  BitbusSniffer__Frame
 struct  BitbusSniffer__FunctionControlSet
 {
   ProtobufCMessage base;
-  /*
-   * frames to send to the bus
-   */
-  size_t n_frames;
-  BitbusSniffer__Frame **frames;
 };
 #define BITBUS_SNIFFER__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__function_control_set__descriptor) \
-    , 0,NULL }
+     }
 
 
 /*
@@ -409,25 +388,6 @@ BitbusSniffer__FunctionControlGet *
 void   bitbus_sniffer__function_control_get__free_unpacked
                      (BitbusSniffer__FunctionControlGet *message,
                       ProtobufCAllocator *allocator);
-/* BitbusSniffer__Frame methods */
-void   bitbus_sniffer__frame__init
-                     (BitbusSniffer__Frame         *message);
-size_t bitbus_sniffer__frame__get_packed_size
-                     (const BitbusSniffer__Frame   *message);
-size_t bitbus_sniffer__frame__pack
-                     (const BitbusSniffer__Frame   *message,
-                      uint8_t             *out);
-size_t bitbus_sniffer__frame__pack_to_buffer
-                     (const BitbusSniffer__Frame   *message,
-                      ProtobufCBuffer     *buffer);
-BitbusSniffer__Frame *
-       bitbus_sniffer__frame__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   bitbus_sniffer__frame__free_unpacked
-                     (BitbusSniffer__Frame *message,
-                      ProtobufCAllocator *allocator);
 /* BitbusSniffer__FunctionControlSet methods */
 void   bitbus_sniffer__function_control_set__init
                      (BitbusSniffer__FunctionControlSet         *message);
@@ -565,9 +525,6 @@ typedef void (*BitbusSniffer__ConfigurationDescribeResponse_Closure)
 typedef void (*BitbusSniffer__FunctionControlGet_Closure)
                  (const BitbusSniffer__FunctionControlGet *message,
                   void *closure_data);
-typedef void (*BitbusSniffer__Frame_Closure)
-                 (const BitbusSniffer__Frame *message,
-                  void *closure_data);
 typedef void (*BitbusSniffer__FunctionControlSet_Closure)
                  (const BitbusSniffer__FunctionControlSet *message,
                   void *closure_data);
@@ -599,7 +556,6 @@ extern const ProtobufCMessageDescriptor bitbus_sniffer__configuration_get_respon
 extern const ProtobufCMessageDescriptor bitbus_sniffer__configuration_describe__descriptor;
 extern const ProtobufCMessageDescriptor bitbus_sniffer__configuration_describe_response__descriptor;
 extern const ProtobufCMessageDescriptor bitbus_sniffer__function_control_get__descriptor;
-extern const ProtobufCMessageDescriptor bitbus_sniffer__frame__descriptor;
 extern const ProtobufCMessageDescriptor bitbus_sniffer__function_control_set__descriptor;
 extern const ProtobufCMessageDescriptor bitbus_sniffer__function_control_get_response__descriptor;
 extern const ProtobufCMessageDescriptor bitbus_sniffer__function_control_set_response__descriptor;

@@ -43,17 +43,9 @@ class FunctionControlGet(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class Frame(_message.Message):
-    __slots__ = ("bitbus_frame",)
-    BITBUS_FRAME_FIELD_NUMBER: _ClassVar[int]
-    bitbus_frame: bytes
-    def __init__(self, bitbus_frame: _Optional[bytes] = ...) -> None: ...
-
 class FunctionControlSet(_message.Message):
-    __slots__ = ("frames",)
-    FRAMES_FIELD_NUMBER: _ClassVar[int]
-    frames: _containers.RepeatedCompositeFieldContainer[Frame]
-    def __init__(self, frames: _Optional[_Iterable[_Union[Frame, _Mapping]]] = ...) -> None: ...
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ()
