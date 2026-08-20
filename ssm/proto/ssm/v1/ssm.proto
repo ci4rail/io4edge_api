@@ -186,13 +186,22 @@ message FunctionControlGet {
 // FunctionControlSet to pass to Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 message FunctionControlSet {
     oneof type {
-        bool kick = 1; // kick the watchdog
-        string error = 2; // set the system into error state
-        string resolve = 3; // resolve current error state
-        string fatal = 4; // set system to fatal error state
-        bool shutdown = 5; // indicate system shutdown
-        bool on = 6; // indicate system power on
-        bool reboot = 7; // indicate system reboot
+        // Kick watchdog
+        bool kick = 1;
+        // Set system into error state
+        string error = 2;
+        // Resolve current error state
+        string resolve = 3;
+        // Set system to fatal error state
+        string fatal = 4;
+        // Indicate system shutdown
+        bool shutdown = 5;
+        // Indicate system power-on
+        bool on = 6;
+        // Indicate system reboot
+        bool reboot = 7;
+        // Off commmand
+        string off = 8;
     }
 }
 
