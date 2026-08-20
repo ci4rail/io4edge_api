@@ -1324,6 +1324,7 @@ type FunctionControlSet struct {
 	//	*FunctionControlSet_Shutdown
 	//	*FunctionControlSet_On
 	//	*FunctionControlSet_Reboot
+	//	*FunctionControlSet_Off
 	Type          isFunctionControlSet_Type `protobuf_oneof:"type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1429,36 +1430,57 @@ func (x *FunctionControlSet) GetReboot() bool {
 	return false
 }
 
+func (x *FunctionControlSet) GetOff() string {
+	if x != nil {
+		if x, ok := x.Type.(*FunctionControlSet_Off); ok {
+			return x.Off
+		}
+	}
+	return ""
+}
+
 type isFunctionControlSet_Type interface {
 	isFunctionControlSet_Type()
 }
 
 type FunctionControlSet_Kick struct {
-	Kick bool `protobuf:"varint,1,opt,name=kick,proto3,oneof"` // kick the watchdog
+	// Kick watchdog
+	Kick bool `protobuf:"varint,1,opt,name=kick,proto3,oneof"`
 }
 
 type FunctionControlSet_Error struct {
-	Error string `protobuf:"bytes,2,opt,name=error,proto3,oneof"` // set the system into error state
+	// Set system into error state
+	Error string `protobuf:"bytes,2,opt,name=error,proto3,oneof"`
 }
 
 type FunctionControlSet_Resolve struct {
-	Resolve string `protobuf:"bytes,3,opt,name=resolve,proto3,oneof"` // resolve current error state
+	// Resolve current error state
+	Resolve string `protobuf:"bytes,3,opt,name=resolve,proto3,oneof"`
 }
 
 type FunctionControlSet_Fatal struct {
-	Fatal string `protobuf:"bytes,4,opt,name=fatal,proto3,oneof"` // set system to fatal error state
+	// Set system to fatal error state
+	Fatal string `protobuf:"bytes,4,opt,name=fatal,proto3,oneof"`
 }
 
 type FunctionControlSet_Shutdown struct {
-	Shutdown bool `protobuf:"varint,5,opt,name=shutdown,proto3,oneof"` // indicate system shutdown
+	// Indicate system shutdown
+	Shutdown bool `protobuf:"varint,5,opt,name=shutdown,proto3,oneof"`
 }
 
 type FunctionControlSet_On struct {
-	On bool `protobuf:"varint,6,opt,name=on,proto3,oneof"` // indicate system power on
+	// Indicate system power-on
+	On bool `protobuf:"varint,6,opt,name=on,proto3,oneof"`
 }
 
 type FunctionControlSet_Reboot struct {
-	Reboot bool `protobuf:"varint,7,opt,name=reboot,proto3,oneof"` // indicate system reboot
+	// Indicate system reboot
+	Reboot bool `protobuf:"varint,7,opt,name=reboot,proto3,oneof"`
+}
+
+type FunctionControlSet_Off struct {
+	// Off commmand
+	Off string `protobuf:"bytes,8,opt,name=off,proto3,oneof"`
 }
 
 func (*FunctionControlSet_Kick) isFunctionControlSet_Type() {}
@@ -1474,6 +1496,8 @@ func (*FunctionControlSet_Shutdown) isFunctionControlSet_Type() {}
 func (*FunctionControlSet_On) isFunctionControlSet_Type() {}
 
 func (*FunctionControlSet_Reboot) isFunctionControlSet_Type() {}
+
+func (*FunctionControlSet_Off) isFunctionControlSet_Type() {}
 
 // FunctionControlGetResponse to pass to Functionblock.FunctionControlResponse.functionSpecificControlGet hook
 type FunctionControlGetResponse struct {
@@ -1791,7 +1815,7 @@ const file_ssm_proto_rawDesc = "" +
 	"\x13HostCommandResponse\x128\n" +
 	"\bresponse\x18\x01 \x01(\x0e2\x1c.ssm.HostCommandResponseTypeR\bresponse\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"\x14\n" +
-	"\x12FunctionControlGet\"\xc8\x01\n" +
+	"\x12FunctionControlGet\"\xdc\x01\n" +
 	"\x12FunctionControlSet\x12\x14\n" +
 	"\x04kick\x18\x01 \x01(\bH\x00R\x04kick\x12\x16\n" +
 	"\x05error\x18\x02 \x01(\tH\x00R\x05error\x12\x1a\n" +
@@ -1799,7 +1823,8 @@ const file_ssm_proto_rawDesc = "" +
 	"\x05fatal\x18\x04 \x01(\tH\x00R\x05fatal\x12\x1c\n" +
 	"\bshutdown\x18\x05 \x01(\bH\x00R\bshutdown\x12\x10\n" +
 	"\x02on\x18\x06 \x01(\bH\x00R\x02on\x12\x18\n" +
-	"\x06reboot\x18\a \x01(\bH\x00R\x06rebootB\x06\n" +
+	"\x06reboot\x18\a \x01(\bH\x00R\x06reboot\x12\x12\n" +
+	"\x03off\x18\b \x01(\tH\x00R\x03offB\x06\n" +
 	"\x04type\"D\n" +
 	"\x1aFunctionControlGetResponse\x12&\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x10.ssm.SystemStateR\x05state\"\x9f\x01\n" +
@@ -1937,6 +1962,7 @@ func file_ssm_proto_init() {
 		(*FunctionControlSet_Shutdown)(nil),
 		(*FunctionControlSet_On)(nil),
 		(*FunctionControlSet_Reboot)(nil),
+		(*FunctionControlSet_Off)(nil),
 	}
 	file_ssm_proto_msgTypes[12].OneofWrappers = []any{
 		(*FunctionControlSetResponse_StateError)(nil),

@@ -1872,7 +1872,7 @@ const ProtobufCMessageDescriptor ssm__function_control_get__descriptor =
   (ProtobufCMessageInit) ssm__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor ssm__function_control_set__field_descriptors[7] =
+static const ProtobufCFieldDescriptor ssm__function_control_set__field_descriptors[8] =
 {
   {
     "kick",
@@ -1958,11 +1958,24 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "off",
+    8,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    offsetof(Ssm__FunctionControlSet, type_case),
+    offsetof(Ssm__FunctionControlSet, off),
+    NULL,
+    &protobuf_c_empty_string,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned ssm__function_control_set__field_indices_by_name[] = {
   1,   /* field[1] = error */
   3,   /* field[3] = fatal */
   0,   /* field[0] = kick */
+  7,   /* field[7] = off */
   5,   /* field[5] = on */
   6,   /* field[6] = reboot */
   2,   /* field[2] = resolve */
@@ -1971,7 +1984,7 @@ static const unsigned ssm__function_control_set__field_indices_by_name[] = {
 static const ProtobufCIntRange ssm__function_control_set__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 7 }
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor ssm__function_control_set__descriptor =
 {
@@ -1981,7 +1994,7 @@ const ProtobufCMessageDescriptor ssm__function_control_set__descriptor =
   "Ssm__FunctionControlSet",
   "ssm",
   sizeof(Ssm__FunctionControlSet),
-  7,
+  8,
   ssm__function_control_set__field_descriptors,
   ssm__function_control_set__field_indices_by_name,
   1,  ssm__function_control_set__number_ranges,

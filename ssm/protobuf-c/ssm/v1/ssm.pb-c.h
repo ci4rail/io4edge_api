@@ -567,7 +567,8 @@ typedef enum {
   SSM__FUNCTION_CONTROL_SET__TYPE_FATAL = 4,
   SSM__FUNCTION_CONTROL_SET__TYPE_SHUTDOWN = 5,
   SSM__FUNCTION_CONTROL_SET__TYPE_ON = 6,
-  SSM__FUNCTION_CONTROL_SET__TYPE_REBOOT = 7
+  SSM__FUNCTION_CONTROL_SET__TYPE_REBOOT = 7,
+  SSM__FUNCTION_CONTROL_SET__TYPE_OFF = 8
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(SSM__FUNCTION_CONTROL_SET__TYPE__CASE)
 } Ssm__FunctionControlSet__TypeCase;
 
@@ -580,33 +581,37 @@ struct  Ssm__FunctionControlSet
   Ssm__FunctionControlSet__TypeCase type_case;
   union {
     /*
-     * kick the watchdog
+     * Kick watchdog
      */
     protobuf_c_boolean kick;
     /*
-     * set the system into error state
+     * Set system into error state
      */
     char *error;
     /*
-     * resolve current error state
+     * Resolve current error state
      */
     char *resolve;
     /*
-     * set system to fatal error state
+     * Set system to fatal error state
      */
     char *fatal;
     /*
-     * indicate system shutdown
+     * Indicate system shutdown
      */
     protobuf_c_boolean shutdown;
     /*
-     * indicate system power on
+     * Indicate system power-on
      */
     protobuf_c_boolean on;
     /*
-     * indicate system reboot
+     * Indicate system reboot
      */
     protobuf_c_boolean reboot;
+    /*
+     * Off commmand
+     */
+    char *off;
   };
 };
 #define SSM__FUNCTION_CONTROL_SET__INIT \

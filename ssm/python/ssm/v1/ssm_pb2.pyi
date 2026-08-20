@@ -259,7 +259,7 @@ class FunctionControlGet(_message.Message):
     def __init__(self) -> None: ...
 
 class FunctionControlSet(_message.Message):
-    __slots__ = ("kick", "error", "resolve", "fatal", "shutdown", "on", "reboot")
+    __slots__ = ("kick", "error", "resolve", "fatal", "shutdown", "on", "reboot", "off")
     KICK_FIELD_NUMBER: _ClassVar[int]
     ERROR_FIELD_NUMBER: _ClassVar[int]
     RESOLVE_FIELD_NUMBER: _ClassVar[int]
@@ -267,6 +267,7 @@ class FunctionControlSet(_message.Message):
     SHUTDOWN_FIELD_NUMBER: _ClassVar[int]
     ON_FIELD_NUMBER: _ClassVar[int]
     REBOOT_FIELD_NUMBER: _ClassVar[int]
+    OFF_FIELD_NUMBER: _ClassVar[int]
     kick: bool
     error: str
     resolve: str
@@ -274,7 +275,8 @@ class FunctionControlSet(_message.Message):
     shutdown: bool
     on: bool
     reboot: bool
-    def __init__(self, kick: _Optional[bool] = ..., error: _Optional[str] = ..., resolve: _Optional[str] = ..., fatal: _Optional[str] = ..., shutdown: _Optional[bool] = ..., on: _Optional[bool] = ..., reboot: _Optional[bool] = ...) -> None: ...
+    off: str
+    def __init__(self, kick: _Optional[bool] = ..., error: _Optional[str] = ..., resolve: _Optional[str] = ..., fatal: _Optional[str] = ..., shutdown: _Optional[bool] = ..., on: _Optional[bool] = ..., reboot: _Optional[bool] = ..., off: _Optional[str] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ("state",)
