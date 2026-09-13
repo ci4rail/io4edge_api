@@ -10,7 +10,7 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class TraceletToServer(_message.Message):
-    __slots__ = ("uuid", "ipv4_address", "delivery_ts", "tracelet_id", "ignition", "location", "firmware_version", "metrics")
+    __slots__ = ("uuid", "ipv4_address", "delivery_ts", "tracelet_id", "ignition", "location", "recovery_info", "firmware_version", "metrics")
     class Location(_message.Message):
         __slots__ = ("gnss", "uwb", "fused", "direction", "speed", "mileage", "mileage_mm", "temperature")
         class Direction(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
@@ -117,12 +117,18 @@ class TraceletToServer(_message.Message):
         mileage_mm: int
         temperature: float
         def __init__(self, gnss: _Optional[_Union[TraceletToServer.Location.Gnss, _Mapping]] = ..., uwb: _Optional[_Union[TraceletToServer.Location.Uwb, _Mapping]] = ..., fused: _Optional[_Union[TraceletToServer.Location.Fused, _Mapping]] = ..., direction: _Optional[_Union[TraceletToServer.Location.Direction, str]] = ..., speed: _Optional[float] = ..., mileage: _Optional[int] = ..., mileage_mm: _Optional[int] = ..., temperature: _Optional[float] = ...) -> None: ...
+    class RecoveryInfo(_message.Message):
+        __slots__ = ("content",)
+        CONTENT_FIELD_NUMBER: _ClassVar[int]
+        content: str
+        def __init__(self, content: _Optional[str] = ...) -> None: ...
     UUID_FIELD_NUMBER: _ClassVar[int]
     IPV4_ADDRESS_FIELD_NUMBER: _ClassVar[int]
     DELIVERY_TS_FIELD_NUMBER: _ClassVar[int]
     TRACELET_ID_FIELD_NUMBER: _ClassVar[int]
     IGNITION_FIELD_NUMBER: _ClassVar[int]
     LOCATION_FIELD_NUMBER: _ClassVar[int]
+    RECOVERY_INFO_FIELD_NUMBER: _ClassVar[int]
     FIRMWARE_VERSION_FIELD_NUMBER: _ClassVar[int]
     METRICS_FIELD_NUMBER: _ClassVar[int]
     uuid: TraceletMessageID
@@ -131,9 +137,10 @@ class TraceletToServer(_message.Message):
     tracelet_id: str
     ignition: bool
     location: TraceletToServer.Location
+    recovery_info: TraceletToServer.RecoveryInfo
     firmware_version: str
     metrics: TraceletMetrics
-    def __init__(self, uuid: _Optional[_Union[TraceletMessageID, _Mapping]] = ..., ipv4_address: _Optional[int] = ..., delivery_ts: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., tracelet_id: _Optional[str] = ..., ignition: _Optional[bool] = ..., location: _Optional[_Union[TraceletToServer.Location, _Mapping]] = ..., firmware_version: _Optional[str] = ..., metrics: _Optional[_Union[TraceletMetrics, _Mapping]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[_Union[TraceletMessageID, _Mapping]] = ..., ipv4_address: _Optional[int] = ..., delivery_ts: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., tracelet_id: _Optional[str] = ..., ignition: _Optional[bool] = ..., location: _Optional[_Union[TraceletToServer.Location, _Mapping]] = ..., recovery_info: _Optional[_Union[TraceletToServer.RecoveryInfo, _Mapping]] = ..., firmware_version: _Optional[str] = ..., metrics: _Optional[_Union[TraceletMetrics, _Mapping]] = ...) -> None: ...
 
 class TraceletMessageID(_message.Message):
     __slots__ = ("value",)

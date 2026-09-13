@@ -31,6 +31,12 @@ void   tracelet__tracelet_to_server__location__init
   static const Tracelet__TraceletToServer__Location init_value = TRACELET__TRACELET_TO_SERVER__LOCATION__INIT;
   *message = init_value;
 }
+void   tracelet__tracelet_to_server__recovery_info__init
+                     (Tracelet__TraceletToServer__RecoveryInfo         *message)
+{
+  static const Tracelet__TraceletToServer__RecoveryInfo init_value = TRACELET__TRACELET_TO_SERVER__RECOVERY_INFO__INIT;
+  *message = init_value;
+}
 void   tracelet__tracelet_to_server__init
                      (Tracelet__TraceletToServer         *message)
 {
@@ -856,7 +862,45 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__descrip
   (ProtobufCMessageInit) tracelet__tracelet_to_server__location__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[8] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__recovery_info__field_descriptors[1] =
+{
+  {
+    "content",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletToServer__RecoveryInfo, content),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned tracelet__tracelet_to_server__recovery_info__field_indices_by_name[] = {
+  0,   /* field[0] = content */
+};
+static const ProtobufCIntRange tracelet__tracelet_to_server__recovery_info__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor tracelet__tracelet_to_server__recovery_info__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "tracelet.TraceletToServer.RecoveryInfo",
+  "RecoveryInfo",
+  "Tracelet__TraceletToServer__RecoveryInfo",
+  "tracelet",
+  sizeof(Tracelet__TraceletToServer__RecoveryInfo),
+  1,
+  tracelet__tracelet_to_server__recovery_info__field_descriptors,
+  tracelet__tracelet_to_server__recovery_info__field_indices_by_name,
+  1,  tracelet__tracelet_to_server__recovery_info__number_ranges,
+  (ProtobufCMessageInit) tracelet__tracelet_to_server__recovery_info__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descriptors[9] =
 {
   {
     "delivery_ts",
@@ -902,6 +946,18 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
     offsetof(Tracelet__TraceletToServer, type_case),
     offsetof(Tracelet__TraceletToServer, location),
     &tracelet__tracelet_to_server__location__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "recovery_info",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Tracelet__TraceletToServer, type_case),
+    offsetof(Tracelet__TraceletToServer, recovery_info),
+    &tracelet__tracelet_to_server__recovery_info__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -957,19 +1013,19 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_to_server__field_descri
 };
 static const unsigned tracelet__tracelet_to_server__field_indices_by_name[] = {
   0,   /* field[0] = delivery_ts */
-  4,   /* field[4] = firmware_version */
+  5,   /* field[5] = firmware_version */
   2,   /* field[2] = ignition */
-  6,   /* field[6] = ipv4_address */
+  7,   /* field[7] = ipv4_address */
   3,   /* field[3] = location */
-  7,   /* field[7] = metrics */
+  8,   /* field[8] = metrics */
+  4,   /* field[4] = recovery_info */
   1,   /* field[1] = tracelet_id */
-  5,   /* field[5] = uuid */
+  6,   /* field[6] = uuid */
 };
-static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[2 + 1] =
+static const ProtobufCIntRange tracelet__tracelet_to_server__number_ranges[1 + 1] =
 {
   { 2, 0 },
-  { 7, 4 },
-  { 0, 8 }
+  { 0, 9 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
 {
@@ -979,10 +1035,10 @@ const ProtobufCMessageDescriptor tracelet__tracelet_to_server__descriptor =
   "Tracelet__TraceletToServer",
   "tracelet",
   sizeof(Tracelet__TraceletToServer),
-  8,
+  9,
   tracelet__tracelet_to_server__field_descriptors,
   tracelet__tracelet_to_server__field_indices_by_name,
-  2,  tracelet__tracelet_to_server__number_ranges,
+  1,  tracelet__tracelet_to_server__number_ranges,
   (ProtobufCMessageInit) tracelet__tracelet_to_server__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

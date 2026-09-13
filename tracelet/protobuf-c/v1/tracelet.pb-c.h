@@ -21,6 +21,7 @@ typedef struct Tracelet__TraceletToServer__Location Tracelet__TraceletToServer__
 typedef struct Tracelet__TraceletToServer__Location__Gnss Tracelet__TraceletToServer__Location__Gnss;
 typedef struct Tracelet__TraceletToServer__Location__Uwb Tracelet__TraceletToServer__Location__Uwb;
 typedef struct Tracelet__TraceletToServer__Location__Fused Tracelet__TraceletToServer__Location__Fused;
+typedef struct Tracelet__TraceletToServer__RecoveryInfo Tracelet__TraceletToServer__RecoveryInfo;
 typedef struct Tracelet__TraceletMessageID Tracelet__TraceletMessageID;
 typedef struct Tracelet__TraceletMetrics Tracelet__TraceletMetrics;
 
@@ -259,9 +260,20 @@ struct  Tracelet__TraceletToServer__Location
     , NULL, NULL, NULL, TRACELET__TRACELET_TO_SERVER__LOCATION__DIRECTION__NO_DIRECTION, 0, 0, 0, 0 }
 
 
+struct  Tracelet__TraceletToServer__RecoveryInfo
+{
+  ProtobufCMessage base;
+  char *content;
+};
+#define TRACELET__TRACELET_TO_SERVER__RECOVERY_INFO__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_to_server__recovery_info__descriptor) \
+    , (char *)protobuf_c_empty_string }
+
+
 typedef enum {
   TRACELET__TRACELET_TO_SERVER__TYPE__NOT_SET = 0,
-  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5
+  TRACELET__TRACELET_TO_SERVER__TYPE_LOCATION = 5,
+  TRACELET__TRACELET_TO_SERVER__TYPE_RECOVERY_INFO = 6
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(TRACELET__TRACELET_TO_SERVER__TYPE__CASE)
 } Tracelet__TraceletToServer__TypeCase;
 
@@ -301,6 +313,10 @@ struct  Tracelet__TraceletToServer
      * periodically sent by the tracelet
      */
     Tracelet__TraceletToServer__Location *location;
+    /*
+     * recovery information from the tracelet
+     */
+    Tracelet__TraceletToServer__RecoveryInfo *recovery_info;
   };
 };
 #define TRACELET__TRACELET_TO_SERVER__INIT \
@@ -610,6 +626,9 @@ void   tracelet__tracelet_to_server__location__fused__init
 /* Tracelet__TraceletToServer__Location methods */
 void   tracelet__tracelet_to_server__location__init
                      (Tracelet__TraceletToServer__Location         *message);
+/* Tracelet__TraceletToServer__RecoveryInfo methods */
+void   tracelet__tracelet_to_server__recovery_info__init
+                     (Tracelet__TraceletToServer__RecoveryInfo         *message);
 /* Tracelet__TraceletToServer methods */
 void   tracelet__tracelet_to_server__init
                      (Tracelet__TraceletToServer         *message);
@@ -681,6 +700,9 @@ typedef void (*Tracelet__TraceletToServer__Location__Fused_Closure)
 typedef void (*Tracelet__TraceletToServer__Location_Closure)
                  (const Tracelet__TraceletToServer__Location *message,
                   void *closure_data);
+typedef void (*Tracelet__TraceletToServer__RecoveryInfo_Closure)
+                 (const Tracelet__TraceletToServer__RecoveryInfo *message,
+                  void *closure_data);
 typedef void (*Tracelet__TraceletToServer_Closure)
                  (const Tracelet__TraceletToServer *message,
                   void *closure_data);
@@ -702,6 +724,7 @@ extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__uwb__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__location__fused__descriptor;
 extern const ProtobufCEnumDescriptor    tracelet__tracelet_to_server__location__direction__descriptor;
+extern const ProtobufCMessageDescriptor tracelet__tracelet_to_server__recovery_info__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor;
 extern const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor;
 

@@ -99,6 +99,7 @@ type TraceletToServer struct {
 	// Types that are valid to be assigned to Type:
 	//
 	//	*TraceletToServer_Location_
+	//	*TraceletToServer_RecoveryInfo_
 	Type            isTraceletToServer_Type `protobuf_oneof:"type"`
 	FirmwareVersion string                  `protobuf:"bytes,7,opt,name=firmware_version,json=firmwareVersion,proto3" json:"firmware_version,omitempty"` // Firmware version of the tracelet
 	Metrics         *TraceletMetrics        `protobuf:"bytes,10,opt,name=metrics,proto3" json:"metrics,omitempty"`
@@ -187,6 +188,15 @@ func (x *TraceletToServer) GetLocation() *TraceletToServer_Location {
 	return nil
 }
 
+func (x *TraceletToServer) GetRecoveryInfo() *TraceletToServer_RecoveryInfo {
+	if x != nil {
+		if x, ok := x.Type.(*TraceletToServer_RecoveryInfo_); ok {
+			return x.RecoveryInfo
+		}
+	}
+	return nil
+}
+
 func (x *TraceletToServer) GetFirmwareVersion() string {
 	if x != nil {
 		return x.FirmwareVersion
@@ -209,7 +219,13 @@ type TraceletToServer_Location_ struct {
 	Location *TraceletToServer_Location `protobuf:"bytes,5,opt,name=location,proto3,oneof"` // periodically sent by the tracelet
 }
 
+type TraceletToServer_RecoveryInfo_ struct {
+	RecoveryInfo *TraceletToServer_RecoveryInfo `protobuf:"bytes,6,opt,name=recovery_info,json=recoveryInfo,proto3,oneof"` // recovery information from the tracelet
+}
+
 func (*TraceletToServer_Location_) isTraceletToServer_Type() {}
+
+func (*TraceletToServer_RecoveryInfo_) isTraceletToServer_Type() {}
 
 type TraceletMessageID struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -972,6 +988,50 @@ func (x *TraceletToServer_Location) GetTemperature() float64 {
 	return 0
 }
 
+type TraceletToServer_RecoveryInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Content       string                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TraceletToServer_RecoveryInfo) Reset() {
+	*x = TraceletToServer_RecoveryInfo{}
+	mi := &file_tracelet_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TraceletToServer_RecoveryInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceletToServer_RecoveryInfo) ProtoMessage() {}
+
+func (x *TraceletToServer_RecoveryInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_tracelet_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceletToServer_RecoveryInfo.ProtoReflect.Descriptor instead.
+func (*TraceletToServer_RecoveryInfo) Descriptor() ([]byte, []int) {
+	return file_tracelet_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *TraceletToServer_RecoveryInfo) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
 type TraceletToServer_Location_Gnss struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// GNSS location valid. If false, the other fields are not valid
@@ -1007,7 +1067,7 @@ type TraceletToServer_Location_Gnss struct {
 
 func (x *TraceletToServer_Location_Gnss) Reset() {
 	*x = TraceletToServer_Location_Gnss{}
-	mi := &file_tracelet_proto_msgTypes[4]
+	mi := &file_tracelet_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1019,7 +1079,7 @@ func (x *TraceletToServer_Location_Gnss) String() string {
 func (*TraceletToServer_Location_Gnss) ProtoMessage() {}
 
 func (x *TraceletToServer_Location_Gnss) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[4]
+	mi := &file_tracelet_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +1216,7 @@ type TraceletToServer_Location_Uwb struct {
 
 func (x *TraceletToServer_Location_Uwb) Reset() {
 	*x = TraceletToServer_Location_Uwb{}
-	mi := &file_tracelet_proto_msgTypes[5]
+	mi := &file_tracelet_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1168,7 +1228,7 @@ func (x *TraceletToServer_Location_Uwb) String() string {
 func (*TraceletToServer_Location_Uwb) ProtoMessage() {}
 
 func (x *TraceletToServer_Location_Uwb) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[5]
+	mi := &file_tracelet_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1304,7 +1364,7 @@ type TraceletToServer_Location_Fused struct {
 
 func (x *TraceletToServer_Location_Fused) Reset() {
 	*x = TraceletToServer_Location_Fused{}
-	mi := &file_tracelet_proto_msgTypes[6]
+	mi := &file_tracelet_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1316,7 +1376,7 @@ func (x *TraceletToServer_Location_Fused) String() string {
 func (*TraceletToServer_Location_Fused) ProtoMessage() {}
 
 func (x *TraceletToServer_Location_Fused) ProtoReflect() protoreflect.Message {
-	mi := &file_tracelet_proto_msgTypes[6]
+	mi := &file_tracelet_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1406,7 +1466,7 @@ var File_tracelet_proto protoreflect.FileDescriptor
 
 const file_tracelet_proto_rawDesc = "" +
 	"\n" +
-	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x0e\n" +
+	"\x0etracelet.proto\x12\btracelet\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd3\x0f\n" +
 	"\x10TraceletToServer\x12/\n" +
 	"\x04uuid\x18\b \x01(\v2\x1b.tracelet.TraceletMessageIDR\x04uuid\x12!\n" +
 	"\fipv4_address\x18\t \x01(\aR\vipv4Address\x12;\n" +
@@ -1415,7 +1475,8 @@ const file_tracelet_proto_rawDesc = "" +
 	"\vtracelet_id\x18\x03 \x01(\tR\n" +
 	"traceletId\x12\x1a\n" +
 	"\bignition\x18\x04 \x01(\bR\bignition\x12A\n" +
-	"\blocation\x18\x05 \x01(\v2#.tracelet.TraceletToServer.LocationH\x00R\blocation\x12)\n" +
+	"\blocation\x18\x05 \x01(\v2#.tracelet.TraceletToServer.LocationH\x00R\blocation\x12N\n" +
+	"\rrecovery_info\x18\x06 \x01(\v2'.tracelet.TraceletToServer.RecoveryInfoH\x00R\frecoveryInfo\x12)\n" +
 	"\x10firmware_version\x18\a \x01(\tR\x0ffirmwareVersion\x123\n" +
 	"\ametrics\x18\n" +
 	" \x01(\v2\x19.tracelet.TraceletMetricsR\ametrics\x1a\xcb\v\n" +
@@ -1479,7 +1540,9 @@ const file_tracelet_proto_rawDesc = "" +
 	"\tDirection\x12\x10\n" +
 	"\fNO_DIRECTION\x10\x00\x12\x13\n" +
 	"\x0fCAB_A_DIRECTION\x10\x01\x12\x13\n" +
-	"\x0fCAB_B_DIRECTION\x10\x02B\x06\n" +
+	"\x0fCAB_B_DIRECTION\x10\x02\x1a(\n" +
+	"\fRecoveryInfo\x12\x18\n" +
+	"\acontent\x18\x01 \x01(\tR\acontentB\x06\n" +
 	"\x04type\")\n" +
 	"\x11TraceletMessageID\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\fR\x05value\"\x8e\x1e\n" +
@@ -1575,32 +1638,34 @@ func file_tracelet_proto_rawDescGZIP() []byte {
 }
 
 var file_tracelet_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_tracelet_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_tracelet_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_tracelet_proto_goTypes = []any{
 	(TraceletToServer_Location_Direction)(0), // 0: tracelet.TraceletToServer.Location.Direction
 	(*TraceletToServer)(nil),                 // 1: tracelet.TraceletToServer
 	(*TraceletMessageID)(nil),                // 2: tracelet.TraceletMessageID
 	(*TraceletMetrics)(nil),                  // 3: tracelet.TraceletMetrics
 	(*TraceletToServer_Location)(nil),        // 4: tracelet.TraceletToServer.Location
-	(*TraceletToServer_Location_Gnss)(nil),   // 5: tracelet.TraceletToServer.Location.Gnss
-	(*TraceletToServer_Location_Uwb)(nil),    // 6: tracelet.TraceletToServer.Location.Uwb
-	(*TraceletToServer_Location_Fused)(nil),  // 7: tracelet.TraceletToServer.Location.Fused
-	(*timestamppb.Timestamp)(nil),            // 8: google.protobuf.Timestamp
+	(*TraceletToServer_RecoveryInfo)(nil),    // 5: tracelet.TraceletToServer.RecoveryInfo
+	(*TraceletToServer_Location_Gnss)(nil),   // 6: tracelet.TraceletToServer.Location.Gnss
+	(*TraceletToServer_Location_Uwb)(nil),    // 7: tracelet.TraceletToServer.Location.Uwb
+	(*TraceletToServer_Location_Fused)(nil),  // 8: tracelet.TraceletToServer.Location.Fused
+	(*timestamppb.Timestamp)(nil),            // 9: google.protobuf.Timestamp
 }
 var file_tracelet_proto_depIdxs = []int32{
 	2, // 0: tracelet.TraceletToServer.uuid:type_name -> tracelet.TraceletMessageID
-	8, // 1: tracelet.TraceletToServer.delivery_ts:type_name -> google.protobuf.Timestamp
+	9, // 1: tracelet.TraceletToServer.delivery_ts:type_name -> google.protobuf.Timestamp
 	4, // 2: tracelet.TraceletToServer.location:type_name -> tracelet.TraceletToServer.Location
-	3, // 3: tracelet.TraceletToServer.metrics:type_name -> tracelet.TraceletMetrics
-	5, // 4: tracelet.TraceletToServer.Location.gnss:type_name -> tracelet.TraceletToServer.Location.Gnss
-	6, // 5: tracelet.TraceletToServer.Location.uwb:type_name -> tracelet.TraceletToServer.Location.Uwb
-	7, // 6: tracelet.TraceletToServer.Location.fused:type_name -> tracelet.TraceletToServer.Location.Fused
-	0, // 7: tracelet.TraceletToServer.Location.direction:type_name -> tracelet.TraceletToServer.Location.Direction
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	5, // 3: tracelet.TraceletToServer.recovery_info:type_name -> tracelet.TraceletToServer.RecoveryInfo
+	3, // 4: tracelet.TraceletToServer.metrics:type_name -> tracelet.TraceletMetrics
+	6, // 5: tracelet.TraceletToServer.Location.gnss:type_name -> tracelet.TraceletToServer.Location.Gnss
+	7, // 6: tracelet.TraceletToServer.Location.uwb:type_name -> tracelet.TraceletToServer.Location.Uwb
+	8, // 7: tracelet.TraceletToServer.Location.fused:type_name -> tracelet.TraceletToServer.Location.Fused
+	0, // 8: tracelet.TraceletToServer.Location.direction:type_name -> tracelet.TraceletToServer.Location.Direction
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_tracelet_proto_init() }
@@ -1610,6 +1675,7 @@ func file_tracelet_proto_init() {
 	}
 	file_tracelet_proto_msgTypes[0].OneofWrappers = []any{
 		(*TraceletToServer_Location_)(nil),
+		(*TraceletToServer_RecoveryInfo_)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1617,7 +1683,7 @@ func file_tracelet_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tracelet_proto_rawDesc), len(file_tracelet_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
