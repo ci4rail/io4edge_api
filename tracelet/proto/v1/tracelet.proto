@@ -137,20 +137,6 @@ message TraceletToServer {
       double ground_speed = 9;
     }
 
-    // // Acceleration data - all values in (m/s^2)
-    // message Acceleration {
-    //     double x_max = 1; // Maximum acceleration in x direction in last period 
-    //     double y_max = 2;
-    //     double z_max = 3;
-    //     double x_min = 4; // Minimum acceleration in x direction in last period
-    //     double y_min = 5;
-    //     double z_min = 6;
-    //     double x_avg = 7; // Average acceleration in x direction in last period
-    //     double y_avg = 8;
-    //     double z_avg = 9;
-    // }
-
-
     enum Direction {
       // Invalid direction
       NO_DIRECTION = 0;
@@ -186,13 +172,11 @@ message TraceletToServer {
     // Current Tracelet Temperature in [°C]
     double temperature = 6;
 
-    // // Acceleration data
-    // Acceleration acceleration = 8;
-
   } // Location
 
-  // // Currently not used, always 0
-  // int32 id = 1;
+  message RecoveryInfo {
+    string content = 1;
+  }
 
   // message UUIDv4 as a 16 byte value
   TraceletMessageID uuid = 8; 
@@ -212,6 +196,7 @@ message TraceletToServer {
 
   oneof type {
     Location location = 5;     // periodically sent by the tracelet
+    RecoveryInfo recovery_info = 6; // recovery information from the tracelet
     // possible future messages
   }
 
