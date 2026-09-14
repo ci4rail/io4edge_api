@@ -1080,7 +1080,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_message_id__descriptor =
   (ProtobufCMessageInit) tracelet__tracelet_message_id__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[71] =
+static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descriptors[74] =
 {
   {
     "health___type___uwb_comm",
@@ -1934,6 +1934,42 @@ static const ProtobufCFieldDescriptor tracelet__tracelet_metrics__field_descript
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "reset_count___type___lowmemory",
+    89,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___lowmemory),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___wififatal",
+    90,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___wififatal),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "reset_count___type___sleepfatal",
+    91,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Tracelet__TraceletMetrics, reset_count___type___sleepfatal),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   56,   /* field[56] = cpu_load_percent___cpu___0 */
@@ -1965,12 +2001,15 @@ static const unsigned tracelet__tracelet_metrics__field_indices_by_name[] = {
   27,   /* field[27] = ntrip_transfer_bytes___direction___recv */
   26,   /* field[26] = ntrip_transfer_bytes___direction___send */
   66,   /* field[66] = reset_count___type___brownout */
+  71,   /* field[71] = reset_count___type___lowmemory */
   64,   /* field[64] = reset_count___type___panic */
   62,   /* field[62] = reset_count___type___poweron */
   67,   /* field[67] = reset_count___type___pwrglitch */
+  73,   /* field[73] = reset_count___type___sleepfatal */
   63,   /* field[63] = reset_count___type___software */
   68,   /* field[68] = reset_count___type___unknown */
   65,   /* field[65] = reset_count___type___wd */
+  72,   /* field[72] = reset_count___type___wififatal */
   36,   /* field[36] = sensor_fusion_state */
   59,   /* field[59] = sleep_manager_state */
   7,   /* field[7] = sntp_updates */
@@ -2015,7 +2054,7 @@ static const ProtobufCIntRange tracelet__tracelet_metrics__number_ranges[5 + 1] 
   { 30, 20 },
   { 41, 28 },
   { 80, 62 },
-  { 0, 71 }
+  { 0, 74 }
 };
 const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
 {
@@ -2025,7 +2064,7 @@ const ProtobufCMessageDescriptor tracelet__tracelet_metrics__descriptor =
   "Tracelet__TraceletMetrics",
   "tracelet",
   sizeof(Tracelet__TraceletMetrics),
-  71,
+  74,
   tracelet__tracelet_metrics__field_descriptors,
   tracelet__tracelet_metrics__field_indices_by_name,
   5,  tracelet__tracelet_metrics__number_ranges,

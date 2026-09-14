@@ -340,11 +340,14 @@ type TraceletMetrics struct {
 	LastPowerCutUnixSeconds              int64                  `protobuf:"varint,73,opt,name=last_power_cut_unix_seconds,json=lastPowerCutUnixSeconds,proto3" json:"last_power_cut_unix_seconds,omitempty"`                                        // Last power cut time in seconds since 1.1.1970 UTC
 	MileageMm                            int64                  `protobuf:"varint,74,opt,name=mileage_mm,json=mileageMm,proto3" json:"mileage_mm,omitempty"`                                                                                        // Traveled distance in millimeters
 	ResetCount__Type__Poweron            int64                  `protobuf:"varint,80,opt,name=reset_count___type___poweron,json=resetCountTypePoweron,proto3" json:"reset_count___type___poweron,omitempty"`                                        // Number of power-on resets
-	ResetCount__Type__Software           int64                  `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets
+	ResetCount__Type__Software           int64                  `protobuf:"varint,81,opt,name=reset_count___type___software,json=resetCountTypeSoftware,proto3" json:"reset_count___type___software,omitempty"`                                     // Number of software resets (other than app resets)
 	ResetCount__Type__Panic              int64                  `protobuf:"varint,82,opt,name=reset_count___type___panic,json=resetCountTypePanic,proto3" json:"reset_count___type___panic,omitempty"`                                              // Number of panic resets
 	ResetCount__Type__Wd                 int64                  `protobuf:"varint,83,opt,name=reset_count___type___wd,json=resetCountTypeWd,proto3" json:"reset_count___type___wd,omitempty"`                                                       // Number of watchdog resets (interupt, task or other wd)
 	ResetCount__Type__Brownout           int64                  `protobuf:"varint,84,opt,name=reset_count___type___brownout,json=resetCountTypeBrownout,proto3" json:"reset_count___type___brownout,omitempty"`                                     // Number of brownout resets
 	ResetCount__Type__Pwrglitch          int64                  `protobuf:"varint,85,opt,name=reset_count___type___pwrglitch,json=resetCountTypePwrglitch,proto3" json:"reset_count___type___pwrglitch,omitempty"`                                  // Number of power glitch resets
+	ResetCount__Type__Lowmemory          int64                  `protobuf:"varint,89,opt,name=reset_count___type___lowmemory,json=resetCountTypeLowmemory,proto3" json:"reset_count___type___lowmemory,omitempty"`                                  // Number of low memory resets
+	ResetCount__Type__Wififatal          int64                  `protobuf:"varint,90,opt,name=reset_count___type___wififatal,json=resetCountTypeWififatal,proto3" json:"reset_count___type___wififatal,omitempty"`                                  // Number of WiFi fatal resets
+	ResetCount__Type__Sleepfatal         int64                  `protobuf:"varint,91,opt,name=reset_count___type___sleepfatal,json=resetCountTypeSleepfatal,proto3" json:"reset_count___type___sleepfatal,omitempty"`                               // Number of sleep-manager fatal resets
 	ResetCount__Type__Unknown            int64                  `protobuf:"varint,86,opt,name=reset_count___type___unknown,json=resetCountTypeUnknown,proto3" json:"reset_count___type___unknown,omitempty"`                                        // Number of unknown (other) resets
 	UwbTachoSpeed                        float64                `protobuf:"fixed64,87,opt,name=uwb_tacho_speed,json=uwbTachoSpeed,proto3" json:"uwb_tacho_speed,omitempty"`                                                                         // Tacho speed from UWB subsystem in m/s (always positive)
 	UwbPanId                             int64                  `protobuf:"varint,88,opt,name=uwb_pan_id,json=uwbPanId,proto3" json:"uwb_pan_id,omitempty"`                                                                                         // UWB PAN ID from Status Report
@@ -854,6 +857,27 @@ func (x *TraceletMetrics) GetResetCount__Type__Brownout() int64 {
 func (x *TraceletMetrics) GetResetCount__Type__Pwrglitch() int64 {
 	if x != nil {
 		return x.ResetCount__Type__Pwrglitch
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Lowmemory() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Lowmemory
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Wififatal() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Wififatal
+	}
+	return 0
+}
+
+func (x *TraceletMetrics) GetResetCount__Type__Sleepfatal() int64 {
+	if x != nil {
+		return x.ResetCount__Type__Sleepfatal
 	}
 	return 0
 }
@@ -1545,7 +1569,7 @@ const file_tracelet_proto_rawDesc = "" +
 	"\acontent\x18\x01 \x01(\tR\acontentB\x06\n" +
 	"\x04type\")\n" +
 	"\x11TraceletMessageID\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\fR\x05value\"\x8e\x1e\n" +
+	"\x05value\x18\x01 \x01(\fR\x05value\"\xd3\x1f\n" +
 	"\x0fTraceletMetrics\x123\n" +
 	"\x18health___type___uwb_comm\x18\x01 \x01(\x03R\x11healthTypeUwbComm\x12;\n" +
 	"\x1chealth___type___uwb_firmware\x18\x02 \x01(\x03R\x15healthTypeUwbFirmware\x127\n" +
@@ -1618,7 +1642,10 @@ const file_tracelet_proto_rawDesc = "" +
 	"\x1areset_count___type___panic\x18R \x01(\x03R\x13resetCountTypePanic\x121\n" +
 	"\x17reset_count___type___wd\x18S \x01(\x03R\x10resetCountTypeWd\x12=\n" +
 	"\x1dreset_count___type___brownout\x18T \x01(\x03R\x16resetCountTypeBrownout\x12?\n" +
-	"\x1ereset_count___type___pwrglitch\x18U \x01(\x03R\x17resetCountTypePwrglitch\x12;\n" +
+	"\x1ereset_count___type___pwrglitch\x18U \x01(\x03R\x17resetCountTypePwrglitch\x12?\n" +
+	"\x1ereset_count___type___lowmemory\x18Y \x01(\x03R\x17resetCountTypeLowmemory\x12?\n" +
+	"\x1ereset_count___type___wififatal\x18Z \x01(\x03R\x17resetCountTypeWififatal\x12A\n" +
+	"\x1freset_count___type___sleepfatal\x18[ \x01(\x03R\x18resetCountTypeSleepfatal\x12;\n" +
 	"\x1creset_count___type___unknown\x18V \x01(\x03R\x15resetCountTypeUnknown\x12&\n" +
 	"\x0fuwb_tacho_speed\x18W \x01(\x01R\ruwbTachoSpeed\x12\x1c\n" +
 	"\n" +

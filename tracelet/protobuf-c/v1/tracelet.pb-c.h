@@ -577,7 +577,7 @@ struct  Tracelet__TraceletMetrics
    */
   int64_t reset_count___type___poweron;
   /*
-   * Number of software resets
+   * Number of software resets (other than app resets)
    */
   int64_t reset_count___type___software;
   /*
@@ -597,6 +597,18 @@ struct  Tracelet__TraceletMetrics
    */
   int64_t reset_count___type___pwrglitch;
   /*
+   * Number of low memory resets
+   */
+  int64_t reset_count___type___lowmemory;
+  /*
+   * Number of WiFi fatal resets
+   */
+  int64_t reset_count___type___wififatal;
+  /*
+   * Number of sleep-manager fatal resets
+   */
+  int64_t reset_count___type___sleepfatal;
+  /*
    * Number of unknown (other) resets
    */
   int64_t reset_count___type___unknown;
@@ -611,7 +623,7 @@ struct  Tracelet__TraceletMetrics
 };
 #define TRACELET__TRACELET_METRICS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&tracelet__tracelet_metrics__descriptor) \
-    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 
 /* Tracelet__TraceletToServer__Location__Gnss methods */

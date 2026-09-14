@@ -234,19 +234,10 @@ message TraceletMetrics {
   int64 gnss_num_sats___system___beidou = 15;             // number of satellites in view (Beidou)
   int64 gnss_num_sats___system___galileo = 16;            // number of satellites in view (Galileo)
   int64 gnss_num_sats___system___qzss = 17;               // number of satellites in view (QZSS)
-  // int64 gnss_uart_errors___type___parse_gsv = 18;         
-  // int64 gnss_uart_errors___type___sentence_invalid = 19;           
-  // int64 gnss_uart_errors___type___sentence_unknown = 20;      
 
   int64 gnss_uart_errors___type___hw_fifo = 21;           // GNSS UART HW FIFO full
   int64 gnss_uart_errors___type___buf_full = 22;          // GNSS UART buffer full, data lost
   int64 gnss_uart_errors___type___char = 23;              // GNSS UART character errors, e.g. framing errors
-  // double gnss_protection_level___info___tmir = 24;
-  // double gnss_protection_level___info___pos1 = 25;
-  // double gnss_protection_level___info___pos2 = 26;
-  // double gnss_protection_level___info___pos3 = 27;
-  // double gnss_protection_level___info___pos_valid = 28;
-  // double gnss_protection_level___info___pos_frame = 29;
 
   int64 gnss_num_sv = 30;                                 // Number of satellites used in fix
   int64 gnss_pga___block___rf1 = 31;                      // gain of programmable amplifier for RF band 1 (db)
@@ -258,10 +249,6 @@ message TraceletMetrics {
   int64 ntrip_transfer_bytes___direction___send = 36;     // Bytes sent to NTRIP Caster
   int64 ntrip_transfer_bytes___direction___recv = 37;     // Bytes received from NTRIP Caster
 
-  // int64 uwb_status_role_enum = 38;                        // UWB Role from Status Report (0-4) 3=TAG  
-  // int64 uwb_status_state_enum = 39;                       // UWB State from Status Report(0-4) 
-  // int64 uwb_status_motion_state_enum = 40;                // UWB Motion Sensor State from Status Report (0..2), 1=MOVE 
-  
   int64 lsi_is_connected = 41;                            // Localization Server Interface gets ACKs from server
   int64 lsi_acks_missed = 42;                             // Localization Server Interface number of missed ACKs from server
 
@@ -304,11 +291,15 @@ message TraceletMetrics {
   int64 mileage_mm = 74;                                     // Traveled distance in millimeters
 
   int64 reset_count___type___poweron = 80;              // Number of power-on resets
-  int64 reset_count___type___software = 81;             // Number of software resets
+  int64 reset_count___type___software = 81;             // Number of software resets (other than app resets)
   int64 reset_count___type___panic = 82;                // Number of panic resets
   int64 reset_count___type___wd = 83;                   // Number of watchdog resets (interupt, task or other wd)
   int64 reset_count___type___brownout = 84;             // Number of brownout resets
   int64 reset_count___type___pwrglitch = 85;            // Number of power glitch resets
+  int64 reset_count___type___lowmemory = 89;            // Number of low memory resets
+  int64 reset_count___type___wififatal = 90;            // Number of WiFi fatal resets
+  int64 reset_count___type___sleepfatal = 91;            // Number of sleep-manager fatal resets
+
   int64 reset_count___type___unknown = 86;              // Number of unknown (other) resets
 
   double uwb_tacho_speed = 87;                            // Tacho speed from UWB subsystem in m/s (always positive)
