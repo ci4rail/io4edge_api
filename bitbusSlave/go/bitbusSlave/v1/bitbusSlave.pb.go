@@ -96,8 +96,6 @@ type ConfigurationSet struct {
 	// response frame to send if there is no pending application tx msg (INFORMATION field of the bitbus frame)
 	IdleResponse []byte `protobuf:"bytes,4,opt,name=idle_response,json=idleResponse,proto3" json:"idle_response,omitempty"`
 	// if true, the baudrate shall be set to 62500 (otherwise 375000).
-	// If bitbus sniffer is also used, the configuration of the sniffer must
-	// match the configuration of the slave.
 	Baud_62500    bool `protobuf:"varint,5,opt,name=baud_62500,json=baud62500,proto3" json:"baud_62500,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

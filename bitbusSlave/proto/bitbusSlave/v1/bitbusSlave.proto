@@ -30,8 +30,6 @@ message ConfigurationSet {
   // response frame to send if there is no pending application tx msg (INFORMATION field of the bitbus frame)
   bytes idle_response = 4; 
   // if true, the baudrate shall be set to 62500 (otherwise 375000). 
-  // If bitbus sniffer is also used, the configuration of the sniffer must 
-  // match the configuration of the slave.
   bool baud_62500 = 5; 
 }
 

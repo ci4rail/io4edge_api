@@ -8,16 +8,18 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ConfigurationSet(_message.Message):
-    __slots__ = ("ignore_crc", "baud_62500", "address_filter", "min_frame_length")
+    __slots__ = ("ignore_crc", "baud_62500", "address_filter", "min_frame_length", "prepare_sender")
     IGNORE_CRC_FIELD_NUMBER: _ClassVar[int]
     BAUD_62500_FIELD_NUMBER: _ClassVar[int]
     ADDRESS_FILTER_FIELD_NUMBER: _ClassVar[int]
     MIN_FRAME_LENGTH_FIELD_NUMBER: _ClassVar[int]
+    PREPARE_SENDER_FIELD_NUMBER: _ClassVar[int]
     ignore_crc: bool
     baud_62500: bool
     address_filter: bytes
     min_frame_length: int
-    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ..., min_frame_length: _Optional[int] = ...) -> None: ...
+    prepare_sender: bool
+    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ..., min_frame_length: _Optional[int] = ..., prepare_sender: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationSetResponse(_message.Message):
     __slots__ = ()
@@ -44,8 +46,10 @@ class FunctionControlGet(_message.Message):
     def __init__(self) -> None: ...
 
 class FunctionControlSet(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("bitbus_frame",)
+    BITBUS_FRAME_FIELD_NUMBER: _ClassVar[int]
+    bitbus_frame: bytes
+    def __init__(self, bitbus_frame: _Optional[bytes] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ()

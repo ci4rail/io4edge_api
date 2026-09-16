@@ -81,10 +81,14 @@ struct  BitbusSniffer__ConfigurationSet
    * minimum frame length to capture (frames with less bytes are discarded)
    */
   int32_t min_frame_length;
+  /*
+   * if true, the sender will be prepared for sending frames
+   */
+  protobuf_c_boolean prepare_sender;
 };
 #define BITBUS_SNIFFER__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__configuration_set__descriptor) \
-    , 0, 0, {0,NULL}, 0 }
+    , 0, 0, {0,NULL}, 0, 0 }
 
 
 /*
@@ -169,10 +173,18 @@ struct  BitbusSniffer__FunctionControlGet
 struct  BitbusSniffer__FunctionControlSet
 {
   ProtobufCMessage base;
+  /*
+   * Frame to send to the bus
+   * requires hardware that has sender enabled
+   * byte 0: address
+   * byte 1: control
+   * byte 2..n: information
+   */
+  ProtobufCBinaryData bitbus_frame;
 };
 #define BITBUS_SNIFFER__FUNCTION_CONTROL_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__function_control_set__descriptor) \
-     }
+    , {0,NULL} }
 
 
 /*

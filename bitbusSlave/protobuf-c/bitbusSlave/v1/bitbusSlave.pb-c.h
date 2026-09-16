@@ -72,8 +72,6 @@ struct  BitbusSlave__ConfigurationSet
   ProtobufCBinaryData idle_response;
   /*
    * if true, the baudrate shall be set to 62500 (otherwise 375000). 
-   * If bitbus sniffer is also used, the configuration of the sniffer must 
-   * match the configuration of the slave.
    */
   protobuf_c_boolean baud_62500;
 };

@@ -98,6 +98,7 @@ type ConfigurationSet struct {
 	// bit 0 = for address 1, bit 1 = for address 2, bit 2 = for address 4, bit 3 = for address 8, ...
 	// Set bit to 1 to receive frames with the corresponding address)
 	MinFrameLength int32 `protobuf:"varint,4,opt,name=min_frame_length,json=minFrameLength,proto3" json:"min_frame_length,omitempty"` // minimum frame length to capture (frames with less bytes are discarded)
+	PrepareSender  bool  `protobuf:"varint,5,opt,name=prepare_sender,json=prepareSender,proto3" json:"prepare_sender,omitempty"`      // if true, the sender will be prepared for sending frames
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -158,6 +159,13 @@ func (x *ConfigurationSet) GetMinFrameLength() int32 {
 		return x.MinFrameLength
 	}
 	return 0
+}
+
+func (x *ConfigurationSet) GetPrepareSender() bool {
+	if x != nil {
+		return x.PrepareSender
+	}
+	return false
 }
 
 // ConfigurationSetResponse to pass to
@@ -390,7 +398,13 @@ func (*FunctionControlGet) Descriptor() ([]byte, []int) {
 // FunctionControlSet to pass to
 // Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
 type FunctionControlSet struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Frame to send to the bus
+	// requires hardware that has sender enabled
+	// byte 0: address
+	// byte 1: control
+	// byte 2..n: information
+	BitbusFrame   []byte `protobuf:"bytes,1,opt,name=bitbus_frame,json=bitbusFrame,proto3" json:"bitbus_frame,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -423,6 +437,13 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
 	return file_bitbusSniffer_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FunctionControlSet) GetBitbusFrame() []byte {
+	if x != nil {
+		return x.BitbusFrame
+	}
+	return nil
 }
 
 // FunctionControlGetResponse to pass to
@@ -654,21 +675,23 @@ var File_bitbusSniffer_proto protoreflect.FileDescriptor
 
 const file_bitbusSniffer_proto_rawDesc = "" +
 	"\n" +
-	"\x13bitbusSniffer.proto\x12\rbitbusSniffer\"\xa1\x01\n" +
+	"\x13bitbusSniffer.proto\x12\rbitbusSniffer\"\xc8\x01\n" +
 	"\x10ConfigurationSet\x12\x1d\n" +
 	"\n" +
 	"ignore_crc\x18\x01 \x01(\bR\tignoreCrc\x12\x1d\n" +
 	"\n" +
 	"baud_62500\x18\x02 \x01(\bR\tbaud62500\x12%\n" +
 	"\x0eaddress_filter\x18\x03 \x01(\fR\raddressFilter\x12(\n" +
-	"\x10min_frame_length\x18\x04 \x01(\x05R\x0eminFrameLength\"\x1a\n" +
+	"\x10min_frame_length\x18\x04 \x01(\x05R\x0eminFrameLength\x12%\n" +
+	"\x0eprepare_sender\x18\x05 \x01(\bR\rprepareSender\"\x1a\n" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
 	"\x10ConfigurationGet\"\x1a\n" +
 	"\x18ConfigurationGetResponse\"\x17\n" +
 	"\x15ConfigurationDescribe\"\x1f\n" +
 	"\x1dConfigurationDescribeResponse\"\x14\n" +
-	"\x12FunctionControlGet\"\x14\n" +
-	"\x12FunctionControlSet\"\x1c\n" +
+	"\x12FunctionControlGet\"7\n" +
+	"\x12FunctionControlSet\x12!\n" +
+	"\fbitbus_frame\x18\x01 \x01(\fR\vbitbusFrame\"\x1c\n" +
 	"\x1aFunctionControlGetResponse\"\x1c\n" +
 	"\x1aFunctionControlSetResponse\"\x14\n" +
 	"\x12StreamControlStart\"\xa1\x01\n" +

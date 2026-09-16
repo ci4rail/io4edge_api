@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$bitbusSniffer/v1/bitbusSniffer.proto\x12\rbitbusSniffer\"l\n\x10\x43onfigurationSet\x12\x12\n\nignore_crc\x18\x01 \x01(\x08\x12\x12\n\nbaud_62500\x18\x02 \x01(\x08\x12\x16\n\x0e\x61\x64\x64ress_filter\x18\x03 \x01(\x0c\x12\x18\n\x10min_frame_length\x18\x04 \x01(\x05\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"\x14\n\x12\x46unctionControlSet\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"\x82\x01\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\r\n\x05\x66lags\x18\x02 \x01(\r\x12\x14\n\x0c\x62itbus_frame\x18\x03 \x01(\x0c\"@\n\x05\x46lags\x12\x08\n\x04none\x10\x00\x12\x0b\n\x07\x62\x61\x64_crc\x10\x01\x12\x0f\n\x0b\x66rames_lost\x10\x10\x12\x0f\n\x0b\x62uf_overrun\x10 \"4\n\nStreamData\x12&\n\x07samples\x18\x01 \x03(\x0b\x32\x15.bitbusSniffer.SampleB\x12Z\x10\x62itbusSniffer/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$bitbusSniffer/v1/bitbusSniffer.proto\x12\rbitbusSniffer\"\x84\x01\n\x10\x43onfigurationSet\x12\x12\n\nignore_crc\x18\x01 \x01(\x08\x12\x12\n\nbaud_62500\x18\x02 \x01(\x08\x12\x16\n\x0e\x61\x64\x64ress_filter\x18\x03 \x01(\x0c\x12\x18\n\x10min_frame_length\x18\x04 \x01(\x05\x12\x16\n\x0eprepare_sender\x18\x05 \x01(\x08\"\x1a\n\x18\x43onfigurationSetResponse\"\x12\n\x10\x43onfigurationGet\"\x1a\n\x18\x43onfigurationGetResponse\"\x17\n\x15\x43onfigurationDescribe\"\x1f\n\x1d\x43onfigurationDescribeResponse\"\x14\n\x12\x46unctionControlGet\"*\n\x12\x46unctionControlSet\x12\x14\n\x0c\x62itbus_frame\x18\x01 \x01(\x0c\"\x1c\n\x1a\x46unctionControlGetResponse\"\x1c\n\x1a\x46unctionControlSetResponse\"\x14\n\x12StreamControlStart\"\x82\x01\n\x06Sample\x12\x11\n\ttimestamp\x18\x01 \x01(\x06\x12\r\n\x05\x66lags\x18\x02 \x01(\r\x12\x14\n\x0c\x62itbus_frame\x18\x03 \x01(\x0c\"@\n\x05\x46lags\x12\x08\n\x04none\x10\x00\x12\x0b\n\x07\x62\x61\x64_crc\x10\x01\x12\x0f\n\x0b\x66rames_lost\x10\x10\x12\x0f\n\x0b\x62uf_overrun\x10 \"4\n\nStreamData\x12&\n\x07samples\x18\x01 \x03(\x0b\x32\x15.bitbusSniffer.SampleB\x12Z\x10\x62itbusSniffer/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,32 +32,32 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'bitbusSniffer.v1.bitbusSnif
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\020bitbusSniffer/v1'
-  _globals['_CONFIGURATIONSET']._serialized_start=55
-  _globals['_CONFIGURATIONSET']._serialized_end=163
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=165
-  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=191
-  _globals['_CONFIGURATIONGET']._serialized_start=193
-  _globals['_CONFIGURATIONGET']._serialized_end=211
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=213
-  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=239
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=241
-  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=264
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=266
-  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=297
-  _globals['_FUNCTIONCONTROLGET']._serialized_start=299
-  _globals['_FUNCTIONCONTROLGET']._serialized_end=319
-  _globals['_FUNCTIONCONTROLSET']._serialized_start=321
-  _globals['_FUNCTIONCONTROLSET']._serialized_end=341
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=343
-  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=371
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=373
-  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=401
-  _globals['_STREAMCONTROLSTART']._serialized_start=403
-  _globals['_STREAMCONTROLSTART']._serialized_end=423
-  _globals['_SAMPLE']._serialized_start=426
-  _globals['_SAMPLE']._serialized_end=556
-  _globals['_SAMPLE_FLAGS']._serialized_start=492
-  _globals['_SAMPLE_FLAGS']._serialized_end=556
-  _globals['_STREAMDATA']._serialized_start=558
-  _globals['_STREAMDATA']._serialized_end=610
+  _globals['_CONFIGURATIONSET']._serialized_start=56
+  _globals['_CONFIGURATIONSET']._serialized_end=188
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_start=190
+  _globals['_CONFIGURATIONSETRESPONSE']._serialized_end=216
+  _globals['_CONFIGURATIONGET']._serialized_start=218
+  _globals['_CONFIGURATIONGET']._serialized_end=236
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_start=238
+  _globals['_CONFIGURATIONGETRESPONSE']._serialized_end=264
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_start=266
+  _globals['_CONFIGURATIONDESCRIBE']._serialized_end=289
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_start=291
+  _globals['_CONFIGURATIONDESCRIBERESPONSE']._serialized_end=322
+  _globals['_FUNCTIONCONTROLGET']._serialized_start=324
+  _globals['_FUNCTIONCONTROLGET']._serialized_end=344
+  _globals['_FUNCTIONCONTROLSET']._serialized_start=346
+  _globals['_FUNCTIONCONTROLSET']._serialized_end=388
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_start=390
+  _globals['_FUNCTIONCONTROLGETRESPONSE']._serialized_end=418
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_start=420
+  _globals['_FUNCTIONCONTROLSETRESPONSE']._serialized_end=448
+  _globals['_STREAMCONTROLSTART']._serialized_start=450
+  _globals['_STREAMCONTROLSTART']._serialized_end=470
+  _globals['_SAMPLE']._serialized_start=473
+  _globals['_SAMPLE']._serialized_end=603
+  _globals['_SAMPLE_FLAGS']._serialized_start=539
+  _globals['_SAMPLE_FLAGS']._serialized_end=603
+  _globals['_STREAMDATA']._serialized_start=605
+  _globals['_STREAMDATA']._serialized_end=657
 # @@protoc_insertion_point(module_scope)
