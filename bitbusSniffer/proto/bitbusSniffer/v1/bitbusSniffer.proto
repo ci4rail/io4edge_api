@@ -29,7 +29,11 @@ message ConfigurationSet {
                             // bit 0 = for address 1, bit 1 = for address 2, bit 2 = for address 4, bit 3 = for address 8, ...
                             // Set bit to 1 to receive frames with the corresponding address)
   int32 min_frame_length = 4; // minimum frame length to capture (frames with less bytes are discarded)
-  bool prepare_sender = 5; // if true, the sender will be prepared for sending frames
+  bool prepare_sender = 5; // if true, the function block allows sending frames
+  bool loopback_enable = 6; // if true, the bitbus device is put into loopback mode. 
+                            // In this mode, bus activity is disabled, everything sent 
+                            // by the local device (including bitbus slave) is looped back internally)
+  bool full_duplex = 7;     // if true, the receiver is kept enabled while sender is transmitting
 }
 
 // ConfigurationSetResponse to pass to

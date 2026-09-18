@@ -82,13 +82,25 @@ struct  BitbusSniffer__ConfigurationSet
    */
   int32_t min_frame_length;
   /*
-   * if true, the sender will be prepared for sending frames
+   * if true, the function block allows sending frames
    */
   protobuf_c_boolean prepare_sender;
+  /*
+   * if true, the bitbus device is put into loopback mode. 
+   */
+  protobuf_c_boolean loopback_enable;
+  /*
+   * In this mode, bus activity is disabled, everything sent 
+   * by the local device (including bitbus slave) is looped back internally)
+   */
+  /*
+   * if true, the receiver is kept enabled while sender is transmitting
+   */
+  protobuf_c_boolean full_duplex;
 };
 #define BITBUS_SNIFFER__CONFIGURATION_SET__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&bitbus_sniffer__configuration_set__descriptor) \
-    , 0, 0, {0,NULL}, 0, 0 }
+    , 0, 0, {0,NULL}, 0, 0, 0, 0 }
 
 
 /*
