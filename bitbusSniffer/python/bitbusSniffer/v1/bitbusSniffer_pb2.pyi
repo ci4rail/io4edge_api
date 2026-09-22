@@ -8,16 +8,22 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ConfigurationSet(_message.Message):
-    __slots__ = ("ignore_crc", "baud_62500", "address_filter", "min_frame_length")
+    __slots__ = ("ignore_crc", "baud_62500", "address_filter", "min_frame_length", "prepare_sender", "loopback_enable", "full_duplex")
     IGNORE_CRC_FIELD_NUMBER: _ClassVar[int]
     BAUD_62500_FIELD_NUMBER: _ClassVar[int]
     ADDRESS_FILTER_FIELD_NUMBER: _ClassVar[int]
     MIN_FRAME_LENGTH_FIELD_NUMBER: _ClassVar[int]
+    PREPARE_SENDER_FIELD_NUMBER: _ClassVar[int]
+    LOOPBACK_ENABLE_FIELD_NUMBER: _ClassVar[int]
+    FULL_DUPLEX_FIELD_NUMBER: _ClassVar[int]
     ignore_crc: bool
     baud_62500: bool
     address_filter: bytes
     min_frame_length: int
-    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ..., min_frame_length: _Optional[int] = ...) -> None: ...
+    prepare_sender: bool
+    loopback_enable: bool
+    full_duplex: bool
+    def __init__(self, ignore_crc: _Optional[bool] = ..., baud_62500: _Optional[bool] = ..., address_filter: _Optional[bytes] = ..., min_frame_length: _Optional[int] = ..., prepare_sender: _Optional[bool] = ..., loopback_enable: _Optional[bool] = ..., full_duplex: _Optional[bool] = ...) -> None: ...
 
 class ConfigurationSetResponse(_message.Message):
     __slots__ = ()
@@ -43,17 +49,11 @@ class FunctionControlGet(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class Frame(_message.Message):
+class FunctionControlSet(_message.Message):
     __slots__ = ("bitbus_frame",)
     BITBUS_FRAME_FIELD_NUMBER: _ClassVar[int]
     bitbus_frame: bytes
     def __init__(self, bitbus_frame: _Optional[bytes] = ...) -> None: ...
-
-class FunctionControlSet(_message.Message):
-    __slots__ = ("frames",)
-    FRAMES_FIELD_NUMBER: _ClassVar[int]
-    frames: _containers.RepeatedCompositeFieldContainer[Frame]
-    def __init__(self, frames: _Optional[_Iterable[_Union[Frame, _Mapping]]] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ()

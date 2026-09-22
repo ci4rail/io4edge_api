@@ -17,7 +17,7 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        v6.32.1
-// source: bitbusSniffer.proto
+// source: bitbusSlave.proto
 
 package v1
 
@@ -36,80 +36,77 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Sample_Flags int32
+type SlaveMode int32
 
 const (
-	Sample_none        Sample_Flags = 0  // no flags set
-	Sample_bad_crc     Sample_Flags = 1  // frame has a bad CRC
-	Sample_frames_lost Sample_Flags = 16 // one or more message were lost (between uc and fpga) before this frame
-	Sample_buf_overrun Sample_Flags = 32 // buffer overrun (between uc and host) before this frame
+	SlaveMode_not_configured SlaveMode = 0 // slave is not configured, does not respond to any master requests
+	SlaveMode_ndm            SlaveMode = 1 // normal disconnected mode, slave does not respond to any master requests
+	SlaveMode_nrm            SlaveMode = 2 // normal response mode, slave responds to master requests
 )
 
-// Enum value maps for Sample_Flags.
+// Enum value maps for SlaveMode.
 var (
-	Sample_Flags_name = map[int32]string{
-		0:  "none",
-		1:  "bad_crc",
-		16: "frames_lost",
-		32: "buf_overrun",
+	SlaveMode_name = map[int32]string{
+		0: "not_configured",
+		1: "ndm",
+		2: "nrm",
 	}
-	Sample_Flags_value = map[string]int32{
-		"none":        0,
-		"bad_crc":     1,
-		"frames_lost": 16,
-		"buf_overrun": 32,
+	SlaveMode_value = map[string]int32{
+		"not_configured": 0,
+		"ndm":            1,
+		"nrm":            2,
 	}
 )
 
-func (x Sample_Flags) Enum() *Sample_Flags {
-	p := new(Sample_Flags)
+func (x SlaveMode) Enum() *SlaveMode {
+	p := new(SlaveMode)
 	*p = x
 	return p
 }
 
-func (x Sample_Flags) String() string {
+func (x SlaveMode) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (Sample_Flags) Descriptor() protoreflect.EnumDescriptor {
-	return file_bitbusSniffer_proto_enumTypes[0].Descriptor()
+func (SlaveMode) Descriptor() protoreflect.EnumDescriptor {
+	return file_bitbusSlave_proto_enumTypes[0].Descriptor()
 }
 
-func (Sample_Flags) Type() protoreflect.EnumType {
-	return &file_bitbusSniffer_proto_enumTypes[0]
+func (SlaveMode) Type() protoreflect.EnumType {
+	return &file_bitbusSlave_proto_enumTypes[0]
 }
 
-func (x Sample_Flags) Number() protoreflect.EnumNumber {
+func (x SlaveMode) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use Sample_Flags.Descriptor instead.
-func (Sample_Flags) EnumDescriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{11, 0}
+// Deprecated: Use SlaveMode.Descriptor instead.
+func (SlaveMode) EnumDescriptor() ([]byte, []int) {
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{0}
 }
 
-// ConfigurationSet to pass to
-// Functionblock.Configuration.functionSpecificConfigurationSet hook
 type ConfigurationSet struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	IgnoreCrc     bool                   `protobuf:"varint,1,opt,name=ignore_crc,json=ignoreCrc,proto3" json:"ignore_crc,omitempty"`            // if true, frames with wrong CRC are not discarded
-	Baud_62500    bool                   `protobuf:"varint,2,opt,name=baud_62500,json=baud62500,proto3" json:"baud_62500,omitempty"`            // if true, the baudrate shall be set to 62500 (otherwise 375000)
-	AddressFilter []byte                 `protobuf:"bytes,3,opt,name=address_filter,json=addressFilter,proto3" json:"address_filter,omitempty"` // bit field mask for address filter (32 bytes with 8 bits each.
-	// bit 0 = for address 1, bit 1 = for address 2, bit 2 = for address 4, bit 3 = for address 8, ...
-	// Set bit to 1 to receive frames with the corresponding address)
-	MinFrameLength int32 `protobuf:"varint,4,opt,name=min_frame_length,json=minFrameLength,proto3" json:"min_frame_length,omitempty"` // minimum frame length to capture (frames with less bytes are discarded)
-	PrepareSender  bool  `protobuf:"varint,5,opt,name=prepare_sender,json=prepareSender,proto3" json:"prepare_sender,omitempty"`      // if true, the function block allows sending frames
-	LoopbackEnable bool  `protobuf:"varint,6,opt,name=loopback_enable,json=loopbackEnable,proto3" json:"loopback_enable,omitempty"`   // if true, the bitbus device is put into loopback mode.
-	// In this mode, bus activity is disabled, everything sent
-	// by the local device (including bitbus slave) is looped back internally)
-	FullDuplex    bool `protobuf:"varint,7,opt,name=full_duplex,json=fullDuplex,proto3" json:"full_duplex,omitempty"` // if true, the receiver is kept enabled while sender is transmitting
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// address of the slave (1 ... 249)
+	SlaveAddress int32 `protobuf:"varint,1,opt,name=slave_address,json=slaveAddress,proto3" json:"slave_address,omitempty"`
+	// maximum frame length to send (frames with more bytes are rejected), 0=up to 255 bytes.
+	MaxFrameLength int32 `protobuf:"varint,2,opt,name=max_frame_length,json=maxFrameLength,proto3" json:"max_frame_length,omitempty"`
+	// if app wd expires, slave goes into NDM mode. Checked with approx 50ms time resolution.
+	// must be in range 500..60000.
+	AppWdTimeoutMs int32 `protobuf:"varint,3,opt,name=app_wd_timeout_ms,json=appWdTimeoutMs,proto3" json:"app_wd_timeout_ms,omitempty"`
+	// response frame to send if there is no pending application tx msg
+	// (INFORMATION field of the bitbus frame).
+	// if idle_response is empty, the slave answers with RR if there is no pending application tx msg.
+	IdleResponse []byte `protobuf:"bytes,4,opt,name=idle_response,json=idleResponse,proto3" json:"idle_response,omitempty"`
+	// if true, the baudrate shall be set to 62500 (otherwise 375000).
+	Baud_62500    bool `protobuf:"varint,5,opt,name=baud_62500,json=baud62500,proto3" json:"baud_62500,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ConfigurationSet) Reset() {
 	*x = ConfigurationSet{}
-	mi := &file_bitbusSniffer_proto_msgTypes[0]
+	mi := &file_bitbusSlave_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +118,7 @@ func (x *ConfigurationSet) String() string {
 func (*ConfigurationSet) ProtoMessage() {}
 
 func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[0]
+	mi := &file_bitbusSlave_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,14 +131,35 @@ func (x *ConfigurationSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationSet.ProtoReflect.Descriptor instead.
 func (*ConfigurationSet) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{0}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ConfigurationSet) GetIgnoreCrc() bool {
+func (x *ConfigurationSet) GetSlaveAddress() int32 {
 	if x != nil {
-		return x.IgnoreCrc
+		return x.SlaveAddress
 	}
-	return false
+	return 0
+}
+
+func (x *ConfigurationSet) GetMaxFrameLength() int32 {
+	if x != nil {
+		return x.MaxFrameLength
+	}
+	return 0
+}
+
+func (x *ConfigurationSet) GetAppWdTimeoutMs() int32 {
+	if x != nil {
+		return x.AppWdTimeoutMs
+	}
+	return 0
+}
+
+func (x *ConfigurationSet) GetIdleResponse() []byte {
+	if x != nil {
+		return x.IdleResponse
+	}
+	return nil
 }
 
 func (x *ConfigurationSet) GetBaud_62500() bool {
@@ -151,43 +169,6 @@ func (x *ConfigurationSet) GetBaud_62500() bool {
 	return false
 }
 
-func (x *ConfigurationSet) GetAddressFilter() []byte {
-	if x != nil {
-		return x.AddressFilter
-	}
-	return nil
-}
-
-func (x *ConfigurationSet) GetMinFrameLength() int32 {
-	if x != nil {
-		return x.MinFrameLength
-	}
-	return 0
-}
-
-func (x *ConfigurationSet) GetPrepareSender() bool {
-	if x != nil {
-		return x.PrepareSender
-	}
-	return false
-}
-
-func (x *ConfigurationSet) GetLoopbackEnable() bool {
-	if x != nil {
-		return x.LoopbackEnable
-	}
-	return false
-}
-
-func (x *ConfigurationSet) GetFullDuplex() bool {
-	if x != nil {
-		return x.FullDuplex
-	}
-	return false
-}
-
-// ConfigurationSetResponse to pass to
-// Functionblock.Configuration.functionSpecificConfigurationSetResponse hook
 type ConfigurationSetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -196,7 +177,7 @@ type ConfigurationSetResponse struct {
 
 func (x *ConfigurationSetResponse) Reset() {
 	*x = ConfigurationSetResponse{}
-	mi := &file_bitbusSniffer_proto_msgTypes[1]
+	mi := &file_bitbusSlave_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -208,7 +189,7 @@ func (x *ConfigurationSetResponse) String() string {
 func (*ConfigurationSetResponse) ProtoMessage() {}
 
 func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[1]
+	mi := &file_bitbusSlave_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -221,11 +202,9 @@ func (x *ConfigurationSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationSetResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationSetResponse) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{1}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{1}
 }
 
-// ConfigurationGet to pass to
-// Functionblock.Configuration.functionSpecificConfigurationGet hook
 type ConfigurationGet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -234,7 +213,7 @@ type ConfigurationGet struct {
 
 func (x *ConfigurationGet) Reset() {
 	*x = ConfigurationGet{}
-	mi := &file_bitbusSniffer_proto_msgTypes[2]
+	mi := &file_bitbusSlave_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -246,7 +225,7 @@ func (x *ConfigurationGet) String() string {
 func (*ConfigurationGet) ProtoMessage() {}
 
 func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[2]
+	mi := &file_bitbusSlave_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -259,12 +238,9 @@ func (x *ConfigurationGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationGet.ProtoReflect.Descriptor instead.
 func (*ConfigurationGet) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{2}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{2}
 }
 
-// ConfigurationGetResponse to pass to
-// Functionblock.ConfigurationGetResponse.functionSpecificConfigurationGetResponse
-// hook Returns the current hardware configuration
 type ConfigurationGetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -273,7 +249,7 @@ type ConfigurationGetResponse struct {
 
 func (x *ConfigurationGetResponse) Reset() {
 	*x = ConfigurationGetResponse{}
-	mi := &file_bitbusSniffer_proto_msgTypes[3]
+	mi := &file_bitbusSlave_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -285,7 +261,7 @@ func (x *ConfigurationGetResponse) String() string {
 func (*ConfigurationGetResponse) ProtoMessage() {}
 
 func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[3]
+	mi := &file_bitbusSlave_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -298,11 +274,9 @@ func (x *ConfigurationGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationGetResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationGetResponse) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{3}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{3}
 }
 
-// ConfigurationDescribe to pass to
-// Functionblock.Configuration.functionSpecificConfigurationDescribe hook
 type ConfigurationDescribe struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -311,7 +285,7 @@ type ConfigurationDescribe struct {
 
 func (x *ConfigurationDescribe) Reset() {
 	*x = ConfigurationDescribe{}
-	mi := &file_bitbusSniffer_proto_msgTypes[4]
+	mi := &file_bitbusSlave_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -323,7 +297,7 @@ func (x *ConfigurationDescribe) String() string {
 func (*ConfigurationDescribe) ProtoMessage() {}
 
 func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[4]
+	mi := &file_bitbusSlave_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +310,7 @@ func (x *ConfigurationDescribe) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationDescribe.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribe) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{4}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{4}
 }
 
 type ConfigurationDescribeResponse struct {
@@ -347,7 +321,7 @@ type ConfigurationDescribeResponse struct {
 
 func (x *ConfigurationDescribeResponse) Reset() {
 	*x = ConfigurationDescribeResponse{}
-	mi := &file_bitbusSniffer_proto_msgTypes[5]
+	mi := &file_bitbusSlave_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -359,7 +333,7 @@ func (x *ConfigurationDescribeResponse) String() string {
 func (*ConfigurationDescribeResponse) ProtoMessage() {}
 
 func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[5]
+	mi := &file_bitbusSlave_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -372,11 +346,9 @@ func (x *ConfigurationDescribeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigurationDescribeResponse.ProtoReflect.Descriptor instead.
 func (*ConfigurationDescribeResponse) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{5}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{5}
 }
 
-// FunctionControlGet to pass to
-// Functionblock.FunctionControl.functionSpecificFunctionControlGet hook
 type FunctionControlGet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -385,7 +357,7 @@ type FunctionControlGet struct {
 
 func (x *FunctionControlGet) Reset() {
 	*x = FunctionControlGet{}
-	mi := &file_bitbusSniffer_proto_msgTypes[6]
+	mi := &file_bitbusSlave_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -397,7 +369,7 @@ func (x *FunctionControlGet) String() string {
 func (*FunctionControlGet) ProtoMessage() {}
 
 func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[6]
+	mi := &file_bitbusSlave_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,26 +382,66 @@ func (x *FunctionControlGet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGet.ProtoReflect.Descriptor instead.
 func (*FunctionControlGet) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{6}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{6}
 }
 
-// FunctionControlSet to pass to
-// Functionblock.FunctionControl.functionSpecificFunctionControlSet hook
+type PreparedTxMsg struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	BitbusInformation []byte                 `protobuf:"bytes,1,opt,name=bitbus_information,json=bitbusInformation,proto3" json:"bitbus_information,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *PreparedTxMsg) Reset() {
+	*x = PreparedTxMsg{}
+	mi := &file_bitbusSlave_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PreparedTxMsg) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreparedTxMsg) ProtoMessage() {}
+
+func (x *PreparedTxMsg) ProtoReflect() protoreflect.Message {
+	mi := &file_bitbusSlave_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreparedTxMsg.ProtoReflect.Descriptor instead.
+func (*PreparedTxMsg) Descriptor() ([]byte, []int) {
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *PreparedTxMsg) GetBitbusInformation() []byte {
+	if x != nil {
+		return x.BitbusInformation
+	}
+	return nil
+}
+
 type FunctionControlSet struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Frame to send to the bus
-	// requires hardware that has sender enabled
-	// byte 0: address
-	// byte 1: control
-	// byte 2..n: information
-	BitbusFrame   []byte `protobuf:"bytes,1,opt,name=bitbus_frame,json=bitbusFrame,proto3" json:"bitbus_frame,omitempty"`
+	// Types that are valid to be assigned to Type:
+	//
+	//	*FunctionControlSet_TxMsg
+	Type          isFunctionControlSet_Type `protobuf_oneof:"type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FunctionControlSet) Reset() {
 	*x = FunctionControlSet{}
-	mi := &file_bitbusSniffer_proto_msgTypes[7]
+	mi := &file_bitbusSlave_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -441,7 +453,7 @@ func (x *FunctionControlSet) String() string {
 func (*FunctionControlSet) ProtoMessage() {}
 
 func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[7]
+	mi := &file_bitbusSlave_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -454,27 +466,52 @@ func (x *FunctionControlSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSet.ProtoReflect.Descriptor instead.
 func (*FunctionControlSet) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{7}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *FunctionControlSet) GetBitbusFrame() []byte {
+func (x *FunctionControlSet) GetType() isFunctionControlSet_Type {
 	if x != nil {
-		return x.BitbusFrame
+		return x.Type
 	}
 	return nil
 }
 
-// FunctionControlGetResponse to pass to
-// Functionblock.FunctionControlResponse.functionSpecificControlGet hook
+func (x *FunctionControlSet) GetTxMsg() *PreparedTxMsg {
+	if x != nil {
+		if x, ok := x.Type.(*FunctionControlSet_TxMsg); ok {
+			return x.TxMsg
+		}
+	}
+	return nil
+}
+
+type isFunctionControlSet_Type interface {
+	isFunctionControlSet_Type()
+}
+
+type FunctionControlSet_TxMsg struct {
+	// set application tx msg that is sent when the master sends a request to the slave.
+	// rejected when
+	// - slave is in disconnected (NDM) mode
+	// - already a tx message pending
+	// - frame length exceeeds configured max_frame_length
+	// - frame length is 0
+	TxMsg *PreparedTxMsg `protobuf:"bytes,1,opt,name=tx_msg,json=txMsg,proto3,oneof"`
+}
+
+func (*FunctionControlSet_TxMsg) isFunctionControlSet_Type() {}
+
 type FunctionControlGetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Mode             SlaveMode              `protobuf:"varint,1,opt,name=mode,proto3,enum=bitbusSlave.SlaveMode" json:"mode,omitempty"`                          // current mode of the slave
+	HavePendingTxMsg bool                   `protobuf:"varint,2,opt,name=have_pending_tx_msg,json=havePendingTxMsg,proto3" json:"have_pending_tx_msg,omitempty"` // if true, there is a pending application tx msg
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *FunctionControlGetResponse) Reset() {
 	*x = FunctionControlGetResponse{}
-	mi := &file_bitbusSniffer_proto_msgTypes[8]
+	mi := &file_bitbusSlave_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -486,7 +523,7 @@ func (x *FunctionControlGetResponse) String() string {
 func (*FunctionControlGetResponse) ProtoMessage() {}
 
 func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[8]
+	mi := &file_bitbusSlave_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -499,11 +536,23 @@ func (x *FunctionControlGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlGetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlGetResponse) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{8}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{9}
 }
 
-// FunctionControlSetResponse to pass to
-// Functionblock.FunctionControlResponse.functionSpecificControlSet hook
+func (x *FunctionControlGetResponse) GetMode() SlaveMode {
+	if x != nil {
+		return x.Mode
+	}
+	return SlaveMode_not_configured
+}
+
+func (x *FunctionControlGetResponse) GetHavePendingTxMsg() bool {
+	if x != nil {
+		return x.HavePendingTxMsg
+	}
+	return false
+}
+
 type FunctionControlSetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -512,7 +561,7 @@ type FunctionControlSetResponse struct {
 
 func (x *FunctionControlSetResponse) Reset() {
 	*x = FunctionControlSetResponse{}
-	mi := &file_bitbusSniffer_proto_msgTypes[9]
+	mi := &file_bitbusSlave_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -524,7 +573,7 @@ func (x *FunctionControlSetResponse) String() string {
 func (*FunctionControlSetResponse) ProtoMessage() {}
 
 func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[9]
+	mi := &file_bitbusSlave_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -537,11 +586,9 @@ func (x *FunctionControlSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FunctionControlSetResponse.ProtoReflect.Descriptor instead.
 func (*FunctionControlSetResponse) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{9}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{10}
 }
 
-// StreamControlStart to pass to
-// Functionblock.StreamControlStart.functionSpecificStreamControlStart hook
 type StreamControlStart struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -550,7 +597,7 @@ type StreamControlStart struct {
 
 func (x *StreamControlStart) Reset() {
 	*x = StreamControlStart{}
-	mi := &file_bitbusSniffer_proto_msgTypes[10]
+	mi := &file_bitbusSlave_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +609,7 @@ func (x *StreamControlStart) String() string {
 func (*StreamControlStart) ProtoMessage() {}
 
 func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[10]
+	mi := &file_bitbusSlave_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,27 +622,22 @@ func (x *StreamControlStart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamControlStart.ProtoReflect.Descriptor instead.
 func (*StreamControlStart) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{10}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{11}
 }
 
 type Sample struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
 	Timestamp uint64 `protobuf:"fixed64,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	// flags for the sample (bitmask with values from Flags enum)
-	Flags uint32 `protobuf:"varint,2,opt,name=flags,proto3" json:"flags,omitempty"`
-	// Frame received from the bus
-	// byte 0: address
-	// byte 1: control
-	// byte 2..n: information
-	BitbusFrame   []byte `protobuf:"bytes,3,opt,name=bitbus_frame,json=bitbusFrame,proto3" json:"bitbus_frame,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// bitbus information field for a frame received from the bus for this slave.
+	BitbusInformation []byte `protobuf:"bytes,2,opt,name=bitbus_information,json=bitbusInformation,proto3" json:"bitbus_information,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *Sample) Reset() {
 	*x = Sample{}
-	mi := &file_bitbusSniffer_proto_msgTypes[11]
+	mi := &file_bitbusSlave_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -607,7 +649,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[11]
+	mi := &file_bitbusSlave_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -620,7 +662,7 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{11}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Sample) GetTimestamp() uint64 {
@@ -630,21 +672,13 @@ func (x *Sample) GetTimestamp() uint64 {
 	return 0
 }
 
-func (x *Sample) GetFlags() uint32 {
+func (x *Sample) GetBitbusInformation() []byte {
 	if x != nil {
-		return x.Flags
-	}
-	return 0
-}
-
-func (x *Sample) GetBitbusFrame() []byte {
-	if x != nil {
-		return x.BitbusFrame
+		return x.BitbusInformation
 	}
 	return nil
 }
 
-// StreamData to pass to Functionblock.StreamData.functionSpecificStreamData hook
 type StreamData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Samples       []*Sample              `protobuf:"bytes,1,rep,name=samples,proto3" json:"samples,omitempty"` // frames received from the bus with timestamp
@@ -654,7 +688,7 @@ type StreamData struct {
 
 func (x *StreamData) Reset() {
 	*x = StreamData{}
-	mi := &file_bitbusSniffer_proto_msgTypes[12]
+	mi := &file_bitbusSlave_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +700,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_bitbusSniffer_proto_msgTypes[12]
+	mi := &file_bitbusSlave_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +713,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_bitbusSniffer_proto_rawDescGZIP(), []int{12}
+	return file_bitbusSlave_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *StreamData) GetSamples() []*Sample {
@@ -689,106 +723,111 @@ func (x *StreamData) GetSamples() []*Sample {
 	return nil
 }
 
-var File_bitbusSniffer_proto protoreflect.FileDescriptor
+var File_bitbusSlave_proto protoreflect.FileDescriptor
 
-const file_bitbusSniffer_proto_rawDesc = "" +
+const file_bitbusSlave_proto_rawDesc = "" +
 	"\n" +
-	"\x13bitbusSniffer.proto\x12\rbitbusSniffer\"\x92\x02\n" +
-	"\x10ConfigurationSet\x12\x1d\n" +
+	"\x11bitbusSlave.proto\x12\vbitbusSlave\"\xd0\x01\n" +
+	"\x10ConfigurationSet\x12#\n" +
+	"\rslave_address\x18\x01 \x01(\x05R\fslaveAddress\x12(\n" +
+	"\x10max_frame_length\x18\x02 \x01(\x05R\x0emaxFrameLength\x12)\n" +
+	"\x11app_wd_timeout_ms\x18\x03 \x01(\x05R\x0eappWdTimeoutMs\x12#\n" +
+	"\ridle_response\x18\x04 \x01(\fR\fidleResponse\x12\x1d\n" +
 	"\n" +
-	"ignore_crc\x18\x01 \x01(\bR\tignoreCrc\x12\x1d\n" +
-	"\n" +
-	"baud_62500\x18\x02 \x01(\bR\tbaud62500\x12%\n" +
-	"\x0eaddress_filter\x18\x03 \x01(\fR\raddressFilter\x12(\n" +
-	"\x10min_frame_length\x18\x04 \x01(\x05R\x0eminFrameLength\x12%\n" +
-	"\x0eprepare_sender\x18\x05 \x01(\bR\rprepareSender\x12'\n" +
-	"\x0floopback_enable\x18\x06 \x01(\bR\x0eloopbackEnable\x12\x1f\n" +
-	"\vfull_duplex\x18\a \x01(\bR\n" +
-	"fullDuplex\"\x1a\n" +
+	"baud_62500\x18\x05 \x01(\bR\tbaud62500\"\x1a\n" +
 	"\x18ConfigurationSetResponse\"\x12\n" +
 	"\x10ConfigurationGet\"\x1a\n" +
 	"\x18ConfigurationGetResponse\"\x17\n" +
 	"\x15ConfigurationDescribe\"\x1f\n" +
 	"\x1dConfigurationDescribeResponse\"\x14\n" +
-	"\x12FunctionControlGet\"7\n" +
-	"\x12FunctionControlSet\x12!\n" +
-	"\fbitbus_frame\x18\x01 \x01(\fR\vbitbusFrame\"\x1c\n" +
-	"\x1aFunctionControlGetResponse\"\x1c\n" +
+	"\x12FunctionControlGet\">\n" +
+	"\rPreparedTxMsg\x12-\n" +
+	"\x12bitbus_information\x18\x01 \x01(\fR\x11bitbusInformation\"Q\n" +
+	"\x12FunctionControlSet\x123\n" +
+	"\x06tx_msg\x18\x01 \x01(\v2\x1a.bitbusSlave.PreparedTxMsgH\x00R\x05txMsgB\x06\n" +
+	"\x04type\"w\n" +
+	"\x1aFunctionControlGetResponse\x12*\n" +
+	"\x04mode\x18\x01 \x01(\x0e2\x16.bitbusSlave.SlaveModeR\x04mode\x12-\n" +
+	"\x13have_pending_tx_msg\x18\x02 \x01(\bR\x10havePendingTxMsg\"\x1c\n" +
 	"\x1aFunctionControlSetResponse\"\x14\n" +
-	"\x12StreamControlStart\"\xa1\x01\n" +
+	"\x12StreamControlStart\"U\n" +
 	"\x06Sample\x12\x1c\n" +
-	"\ttimestamp\x18\x01 \x01(\x06R\ttimestamp\x12\x14\n" +
-	"\x05flags\x18\x02 \x01(\rR\x05flags\x12!\n" +
-	"\fbitbus_frame\x18\x03 \x01(\fR\vbitbusFrame\"@\n" +
-	"\x05Flags\x12\b\n" +
-	"\x04none\x10\x00\x12\v\n" +
-	"\abad_crc\x10\x01\x12\x0f\n" +
-	"\vframes_lost\x10\x10\x12\x0f\n" +
-	"\vbuf_overrun\x10 \"=\n" +
+	"\ttimestamp\x18\x01 \x01(\x06R\ttimestamp\x12-\n" +
+	"\x12bitbus_information\x18\x02 \x01(\fR\x11bitbusInformation\";\n" +
 	"\n" +
-	"StreamData\x12/\n" +
-	"\asamples\x18\x01 \x03(\v2\x15.bitbusSniffer.SampleR\asamplesB\x12Z\x10bitbusSniffer/v1b\x06proto3"
+	"StreamData\x12-\n" +
+	"\asamples\x18\x01 \x03(\v2\x13.bitbusSlave.SampleR\asamples*1\n" +
+	"\tSlaveMode\x12\x12\n" +
+	"\x0enot_configured\x10\x00\x12\a\n" +
+	"\x03ndm\x10\x01\x12\a\n" +
+	"\x03nrm\x10\x02B\x10Z\x0ebitbusSlave/v1b\x06proto3"
 
 var (
-	file_bitbusSniffer_proto_rawDescOnce sync.Once
-	file_bitbusSniffer_proto_rawDescData []byte
+	file_bitbusSlave_proto_rawDescOnce sync.Once
+	file_bitbusSlave_proto_rawDescData []byte
 )
 
-func file_bitbusSniffer_proto_rawDescGZIP() []byte {
-	file_bitbusSniffer_proto_rawDescOnce.Do(func() {
-		file_bitbusSniffer_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_bitbusSniffer_proto_rawDesc), len(file_bitbusSniffer_proto_rawDesc)))
+func file_bitbusSlave_proto_rawDescGZIP() []byte {
+	file_bitbusSlave_proto_rawDescOnce.Do(func() {
+		file_bitbusSlave_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_bitbusSlave_proto_rawDesc), len(file_bitbusSlave_proto_rawDesc)))
 	})
-	return file_bitbusSniffer_proto_rawDescData
+	return file_bitbusSlave_proto_rawDescData
 }
 
-var file_bitbusSniffer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_bitbusSniffer_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_bitbusSniffer_proto_goTypes = []any{
-	(Sample_Flags)(0),                     // 0: bitbusSniffer.Sample.Flags
-	(*ConfigurationSet)(nil),              // 1: bitbusSniffer.ConfigurationSet
-	(*ConfigurationSetResponse)(nil),      // 2: bitbusSniffer.ConfigurationSetResponse
-	(*ConfigurationGet)(nil),              // 3: bitbusSniffer.ConfigurationGet
-	(*ConfigurationGetResponse)(nil),      // 4: bitbusSniffer.ConfigurationGetResponse
-	(*ConfigurationDescribe)(nil),         // 5: bitbusSniffer.ConfigurationDescribe
-	(*ConfigurationDescribeResponse)(nil), // 6: bitbusSniffer.ConfigurationDescribeResponse
-	(*FunctionControlGet)(nil),            // 7: bitbusSniffer.FunctionControlGet
-	(*FunctionControlSet)(nil),            // 8: bitbusSniffer.FunctionControlSet
-	(*FunctionControlGetResponse)(nil),    // 9: bitbusSniffer.FunctionControlGetResponse
-	(*FunctionControlSetResponse)(nil),    // 10: bitbusSniffer.FunctionControlSetResponse
-	(*StreamControlStart)(nil),            // 11: bitbusSniffer.StreamControlStart
-	(*Sample)(nil),                        // 12: bitbusSniffer.Sample
-	(*StreamData)(nil),                    // 13: bitbusSniffer.StreamData
+var file_bitbusSlave_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_bitbusSlave_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_bitbusSlave_proto_goTypes = []any{
+	(SlaveMode)(0),                        // 0: bitbusSlave.SlaveMode
+	(*ConfigurationSet)(nil),              // 1: bitbusSlave.ConfigurationSet
+	(*ConfigurationSetResponse)(nil),      // 2: bitbusSlave.ConfigurationSetResponse
+	(*ConfigurationGet)(nil),              // 3: bitbusSlave.ConfigurationGet
+	(*ConfigurationGetResponse)(nil),      // 4: bitbusSlave.ConfigurationGetResponse
+	(*ConfigurationDescribe)(nil),         // 5: bitbusSlave.ConfigurationDescribe
+	(*ConfigurationDescribeResponse)(nil), // 6: bitbusSlave.ConfigurationDescribeResponse
+	(*FunctionControlGet)(nil),            // 7: bitbusSlave.FunctionControlGet
+	(*PreparedTxMsg)(nil),                 // 8: bitbusSlave.PreparedTxMsg
+	(*FunctionControlSet)(nil),            // 9: bitbusSlave.FunctionControlSet
+	(*FunctionControlGetResponse)(nil),    // 10: bitbusSlave.FunctionControlGetResponse
+	(*FunctionControlSetResponse)(nil),    // 11: bitbusSlave.FunctionControlSetResponse
+	(*StreamControlStart)(nil),            // 12: bitbusSlave.StreamControlStart
+	(*Sample)(nil),                        // 13: bitbusSlave.Sample
+	(*StreamData)(nil),                    // 14: bitbusSlave.StreamData
 }
-var file_bitbusSniffer_proto_depIdxs = []int32{
-	12, // 0: bitbusSniffer.StreamData.samples:type_name -> bitbusSniffer.Sample
-	1,  // [1:1] is the sub-list for method output_type
-	1,  // [1:1] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+var file_bitbusSlave_proto_depIdxs = []int32{
+	8,  // 0: bitbusSlave.FunctionControlSet.tx_msg:type_name -> bitbusSlave.PreparedTxMsg
+	0,  // 1: bitbusSlave.FunctionControlGetResponse.mode:type_name -> bitbusSlave.SlaveMode
+	13, // 2: bitbusSlave.StreamData.samples:type_name -> bitbusSlave.Sample
+	3,  // [3:3] is the sub-list for method output_type
+	3,  // [3:3] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_bitbusSniffer_proto_init() }
-func file_bitbusSniffer_proto_init() {
-	if File_bitbusSniffer_proto != nil {
+func init() { file_bitbusSlave_proto_init() }
+func file_bitbusSlave_proto_init() {
+	if File_bitbusSlave_proto != nil {
 		return
+	}
+	file_bitbusSlave_proto_msgTypes[8].OneofWrappers = []any{
+		(*FunctionControlSet_TxMsg)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bitbusSniffer_proto_rawDesc), len(file_bitbusSniffer_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bitbusSlave_proto_rawDesc), len(file_bitbusSlave_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   13,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_bitbusSniffer_proto_goTypes,
-		DependencyIndexes: file_bitbusSniffer_proto_depIdxs,
-		EnumInfos:         file_bitbusSniffer_proto_enumTypes,
-		MessageInfos:      file_bitbusSniffer_proto_msgTypes,
+		GoTypes:           file_bitbusSlave_proto_goTypes,
+		DependencyIndexes: file_bitbusSlave_proto_depIdxs,
+		EnumInfos:         file_bitbusSlave_proto_enumTypes,
+		MessageInfos:      file_bitbusSlave_proto_msgTypes,
 	}.Build()
-	File_bitbusSniffer_proto = out.File
-	file_bitbusSniffer_proto_goTypes = nil
-	file_bitbusSniffer_proto_depIdxs = nil
+	File_bitbusSlave_proto = out.File
+	file_bitbusSlave_proto_goTypes = nil
+	file_bitbusSlave_proto_depIdxs = nil
 }

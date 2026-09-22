@@ -1,0 +1,112 @@
+/*
+Copyright © 2025 Ci4Rail GmbH <engineering@ci4rail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+syntax = "proto3";
+
+package bitbusSlave;
+option go_package = "bitbusSlave/v1";
+
+// ============= Configuration =================
+
+message ConfigurationSet {
+  // address of the slave (1 ... 249)
+  int32 slave_address = 1; 
+  // maximum frame length to send (frames with more bytes are rejected), 0=up to 255 bytes.
+  int32 max_frame_length = 2; 
+  // if app wd expires, slave goes into NDM mode. Checked with approx 50ms time resolution.
+  // must be in range 500..60000.
+  int32 app_wd_timeout_ms = 3; 
+  // response frame to send if there is no pending application tx msg 
+  // (INFORMATION field of the bitbus frame).
+  // if idle_response is empty, the slave answers with RR if there is no pending application tx msg.
+  bytes idle_response = 4; 
+  // if true, the baudrate shall be set to 62500 (otherwise 375000). 
+  bool baud_62500 = 5; 
+}
+
+message ConfigurationSetResponse {
+  // no parameters
+}
+
+message ConfigurationGet {
+  // no parameters
+}
+
+message ConfigurationGetResponse {
+  // not implemented
+}
+
+message ConfigurationDescribe {
+  // no parameters
+}
+
+message ConfigurationDescribeResponse {
+  // Not implemented
+}
+
+// ============= FunctionControl =================
+
+message FunctionControlGet {
+  // no parameters
+}
+
+message PreparedTxMsg {
+  bytes bitbus_information = 1; 
+}
+
+message FunctionControlSet {
+  oneof type {
+    // set application tx msg that is sent when the master sends a request to the slave. 
+    // rejected when
+    // - slave is in disconnected (NDM) mode
+    // - already a tx message pending
+    // - frame length exceeeds configured max_frame_length
+    // - frame length is 0
+    PreparedTxMsg tx_msg = 1; 
+  }
+}
+
+message FunctionControlGetResponse {
+    SlaveMode mode = 1; // current mode of the slave
+    bool have_pending_tx_msg = 2; // if true, there is a pending application tx msg   
+}
+
+enum SlaveMode {
+  not_configured = 0; // slave is not configured, does not respond to any master requests
+  ndm = 1; // normal disconnected mode, slave does not respond to any master requests
+  nrm = 2; // normal response mode, slave responds to master requests
+}
+
+message FunctionControlSetResponse {
+  // no parameters
+}
+
+// ============= StreamControl ==================
+
+message StreamControlStart {
+  // no parameters
+}
+
+message Sample {
+  // This timestamp is in microseconds since the start of the device and does not get synchronized with the clients time.
+  fixed64 timestamp = 1;
+
+  // bitbus information field for a frame received from the bus for this slave. 
+  bytes bitbus_information = 2; 
+}
+
+message StreamData {
+  repeated Sample samples = 1; // frames received from the bus with timestamp
+}
