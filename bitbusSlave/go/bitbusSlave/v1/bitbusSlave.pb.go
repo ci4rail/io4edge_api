@@ -89,11 +89,14 @@ type ConfigurationSet struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// address of the slave (1 ... 249)
 	SlaveAddress int32 `protobuf:"varint,1,opt,name=slave_address,json=slaveAddress,proto3" json:"slave_address,omitempty"`
-	// maximum frame length to send (frames with more bytes are rejected).
+	// maximum frame length to send (frames with more bytes are rejected), 0=up to 255 bytes.
 	MaxFrameLength int32 `protobuf:"varint,2,opt,name=max_frame_length,json=maxFrameLength,proto3" json:"max_frame_length,omitempty"`
-	// if app wd expires, slave goes into NDM mode.
+	// if app wd expires, slave goes into NDM mode. Checked with approx 50ms time resolution.
+	// must be in range 500..60000.
 	AppWdTimeoutMs int32 `protobuf:"varint,3,opt,name=app_wd_timeout_ms,json=appWdTimeoutMs,proto3" json:"app_wd_timeout_ms,omitempty"`
-	// response frame to send if there is no pending application tx msg (INFORMATION field of the bitbus frame)
+	// response frame to send if there is no pending application tx msg
+	// (INFORMATION field of the bitbus frame).
+	// if idle_response is empty, the slave answers with RR if there is no pending application tx msg.
 	IdleResponse []byte `protobuf:"bytes,4,opt,name=idle_response,json=idleResponse,proto3" json:"idle_response,omitempty"`
 	// if true, the baudrate shall be set to 62500 (otherwise 375000).
 	Baud_62500    bool `protobuf:"varint,5,opt,name=baud_62500,json=baud62500,proto3" json:"baud_62500,omitempty"`
@@ -488,6 +491,11 @@ type isFunctionControlSet_Type interface {
 
 type FunctionControlSet_TxMsg struct {
 	// set application tx msg that is sent when the master sends a request to the slave.
+	// rejected when
+	// - slave is in disconnected (NDM) mode
+	// - already a tx message pending
+	// - frame length exceeeds configured max_frame_length
+	// - frame length is 0
 	TxMsg *PreparedTxMsg `protobuf:"bytes,1,opt,name=tx_msg,json=txMsg,proto3,oneof"`
 }
 

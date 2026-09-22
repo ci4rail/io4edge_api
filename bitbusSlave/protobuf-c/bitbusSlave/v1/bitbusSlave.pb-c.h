@@ -59,15 +59,18 @@ struct  BitbusSlave__ConfigurationSet
    */
   int32_t slave_address;
   /*
-   * maximum frame length to send (frames with more bytes are rejected).
+   * maximum frame length to send (frames with more bytes are rejected), 0=up to 255 bytes.
    */
   int32_t max_frame_length;
   /*
-   * if app wd expires, slave goes into NDM mode.
+   * if app wd expires, slave goes into NDM mode. Checked with approx 50ms time resolution.
+   * must be in range 500..60000.
    */
   int32_t app_wd_timeout_ms;
   /*
-   * response frame to send if there is no pending application tx msg (INFORMATION field of the bitbus frame)
+   * response frame to send if there is no pending application tx msg 
+   * (INFORMATION field of the bitbus frame).
+   * if idle_response is empty, the slave answers with RR if there is no pending application tx msg.
    */
   ProtobufCBinaryData idle_response;
   /*
@@ -157,6 +160,11 @@ struct  BitbusSlave__FunctionControlSet
   union {
     /*
      * set application tx msg that is sent when the master sends a request to the slave. 
+     * rejected when
+     * - slave is in disconnected (NDM) mode
+     * - already a tx message pending
+     * - frame length exceeeds configured max_frame_length
+     * - frame length is 0
      */
     BitbusSlave__PreparedTxMsg *tx_msg;
   };
