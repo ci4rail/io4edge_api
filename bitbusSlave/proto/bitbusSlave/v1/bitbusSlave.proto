@@ -23,11 +23,14 @@ option go_package = "bitbusSlave/v1";
 message ConfigurationSet {
   // address of the slave (1 ... 249)
   int32 slave_address = 1; 
-  // maximum frame length to send (frames with more bytes are rejected).
+  // maximum frame length to send (frames with more bytes are rejected), 0=up to 255 bytes.
   int32 max_frame_length = 2; 
-  // if app wd expires, slave goes into NDM mode.
+  // if app wd expires, slave goes into NDM mode. Checked with approx 50ms time resolution.
+  // must be in range 500..60000.
   int32 app_wd_timeout_ms = 3; 
-  // response frame to send if there is no pending application tx msg (INFORMATION field of the bitbus frame)
+  // response frame to send if there is no pending application tx msg 
+  // (INFORMATION field of the bitbus frame).
+  // if idle_response is empty, the slave answers with RR if there is no pending application tx msg.
   bytes idle_response = 4; 
   // if true, the baudrate shall be set to 62500 (otherwise 375000). 
   bool baud_62500 = 5; 
@@ -66,6 +69,11 @@ message PreparedTxMsg {
 message FunctionControlSet {
   oneof type {
     // set application tx msg that is sent when the master sends a request to the slave. 
+    // rejected when
+    // - slave is in disconnected (NDM) mode
+    // - already a tx message pending
+    // - frame length exceeeds configured max_frame_length
+    // - frame length is 0
     PreparedTxMsg tx_msg = 1; 
   }
 }
