@@ -260,6 +260,16 @@ class FunctionControlGet(_message.Message):
 
 class FunctionControlSet(_message.Message):
     __slots__ = ("kick", "error", "resolve", "fatal", "shutdown", "on", "reboot", "off")
+    class Shutdown(_message.Message):
+        __slots__ = ("force",)
+        FORCE_FIELD_NUMBER: _ClassVar[int]
+        force: bool
+        def __init__(self, force: _Optional[bool] = ...) -> None: ...
+    class Reboot(_message.Message):
+        __slots__ = ("force",)
+        FORCE_FIELD_NUMBER: _ClassVar[int]
+        force: bool
+        def __init__(self, force: _Optional[bool] = ...) -> None: ...
     KICK_FIELD_NUMBER: _ClassVar[int]
     ERROR_FIELD_NUMBER: _ClassVar[int]
     RESOLVE_FIELD_NUMBER: _ClassVar[int]
@@ -272,11 +282,11 @@ class FunctionControlSet(_message.Message):
     error: str
     resolve: str
     fatal: str
-    shutdown: bool
+    shutdown: FunctionControlSet.Shutdown
     on: bool
-    reboot: bool
+    reboot: FunctionControlSet.Reboot
     off: str
-    def __init__(self, kick: _Optional[bool] = ..., error: _Optional[str] = ..., resolve: _Optional[str] = ..., fatal: _Optional[str] = ..., shutdown: _Optional[bool] = ..., on: _Optional[bool] = ..., reboot: _Optional[bool] = ..., off: _Optional[str] = ...) -> None: ...
+    def __init__(self, kick: _Optional[bool] = ..., error: _Optional[str] = ..., resolve: _Optional[str] = ..., fatal: _Optional[str] = ..., shutdown: _Optional[_Union[FunctionControlSet.Shutdown, _Mapping]] = ..., on: _Optional[bool] = ..., reboot: _Optional[_Union[FunctionControlSet.Reboot, _Mapping]] = ..., off: _Optional[str] = ...) -> None: ...
 
 class FunctionControlGetResponse(_message.Message):
     __slots__ = ("state",)

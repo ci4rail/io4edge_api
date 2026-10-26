@@ -457,6 +457,18 @@ void   ssm__function_control_get__free_unpacked
   assert(message->base.descriptor == &ssm__function_control_get__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   ssm__function_control_set__shutdown__init
+                     (Ssm__FunctionControlSet__Shutdown         *message)
+{
+  static const Ssm__FunctionControlSet__Shutdown init_value = SSM__FUNCTION_CONTROL_SET__SHUTDOWN__INIT;
+  *message = init_value;
+}
+void   ssm__function_control_set__reboot__init
+                     (Ssm__FunctionControlSet__Reboot         *message)
+{
+  static const Ssm__FunctionControlSet__Reboot init_value = SSM__FUNCTION_CONTROL_SET__REBOOT__INIT;
+  *message = init_value;
+}
 void   ssm__function_control_set__init
                      (Ssm__FunctionControlSet         *message)
 {
@@ -1699,7 +1711,7 @@ static const ProtobufCFieldDescriptor ssm__configuration_response__field_descrip
     offsetof(Ssm__ConfigurationResponse, get),
     &ssm__configuration_get_response__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1711,7 +1723,7 @@ static const ProtobufCFieldDescriptor ssm__configuration_response__field_descrip
     offsetof(Ssm__ConfigurationResponse, set),
     &ssm__configuration_set_response__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1723,7 +1735,7 @@ static const ProtobufCFieldDescriptor ssm__configuration_response__field_descrip
     offsetof(Ssm__ConfigurationResponse, describe),
     &ssm__configuration_describe_response__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
@@ -1872,6 +1884,82 @@ const ProtobufCMessageDescriptor ssm__function_control_get__descriptor =
   (ProtobufCMessageInit) ssm__function_control_get__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
+static const ProtobufCFieldDescriptor ssm__function_control_set__shutdown__field_descriptors[1] =
+{
+  {
+    "force",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Ssm__FunctionControlSet__Shutdown, force),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned ssm__function_control_set__shutdown__field_indices_by_name[] = {
+  0,   /* field[0] = force */
+};
+static const ProtobufCIntRange ssm__function_control_set__shutdown__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor ssm__function_control_set__shutdown__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "ssm.FunctionControlSet.Shutdown",
+  "Shutdown",
+  "Ssm__FunctionControlSet__Shutdown",
+  "ssm",
+  sizeof(Ssm__FunctionControlSet__Shutdown),
+  1,
+  ssm__function_control_set__shutdown__field_descriptors,
+  ssm__function_control_set__shutdown__field_indices_by_name,
+  1,  ssm__function_control_set__shutdown__number_ranges,
+  (ProtobufCMessageInit) ssm__function_control_set__shutdown__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor ssm__function_control_set__reboot__field_descriptors[1] =
+{
+  {
+    "force",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BOOL,
+    0,   /* quantifier_offset */
+    offsetof(Ssm__FunctionControlSet__Reboot, force),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned ssm__function_control_set__reboot__field_indices_by_name[] = {
+  0,   /* field[0] = force */
+};
+static const ProtobufCIntRange ssm__function_control_set__reboot__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor ssm__function_control_set__reboot__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "ssm.FunctionControlSet.Reboot",
+  "Reboot",
+  "Ssm__FunctionControlSet__Reboot",
+  "ssm",
+  sizeof(Ssm__FunctionControlSet__Reboot),
+  1,
+  ssm__function_control_set__reboot__field_descriptors,
+  ssm__function_control_set__reboot__field_indices_by_name,
+  1,  ssm__function_control_set__reboot__number_ranges,
+  (ProtobufCMessageInit) ssm__function_control_set__reboot__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor ssm__function_control_set__field_descriptors[8] =
 {
   {
@@ -1883,7 +1971,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, kick),
     NULL,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1895,7 +1983,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, error),
     NULL,
     &protobuf_c_empty_string,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1907,7 +1995,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, resolve),
     NULL,
     &protobuf_c_empty_string,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1919,19 +2007,19 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, fatal),
     NULL,
     &protobuf_c_empty_string,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
     "shutdown",
     5,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Ssm__FunctionControlSet, type_case),
     offsetof(Ssm__FunctionControlSet, shutdown),
+    &ssm__function_control_set__shutdown__descriptor,
     NULL,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1943,19 +2031,19 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, on),
     NULL,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
     "reboot",
     7,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_TYPE_MESSAGE,
     offsetof(Ssm__FunctionControlSet, type_case),
     offsetof(Ssm__FunctionControlSet, reboot),
+    &ssm__function_control_set__reboot__descriptor,
     NULL,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -1967,7 +2055,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set__field_descripto
     offsetof(Ssm__FunctionControlSet, off),
     NULL,
     &protobuf_c_empty_string,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
@@ -2050,7 +2138,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set_response__field_
     offsetof(Ssm__FunctionControlSetResponse, state_error),
     &ssm__state_command_response__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -2062,7 +2150,7 @@ static const ProtobufCFieldDescriptor ssm__function_control_set_response__field_
     offsetof(Ssm__FunctionControlSetResponse, host_error),
     &ssm__host_command_response__descriptor,
     NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
