@@ -195,13 +195,21 @@ message FunctionControlSet {
         // Set system to fatal error state
         string fatal = 4;
         // Indicate system shutdown
-        bool shutdown = 5;
+        Shutdown shutdown = 5;
         // Indicate system power-on
         bool on = 6;
         // Indicate system reboot
-        bool reboot = 7;
+        Reboot reboot = 7;
         // Off commmand
         string off = 8;
+    }
+
+    message Shutdown {
+        bool force = 1;
+    }
+
+    message Reboot {
+        bool force = 1;
     }
 }
 
